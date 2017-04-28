@@ -1,0 +1,19 @@
+// Base rules
+@import 'base/normalize.scss';
+@import 'base/*';
+
+// Helpers
+@import 'helpers/_variables';
+@import 'helpers/_mixins';
+@import 'helpers/*';
+
+// GUI
+@import 'gui/*';
+
+// Vendor styles
+@import 'vendor/*';
+
+// Components, layouts & views
+@import '../components/**/*.scss';
+@import '../layouts/**/*.scss';
+@import '../views/**/*.scss';
