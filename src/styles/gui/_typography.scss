@@ -1,0 +1,97 @@
+$title: 45px;
+$title-lead: 45px;
+
+$subtitle: 25px;
+$subtitle-lead: 27px;
+
+$minor-title: 18px;
+$minor-title-lead: 20px;
+
+$small-title: 16px;
+$small-title-lead: 22px;
+$text: $small-title;
+$text-lead: $small-title-lead;
+
+$tiny-title: 14px;
+$tiny-title-lead: 20px;
+$tiny-text: $tiny-title;
+$tiny-text-lead: $tiny-title-lead;
+
+$micro-title: 12px;
+$micro-title-lead: 18px;
+$micro-text: $micro-title;
+$micro-text-lead: 14px;
+
+$nano-title: 10px;
+$nano-title-lead: 14px;
+$nano-text: $nano-title;
+$nano-text-lead: $nano-title-lead;
+
+h1, h2, h3, h4, h5, h6, p {
+  &.extra-light {
+    font-weight: 200;
+  }
+  &.semi-bold {
+    font-weight: 600;
+  }
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+  font-family: $font-family-base;
+}
+
+h4, h5, h6 {
+  font-weight: 600;
+  font-family: $font-family-secondary;
+}
+
+h1 {
+  font-size: $title;
+  line-height: $title-lead;
+}
+
+h2 {
+  font-size: $subtitle;
+  line-height: $subtitle-lead;
+}
+
+h3 {
+  font-size: $minor-title;
+  line-height: $minor-title-lead;
+}
+
+h4 {
+  font-size: $small-title;
+  line-height: $small-title-lead;
+}
+
+h5 {
+  font-size: $micro-title;
+  line-height: $micro-title-lead;
+}
+
+h6 {
+  font-size: $nano-title;
+  line-height: $nano-title-lead;
+}
+
+p {
+  font-weight: 400;
+  font-family: $font-family-secondary;
+  font-size: $text;
+  line-height: $text-lead;
+
+  &.tiny {
+    font-size: $tiny-text;
+    line-height: $tiny-text-lead;
+  }
+  &.micro {
+    font-size: $micro-text;
+    line-height: $micro-text-lead;
+  }
+  &.nano {
+    font-size: $nano-text;
+    line-height: $nano-text-lead;
+  }
+}
