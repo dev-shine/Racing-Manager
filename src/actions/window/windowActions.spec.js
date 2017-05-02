@@ -1,7 +1,7 @@
 /**
  * @module homeActions
  */
-import { HOME_TEST, testHome } from 'actions/home/homeActions'
+import { HOME_TEST, testHome } from 'actions/window/windowActions'
 
 /**
  * @module chai

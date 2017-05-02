@@ -34,21 +34,21 @@ export class Home extends Component {
   render () {
     return (
       <div className='home'>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-6'>
               This is the homepage content.
               <ButtonContainer />
             </div>
-            <div className="col-md-6">
-              <div className="row">
-                <div className="col-xs-4">
+            <div className='col-md-6'>
+              <div className='row'>
+                <div className='col-xs-4'>
                   <h1>Some sample text</h1>
                 </div>
-                <div className="col-xs-4">
+                <div className='col-xs-4'>
                   <h1>Some sample text</h1>
                 </div>
-                <div className="col-xs-4">
+                <div className='col-xs-4'>
                   <h1>Some sample text</h1>
                 </div>
               </div>
