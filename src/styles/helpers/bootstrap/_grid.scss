@@ -30,22 +30,34 @@
   @include container-fixed;
 }
 
-
 // Row
 //
 // Rows contain and clear the floats of your columns.
 
-.row {
-  @include make-row;
-}
+$gutter-xs: 6px;
 
+.row-sm {
+  $gutter-md: 20px;
+  @include make-row($gutter-xs, $gutter-md);
+  @include make-grid-columns($gutter-xs, $gutter-md);
+}
+.row .row-sm {
+  $gutter-md: 30px;
+  @include make-row($gutter-xs, $gutter-md);
+}
+.row-sm .row {
+  $gutter-md: 20px;
+  @include make-row($gutter-xs, $gutter-md);
+}
+.row {
+  $gutter-md: 30px;
+  @include make-row($gutter-xs, $gutter-md);
+  @include make-grid-columns($gutter-xs, $gutter-md);
+}
 
 // Columns
 //
 // Common styles for small and large grid columns
-
-@include make-grid-columns;
-
 
 // Extra small grid
 //

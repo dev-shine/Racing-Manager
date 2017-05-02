@@ -12,9 +12,13 @@
 }
 
 // Creates a wrapper for a series of columns
-@mixin make-row($gutter: $grid-gutter-width) {
-  margin-left:  ceil(($gutter / -2));
-  margin-right: floor(($gutter / -2));
+@mixin make-row($gutter-xs, $gutter-md) {
+  margin-left:  ceil(($gutter-xs / -2));
+  margin-right: floor(($gutter-xs / -2));
+  @media (min-width: $screen-md) {
+    margin-left:  ceil(($gutter-md / -2));
+    margin-right: floor(($gutter-md / -2));
+  }
   @include clearfix;
 }
 

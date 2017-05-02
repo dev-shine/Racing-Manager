@@ -4,17 +4,21 @@
 // any value of `$grid-columns`.
 
 // [converter] This is defined recursively in LESS, but Sass supports real loops
-@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+@mixin make-grid-columns($gutter-xs, $gutter-md, $parent: "", $i: 1, $list: "#{$parent} > .col-xs-#{$i}, #{$parent} > .col-sm-#{$i}, #{$parent} > .col-md-#{$i}, #{$parent} > .col-lg-#{$i}") {
   @for $i from (1 + 1) through $grid-columns {
-    $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+    $list: "#{$list}, #{$parent} > .col-xs-#{$i}, #{$parent} > .col-sm-#{$i}, #{$parent} > .col-md-#{$i}, #{$parent} > .col-lg-#{$i}";
   }
   #{$list} {
     position: relative;
     // Prevent columns from collapsing when empty
     min-height: 1px;
     // Inner gutter via padding
-    padding-left:  ceil(($grid-gutter-width / 2));
-    padding-right: floor(($grid-gutter-width / 2));
+    padding-left:  ceil(($gutter-xs / 2));
+    padding-right: floor(($gutter-xs / 2));
+    @media (min-width: $screen-md) {
+      padding-left:  ceil(($gutter-md / 2));
+      padding-right: floor(($gutter-md / 2));
+    }
   }
 }
 
