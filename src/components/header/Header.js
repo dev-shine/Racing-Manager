@@ -17,7 +17,12 @@ import PropTypes from 'prop-types'
 const Header = props => {
   return (
     <header className='header'>
-      This is a header.
+      <div className="container">
+        <a href="/" className="header__logo">
+          <span className="header__logo-image svg-background"></span>
+          <h5 className="header__logo-text">The Racing Manager</h5>
+        </a>
+      </div>
     </header>
   )
 }

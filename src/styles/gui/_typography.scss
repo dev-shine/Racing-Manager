@@ -27,7 +27,8 @@ $nano-title-lead: 14px;
 $nano-text: $nano-title;
 $nano-text-lead: $nano-title-lead;
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, a {
+  color: black;
   &.extra-light {
     font-weight: 200;
   }
@@ -67,21 +68,23 @@ h4 {
 }
 
 h5 {
+  font-size: $tiny-title;
+  line-height: $tiny-title-lead;
+}
+
+h6 {
   font-size: $micro-title;
   line-height: $micro-title-lead;
 }
 
-h6 {
-  font-size: $nano-title;
-  line-height: $nano-title-lead;
-}
-
-p {
+p, body {
   font-weight: 400;
   font-family: $font-family-secondary;
   font-size: $text;
   line-height: $text-lead;
+}
 
+p {
   &.tiny {
     font-size: $tiny-text;
     line-height: $tiny-text-lead;

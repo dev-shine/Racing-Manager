@@ -1,3 +1,25 @@
-header {
-
+.header {
+  height: $header-height;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  box-shadow: 0 0 40px rgba(black, 0.1);
+  z-index: $zindex-header;
+  &__logo-image {
+    background-image: url($logo);
+    height: $header-height;
+    width: 100px;
+    display: inline-block;
+    float: left;
+  }
+  &__logo-text {
+    padding-left: 10px;
+    font-size: 13px;
+    display: inline-block;
+    float: left;
+    line-height: $header-height;
+    margin: 0;
+  }
 }
