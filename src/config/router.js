@@ -40,6 +40,7 @@ import { locationChange } from 'actions/window/windowActions'
  */
 const handleRouterUpdate = () => window.scrollTo(0, 0)
 
+// Temporary solution for redux-router-4 bug with location change
 window.addEventListener('hashchange', () => {
   store.dispatch(locationChange(window.location.hash))
 }, false)
