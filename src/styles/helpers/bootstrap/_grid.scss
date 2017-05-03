@@ -5,14 +5,21 @@
 // Container widths
 //
 // Set the container width, and override it for fixed navbars in media queries.
+$gutter-xs: 6px;
+$gutter-md: 30px;
+$sm-gutter-md: 20px;
+
+$container-margin-xs: (20px * 2) + $gutter-xs;
+$container-margin-md: 40px;
 
 .container {
-  @include container-fixed;
+  @include container-fixed($container-margin-xs);
 
   @media (min-width: $screen-sm-min) {
     width: $container-sm;
   }
   @media (min-width: $screen-md-min) {
+    @include side-padding($container-margin-md);
     width: $container-md;
   }
   @media (min-width: $screen-lg-min) {
@@ -30,22 +37,36 @@
   @include container-fixed;
 }
 
-
 // Row
 //
 // Rows contain and clear the floats of your columns.
 
+.row-sm, .row {
+  @include clearfix;
+}
+
+.row-sm {
+  @include make-row($gutter-xs, $sm-gutter-md);
+  @include make-grid-columns($gutter-xs, $sm-gutter-md);
+}
+
 .row {
-  @include make-row;
+  @include make-row($gutter-xs, $gutter-md);
+  @include make-grid-columns($gutter-xs, $gutter-md);
+}
+
+.row-sm-margin {
+  @include make-row($gutter-xs, $sm-gutter-md);
+}
+
+.row-margin, .container > .row-sm {
+  @include make-row($gutter-xs, $gutter-md);
 }
 
 
 // Columns
 //
 // Common styles for small and large grid columns
-
-@include make-grid-columns;
-
 
 // Extra small grid
 //

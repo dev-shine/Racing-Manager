@@ -3,19 +3,29 @@
 // Generate semantic grid columns with these mixins.
 
 // Centered container element
+@mixin side-padding($size) {
+  padding-left:  floor(($size / 2));
+  padding-right: ceil(($size / 2));
+}
+
 @mixin container-fixed($gutter: $grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
-  padding-left:  floor(($gutter / 2));
-  padding-right: ceil(($gutter / 2));
+  @include side-padding($gutter);
   @include clearfix;
 }
 
+@mixin make-margins($size) {
+  margin-left:  ceil(($size / -2));
+  margin-right: floor(($size / -2));
+}
+
 // Creates a wrapper for a series of columns
-@mixin make-row($gutter: $grid-gutter-width) {
-  margin-left:  ceil(($gutter / -2));
-  margin-right: floor(($gutter / -2));
-  @include clearfix;
+@mixin make-row($gutter-xs, $gutter-md) {
+  @include make-margins($gutter-xs);
+  @media (min-width: $screen-md) {
+    @include make-margins($gutter-md);
+  }
 }
 
 // Generate the extra small columns
