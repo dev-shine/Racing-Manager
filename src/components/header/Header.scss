@@ -45,9 +45,5 @@
     padding: ($header-height - 25px)/2 0
   }
   &__register-button {
-    display: none;
-    @media (min-width: $screen-sm) {
-      display: inline-block;
-    }
   }
 }

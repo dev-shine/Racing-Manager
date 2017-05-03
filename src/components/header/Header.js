@@ -15,11 +15,11 @@ import PropTypes from 'prop-types'
  * @constructor
  */
 const Header = props => {
-  const { content } = props
+  const { content, logohref } = props
   return (
     <header className='header'>
       <div className='header__container container'>
-        <a href='/' className='header__logo'>
+        <a href={logohref} className='header__logo'>
           <span className='header__logo-image svg-background' />
           <h5 className='header__logo-text'>
             <span className="visible-sm-up">The Racing Manager</span>

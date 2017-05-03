@@ -17,7 +17,7 @@ export default [
       const { handleRegister } = props
       return <div className={headerContentClass}>
         <Button
-          className='header__register-button'
+          className='header__register-button visible-sm-up'
           handleClick={handleRegister}
           text='Register for FREE' />
       </div>
