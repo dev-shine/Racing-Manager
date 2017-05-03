@@ -40,6 +40,7 @@ export default class Parallax extends React.Component {
   }
 
   render () {
+    // TODO: Make it prefixed
     const style = {
       transform: `translate3d(0, ${this.state.position}px, 0)`
     }

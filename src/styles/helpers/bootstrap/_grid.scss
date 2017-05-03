@@ -9,11 +9,11 @@ $gutter-xs: 6px;
 $gutter-md: 30px;
 $sm-gutter-md: 20px;
 
-$container-margin-xs: (20px * 2) + $gutter-xs;
+$container-margin-xs: 20px;
 $container-margin-md: 40px;
 
 .container {
-  @include container-fixed($container-margin-xs);
+  @include container-fixed(($container-margin-xs * 2) + $gutter-xs);
 
   @media (min-width: $screen-sm-min) {
     width: $container-sm;

@@ -22,7 +22,7 @@ import Parallax from 'components/utils/parallax/Parallax.js'
  * @returns { React.Component }
  */
 const ParallaxHero = props => {
-  const { className, featuredImage } = props
+  const { children, className, featuredImage } = props
 
   const _className = classNames('parallax-hero', className)
 
@@ -35,9 +35,11 @@ const ParallaxHero = props => {
         >
           <div>
             <div className="parallax-hero__image"
-                 style={{backgroundImage: `url(${featuredImage})`}}/>
+                 style={{backgroundImage: `url(${featuredImage})`}}>
+            </div>
           </div>
         </Parallax>
+        {children}
       </div>
     </div>
   )
