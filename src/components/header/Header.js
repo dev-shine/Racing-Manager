@@ -21,7 +21,10 @@ const Header = props => {
       <div className='header__container container'>
         <a href='/' className='header__logo'>
           <span className='header__logo-image svg-background' />
-          <h5 className='header__logo-text'>The Racing Manager</h5>
+          <h5 className='header__logo-text'>
+            <span className="visible-sm-up">The Racing Manager</span>
+            <span className="hidden-sm-down">TRM</span>
+          </h5>
         </a>
         {content}
       </div>
