@@ -1,0 +1,14 @@
+.parallax-hero {
+  position: relative;
+  z-index: 1;
+  &__parallax {
+    position: relative;
+    overflow: hidden;
+  }
+  &__image {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: calc(100vh - #{$header-height});
+  }
+}

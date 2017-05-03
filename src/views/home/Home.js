@@ -14,6 +14,11 @@ import { connect } from 'react-redux'
 import ButtonContainer from 'containers/home/ButtonContainer'
 
 /**
+ * @module ParallaxHero
+ */
+import ParallaxHero from 'components/home/hero/ParallaxHero'
+
+/**
  * Home view
  * @class
  * @extends Component
@@ -34,6 +39,9 @@ export class Home extends Component {
   render () {
     return (
       <div className='home'>
+        <ParallaxHero
+          featuredImage='assets/images/home-hero.png'
+        />
         <div className='container'>
           <div className='row'>
             <div className='col-md-6'>
