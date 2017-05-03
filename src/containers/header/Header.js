@@ -31,6 +31,11 @@ export class Header extends Component {
   constructor (props) {
     super(props)
   }
+
+  handleRegister () {
+    console.log('Go to register page!')
+  }
+
   render () {
     let { location } = this.props
     location = location.slice(1)
@@ -41,7 +46,9 @@ export class Header extends Component {
       if (
         contentState.paths.indexOf(location) >= 0
       ) {
-        content = contentState.getContent()
+        content = contentState.getContent({
+          handleRegister: this.handleRegister
+        })
         return false
       }
     })

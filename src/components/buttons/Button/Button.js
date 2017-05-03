@@ -20,13 +20,16 @@ import classNames from 'classnames'
  * @returns { XML }
  */
 const Button = props => {
-  const { text, className, modifier, isDisabled, handleClick } = props
+  const { text, className, isDisabled, handleClick } = props
 
   const _className = classNames('button', className)
 
   return (
-    <button className={_className}>
-      {text}
+    <button
+      className={_className}
+      onClick={!isDisabled && handleClick}
+      disabled={isDisabled}>
+      <h6 className='button__text'>{text}</h6>
     </button>
   )
 }

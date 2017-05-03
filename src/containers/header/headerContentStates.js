@@ -8,17 +8,18 @@ import React from 'react'
  */
 import Button from 'components/buttons/Button/Button'
 
-
-
 const headerContentClass = 'header__content'
 
 export default [
   {
     paths: ['/'],
-    getContent: () => {
+    getContent: (props = {}) => {
+      const { handleRegister } = props
       return <div className={headerContentClass}>
-        <Button className="header__register-button"
-                text="Register"/>
+        <Button
+          className='header__register-button'
+          handleClick={handleRegister}
+          text='Register for FREE' />
       </div>
     }
   },

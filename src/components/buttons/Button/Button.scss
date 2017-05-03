@@ -1,7 +1,27 @@
-.sample-button {
-  width: 200px;
-  height: 40px;
+$cta-button-bg: $vanilla-ice;
+$cta-button-height: 25px;
+
+.button {
+  min-width: 120px;
+  height: $cta-button-height;
+  padding: 0 15px;
   border: none;
-  border-radius: 5px;
-  background: red;
+  border-radius: 0;
+  background: $cta-button-bg;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .25s;
+  &:hover, &:visited, &:active, &:focus {
+    appearance: none;
+    outline: none;
+  }
+  &:hover {
+    background: darken($cta-button-bg, 10)
+  }
+  &:active {
+    background: darken($cta-button-bg, 20)
+  }
+  &__text {
+    color: white;
+  }
 }
