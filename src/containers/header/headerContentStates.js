@@ -10,7 +10,7 @@ import Button from 'components/buttons/Button/Button'
 
 const headerContentClass = 'header__content'
 
-export default [
+const headerContentStates = [
   {
     paths: ['/'],
     getContent: (props = {}) => {
@@ -30,3 +30,17 @@ export default [
     }
   }
 ]
+
+export default (props) => {
+  let { location } = props
+  let result = null
+  location = location.slice(1)
+
+  headerContentStates.forEach(contentState => {
+    if (contentState.paths.indexOf(location) >= 0) {
+      result = contentState.getContent(props)
+      return false
+    }
+  })
+  return result
+}

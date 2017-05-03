@@ -37,20 +37,11 @@ export class Header extends Component {
   }
 
   render () {
-    let { location } = this.props
-    location = location.slice(1)
+    const { location } = this.props
 
-    let content = null
-
-    headerContentStates.forEach(contentState => {
-      if (
-        contentState.paths.indexOf(location) >= 0
-      ) {
-        content = contentState.getContent({
-          handleRegister: this.handleRegister
-        })
-        return false
-      }
+    let content = headerContentStates({
+      location,
+      handleRegister: this.handleRegister
     })
 
     return (

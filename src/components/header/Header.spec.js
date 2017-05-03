@@ -27,7 +27,7 @@ describe('Components - Header', () => {
   })
 
   it('should render a passed content', () => {
-    const content = <div className="header__content"/>
+    const content = <div className='header__content' />
     wrapper.setProps({content})
     expect(wrapper.find('.header__content')).to.have.length(1)
   })
