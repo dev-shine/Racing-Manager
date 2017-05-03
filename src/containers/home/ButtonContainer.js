@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 /**
  * @module SampleButton
  */
-import SampleButton from 'components/buttons/SampleButton/SampleButton'
+import Button from 'components/buttons/Button/Button'
 
 /**
  * Button container
@@ -34,7 +34,7 @@ export class ButtonContainer extends Component {
   render () {
     return (
       <div className='button-container'>
-        <SampleButton text='Sample button' />
+        <Button text='Sample button' />
       </div>
     )
   }

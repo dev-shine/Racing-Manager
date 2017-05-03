@@ -6,14 +6,14 @@ import { combineReducers } from 'redux'
 /**
  * @module homeReducer
  */
-import homeReducer from 'reducers/home/homeReducer'
+import windowReducer from 'reducers/window/windowReducer'
 
 /**
  * Root reducer - Combines all reducers passed in ready for a redux store
  * @type { Reducer }
  */
 const rootReducer = combineReducers({
-  home: homeReducer
+  window: windowReducer
 })
 
 export default rootReducer

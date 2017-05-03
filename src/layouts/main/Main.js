@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 /**
  * @module Header
  */
-import Header from 'components/header/Header'
+import Header from 'containers/header/Header'
 
 /**
  * @module Footer

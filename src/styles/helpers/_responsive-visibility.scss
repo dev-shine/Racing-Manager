@@ -1,0 +1,12 @@
+.visible-sm-up {
+  display: none;
+  @media (min-width: $screen-sm) {
+    display: block;
+  }
+}
+
+.hidden-sm-down {
+  @media (min-width: $screen-sm) {
+    display: none;
+  }
+}

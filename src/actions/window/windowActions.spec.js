@@ -1,7 +1,7 @@
 /**
  * @module homeActions
  */
-import { HOME_TEST, testHome } from 'actions/home/homeActions'
+import { LOCATION_CHANGE, locationChange } from 'actions/window/windowActions'
 
 /**
  * @module chai
@@ -10,13 +10,15 @@ import { expect } from 'chai'
 
 describe('Actions - Home', () => {
   it('should be a string', () => {
-    expect(HOME_TEST).to.be.an('string')
+    expect(LOCATION_CHANGE).to.be.an('string')
   })
 
   it('should return the HOME_TEST action when testHome() is called', () => {
+    const payload = '/#'
     const action = {
-      type: HOME_TEST
+      type: LOCATION_CHANGE,
+      payload
     }
-    expect(testHome()).to.deep.equal(action)
+    expect(locationChange(payload)).to.deep.equal(action)
   })
 })

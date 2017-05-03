@@ -1,7 +1,7 @@
 /**
- * @module homeReducer
+ * @module windowReducer
  */
-import homeReducer from 'reducers/home/homeReducer'
+import windowReducer from 'reducers/window/windowReducer'
 
 /**
  ** @module testing utilities
@@ -10,6 +10,6 @@ import { expect } from 'chai'
 
 describe('Reducers - Home', () => {
   it('should exist', () => {
-    expect(homeReducer).to.exist
+    expect(windowReducer).to.exist
   })
 })

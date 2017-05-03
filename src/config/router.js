@@ -24,11 +24,26 @@ import Main from 'layouts/main/Main'
 import Home from 'views/home/Home'
 
 /**
+ * @module store
+ */
+import store from 'store/store'
+
+/**
+ * @module locationChange
+ */
+import { locationChange } from 'actions/window/windowActions'
+
+/**
  * Handle router update
  * @type { Function }
  * @returns { void }
  */
 const handleRouterUpdate = () => window.scrollTo(0, 0)
+
+// Temporary solution for redux-router-4 bug with location change
+window.addEventListener('hashchange', () => {
+  store.dispatch(locationChange(window.location.hash))
+}, false)
 
 /**
  * App router
