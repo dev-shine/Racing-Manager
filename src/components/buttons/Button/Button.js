@@ -9,16 +9,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 /**
- * SampleButton component
+ * Button component
  * @param { Object } props
  * @property { String } props.text
  * @returns { XML }
  */
-const SampleButton = props => {
-  const { text } = props
+const Button = props => {
+  const { text, className, modifier, isDisabled, handleClick } = props
 
   return (
-    <button className='sample-button'>
+    <button className='button'>
       {text}
     </button>
   )
@@ -28,7 +28,7 @@ const SampleButton = props => {
  * Component props types
  * @type { Object }
  */
-SampleButton.propTypes = {
+Button.propTypes = {
   text: PropTypes.string
 }
 
@@ -36,8 +36,8 @@ SampleButton.propTypes = {
  * Default component props
  * @type { Object }
  */
-SampleButton.defaultProps = {
+Button.defaultProps = {
   text: ''
 }
 
-export default SampleButton
+export default Button
