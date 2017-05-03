@@ -18,7 +18,7 @@ const Header = props => {
   const { content } = props
   return (
     <header className='header'>
-      <div className='container'>
+      <div className='header__container container'>
         <a href='/' className='header__logo'>
           <span className='header__logo-image svg-background' />
           <h5 className='header__logo-text'>The Racing Manager</h5>

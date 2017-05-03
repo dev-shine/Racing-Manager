@@ -1,5 +1,6 @@
 .header {
   height: $header-height;
+  overflow: hidden;
   width: 100%;
   position: fixed;
   top: 0;
@@ -7,12 +8,24 @@
   background: white;
   box-shadow: 0 0 40px rgba(black, 0.1);
   z-index: $zindex-header;
+  &__container {
+    padding-left: 0;
+    padding-right: 0;
+    @media (min-width: $screen-sm) {
+      padding-left:  floor(($grid-gutter-width / 2));
+      padding-right: ceil(($grid-gutter-width / 2));
+    }
+  }
   &__logo-image {
     background-image: url($logo);
     height: $header-height;
     width: 100px;
     display: inline-block;
     float: left;
+    margin-left: -40px;
+    @media (min-width: $screen-sm) {
+      margin-left: 0;
+    }
   }
   &__logo-text {
     padding-left: 10px;
@@ -27,5 +40,11 @@
     float: right;
     height: $header-height;
     padding: ($header-height - 25px)/2 0
+  }
+  &__register-button {
+    display: none;
+    @media (min-width: $screen-sm) {
+      display: inline-block;
+    }
   }
 }
