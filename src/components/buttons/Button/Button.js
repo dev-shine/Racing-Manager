@@ -9,6 +9,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 /**
+ * @module classNames
+ */
+import classNames from 'classnames'
+
+/**
  * Button component
  * @param { Object } props
  * @property { String } props.text
@@ -17,8 +22,10 @@ import PropTypes from 'prop-types'
 const Button = props => {
   const { text, className, modifier, isDisabled, handleClick } = props
 
+  const _className = classNames('button', className)
+
   return (
-    <button className='button'>
+    <button className={_className}>
       {text}
     </button>
   )
