@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module SampleButton
  */
-import SampleButton from 'components/buttons/SampleButton/SampleButton'
+import Button from 'components/buttons/Button/Button'
 
 /**
  * @module test
@@ -19,9 +19,9 @@ import { SAMPLE_TEXT } from 'texts/test'
 import { expect } from 'chai'
 import { shallow } from 'enzyme'
 
-describe('Components - SampleButton', () => {
+describe('Components - Button', () => {
   let wrapper
-  beforeEach(() => { wrapper = shallow(<SampleButton />) })
+  beforeEach(() => { wrapper = shallow(<Button />) })
 
   it('should exist', () => {
     expect(wrapper).to.exist
