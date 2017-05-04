@@ -18,7 +18,14 @@ $partners-height-sm: 100px;
     width: 100vw - $partners-slider-margin * 2;
     position: relative;
   }
-  &__slide {
+  &__partner {
+    display: inline-block;
+    height: $partners-height;
+    @media (min-width: $screen-sm) {
+      height: $partners-height-sm;
+    }
+  }
+  &__partner-image {
     margin: auto;
     position: relative;
     top: 50%;
@@ -30,14 +37,7 @@ $partners-height-sm: 100px;
       width: 100px;
     }
   }
-  &__slide-container {
-    display: inline-block;
-    height: $partners-height;
-    @media (min-width: $screen-sm) {
-      height: $partners-height-sm;
-    }
-  }
-  &__arrow {
+  &__arrow-image {
     @include absolute-center;
     width: 10px;
     height: 10px;
@@ -46,7 +46,7 @@ $partners-height-sm: 100px;
       height: 20px;
     }
   }
-  &__arr {
+  &__arrow {
     position: absolute;
     top: 0;
     z-index: 1;

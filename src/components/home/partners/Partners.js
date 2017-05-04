@@ -20,6 +20,7 @@ import ImageButton from 'components/buttons/ImageButton/ImageButton'
  * Arrow component
  * @returns { React.Component }
  */
+// TODO: Just create Image component!
 const Arrow = props => {
   const { _className, onClick } = props
   return (
@@ -27,7 +28,7 @@ const Arrow = props => {
       className={_className}
       onClick={onClick}>
       <ImageButton
-        className="partners__arrow"
+        className="partners__arrow-image"
         imageSrc="images/arrow-left.svg"/>
     </div>
   )
@@ -51,9 +52,9 @@ const Partners = props => {
       result.push(
         <div
           key={i}
-          className='partners__slide-container'>
+          className='partners__partner'>
           <div
-            className='partners__slide image-background'
+            className='partners__partner-image image-background'
             style={{backgroundImage: `url(assets/images/partners/${i}.png)`}} />
         </div>
       )
@@ -63,20 +64,23 @@ const Partners = props => {
 
   return (
     <div className={_className}>
-      <div className='partners__slider-wrapper'>
+      <div className='partners__slider-wrapper hidden-md-up'>
         <Slider
           className='partners__carousel'
           infinite
           autoplay
           initialSlide={1}
-          prevArrow={<Arrow _className="partners__arrow-prev partners__arr"/>}
-          nextArrow={<Arrow _className="partners__arrow-next partners__arr"/>}
+          prevArrow={<Arrow _className="partners__arrow-prev partners__arrow"/>}
+          nextArrow={<Arrow _className="partners__arrow-next partners__arrow"/>}
           slidesToShow={3}
           speed={500}
           slidesToScroll={1}
           >
           {slides()}
         </Slider>
+      </div>
+      <div className="container visible-md-up">
+        {slides()}
       </div>
     </div>
   )
