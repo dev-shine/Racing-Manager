@@ -20,7 +20,7 @@ const Header = props => {
     <header className='header'>
       <div className='header__container container'>
         <a href={logohref} className='header__logo'>
-          <span className='header__logo-image svg-background' />
+          <span className='header__logo-image image-background' />
           <h5 className='header__logo-text'>
             <span className='visible-sm-up'>The Racing Manager</span>
             <span className='hidden-sm-up'>TRM</span>

@@ -1,3 +1,5 @@
+$partners-slider-margin: 8%;
+
 .partners {
   width: 100%;
   background: $yankees-blue;
@@ -5,4 +7,21 @@
   @media (min-width: $screen-sm) {
     height: 100px;
   }
+  &__carousel {
+  }
+  &__slider-wrapper {
+    margin: 0 $partners-slider-margin;
+    width: 100% - $partners-slider-margin * 2;
+    overflow: hidden;
+  }
+  &__slide {
+    background-color: red;
+    height: 50px;
+    width: 100px;
+    margin: auto;
+  }
+  &__slide-container {
+    display: inline-block;
+  }
+
 }

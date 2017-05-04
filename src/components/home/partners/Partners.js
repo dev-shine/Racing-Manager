@@ -10,6 +10,11 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 /**
+ * @module Carousel
+ */
+import Slider from 'react-slick'
+
+/**
  * Partners component
  * @param { Object } props
  * @property { String } props.featuredImage
@@ -21,8 +26,36 @@ const Partners = props => {
 
   const _className = classNames('partners', className)
 
+  const slides = () => {
+    let result = []
+    for (let i = 1; i < 5; i++) {
+      result.push(
+        <div
+          key={i}
+          className='partners__slide-container'>
+          <div
+            className='partners__slide image-background'
+            style={{backgroundImage: `url(assets/images/partners/${i}.png)`}} />
+        </div>
+      )
+    }
+    return result
+  }
+
   return (
     <div className={_className}>
+      <div className="partners__slider-wrapper">
+        <Slider
+          className='partners__carousel'
+          infinite
+          autoplay
+          slidesToShow={3}
+          speed={500}
+          slidesToScroll={1}
+          >
+          {slides()}
+        </Slider>
+      </div>
     </div>
   )
 }
