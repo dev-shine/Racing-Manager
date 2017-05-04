@@ -44,7 +44,14 @@ export class Home extends Component {
           <div className="home__hero-content absolute-center">
             <h1 className="home__hero-text">We make setting up syndicates simple.</h1>
           </div>
-          <p className="home__hero-tip nano">Use the arrow keys to change jockey. Click and drag to look around.</p>
+          <p className="home__hero-tip micro">
+            <span className="visible-md-up">
+              Use the arrow keys to change jockey. Click and drag to look around.
+            </span>
+            <span className="hidden-md-up">
+              Tap to change jockey.<br/>Drag to look around.
+            </span>
+          </p>
         </ParallaxHero>
         <div className='container'>
           <div className='row'>
