@@ -12,6 +12,7 @@ import classNames from 'classnames'
 /**
  * @module Carousel
  */
+
 import Slider from 'react-slick'
 import Button from 'components/buttons/Button/Button'
 
