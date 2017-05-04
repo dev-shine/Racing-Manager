@@ -1,0 +1,8 @@
+.partners {
+  width: 100%;
+  background: $yankees-blue;
+  height: 55px;
+  @media (min-width: $screen-sm) {
+    height: 100px;
+  }
+}

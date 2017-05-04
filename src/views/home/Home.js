@@ -19,6 +19,11 @@ import ButtonContainer from 'containers/home/ButtonContainer'
 import ParallaxHero from 'components/home/hero/ParallaxHero'
 
 /**
+ * @module Partners
+ */
+import Partners from 'components/home/partners/Partners'
+
+/**
  * Home view
  * @class
  * @extends Component
@@ -53,6 +58,7 @@ export class Home extends Component {
             </span>
           </p>
         </ParallaxHero>
+        <Partners/>
         <div className='container'>
           <div className='row'>
             <div className='col-md-6'>
