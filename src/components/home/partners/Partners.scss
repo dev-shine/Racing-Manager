@@ -1,8 +1,9 @@
 $partners-slider-margin: 8%;
+$partners-background: $yankees-blue;
 
 .partners {
   width: 100%;
-  background: $yankees-blue;
+  background: $partners-background;
   height: 55px;
   @media (min-width: $screen-sm) {
     height: 100px;
@@ -12,7 +13,7 @@ $partners-slider-margin: 8%;
   &__slider-wrapper {
     margin: 0 $partners-slider-margin;
     width: 100% - $partners-slider-margin * 2;
-    overflow: hidden;
+    position: relative;
   }
   &__slide {
     background-color: red;
@@ -23,5 +24,4 @@ $partners-slider-margin: 8%;
   &__slide-container {
     display: inline-block;
   }
-
 }

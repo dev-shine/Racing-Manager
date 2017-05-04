@@ -17,19 +17,19 @@ import classNames from 'classnames'
  * Button component
  * @param { Object } props
  * @property { String } props.text
- * @returns { XML }
+ * @returns { React.Component }
  */
 const Button = props => {
-  const { text, className, isDisabled, handleClick } = props
+  const { children, className, isDisabled, onClick } = props
 
   const _className = classNames('button', className)
 
   return (
     <button
       className={_className}
-      onClick={!isDisabled && handleClick}
+      onClick={!isDisabled && onClick}
       disabled={isDisabled}>
-      <h6 className='button__text'>{text}</h6>
+      {children}
     </button>
   )
 }
@@ -39,7 +39,6 @@ const Button = props => {
  * @type { Object }
  */
 Button.propTypes = {
-  text: PropTypes.string
 }
 
 /**
@@ -47,7 +46,6 @@ Button.propTypes = {
  * @type { Object }
  */
 Button.defaultProps = {
-  text: ''
 }
 
 export default Button

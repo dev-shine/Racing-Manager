@@ -26,9 +26,4 @@ describe('Components - Button', () => {
   it('should exist', () => {
     expect(wrapper).to.exist
   })
-
-  it('should contain the text passed to it from "text" prop', () => {
-    wrapper.setProps({ text: SAMPLE_TEXT })
-    expect(wrapper.text()).to.equal(SAMPLE_TEXT)
-  })
 })

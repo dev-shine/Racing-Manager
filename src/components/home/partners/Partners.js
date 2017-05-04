@@ -13,6 +13,7 @@ import classNames from 'classnames'
  * @module Carousel
  */
 import Slider from 'react-slick'
+import Button from 'components/buttons/Button/Button'
 
 /**
  * Partners component
@@ -44,7 +45,7 @@ const Partners = props => {
 
   return (
     <div className={_className}>
-      <div className="partners__slider-wrapper">
+      <div className='partners__slider-wrapper'>
         <Slider
           className='partners__carousel'
           infinite

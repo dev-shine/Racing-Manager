@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  * Header component
  * @param { Object } props
- * @returns { XML }
+ * @returns { React.Component }
  * @constructor
  */
 const Header = props => {

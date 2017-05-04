@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module Button
  */
-import Button from 'components/buttons/Button/Button'
+import PrimaryButton from 'components/buttons/PrimaryButton/PrimaryButton'
 
 const headerContentClass = 'header__content'
 
@@ -14,11 +14,11 @@ const headerContentStates = [
   {
     paths: ['/'],
     getContent: (props = {}) => {
-      const { handleRegister } = props
+      const { onRegister } = props
       return <div className={headerContentClass}>
-        <Button
+        <PrimaryButton
           className='header__register-button visible-sm-up'
-          handleClick={handleRegister}
+          onClick={onRegister}
           text='Register for FREE' />
       </div>
     }

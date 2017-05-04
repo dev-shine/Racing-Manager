@@ -1,0 +1,20 @@
+$cta-button-bg: $vanilla-ice;
+$cta-button-height: 25px;
+
+.primary-button {
+  min-width: 120px;
+  height: $cta-button-height;
+  padding: 0 15px;
+  background: $cta-button-bg;
+  text-transform: uppercase;
+  transition: background .25s;
+  &:hover {
+    background: darken($cta-button-bg, 10)
+  }
+  &:active {
+    background: darken($cta-button-bg, 20)
+  }
+  &__text {
+    color: white;
+  }
+}

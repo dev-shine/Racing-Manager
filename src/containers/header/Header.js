@@ -32,7 +32,7 @@ export class Header extends Component {
     super(props)
   }
 
-  handleRegister () {
+  onRegister () {
     console.log('Go to register page!')
   }
 
@@ -41,7 +41,7 @@ export class Header extends Component {
 
     let content = headerContentStates({
       location,
-      handleRegister: this.handleRegister
+      onRegister: this.onRegister
     })
 
     return (

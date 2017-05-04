@@ -29,7 +29,7 @@ export class ButtonContainer extends Component {
 
   /**
    * Render method
-   * @returns { XML }
+   * @returns { React.Component }
    */
   render () {
     return (
