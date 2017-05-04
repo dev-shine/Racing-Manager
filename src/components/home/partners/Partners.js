@@ -14,7 +14,24 @@ import classNames from 'classnames'
  */
 
 import Slider from 'react-slick'
-import Button from 'components/buttons/Button/Button'
+import ImageButton from 'components/buttons/ImageButton/ImageButton'
+
+/**
+ * Arrow component
+ * @returns { React.Component }
+ */
+const Arrow = props => {
+  const { _className, onClick } = props
+  return (
+    <div
+      className={_className}
+      onClick={onClick}>
+      <ImageButton
+        className="partners__arrow"
+        imageSrc="images/arrow-left.svg"/>
+    </div>
+  )
+}
 
 /**
  * Partners component
@@ -51,6 +68,9 @@ const Partners = props => {
           className='partners__carousel'
           infinite
           autoplay
+          initialSlide={1}
+          prevArrow={<Arrow _className="partners__arrow-prev partners__arr"/>}
+          nextArrow={<Arrow _className="partners__arrow-next partners__arr"/>}
           slidesToShow={3}
           speed={500}
           slidesToScroll={1}

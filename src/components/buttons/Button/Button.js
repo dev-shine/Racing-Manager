@@ -20,13 +20,14 @@ import classNames from 'classnames'
  * @returns { React.Component }
  */
 const Button = props => {
-  const { children, className, isDisabled, onClick } = props
+  const { children, className, style, isDisabled, onClick } = props
 
   const _className = classNames('button', className)
 
   return (
     <button
       className={_className}
+      style={style}
       onClick={!isDisabled && onClick}
       disabled={isDisabled}>
       {children}
