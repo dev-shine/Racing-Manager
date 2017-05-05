@@ -49,7 +49,7 @@ export class Home extends Component {
           <div className='home__hero-content absolute-center'>
             <h1 className='home__hero-text'>We make setting up syndicates simple.</h1>
           </div>
-          <p className='home__hero-tip micro'>
+          <p className='home__hero-tip micro semi-bold'>
             <span className='visible-md-up'>
               Use the arrow keys to change jockey. Click and drag to look around.
             </span>
@@ -60,22 +60,11 @@ export class Home extends Component {
         </ParallaxHero>
         <Partners />
         <div className='container'>
-          <div className='row'>
-            <div className='col-md-6'>
-              This is the homepage content.
-              <ButtonContainer />
-            </div>
-            <div className='col-md-6'>
-              <div className='row'>
-                <div className='col-xs-4'>
-                  <h1>Some sample text</h1>
-                </div>
-                <div className='col-xs-4'>
-                  <h1>Some sample text</h1>
-                </div>
-                <div className='col-xs-4'>
-                  <h1>Some sample text</h1>
-                </div>
+          <div className='home__section home__cta-section'>
+            <div className="row">
+              <div className="col-md-12">
+                <h2 className="secondary-font home__cta-headline">The definitive platform for listing, managing and enjoying horse syndication</h2>
+                <p>Our new technology allows horse trainers, syndicate managers and memebers to keep in touch more easily, manage their brands more effectively, and be more thoroughly involved in the excitement of horse racing at any time in any place than ever before.</p>
               </div>
             </div>
           </div>

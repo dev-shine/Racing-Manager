@@ -2,11 +2,14 @@
 @import 'base/normalize.scss';
 @import 'base/*';
 
-// Helpers
-@import 'helpers/*';
+// Bootstrap variables
+@import 'helpers/bootstrap/bootstrap-variables';
 
 // GUI
 @import 'gui/*';
+
+// Helpers
+@import 'helpers/*';
 
 // Vendor styles
 @import 'vendor/*';

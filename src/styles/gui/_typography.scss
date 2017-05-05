@@ -2,6 +2,7 @@ $title: 45px;
 $title-lead: 45px;
 
 $subtitle: 25px;
+$subtitle-xs: 16px;
 $subtitle-lead: 27px;
 
 $minor-title: 18px;
@@ -11,6 +12,7 @@ $small-title: 16px;
 $small-title-lead: 22px;
 $text: $small-title;
 $text-lead: $small-title-lead;
+$text-xs: 14px;
 
 $tiny-title: 14px;
 $tiny-title-lead: 20px;
@@ -36,11 +38,16 @@ h1, h2, h3, h4, h5, h6, p, a {
   &.semi-bold {
     font-weight: 600;
   }
+  &.secondary-font {
+    font-family: $font-family-secondary;
+    font-weight: 600;
+  }
 }
 
 h1, h2, h3 {
   font-weight: 500;
   font-family: $font-family-base;
+  text-transform: uppercase;
 }
 
 h4, h5, h6 {
@@ -54,8 +61,11 @@ h1 {
 }
 
 h2 {
-  font-size: $subtitle;
+  font-size: $subtitle-xs;
   line-height: $subtitle-lead;
+  @media (min-width: $screen-md) {
+    font-size: $subtitle;
+  }
 }
 
 h3 {
@@ -79,10 +89,13 @@ h6 {
 }
 
 p, body {
-  font-weight: 400;
+  font-weight: 300;
   font-family: $font-family-secondary;
-  font-size: $text;
+  font-size: $text-xs;
   line-height: $text-lead;
+  @media (min-width: $screen-sm) {
+    font-size: $text;
+  }
 }
 
 p {

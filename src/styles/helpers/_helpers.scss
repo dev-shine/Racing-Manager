@@ -14,3 +14,7 @@
 .absolute-center {
   @include absolute-center
 }
+
+.full-height {
+  height: calc(100vh - #{$header-height});
+}
