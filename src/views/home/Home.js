@@ -80,6 +80,40 @@ export class Home extends Component {
             <br/>• Find all your accounting, messaging and management in one place.
           </p>
         </CopySection>
+        <CopySection
+          headline="stay organised"
+          featuredImage="images/copy/manager/2.png">
+          <p>
+            • Schedule events, tickets and hospitality with ease for your members.
+            <br/>• Consolidate all of your management accounts to our new platform.
+            <br/>• Instantly message any members or trainers by desktop, tablet or app.
+            <br/>• Fast, secure and regular payment collection with our bank integration.
+            <br/>• Get an extra level of control with our tailored management settings.
+          </p>
+        </CopySection>
+        <CopySection
+          headline="engage members"
+          featuredImage="images/copy/manager/3.png">
+          <p>
+            • Regularly prompted updates from your trainer, straight to your group.
+            <br/>• A wide range of custom media including photos, videos and polls.
+            <br/>• Build a community with a curated update feed and thread replies.
+            <br/>• On raceday, experience live updates and a sleek user experience.
+            <br/>• Industry updates from partners such as the Racing Post and TRM.
+          </p>
+        </CopySection>
+        <CopySection
+          headline="safe and secure"
+          featuredImage="images/copy/manager/4.png">
+          <p>
+            Managing a syndicate ultimately comes down to money:
+            <br/>
+            <br/>• Simple HMRC and  VAT solutions for yourself and members.
+            <br/>• Syndicate, member and horse insurance against unforseen events.
+            <br/>• Regular payment collection and distribution backed by our T&Cs.
+            <br/>• AML and KYC checks on new syndicate members.
+          </p>
+        </CopySection>
       </div>
     )
   }
