@@ -16,7 +16,7 @@ import ParallaxHero from 'components/home/hero/ParallaxHero'
 /**
  * @module Partners
  */
-import Partners from 'components/home/partners/Partners'
+import Partners from 'components/home/Partners/Partners'
 
 /**
  * @module CopySection

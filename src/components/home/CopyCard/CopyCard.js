@@ -37,12 +37,17 @@ const CopyCard = props => {
  * Component props types
  * @type { Object }
  */
-CopyCard.propTypes = {}
+CopyCard.propTypes = {
+  className: PropTypes.string,
+  headline: PropTypes.string.isRequired
+}
 
 /**
  * Default component props
  * @type { Object }
  */
-CopyCard.defaultProps = {}
+CopyCard.defaultProps = {
+  className: ''
+}
 
 export default CopyCard

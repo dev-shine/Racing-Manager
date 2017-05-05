@@ -19,13 +19,18 @@ import classNames from 'classnames'
 import CopyCard from 'components/home/CopyCard/CopyCard'
 
 /**
+ * @module Image
+ */
+import Image from 'components/Image/Image'
+
+/**
  * CopySection component
  * @param { Object } props
  * @property { String } props.text
  * @returns { React.Component }
  */
 const CopySection = props => {
-  const { children, className, headline } = props
+  const { children, className, headline, featuredImage } = props
 
   const _className = classNames('copy-section', className)
 
@@ -39,6 +44,11 @@ const CopySection = props => {
           {children}
         </CopyCard>
       </div>
+      <Image
+        className="copy-section__featured-image"
+        imageSrc={featuredImage}
+      />
+      <h1 className="copy-section__overlapping-headline">{headline}</h1>
     </div>
   )
 }
@@ -47,12 +57,18 @@ const CopySection = props => {
  * Component props types
  * @type { Object }
  */
-CopySection.propTypes = {}
+CopySection.propTypes = {
+  className: PropTypes.string,
+  headline: PropTypes.string.isRequired,
+  featuredImage: PropTypes.string
+}
 
 /**
  * Default component props
  * @type { Object }
  */
-CopySection.defaultProps = {}
+CopySection.defaultProps = {
+  className: ''
+}
 
 export default CopySection

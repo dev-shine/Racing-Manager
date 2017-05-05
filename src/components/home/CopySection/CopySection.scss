@@ -2,6 +2,8 @@
   padding-top: 125px;
   padding-bottom: 225px;
   border-top: solid 1px lightgray;
+  overflow: hidden;
+  position: relative;
   &__copy-card-container {
     width: 53%;
     height: 350px;
@@ -19,5 +21,14 @@
     position: absolute;
     top: 0;
     right: 40px;
+  }
+  &__overlapping-headline {
+    color: $snow;
+    display: inline-table;
+    font-size: 171px;
+    position: absolute;
+    bottom: -36px;
+    left: 56%;
+    transform: translateX(-50%);
   }
 }

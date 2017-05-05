@@ -10,11 +10,14 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 /**
- * @module Carousel
+ * @module Slider
  */
-
 import Slider from 'react-slick'
-import Image from 'components/image/Image'
+
+/**
+ * @module Image
+ */
+import Image from 'components/Image/Image'
 
 /**
  * Arrow component
