@@ -26,8 +26,8 @@ const CopyCard = props => {
 
   return (
     <div className={_className}>
-      <h1>{headline}</h1>
-      <hr/>
+      <h1 className="copy-card__headline">{headline}</h1>
+      <hr className="copy-card__hr"/>
       {children}
     </div>
   )

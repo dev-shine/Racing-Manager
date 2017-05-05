@@ -71,10 +71,12 @@ export class Home extends Component {
         </div>
         <CopySection
           headline="take the reigns">
-          Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
-          • Advertise for new and loyal members in one marketplace.
-          • Set a customised webpage for your syndicate’s brand and horses.
-          • Find all your accounting, messaging and management in one place.
+          <p>
+            Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
+            <br/>• Advertise for new and loyal members in one marketplace.
+            <br/>• Set a customised webpage for your syndicate’s brand and horses.
+            <br/>• Find all your accounting, messaging and management in one place.
+          </p>
         </CopySection>
       </div>
     )

@@ -1,5 +1,15 @@
 .copy-card {
-  background: wheat;
+  background: white;
   width: 555px;
   height: 287px;
+  padding: 20px 40px 35px;
+  &__headline {
+    font-size: 60px;
+  }
+  &__hr {
+    margin: 30px 0;
+    height: 2px;
+    background: $vanilla-ice;
+    width: 190px;
+  }
 }

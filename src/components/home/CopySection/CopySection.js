@@ -27,7 +27,7 @@ import CopyCard from 'components/home/CopyCard/CopyCard'
 const CopySection = props => {
   const { children, className, headline } = props
 
-  const _className = classNames('copy-section full-height', className)
+  const _className = classNames('copy-section', className)
 
   return (
     <div className={_className}>
