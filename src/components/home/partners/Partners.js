@@ -14,7 +14,7 @@ import classNames from 'classnames'
  */
 
 import Slider from 'react-slick'
-import ImageButton from 'components/buttons/ImageButton/ImageButton'
+import Image from 'components/image/Image'
 
 /**
  * Arrow component
@@ -27,7 +27,7 @@ const Arrow = props => {
     <div
       className={_className}
       onClick={onClick}>
-      <ImageButton
+      <Image
         className="partners__arrow-image"
         imageSrc="images/arrow-left.svg"/>
     </div>

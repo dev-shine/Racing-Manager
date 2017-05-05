@@ -4,14 +4,9 @@
 import React from 'react'
 
 /**
- * @module SampleButton
+ * @module Button
  */
 import Button from 'components/buttons/Button/Button'
-
-/**
- * @module test
- */
-import { SAMPLE_TEXT } from 'texts/test'
 
 /**
  * Testing utilities
