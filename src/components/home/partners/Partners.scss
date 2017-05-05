@@ -12,11 +12,15 @@ $partners-height-sm: 100px;
   }
   &__carousel {
   }
-  &__slider-wrapper {
+  &__carousel-wrapper {
     height: 100%;
     margin: 0 $partners-slider-margin;
     width: 100vw - $partners-slider-margin * 2;
     position: relative;
+  }
+  &__carousel-desktop {
+    display: flex;
+    justify-content: space-between;
   }
   &__partner {
     display: inline-block;
