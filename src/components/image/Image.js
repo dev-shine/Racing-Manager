@@ -14,27 +14,22 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 /**
- *  @module Button
- */
-import Button from 'components/buttons/Button/Button'
-
-/**
- * ImageButton component
+ * Image component
  * @param { Object } props
  * @property { String } props.text
  * @returns { React.Component }
  */
-const ImageButton = props => {
-  const { className, imageSrc } = props
+const Image = props => {
+  const { children, className, imageSrc } = props
 
-  const _className = classNames('image-button', 'image-background', className)
+  const _className = classNames('image', 'image-background', className)
 
   return (
-    Button({
-      ...props,
-      className: _className,
-      style: { backgroundImage: `url(assets/${imageSrc})`}
-    })
+    <div
+      className={_className}
+      style={{backgroundImage: `url(assets/${imageSrc})`}}>
+      {children}
+    </div>
   )
 }
 
@@ -42,7 +37,7 @@ const ImageButton = props => {
  * Component props types
  * @type { Object }
  */
-ImageButton.propTypes = {
+Image.propTypes = {
   imageSrc: PropTypes.string.isRequired
 }
 
@@ -50,8 +45,8 @@ ImageButton.propTypes = {
  * Default component props
  * @type { Object }
  */
-ImageButton.defaultProps = {
+Image.defaultProps = {
   imageSrc: ''
 }
 
-export default ImageButton
+export default Image
