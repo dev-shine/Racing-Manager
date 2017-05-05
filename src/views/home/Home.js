@@ -70,7 +70,8 @@ export class Home extends Component {
           </div>
         </div>
         <CopySection
-          headline="take the reigns">
+          headline="take the reigns"
+          featuredImage="images/copy/manager/1.png">
           <p>
             Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
             <br/>• Advertise for new and loyal members in one marketplace.

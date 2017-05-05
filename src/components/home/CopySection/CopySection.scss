@@ -1,3 +1,5 @@
+$copy-section-card-height: 350px;
+
 .copy-section {
   padding-top: 125px;
   padding-bottom: 225px;
@@ -6,7 +8,7 @@
   position: relative;
   &__copy-card-container {
     width: 53%;
-    height: 350px;
+    height: $copy-section-card-height;
     position: relative;
   }
   &__copy-card-background {
@@ -30,5 +32,12 @@
     bottom: -36px;
     left: 56%;
     transform: translateX(-50%);
+  }
+  &__featured-image {
+    width: 340px;
+    height: $copy-section-card-height;
+    position: absolute;
+    right: 0;
+    top: -$copy-section-card-height;
   }
 }

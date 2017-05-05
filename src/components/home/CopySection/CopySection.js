@@ -44,10 +44,12 @@ const CopySection = props => {
           {children}
         </CopyCard>
       </div>
-      <Image
-        className="copy-section__featured-image"
-        imageSrc={featuredImage}
-      />
+      <div className="container relative">
+        <Image
+          className="copy-section__featured-image"
+          imageSrc={featuredImage}
+        />
+      </div>
       <h1 className="copy-section__overlapping-headline">{headline}</h1>
     </div>
   )

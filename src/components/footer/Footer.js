@@ -17,7 +17,6 @@ import PropTypes from 'prop-types'
 const Footer = props => {
   return (
     <footer className='footer'>
-      This is a footer.
     </footer>
   )
 }
