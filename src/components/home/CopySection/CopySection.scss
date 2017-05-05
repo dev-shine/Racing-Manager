@@ -1,0 +1,22 @@
+.copy-section {
+  padding-top: 125px;
+  padding-bottom: 225px;
+  &__copy-card-container {
+    width: 53%;
+    height: 350px;
+    position: relative;
+  }
+  &__copy-card-background {
+    background: lightgray;
+    position: absolute;
+    top: 44px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  &__copy-card-card {
+    position: absolute;
+    top: 0;
+    right: 40px;
+  }
+}

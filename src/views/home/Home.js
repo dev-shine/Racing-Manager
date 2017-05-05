@@ -9,11 +9,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 /**
- * @module ButtonContainer
- */
-import ButtonContainer from 'containers/home/ButtonContainer'
-
-/**
  * @module ParallaxHero
  */
 import ParallaxHero from 'components/home/hero/ParallaxHero'
@@ -22,6 +17,11 @@ import ParallaxHero from 'components/home/hero/ParallaxHero'
  * @module Partners
  */
 import Partners from 'components/home/partners/Partners'
+
+/**
+ * @module CopySection
+ */
+import CopySection from 'components/home/CopySection/CopySection'
 
 /**
  * Home view
@@ -69,6 +69,13 @@ export class Home extends Component {
             </div>
           </div>
         </div>
+        <CopySection
+          headline="take the reigns">
+          Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
+          • Advertise for new and loyal members in one marketplace.
+          • Set a customised webpage for your syndicate’s brand and horses.
+          • Find all your accounting, messaging and management in one place.
+        </CopySection>
       </div>
     )
   }
