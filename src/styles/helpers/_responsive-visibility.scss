@@ -1,3 +1,16 @@
+.visible-md-up {
+  display: none;
+  @media (min-width: $screen-md) {
+    display: block;
+  }
+}
+
+.hidden-md-up {
+  @media (min-width: $screen-md) {
+    display: none;
+  }
+}
+
 .visible-sm-up {
   display: none;
   @media (min-width: $screen-sm) {
@@ -5,7 +18,7 @@
   }
 }
 
-.hidden-sm-down {
+.hidden-sm-up {
   @media (min-width: $screen-sm) {
     display: none;
   }
