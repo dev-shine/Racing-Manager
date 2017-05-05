@@ -1,15 +1,26 @@
 .copy-card {
   background: white;
-  width: 555px;
-  height: 287px;
-  padding: 20px 40px 35px;
+  position: relative;
+  padding: 15px;
+  @media (min-width: $screen-md) {
+    width: 555px;
+    height: 287px;
+    padding: 20px 40px 35px;
+  }
   &__headline {
-    font-size: 60px;
+    font-size: 30px;
+    @media (min-width: $screen-md) {
+      font-size: 60px;
+    }
   }
   &__hr {
-    margin: 30px 0;
+    margin: 10px 0 20px;
     height: 2px;
     background: $vanilla-ice;
-    width: 190px;
+    width: 75px;
+    @media (min-width: $screen-md) {
+      margin: 30px 0;
+      width: 190px;
+    }
   }
 }

@@ -23,7 +23,6 @@ import Image from 'components/Image/Image'
  * Arrow component
  * @returns { React.Component }
  */
-// TODO: Just create Image component!
 const Arrow = props => {
   const { _className, onClick } = props
   return (

@@ -74,6 +74,7 @@ export class Home extends Component {
           featuredImage="images/copy/manager/1.png">
           <p>
             Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
+            <br/>
             <br/>• Advertise for new and loyal members in one marketplace.
             <br/>• Set a customised webpage for your syndicate’s brand and horses.
             <br/>• Find all your accounting, messaging and management in one place.
