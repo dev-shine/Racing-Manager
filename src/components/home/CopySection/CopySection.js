@@ -43,7 +43,7 @@ const CopySection = props => {
         />
       </div>
       <div className="copy-section__copy-card-container">
-        <div className="copy-section__copy-card-background"></div>
+        <div className="copy-section__copy-card-background wave-bg"></div>
         <CopyCard
           className="copy-section__copy-card-card"
           headline={headline}>

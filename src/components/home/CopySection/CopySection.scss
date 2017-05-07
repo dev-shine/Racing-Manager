@@ -12,15 +12,17 @@ $copy-section-card-height: 350px;
   &__copy-card-container {
     @include container-fixed($container-margin-xs * 2);
     position: relative;
+
     @media (min-width: $screen-md) {
       height: $copy-section-card-height;
       margin: 0;
+      width: 62%;
+    }
+    @media (min-width: $screen-lg) {
       width: 53%;
     }
   }
   &__copy-card-background {
-    background-image: url($wave-pattern);
-    background-size: 130px;
     position: absolute;
     top: 75px;
     bottom: 75px;

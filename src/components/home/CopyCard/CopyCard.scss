@@ -9,6 +9,7 @@
   }
   &__headline {
     font-size: 30px;
+    color: $space-cadet;
     @media (min-width: $screen-md) {
       font-size: 60px;
     }
