@@ -24,6 +24,11 @@ import Main from 'layouts/main/Main'
 import Home from 'views/home/Home'
 
 /**
+ * @module Register
+ */
+import Register from 'views/register/Register'
+
+/**
  * @module store
  */
 import store from 'store/store'
@@ -52,6 +57,7 @@ const router = (
   <HashRouter onUpdate={handleRouterUpdate}>
     <Main>
       <Route exact path='/' component={Home} />
+      <Route exact path='/register' component={Register} />
     </Main>
   </HashRouter>
 )
