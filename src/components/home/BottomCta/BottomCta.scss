@@ -14,4 +14,12 @@ $bottom-cta-padding: 80px;
     margin-top: 8px;
     color: $old-silver;
   }
+  &__video-container {
+    @media (min-width: $screen-md) {
+      position: absolute !important;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
 }

@@ -38,11 +38,11 @@ const BottomCta = props => {
     <div className={_className}>
       <div className="bottom-cta__wave-line wave-bg"></div>
       <div className="container">
-        <div className="row">
-          <div className="col-lg-6 col-md-5">
+        <div className="row relative">
+          <div className="bottom-cta__video-container col-md-5 col-sm-10 col-sm-offset-1 col-md-offset-0">
             <img src="assets/images/video.png" alt="video"/>
           </div>
-          <div className="col-lg-6 col-md-7">
+          <div className="col-md-6 col-md-offset-6 col-sm-10 col-sm-offset-1">
             <CopyCard
               headline="are you with us?">
               <p>“The Racing Manager could be the breath of fresh air that racing needs to bring a new, engaged audience into the sport we all love ”</p>
