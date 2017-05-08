@@ -37,8 +37,7 @@ module.exports = {
     "standard/object-curly-even-spacing": WARN,
     "one-var": WARN,
     "no-constant-condition": WARN,
-    "no-unused-expressions": OFF,
-    "chai-friendly/no-unused-expressions": ERROR
+    "no-unused-expressions": OFF
   },
   "globals": {
     "require": true,

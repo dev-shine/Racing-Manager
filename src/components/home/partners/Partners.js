@@ -30,8 +30,8 @@ const Arrow = props => {
       className={_className}
       onClick={onClick}>
       <Image
-        className="partners__arrow-image"
-        imageSrc="images/arrow-left.svg"/>
+        className='partners__arrow-image'
+        imageSrc='images/arrow-left.svg' />
     </div>
   )
 }
@@ -72,8 +72,8 @@ const Partners = props => {
           infinite
           autoplay
           initialSlide={1}
-          prevArrow={<Arrow _className="partners__arrow-prev partners__arrow"/>}
-          nextArrow={<Arrow _className="partners__arrow-next partners__arrow"/>}
+          prevArrow={<Arrow _className='partners__arrow-prev partners__arrow' />}
+          nextArrow={<Arrow _className='partners__arrow-next partners__arrow' />}
           slidesToShow={3}
           speed={500}
           slidesToScroll={1}
@@ -81,8 +81,8 @@ const Partners = props => {
           {slides()}
         </Slider>
       </div>
-      <div className="container visible-md-up">
-        <div className="partners__carousel-desktop">
+      <div className='container visible-md-up'>
+        <div className='partners__carousel-desktop'>
           {slides()}
         </div>
       </div>

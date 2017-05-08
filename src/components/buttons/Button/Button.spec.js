@@ -34,7 +34,7 @@ describe('Components - Button - Events', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(<Button onClick={itemSpy}/>)
+    wrapper = shallow(<Button onClick={itemSpy} />)
     wrapper.simulate('click')
   })
 
@@ -49,4 +49,3 @@ describe('Components - Button - Events', () => {
     expect(wrapper).to.not.have.attr('disabled')
   })
 })
-
