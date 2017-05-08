@@ -19,6 +19,11 @@ import ButtonContainer from 'containers/home/ButtonContainer'
 import ParallaxHero from 'components/home/hero/ParallaxHero'
 
 /**
+ * @module Partners
+ */
+import Partners from 'components/home/partners/Partners'
+
+/**
  * Home view
  * @class
  * @extends Component
@@ -34,25 +39,26 @@ export class Home extends Component {
 
   /**
    * Render method
-   * @returns { XML }
+   * @returns { React.Component }
    */
   render () {
     return (
       <div className='home'>
         <ParallaxHero
           featuredImage='assets/images/home-hero.png'>
-          <div className="home__hero-content absolute-center">
-            <h1 className="home__hero-text">We make setting up syndicates simple.</h1>
+          <div className='home__hero-content absolute-center'>
+            <h1 className='home__hero-text'>We make setting up syndicates simple.</h1>
           </div>
-          <p className="home__hero-tip micro">
-            <span className="visible-md-up">
+          <p className='home__hero-tip micro'>
+            <span className='visible-md-up'>
               Use the arrow keys to change jockey. Click and drag to look around.
             </span>
-            <span className="hidden-md-up">
-              Tap to change jockey.<br/>Drag to look around.
+            <span className='hidden-md-up'>
+              Tap to change jockey.<br />Drag to look around.
             </span>
           </p>
         </ParallaxHero>
+        <Partners />
         <div className='container'>
           <div className='row'>
             <div className='col-md-6'>

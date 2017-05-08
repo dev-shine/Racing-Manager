@@ -5,7 +5,12 @@ $home-hero-padding-md: $container-margin-md;
   &__hero-text {
     color: white;
     text-transform: uppercase;
-    font-size: 5.2vw;
+    max-width: 280px;
+    margin: auto;
+    @media (min-width: $screen-sm) {
+      font-size: 5.2vw;
+      max-width: none;
+    }
     @media (min-width: $screen-md) {
       font-size: $title;
     }

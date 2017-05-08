@@ -1,4 +1,4 @@
 --watch
 --compilers js:babel-core/register
 --require ignore-styles
---require jsdom-global/register
+--require src/mocha.js

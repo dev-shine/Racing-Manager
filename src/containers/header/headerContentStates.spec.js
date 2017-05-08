@@ -23,8 +23,7 @@ describe('Utils - headerContentStates', () => {
     const content = headerContentStates(props)
     if (content !== null) {
       return shallow(content)
-    }
-    else {
+    } else {
       return content
     }
   }

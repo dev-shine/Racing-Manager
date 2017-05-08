@@ -28,15 +28,14 @@ const ParallaxHero = props => {
 
   return (
     <div className={_className}>
-      <div className="parallax-hero__parallax">
+      <div className='parallax-hero__parallax'>
         <Parallax
           speed={-0.5}
           scope={400}
         >
           <div>
-            <div className="parallax-hero__image"
-                 style={{backgroundImage: `url(${featuredImage})`}}>
-            </div>
+            <div className='parallax-hero__image'
+              style={{backgroundImage: `url(${featuredImage})`}} />
           </div>
         </Parallax>
         {children}

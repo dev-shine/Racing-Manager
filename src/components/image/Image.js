@@ -14,24 +14,22 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 /**
- * Button component
+ * Image component
  * @param { Object } props
  * @property { String } props.text
  * @returns { React.Component }
  */
-const Button = props => {
-  const { children, className, style, isDisabled, onClick } = props
+const Image = props => {
+  const { children, className, imageSrc } = props
 
-  const _className = classNames('button', className)
+  const _className = classNames('image', 'image-background', className)
 
   return (
-    <button
+    <div
       className={_className}
-      style={style}
-      onClick={!isDisabled && onClick}
-      disabled={isDisabled || !onClick}>
+      style={{backgroundImage: `url(assets/${imageSrc})`}}>
       {children}
-    </button>
+    </div>
   )
 }
 
@@ -39,17 +37,16 @@ const Button = props => {
  * Component props types
  * @type { Object }
  */
-Button.propTypes = {
-  isDisabled: PropTypes.bool,
-  onClick: PropTypes.func
+Image.propTypes = {
+  imageSrc: PropTypes.string.isRequired
 }
 
 /**
  * Default component props
  * @type { Object }
  */
-Button.defaultProps = {
-  isDisabled: false
+Image.defaultProps = {
+  imageSrc: ''
 }
 
-export default Button
+export default Image

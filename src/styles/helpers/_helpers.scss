@@ -1,12 +1,16 @@
-.svg-background {
+.image-background {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-.absolute-center {
+@mixin absolute-center() {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.absolute-center {
+  @include absolute-center
 }

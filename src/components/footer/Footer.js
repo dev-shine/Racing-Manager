@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  * Footer component
  * @param { Object } props
- * @returns { XML }
+ * @returns { React.Component }
  * @constructor
  */
 const Footer = props => {

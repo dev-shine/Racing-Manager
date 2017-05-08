@@ -26,7 +26,7 @@ const requiredProps = {
 
 describe('<ParallaxHero />', () => {
   let wrapper
-  beforeEach(() => { wrapper = mount(<ParallaxHero { ...requiredProps } />) })
+  beforeEach(() => { wrapper = mount(<ParallaxHero {...requiredProps} />) })
 
   it('should exist', () => {
     expect(wrapper).to.exist
