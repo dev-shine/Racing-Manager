@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  * @module Input
  */
-import Input from 'components/input/Input'
+import Input from 'components/input/Input/Input'
 
 /**
  *  @module Form, Field

@@ -1,3 +1,8 @@
 .register {
-
+  &__form-container {
+    padding: 40px 170px 70px 85px !important;
+  }
+  &__quick-register {
+    background: $snow;
+  }
 }

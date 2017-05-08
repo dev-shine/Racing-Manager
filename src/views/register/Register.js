@@ -55,9 +55,18 @@ export class Register extends Component {
   render () {
     return (
       <div className='register'>
-        <ManagerRegistration
-          onSubmitSuccess={this.onSubmitSuccess}
-          onSubmitFail={this.onSubmitFail} />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-8 register__form-container">
+              <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
+                your account.</p>
+              <ManagerRegistration
+                onSubmitSuccess={this.onSubmitSuccess}
+                onSubmitFail={this.onSubmitFail} />
+            </div>
+            <div className="col-md-4 register__quick-register"></div>
+          </div>
+        </div>
       </div>
     )
   }

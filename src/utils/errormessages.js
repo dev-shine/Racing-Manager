@@ -15,7 +15,7 @@ export const SURNAME = FIRST_NAME
 /**
 *  @type { string }
 */
-export const EMAIL = 'Please enter a valid email address, for example: bob@reallynicevenue.co.uk'
+export const EMAIL = 'Please enter a valid email address, for example: bob@example.co.uk'
 
 /**
 *  @type { string }

@@ -45,26 +45,22 @@ const Input = props => {
    *  @const
    *  @type {String}
    */
-  const className = classNames('form-input')
+  const className = classNames('input')
 
   return (
     <div className={className}>
-      <div className='form-input__content'>
-        <input
-          className='form-input__input-element'
-          type={type}
-          name={name}
-          value={value}
-          onSubmit={handleSubmit}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          onChange={handleChange} />
-        <span className='form-input__placeholder'>
-          {placeholder}
-        </span>
-      </div>
+      <input
+        className='input__input-element'
+        type={type}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onSubmit={handleSubmit}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        onChange={handleChange} />
       {hasError &&
-        <div className='form-input__description'>
+        <div className='input__description'>
           {error.map((error, i) => <div key={i}>{error}</div>)}
         </div>
       }
