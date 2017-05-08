@@ -4,7 +4,7 @@
 import React from 'react'
 
 /**
- *  @module Button
+ *  @module PrimaryButton
  */
 import PrimaryButton from 'components/buttons/PrimaryButton/PrimaryButton'
 

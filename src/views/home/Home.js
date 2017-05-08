@@ -24,9 +24,9 @@ import Partners from 'components/home/Partners/Partners'
 import CopySection from 'components/home/CopySection/CopySection'
 
 /**
- * @module BottomCtaSection
+ * @module BottomCta
  */
-import BottomCtaSection from 'components/home/BottomCtaSection/BottomCtaSection'
+import BottomCta from 'components/home/BottomCta/BottomCta'
 
 /**
  * Home view
@@ -119,7 +119,7 @@ export class Home extends Component {
             <br/>• AML and KYC checks on new syndicate members.
           </p>
         </CopySection>
-        <BottomCtaSection/>
+        <BottomCta/>
       </div>
     )
   }

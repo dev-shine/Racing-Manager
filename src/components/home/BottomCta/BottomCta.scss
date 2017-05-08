@@ -1,0 +1,17 @@
+$bottom-cta-padding: 80px;
+
+.bottom-cta {
+  padding: $bottom-cta-padding 0;
+  position: relative;
+  &__wave-line {
+    height: 272px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: $bottom-cta-padding + 50px;
+  }
+  &__quote-author {
+    margin-top: 8px;
+    color: $old-silver;
+  }
+}
