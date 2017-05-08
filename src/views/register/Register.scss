@@ -1,8 +1,17 @@
 .register {
-  &__form-container {
-    padding: 40px 170px 70px 85px !important;
+  &__title-container {
+    background: $yankees-blue;
   }
-  &__quick-register {
+  &__title {
+    padding-left: 25px;
+    color: white;
+    line-height: 96px;
+  }
+  &__form-container {
+    padding: 40px 20px 75px 40px !important;
+    background-color: white;
+  }
+  &__content {
     background: $snow;
   }
 }

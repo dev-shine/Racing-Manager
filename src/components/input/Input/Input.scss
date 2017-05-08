@@ -1,3 +1,40 @@
-.input {
+$input-height: 54px;
 
+.input-group {
+  .input {
+    margin-top: 20px;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  position: relative;
+  &__input-element {
+    width: 100%;
+    border-bottom: 1px solid $nickel;
+    line-height: $input-height;
+    font-size: $text;
+    font-family: $font-family-secondary;
+    transition: border-color .25s;
+    box-sizing: border-box;
+    &::placeholder {
+      color: $taupe-gray;
+      font-weight: 300;
+      font-family: $font-family-secondary;
+      font-size: $text;
+    }
+    &:focus {
+      border-color: $vanilla-ice;
+      border-bottom-width: 2px;
+      margin-bottom: -1px;
+    }
+  }
+  &__description {
+    position: absolute;
+    left: 0;
+    top: 100%;
+  }
 }

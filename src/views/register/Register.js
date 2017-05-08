@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 /**
  *  @module the NameForm Component
  */
-import ManagerRegistration from 'containers/forms/ManagerRegistration'
+import ManagerRegistration from 'containers/forms/managerRegistration'
 
 /**
  * Register view
@@ -55,16 +55,21 @@ export class Register extends Component {
   render () {
     return (
       <div className='register'>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 register__form-container">
+        <div className='register__title-container'>
+          <div className='container'>
+            <h1 className='register__title'>Join the action!</h1>
+          </div>
+        </div>
+        <div className='container'>
+          <div className='row register__content'>
+            <div className='col-md-7 register__form-container'>
               <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
                 your account.</p>
               <ManagerRegistration
                 onSubmitSuccess={this.onSubmitSuccess}
                 onSubmitFail={this.onSubmitFail} />
             </div>
-            <div className="col-md-4 register__quick-register"></div>
+            <div className='col-md-5 register__quick-register' />
           </div>
         </div>
       </div>

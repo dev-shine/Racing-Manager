@@ -34,7 +34,7 @@ const ManagerRegistration = props => {
   const { submitForm, values } = props
 
   return (
-    <div>
+    <div className='manager-registration'>
       <Form
         handleSubmit={() => {
           submitForm(values)
@@ -42,27 +42,32 @@ const ManagerRegistration = props => {
         }
         {...props}
         modifier='manager-registration__form' >
+        <h2 className="manager-registration__section-label">Name</h2>
+        <div className="input-group">
+          <Field
+            component={Input}
+            placeholder='First Name'
+            validate={['firstname']}
+            name='firstname'
+           />
+          <Field
+            component={Input}
+            placeholder='Surname'
+            validate={['surname']}
+            name='surname'
+           />
+        </div>
+        <h2 className="manager-registration__section-label">Email</h2>
         <Field
           component={Input}
-          placeholder='Name'
-          validate={['firstname']}
-          name='firstname'
-         />
-        <Field
-          component={Input}
-          placeholder='Surname'
-          validate={['surname']}
-          name='surname'
-         />
-        <Field
-          component={Input}
-          placeholder='Email'
+          placeholder='Enter your email address'
           validate={['email']}
           name='email'
          />
+        <h2 className="manager-registration__section-label">Password</h2>
         <Field
           component={Input}
-          placeholder='Password'
+          placeholder='At least one capital letter, one lower case letter, one number'
           validate={['password']}
           name='password'
          />
