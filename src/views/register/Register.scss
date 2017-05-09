@@ -3,13 +3,24 @@
     background: $yankees-blue;
   }
   &__title {
+    font-size: $subtitle;
+    line-height: 60px;
+    @media (min-width: $screen-md) {
+      line-height: 96px;
+      font-size: $title;
+    }
     padding-left: 25px;
     color: white;
-    line-height: 96px;
   }
   &__form-container {
-    padding: 40px 20px 75px 40px !important;
     background-color: white;
+    padding-top: 40px;
+    padding-bottom: 65px;
+    @media (min-width: $screen-sm) {
+      padding: 40px 20px 40px !important;
+    }
+    @media (min-width: $screen-md) {
+    }
   }
   &__content {
     background: $snow;

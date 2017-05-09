@@ -1,16 +1,9 @@
-$input-height: 54px;
+$input-height: 32px;
 
-.input-group {
-  .input {
-    margin-top: 20px;
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-}
 
 .input {
   width: 100%;
+  margin-top: 20px;
   position: relative;
   &__input-element {
     width: 100%;
@@ -33,8 +26,10 @@ $input-height: 54px;
     }
   }
   &__description {
-    position: absolute;
-    left: 0;
-    top: 100%;
+    color: $placeholder-color;
+    padding-top: 5px;
+    @media (min-width: $screen-md) {
+      font-size: $micro-text;
+    }
   }
 }

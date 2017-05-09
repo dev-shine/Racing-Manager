@@ -62,14 +62,14 @@ export class Register extends Component {
         </div>
         <div className='container'>
           <div className='row register__content'>
-            <div className='col-md-7 register__form-container'>
+            <div className='col-sm-8 col-md-7 register__form-container'>
               <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
                 your account.</p>
               <ManagerRegistration
                 onSubmitSuccess={this.onSubmitSuccess}
                 onSubmitFail={this.onSubmitFail} />
             </div>
-            <div className='col-md-5 register__quick-register' />
+            <div className='col-sm-4 col-md-5 register__quick-register' />
           </div>
         </div>
       </div>

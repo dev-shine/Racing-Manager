@@ -4,11 +4,11 @@
   background-repeat: no-repeat;
 }
 
-@mixin absolute-center() {
+@mixin absolute-center($transform: '') {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) $transform;
 }
 
 .relative {

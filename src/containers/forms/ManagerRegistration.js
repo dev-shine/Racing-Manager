@@ -25,10 +25,27 @@ import { signUpFormValidators } from 'utils/validate'
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
+  /**
+   *  canProgress
+   *  @const
+   *  @description If all fields are met, allow user to progress
+   *  @type {Boolean}
+   */
+
+  let canProgress = true
+  for (var key in state.register) {
+    if (!state.register[key]) {
+      console.log('cannot progress key: ' + key)
+      canProgress = false
+    }
+  }
+  console.log('can progress: ' + canProgress)
+
   return {
     values: state.register,
     errors: state.register.errors,
-    validators: signUpFormValidators
+    validators: signUpFormValidators,
+    canProgress
   }
 }
 
@@ -53,11 +70,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const {
         onSubmitSuccess,
         onSubmitFail
-      } = ownProps
+        } = ownProps
 
       dispatch(submitFormData(values))
-      .then(onSubmitSuccess)
-      .catch(onSubmitFail)
+        .then(onSubmitSuccess)
+        .catch(onSubmitFail)
     }
   }
 }

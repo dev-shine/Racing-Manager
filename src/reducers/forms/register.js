@@ -20,29 +20,20 @@ import {
 const initialState = {
   firstname: '',
   surname: '',
-  title: '',
-  dateofbirth: '',
   email: '',
-  phonenumber: '',
-  profileimage: '',
   password: '',
-  confirmpassword: '',
   overEighteen: false,
   termsAndConditions: false,
-  acceptedtandc: false,
   isSubmitting: false,
   didSubmit: false,
   submitError: false,
   errors: {
     firstname: [],
     surname: [],
-    title: [],
-    dateofbirth: [],
     email: [],
-    phonenumber: [],
     password: [],
-    confirmpassword: [],
-    acceptedtandc: []
+    overEighteen: [],
+    termsAndConditions: []
   }
 }
 

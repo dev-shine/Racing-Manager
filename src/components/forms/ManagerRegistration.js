@@ -72,7 +72,7 @@ const ManagerRegistration = props => {
         <h2 className='manager-registration__section-label'>Password</h2>
         <Field
           component={Input}
-          placeholder='At least one capital letter, one lower case letter, one number'
+          placeholder='One capital and lower case letter, one number'
           validate={['password']}
           name='password'
          />
@@ -80,14 +80,12 @@ const ManagerRegistration = props => {
           <Field
             component={Checkbox}
             label='Are you over 18?'
-            placeholder='At least one capital letter, one lower case letter, one number'
             validate={['overEighteen']}
             name='overEighteen'
           />
           <Field
             component={Checkbox}
             label='Do you agree to terms and conditions?'
-            placeholder='At least one capital letter, one lower case letter, one number'
             validate={['termsAndConditions']}
             name='termsAndConditions'
           />
