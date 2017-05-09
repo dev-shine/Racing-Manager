@@ -24,9 +24,9 @@ import Checkbox from 'components/input/Checkbox/Checkbox'
 import { Form, Field, Submit } from 'components/forms/reactform'
 
 /**
- * @module PrimaryButton
+ * @module TextButton
  */
-import PrimaryButton from 'components/buttons/PrimaryButton/PrimaryButton'
+import TextButton from 'components/buttons/TextButton/TextButton'
 
 /**
  * ManagerRegistration component
@@ -91,7 +91,7 @@ const ManagerRegistration = props => {
             name='termsAndConditions'
           />
         </div>
-        <Submit component={(props) => PrimaryButton({
+        <Submit component={(props) => TextButton({
           ...props,
           text: 'submit',
           className: 'manager-registration__submit',
