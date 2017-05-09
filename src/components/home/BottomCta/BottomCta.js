@@ -51,13 +51,16 @@ const BottomCta = props => {
               <br/><br/>
               <p>Sign up for free or try a demo account if there’s more you want to learn.</p>
             </CopyCard>
-            <TextButton
-              text="Register for FREE"
-              onClick={onRegisterClick}/>
-            <TextButton
-              text="Try a Demo"
-              theme="secondary"
-              onClick={onRegisterClick}/>
+            <div className="bottom-cta__buttons">
+              <TextButton
+                text="Register for FREE"
+                className="bottom-cta__register-button"
+                onClick={onRegisterClick}/>
+              <TextButton
+                text="Try a Demo"
+                theme="secondary"
+                onClick={onRegisterClick}/>
+            </div>
           </div>
         </div>
       </div>

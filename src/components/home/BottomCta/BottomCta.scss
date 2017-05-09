@@ -22,4 +22,11 @@ $bottom-cta-padding: 80px;
       transform: translateY(-50%);
     }
   }
+  &__buttons {
+    padding-left: 35px;
+    padding-top: 70px;
+  }
+  &__register-button {
+    margin-right: 14px;
+  }
 }
