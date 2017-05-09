@@ -4,9 +4,9 @@
 import React from 'react'
 
 /**
- *  @module Button
+ *  @module TextButton
  */
-import PrimaryButton from 'components/buttons/PrimaryButton/PrimaryButton'
+import TextButton from 'components/buttons/TextButton/TextButton'
 
 const headerContentClass = 'header__content'
 
@@ -16,9 +16,10 @@ const headerContentStates = [
     getContent: (props = {}) => {
       const { onRegister } = props
       return <div className={headerContentClass}>
-        <PrimaryButton
+        <TextButton
           className='header__register-button visible-sm-up'
           onClick={onRegister}
+          size="sm"
           text='Register for FREE' />
       </div>
     }

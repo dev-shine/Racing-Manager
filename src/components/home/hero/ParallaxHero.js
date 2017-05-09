@@ -34,7 +34,7 @@ const ParallaxHero = props => {
           scope={400}
         >
           <div>
-            <div className='parallax-hero__image'
+            <div className='parallax-hero__image full-height'
               style={{backgroundImage: `url(${featuredImage})`}} />
           </div>
         </Parallax>

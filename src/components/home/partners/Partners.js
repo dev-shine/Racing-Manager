@@ -10,17 +10,19 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 /**
- * @module Carousel
+ * @module Slider
  */
-
 import Slider from 'react-slick'
-import Image from 'components/image/Image'
+
+/**
+ * @module Image
+ */
+import Image from 'components/Image/Image'
 
 /**
  * Arrow component
  * @returns { React.Component }
  */
-// TODO: Just create Image component!
 const Arrow = props => {
   const { _className, onClick } = props
   return (
