@@ -19,6 +19,7 @@ const headerContentStates = [
         <PrimaryButton
           className='header__register-button visible-sm-up'
           onClick={onRegister}
+          size="sm"
           text='Register for FREE' />
       </div>
     }

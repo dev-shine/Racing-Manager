@@ -25,9 +25,11 @@ import Button from 'components/buttons/Button/Button'
  * @returns { React.Component }
  */
 const PrimaryButton = props => {
-  const { text, className } = props
+  const { text, className, size } = props
 
-  const _className = classNames('primary-button', className)
+  const _className = classNames('primary-button', className, {
+    'primary-button--sm': size === 'sm'
+  })
 
   return (
     Button({
