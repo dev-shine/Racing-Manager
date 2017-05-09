@@ -24,9 +24,6 @@ const initialState = {
   password: '',
   overEighteen: false,
   termsAndConditions: false,
-  isSubmitting: false,
-  didSubmit: false,
-  submitError: false,
   errors: {
     firstname: [],
     surname: [],

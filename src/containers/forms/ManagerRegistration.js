@@ -33,13 +33,18 @@ const mapStateToProps = (state, ownProps) => {
    */
 
   let canProgress = true
+
   for (var key in state.register) {
     if (!state.register[key]) {
-      console.log('cannot progress key: ' + key)
       canProgress = false
     }
   }
-  console.log('can progress: ' + canProgress)
+
+  for (var key1 in state.register.errors) {
+    if (state.register.errors[key1].length > 0) {
+      canProgress = false
+    }
+  }
 
   return {
     values: state.register,

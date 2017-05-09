@@ -60,8 +60,8 @@ const Input = props => {
         onFocus={handleFocus}
         onChange={handleChange} />
       {hasError &&
-        <p className='input__description tiny'>
-          {error.map((error, i) => <div key={i}>{error}</div>)}
+        <p className='input__description micro'>
+          {error.map((error, i) => error)}
         </p>
       }
     </div>

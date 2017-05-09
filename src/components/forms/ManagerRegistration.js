@@ -36,7 +36,7 @@ import PrimaryButton from 'components/buttons/PrimaryButton/PrimaryButton'
  * @returns { React.Component }
  */
 const ManagerRegistration = props => {
-  const { submitForm, values } = props
+  const { submitForm, values, canProgress } = props
 
   return (
     <div className='manager-registration'>
@@ -74,6 +74,7 @@ const ManagerRegistration = props => {
           component={Input}
           placeholder='One capital and lower case letter, one number'
           validate={['password']}
+          type='password'
           name='password'
          />
         <div className='manager-registration__checkboxes'>
@@ -93,7 +94,8 @@ const ManagerRegistration = props => {
         <Submit component={(props) => PrimaryButton({
           ...props,
           text: 'submit',
-          className: 'manager-registration__submit'
+          className: 'manager-registration__submit',
+          isDisabled: !canProgress
         })} />
       </Form>
     </div>
