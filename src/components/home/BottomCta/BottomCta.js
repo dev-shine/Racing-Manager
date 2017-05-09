@@ -39,10 +39,10 @@ const BottomCta = props => {
       <div className="bottom-cta__wave-line wave-bg"></div>
       <div className="container">
         <div className="row relative">
-          <div className="bottom-cta__video-container col-md-5 col-sm-10 col-sm-offset-1 col-md-offset-0">
+          <div className="bottom-cta__video-container col-md-5 col-sm-12">
             <img src="assets/images/video.png" alt="video"/>
           </div>
-          <div className="col-md-6 col-md-offset-6 col-sm-10 col-sm-offset-1">
+          <div className="col-md-6 col-md-offset-6 col-sm-10 col-sm-offset-2">
             <CopyCard
               headline="are you with us?">
               <p>“The Racing Manager could be the breath of fresh air that racing needs to bring a new, engaged audience into the sport we all love ”</p>
@@ -54,11 +54,12 @@ const BottomCta = props => {
             <div className="bottom-cta__buttons">
               <TextButton
                 text="Register for FREE"
-                className="bottom-cta__register-button"
+                className="bottom-cta__button"
                 onClick={onRegisterClick}/>
               <TextButton
                 text="Try a Demo"
                 theme="secondary"
+                className="bottom-cta__button"
                 onClick={onRegisterClick}/>
             </div>
           </div>

@@ -3,15 +3,15 @@
   position: relative;
   padding: 15px;
   //border: 1px solid red;
-  @media (min-width: $screen-md) {
+  @media (min-width: $screen-sm) {
     //width: 555px;
     //height: 287px;
     padding: 20px 40px 35px;
   }
   &__headline {
-    font-size: 30px;
+    font-size: 35px;
     color: $space-cadet;
-    @media (min-width: $screen-md) {
+    @media (min-width: $screen-sm) {
       font-size: 50px;
     }
   }

@@ -1,4 +1,5 @@
 $cta-button-bg: $vanilla-ice;
+$cta-mobile-additional-height: 15px;
 $cta-button-height-sm: 25px;
 $cta-button-height: 35px;
 $cta-secondary-bg: white;
@@ -7,11 +8,14 @@ $cta-active-bg: darken($cta-button-bg, 20);
 
 .text-button {
   min-width: 190px;
-  height: $cta-button-height;
+  height: $cta-button-height + $cta-mobile-additional-height;
   background: $cta-button-bg;
   text-transform: uppercase;
   transition: background .25s;
   padding: 0 25px;
+  @media (min-width: $screen-md) {
+    height: $cta-button-height;
+  }
   &--sm {
     min-width: 120px;
     height: $cta-button-height-sm;

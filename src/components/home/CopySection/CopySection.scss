@@ -14,25 +14,14 @@ $copy-section-card-height: 350px;
     padding-bottom: 225px;
   }
   &__copy-card-container {
-    margin-bottom: 20px;
-  //  @include container-fixed($container-margin-xs * 2);
-  //  position: relative;
-  //
-  //  @media (min-width: $screen-md) {
-  //    height: $copy-section-card-height;
-  //    margin: 0;
-  //    width: 62%;
-  //  }
-  //  @media (min-width: $screen-lg) {
-  //    width: 53%;
-  //  }
+    margin-bottom: 110px;
   }
   &__copy-card-background {
     position: absolute;
     top: 75px;
-    bottom: -$container-margin-xs;
-    left: -25vw;
-    right: -25vw;
+    bottom: -50px;
+    left: -15vw;
+    right: -35vw;
     @media (min-width: $screen-md) {
       top: 44px;
       bottom: -23px;
@@ -40,19 +29,14 @@ $copy-section-card-height: 350px;
       right: -12px;
     }
   }
-  &__copy-card-card {
-    @media (min-width: $screen-md) {
-      //position: absolute;
-      //top: 0;
-      //right: 40px;
-    }
-  }
   &__overlapping-headline {
     color: $snow;
     display: inline-table;
-    font-size: 171px / 1440px * 100vw;
+    font-size: 100px;
     position: absolute;
     bottom: 0;
+    max-width: 2000px;
+    white-space: nowrap;
     left: 50%;
     transform: translateX(-50%);
     @media (min-width: $screen-lg) {
