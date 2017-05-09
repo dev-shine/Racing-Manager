@@ -27,6 +27,8 @@ const initialState = {
   profileimage: '',
   password: '',
   confirmpassword: '',
+  overEighteen: false,
+  termsAndConditions: false,
   acceptedtandc: false,
   isSubmitting: false,
   didSubmit: false,

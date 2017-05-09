@@ -21,7 +21,7 @@ $input-height: 54px;
     transition: border-color .25s;
     box-sizing: border-box;
     &::placeholder {
-      color: $taupe-gray;
+      color: $placeholder-color;
       font-weight: 300;
       font-family: $font-family-secondary;
       font-size: $text;

@@ -30,22 +30,20 @@ const Checkbox = props => {
   const {
     label,
     name,
-    modifier,
+    className,
     value,
     handleChange
   } = props
 
-  const className = classNames('checkbox', modifier, {
-    'checkbox--square': modifier === 'square'
-  })
+  const _className = classNames('checkbox', className)
 
   return (
-    <div className={className}>
+    <div className={_className}>
       <input
         type='checkbox'
         id={name}
-        value='abc'
-        className='checkbox__input'
+        value={false}
+        className='checkbox__input-element'
         onChange={handleChange}
         checked={value} />
       <label htmlFor={name} className='checkbox__label'>{label}</label>

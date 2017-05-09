@@ -1,0 +1,43 @@
+.checkbox {
+  position: relative;
+  margin-bottom: 20px;
+  cursor: pointer;
+  &__input-element {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $placeholder-color;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: hidden;
+    cursor: pointer;
+    &:before {
+      content: "L";
+      opacity: 0;
+      transition: opacity .25s;
+      color: white;
+      font-size: 50px;
+      position: absolute;
+      top: -32px;
+      left: -15px;
+      font-weight: 200;
+      transform: rotate(-55deg);
+    }
+    &:checked {
+      border-color: $vanilla-ice;
+      background: $vanilla-ice;
+      &:before {
+        opacity: 1;
+      }
+    }
+  }
+  &__label {
+    padding-left: 45px;
+    color: $placeholder-color;
+    &:before {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+    }
+  }
+}

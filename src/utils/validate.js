@@ -25,7 +25,9 @@ export const signUpFormValidators = (type, formValues = {}) => {
     email,
     phonenumber,
     password,
-    confirmpassword
+    confirmpassword,
+    overEighteen,
+    termsAndConditions
   } = formValues
 
   switch (type) {
@@ -49,6 +51,12 @@ export const signUpFormValidators = (type, formValues = {}) => {
 
     case 'dateofbirth':
       return VALIDATE.DATE_OF_BIRTH(dateofbirth) ? [] : [ERROR.DATE_OF_BIRTH]
+
+    case 'overEighteen':
+      return overEighteen === true
+
+    case 'termsAndConditions':
+      return termsAndConditions === true
 
     default:
       return []

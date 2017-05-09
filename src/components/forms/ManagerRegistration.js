@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import Input from 'components/input/Input/Input'
 
 /**
+ * @module Checkbox
+ */
+import Checkbox from 'components/input/Checkbox/Checkbox'
+
+/**
  *  @module Form, Field
  */
 import { Form, Field, Submit } from 'components/forms/reactform'
@@ -42,8 +47,8 @@ const ManagerRegistration = props => {
         }
         {...props}
         modifier='manager-registration__form' >
-        <h2 className="manager-registration__section-label">Name</h2>
-        <div className="input-group">
+        <h2 className='manager-registration__section-label'>Name</h2>
+        <div className='input-group'>
           <Field
             component={Input}
             placeholder='First Name'
@@ -57,20 +62,36 @@ const ManagerRegistration = props => {
             name='surname'
            />
         </div>
-        <h2 className="manager-registration__section-label">Email</h2>
+        <h2 className='manager-registration__section-label'>Email</h2>
         <Field
           component={Input}
           placeholder='Enter your email address'
           validate={['email']}
           name='email'
          />
-        <h2 className="manager-registration__section-label">Password</h2>
+        <h2 className='manager-registration__section-label'>Password</h2>
         <Field
           component={Input}
           placeholder='At least one capital letter, one lower case letter, one number'
           validate={['password']}
           name='password'
          />
+        <div className='manager-registration__checkboxes'>
+          <Field
+            component={Checkbox}
+            label='Are you over 18?'
+            placeholder='At least one capital letter, one lower case letter, one number'
+            validate={['overEighteen']}
+            name='overEighteen'
+          />
+          <Field
+            component={Checkbox}
+            label='Do you agree to terms and conditions?'
+            placeholder='At least one capital letter, one lower case letter, one number'
+            validate={['termsAndConditions']}
+            name='termsAndConditions'
+          />
+        </div>
         <Submit component={(props) => PrimaryButton({
           ...props,
           text: 'submit',
