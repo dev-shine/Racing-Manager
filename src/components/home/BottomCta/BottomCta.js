@@ -19,9 +19,9 @@ import classNames from 'classnames'
 import CopyCard from 'components/home/CopyCard/CopyCard'
 
 /**
- *  @module PrimaryButton
+ *  @module TextButton
  */
-import PrimaryButton from 'components/buttons/PrimaryButton/PrimaryButton'
+import TextButton from 'components/buttons/TextButton/TextButton'
 
 /**
  * BottomCta component
@@ -51,8 +51,12 @@ const BottomCta = props => {
               <br/><br/>
               <p>Sign up for free or try a demo account if there’s more you want to learn.</p>
             </CopyCard>
-            <PrimaryButton
+            <TextButton
               text="Register for FREE"
+              onClick={onRegisterClick}/>
+            <TextButton
+              text="Try a Demo"
+              theme="secondary"
               onClick={onRegisterClick}/>
           </div>
         </div>

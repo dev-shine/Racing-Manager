@@ -19,23 +19,25 @@ import classNames from 'classnames'
 import Button from 'components/buttons/Button/Button'
 
 /**
- * PrimaryButton component
+ * TextButton component
  * @param { Object } props
  * @property { String } props.text
  * @returns { React.Component }
  */
-const PrimaryButton = props => {
-  const { text, className, size } = props
+const TextButton = props => {
+  const { text, className, size, theme } = props
 
-  const _className = classNames('primary-button', className, {
-    'primary-button--sm': size === 'sm'
+  const _className = classNames('text-button', className, {
+    'text-button--sm': size === 'sm',
+    'text-button--secondary': theme === 'secondary'
+
   })
 
   return (
     Button({
       ...props,
       className: _className,
-      children: <h6 className='primary-button__text'>{text}</h6>
+      children: <h6 className='text-button__text'>{text}</h6>
     })
   )
 }
@@ -44,7 +46,7 @@ const PrimaryButton = props => {
  * Component props types
  * @type { Object }
  */
-PrimaryButton.propTypes = {
+TextButton.propTypes = {
   text: PropTypes.string
 }
 
@@ -52,8 +54,8 @@ PrimaryButton.propTypes = {
  * Default component props
  * @type { Object }
  */
-PrimaryButton.defaultProps = {
+TextButton.defaultProps = {
   text: ''
 }
 
-export default PrimaryButton
+export default TextButton
