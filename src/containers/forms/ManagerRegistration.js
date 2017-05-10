@@ -77,7 +77,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onSubmitFail
         } = ownProps
 
-      dispatch(submitFormData(values))
+      dispatch(submitFormData({
+        name: values.firstname,
+        surname: values.surname,
+        password: values.password,
+        email: values.email
+      }))
         .then(onSubmitSuccess)
         .catch(onSubmitFail)
     }

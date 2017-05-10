@@ -15,7 +15,9 @@ axios.defaults.headers.common['Content-Type'] = 'application/json; charset=UTF-8
 /**
  * @type { Object }
  */
-const defaultOpts = {}
+const defaultOpts = {
+  crossDomain: true
+}
 
 /**
  * Initializes POST request using provided options

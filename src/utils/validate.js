@@ -53,10 +53,10 @@ export const signUpFormValidators = (type, formValues = {}) => {
       return VALIDATE.DATE_OF_BIRTH(dateofbirth) ? [] : [ERROR.DATE_OF_BIRTH]
 
     case 'overEighteen':
-      return overEighteen === true ? [] : true
+      return overEighteen === true ? [] : [true]
 
     case 'termsAndConditions':
-      return termsAndConditions === true ? [] : true
+      return termsAndConditions === true ? [] : [true]
 
     default:
       return []

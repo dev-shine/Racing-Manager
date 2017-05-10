@@ -6,7 +6,7 @@ import { post, put } from 'utils/request'
 /**
  * @module servicetypes
  */
-import { USERS } from 'utils/servicetypes'
+import { REGISTRATION } from 'utils/servicetypes'
 
 /**
  * @module moment
@@ -75,62 +75,12 @@ export const registerFormError = (errors, name) => ({
 
 /**
  * @param { object } token
+ * NOT NEEDED
  */
 export const registerUserToken = token => ({
   type: USER_REGISTER_TOKEN,
   token
 })
-
-/**
-*  Async Actions
-*/
-
-/**
- * @function preparePayload
- * @param {object} data
- * @description Formats the payload coming from the store in order to be properly intercepted by the server.
- */
-
-const preparePayload = (data) => {
-  let payload = {}
-  let { firstname, surname, title, dateofbirth, phonenumber, password, profileimage, email } = data
-  firstname ? payload.firstname = firstname : null
-  surname ? payload.surname = surname : null
-  title ? payload.title = title : null
-  dateofbirth ? payload.dob = moment(dateofbirth, 'DD-MM-YYYY').format('YYYY-MM-DD') : null
-  phonenumber ? payload.phone = phonenumber : null
-  password ? payload.passwd = password : null
-  profileimage ? payload.imgB64 = profileimage : null
-  email ? payload.email = email : null
-
-  // The temp property should be true unless the data set is complete
-  let completeDataSet = (
-    firstname &&
-    surname &&
-    surname &&
-    title &&
-    dateofbirth &&
-    phonenumber &&
-    password &&
-    profileimage &&
-    email
-  )
-
-  !completeDataSet ? payload.temp = true : null
-  return payload
-}
-
-const handleSubmitSuccess = (dispatch, response, handleSuccess) => {
-  dispatch(submittedUserSignupForm())
-  let token = response.data.d.token || null
-  if (token) {
-    dispatch(registerUserToken(token))
-  }
-}
-
-const handleSubmitError = (dispatch, error, handleFail) => {
-  dispatch(failedToSubmitUserSignupForm())
-}
 
 /**
  * @function submitFormData
@@ -140,35 +90,19 @@ const handleSubmitError = (dispatch, error, handleFail) => {
 export const submitFormData = (data) => {
   return (dispatch, getState) => {
     dispatch(submitUserSignupForm())
-    const preparePayloadtemp = preparePayload(data)
 
-    if (!data.token) {
-      return post({
-        data: preparePayloadtemp,
-        url: USERS
-      })
+    return post({
+      data,
+      url: REGISTRATION
+    })
       .then(response => {
-        handleSubmitSuccess(dispatch, response)
+        dispatch(submittedUserSignupForm())
         return Promise.resolve(response)
       })
       .catch(error => {
-        handleSubmitError(dispatch, error)
+        dispatch(failedToSubmitUserSignupForm())
         return Promise.reject(error.statusText)
       })
-    } else {
-      return put({
-        data: preparePayloadtemp,
-        url: `${USERS}${data.token}`
-      })
-      .then(response => {
-        handleSubmitSuccess(dispatch, response)
-        return Promise.resolve(response)
-      })
-      .catch(error => {
-        handleSubmitError(dispatch, error)
-        return Promise.reject(error.statusText)
-      })
-    }
   }
 }
 
