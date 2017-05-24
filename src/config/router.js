@@ -16,17 +16,17 @@ import { HashRouter } from 'react-router-dom'
 /**
  * @module Main
  */
-import Main from 'layouts/main/Main'
+import Main from 'layouts/main'
 
 /**
  * @module Home
  */
-import Home from 'views/home/Home'
+import Home from 'views/home'
 
 /**
  * @module Register
  */
-import Register from 'views/register/Register'
+import Register from 'views/register'
 
 /**
  * @module store

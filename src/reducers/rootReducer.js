@@ -4,19 +4,25 @@
 import { combineReducers } from 'redux'
 
 /**
- * @module homeReducer
+ * @module register
  */
-import registerReducer from 'reducers/forms/register'
+import register from 'reducers/forms/register'
 
+/**
+ *  @module windowReducer
+ */
 import windowReducer from 'reducers/window'
 
 /**
- * Root reducer - Combines all reducers passed in ready for a redux store
+ * @name rootReducer
  * @type { Reducer }
  */
 const rootReducer = combineReducers({
   window: windowReducer,
-  register: registerReducer
+  register
 })
 
+/**
+ *  @module rootReducer
+ */
 export default rootReducer

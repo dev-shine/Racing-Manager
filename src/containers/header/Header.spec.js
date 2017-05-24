@@ -28,7 +28,7 @@ import thunk from 'redux-thunk'
 /**
  * @module locationChange
  */
-import { locationChange } from 'actions/window/windowActions'
+import { locationChange } from 'actions/window'
 
 describe('Containers - Header', () => {
   let wrapper

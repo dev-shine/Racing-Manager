@@ -8,6 +8,15 @@ export const queryById = id => {
 }
 
 /**
+ *  @name queryBySelector
+ *  @param  {String} selector
+ *  @return {DOMElement}
+ */
+export const queryBySelector = selector => {
+  return document.querySelector(selector)
+}
+
+/**
  * Utility to detect if the device is a touch
  * @returns { Boolean }
  */
