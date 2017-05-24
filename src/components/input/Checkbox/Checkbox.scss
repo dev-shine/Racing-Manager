@@ -1,0 +1,37 @@
+.checkbox {
+  position: relative;
+  margin-bottom: 20px;
+  cursor: pointer;
+  &__input-element {
+    width: 20px;
+    height: 20px;
+    border: 2px solid $placeholder-color;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: hidden;
+    cursor: pointer;
+    transition: background .25s;
+    &:before {
+      content: "";
+      background: white;
+      width: 13px;
+      height: 2px;
+      @include absolute-center(rotate(-45deg));
+    }
+    &:checked {
+      border-color: $vanilla-ice;
+      background: $vanilla-ice;
+    }
+  }
+  &__label {
+    padding-left: 45px;
+    font-size: $tiny-text;
+    font-weight: 400;
+    &:before {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.manager-registration {
+  &__section-label {
+    font-family: $font-family-secondary;
+    text-transform: none;
+    margin-top: 45px;
+  }
+  &__checkboxes {
+    margin: 55px 0;
+  }
+}
