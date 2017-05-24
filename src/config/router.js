@@ -4,14 +4,9 @@
 import React from 'react'
 
 /**
- * @module react-router
- */
-import { Route } from 'react-router'
-
-/**
  * @module react-router-dom
  */
-import { HashRouter } from 'react-router-dom'
+import { HashRouter, Switch } from 'react-router-dom'
 
 /**
  * @module Main
@@ -48,17 +43,20 @@ const handleRouterUpdate = () => window.scrollTo(0, 0)
 // Temporary solution for redux-router-4 bug with location change
 window.addEventListener('hashchange', () => {
   store.dispatch(locationChange(window.location.hash))
+
+  // handle the route update.
+  handleRouterUpdate()
 }, false)
 
 /**
  * App router
  */
 const router = (
-  <HashRouter onUpdate={handleRouterUpdate}>
-    <Main>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/register' component={Register} />
-    </Main>
+  <HashRouter>
+    <Switch>
+      <Main exact path='/' component={Home} />
+      <Main exact path='/register' component={Register} />
+    </Switch>
   </HashRouter>
 )
 

@@ -1,12 +1,7 @@
 /**
  *  @module react
  */
-import React, { Component } from 'react'
-
-/**
- * @module react-redux
- */
-import { connect } from 'react-redux'
+import React from 'react'
 
 /**
  * @module Header
@@ -19,45 +14,27 @@ import Header from 'containers/header/Header'
 import Footer from 'components/footer'
 
 /**
- * Main layout
- * @class
- * @extends Component
+ * @module react-router
  */
-export class Main extends Component {
-  /**
-   * @constructor
-   * @param { Object } props
-   */
-  constructor (props) {
-    super(props)
-  }
+import { Route } from 'react-router-dom'
 
-  /**
-   * Render method
-   * @returns { React.Component }
-   */
-  render () {
-    return (
-      <div className='main-layout'>
-        <Header />
-        <div className='content'>
-          { this.props.children }
-        </div>
-        <Footer />
+/**
+ * @name Main layout
+ * @return {React.Component}
+ */
+export const Main = ({component: Component, ...props}) => (
+  <Route { ...props } render={ matchProps => (
+    <div className='main-layout'>
+      <Header />
+      <div className='content'>
+        <Component {...matchProps} />
       </div>
-    )
-  }
-}
+      <Footer />
+    </div>
+  )} />
+)
 
-const mapStateToProps = (state, ownProps) => {
-  return {}
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Main)
+/**
+ *  @module Main
+ */
+export default Main
