@@ -28,21 +28,13 @@ const TextButton = props => {
   const {
     text,
     className,
-    // size,
-    // theme,
-    modifiers
+    modifier
   } = props
 
   /**
    *  @type {String}
    */
-  const modifiedClassNames = classNames('text-button', className, modifiers)
-
-  /* {
-    'text-button--sm': size === 'sm',
-    'text-button--secondary': theme === 'secondary'
-
-  }) */
+  const modifiedClassNames = classNames('text-button', className, modifier)
 
   return (
     Button({
@@ -63,7 +55,7 @@ TextButton.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  modifiers: PropTypes.oneOfType([
+  modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ])

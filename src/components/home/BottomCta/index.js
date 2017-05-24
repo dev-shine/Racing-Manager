@@ -66,7 +66,7 @@ const BottomCta = props => {
                 onClick={() => {}}/>
               <TextButton
                 text="Try a Demo"
-                theme="secondary"
+                modifier="secondary"
                 className="bottom-cta__button"
                 onClick={() => {}}/>
             </div>

@@ -8,8 +8,18 @@ import React from 'react'
  */
 import TextButton from 'components/buttons/TextButton'
 
+/**
+ *  @name headerContentClass
+ *  @const
+ *  @type {String}
+ */
 const headerContentClass = 'header__content'
 
+/**
+ *  @name headerContentStates
+ *  @const
+ *  @type {Array}
+ */
 const headerContentStates = [
   {
     paths: ['/'],
@@ -19,7 +29,7 @@ const headerContentStates = [
         <TextButton
           className='header__register-button visible-sm-up'
           onClick={onRegister}
-          size="sm"
+          modifier='sm'
           text='Register for FREE' />
       </div>
     }

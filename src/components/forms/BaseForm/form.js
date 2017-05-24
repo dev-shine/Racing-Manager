@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  *  @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  *  @class
@@ -113,10 +113,10 @@ export class Form extends Component {
      *  @const
      *  @type {String}
      */
-    const className = classNames(this.props.modifier)
+    const modifiedClassNames = classNames('form', this.props.className)
 
     return (
-      <form className={className} onSubmit={this.submit} autoComplete={this.props.autocomplete ? 'on' : 'off'}>
+      <form className={modifiedClassNames} onSubmit={this.submit} autoComplete={this.props.autocomplete ? 'on' : 'off'}>
         {this.props.children}
       </form>
     )
@@ -141,7 +141,7 @@ Form.propTypes = {
   values: PropTypes.object,
   update: PropTypes.func,
   handleSubmit: PropTypes.func,
-  modifier: PropTypes.oneOfType([
+  className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),

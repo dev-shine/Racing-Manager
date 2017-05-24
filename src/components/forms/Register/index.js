@@ -43,7 +43,7 @@ const RegisterForm = props => {
       <Form
         handleSubmit={() => { submitForm(values) }}
         {...props}
-        modifier='register-form__form'>
+        className='register-form__form'>
 
         <h2 className='register-form__section-label'>Name</h2>
         <div className='input-group'>
