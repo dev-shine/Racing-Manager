@@ -1,12 +1,12 @@
 /**
  * @module configureStore
  */
-import configureStore from 'store/configureStore'
+import configureStore from 'store/ConfigureStore'
 
 /**
  * @module initialStore
  */
-import initialStore from 'store/initialStore'
+import initialStore from 'store/InitialStore'
 
 /**
  * @type { Store }

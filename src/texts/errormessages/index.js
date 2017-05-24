@@ -81,3 +81,13 @@ export const CARD_NAME = FIRST_NAME
  *  @type {String}
  */
 export const CARD_CVV = 'If your card is amex, it will be 4 digits long otherwise it will be 3 digits long'
+
+/**
+ *  @type {String}
+ */
+export const UNDER_AGE_18 = 'You must be over 18 to register'
+
+/**
+ *  @type {String}
+ */
+export const MUST_ACCEPT_T_AND_C = 'You must accept terms and conditions'

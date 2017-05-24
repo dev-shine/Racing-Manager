@@ -21,7 +21,7 @@ import router from 'config/router'
 /**
  * @module store
  */
-import store from 'store/store'
+import store from './store'
 
 /**
  *  queryBySelector

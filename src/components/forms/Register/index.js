@@ -11,90 +11,82 @@ import PropTypes from 'prop-types'
 /**
  * @module Input
  */
-import Input from 'components/input/Input/Input'
+import Input from 'components/input/Input'
 
 /**
  * @module Checkbox
  */
-import Checkbox from 'components/input/Checkbox/Checkbox'
+import Checkbox from 'components/input/Checkbox'
 
 /**
  *  @module Form, Field
  */
-import { Form, Field, Submit } from 'components/forms/reactform'
+import { Form, Field, Submit } from 'components/forms/BaseForm'
 
 /**
  * @module TextButton
  */
-import TextButton from 'components/buttons/TextButton/TextButton'
+import TextButton from 'components/buttons/TextButton'
 
 /**
- * ManagerRegistration component
+ * @name RegisterForm
  * @param { Object } props
  * @property {Object} [values]
  * @property {Function} [validators]
- * @returns { React.Component }
+ * @return { React.Component }
  */
-const ManagerRegistration = props => {
+const RegisterForm = props => {
   const { submitForm, values, canProgress } = props
 
   return (
-    <div className='manager-registration'>
+    <div className='register-form'>
       <Form
-        handleSubmit={() => {
-          submitForm(values)
-        }
-        }
+        handleSubmit={() => { submitForm(values) }}
         {...props}
-        modifier='manager-registration__form' >
-        <h2 className='manager-registration__section-label'>Name</h2>
+        modifier='register-form__form'>
+
+        <h2 className='register-form__section-label'>Name</h2>
         <div className='input-group'>
           <Field
             component={Input}
             placeholder='First Name'
             validate={['firstname']}
-            name='firstname'
-           />
+            name='firstname' />
           <Field
             component={Input}
             placeholder='Surname'
             validate={['surname']}
-            name='surname'
-           />
+            name='surname' />
         </div>
-        <h2 className='manager-registration__section-label'>Email</h2>
+        <h2 className='register-form__section-label'>Email</h2>
         <Field
           component={Input}
           placeholder='Enter your email address'
           validate={['email']}
-          name='email'
-         />
-        <h2 className='manager-registration__section-label'>Password</h2>
+          name='email' />
+        <h2 className='register-form__section-label'>Password</h2>
         <Field
           component={Input}
           placeholder='One capital and lower case letter, one number'
           validate={['password']}
           type='password'
-          name='password'
-         />
-        <div className='manager-registration__checkboxes'>
+          name='password' />
+        <div className='register-form__checkboxes'>
           <Field
             component={Checkbox}
             label='Are you over 18?'
             validate={['overEighteen']}
-            name='overEighteen'
-          />
+            name='overEighteen' />
           <Field
             component={Checkbox}
             label='Do you agree to terms and conditions?'
             validate={['termsAndConditions']}
-            name='termsAndConditions'
-          />
+            name='termsAndConditions' />
         </div>
         <Submit component={(props) => TextButton({
           ...props,
           text: 'submit',
-          className: 'manager-registration__submit',
+          className: 'register-form__submit',
           isDisabled: !canProgress
         })} />
       </Form>
@@ -106,7 +98,7 @@ const ManagerRegistration = props => {
  *  propTypes
  *  @type {Object}
  */
-ManagerRegistration.propTypes = {
+RegisterForm.propTypes = {
   submitForm: PropTypes.func,
   values: PropTypes.object
 }
@@ -114,4 +106,4 @@ ManagerRegistration.propTypes = {
 /**
  *  @module ManagerRegistration
  */
-export default ManagerRegistration
+export default RegisterForm

@@ -31,7 +31,7 @@ import Register from 'views/register'
 /**
  * @module store
  */
-import store from 'store/store'
+import store from '../store'
 
 /**
  * @module locationChange

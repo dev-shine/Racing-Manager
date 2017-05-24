@@ -1,7 +1,7 @@
 /**
  * @module initialStore
  */
-import initialStore from 'store/initialStore'
+import initialStore from 'store/InitialStore'
 
 /**
  * Testing utilities

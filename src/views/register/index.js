@@ -9,9 +9,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 /**
- *  @module the NameForm Component
+ *  @module RegisterContainer
  */
-import ManagerRegistration from 'containers/forms/managerRegistration'
+import RegisterContainer from 'containers/register'
 
 /**
  * Register view
@@ -65,7 +65,7 @@ export class Register extends Component {
             <div className='col-sm-8 col-md-7 register__form-container'>
               <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
                 your account.</p>
-              <ManagerRegistration
+              <RegisterContainer
                 onSubmitSuccess={this.onSubmitSuccess}
                 onSubmitFail={this.onSubmitFail} />
             </div>

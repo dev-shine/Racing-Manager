@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  * Checkbox component
@@ -32,13 +32,14 @@ const Checkbox = props => {
     name,
     className,
     value,
-    handleChange
+    handleChange,
+    modifier
   } = props
 
-  const _className = classNames('checkbox', className)
+  const modifiedClassNames = classNames('checkbox', className, modifier)
 
   return (
-    <div className={_className}>
+    <div className={modifiedClassNames}>
       <input
         type='checkbox'
         id={name}
@@ -62,6 +63,10 @@ Checkbox.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   value: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.string
@@ -76,6 +81,7 @@ Checkbox.propTypes = {
  */
 Checkbox.defaultProps = {
   modifier: '',
+  className: '',
   value: false
 }
 

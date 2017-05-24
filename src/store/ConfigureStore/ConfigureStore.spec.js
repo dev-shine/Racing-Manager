@@ -1,7 +1,7 @@
 /**
  * @module configureStore
  */
-import configureStore from 'store/configureStore'
+import configureStore from 'store/ConfigureStore'
 
 /**
  * Testing utilities

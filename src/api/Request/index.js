@@ -8,8 +8,10 @@ import axios from 'axios'
  */
 const BASE_URL = ''
 
-// Setting axios defaults
+// Set base url for axios
 axios.defaults.baseURL = BASE_URL
+
+// Set the default headers.
 axios.defaults.headers.common['Content-Type'] = 'application/json; charset=UTF-8'
 
 /**
@@ -78,14 +80,14 @@ export const del = opts => {
  */
 const request = opts => {
   return axios(opts)
-    .then(response => Promise.resolve(response))
-    .catch(err => {
-      if (err && err.response) {
-        return Promise.reject(err.response)
-      } else {
-        return Promise.reject(err.message)
-      }
-    })
+  .then(response => Promise.resolve(response))
+  .catch(err => {
+    if (err && err.response) {
+      return Promise.reject(err.response)
+    } else {
+      return Promise.reject(err.message)
+    }
+  })
 }
 
 export default request

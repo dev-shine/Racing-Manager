@@ -6,7 +6,7 @@ import { combineReducers } from 'redux'
 /**
  * @module register
  */
-import register from 'reducers/forms/register'
+import register from 'reducers/register'
 
 /**
  *  @module windowReducer

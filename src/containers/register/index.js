@@ -6,17 +6,21 @@ import { connect } from 'react-redux'
 /**
  *  @module NameForm
  */
-import ManagerRegistration from 'components/forms/ManagerRegistration'
+import Register from 'components/forms/Register'
 
 /**
- *  @module updateUserSignupForm, submitFormData
+ *  @module updateRegisterForm, submitRegisterForm, updateRegisterFormError
  */
-import { updateUserSignupForm, submitFormData, registerFormError } from 'actions/forms/register'
+import {
+  updateRegisterForm,
+  submitFormData,
+  updateRegisterFormError
+} from 'actions/register'
 
 /**
  *  @module signUpFormValidators
  */
-import { signUpFormValidators } from 'utils/validate'
+import { registerValidators } from 'utils/validation/Register'
 
 /**
  *  mapStateToProps
@@ -34,14 +38,17 @@ const mapStateToProps = (state, ownProps) => {
 
   let canProgress = true
 
-  for (var key in state.register) {
-    if (!state.register[key]) {
+  // Items to ommit from form checking.
+  const ommittedItems = ['isSubmitting', 'submitError', 'errors']
+
+  for (let key in state.register) {
+    if (!state.register[key] && !~ommittedItems.indexOf(key)) {
       canProgress = false
     }
   }
 
-  for (var key1 in state.register.errors) {
-    if (state.register.errors[key1].length > 0) {
+  for (let errorKey in state.register.errors) {
+    if (state.register.errors[errorKey].length > 0) {
       canProgress = false
     }
   }
@@ -49,7 +56,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     values: state.register,
     errors: state.register.errors,
-    validators: signUpFormValidators,
+    validators: registerValidators,
     canProgress
   }
 }
@@ -63,10 +70,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     update: (name, value) => {
-      dispatch(updateUserSignupForm(name, value))
+      dispatch(updateRegisterForm(name, value))
     },
     updateErrors: (errors, name) => {
-      dispatch(registerFormError(errors, name))
+      dispatch(updateRegisterFormError(errors, name))
     },
     submitForm: (values) => {
       /**
@@ -83,8 +90,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         password: values.password,
         email: values.email
       }))
-        .then(onSubmitSuccess)
-        .catch(onSubmitFail)
+      .then(onSubmitSuccess)
+      .catch(onSubmitFail)
     }
   }
 }
@@ -95,4 +102,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ManagerRegistration)
+)(Register)
