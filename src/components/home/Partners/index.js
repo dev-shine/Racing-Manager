@@ -35,7 +35,7 @@ const Arrow = props => {
       onClick={onClick}>
       <Image
         className='partners__arrow-image'
-        imageSrc='images/arrow-left.svg' />
+        imageSrc='assets/images/arrow-left.svg' />
     </div>
   )
 }

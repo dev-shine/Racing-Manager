@@ -76,7 +76,7 @@ export class Home extends Component {
         </div>
         <CopySection
           headline="take the reigns"
-          featuredImage="images/copy/manager/1.png">
+          featuredImage="assets/images/copy/manager/1.png">
           <p>
             Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
             <br/>
@@ -87,7 +87,7 @@ export class Home extends Component {
         </CopySection>
         <CopySection
           headline="stay organised"
-          featuredImage="images/copy/manager/2.png">
+          featuredImage="assets/images/copy/manager/2.png">
           <p>
             • Schedule events, tickets and hospitality with ease for your members.
             <br/>• Consolidate all of your management accounts to our new platform.
@@ -98,7 +98,7 @@ export class Home extends Component {
         </CopySection>
         <CopySection
           headline="engage members"
-          featuredImage="images/copy/manager/3.png">
+          featuredImage="assets/images/copy/manager/3.png">
           <p>
             • Regularly prompted updates from your trainer, straight to your group.
             <br/>• A wide range of custom media including photos, videos and polls.
@@ -109,7 +109,7 @@ export class Home extends Component {
         </CopySection>
         <CopySection
           headline="safe and secure"
-          featuredImage="images/copy/manager/4.png">
+          featuredImage="assets/images/copy/manager/4.png">
           <p>
             Managing a syndicate ultimately comes down to money:
             <br/>
