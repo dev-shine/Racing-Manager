@@ -11,12 +11,12 @@ import PropTypes from 'prop-types'
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  *  @module Button
  */
-import Button from 'components/buttons/Button/Button'
+import Button from 'components/buttons/Button'
 
 /**
  * ImageButton component
@@ -27,13 +27,13 @@ import Button from 'components/buttons/Button/Button'
 const ImageButton = props => {
   const { className, imageSrc } = props
 
-  const _className = classNames('image-button', 'image-background', className)
+  const modifiedClassNames = classNames('image-button', 'image-background', className)
 
   return (
     Button({
       ...props,
-      className: _className,
-      style: { backgroundImage: `url(assets/${imageSrc})`}
+      className: modifiedClassNames,
+      style: { backgroundImage: `url(assets/${imageSrc})` }
     })
   )
 }
@@ -43,7 +43,11 @@ const ImageButton = props => {
  * @type { Object }
  */
 ImageButton.propTypes = {
-  imageSrc: PropTypes.string.isRequired
+  imageSrc: PropTypes.string.isRequired,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 /**

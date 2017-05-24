@@ -11,17 +11,17 @@ import PropTypes from 'prop-types'
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  * @module CopyCard
  */
-import CopyCard from 'components/home/CopyCard/CopyCard'
+import CopyCard from 'components/cards/CopyCard'
 
 /**
  * @module Image
  */
-import Image from 'components/Image/Image'
+import Image from 'components/image'
 
 /**
  * CopySection component
@@ -32,10 +32,10 @@ import Image from 'components/Image/Image'
 const CopySection = props => {
   const { children, className, headline, featuredImage } = props
 
-  const _className = classNames('copy-section', className)
+  const modifiedClassNames = classNames('copy-section', className)
 
   return (
-    <div className={_className}>
+    <div className={modifiedClassNames}>
       <div className="container relative">
         <div className="row">
           <Image
@@ -58,17 +58,20 @@ const CopySection = props => {
 }
 
 /**
- * Component props types
+ * propTypes
  * @type { Object }
  */
 CopySection.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   headline: PropTypes.string.isRequired,
   featuredImage: PropTypes.string
 }
 
 /**
- * Default component props
+ * defaultProps
  * @type { Object }
  */
 CopySection.defaultProps = {

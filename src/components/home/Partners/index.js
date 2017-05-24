@@ -2,12 +2,16 @@
  *  @module React
  */
 import React from 'react'
+
+/**
+ *  @module PropTypes
+ */
 import PropTypes from 'prop-types'
 
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  * @module Slider
@@ -17,10 +21,10 @@ import Slider from 'react-slick'
 /**
  * @module Image
  */
-import Image from 'components/Image/Image'
+import Image from 'components/image'
 
 /**
- * Arrow component
+ * @name Arrow
  * @returns { React.Component }
  */
 const Arrow = props => {
@@ -41,23 +45,24 @@ const Arrow = props => {
  * @param { Object } props
  * @property { String } props.featuredImage
  * @property { String | Array } [props.modifier = '']
- * @returns { React.Component }
+ * @return { React.Component }
  */
 const Partners = props => {
   const { className } = props
 
-  const _className = classNames('partners', className)
+  const modifiedClassNames = classNames('partners', className)
 
   const slides = () => {
     let result = []
+
     for (let i = 1; i <= 5; i++) {
       result.push(
         <div
           key={i}
           className='partners__partner'>
-          <div
+          <Image
             className='partners__partner-image image-background'
-            style={{backgroundImage: `url(assets/images/partners/${i}.png)`}} />
+            imageSrc={`assets/images/partners/${i}.png`} />
         </div>
       )
     }
@@ -65,7 +70,7 @@ const Partners = props => {
   }
 
   return (
-    <div className={_className}>
+    <div className={modifiedClassNames}>
       <div className='partners__carousel-wrapper hidden-md-up'>
         <Slider
           className='partners__carousel'
@@ -76,8 +81,7 @@ const Partners = props => {
           nextArrow={<Arrow _className='partners__arrow-next partners__arrow' />}
           slidesToShow={3}
           speed={500}
-          slidesToScroll={1}
-          >
+          slidesToScroll={1}>
           {slides()}
         </Slider>
       </div>
@@ -91,22 +95,30 @@ const Partners = props => {
 }
 
 /**
- * Component props types
+ * propTypes
  * @type { Object }
  */
 Partners.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
+  ]),
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
   ])
 }
 
 /**
- * Default component props
+ * defaultProps
  * @type { Object }
  */
 Partners.defaultProps = {
-  modifier: ''
+  modifier: '',
+  className: ''
 }
 
+/**
+ *  @module Partners
+ */
 export default Partners

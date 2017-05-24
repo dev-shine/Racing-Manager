@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module Button
  */
-import Button from 'components/buttons/Button/Button'
+import Button from 'components/buttons/Button/'
 
 /**
  * Testing utilities

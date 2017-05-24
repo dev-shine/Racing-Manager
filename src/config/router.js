@@ -36,7 +36,7 @@ import store from 'store/store'
 /**
  * @module locationChange
  */
-import { locationChange } from 'actions/window/windowActions'
+import { locationChange } from 'actions/window'
 
 /**
  * Handle router update

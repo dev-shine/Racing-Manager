@@ -1,7 +1,7 @@
 /**
  * @module homeActions
  */
-import { LOCATION_CHANGE, locationChange } from 'actions/window/windowActions'
+import { LOCATION_CHANGE, locationChange } from 'actions/window'
 
 /**
  * @module chai

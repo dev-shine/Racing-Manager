@@ -1,7 +1,7 @@
 /**
  * @module windowReducer
  */
-import windowReducer from 'reducers/window/windowReducer'
+import windowReducer from 'reducers/window'
 
 /**
  ** @module testing utilities

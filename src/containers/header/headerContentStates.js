@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module TextButton
  */
-import TextButton from 'components/buttons/TextButton/TextButton'
+import TextButton from 'components/buttons/TextButton'
 
 const headerContentClass = 'header__content'
 

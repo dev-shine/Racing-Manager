@@ -11,12 +11,12 @@ import PropTypes from 'prop-types'
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  *  @module Button
  */
-import Button from 'components/buttons/Button/Button'
+import Button from 'components/buttons/Button'
 
 /**
  * TextButton component
@@ -25,18 +25,29 @@ import Button from 'components/buttons/Button/Button'
  * @returns { React.Component }
  */
 const TextButton = props => {
-  const { text, className, size, theme } = props
+  const {
+    text,
+    className,
+    // size,
+    // theme,
+    modifiers
+  } = props
 
-  const _className = classNames('text-button', className, {
+  /**
+   *  @type {String}
+   */
+  const modifiedClassNames = classNames('text-button', className, modifiers)
+
+  /* {
     'text-button--sm': size === 'sm',
     'text-button--secondary': theme === 'secondary'
 
-  })
+  }) */
 
   return (
     Button({
       ...props,
-      className: _className,
+      className: modifiedClassNames,
       children: <h6 className='text-button__text'>{text}</h6>
     })
   )
@@ -47,7 +58,15 @@ const TextButton = props => {
  * @type { Object }
  */
 TextButton.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  modifiers: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 /**
@@ -55,7 +74,9 @@ TextButton.propTypes = {
  * @type { Object }
  */
 TextButton.defaultProps = {
-  text: ''
+  text: '',
+  className: '',
+  modifiers: ''
 }
 
 export default TextButton

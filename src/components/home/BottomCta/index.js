@@ -11,36 +11,44 @@ import PropTypes from 'prop-types'
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  * @module CopyCard
  */
-import CopyCard from 'components/home/CopyCard/CopyCard'
+import CopyCard from 'components/cards/CopyCard'
 
 /**
  *  @module TextButton
  */
-import TextButton from 'components/buttons/TextButton/TextButton'
+import TextButton from 'components/buttons/TextButton'
 
 /**
- * BottomCta component
+ *  @module Image
+ */
+import Image from 'components/image'
+
+/**
+ * @name BottomCta
  * @param { Object } props
  * @property { String } props.text
- * @returns { React.Component }
+ * @return { React.Component }
  */
 const BottomCta = props => {
   const { className, onRegisterClick } = props
 
-  const _className = classNames('bottom-cta', className)
+  const modifiedClassNames = classNames('bottom-cta', className)
 
   return (
-    <div className={_className}>
+    <div className={modifiedClassNames}>
       <div className="bottom-cta__wave-line wave-bg"></div>
       <div className="container">
         <div className="row relative">
           <div className="bottom-cta__video-container col-md-5 col-sm-12">
-            <img src="assets/images/video.png" alt="video"/>
+            <Image
+              isImage={true}
+              imageSrc='assets/images/video.png'
+              alt='video' />
           </div>
           <div className="col-md-6 col-md-offset-6 col-sm-10 col-sm-offset-2">
             <CopyCard
@@ -74,7 +82,11 @@ const BottomCta = props => {
  * @type { Object }
  */
 BottomCta.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  onRegisterClick: PropTypes.func
 }
 
 /**

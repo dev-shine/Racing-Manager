@@ -6,18 +6,30 @@ import React from 'react'
 /**
  * @module ParallaxHero
  */
-import ParallaxHero from 'components/home/hero/ParallaxHero'
+import ParallaxHero from 'components/parallax/Hero'
 
 /**
- * Testing utilities
+ *  @module chai, expect
  */
 import chai, { expect } from 'chai'
+
+/**
+ *  @module shallow, mount
+ */
 import { shallow, mount } from 'enzyme'
+
+/**
+ *  @module chaiEnzyme
+ */
 import chaiEnzyme from 'chai-enzyme'
+
+/**
+ *  @module spy
+ */
 import { spy } from 'sinon'
 
 /**
- * Required properties
+ * requiredProps
  * @type { Object }
  */
 const requiredProps = {

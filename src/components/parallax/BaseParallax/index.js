@@ -1,13 +1,26 @@
-import React from 'react'
+/**
+ *  @module React
+ */
+import React, { Component } from 'react'
+
+/**
+ *  @module PropTypes
+ */
 import PropTypes from 'prop-types'
 
-export default class Parallax extends React.Component {
+/**
+ *  @class Parallax
+ *  @extends {Component}
+ */
+class Parallax extends Component {
   /**
    * @constructor
-   * @param props
+   * @param {Object} props
    */
   constructor (props) {
     super(props)
+
+    // Bind custom functions
     this.getPosition = this.getPosition.bind(this)
     this.scrollHandler = this.scrollHandler.bind(this)
   }
@@ -50,7 +63,7 @@ export default class Parallax extends React.Component {
 }
 
 /**
- * Component props types
+ * propTypes
  * @type { Object }
  */
 Parallax.propTypes = {
@@ -61,7 +74,7 @@ Parallax.propTypes = {
 }
 
 /**
- * Default component props
+ * defaultProps
  * @type { Object }
  */
 Parallax.defaultProps = {
@@ -69,3 +82,8 @@ Parallax.defaultProps = {
   scope: 100,
   offset: 0
 }
+
+/**
+ *  @module Parallax
+ */
+export default Parallax

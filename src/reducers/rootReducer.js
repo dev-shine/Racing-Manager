@@ -6,8 +6,9 @@ import { combineReducers } from 'redux'
 /**
  * @module homeReducer
  */
-import windowReducer from 'reducers/window/windowReducer'
 import registerReducer from 'reducers/forms/register'
+
+import windowReducer from 'reducers/window'
 
 /**
  * Root reducer - Combines all reducers passed in ready for a redux store

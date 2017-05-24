@@ -1,7 +1,7 @@
 /**
  * @module ActionTypes
  */
-import { LOCATION_CHANGE } from 'actions/window/windowActions'
+import { LOCATION_CHANGE } from 'actions/window'
 
 /**
  * @type { Object }
@@ -10,7 +10,13 @@ const initialState = {
   location: window.location.hash
 }
 
-const windowReducer = (state = initialState, action) => {
+/**
+ *  @name  reducer
+ *  @param  {Object} state
+ *  @param  {Object} action
+ *  @return {Object}
+ */
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOCATION_CHANGE:
       return {
@@ -22,4 +28,4 @@ const windowReducer = (state = initialState, action) => {
   }
 }
 
-export default windowReducer
+export default reducer

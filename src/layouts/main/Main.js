@@ -16,7 +16,7 @@ import Header from 'containers/header/Header'
 /**
  * @module Footer
  */
-import Footer from 'components/footer/Footer'
+import Footer from 'components/footer'
 
 /**
  * Main layout

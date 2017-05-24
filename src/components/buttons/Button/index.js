@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  * Button component
@@ -22,11 +22,12 @@ import classNames from 'classnames'
 const Button = props => {
   const { children, className, style, isDisabled, onClick } = props
 
-  const _className = classNames('button', className)
+  // Modified classes.
+  const modifiedClassNames = classNames('button', className)
 
   return (
     <button
-      className={_className}
+      className={modifiedClassNames}
       style={style}
       onClick={!isDisabled && onClick}
       disabled={isDisabled || !onClick}>
@@ -41,7 +42,11 @@ const Button = props => {
  */
 Button.propTypes = {
   isDisabled: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 /**

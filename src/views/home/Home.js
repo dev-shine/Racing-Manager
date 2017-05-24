@@ -11,22 +11,22 @@ import { connect } from 'react-redux'
 /**
  * @module ParallaxHero
  */
-import ParallaxHero from 'components/home/hero/ParallaxHero'
+import ParallaxHero from 'components/parallax/Hero'
 
 /**
  * @module Partners
  */
-import Partners from 'components/home/Partners/Partners'
+import Partners from 'components/home/Partners'
 
 /**
  * @module CopySection
  */
-import CopySection from 'components/home/CopySection/CopySection'
+import CopySection from 'components/home/CopySection'
 
 /**
  * @module BottomCta
  */
-import BottomCta from 'components/home/BottomCta/BottomCta'
+import BottomCta from 'components/home/BottomCta'
 
 /**
  * Home view

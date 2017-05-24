@@ -11,21 +11,21 @@ import PropTypes from 'prop-types'
 /**
  * @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
- * CopyCard component
+ * @name CopyCard
  * @param { Object } props
  * @property { String } props.text
- * @returns { React.Component }
+ * @return { React.Component }
  */
 const CopyCard = props => {
   const { children, className, headline } = props
 
-  const _className = classNames('copy-card', className)
+  const modifiedClassNames = classNames('copy-card', className)
 
   return (
-    <div className={_className}>
+    <div className={modifiedClassNames}>
       <h1 className="copy-card__headline">{headline}</h1>
       <hr className="copy-card__hr"/>
       {children}
@@ -34,16 +34,19 @@ const CopyCard = props => {
 }
 
 /**
- * Component props types
+ * propTypes
  * @type { Object }
  */
 CopyCard.propTypes = {
-  className: PropTypes.string,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   headline: PropTypes.string.isRequired
 }
 
 /**
- * Default component props
+ * defaultProps
  * @type { Object }
  */
 CopyCard.defaultProps = {
