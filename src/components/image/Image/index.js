@@ -23,7 +23,7 @@ const Image = ({source, className, alt}) => {
   /**
    *  @type {String}
    */
-  const modifiedClassNames = classNames('image', 'image-normal', className)
+  const modifiedClassNames = classNames('image', className, 'normal')
 
   return (
     <img src={source} alt={alt} className={modifiedClassNames} />

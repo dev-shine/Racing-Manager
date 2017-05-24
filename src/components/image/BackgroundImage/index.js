@@ -23,7 +23,7 @@ const BackgroundImage = ({source, className, children}) => {
   /**
    *  @type {String}
    */
-  const modifiedClassNames = classNames('image', 'image-background', className)
+  const modifiedClassNames = classNames('image', className, 'background')
 
   return (
     <div style={{backgroundImage: `url(${source})`}} className={modifiedClassNames}>
