@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+*  @module InputLine
+*/
+import InputLine from 'components/input/InputLine'
+
+/**
  *  @class
  *  @extends {Component}
  */
@@ -59,6 +64,7 @@ const Input = props => {
         onBlur={handleBlur}
         onFocus={handleFocus}
         onChange={handleChange} />
+      <InputLine error={hasError} />
       {hasError &&
         <p className='input__description micro'>
           {error.map((error, i) => error)}
