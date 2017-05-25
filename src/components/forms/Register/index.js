@@ -79,7 +79,7 @@ const RegisterForm = props => {
             name='overEighteen' />
           <Field
             component={Checkbox}
-            label='Do you agree to terms and conditions?'
+            label={<span>Do you agree to <a>terms and conditions</a>?</span>}
             validate={['termsAndConditions']}
             name='termsAndConditions' />
         </div>
