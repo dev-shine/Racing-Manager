@@ -41,6 +41,9 @@ module.exports = {
   resolveLoader: {
     moduleExtensions: ['-loader']
   },
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     rules: [
       // Pre-loaders

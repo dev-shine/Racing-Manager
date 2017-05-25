@@ -14,6 +14,11 @@ import { connect } from 'react-redux'
 import RegisterContainer from 'containers/register'
 
 /**
+ *  @module withRouter
+ */
+import { withRouter } from 'react-router-dom'
+
+/**
  *  @module resetRegisterForm
  */
 import {
@@ -43,11 +48,7 @@ export class Register extends Component {
    *  @return {Void}
    */
   submitFormDataSuccess () {
-    this.context.router.push('/')
-  }
-
-  componentWillUnmount () {
-    this.props.resetForm()
+    this.props.history.push('/')
   }
 
   /**
@@ -56,7 +57,11 @@ export class Register extends Component {
    *  @return {Void}
    */
   submitFormDataFail () {
-    console && console.error('FAILED to submit data on signup__name')
+    console && console.error('FAILED to submit data on register')
+  }
+
+  componentWillUnmount () {
+    this.props.resetForm()
   }
 
   /**
@@ -77,8 +82,8 @@ export class Register extends Component {
               <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
                 your account.</p>
               <RegisterContainer
-                onSubmitSuccess={this.onSubmitSuccess}
-                onSubmitFail={this.onSubmitFail} />
+                onSubmitSuccess={this.submitFormDataSuccess}
+                onSubmitFail={this.submitFormDataFail} />
             </div>
             <div className='col-sm-4 col-md-5 register__quick-register' />
           </div>
@@ -115,7 +120,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 /**
  *  @module connect
  */
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Register)
+)(Register))

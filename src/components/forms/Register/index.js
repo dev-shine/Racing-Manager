@@ -29,6 +29,11 @@ import { Form, Field, Submit } from 'components/forms/BaseForm'
 import TextButton from 'components/buttons/TextButton'
 
 /**
+ *  @module Link
+ */
+import { Link } from 'react-router-dom'
+
+/**
  * @name RegisterForm
  * @param { Object } props
  * @property {Object} [values]
@@ -79,7 +84,7 @@ const RegisterForm = props => {
             name='overEighteen' />
           <Field
             component={Checkbox}
-            label='Do you agree to terms and conditions?'
+            label={<span>Do you agree to <Link to="/terms-and-conditions">terms and conditions</Link>?</span>}
             validate={['termsAndConditions']}
             name='termsAndConditions' />
         </div>

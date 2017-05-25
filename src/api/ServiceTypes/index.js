@@ -1,7 +1,7 @@
 /**
  * @type {string}
 */
-export const BASE_URL = 'http://52.90.161.36/'
+export const BASE_URL = 'http://52.17.77.232/'
 
 /**
  * @type { String }

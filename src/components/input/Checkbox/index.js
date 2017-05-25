@@ -57,7 +57,11 @@ const Checkbox = props => {
  * @type { Object }
  */
 Checkbox.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.oneOfType([
+    PropTypes.element.isRequired,
+    PropTypes.node.isRequired,
+    PropTypes.string.isRequired
+  ]),
   name: PropTypes.string.isRequired,
   modifier: PropTypes.oneOfType([
     PropTypes.string,

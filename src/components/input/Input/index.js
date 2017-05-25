@@ -76,6 +76,7 @@ const Input = props => {
         onChange={handleChange} />
       <InputLine error={hasError} />
       <Accordion
+        className='input__accordion'
         isOpen={hasError}>
         <InputError
           className='micro'
