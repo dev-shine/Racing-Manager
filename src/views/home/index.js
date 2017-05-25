@@ -119,7 +119,7 @@ export class Home extends Component {
             <br/>• AML and KYC checks on new syndicate members.
           </p>
         </CopySection>
-        <BottomCta/>
+        <BottomCta />
       </div>
     )
   }

@@ -10,7 +10,6 @@
   z-index: $zindex-header;
   
   &__logo-image {
-    background-image: url($logo);
     height: $header-height;
     width: 100px;
     display: inline-block;
