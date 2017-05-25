@@ -24,15 +24,13 @@ const InputLine = props => {
   /**
    *  @const
    */
-  const { style, error, className } = props
+  const { style, error, className, modifier } = props
 
   /**
   *  @private
   *  @type { string }
   */
-  const modifiedClassNames = classNames('form-input-line', className, {
-    error
-  })
+  const modifiedClassNames = classNames('form-input-line', className, {error}, modifier)
 
   return (
     <div className={modifiedClassNames} style={{...style}} />
@@ -49,6 +47,10 @@ InputLine.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
+  ]),
+  modifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
   ])
 }
 
@@ -58,7 +60,9 @@ InputLine.propTypes = {
 */
 InputLine.defaultProps = {
   style: {},
-  error: false
+  error: false,
+  modifier: 'left',
+  className: ''
 }
 
 /**
