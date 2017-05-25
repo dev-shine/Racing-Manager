@@ -18,21 +18,23 @@ import Header from 'components/header'
  */
 import headerContentStates from 'containers/header/HeaderContentStates'
 
+/**
+ *  @module withRouter
+ */
+import { withRouter } from 'react-router'
+
 const mapStateToProps = (state, ownProps) => {
   const {
-    location
-  } = state.window
+    pathname
+  } = ownProps.location
 
   const content = headerContentStates({
-    location,
-    onRegister: () => {
-      console.log('go to register page.')
-    }
+    location: pathname
   })
 
   return {
     content,
-    logohref: '#/'
+    logohref: '/'
   }
 }
 
@@ -44,7 +46,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
  *  Export the header
  */
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header)
+)(Header))

@@ -9,6 +9,11 @@ import React from 'react'
 import TextButton from 'components/buttons/TextButton'
 
 /**
+ *  @module Link
+ */
+import { Link } from 'react-router-dom'
+
+/**
  *  @name headerContentClass
  *  @const
  *  @type {String}
@@ -22,20 +27,23 @@ const headerContentClass = 'header__content'
  */
 const headerContentStates = [
   {
-    paths: ['/'],
+    paths: [''],
     getContent: (props = {}) => {
-      const { onRegister } = props
-      return <div className={headerContentClass}>
-        <TextButton
-          className='header__register-button visible-sm-up'
-          onClick={onRegister}
-          modifier='sm'
-          text='Register for FREE' />
-      </div>
+      return (
+        <div className={headerContentClass}>
+          <Link to='/register'>
+            <TextButton
+              className='header__register-button visible-sm-up'
+              modifier='sm'
+              onClick={() => {}}
+              text='Register for FREE' />
+          </Link>
+        </div>
+      )
     }
   },
   {
-    paths: ['/test'],
+    paths: ['/register'],
     getContent: () => {
       return <p>How awesome is that?</p>
     }
