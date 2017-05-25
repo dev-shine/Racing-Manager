@@ -9,16 +9,10 @@ import { combineReducers } from 'redux'
 import register from 'reducers/register'
 
 /**
- *  @module windowReducer
- */
-import windowReducer from 'reducers/window'
-
-/**
  * @name rootReducer
  * @type { Reducer }
  */
 const rootReducer = combineReducers({
-  window: windowReducer,
   register
 })
 

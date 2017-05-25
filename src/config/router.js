@@ -24,13 +24,6 @@ import Home from 'views/home'
 import Register from 'views/register'
 
 /**
- * Handle router update
- * @type { Function }
- * @returns { void }
- */
-// const handleRouterUpdate = () => window.scrollTo(0, 0)
-
-/**
  * App router
  */
 const router = (
@@ -42,4 +35,7 @@ const router = (
   </Router>
 )
 
+/**
+ *  @module router
+ */
 export default router

@@ -21,7 +21,7 @@ import headerContentStates from 'containers/header/HeaderContentStates'
 /**
  *  @module withRouter
  */
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
   const {

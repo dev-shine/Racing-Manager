@@ -16,7 +16,7 @@ import RegisterContainer from 'containers/register'
 /**
  *  @module withRouter
  */
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router-dom'
 
 /**
  *  @module resetRegisterForm
