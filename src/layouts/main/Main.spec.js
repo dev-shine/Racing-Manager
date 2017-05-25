@@ -16,7 +16,7 @@ import configureMockStore from 'redux-mock-store'
 /**
  * @module Main
  */
-import Main from 'layouts/main/Main'
+import Main from 'layouts/main'
 
 /**
  * Testing utilities

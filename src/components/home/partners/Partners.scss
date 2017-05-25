@@ -7,21 +7,26 @@ $partners-height-sm: 100px;
   width: 100%;
   background: $partners-background;
   height: $partners-height;
+  
   @media (min-width: $screen-sm) {
     height: $partners-height-sm;
   }
+  
   &__carousel {
   }
+  
   &__carousel-wrapper {
     height: 100%;
     margin: 0 $partners-slider-margin;
     width: 100vw - $partners-slider-margin * 2;
     position: relative;
   }
+  
   &__carousel-desktop {
     display: flex;
     justify-content: space-between;
   }
+  
   &__partner {
     display: inline-block;
     height: $partners-height;
@@ -29,6 +34,7 @@ $partners-height-sm: 100px;
       height: $partners-height-sm;
     }
   }
+  
   &__partner-image {
     margin: auto;
     position: relative;
@@ -41,6 +47,7 @@ $partners-height-sm: 100px;
       width: 100px;
     }
   }
+  
   &__arrow-image {
     @include absolute-center;
     width: 10px;
@@ -50,6 +57,7 @@ $partners-height-sm: 100px;
       height: 20px;
     }
   }
+  
   &__arrow {
     position: absolute;
     top: 0;
@@ -59,9 +67,11 @@ $partners-height-sm: 100px;
     width: $partners-slider-margin;
     cursor: pointer;
   }
+  
   &__arrow-prev {
     left: -$partners-slider-margin;
   }
+  
   &__arrow-next {
     right: -$partners-slider-margin;
     transform: rotate(180deg);

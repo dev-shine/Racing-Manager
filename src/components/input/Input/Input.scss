@@ -1,35 +1,23 @@
 $input-height: 32px;
 
-
 .input {
   width: 100%;
   margin-top: 20px;
   position: relative;
+  
   &__input-element {
     width: 100%;
-    border-bottom: 1px solid $nickel;
+    border-bottom: 1px solid $form-input-color;
     line-height: $input-height;
     font-size: $text;
     font-family: $font-family-secondary;
-    transition: border-color .25s;
     box-sizing: border-box;
+    
     &::placeholder {
       color: $placeholder-color;
       font-weight: 300;
       font-family: $font-family-secondary;
       font-size: $text;
-    }
-    &:focus {
-      border-color: $vanilla-ice;
-      border-bottom-width: 2px;
-      margin-bottom: -1px;
-    }
-  }
-  &__description {
-    color: $placeholder-color;
-    padding-top: 5px;
-    @media (min-width: $screen-md) {
-      font-size: $micro-text;
     }
   }
 }

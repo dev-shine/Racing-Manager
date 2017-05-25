@@ -8,6 +8,7 @@
   background: white;
   box-shadow: 0 0 40px rgba(black, 0.1);
   z-index: $zindex-header;
+  
   &__logo-image {
     background-image: url($logo);
     height: $header-height;
@@ -19,6 +20,7 @@
       margin-left: 0;
     }
   }
+  
   &__logo-text {
     padding-left: 5px;
     font-size: 13px;
@@ -32,6 +34,7 @@
       padding-left: 10px;
     }
   }
+  
   &__content {
     display: inline-block;
     float: right;
@@ -39,6 +42,7 @@
     padding: ($header-height - 25px)/2 0;
     margin-right: 30px;
   }
+  
   &__register-button {
   }
 }

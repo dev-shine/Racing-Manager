@@ -21,7 +21,12 @@ import router from 'config/router'
 /**
  * @module store
  */
-import store from 'store/store'
+import store from './store'
+
+/**
+ *  queryBySelector
+ */
+import { queryBySelector } from 'utils/domutils'
 
 /**
  * @module styles
@@ -44,5 +49,5 @@ render(
     { router }
   </Provider>,
 
-  document.querySelector('.main-container')
+  queryBySelector('.main-container')
 )

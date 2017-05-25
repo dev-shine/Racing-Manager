@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module Header
  */
-import Header from 'components/header/Header'
+import Header from 'components/header'
 
 /**
  * Testing utilities
