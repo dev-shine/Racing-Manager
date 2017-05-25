@@ -1,0 +1,7 @@
+.input-error {
+  color: $placeholder-color;
+  padding-top: 5px;
+  @media (min-width: $screen-md) {
+    font-size: $micro-text;
+  }
+}

@@ -19,6 +19,16 @@ import classNames from 'utils/classnames'
 import InputLine from 'components/input/InputLine'
 
 /**
+ *  @module BaseAccordion
+ */
+import Accordion from 'components/accordion/BaseAccordion'
+
+/**
+ *  @module InputError
+ */
+import InputError from 'components/input/InputError'
+
+/**
  *  @class
  *  @extends {Component}
  */
@@ -65,11 +75,12 @@ const Input = props => {
         onFocus={handleFocus}
         onChange={handleChange} />
       <InputLine error={hasError} />
-      {hasError &&
-        <p className='input__description micro'>
-          {error.map((error, i) => error)}
-        </p>
-      }
+      <Accordion
+        isOpen={hasError}>
+        <InputError
+          className='micro'
+          errors={error} />
+      </Accordion>
     </div>
   )
 }

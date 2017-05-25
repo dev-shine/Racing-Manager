@@ -1,0 +1,13 @@
+.accordion {
+  width: 100%;
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    @include clearfix();
+  }
+
+  &--anim {
+    transition: height .4s ease-out;
+  }
+}
