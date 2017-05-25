@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module headerContentStates
  */
-import headerContentStates from 'containers/header/headerContentStates'
+import headerContentStates from 'containers/header/HeaderContentStates'
 
 /**
  * Testing utilities

@@ -6,29 +6,27 @@ import React from 'react'
 /**
  * @module Header
  */
-import Header from 'containers/header/Header'
+import Header from 'containers/header'
 
 /**
- * @module store
- */
-import store from 'store/store'
-
-/**
- * Testing utilities
+ *  @module expect
  */
 import { expect } from 'chai'
+
+/**
+ *  @module mount
+ */
 import { mount } from 'enzyme'
 
 /**
  *  @module redux-mock-store
  */
 import configureMockStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
 
 /**
- * @module locationChange
+ *  @module thunk
  */
-import { locationChange } from 'actions/window'
+import thunk from 'redux-thunk'
 
 describe('Containers - Header', () => {
   let wrapper

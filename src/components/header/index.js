@@ -35,7 +35,11 @@ const Header = props => {
  * @type { Object }
  */
 Header.propTypes = {
-  test: PropTypes.string
+  content: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.node
+  ]),
+  logohref: PropTypes.string
 }
 
 /**

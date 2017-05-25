@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module Header
  */
-import Header from 'containers/header/Header'
+import Header from 'containers/header'
 
 /**
  * @module Footer
