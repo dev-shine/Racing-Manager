@@ -57,7 +57,7 @@ export class Register extends Component {
    *  @return {Void}
    */
   submitFormDataFail () {
-    console && console.error('FAILED to submit data on signup__name')
+    console && console.error('FAILED to submit data on register')
   }
 
   componentWillUnmount () {
