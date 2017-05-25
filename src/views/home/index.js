@@ -29,7 +29,7 @@ import CopySection from 'components/home/CopySection'
 import BottomCta from 'components/home/BottomCta'
 
 /**
- * Home view
+ * @name Home
  * @class
  * @extends Component
  */
@@ -124,15 +124,29 @@ export class Home extends Component {
     )
   }
 }
-
+/**
+ *  mapStateToProps
+ *  @param  {Object} state
+ *  @param  {Object} ownProps
+ *  @return {Object}
+ */
 const mapStateToProps = (state, ownProps) => {
   return {}
 }
 
+/**
+ *  @name mapDispatchToProps
+ *  @param  {Function} dispatch
+ *  @param  {Object} ownProps
+ *  @return {Object}
+ */
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {}
 }
 
+/**
+ *  @module connect
+ */
 export default connect(
   mapStateToProps,
   mapDispatchToProps

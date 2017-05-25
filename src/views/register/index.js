@@ -14,7 +14,14 @@ import { connect } from 'react-redux'
 import RegisterContainer from 'containers/register'
 
 /**
- * Register view
+ *  @module resetRegisterForm
+ */
+import {
+  resetRegisterForm
+} from 'actions/register'
+
+/**
+ * @name Register
  * @class
  * @extends Component
  */
@@ -37,6 +44,10 @@ export class Register extends Component {
    */
   submitFormDataSuccess () {
     this.context.router.push('/')
+  }
+
+  componentWillUnmount () {
+    this.props.resetForm()
   }
 
   /**
@@ -77,14 +88,33 @@ export class Register extends Component {
   }
 }
 
+/**
+ *  mapStateToProps
+ *  @param  {Object} state
+ *  @param  {Object} ownProps
+ *  @return {Object}
+ */
 const mapStateToProps = (state, ownProps) => {
   return {}
 }
 
+/**
+ *  @name mapDispatchToProps
+ *  @param  {Function} dispatch
+ *  @param  {Object} ownProps
+ *  @return {Object}
+ */
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {
+    resetForm: () => {
+      dispatch(resetRegisterForm())
+    }
+  }
 }
 
+/**
+ *  @module connect
+ */
 export default connect(
   mapStateToProps,
   mapDispatchToProps
