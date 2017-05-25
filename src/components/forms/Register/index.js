@@ -72,7 +72,7 @@ const RegisterForm = props => {
         <h2 className='register-form__section-label'>Password</h2>
         <Field
           component={Input}
-          placeholder='One capital and lower case letter, one number'
+          placeholder='Min 8 characters, 1 uppercase and 1 digit'
           validate={['password']}
           type='password'
           name='password' />
