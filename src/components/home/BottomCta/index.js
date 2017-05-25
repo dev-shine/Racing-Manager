@@ -29,13 +29,18 @@ import TextButton from 'components/buttons/TextButton'
 import Image from 'components/image'
 
 /**
+ *  @module Link
+ */
+import { Link } from 'react-router-dom'
+
+/**
  * @name BottomCta
  * @param { Object } props
  * @property { String } props.text
  * @return { React.Component }
  */
 const BottomCta = props => {
-  const { className, onRegisterClick } = props
+  const { className } = props
 
   const modifiedClassNames = classNames('bottom-cta', className)
 
@@ -60,10 +65,12 @@ const BottomCta = props => {
               <p>Sign up for free or try a demo account if there’s more you want to learn.</p>
             </CopyCard>
             <div className="bottom-cta__buttons">
-              <TextButton
-                text="Register for FREE"
-                className="bottom-cta__button"
-                onClick={() => {}}/>
+              <Link to='/register'>
+                <TextButton
+                  text="Register for FREE"
+                  className="bottom-cta__button"
+                  onClick={() => {}}/>
+              </Link>
               <TextButton
                 text="Try a Demo"
                 modifier="secondary"
@@ -85,8 +92,7 @@ BottomCta.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ]),
-  onRegisterClick: PropTypes.func
+  ])
 }
 
 /**
