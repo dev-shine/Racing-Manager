@@ -19,11 +19,13 @@ import classNames from 'utils/classnames'
  *  @param  {String} options.className
  *  @return {React.Component}
  */
-const Image = ({source, className, alt}) => {
+const Image = ({source, className, alt, isLoaded}) => {
   /**
    *  @type {String}
    */
-  const modifiedClassNames = classNames('image', className, 'normal')
+  const modifiedClassNames = classNames('image', className, 'normal', {
+    loaded: isLoaded
+  })
 
   return (
     <img src={source} alt={alt} className={modifiedClassNames} />
@@ -34,7 +36,8 @@ Image.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  isLoaded: PropTypes.bool
 }
 
 export default Image

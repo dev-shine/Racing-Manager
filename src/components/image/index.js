@@ -121,11 +121,13 @@ class LazyImage extends Component {
       !isImage
       ? <BackgroundImage
           source={source}
+          isLoaded={loaded}
           className={className}>
           {children}
         </BackgroundImage>
       : <Image
           source={source}
+          isLoaded={loaded}
           className={className}
           alt={alt}>
             {children}

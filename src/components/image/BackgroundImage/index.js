@@ -19,11 +19,13 @@ import classNames from 'utils/classnames'
  *  @param  {String} options.className
  *  @return {React.Component}
  */
-const BackgroundImage = ({source, className, children}) => {
+const BackgroundImage = ({source, className, children, isLoaded}) => {
   /**
    *  @type {String}
    */
-  const modifiedClassNames = classNames('image', className, 'background')
+  const modifiedClassNames = classNames('image', className, 'background', {
+    loaded: isLoaded
+  })
 
   return (
     <div style={{backgroundImage: `url(${source})`}} className={modifiedClassNames}>
@@ -36,7 +38,8 @@ BackgroundImage.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  isLoaded: PropTypes.bool
 }
 
 export default BackgroundImage
