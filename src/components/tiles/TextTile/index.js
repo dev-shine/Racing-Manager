@@ -26,7 +26,9 @@ import TileSocial from 'components/tiles/TileSocial'
 const TextTile = props => {
   const {
     className,
-    modifier
+    modifier,
+    name,
+    date
   } = props
 
   const modifiedClassNames = classNames('text-tile', className, modifier)
@@ -34,10 +36,10 @@ const TextTile = props => {
   return (
     <div className={`col-sm-3 ${modifiedClassNames}`}>
       <TileAuthor
-        name='Nick the god'
-        date='2 days ago' />
+        name={name}
+        date={date} />
       <p className='text-tile__content tiny'>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
       </p>
       <TileSocial/>
     </div>
@@ -56,7 +58,10 @@ TextTile.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  name: PropTypes.string,
+  date: PropTypes.string,
+  text: PropTypes.string
 }
 
 /**
@@ -65,7 +70,9 @@ TextTile.propTypes = {
  */
 TextTile.defaultProps = {
   className: '',
-  modifier: ''
+  modifier: '',
+  name: '',
+  date: ''
 }
 
 /**

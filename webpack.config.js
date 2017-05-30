@@ -44,6 +44,8 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true
+    // host: '10.32.0.205',
+    // port: 8080
   },
   module: {
     rules: [

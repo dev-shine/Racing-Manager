@@ -28,8 +28,12 @@ export class HorseOverview extends Component {
 
   render () {
     return (
-      <div className='horse-overview container'>
-        <TextTile />
+      <div className='horse-overview'>
+        <div className='horse-overview__grid container'>
+          <TextTile
+            name='Nick the god'
+            date='2 days ago' />
+        </div>
       </div>
     )
   }

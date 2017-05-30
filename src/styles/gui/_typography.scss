@@ -93,6 +93,8 @@ p, body {
   font-family: $font-family-secondary;
   font-size: $text-xs;
   line-height: $text-lead;
+  word-break: break-word;
+  word-wrap: break-word;
   @media (min-width: $screen-sm) {
     font-size: $text;
   }
