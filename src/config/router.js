@@ -24,6 +24,11 @@ import Home from 'views/home'
 import Register from 'views/register'
 
 /**
+ *  @module HorseOverview
+ */
+import HorseOverview from 'views/horseoverview'
+
+/**
  * App router
  */
 const router = (
@@ -31,6 +36,7 @@ const router = (
     <Switch>
       <Main exact path='/' component={Home} />
       <Main exact path='/register' component={Register} />
+      <Main exact path='/horse/:name' component={HorseOverview} />
     </Switch>
   </Router>
 )

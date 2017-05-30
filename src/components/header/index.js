@@ -30,7 +30,7 @@ const Header = props => {
     <header className='header'>
       <Link to={logohref} className='header__logo'>
         <Image
-          imageSrc='assets/images/logo.svg'
+          imageSrc='/assets/images/logo.svg'
           className='header__logo-image image--background'/>
         <h5 className='header__logo-text'>
           <span className='visible-sm-up'>The Racing Manager</span>
