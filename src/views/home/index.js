@@ -28,6 +28,17 @@ import CopySection from 'components/home/CopySection'
  */
 import BottomCta from 'components/home/BottomCta'
 
+import {
+  homeHero
+} from 'assets/home'
+
+import {
+  m1,
+  m2,
+  m3,
+  m4
+} from 'assets/home/manager'
+
 /**
  * @name Home
  * @class
@@ -50,7 +61,7 @@ export class Home extends Component {
     return (
       <div className='home'>
         <ParallaxHero
-          featuredImage='assets/images/home-hero.png'>
+          featuredImage={homeHero}>
           <div className='home__hero-content absolute-center'>
             <h1 className='home__hero-text'>We make setting up syndicates simple.</h1>
           </div>
@@ -76,7 +87,7 @@ export class Home extends Component {
         </div>
         <CopySection
           headline="take the reigns"
-          featuredImage="assets/images/copy/manager/1.png">
+          featuredImage={m1}>
           <p>
             Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
             <br/>
@@ -87,7 +98,7 @@ export class Home extends Component {
         </CopySection>
         <CopySection
           headline="stay organised"
-          featuredImage="assets/images/copy/manager/2.png">
+          featuredImage={m2}>
           <p>
             • Schedule events, tickets and hospitality with ease for your members.
             <br/>• Consolidate all of your management accounts to our new platform.
@@ -98,7 +109,7 @@ export class Home extends Component {
         </CopySection>
         <CopySection
           headline="engage members"
-          featuredImage="assets/images/copy/manager/3.png">
+          featuredImage={m3}>
           <p>
             • Regularly prompted updates from your trainer, straight to your group.
             <br/>• A wide range of custom media including photos, videos and polls.
@@ -109,7 +120,7 @@ export class Home extends Component {
         </CopySection>
         <CopySection
           headline="safe and secure"
-          featuredImage="assets/images/copy/manager/4.png">
+          featuredImage={m4}>
           <p>
             Managing a syndicate ultimately comes down to money:
             <br/>

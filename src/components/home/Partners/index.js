@@ -24,6 +24,11 @@ import Slider from 'react-slick'
 import Image from 'components/image'
 
 /**
+ *  @module images
+ */
+import * as images from 'assets/home/partners'
+
+/**
  * @name Arrow
  * @returns { React.Component }
  */
@@ -35,7 +40,7 @@ const Arrow = props => {
       onClick={onClick}>
       <Image
         className='partners__arrow-image'
-        imageSrc='assets/images/arrow-left.svg' />
+        imageSrc={images['arrowLeft']} />
     </div>
   )
 }
@@ -62,7 +67,7 @@ const Partners = props => {
           className='partners__partner'>
           <Image
             className='partners__partner-image image-background'
-            imageSrc={`assets/images/partners/${i}.png`} />
+            imageSrc={images[`p${i}`]} />
         </div>
       )
     }

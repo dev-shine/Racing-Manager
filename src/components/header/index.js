@@ -19,6 +19,11 @@ import { Link } from 'react-router-dom'
 import Image from 'components/image'
 
 /**
+ *  @module logo
+ */
+import { logo } from 'assets/images'
+
+/**
  * Header component
  * @param { Object } props
  * @returns { React.Component }
@@ -30,7 +35,7 @@ const Header = props => {
     <header className='header'>
       <Link to={logohref} className='header__logo'>
         <Image
-          imageSrc='assets/images/logo.svg'
+          imageSrc={logo}
           className='header__logo-image image--background'/>
         <h5 className='header__logo-text'>
           <span className='visible-sm-up'>The Racing Manager</span>

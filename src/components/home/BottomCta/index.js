@@ -34,6 +34,11 @@ import Image from 'components/image'
 import { Link } from 'react-router-dom'
 
 /**
+ *  @module video
+ */
+import { video } from 'assets/home'
+
+/**
  * @name BottomCta
  * @param { Object } props
  * @property { String } props.text
@@ -52,7 +57,7 @@ const BottomCta = props => {
           <div className="bottom-cta__video-container col-md-5 col-sm-12">
             <Image
               isImage={true}
-              imageSrc='assets/images/video.png'
+              imageSrc={video}
               alt='video' />
           </div>
           <div className="col-md-6 col-md-offset-6 col-sm-10 col-sm-offset-2">

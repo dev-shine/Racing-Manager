@@ -39,7 +39,7 @@ module.exports = {
     './src/App.js'
   ],
   output: {
-    path: path.join(__dirname, '/dist/'),
+    path: path.join(__dirname, '/dist'),
     filename: 'js/app.js'
   },
   resolve: {
