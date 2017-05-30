@@ -70,7 +70,7 @@ module.exports = {
         loaders: ['style', 'css', 'postcss', 'sass']
       },
       {
-        test: /\.(jpe?g|png|gif|svg|ttf)$/i,
+        test: /\.(jpe?g|png|gif|svg|ttf|woff|eot)$/i,
         loader: 'file-loader',
         query: {
           name: 'assets/[path][name].[ext]',

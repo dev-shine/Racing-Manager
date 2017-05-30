@@ -1,0 +1,22 @@
+.tile-author {
+  position: relative;
+  width: 100%;
+  margin-bottom: 15px;
+  @include clearfix();
+
+  p {
+    color: $ash-grey;
+  }
+
+  &__name {
+    position: relative;
+    float: left;
+    padding-right: 5px;
+  }
+
+  &__date {
+    position: relative;
+    float: right;
+    padding-left: 5px;
+  }
+}
