@@ -124,6 +124,7 @@ export class Home extends Component {
     )
   }
 }
+
 /**
  *  mapStateToProps
  *  @param  {Object} state
