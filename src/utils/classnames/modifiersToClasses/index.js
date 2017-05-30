@@ -21,10 +21,10 @@ const modifiersToClasses = (baseName, modifiers) => {
   }
 
   return modifiers.map(mod => {
-    if (mod instanceof Array) {
+    if (mod instanceof Array && mod.length) {
       // Loop around all names and append the base name.
       return mod.map(name => appendBaseName(baseName, name))
-    } else if (typeof mod === 'string') {
+    } else if (typeof mod === 'string' && mod) {
       // Append the basename to the mod.
       return appendBaseName(baseName, mod)
     } else if (mod instanceof Object) {
