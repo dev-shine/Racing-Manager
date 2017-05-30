@@ -44,6 +44,8 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true
+    // host: '10.32.0.205',
+    // port: 8080
   },
   module: {
     rules: [
@@ -70,7 +72,7 @@ module.exports = {
         loaders: ['style', 'css', 'postcss', 'sass']
       },
       {
-        test: /\.(jpe?g|png|gif|svg|ttf)$/i,
+        test: /\.(jpe?g|png|gif|svg|ttf|woff|eot)$/i,
         loader: 'file-loader',
         query: {
           name: 'assets/[path][name].[ext]',

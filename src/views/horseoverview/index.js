@@ -9,6 +9,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 /**
+ *  @module TextTile
+ */
+import TextTile from 'components/tiles/TextTile'
+
+/**
  *  @name HorseOverview
  *  @class
  *  @extends {Component}
@@ -24,6 +29,11 @@ export class HorseOverview extends Component {
   render () {
     return (
       <div className='horse-overview'>
+        <div className='horse-overview__grid container'>
+          <TextTile
+            name='Nick the god'
+            date='2 days ago' />
+        </div>
       </div>
     )
   }
