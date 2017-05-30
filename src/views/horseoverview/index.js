@@ -23,7 +23,8 @@ export class HorseOverview extends Component {
 
   render () {
     return (
-      null
+      <div className='horse-overview'>
+      </div>
     )
   }
 }
