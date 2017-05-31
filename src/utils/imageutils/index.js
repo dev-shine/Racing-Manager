@@ -15,3 +15,27 @@ export const getImage = (url = '') => {
     img.src = url
   })
 }
+
+/**
+ *  @name  isInViewport
+ *  @param  {Element} node
+ *  @param  {Number} offset
+ *  @return {Boolean}
+ */
+export const isInViewport = (node, offset = 0) => {
+  // get element position in viewport
+  const rect = node.getBoundingClientRect()
+
+  // get viewport height and width
+  const viewportHeight = (window.innerHeight || document.documentElement.clientHeight)
+
+  const viewportWidth = (window.innerWidth || document.documentElement.clientWidth)
+
+  // check if the element is in the viewport (or near to them)
+  return (
+    rect.bottom >= (0 - offset) &&
+    rect.right >= (0 - offset) &&
+    rect.top < (viewportHeight + offset) &&
+    rect.left < (viewportWidth + offset)
+  )
+}
