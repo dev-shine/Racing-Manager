@@ -46,6 +46,9 @@ class LazyImage extends Component {
       isLoading: false
     }
 
+    // Cache the timeout
+    this.timeoutCache = null
+
     // Bind custom functions
     this.handleImgLoad = this.handleImgLoad.bind(this)
     this.handleImgError = this.handleImgError.bind(this)
@@ -82,8 +85,11 @@ class LazyImage extends Component {
   }
 
   componentDidMount () {
-    // Check the viewport and see if the image is in view.
-    this.checkViewport()
+    // Check the viewport and see if the image is in view. Let the browser breath and do this on the next tick
+    this.timeoutCache = setTimeout(() => {
+      this.checkViewport()
+      this.timeoutCache = null
+    }, 0)
 
     // Bind scroll event
     this.bindScrollEvent()
@@ -92,6 +98,11 @@ class LazyImage extends Component {
   componentWillUnmount () {
     // Unbind scroll event
     this.unBindScrollEvent()
+
+    // Remove the timeout if it exists
+    if (this.timeoutCache) {
+      clearTimeout(this.timeoutCache)
+    }
   }
 
   /**
