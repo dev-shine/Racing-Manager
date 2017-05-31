@@ -115,6 +115,9 @@ class Grid extends Component {
 
   componentDidMount () {
     this.updateInternal()
+
+    // Force an initial render
+    this.debouncedResize()
   }
 
   componentWillUnmount () {
