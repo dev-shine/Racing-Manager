@@ -50,7 +50,7 @@ const TextTile = props => {
   const modifiedClassNames = classNames('text-tile', className, modifier)
 
   return (
-    <div className={`col-sm-3 ${modifiedClassNames}`}>
+    <div className={modifiedClassNames}>
       <TileAuthor
         name={name}
         date={date} />

@@ -21,7 +21,7 @@ import Image from './Image'
 /**
  *  @module getImage
  */
-import { getImage } from 'utils/imageutils'
+import { getImage, isInViewport } from 'utils/imageutils'
 
 /**
  *  LazyImage
@@ -42,12 +42,21 @@ class LazyImage extends Component {
     // Set the initial state
     this.state = {
       loaded: false,
-      error: false
+      error: false,
+      isLoading: false
     }
+
+    // Cache the timeout
+    this.timeoutCache = null
 
     // Bind custom functions
     this.handleImgLoad = this.handleImgLoad.bind(this)
     this.handleImgError = this.handleImgError.bind(this)
+    this.checkViewport = this.checkViewport.bind(this)
+    this.bindScrollEvent = this.bindScrollEvent.bind(this)
+    this.unBindScrollEvent = this.unBindScrollEvent.bind(this)
+    this.fetchImage = this.fetchImage.bind(this)
+    this.setRef = this.setRef.bind(this)
   }
 
   /**
@@ -57,7 +66,8 @@ class LazyImage extends Component {
    */
   handleImgLoad () {
     this.setState({
-      loaded: true
+      loaded: true,
+      isLoading: false
     })
   }
 
@@ -69,11 +79,53 @@ class LazyImage extends Component {
   handleImgError () {
     this.setState({
       loaded: false,
-      error: true
+      error: true,
+      isLoading: false
     })
   }
 
   componentDidMount () {
+    // Check the viewport and see if the image is in view. Let the browser breath and do this on the next tick
+    this.timeoutCache = setTimeout(() => {
+      this.checkViewport()
+      this.timeoutCache = null
+    }, 0)
+
+    // Bind scroll event
+    this.bindScrollEvent()
+  }
+
+  componentWillUnmount () {
+    // Unbind scroll event
+    this.unBindScrollEvent()
+
+    // Remove the timeout if it exists
+    if (this.timeoutCache) {
+      clearTimeout(this.timeoutCache)
+    }
+  }
+
+  /**
+   *  @name bindScrollEvent
+   */
+  bindScrollEvent () {
+    window.addEventListener('scroll', this.checkViewport, false)
+  }
+
+  /**
+   *  @name unBindScrollEvent
+   */
+  unBindScrollEvent () {
+    if (!this.state.loaded) {
+      window.removeEventListener('scroll', this.checkViewport, false)
+    }
+  }
+
+  /**
+   *  fetchImage
+   *  @return {Void}
+   */
+  fetchImage () {
     /**
      *  @const
      */
@@ -89,6 +141,28 @@ class LazyImage extends Component {
 
   shouldComponentUpdate (nextState, nextProps) {
     return !this.state.loaded
+  }
+
+  /**
+   *  @name checkViewport
+   */
+  checkViewport () {
+    if (!this.state.isLoading && !this.state.loaded) {
+      if (isInViewport(this.imageRef)) {
+        // if is in viewport and is not requesting start fetching
+        this.fetchImage()
+      }
+    }
+
+    return null
+  }
+
+  /**
+   *  setRef
+   *  @param {Elem} ref
+   */
+  setRef (ref) {
+    this.imageRef = ref
   }
 
   render () {
@@ -122,10 +196,12 @@ class LazyImage extends Component {
       ? <BackgroundImage
           source={source}
           isLoaded={loaded}
-          className={className}>
+          className={className}
+          setRef={this.setRef}>
           {children}
         </BackgroundImage>
       : <Image
+          setRef={this.setRef}
           source={source}
           isLoaded={loaded}
           className={className}
