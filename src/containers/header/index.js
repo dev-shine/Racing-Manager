@@ -1,9 +1,4 @@
 /**
- *  @module react
- */
-import React from 'react'
-
-/**
  * @module react-redux
  */
 import { connect } from 'react-redux'

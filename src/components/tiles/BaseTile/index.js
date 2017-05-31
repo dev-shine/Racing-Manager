@@ -4,6 +4,16 @@
 import React, { Component } from 'react'
 
 /**
+ *  @module PropTypes
+ */
+import PropTypes from 'prop-types'
+
+/**
+ *  @module baseClassNames
+ */
+import baseClassNames from 'classnames'
+
+/**
  *  @name BaseTileHoc
  *  @description Higher order component to wrap an extra class for base tiles.
  *  @param  {Component} WrappedComponent
@@ -15,7 +25,7 @@ const BaseTileHoc = WrappedComponent => {
    *  @name BaseTile
    *  @extends {Component}
    */
-  return class BaseTile extends Component {
+  class BaseTile extends Component {
     /**
      *  @constructor
      */
@@ -24,11 +34,44 @@ const BaseTileHoc = WrappedComponent => {
     }
 
     render () {
+      const {
+        large
+      } = this.props
+
+      /**
+       *  @description If large is passed in as a prop, double the size.
+       *  @type {[type]}
+       */
+      const modifiedClassNames = baseClassNames('base-tile', 'col-xs-12', {
+        'col-sm-3': !large,
+        'col-sm-6': large
+      })
+
       return (
-        <WrappedComponent {...this.props} className='base-tile' />
+        <div className={modifiedClassNames}>
+          <WrappedComponent {...this.props} className='base-tile__content' />
+        </div>
       )
     }
   }
+
+  /**
+   *  propTypes
+   *  @type {Object}
+   */
+  BaseTile.propTypes = {
+    large: PropTypes.bool
+  }
+
+  /**
+   *  defaultProps
+   *  @type {Object}
+   */
+  BaseTile.defaultProps = {
+    large: false
+  }
+
+  return BaseTile
 }
 
 /**

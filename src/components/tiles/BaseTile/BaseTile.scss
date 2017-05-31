@@ -1,7 +1,13 @@
 .base-tile {
   position: relative;
-  background-color: $white;
-  padding: 10px 10px 100px 10px;
-  min-height: $min-tile-height;
-  box-shadow: $tile-box-shadow;
+  padding: 0 10px;
+
+  &__content {
+    position: relative;
+    background-color: $white;
+    padding-bottom: 100px;
+    min-height: $min-tile-height;
+    box-shadow: $tile-box-shadow;
+    margin-bottom: 20px;
+  }
 }

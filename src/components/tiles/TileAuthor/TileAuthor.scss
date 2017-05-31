@@ -2,7 +2,13 @@
   position: relative;
   width: 100%;
   margin-bottom: 15px;
+  padding: 0 10px 0 10px;
   @include clearfix();
+
+  // Only include padding for the top if the author is on the top of the tile
+  &:first-child {
+    padding-top: 10px;
+  }
 
   p {
     color: $ash-grey;

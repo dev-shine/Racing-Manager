@@ -19,6 +19,11 @@ import TextTile from 'components/tiles/TextTile'
 import ImageTile from 'components/tiles/ImageTile'
 
 /**
+ *  @module Masonry
+ */
+import Masonry from 'react-masonry-component'
+
+/**
  *  @name HorseOverview
  *  @class
  *  @extends {Component}
@@ -35,14 +40,27 @@ export class HorseOverview extends Component {
     return (
       <div className='horse-overview'>
         <div className='horse-overview__grid container'>
-          <TextTile
-            name='Nick the god'
-            date='2 days ago'
-            text={`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss`} />
-          <ImageTile
-            name='Andy Tree'
-            date='5 days ago'
-            text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
+          <Masonry
+            options={{transitionDuration: 400}}>
+            {
+              this.props.tiles.map((el, index) => {
+                return (
+                    el === 2
+                  ? <TextTile
+                    key={index}
+                    name='Nick the god'
+                    date='2 days ago'
+                    text={`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss`} />
+
+                  : <ImageTile
+                    key={index}
+                    name='Andy Tree'
+                    date='5 days ago'
+                    text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
+                )
+              })
+            }
+          </Masonry>
         </div>
       </div>
     )
@@ -56,7 +74,9 @@ export class HorseOverview extends Component {
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    tiles: [1, 2, 1, 2, 1, 2, 1, 2]
+  }
 }
 
 /**

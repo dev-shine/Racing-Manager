@@ -14,11 +14,6 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module baseClassNames
- */
-import baseClassNames from 'classnames'
-
-/**
  *  @module TileAuthor
  */
 import TileAuthor from 'components/tiles/TileAuthor'
@@ -59,19 +54,13 @@ const ImageTile = props => {
     modifier,
     name,
     date,
-    text,
-    large
+    text
   } = props
 
   const modifiedClassNames = classNames('image-tile', className, modifier)
 
-  const modifiedBootStrapClassNames = baseClassNames({
-    'col-sm-3': !large,
-    'col-sm-6': large
-  })
-
   return (
-    <div className={`${modifiedBootStrapClassNames} ${modifiedClassNames}`}>
+    <div className={modifiedClassNames}>
       <Image
         className='image-tile__image'
         imageSrc={horseRaceImg}
@@ -101,11 +90,7 @@ ImageTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string,
-  large: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool
-  ])
+  text: PropTypes.string
 }
 
 /**
@@ -117,8 +102,7 @@ ImageTile.defaultProps = {
   modifier: '',
   name: '',
   date: '',
-  text: '',
-  large: false
+  text: ''
 }
 
 /**
