@@ -23,12 +23,23 @@ import TileAuthor from 'components/tiles/TileAuthor'
  */
 import TileSocial from 'components/tiles/TileSocial'
 
+/**
+ *  @module TileContent
+ */
+import TileContent from 'components/tiles/TileContent'
+
+/**
+ *  @name TextTile
+ *  @param  {Object} props
+ *  @return {React.Component}
+ */
 const TextTile = props => {
   const {
     className,
     modifier,
     name,
-    date
+    date,
+    text
   } = props
 
   const modifiedClassNames = classNames('text-tile', className, modifier)
@@ -38,9 +49,8 @@ const TextTile = props => {
       <TileAuthor
         name={name}
         date={date} />
-      <p className='text-tile__content tiny'>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
-      </p>
+      <TileContent
+        text={text}/>
       <TileSocial/>
     </div>
   )
@@ -72,7 +82,8 @@ TextTile.defaultProps = {
   className: '',
   modifier: '',
   name: '',
-  date: ''
+  date: '',
+  text: ''
 }
 
 /**
