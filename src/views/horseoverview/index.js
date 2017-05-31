@@ -32,7 +32,8 @@ export class HorseOverview extends Component {
         <div className='horse-overview__grid container'>
           <TextTile
             name='Nick the god'
-            date='2 days ago' />
+            date='2 days ago'
+            text={`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss`} />
         </div>
       </div>
     )
