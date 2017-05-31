@@ -1,0 +1,10 @@
+.image-tile {
+ 
+ &__image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%;
+  background-size: cover;
+  margin-bottom: 10px;
+ } 
+}

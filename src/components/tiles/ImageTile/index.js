@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module baseClassNames
+ */
+import baseClassNames from 'classnames'
+
+/**
  *  @module TileAuthor
  */
 import TileAuthor from 'components/tiles/TileAuthor'
@@ -34,23 +39,43 @@ import TileContent from 'components/tiles/TileContent'
 import baseTile from 'components/tiles/BaseTile'
 
 /**
- *  @name TextTile
+ *  @module Image
+ */
+import Image from 'components/image'
+
+/**
+ *  @module horseRaceImg
+ */
+import { horseRaceImg } from 'assets/dummyassets'
+
+/**
+ *  @name ImageTile
  *  @param  {Object} props
  *  @return {React.Component}
  */
-const TextTile = props => {
+const ImageTile = props => {
   const {
     className,
     modifier,
     name,
     date,
-    text
+    text,
+    large
   } = props
 
-  const modifiedClassNames = classNames('text-tile', className, modifier)
+  const modifiedClassNames = classNames('image-tile', className, modifier)
+
+  const modifiedBootStrapClassNames = baseClassNames({
+    'col-sm-3': !large,
+    'col-sm-6': large
+  })
 
   return (
-    <div className={`col-sm-3 ${modifiedClassNames}`}>
+    <div className={`${modifiedBootStrapClassNames} ${modifiedClassNames}`}>
+      <Image
+        className='image-tile__image'
+        imageSrc={horseRaceImg}
+        alt={'Horse racing'} />
       <TileAuthor
         name={name}
         date={date} />
@@ -65,7 +90,7 @@ const TextTile = props => {
  *  propTypes
  *  @type {Object}
  */
-TextTile.propTypes = {
+ImageTile.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -76,22 +101,27 @@ TextTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  large: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool
+  ])
 }
 
 /**
  *  defaultProps
  *  @type {Object}
  */
-TextTile.defaultProps = {
+ImageTile.defaultProps = {
   className: '',
   modifier: '',
   name: '',
   date: '',
-  text: ''
+  text: '',
+  large: false
 }
 
 /**
- *  @module TextTile
+ *  @module ImageTile
  */
-export default baseTile(TextTile)
+export default baseTile(ImageTile)
