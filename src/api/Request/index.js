@@ -80,7 +80,7 @@ export const del = opts => {
  */
 const request = opts => {
   return axios(opts)
-  .then(response => Promise.resolve(response))
+  .then(response => Promise.resolve(response.data))
   .catch(err => {
     if (err && err.response) {
       return Promise.reject(err.response)

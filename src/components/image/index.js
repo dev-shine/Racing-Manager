@@ -165,9 +165,7 @@ class LazyImage extends Component {
   }
 
   componentWillReceiveProps () {
-    if (this.state.loaded) {
-      this.checkViewport()
-    }
+    this.checkViewport()
   }
 
   /**

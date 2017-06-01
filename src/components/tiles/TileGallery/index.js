@@ -29,11 +29,6 @@ import VideoTile from 'components/tiles/VideoTile'
 import { Block, Grid } from 'components/masonry'
 
 /**
- *  @module Motion, spring
- */
-import { Motion, spring } from 'react-motion'
-
-/**
  *  @class
  *  @name TileGallery
  *  @extends { Component }
@@ -45,9 +40,6 @@ class TileGallery extends Component {
    */
   constructor (props) {
     super(props)
-
-    // Debug stuff.
-    this.generateBlock = this.generateBlock.bind(this)
   }
 
   generateBlock (id, number, index) {
@@ -55,37 +47,55 @@ class TileGallery extends Component {
     let rand = Math.round((Math.random() * (3 - 1) + 1))
     if (rand === 1) {
       Comp = <TextTile
+                key={id}
                 name='Nick the god'
                 date='2 days ago'
                 text={`Lorem ipsum dolor sit amet, consectetur dfjdsLorem ipsum dolor sit amet, consectetur sdfjdsLorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.`} />
     } else
     if (rand === 2) {
       Comp = <VideoTile
+      key={id}
                 name='Nick dijarido'
                 date='5 days ago'
                 text={`Lorem ipsum cant remeber the rest...`}
                 src=''/>
     } else {
       Comp = <ImageTile
+      key={id}
         name='Andy Tree'
         date='5 days ago'
         text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
     }
 
     return (
-      <Block width={index === 0 ? 2 : 1} key={ id }>
+      <Block width={index === 0 ? 2 : 1} key={ `b-${id}` }>
         {Comp}
       </Block>
     )
   }
 
   render () {
+    const {
+      tiles
+    } = this.props
+
     return (
       <Grid
         maxColumns={4}>
-        { this.props.tiles.map(({id, number}, index) =>
-          this.generateBlock(id, number, index)
-        )}
+        {
+          tiles.map(tile => {
+            return (
+              <Block width={1} key={tile.createdAt}>
+                <ImageTile
+                  key={`tile-${tile.createdAt}`}
+                  src={tile.image[0].path}
+                  name='Andy Jones'
+                  date={tile.createdAt}
+                  text={tile.text} />
+              </Block>
+            )
+          })
+        }
       </Grid>
     )
   }
