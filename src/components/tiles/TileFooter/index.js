@@ -13,27 +13,23 @@ import PropTypes from 'prop-types'
  */
 import classNames from 'utils/classnames'
 
-const TileAuthor = props => {
+const TileFooter = props => {
   const {
     className,
-    modifier,
-    name,
-    date
+    modifier
   } = props
 
-  const modifiedClassNames = classNames('tile-author', className, modifier)
+  const modifiedClassNames = classNames('tile-footer', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
-      <div className='tile-author__name'>
-        <p className='micro'>
-          {name}
-        </p>
+      <div className='tile-footer__item'>
+        <span className='tile-footer__icon icon-heart micro'></span>
+        <p className='tile-footer__text micro'>2</p>
       </div>
-      <div className='tile-author__date'>
-        <p className='micro'>
-          {date}
-        </p>
+      <div className='tile-footer__item'>
+        <span className='tile-footer__icon icon-comment micro'></span>
+        <p className='tile-footer__text micro'>10</p>
       </div>
     </div>
   )
@@ -43,7 +39,7 @@ const TileAuthor = props => {
  *  propTypes
  *  @type {Object}
  */
-TileAuthor.propTypes = {
+TileFooter.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -51,21 +47,19 @@ TileAuthor.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ]),
-  name: PropTypes.string,
-  date: PropTypes.string
+  ])
 }
 
 /**
  *  defaultProps
  *  @type {Object}
  */
-TileAuthor.defaultProps = {
+TileFooter.defaultProps = {
   className: '',
   modifier: ''
 }
 
 /**
- *  @module TileAuthor
+ *  @module TileFooter
  */
-export default TileAuthor
+export default TileFooter

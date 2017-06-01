@@ -13,23 +13,27 @@ import PropTypes from 'prop-types'
  */
 import classNames from 'utils/classnames'
 
-const TileSocial = props => {
+const TileHeader = props => {
   const {
     className,
-    modifier
+    modifier,
+    name,
+    date
   } = props
 
-  const modifiedClassNames = classNames('tile-social', className, modifier)
+  const modifiedClassNames = classNames('tile-header', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
-      <div className='tile-social__item'>
-        <span className='tile-social__icon icon-heart micro'></span>
-        <p className='tile-social__text micro'>2</p>
+      <div className='tile-header__name'>
+        <p className='micro'>
+          {name}
+        </p>
       </div>
-      <div className='tile-social__item'>
-        <span className='tile-social__icon icon-comment micro'></span>
-        <p className='tile-social__text micro'>10</p>
+      <div className='tile-header__date'>
+        <p className='micro'>
+          {date}
+        </p>
       </div>
     </div>
   )
@@ -39,7 +43,7 @@ const TileSocial = props => {
  *  propTypes
  *  @type {Object}
  */
-TileSocial.propTypes = {
+TileHeader.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -47,19 +51,21 @@ TileSocial.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  name: PropTypes.string,
+  date: PropTypes.string
 }
 
 /**
  *  defaultProps
  *  @type {Object}
  */
-TileSocial.defaultProps = {
+TileHeader.defaultProps = {
   className: '',
   modifier: ''
 }
 
 /**
- *  @module TileSocial
+ *  @module TileHeader
  */
-export default TileSocial
+export default TileHeader
