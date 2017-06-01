@@ -40,7 +40,7 @@ class TileGallery extends Component {
   render () {
     return (
       <Grid
-        maxColumns={3}>
+        maxColumns={4}>
         { this.props.tiles.map(({id, number}, index) =>
           <Block width={number} key={ id }>
             {
