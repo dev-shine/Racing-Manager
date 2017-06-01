@@ -36,7 +36,7 @@ const BaseTileHoc = WrappedComponent => {
       const modifiedClassNames = baseClassNames('base-tile')
 
       return (
-        <div className={modifiedClassNames}>
+        <div className={modifiedClassNames} style={{...this.props.style}}>
           <WrappedComponent {...this.props} className='base-tile__content' />
         </div>
       )

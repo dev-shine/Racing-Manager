@@ -29,6 +29,11 @@ import VideoTile from 'components/tiles/VideoTile'
 import { Block, Grid } from 'components/masonry'
 
 /**
+ *  @module Motion, spring
+ */
+import { Motion, spring } from 'react-motion'
+
+/**
  *  @class
  *  @name TileGallery
  *  @extends { Component }
@@ -48,7 +53,6 @@ class TileGallery extends Component {
   generateBlock (id, number, index) {
     let Comp
     let rand = Math.round((Math.random() * (3 - 1) + 1))
-    console.log(rand)
     if (rand === 1) {
       Comp = <TextTile
                 name='Nick the god'
@@ -69,7 +73,7 @@ class TileGallery extends Component {
     }
 
     return (
-      <Block width={Math.round((Math.random() * (3 - 1) + 1)) === 1 ? 2 : 1} key={ id }>
+      <Block width={index === 0 ? 2 : 1} key={ id }>
         {Comp}
       </Block>
     )

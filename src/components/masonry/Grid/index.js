@@ -301,7 +301,6 @@ class Grid extends Component {
         : Array.prototype.slice.call(React.isValidElement(this.props.children)
         ? [this.props.children] : this.props.children).map((element, i) => {
           const key = element.key === null ? i : element.key
-
           const measured = this.blocks[key]
 
           if (!measured) {
@@ -310,6 +309,7 @@ class Grid extends Component {
           return measured
           ? React.cloneElement(element, {
             'data-key': key,
+            key,
             'style': {
               left: Math.floor(measured.left),
               top: measured.top
@@ -321,6 +321,7 @@ class Grid extends Component {
           : React.cloneElement(element, {
             'data-key': key,
             'data-xkey': key,
+            key,
             'style': {
               visibility: 'hidden'
             },

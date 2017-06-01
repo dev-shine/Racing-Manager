@@ -44,6 +44,7 @@ class Player extends Component {
 
     // Local variables
     this.videoRef = null
+    this.mounted = false
 
     // Bind custom fns
     this.toggleVideo = this.toggleVideo.bind(this)
@@ -57,14 +58,20 @@ class Player extends Component {
   }
 
   componentDidMount () {
+    this.mounted = true
     this.checkViewport()
     this.bindScrollEvent()
   }
 
   componentWillUnmount () {
+    this.mounted = false
     // Unbind scroll event
     this.unBindScrollEvent()
     this.debouncedResize = null
+  }
+
+  componentWillReceiveProps () {
+    this.checkViewport()
   }
 
   /**
@@ -85,6 +92,10 @@ class Player extends Component {
    *  @name checkViewport
    */
   checkViewport () {
+    if (!this.videoRef || !this.mounted) {
+      return false
+    }
+
     if (!isInViewport(this.videoRef)) {
       this.pauseVideo()
     } else

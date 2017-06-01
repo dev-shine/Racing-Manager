@@ -24,12 +24,70 @@ export class HorseOverview extends Component {
    */
   constructor (props) {
     super(props)
+
+    this.state = {
+      tiles: [{
+        id: 0,
+        number: 2
+      },
+      {
+        id: 1,
+        number: 1
+      },
+      {
+        id: 2,
+        number: 1
+      },
+      {
+        id: 3,
+        number: 1
+      },
+      {
+        id: 4,
+        number: 1
+      },
+      {
+        id: 5,
+        number: 1
+      },
+      {
+        id: 6,
+        number: 1
+      },
+      {
+        id: 7,
+        number: 1
+      },
+      {
+        id: 8,
+        number: 1
+      }]
+    }
+  }
+
+  componentDidMount () {
+    let index = 9
+
+    let interval = setInterval(() => {
+      this.setState(state => ({
+        tiles: [...state.tiles, {
+          id: index,
+          number: 1
+        }]
+      }))
+
+      index++
+
+      if (index >= 30) {
+        clearInterval(interval)
+      }
+    }, 500)
   }
 
   render () {
     const {
       tiles
-    } = this.props
+    } = this.state
 
     return (
       <div className='horse-overview'>
@@ -50,42 +108,6 @@ export class HorseOverview extends Component {
  */
 const mapStateToProps = (state, ownProps) => {
   return {
-    tiles: [{
-      id: 0,
-      number: 2
-    },
-    {
-      id: 1,
-      number: 1
-    },
-    {
-      id: 2,
-      number: 1
-    },
-    {
-      id: 3,
-      number: 1
-    },
-    {
-      id: 4,
-      number: 1
-    },
-    {
-      id: 5,
-      number: 1
-    },
-    {
-      id: 6,
-      number: 1
-    },
-    {
-      id: 7,
-      number: 1
-    },
-    {
-      id: 8,
-      number: 1
-    }]
   }
 }
 
