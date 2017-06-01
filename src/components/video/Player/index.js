@@ -19,6 +19,16 @@ import classNames from 'utils/classnames'
 import PlayButton from 'components/video/Button'
 
 /**
+ *  @module isInViewport
+ */
+import { isInViewport } from 'utils/imageutils'
+
+/**
+ *  @module debounce
+ */
+import debounce from 'utils/debounce'
+
+/**
  *  @class
  *  @name Player
  *  @extends {Component}
@@ -29,7 +39,7 @@ class Player extends Component {
 
     // Initial state
     this.state = {
-      showPlayButton: false
+      showPlayButton: true
     }
 
     // Local variables
@@ -39,14 +49,48 @@ class Player extends Component {
     this.toggleVideo = this.toggleVideo.bind(this)
     this.playVideo = this.playVideo.bind(this)
     this.pauseVideo = this.pauseVideo.bind(this)
+    this.bindScrollEvent = this.bindScrollEvent.bind(this)
+    this.unBindScrollEvent = this.unBindScrollEvent.bind(this)
+    this.checkViewport = this.checkViewport.bind(this)
+
+    this.debouncedResize = debounce(this.checkViewport)
   }
 
   componentDidMount () {
-    if (!this.props.autoPlay) {
-      this.setState({
-        showPlayButton: true
-      })
+    this.checkViewport()
+    this.bindScrollEvent()
+  }
+
+  componentWillUnmount () {
+    // Unbind scroll event
+    this.unBindScrollEvent()
+  }
+
+  /**
+   *  @name bindScrollEvent
+   */
+  bindScrollEvent () {
+    window.addEventListener('scroll', this.debouncedResize, false)
+  }
+
+  /**
+   *  @name unBindScrollEvent
+   */
+  unBindScrollEvent () {
+    window.removeEventListener('scroll', this.debouncedResize, false)
+  }
+
+  /**
+   *  @name checkViewport
+   */
+  checkViewport () {
+    if (!isInViewport(this.videoRef)) {
+      this.pauseVideo()
+    } else
+    if (this.props.autoPlay) {
+      this.playVideo()
     }
+    return null
   }
 
   /**
@@ -93,7 +137,6 @@ class Player extends Component {
       modifier,
       loop,
       muted,
-      autoPlay,
       playsInline,
       src,
       poster,
@@ -116,7 +159,6 @@ class Player extends Component {
           loop={loop}
           preload={preload}
           muted={muted}
-          autoPlay={autoPlay}
           playsInline={playsInline}
           src={src}
           poster={poster}>

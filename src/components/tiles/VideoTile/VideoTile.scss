@@ -2,10 +2,13 @@
  padding-bottom: 40px;
  
  &__video {
-  position: relative;
-  width: 100%;
-  padding-bottom: 75%;
-  margin-bottom: 10px;
+  position: relative; 
+  padding-bottom: 56.25%; 
+  height: 0; 
+  overflow: hidden; 
+  max-width: 100%; 
+  height: auto; 
   background-color: $gainsboro;
+  margin-bottom: 10px;
  } 
 }

@@ -40,6 +40,39 @@ class TileGallery extends Component {
    */
   constructor (props) {
     super(props)
+
+    // Debug stuff.
+    this.generateBlock = this.generateBlock.bind(this)
+  }
+
+  generateBlock (id, number, index) {
+    let Comp
+    let rand = Math.round((Math.random() * (3 - 1) + 1))
+    console.log(rand)
+    if (rand === 1) {
+      Comp = <TextTile
+                name='Nick the god'
+                date='2 days ago'
+                text={`Lorem ipsum dolor sit amet, consectetur dfjdsLorem ipsum dolor sit amet, consectetur sdfjdsLorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.`} />
+    } else
+    if (rand === 2) {
+      Comp = <VideoTile
+                name='Nick dijarido'
+                date='5 days ago'
+                text={`Lorem ipsum cant remeber the rest...`}
+                src=''/>
+    } else {
+      Comp = <ImageTile
+        name='Andy Tree'
+        date='5 days ago'
+        text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
+    }
+
+    return (
+      <Block width={rand === 2 ? 2 : 1} key={ id }>
+        {Comp}
+      </Block>
+    )
   }
 
   render () {
@@ -47,13 +80,7 @@ class TileGallery extends Component {
       <Grid
         maxColumns={4}>
         { this.props.tiles.map(({id, number}, index) =>
-          <Block width={number} key={ id }>
-            <VideoTile
-              name='Nick dijarido'
-              date='5 days ago'
-              text={`Lorem ipsum cant remeber the rest...`}
-              src=''/>
-          </Block>
+          this.generateBlock(id, number, index)
         )}
       </Grid>
     )

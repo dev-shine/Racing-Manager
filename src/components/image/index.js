@@ -116,9 +116,7 @@ class LazyImage extends Component {
    *  @name unBindScrollEvent
    */
   unBindScrollEvent () {
-    if (!this.state.loaded) {
-      window.removeEventListener('scroll', this.checkViewport, false)
-    }
+    window.removeEventListener('scroll', this.checkViewport, false)
   }
 
   /**
