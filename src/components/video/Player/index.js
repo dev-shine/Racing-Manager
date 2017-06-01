@@ -64,6 +64,7 @@ class Player extends Component {
   componentWillUnmount () {
     // Unbind scroll event
     this.unBindScrollEvent()
+    this.debouncedResize = null
   }
 
   /**
