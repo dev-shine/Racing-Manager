@@ -9,11 +9,17 @@ import { combineReducers } from 'redux'
 import register from 'reducers/register'
 
 /**
+ *  @module horseoverview
+ */
+import horseoverview from 'reducers/horseoverview'
+
+/**
  * @name rootReducer
  * @type { Reducer }
  */
 const rootReducer = combineReducers({
-  register
+  register,
+  horseoverview
 })
 
 /**

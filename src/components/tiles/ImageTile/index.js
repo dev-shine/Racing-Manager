@@ -39,11 +39,6 @@ import baseTile from 'components/tiles/BaseTile'
 import Image from 'components/image'
 
 /**
- *  @module horseRaceImg
- */
-import { horseRaceImg } from 'assets/dummyassets'
-
-/**
  *  @name ImageTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -54,7 +49,9 @@ const ImageTile = props => {
     modifier,
     name,
     date,
-    text
+    text,
+    src,
+    rootPath
   } = props
 
   const modifiedClassNames = classNames('image-tile', className, modifier)
@@ -63,7 +60,7 @@ const ImageTile = props => {
     <div className={modifiedClassNames}>
       <Image
         className='image-tile__image'
-        imageSrc={horseRaceImg}
+        imageSrc={`${rootPath}${src}`}
         alt={'Horse racing'} />
       <TileHeader
         name={name}
@@ -90,7 +87,8 @@ ImageTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  src: PropTypes.string
 }
 
 /**
@@ -102,7 +100,8 @@ ImageTile.defaultProps = {
   modifier: '',
   name: '',
   date: '',
-  text: ''
+  text: '',
+  src: ''
 }
 
 /**

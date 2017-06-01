@@ -39,14 +39,6 @@ import baseTile from 'components/tiles/BaseTile'
 import { Player } from 'components/video'
 
 /**
- *  @module dummyVideo
- */
-import {
-  dummyVideo,
-  horseRaceImg
-} from 'assets/dummyassets'
-
-/**
  *  @name VideoTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -57,7 +49,9 @@ const VideoTile = props => {
     modifier,
     name,
     date,
-    text
+    text,
+    poster,
+    src
   } = props
 
   const modifiedClassNames = classNames('video-tile', className, modifier)
@@ -66,8 +60,8 @@ const VideoTile = props => {
     <div className={modifiedClassNames}>
       <div className='video-tile__video'>
         <Player
-          poster={horseRaceImg}
-          src={dummyVideo}/>
+          poster={poster}
+          src={src}/>
       </div>
       <TileHeader
         name={name}
@@ -108,7 +102,8 @@ VideoTile.defaultProps = {
   name: '',
   date: '',
   text: '',
-  src: ''
+  src: '',
+  poster: ''
 }
 
 /**

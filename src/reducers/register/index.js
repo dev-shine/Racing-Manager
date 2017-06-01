@@ -8,7 +8,7 @@ import {
 } from 'actions/register'
 
 /**
- *  @name initialState
+ * @name initialState
 *  @type { object }
 *  @description - Initial state
 */

@@ -9,6 +9,11 @@ import React, { Component } from 'react'
 import baseClassNames from 'classnames'
 
 /**
+ *  @module BASE_URL
+ */
+import { ROOT_PATH } from 'api/ServiceTypes'
+
+/**
  *  @name BaseTileHoc
  *  @description Higher order component to wrap an extra class for base tiles.
  *  @param  {Component} WrappedComponent
@@ -36,8 +41,8 @@ const BaseTileHoc = WrappedComponent => {
       const modifiedClassNames = baseClassNames('base-tile')
 
       return (
-        <div className={modifiedClassNames}>
-          <WrappedComponent {...this.props} className='base-tile__content' />
+        <div className={modifiedClassNames} style={{...this.props.style}}>
+          <WrappedComponent {...this.props} rootPath={ ROOT_PATH } className='base-tile__content' />
         </div>
       )
     }

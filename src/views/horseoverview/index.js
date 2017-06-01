@@ -14,6 +14,13 @@ import { connect } from 'react-redux'
 import TileGallery from 'components/tiles/TileGallery'
 
 /**
+ *  @module fetchHorseInfo
+ */
+import {
+  fetchHorseInfo
+} from 'actions/horseoverview'
+
+/**
  *  @name HorseOverview
  *  @class
  *  @extends {Component}
@@ -26,16 +33,20 @@ export class HorseOverview extends Component {
     super(props)
   }
 
+  componentDidMount () {
+    console.log(this.props)
+    this.props.getHorseInfo()
+  }
+
   render () {
     const {
-      tiles
+      data
     } = this.props
-
     return (
       <div className='horse-overview'>
         <div className='horse-overview__grid container'>
           <TileGallery
-            tiles={tiles}/>
+            tiles={data}/>
         </div>
       </div>
     )
@@ -48,44 +59,13 @@ export class HorseOverview extends Component {
  *  @param  {Object} ownProps
  *  @return {Object}
  */
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({horseoverview}, ownProps) => {
+  const {
+    data
+  } = horseoverview
+
   return {
-    tiles: [{
-      id: 0,
-      number: 2
-    },
-    {
-      id: 1,
-      number: 1
-    },
-    {
-      id: 2,
-      number: 1
-    },
-    {
-      id: 3,
-      number: 1
-    },
-    {
-      id: 4,
-      number: 1
-    },
-    {
-      id: 5,
-      number: 1
-    },
-    {
-      id: 6,
-      number: 1
-    },
-    {
-      id: 7,
-      number: 1
-    },
-    {
-      id: 8,
-      number: 1
-    }]
+    data
   }
 }
 
@@ -96,13 +76,20 @@ const mapStateToProps = (state, ownProps) => {
  *  @return {Object}
  */
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {
+    getHorseInfo: () => {
+      // Get the name of the horse from the url.
+      const horseId = ownProps.match.params.name
+
+      dispatch(fetchHorseInfo({ horseId }))
+    }
+  }
 }
 
 /**
  *  @module connect
  */
-export default connect(
+export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(HorseOverview)
+)(HorseOverview))
