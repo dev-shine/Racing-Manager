@@ -19,6 +19,11 @@ import TextTile from 'components/tiles/TextTile'
 import ImageTile from 'components/tiles/ImageTile'
 
 /**
+ *  @module VideoTile
+ */
+import VideoTile from 'components/tiles/VideoTile'
+
+/**
  *  @module Block, Grid
  */
 import { Block, Grid } from 'components/masonry'
@@ -43,17 +48,11 @@ class TileGallery extends Component {
         maxColumns={4}>
         { this.props.tiles.map(({id, number}, index) =>
           <Block width={number} key={ id }>
-            {
-            number === 1
-            ? <TextTile
-                name='Nick the god'
-                date='2 days ago'
-                text={`Lorem ipsum dolor sit amet, consectetur dfjdsLorem ipsum dolor sit amet, consectetur sdfjdsLorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.`} />
-            : <ImageTile
-                name='Andy Tree'
-                date='5 days ago'
-                text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
-            }
+            <VideoTile
+              name='Nick dijarido'
+              date='5 days ago'
+              text={`Lorem ipsum cant remeber the rest...`}
+              src=''/>
           </Block>
         )}
       </Grid>

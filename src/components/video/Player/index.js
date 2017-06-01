@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module PlayButton
+ */
+import PlayButton from 'components/video/Button'
+
+/**
  *  @class
  *  @name Player
  *  @extends {Component}
@@ -21,6 +26,54 @@ import classNames from 'utils/classnames'
 class Player extends Component {
   constructor (props) {
     super(props)
+
+    // Initial state
+    this.state = {
+      showPlayButton: false
+    }
+
+    // Local variables
+    this.videoRef = null
+
+    // Bind custom fns
+    this.toggleVideo = this.toggleVideo.bind(this)
+  }
+
+  componentDidMount () {
+    if (!this.props.autoPlay) {
+      this.setState({
+        showPlayButton: true
+      })
+    }
+  }
+
+  /**
+   *  toggleVideo
+   *  @description Will toggle the video between playing and pausing
+   *  @return {Void}
+   */
+  toggleVideo () {
+    if (this.state.showPlayButton) {
+      this.videoRef.play()
+    } else {
+      this.videoRef.pause()
+    }
+
+    // Inverse the state for the play button
+    this.setState(state => ({
+      showPlayButton: !state.showPlayButton
+    }))
+  }
+
+  componentWillReceiveProps (nProps, oProps) {
+    if (nProps.autoPlay === oProps.autoPlay) {
+      return false
+    }
+
+    // Set the state for showing / hiding the play button
+    this.setState({
+      showPlayButton: !!nProps.autoPlay
+    })
   }
 
   render () {
@@ -37,21 +90,30 @@ class Player extends Component {
       preload
     } = this.props
 
+    const {
+      showPlayButton
+    } = this.state
+
     // Constructs classnames from the base name
-    const modifiedClassNames = classNames('video-player', className, modifier)
+    const modifiedClassNames = classNames('video', className, modifier)
 
     return (
-      <video
-        className={modifiedClassNames}
-        loop={loop}
-        preload={preload}
-        muted={muted}
-        autoPlay={autoPlay}
-        playsInline={playsInline}
-        src={src}
-        poster={poster}>
-        {children}
-      </video>
+      <div className={modifiedClassNames}>
+        <video
+          onClick={this.toggleVideo}
+          ref={ref => { this.videoRef = ref }}
+          className='video__player'
+          loop={loop}
+          preload={preload}
+          muted={muted}
+          autoPlay={autoPlay}
+          playsInline={playsInline}
+          src={src}
+          poster={poster}>
+          {children}
+        </video>
+        <PlayButton show={showPlayButton} onClick={this.toggleVideo} />
+      </div>
     )
   }
 }
@@ -62,7 +124,11 @@ class Player extends Component {
  */
 Player.defaultProps = {
   className: '',
-  modifier: ''
+  modifier: '',
+  loop: true,
+  preload: 'none',
+  autoPlay: false,
+  playsInline: true
 }
 
 /**
