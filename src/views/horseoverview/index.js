@@ -34,7 +34,6 @@ export class HorseOverview extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props)
     this.props.getHorseInfo()
   }
 

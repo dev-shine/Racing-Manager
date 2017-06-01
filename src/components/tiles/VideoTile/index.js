@@ -51,7 +51,8 @@ const VideoTile = props => {
     date,
     text,
     poster,
-    src
+    src,
+    rootPath
   } = props
 
   const modifiedClassNames = classNames('video-tile', className, modifier)
@@ -60,8 +61,8 @@ const VideoTile = props => {
     <div className={modifiedClassNames}>
       <div className='video-tile__video'>
         <Player
-          poster={poster}
-          src={src}/>
+          poster={`${rootPath}${poster}`}
+          src={`${rootPath}${src}`}/>
       </div>
       <TileHeader
         name={name}
