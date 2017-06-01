@@ -59,8 +59,9 @@ class TileGallery extends Component {
           tiles.map(tile => {
             return (
               <Block width={1} key={tile.createdAt}>
-                <MultipleImageVideoTile
+                <VideoTile
                   key={`tile-${tile.createdAt}`}
+                  src={tile.video.length === 2 ? tile.video[1].path : ''}
                   images={tile.image}
                   videos={tile.video}
                   name='Andy Jones'

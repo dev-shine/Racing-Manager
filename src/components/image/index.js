@@ -154,6 +154,10 @@ class LazyImage extends Component {
       imageSrc
     } = this.props
 
+    if (!imageSrc) {
+      return false
+    }
+    
     // Get the image from the src passed in from props
     getImage(imageSrc)
     .then(this.handleImgLoad)
