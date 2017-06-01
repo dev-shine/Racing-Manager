@@ -69,7 +69,7 @@ class TileGallery extends Component {
     }
 
     return (
-      <Block width={rand === 2 ? 2 : 1} key={ id }>
+      <Block width={Math.round((Math.random() * (3 - 1) + 1)) === 1 ? 2 : 1} key={ id }>
         {Comp}
       </Block>
     )

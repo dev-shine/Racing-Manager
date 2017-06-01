@@ -42,7 +42,8 @@ import { Player } from 'components/video'
  *  @module dummyVideo
  */
 import {
-  dummyVideo
+  dummyVideo,
+  horseRaceImg
 } from 'assets/dummyassets'
 
 /**
@@ -65,6 +66,7 @@ const VideoTile = props => {
     <div className={modifiedClassNames}>
       <div className='video-tile__video'>
         <Player
+          poster={horseRaceImg}
           src={dummyVideo}/>
       </div>
       <TileHeader

@@ -181,7 +181,8 @@ Player.defaultProps = {
   loop: true,
   preload: 'none',
   autoPlay: false,
-  playsInline: true
+  playsInline: true,
+  poster: ''
 }
 
 /**
