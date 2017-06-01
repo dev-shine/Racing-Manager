@@ -20,15 +20,19 @@ import classNames from 'utils/classnames'
  *  @return {React.Component}
  */
 const Image = ({source, className, alt, isLoaded, setRef}) => {
-  /**
-   *  @type {String}
-   */
-  const modifiedClassNames = classNames('image', className, 'normal', {
+  const modifiedClassNamesContainer = classNames('image-container', '', {
     loaded: isLoaded
   })
 
+  /**
+   *  @type {String}
+   */
+  const modifiedClassNames = classNames('image-container__image', className, 'normal')
+
   return (
-    <img src={source} alt={alt} className={modifiedClassNames} ref={ref => { setRef(ref) }} />
+    <span className={modifiedClassNamesContainer}>
+      <img src={source} alt={alt} className={modifiedClassNames} ref={ref => { setRef(ref) }} />
+    </span>
   )
 }
 

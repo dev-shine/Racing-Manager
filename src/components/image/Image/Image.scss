@@ -1,4 +1,6 @@
-.image {
+.image-container {
+  position: relative;
+  display: inline-block;
   opacity: 0;
   transition: opacity .4s ease-out;
   

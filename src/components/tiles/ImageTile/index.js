@@ -14,14 +14,14 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module TileAuthor
+ *  @module TileHeader
  */
-import TileAuthor from 'components/tiles/TileAuthor'
+import TileHeader from 'components/tiles/TileHeader'
 
 /**
- *  @module TileSocial
+ *  @module TileFooter
  */
-import TileSocial from 'components/tiles/TileSocial'
+import TileFooter from 'components/tiles/TileFooter'
 
 /**
  *  @module TileContent
@@ -65,12 +65,12 @@ const ImageTile = props => {
         className='image-tile__image'
         imageSrc={horseRaceImg}
         alt={'Horse racing'} />
-      <TileAuthor
+      <TileHeader
         name={name}
         date={date} />
       <TileContent
         text={text}/>
-      <TileSocial/>
+      <TileFooter/>
     </div>
   )
 }

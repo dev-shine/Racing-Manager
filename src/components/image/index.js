@@ -24,6 +24,11 @@ import Image from './Image'
 import { getImage, isInViewport } from 'utils/imageutils'
 
 /**
+ *  @module throttle
+ */
+import throttle from 'utils/throttle'
+
+/**
  *  LazyImage
  *  @description [Will take a image src and wait for it to loader and show a placeholder]
  *  @example <BackgroundImage src={source} placeholder={localImage} {...other attributes}>
@@ -57,6 +62,8 @@ class LazyImage extends Component {
     this.unBindScrollEvent = this.unBindScrollEvent.bind(this)
     this.fetchImage = this.fetchImage.bind(this)
     this.setRef = this.setRef.bind(this)
+
+    this.throttleResize = throttle(this.checkViewport)
   }
 
   /**
@@ -103,22 +110,23 @@ class LazyImage extends Component {
     if (this.timeoutCache) {
       clearTimeout(this.timeoutCache)
     }
+
+    // Clear the throttle
+    this.throttleResize = null
   }
 
   /**
    *  @name bindScrollEvent
    */
   bindScrollEvent () {
-    window.addEventListener('scroll', this.checkViewport, false)
+    window.addEventListener('scroll', this.throttleResize, false)
   }
 
   /**
    *  @name unBindScrollEvent
    */
   unBindScrollEvent () {
-    if (!this.state.loaded) {
-      window.removeEventListener('scroll', this.checkViewport, false)
-    }
+    window.removeEventListener('scroll', this.throttleResize, false)
   }
 
   /**

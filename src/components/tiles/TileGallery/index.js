@@ -19,6 +19,11 @@ import TextTile from 'components/tiles/TextTile'
 import ImageTile from 'components/tiles/ImageTile'
 
 /**
+ *  @module VideoTile
+ */
+import VideoTile from 'components/tiles/VideoTile'
+
+/**
  *  @module Block, Grid
  */
 import { Block, Grid } from 'components/masonry'
@@ -35,26 +40,47 @@ class TileGallery extends Component {
    */
   constructor (props) {
     super(props)
+
+    // Debug stuff.
+    this.generateBlock = this.generateBlock.bind(this)
+  }
+
+  generateBlock (id, number, index) {
+    let Comp
+    let rand = Math.round((Math.random() * (3 - 1) + 1))
+    console.log(rand)
+    if (rand === 1) {
+      Comp = <TextTile
+                name='Nick the god'
+                date='2 days ago'
+                text={`Lorem ipsum dolor sit amet, consectetur dfjdsLorem ipsum dolor sit amet, consectetur sdfjdsLorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.`} />
+    } else
+    if (rand === 2) {
+      Comp = <VideoTile
+                name='Nick dijarido'
+                date='5 days ago'
+                text={`Lorem ipsum cant remeber the rest...`}
+                src=''/>
+    } else {
+      Comp = <ImageTile
+        name='Andy Tree'
+        date='5 days ago'
+        text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
+    }
+
+    return (
+      <Block width={Math.round((Math.random() * (3 - 1) + 1)) === 1 ? 2 : 1} key={ id }>
+        {Comp}
+      </Block>
+    )
   }
 
   render () {
     return (
       <Grid
-        maxColumns={3}>
+        maxColumns={4}>
         { this.props.tiles.map(({id, number}, index) =>
-          <Block width={number} key={ id }>
-            {
-            number === 1
-            ? <TextTile
-                name='Nick the god'
-                date='2 days ago'
-                text={`Lorem ipsum dolor sit amet, consectetur dfjdsLorem ipsum dolor sit amet, consectetur sdfjdsLorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.`} />
-            : <ImageTile
-                name='Andy Tree'
-                date='5 days ago'
-                text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
-            }
-          </Block>
+          this.generateBlock(id, number, index)
         )}
       </Grid>
     )
