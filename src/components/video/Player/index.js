@@ -37,6 +37,8 @@ class Player extends Component {
 
     // Bind custom fns
     this.toggleVideo = this.toggleVideo.bind(this)
+    this.playVideo = this.playVideo.bind(this)
+    this.pauseVideo = this.pauseVideo.bind(this)
   }
 
   componentDidMount () {
@@ -54,25 +56,33 @@ class Player extends Component {
    */
   toggleVideo () {
     if (this.state.showPlayButton) {
-      this.videoRef.play()
+      this.playVideo()
     } else {
-      this.videoRef.pause()
+      this.pauseVideo()
     }
-
-    // Inverse the state for the play button
-    this.setState(state => ({
-      showPlayButton: !state.showPlayButton
-    }))
   }
 
-  componentWillReceiveProps (nProps, oProps) {
-    if (nProps.autoPlay === oProps.autoPlay) {
-      return false
-    }
+  /**
+   *  playVideo
+   *  @description Will play the video
+   */
+  playVideo () {
+    this.videoRef.play()
 
-    // Set the state for showing / hiding the play button
     this.setState({
-      showPlayButton: !!nProps.autoPlay
+      showPlayButton: false
+    })
+  }
+
+  /**
+   *  pauseVideo
+   *  @description Will play the video
+   */
+  pauseVideo () {
+    this.videoRef.pause()
+
+    this.setState({
+      showPlayButton: true
     })
   }
 

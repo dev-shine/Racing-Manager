@@ -46,7 +46,7 @@ const VideoButton = props => {
 VideoButton.defaultProps = {
   className: '',
   modifier: '',
-  show: true
+  show: false
 }
 
 /**
