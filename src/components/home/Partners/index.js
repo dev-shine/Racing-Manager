@@ -26,7 +26,7 @@ import Image from 'components/image'
 /**
  *  @module images
  */
-import * as images from 'assets/home/partners'
+import * as partnerImages from 'assets/home/partners'
 
 /**
  * @name Arrow
@@ -38,9 +38,7 @@ const Arrow = props => {
     <div
       className={_className}
       onClick={onClick}>
-      <Image
-        className='partners__arrow-image'
-        imageSrc={images['arrowLeft']} />
+      <i className='icon-leftarrow' />
     </div>
   )
 }
@@ -66,8 +64,9 @@ const Partners = props => {
           key={i}
           className='partners__partner'>
           <Image
+            forceShow={true} // Have to force show because stupid slick carousel.
             className='partners__partner-image image-background'
-            imageSrc={images[`p${i}`]} />
+            imageSrc={partnerImages[`p${i}`]} />
         </div>
       )
     }

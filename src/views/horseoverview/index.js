@@ -34,7 +34,6 @@ export class HorseOverview extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props)
     this.props.getHorseInfo()
   }
 
@@ -42,6 +41,7 @@ export class HorseOverview extends Component {
     const {
       data
     } = this.props
+
     return (
       <div className='horse-overview'>
         <div className='horse-overview__grid container'>

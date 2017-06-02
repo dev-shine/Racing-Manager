@@ -1,6 +1,7 @@
 .horse-overview {
   position: relative;
-
+  min-height: calc(100vh - #{$header-height + $footer-height});
+  
   &__grid {
     position: relative;
     padding: 20px 0;

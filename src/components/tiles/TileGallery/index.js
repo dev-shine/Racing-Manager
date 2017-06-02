@@ -24,9 +24,15 @@ import ImageTile from 'components/tiles/ImageTile'
 import VideoTile from 'components/tiles/VideoTile'
 
 /**
+ *  @module MediaCarouselTile
+ */
+// import MediaCarouselTile from 'components/tiles/MediaCarouselTile'
+
+/**
  *  @module Block, Grid
  */
-import { Block, Grid } from 'components/masonry'
+// import { Block, Grid } from 'components/masonry'
+import StackGrid from 'react-stack-grid'
 
 /**
  *  @class
@@ -40,38 +46,67 @@ class TileGallery extends Component {
    */
   constructor (props) {
     super(props)
+
+    // Bind this
+    this.renderChildren = this.renderChildren.bind(this)
   }
 
-  generateBlock (id, number, index) {
-    let Comp
-    let rand = Math.round((Math.random() * (3 - 1) + 1))
-    if (rand === 1) {
-      Comp = <TextTile
-                key={id}
-                name='Nick the god'
-                date='2 days ago'
-                text={`Lorem ipsum dolor sit amet, consectetur dfjdsLorem ipsum dolor sit amet, consectetur sdfjdsLorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iudicante iuberet refugiendi, democritus brevi easque quaerat horrida infinitis. Imperitos litterae explicavi.`} />
-    } else
-    if (rand === 2) {
-      Comp = <VideoTile
-      key={id}
-                name='Nick dijarido'
-                date='5 days ago'
-                text={`Lorem ipsum cant remeber the rest...`}
-                src=''/>
-    } else {
-      Comp = <ImageTile
-      key={id}
-        name='Andy Tree'
-        date='5 days ago'
-        text={`lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum`} />
+  /**
+   *  renderChildren
+   *  @param  {Object} tile
+   *  @return {Component}
+   */
+  renderChildren (tile) {
+    // Render plain text tile.
+    if (tile.attachment.length <= 0) {
+      return (
+        <TextTile
+          key={`text-${tile.createdAt}`}
+          name='Andy Jones'
+          date={tile.createdAt}
+          text={tile.text} />
+      )
     }
 
-    return (
-      <Block width={index === 0 ? 2 : 1} key={ `b-${id}` }>
-        {Comp}
-      </Block>
-    )
+    // Media carousel is messed up for the minute, damn SLiCK CAROUSEL
+    /*
+      // Render media carousel tile.
+      if (tile.attachment.length >= 2) {
+        return (
+          <MediaCarouselTile
+            key={`media-${tile.createdAt}`}
+            attachments={tile.attachment}
+            name='Andy Jones'
+            date={tile.createdAt}
+            text={tile.text} />
+        )
+      }
+    */
+
+    // Render image tile.
+    if (tile.attachment.length && tile.attachment[0].type === 'image') {
+      return (
+        <ImageTile
+          key={`image-${tile.createdAt}`}
+          src={tile.attachment[0].path}
+          name='Andy Jones'
+          date={tile.createdAt}
+          text={tile.text} />
+      )
+    }
+
+    // Render video tile.
+    if (tile.attachment.length && tile.attachment[0].type === 'video') {
+      return (
+        <VideoTile
+          key={`video-${tile.createdAt}`}
+          src={tile.attachment[0].path}
+          poster={tile.attachment[0].thumbnail}
+          name='Andy Jones'
+          date={tile.createdAt}
+          text={tile.text} />
+      )
+    }
   }
 
   render () {
@@ -80,24 +115,36 @@ class TileGallery extends Component {
     } = this.props
 
     return (
+      <StackGrid
+        duration={200}
+        columnWidth={265}
+        gutterWidth={20}
+        gutterHeight={20}>
+        {
+          tiles.map(tile => {
+            return (
+              this.renderChildren(tile)
+            )
+          })
+        }
+      </StackGrid>
+    )
+    /*
+      return (
       <Grid
         maxColumns={4}>
         {
           tiles.map(tile => {
             return (
               <Block width={1} key={tile.createdAt}>
-                <ImageTile
-                  key={`tile-${tile.createdAt}`}
-                  src={tile.image[0].path}
-                  name='Andy Jones'
-                  date={tile.createdAt}
-                  text={tile.text} />
+                {this.renderChildren(tile)}
               </Block>
             )
           })
         }
       </Grid>
     )
+    */
   }
 }
 

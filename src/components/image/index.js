@@ -154,6 +154,10 @@ class LazyImage extends Component {
       imageSrc
     } = this.props
 
+    if (!imageSrc) {
+      return false
+    }
+
     // Get the image from the src passed in from props
     getImage(imageSrc)
     .then(this.handleImgLoad)
@@ -177,7 +181,7 @@ class LazyImage extends Component {
     }
 
     if (!this.state.isLoading && !this.state.loaded) {
-      if (isInViewport(this.imageRef)) {
+      if (isInViewport(this.imageRef) || this.props.forceShow) {
         // if is in viewport and is not requesting start fetching
         this.fetchImage()
       }
@@ -249,7 +253,8 @@ LazyImage.defaultProps = {
   placeholder: '',
   isImage: false,
   alt: '',
-  imageSrc: ''
+  imageSrc: '',
+  forceShow: false
 }
 
 /**
@@ -264,7 +269,8 @@ LazyImage.propTypes = {
     PropTypes.arrayOf(PropTypes.string)
   ]),
   isImage: PropTypes.bool,
-  alt: PropTypes.string
+  alt: PropTypes.string,
+  forceShow: PropTypes.bool
 }
 
 export default LazyImage

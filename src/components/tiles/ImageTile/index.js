@@ -34,9 +34,9 @@ import TileContent from 'components/tiles/TileContent'
 import baseTile from 'components/tiles/BaseTile'
 
 /**
- *  @module Image
+ *  @module TileImageContent
  */
-import Image from 'components/image'
+import TileImageContent from 'components/tiles/TileImageContent'
 
 /**
  *  @name ImageTile
@@ -58,10 +58,9 @@ const ImageTile = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <Image
-        className='image-tile__image'
-        imageSrc={`${rootPath}${src}`}
-        alt={'Horse racing'} />
+      <TileImageContent
+        rootPath={rootPath}
+        src={src}/>
       <TileHeader
         name={name}
         date={date} />

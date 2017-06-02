@@ -34,9 +34,9 @@ import TileContent from 'components/tiles/TileContent'
 import baseTile from 'components/tiles/BaseTile'
 
 /**
- *  @module Image
+ *  @module TileVideoContent
  */
-import { Player } from 'components/video'
+import TileVideoContent from 'components/tiles/TileVideoContent'
 
 /**
  *  @name VideoTile
@@ -51,18 +51,18 @@ const VideoTile = props => {
     date,
     text,
     poster,
-    src
+    src,
+    rootPath
   } = props
 
   const modifiedClassNames = classNames('video-tile', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
-      <div className='video-tile__video'>
-        <Player
-          poster={poster}
-          src={src}/>
-      </div>
+      <TileVideoContent
+        poster={poster}
+        src={src}
+        rootPath={rootPath} />
       <TileHeader
         name={name}
         date={date} />

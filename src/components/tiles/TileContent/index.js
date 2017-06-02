@@ -27,6 +27,10 @@ const TileContent = props => {
 
   const modifiedClassNames = classNames('tile-content', className, modifier)
 
+  if (!text) {
+    return null
+  }
+
   return (
     <p className={`tiny ${modifiedClassNames}`}>
       {text}
