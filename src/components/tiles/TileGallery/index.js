@@ -68,17 +68,20 @@ class TileGallery extends Component {
       )
     }
 
-    // Render media carousel tile.
-    if (tile.attachment.length >= 2) {
-      return (
-        <MediaCarouselTile
-          key={`media-${tile.createdAt}`}
-          attachments={tile.attachment}
-          name='Andy Jones'
-          date={tile.createdAt}
-          text={tile.text} />
-      )
-    }
+    // Media carousel is messed up for the minute, damn SLiCK CAROUSEL
+    /*
+      // Render media carousel tile.
+      if (tile.attachment.length >= 2) {
+        return (
+          <MediaCarouselTile
+            key={`media-${tile.createdAt}`}
+            attachments={tile.attachment}
+            name='Andy Jones'
+            date={tile.createdAt}
+            text={tile.text} />
+        )
+      }
+    */
 
     // Render image tile.
     if (tile.attachment.length && tile.attachment[0].type === 'image') {
@@ -113,7 +116,7 @@ class TileGallery extends Component {
 
     return (
       <StackGrid
-        monitorImagesLoaded={true}
+        duration={200}
         columnWidth={265}
         gutterWidth={20}
         gutterHeight={20}>
