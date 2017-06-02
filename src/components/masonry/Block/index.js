@@ -25,8 +25,10 @@ class Block extends Component {
 
     // Set the tile outside when initial render
     this.posStyle = {
-      top: '-9999px',
-      left: '-99999px'
+      /*
+        top: '-9999px',
+        left: '-99999px'
+      */
     }
 
     // Cache the div element

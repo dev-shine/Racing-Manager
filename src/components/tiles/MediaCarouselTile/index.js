@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module baseClassNames
+ */
+import baseClassNames from 'classnames'
+
+/**
  *  @module TileHeader
  */
 import TileHeader from 'components/tiles/TileHeader'
@@ -84,14 +89,23 @@ export const createSlides = (attachments = [], rootPath) => {
 /**
  *  SlideArrow
  *  @param  {String} options.className
- *  @param  {Object | Array | String} options.modifier
+ *  @param  {String} options.modifier
  *  @param  {Function} options.onClick
  *  @return {Component}
  */
 const SlideArrow = ({className, modifier, onClick}) => {
+  // class names for the container
   const modifiedClassNames = classNames('multiple-tile__slider__arrow', className, modifier)
+
+  // classnames for determining the correct arrow to show.
+  const arrowClassNames = baseClassNames({
+    'icon-leftarrow': modifier === 'left',
+    'icon-rightarrow': modifier === 'right'
+  })
+
   return (
     <div className={modifiedClassNames} onClick={onClick}>
+      <span className={arrowClassNames}></span>
     </div>
   )
 }

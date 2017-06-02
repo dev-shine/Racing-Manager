@@ -66,6 +66,14 @@ $partners-height-sm: 100px;
     height: 100%;
     width: $partners-slider-margin;
     cursor: pointer;
+
+    .icon-leftarrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $white;
+    }
   }
   
   &__arrow-prev {

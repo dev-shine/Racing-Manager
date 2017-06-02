@@ -31,7 +31,8 @@ import MediaCarouselTile from 'components/tiles/MediaCarouselTile'
 /**
  *  @module Block, Grid
  */
-import { Block, Grid } from 'components/masonry'
+// import { Block, Grid } from 'components/masonry'
+import StackGrid from 'react-stack-grid'
 
 /**
  *  @class
@@ -111,6 +112,22 @@ class TileGallery extends Component {
     } = this.props
 
     return (
+      <StackGrid
+        monitorImagesLoaded={true}
+        columnWidth={265}
+        gutterWidth={20}
+        gutterHeight={20}>
+        {
+          tiles.map(tile => {
+            return (
+              this.renderChildren(tile)
+            )
+          })
+        }
+      </StackGrid>
+    )
+    /*
+      return (
       <Grid
         maxColumns={4}>
         {
@@ -124,6 +141,7 @@ class TileGallery extends Component {
         }
       </Grid>
     )
+    */
   }
 }
 
