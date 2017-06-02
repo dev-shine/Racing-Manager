@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 /**
  *  @module TileGallery
  */
-import TileGallery from 'components/tiles/TileGallery'
+import TileGallery from 'components/tiles/FeedTiles/TileGallery'
 
 /**
  *  @module fetchHorseInfo
