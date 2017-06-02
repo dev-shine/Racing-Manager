@@ -16,17 +16,17 @@ import classNames from 'utils/classnames'
 /**
  *  @module TileHeader
  */
-import TileHeader from 'components/tiles/TileHeader'
+import TileHeader from 'components/tiles/FeedTiles/TileHeader'
 
 /**
  *  @module TileFooter
  */
-import TileFooter from 'components/tiles/TileFooter'
+import TileFooter from 'components/tiles/FeedTiles/TileFooter'
 
 /**
  *  @module TileContent
  */
-import TileContent from 'components/tiles/TileContent'
+import TileContent from 'components/tiles/FeedTiles/TileContent'
 
 /**
  *  @module baseTile
@@ -34,23 +34,35 @@ import TileContent from 'components/tiles/TileContent'
 import baseTile from 'components/tiles/BaseTile'
 
 /**
- *  @name TextTile
+ *  @module TileVideoContent
+ */
+import TileVideoContent from 'components/tiles/FeedTiles/TileVideoContent'
+
+/**
+ *  @name VideoTile
  *  @param  {Object} props
  *  @return {React.Component}
  */
-const TextTile = props => {
+const VideoTile = props => {
   const {
     className,
     modifier,
     name,
     date,
-    text
+    text,
+    poster,
+    src,
+    rootPath
   } = props
 
-  const modifiedClassNames = classNames('text-tile', className, modifier)
+  const modifiedClassNames = classNames('video-tile', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
+      <TileVideoContent
+        poster={poster}
+        src={src}
+        rootPath={rootPath} />
       <TileHeader
         name={name}
         date={date} />
@@ -65,7 +77,7 @@ const TextTile = props => {
  *  propTypes
  *  @type {Object}
  */
-TextTile.propTypes = {
+VideoTile.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -76,22 +88,25 @@ TextTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  src: PropTypes.string
 }
 
 /**
  *  defaultProps
  *  @type {Object}
  */
-TextTile.defaultProps = {
+VideoTile.defaultProps = {
   className: '',
   modifier: '',
   name: '',
   date: '',
-  text: ''
+  text: '',
+  src: '',
+  poster: ''
 }
 
 /**
- *  @module TextTile
+ *  @module VideoTile
  */
-export default baseTile(TextTile)
+export default baseTile(VideoTile)

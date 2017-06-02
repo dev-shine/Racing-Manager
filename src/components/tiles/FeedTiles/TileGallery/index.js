@@ -11,22 +11,22 @@ import PropTypes from 'prop-types'
 /**
  *  @module TextTile
  */
-import TextTile from 'components/tiles/TextTile'
+import TextTile from 'components/tiles/FeedTiles/TextTile'
 
 /**
  *  @module ImageTiles
  */
-import ImageTile from 'components/tiles/ImageTile'
+import ImageTile from 'components/tiles/FeedTiles/ImageTile'
 
 /**
  *  @module VideoTile
  */
-import VideoTile from 'components/tiles/VideoTile'
+import VideoTile from 'components/tiles/FeedTiles/VideoTile'
 
 /**
  *  @module MediaCarouselTile
  */
-// import MediaCarouselTile from 'components/tiles/MediaCarouselTile'
+// import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
 
 /**
  *  @module Block, Grid
