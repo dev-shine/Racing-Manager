@@ -34,14 +34,14 @@ import TileContent from 'components/tiles/TileContent'
 import baseTile from 'components/tiles/BaseTile'
 
 /**
- *  @module Image
+ *  @module TileImageContent
  */
-import Image from 'components/image'
+import TileImageContent from 'components/tiles/TileImageContent'
 
 /**
- *  @module Player
+ *  @module TileVideoContent
  */
-import { Player } from 'components/video'
+import TileVideoContent from 'components/tiles/TileVideoContent'
 
 /**
  * @module Slider
@@ -58,12 +58,11 @@ import Slider from 'react-slick'
 export const createSlides = (images, videos, rootPath) => {
   const imgArray = images.map(({path}, index) => {
     return (
-      <div
-        className='multiple-tile__slide'
-        key={`img-${index}`}>
-        <Image
-          className='image-tile__image'
-          imageSrc={`${rootPath}${path}`}
+      <div className='multiple-tile__slidercontainer' key={`img-${index}`}>
+        <TileImageContent
+          rootPath={rootPath}
+          className='multiple-tile__slide'
+          imageSrc={path}
           alt={'Horse racing'} />
       </div>
     )
@@ -71,12 +70,12 @@ export const createSlides = (images, videos, rootPath) => {
 
   const videoArray = videos.map(({path, thumbnail}, index) => {
     return (
-      <div className='multiple-tile__slide' key={`video-${index}`}>
-        <div className='video-tile__video'>
-          <Player
-            poster={`${rootPath}${thumbnail}`}
-            src={`${rootPath}${path}`}/>
-        </div>
+      <div className='multiple-tile__slidercontainer' key={`video-${index}`}>
+        <TileVideoContent
+          rootPath={rootPath}
+          className='multiple-tile__slide'
+          poster={thumbnail}
+          src={path}/>
       </div>
     )
   })
@@ -105,10 +104,10 @@ const MultipleTile = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <div className='multiple-tile__slidercontainer'>
+      <div className='multiple-tile__slider'>
         <Slider
-          className='multiple-tile__slider'
-          initialSlide={1}
+          className='multiple-tile__slider-wrapper'
+          initialSlide={0}
           infinite={false}
           dots={false}
           fade={false}

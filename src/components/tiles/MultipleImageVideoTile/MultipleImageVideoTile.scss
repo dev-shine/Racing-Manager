@@ -1,16 +1,40 @@
 .multiple-tile {
+  position: relative;
+  
+  &__slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  &__slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
 
   &__slidercontainer {
     position: relative;
     width: 100%;
+    display: inline-block;
     overflow: hidden; 
   }
 
-  &__slider {
-
+  .video__player {
+    height: auto;
+    width: 100%;
   }
 
-  &__slide {
-    display: inline-block;
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .tile-image-content {
+    padding-bottom: $video-aspect-ratio;
   }
 }

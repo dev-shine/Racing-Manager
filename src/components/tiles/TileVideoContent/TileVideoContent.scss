@@ -1,6 +1,6 @@
 .tile-video-content {
   position: relative; 
-  padding-bottom: 56.25%; 
+  padding-bottom: $video-aspect-ratio;
   height: 0; 
   overflow: hidden; 
   max-width: 100%; 
