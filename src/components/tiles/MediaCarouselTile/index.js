@@ -55,32 +55,30 @@ import Slider from 'react-slick'
  *  @param  {String} rootPath
  *  @return {Array}
  */
-export const createSlides = (images, videos, rootPath) => {
-  const imgArray = images.map(({path}, index) => {
-    return (
-      <div className='multiple-tile__slidercontainer' key={`img-${index}`}>
-        <TileImageContent
-          rootPath={rootPath}
-          className='multiple-tile__slide'
-          imageSrc={path}
-          alt={'Horse racing'} />
-      </div>
-    )
+export const createSlides = (attachments = [], rootPath) => {
+  return attachments.map((attachment, index) => {
+    if (attachment.type === 'video') {
+      return (
+        <div className='multiple-tile__slidercontainer' key={`mvideo-${index}`}>
+          <TileVideoContent
+            rootPath={rootPath}
+            className='multiple-tile__slide'
+            poster={attachment.thumbnail}
+            src={attachment.path}/>
+        </div>
+      )
+    } else {
+      return (
+        <div className='multiple-tile__slidercontainer' key={`mimg-${index}`}>
+          <TileImageContent
+            rootPath={rootPath}
+            className='multiple-tile__slide'
+            src={attachment.path}
+            alt={'Horse racing'} />
+        </div>
+      )
+    }
   })
-
-  const videoArray = videos.map(({path, thumbnail}, index) => {
-    return (
-      <div className='multiple-tile__slidercontainer' key={`video-${index}`}>
-        <TileVideoContent
-          rootPath={rootPath}
-          className='multiple-tile__slide'
-          poster={thumbnail}
-          src={path}/>
-      </div>
-    )
-  })
-
-  return [...imgArray, ...videoArray]
 }
 
 /**
@@ -95,8 +93,7 @@ const MultipleTile = props => {
     name,
     date,
     text,
-    videos,
-    images,
+    attachments,
     rootPath
   } = props
 
@@ -116,7 +113,7 @@ const MultipleTile = props => {
           arrows={false}
           speed={400}
           slidesToScroll={1}>
-          {createSlides(images, videos, rootPath)}
+          {createSlides(attachments, rootPath)}
         </Slider>
       </div>
       <TileHeader
@@ -146,8 +143,11 @@ MultipleTile.propTypes = {
   date: PropTypes.string,
   text: PropTypes.string,
   src: PropTypes.string,
-  videos: PropTypes.array,
-  images: PropTypes.array
+  attachments: PropTypes.arrayOf(PropTypes.shape({
+    type: PropTypes.string,
+    path: PropTypes.string,
+    thumbnail: PropTypes.string
+  }))
 }
 
 /**

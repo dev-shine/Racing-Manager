@@ -52,15 +52,19 @@ class Block extends Component {
 
     style.width = Math.floor(columns * this.props.parent.containerWidth / maxColumns)
 
+   /*
     const modifiedClasses = classNames({
       'xblock': measured
     }, className)
+    */
+
+    const modifiedClasses = classNames(className)
 
     return (
       <div data-width={ columns }
         { ...rest }
         style={ { ...this.posStyle, ...style, ...this.defaultStyle } }
-        className={modifiedClasses}
+        className={`xblock ${modifiedClasses}`}
         ref = { (x) => { this.divElement = x } }>
         { this.props.children }
       </div>

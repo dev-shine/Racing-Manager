@@ -24,9 +24,9 @@ import ImageTile from 'components/tiles/ImageTile'
 import VideoTile from 'components/tiles/VideoTile'
 
 /**
- *  @module MultipleImageVideoTile
+ *  @module MediaCarouselTile
  */
-import MultipleImageVideoTile from 'components/tiles/MultipleImageVideoTile'
+import MediaCarouselTile from 'components/tiles/MediaCarouselTile'
 
 /**
  *  @module Block, Grid
@@ -45,6 +45,64 @@ class TileGallery extends Component {
    */
   constructor (props) {
     super(props)
+
+    // Bind this
+    this.renderChildren = this.renderChildren.bind(this)
+  }
+
+  /**
+   *  renderChildren
+   *  @param  {Object} tile
+   *  @return {Component}
+   */
+  renderChildren (tile) {
+    // Render plain text tile.
+    if (tile.attachment.length <= 0) {
+      return (
+        <TextTile
+          key={`text-${tile.createdAt}`}
+          name='Andy Jones'
+          date={tile.createdAt}
+          text={tile.text} />
+      )
+    }
+
+    // Render media carousel tile.
+    if (tile.attachment.length >= 2) {
+      return (
+        <MediaCarouselTile
+          key={`media-${tile.createdAt}`}
+          attachments={tile.attachment}
+          name='Andy Jones'
+          date={tile.createdAt}
+          text={tile.text} />
+      )
+    }
+
+    // Render image tile.
+    if (tile.attachment.length && tile.attachment[0].type === 'image') {
+      return (
+        <ImageTile
+          key={`image-${tile.createdAt}`}
+          src={tile.attachment[0].path}
+          name='Andy Jones'
+          date={tile.createdAt}
+          text={tile.text} />
+      )
+    }
+
+    // Render video tile.
+    if (tile.attachment.length && tile.attachment[0].type === 'video') {
+      return (
+        <VideoTile
+          key={`video-${tile.createdAt}`}
+          src={tile.attachment[0].path}
+          poster={tile.attachment[0].thumbnail}
+          name='Andy Jones'
+          date={tile.createdAt}
+          text={tile.text} />
+      )
+    }
   }
 
   render () {
@@ -59,14 +117,7 @@ class TileGallery extends Component {
           tiles.map(tile => {
             return (
               <Block width={1} key={tile.createdAt}>
-                <MultipleImageVideoTile
-                  key={`tile-${tile.createdAt}`}
-                  src={tile.video.length === 2 ? tile.video[1].path : ''}
-                  images={tile.image}
-                  videos={tile.video}
-                  name='Andy Jones'
-                  date={tile.createdAt}
-                  text={tile.text} />
+                {this.renderChildren(tile)}
               </Block>
             )
           })
