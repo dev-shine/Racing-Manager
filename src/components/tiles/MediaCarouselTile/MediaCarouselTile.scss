@@ -7,6 +7,23 @@
     width: 100%;
     overflow: hidden;
     margin-bottom: 10px;
+
+    &__arrow {
+      position: absolute;
+      width: 20px;
+      height: 83px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba($white, 0.65);
+
+      &--left {
+        left: 0;
+      }
+
+      &--right {
+        right: 0;
+      }
+    }
   }
 
   &__slider-wrapper {
@@ -37,5 +54,11 @@
 
   .tile-image-content {
     padding-bottom: $video-aspect-ratio;
+    margin-bottom: 0;
   }
+
+  .tile-video-content {
+    margin-bottom: 0;
+  }
+
 }

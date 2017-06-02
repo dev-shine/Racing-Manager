@@ -1,7 +1,7 @@
 /**
  * @module react
  */
-import React from 'react'
+import React, { Component } from 'react'
 
 /**
  * @module PropTypes
@@ -82,48 +82,107 @@ export const createSlides = (attachments = [], rootPath) => {
 }
 
 /**
+ *  SlideArrow
+ *  @param  {String} options.className
+ *  @param  {Object | Array | String} options.modifier
+ *  @param  {Function} options.onClick
+ *  @return {Component}
+ */
+const SlideArrow = ({className, modifier, onClick}) => {
+  const modifiedClassNames = classNames('multiple-tile__slider__arrow', className, modifier)
+  return (
+    <div className={modifiedClassNames} onClick={onClick}>
+    </div>
+  )
+}
+
+/**
  *  @name MultipleTile
  *  @param  {Object} props
  *  @return {React.Component}
  */
-const MultipleTile = props => {
-  const {
-    className,
-    modifier,
-    name,
-    date,
-    text,
-    attachments,
-    rootPath
-  } = props
+class MultipleTile extends Component {
+  /**
+   *  @constructor
+   *  @param  {Object} props
+   */
+  constructor (props) {
+    super(props)
 
-  const modifiedClassNames = classNames('multiple-tile', className, modifier)
+    // Store the slider in a ref
+    this.slideRef = null
 
-  return (
-    <div className={modifiedClassNames}>
-      <div className='multiple-tile__slider'>
-        <Slider
-          className='multiple-tile__slider-wrapper'
-          initialSlide={0}
-          infinite={false}
-          dots={false}
-          fade={false}
-          autoplay={false}
-          slidesToShow={1}
-          arrows={false}
-          speed={400}
-          slidesToScroll={1}>
-          {createSlides(attachments, rootPath)}
-        </Slider>
+    // Bind custom fns
+    this.slidePrev = this.slidePrev.bind(this)
+    this.slideNext = this.slideNext.bind(this)
+  }
+
+  /**
+   *  slidePrev
+   *  @description Slides to the previous slide in the carousel
+   */
+  slidePrev () {
+    if (!this.slideRef) {
+      return false
+    }
+
+    this.slideRef.slickPrev()
+  }
+
+  /**
+   *  slideNext
+   *  @description Slides to the next slide in the carousel
+   */
+  slideNext () {
+    if (!this.slideRef) {
+      return false
+    }
+
+    this.slideRef.slickNext()
+  }
+
+  render () {
+    const {
+      className,
+      modifier,
+      name,
+      date,
+      text,
+      attachments,
+      rootPath
+    } = this.props
+
+    const modifiedClassNames = classNames('multiple-tile', className, modifier)
+
+    return (
+      <div className={modifiedClassNames}>
+        <div className='multiple-tile__slider'>
+          <Slider
+            ref={ref => { this.slideRef = ref }}
+            className='multiple-tile__slider-wrapper'
+            initialSlide={0}
+            infinite={false}
+            dots={false}
+            fade={false}
+            autoplay={false}
+            slidesToShow={1}
+            arrows={false}
+            speed={400}
+            slidesToScroll={1}>
+            {createSlides(attachments, rootPath)}
+          </Slider>
+          <SlideArrow modifier='left' onClick={this.slidePrev} />
+          <SlideArrow modifier='right' onClick={this.slideNext} />
+        </div>
+        <TileHeader
+          name={name}
+          date={date} />
+        <TileContent
+          text={text}/>
+        <TileFooter/>
       </div>
-      <TileHeader
-        name={name}
-        date={date} />
-      <TileContent
-        text={text}/>
-      <TileFooter/>
-    </div>
-  )
+    )
+  }
 }
 
 /**
