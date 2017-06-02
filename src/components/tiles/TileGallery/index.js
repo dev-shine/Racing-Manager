@@ -26,7 +26,7 @@ import VideoTile from 'components/tiles/VideoTile'
 /**
  *  @module MediaCarouselTile
  */
-import MediaCarouselTile from 'components/tiles/MediaCarouselTile'
+// import MediaCarouselTile from 'components/tiles/MediaCarouselTile'
 
 /**
  *  @module Block, Grid
