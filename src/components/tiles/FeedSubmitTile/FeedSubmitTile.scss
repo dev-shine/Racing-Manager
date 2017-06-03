@@ -40,6 +40,7 @@
     width: 100%;
     min-height: 50px;
     padding: 10px 10px 10px 20px;
+    margin: 0;
 
     &__text {
       color: rgba($maastricht-blue, 0.5);
@@ -50,11 +51,11 @@
   &__button {
     width: 100%;
     min-width: 0;
+    height: 40px;
   }
 
   .no-padding {
     padding-left: 0;
     padding-right: 0;
   }
-
 }
