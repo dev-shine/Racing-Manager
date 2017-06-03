@@ -14,6 +14,11 @@ import { connect } from 'react-redux'
 import TileGallery from 'components/tiles/FeedTiles/TileGallery'
 
 /**
+ *  @module FeedSubmitTile
+ */
+import FeedSubmitTile from 'components/tiles/FeedSubmitTile'
+
+/**
  *  @module fetchHorseInfo
  */
 import {
@@ -44,6 +49,13 @@ export class HorseOverview extends Component {
 
     return (
       <div className='horse-overview'>
+        <div className='container horse-overview__message-post'>
+          <div className='row'>
+            <div className='col-xs-12 col-sm-10 col-sm-push-1'>
+              <FeedSubmitTile />
+            </div>
+          </div>
+        </div>
         <div className='horse-overview__grid container'>
           <TileGallery
             tiles={data}/>

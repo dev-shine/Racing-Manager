@@ -16,12 +16,7 @@ import classNames from 'utils/classnames'
 /**
  *  @module Accordion
  */
-import Accordion from 'accordion/BaseAccordion'
-
-/**
- *  @module baseTile
- */
-import baseTile from 'components/tiles/BaseTile'
+import Accordion from 'components/accordion/BaseAccordion'
 
 /**
  *  @class
@@ -34,8 +29,27 @@ class FeedSubmitTile extends Component {
   }
 
   render () {
+    const {
+      className,
+      modifier
+    } = this.props
+
+    const modifiedClassNames = classNames('feed-submit', className, modifier)
+
     return (
-      <Accordion />
+      <div className={modifiedClassNames}>
+        <div className='feed-submit__title'>
+          <p className='micro'>
+            post an update to the syndicate
+          </p>
+        </div>
+        <div className='feed-submit__bar-container'>
+          <Accordion>
+          </Accordion>
+          <div className='feed-submit__bar'>
+          </div>
+        </div>
+      </div>
     )
   }
 }
@@ -45,7 +59,7 @@ class FeedSubmitTile extends Component {
  *  @type {Object}
  */
 FeedSubmitTile.defaultProps = {
-
+  className: ''
 }
 
 /**
@@ -53,10 +67,17 @@ FeedSubmitTile.defaultProps = {
  *  @type {Object}
  */
 FeedSubmitTile.propTypes = {
-
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  modifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 /**
  *  @module FeedSubmitTile
  */
-export default baseTile(FeedSubmitTile)
+export default FeedSubmitTile
