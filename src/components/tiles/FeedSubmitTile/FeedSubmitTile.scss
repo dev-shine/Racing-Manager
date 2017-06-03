@@ -38,13 +38,23 @@
   &__bar {
     position: relative;
     width: 100%;
-    height: 50px;
+    min-height: 50px;
     padding: 10px 10px 10px 20px;
 
     &__text {
-      color: $maastricht-blue;
+      color: rgba($maastricht-blue, 0.5);
       text-transform: uppercase;
     }
+  }
+
+  &__button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .no-padding {
+    padding-left: 0;
+    padding-right: 0;
   }
 
 }
