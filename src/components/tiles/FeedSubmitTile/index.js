@@ -46,7 +46,13 @@ class FeedSubmitTile extends Component {
         <div className='feed-submit__bar-container'>
           <Accordion>
           </Accordion>
-          <div className='feed-submit__bar'>
+          <div className='feed-submit__bar row'>
+            <div className='col-xs-8'>
+              <p className='micro feed-submit__bar__text'>
+                write a message
+              </p>
+            </div>
+            <div className='col-xs-4 align-middle'></div>
           </div>
         </div>
       </div>
