@@ -24,6 +24,11 @@ import Accordion from 'components/accordion/BaseAccordion'
 import TextButton from 'components/buttons/TextButton'
 
 /**
+ *  @module TextArea
+ */
+import TextArea from 'components/input/TextArea'
+
+/**
  *  @class
  *  @name FeedSubmitTile
  *  @extends {Component}
@@ -31,6 +36,28 @@ import TextButton from 'components/buttons/TextButton'
 class FeedSubmitTile extends Component {
   constructor (props) {
     super(props)
+
+    // Initial state
+    this.state = {
+      isOpen: false
+    }
+
+    // bind custom fn
+    this.toggleBar = this.toggleBar.bind(this)
+  }
+
+  /**
+   *  toggleBar
+   *  @description Toggles visibilty of the text area
+   */
+  toggleBar () {
+    this.setState(state => ({
+      isOpen: !state.isOpen
+    }))
+
+    if (!this.state.isOpen) {
+      this.refs.textarea.focusField()
+    }
   }
 
   render () {
@@ -38,6 +65,10 @@ class FeedSubmitTile extends Component {
       className,
       modifier
     } = this.props
+
+    const {
+      isOpen
+    } = this.state
 
     const modifiedClassNames = classNames('feed-submit', className, modifier)
 
@@ -49,17 +80,28 @@ class FeedSubmitTile extends Component {
           </p>
         </div>
         <div className='feed-submit__bar-container'>
-          <Accordion>
+          <Accordion isOpen={isOpen}>
+            <TextArea
+              ref='textarea'
+              minHeight={120}
+              name='feed-submit-textarea'
+              className='feed-submit__textarea-container'
+              value=''/>
           </Accordion>
-          <div className='feed-submit__bar row'>
+          <div className='feed-submit__bar row' onClick={this.toggleBar}>
             <div className='col-xs-6 col-sm-8 align-middle'>
               <p className='micro feed-submit__bar__text'>
                 write a message...
               </p>
             </div>
             <div className='col-xs-6 col-sm-4 align-middle'>
-              <div className='row'>
-                <div className='col-xs-5 col-xs-push-7 col-sm-5 col-sm-push-7 no-padding'>
+              <div className='row feed-submit__flex'>
+                <div className='no-padding col-xs-5 feed-submit__flex feed-submit__flex--align'>
+                  <div className='align-middle feed-submit__text-container'>
+                    <i className='icon-paperclip'></i>
+                  </div>
+                </div>
+                <div className='no-padding col-xs-6 col-xs-push-1'>
                   <TextButton
                     className='feed-submit__button'
                     text='send'

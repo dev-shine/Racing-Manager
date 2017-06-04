@@ -14,6 +14,13 @@
     }
   }
 
+  &__textarea-container {
+    position: relative;
+    width: 100%;
+    min-height: 120px;
+    padding: 20px 10px 10px 20px;
+  }
+
   &__bar-container {
     position: relative;
     width: 100%;
@@ -54,8 +61,21 @@
     height: 40px;
   }
 
-  .no-padding {
-    padding-left: 0;
-    padding-right: 0;
+  &__text-container {
+    position: relative;
+    width: 100%;
+    text-align: right;
+  }
+
+  &__flex {
+    display: flex;
+
+    &--align {
+      align-items: center;
+    }
+  }
+
+  .icon-paperclip {
+    font-size: $minor-title;
   }
 }
