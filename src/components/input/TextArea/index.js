@@ -24,6 +24,11 @@ import Accordion from 'components/accordion/BaseAccordion'
 import InputError from 'components/input/InputError'
 
 /**
+ *  @module debounce
+ */
+import debounce from 'utils/debounce'
+
+/**
  *  @class
  *  @extends {Component}
  */
@@ -41,11 +46,14 @@ class TextArea extends Component {
 
     // Bind custom fns
     this.autoSize = this.autoSize.bind(this)
+
+    this.debounceResize = debounce(this.autoSize)
   }
 
   componentDidMount () {
     if (this.props.autoGrow && this.textareaRef) {
       this.textareaRef.addEventListener('input', this.autoSize, false)
+      window.addEventListener('resize', this.debounceResize, false)
       this.autoSize()
     }
   }
@@ -53,6 +61,7 @@ class TextArea extends Component {
   componentWillUnmount () {
     if (this.textareaRef) {
       this.textareaRef.removeEventListener('input', this.autoSize, false)
+      window.removeEventListener('resize', this.debounceResize, false)
     }
 
     if (this.timeoutCache) {
