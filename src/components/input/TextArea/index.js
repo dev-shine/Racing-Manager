@@ -97,14 +97,15 @@ class TextArea extends Component {
       type,
       placeholder,
       name,
-      // value,
+      value,
       error,
       className,
       modifier,
       handleSubmit,
       handleBlur,
       handleFocus,
-      handleChange
+      handleChange,
+      maxLength
     } = this.props
 
     /**
@@ -128,11 +129,12 @@ class TextArea extends Component {
           className='textarea'
           type={type}
           name={name}
-          // value={value}
+          value={value}
           placeholder={placeholder}
           onSubmit={handleSubmit}
           onBlur={handleBlur}
           onFocus={handleFocus}
+          maxLength={maxLength}
           onChange={handleChange} />
         <Accordion
           className='input__accordion'
@@ -153,7 +155,8 @@ class TextArea extends Component {
 TextArea.defaultProps = {
   type: 'text',
   minHeight: 40,
-  autoGrow: true
+  autoGrow: true,
+  maxLength: Infinity
 }
 
 /**

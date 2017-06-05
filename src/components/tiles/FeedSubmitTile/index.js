@@ -29,21 +29,26 @@ import TextButton from 'components/buttons/TextButton'
 import TextArea from 'components/input/TextArea'
 
 /**
- *  @module Image
+ *  @module Thumbnail
  */
-import Image from 'components/image'
+import Thumbnail from 'components/thumbnail'
 
 /**
- *  @module fileUpload
+ *  @module processFileUpload
  */
-import mediaPayload from 'utils/mediapayload'
+import processFileUpload from 'utils/processfileupload'
+
+/**
+ *  @module generatethumbnailFromFiles
+ */
+import { generatethumbnailFromFiles } from 'utils/imageutils'
 
 /**
  *  @name allowedFileTypes
  *  @description File types allowed for uploading.
  *  @type {Array}
  */
-const allowedFileTypes = ['image/png', 'image/jpg', 'image/jpeg']
+const allowedFileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/quicktime', 'video/x-msvideo']
 
 /**
  *  @class
@@ -66,6 +71,37 @@ class FeedSubmitTile extends Component {
     // bind custom fn
     this.toggleBar = this.toggleBar.bind(this)
     this.addAttachment = this.addAttachment.bind(this)
+    this.clearData = this.clearData.bind(this)
+    this.clearFileInputValue = this.clearFileInputValue.bind(this)
+  }
+
+  componentWillReceiveProps (nextProps, nextState) {
+    if (this.props.feedPosted !== nextProps.feedPosted && nextProps.feedPosted) {
+      this.clearData()
+    }
+  }
+
+  /**
+   *  clearFileInputValue
+   *  @description Clears the input value, so new files can be added.
+   */
+  clearFileInputValue () {
+    if (this.attachmentRef) {
+      this.attachmentRef.value = ''
+    }
+  }
+
+  /**
+   *  clearData
+   *  @description Will clear the local state
+   */
+  clearData () {
+    this.clearFileInputValue()
+
+    this.setState({
+      isOpen: false,
+      thumbnailSrc: ''
+    })
   }
 
   /**
@@ -88,9 +124,14 @@ class FeedSubmitTile extends Component {
    *  @description Will call on the native file uploader.
    */
   addAttachment (e) {
-    mediaPayload(e, allowedFileTypes)
-    .then(({formData, thumbnails}) => {
-      console && console.log(JSON.stringify(formData))
+    processFileUpload(e, allowedFileTypes)
+    .then(files => {
+      // Add the media files to the redux store.
+      this.props.addFeedMediaFiles(files)
+
+      return generatethumbnailFromFiles(files)
+    })
+    .then(thumbnails => {
       this.setState({
         thumbnailSrc: thumbnails[0]
       })
@@ -103,8 +144,13 @@ class FeedSubmitTile extends Component {
   render () {
     const {
       className,
-      modifier // ,
-      // thumbnailSrc
+      modifier,
+      feedText,
+      updateFeedText,
+      charCount,
+      maxCharCount,
+      submitFeedUpdate,
+      feedFiles
     } = this.props
 
     const {
@@ -125,21 +171,28 @@ class FeedSubmitTile extends Component {
           <Accordion isOpen={isOpen}>
             <TextArea
               ref='textarea'
+              maxLength={maxCharCount}
               minHeight={100}
               name='feed-submit-textarea'
               className='feed-submit__textarea-container'
-              value=''/>
-            { thumbnailSrc && <Image userCanRemove={true} imageSrc={thumbnailSrc} className='feed-submit__thumbnail' /> }
+              handleChange={(e) => { updateFeedText(e.target.value) }}
+              value={feedText}/>
+            {
+              thumbnailSrc &&
+              <Thumbnail
+                imageSrc={thumbnailSrc}
+                className='feed-submit__thumbnail' />
+            }
           </Accordion>
           <div className='feed-submit__bar row'>
-            <div className='col-xs-6 col-sm-8 align-middle' onClick={this.toggleBar}>
+            <div className='col-xs-6 col-sm-8 align-middle feed-submit__bar__container' onClick={this.toggleBar}>
               {
                 !isOpen
                 ? <p className='micro feed-submit__bar__text'>
                     write a message...
                   </p>
                 : <p className='micro feed-submit__bar__text feed-submit__bar__text--count'>
-                    Max 400 characters
+                    {charCount}
                   </p>
               }
             </div>
@@ -159,7 +212,7 @@ class FeedSubmitTile extends Component {
                   <TextButton
                     className='feed-submit__button'
                     text='send'
-                    onClick={() => {}}/>
+                    onClick={() => { submitFeedUpdate(feedText, feedFiles) }}/>
                 </div>
               </div>
             </div>
@@ -175,7 +228,8 @@ class FeedSubmitTile extends Component {
  *  @type {Object}
  */
 FeedSubmitTile.defaultProps = {
-  className: ''
+  className: '',
+  maxCharCount: 400
 }
 
 /**
@@ -191,7 +245,12 @@ FeedSubmitTile.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  thumbnailSrc: PropTypes.string
+  feedText: PropTypes.string,
+  submitFeedUpdate: PropTypes.func.isRequired,
+  addFeedMediaFiles: PropTypes.func.isRequired,
+  updateFeedText: PropTypes.func.isRequired,
+  charCount: PropTypes.number,
+  maxCharCount: PropTypes.number
 }
 
 /**

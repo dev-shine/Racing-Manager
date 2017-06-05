@@ -1,7 +1,13 @@
 import {
   FETCH_HORSE_INFO,
   RECEIVED_HORSE_INFO,
-  FAILED_TO_FETCH_HORSE_INFO
+  FAILED_TO_FETCH_HORSE_INFO,
+  POSTING_HORSE_UPDATE,
+  POSTED_HORSE_UPDATE,
+  FAILED_TO_POST_HORSE_UPDATE,
+  UPDATE_HORSE_TEXT,
+  ADD_HORSE_MEDIA_FILES,
+  CLEAR_HORSE_SUBMIT_DATA
 } from 'actions/horseoverview'
 
 /**
@@ -12,7 +18,12 @@ import {
 const initialState = {
   fetching: false,
   data: [],
-  error: false
+  error: false,
+  text: '',
+  maxCharCount: 400,
+  posting: false,
+  posted: false,
+  files: []
 }
 
 /**
@@ -47,6 +58,50 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetching: false,
         error: true
+      }
+
+    case UPDATE_HORSE_TEXT:
+      return {
+        ...state,
+        text: action.text
+      }
+
+    case ADD_HORSE_MEDIA_FILES:
+      return {
+        ...state,
+        files: action.files
+      }
+
+    case POSTING_HORSE_UPDATE:
+      return {
+        ...state,
+        posting: true,
+        posted: false
+      }
+
+    case POSTED_HORSE_UPDATE:
+      return {
+        ...state,
+        posting: false,
+        error: false,
+        posted: true,
+        text: '',
+        files: []
+      }
+
+    case FAILED_TO_POST_HORSE_UPDATE:
+      return {
+        ...state,
+        error: true,
+        posting: false,
+        posted: false
+      }
+
+    case CLEAR_HORSE_SUBMIT_DATA:
+      return {
+        ...state,
+        text: '',
+        files: []
       }
 
     default:

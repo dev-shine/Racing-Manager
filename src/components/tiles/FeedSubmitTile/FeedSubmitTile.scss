@@ -11,6 +11,10 @@ $thumbnail-size: 122px;
     }
   }
 
+  &__bar__container {
+    cursor: pointer;
+  }
+
   &__title {
     position: relative;
     width: 100%;

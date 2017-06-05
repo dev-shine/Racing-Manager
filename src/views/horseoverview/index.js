@@ -16,7 +16,12 @@ import TileGallery from 'components/tiles/FeedTiles/TileGallery'
 /**
  *  @module FeedSubmitTile
  */
-import FeedSubmitTile from 'components/tiles/FeedSubmitTile'
+import SubmitPost from 'containers/horseOverview/SubmitPost'
+
+/**
+ *  @module AjaxLoader
+ */
+import AjaxLoader from 'components/ajaxloader'
 
 /**
  *  @module fetchHorseInfo
@@ -36,15 +41,37 @@ export class HorseOverview extends Component {
    */
   constructor (props) {
     super(props)
+
+    // Bind custom fns
+    this.renderAjaxLoader = this.renderAjaxLoader.bind(this)
   }
 
   componentDidMount () {
     this.props.getHorseInfo()
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (this.props.posted !== nextProps.posted && nextProps.posted) {
+      this.props.getHorseInfo()
+    }
+  }
+
+  /**
+   *  renderAjaxLoader
+   *  @return {Component}
+   */
+  renderAjaxLoader () {
+    if (this.props.posting || this.props.fetching) {
+      return <AjaxLoader />
+    }
+
+    return null
+  }
+
   render () {
     const {
-      data
+      data,
+      match
     } = this.props
 
     return (
@@ -52,7 +79,8 @@ export class HorseOverview extends Component {
         <div className='container horse-overview__message-post'>
           <div className='row'>
             <div className='col-xs-12 col-sm-10 col-sm-push-1'>
-              <FeedSubmitTile />
+              <SubmitPost
+                horseId={match.params.name} />
             </div>
           </div>
         </div>
@@ -60,6 +88,7 @@ export class HorseOverview extends Component {
           <TileGallery
             tiles={data}/>
         </div>
+        { this.renderAjaxLoader() }
       </div>
     )
   }
@@ -73,11 +102,17 @@ export class HorseOverview extends Component {
  */
 const mapStateToProps = ({horseoverview}, ownProps) => {
   const {
-    data
+    data,
+    posting,
+    fetching,
+    posted
   } = horseoverview
 
   return {
-    data
+    data,
+    fetching,
+    posting,
+    posted
   }
 }
 
