@@ -97,7 +97,7 @@ class TextArea extends Component {
       type,
       placeholder,
       name,
-      value,
+      // value,
       error,
       className,
       modifier,
@@ -128,7 +128,7 @@ class TextArea extends Component {
           className='textarea'
           type={type}
           name={name}
-          //value={value}
+          // value={value}
           placeholder={placeholder}
           onSubmit={handleSubmit}
           onBlur={handleBlur}

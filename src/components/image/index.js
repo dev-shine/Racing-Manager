@@ -254,7 +254,8 @@ LazyImage.defaultProps = {
   isImage: false,
   alt: '',
   imageSrc: '',
-  forceShow: false
+  forceShow: false,
+  userCanRemove: false
 }
 
 /**
@@ -270,7 +271,8 @@ LazyImage.propTypes = {
   ]),
   isImage: PropTypes.bool,
   alt: PropTypes.string,
-  forceShow: PropTypes.bool
+  forceShow: PropTypes.bool,
+  userCanRemove: PropTypes.bool
 }
 
 export default LazyImage
