@@ -1,0 +1,7 @@
+.align-middle {
+  @include vertical-align();
+}
+
+.no-padding {
+  padding: 0 !important;
+}

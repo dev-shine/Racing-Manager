@@ -26,7 +26,7 @@ import cssAnimation from 'css-animation'
  *  @param  {Function} done
  *  @return {Function}
  */
-export const animate = (node, show, transitionName, done) => {
+export const animate = (node, show, transitionName, done, initial = false) => {
   /**
    *  @private
    *  @type {Number | NULL}
@@ -35,7 +35,7 @@ export const animate = (node, show, transitionName, done) => {
 
   return cssAnimation(node, transitionName, {
     start () {
-      if (!show) {
+      if (!show && !initial) {
         node.style.height = `${node.scrollHeight}px`
       } else {
         height = node.scrollHeight
@@ -47,7 +47,7 @@ export const animate = (node, show, transitionName, done) => {
     },
     end () {
       if (show) {
-        node.style.height = ''
+        node.style.height = 'auto'
       } else {
         node.style.height = 0
       }
@@ -65,7 +65,7 @@ export const animate = (node, show, transitionName, done) => {
 export const animation = prefixCls => {
   return {
     start (node, initialShow, done) {
-      return animate(node, initialShow, `${prefixCls}--noanim`, done)
+      return animate(node, initialShow, `${prefixCls}--noanim`, done, true)
     },
     enter (node, done) {
       return animate(node, true, `${prefixCls}--anim`, done)
@@ -180,7 +180,8 @@ Accordion.propTypes = {
  * Component Default Props
  */
 Accordion.defaultProps = {
-  className: ''
+  className: '',
+  isOpen: false
 }
 
 export default Accordion

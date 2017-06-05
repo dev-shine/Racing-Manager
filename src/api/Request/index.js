@@ -1,93 +1,58 @@
 /**
-* @module axios
-*/
-import axios from 'axios'
+ *  @module fetch
+ */
+import 'whatwg-fetch'
 
 /**
- * @type { String }
+ *  getQueryString
+ *  @param  {Object} params
+ *  @return {String}
  */
-const BASE_URL = ''
-
-// Set base url for axios
-axios.defaults.baseURL = BASE_URL
-
-// Set the default headers.
-axios.defaults.headers.common['Content-Type'] = 'application/json; charset=UTF-8'
-
-/**
- * @type { Object }
- */
-const defaultOpts = {
-  crossDomain: true
+const getQueryString = params => {
+  let esc = encodeURIComponent
+  return Object.keys(params)
+  .map(k => esc(k) + '=' + esc(params[k]))
+  .join('&')
 }
 
 /**
- * Initializes POST request using provided options
- * @param { Object} opts
- * @returns { Promise }
+ *  request
+ *  @param  {Object} params
+ *  @return {Promise}
  */
-export const post = (opts) => {
-  return request({
-    ...defaultOpts,
-    ...opts,
-    method: 'POST'
-  })
+const request = params => {
+  let method = params.method || 'GET'
+  let qs = ''
+  let body
+  let headers = params.headers || {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+
+  if (['GET', 'DELETE'].indexOf(method) > -1) {
+    qs = '?' + getQueryString(params.data)
+  } else { // POST or PUT
+    body = params.data
+  }
+
+  let url = params.url + qs
+
+  let opts = {
+    method,
+    body
+  }
+
+  // to make this work with multipart
+  if (params.noHeaders) {
+    opts.headers = headers
+  }
+
+  return fetch(url, opts)
+  .then(response => Promise.resolve(response.json()))
+  .catch(error => Promise.reject(error))
 }
 
-/**
- * Initializes PUT request using provided options
- * @param { Object} opts
- * @returns { Promise }
- */
-export const put = (opts) => {
-  return request({
-    ...defaultOpts,
-    ...opts,
-    method: 'PUT'
-  })
-}
-
-/**
- * Initializes GET request using provided options
- * @param { Object} opts
- * @returns { Promise }
- */
-export const get = (opts) => {
-  return request({
-    ...defaultOpts,
-    ...opts,
-    method: 'GET'
-  })
-}
-
-/**
- * Initializes DELETE request using provided options
- * @param { Object } opts
- * @returns { Promise }
- */
-export const del = opts => {
-  return request({
-    ...defaultOpts,
-    ...opts,
-    method: 'DELETE'
-  })
-}
-
-/**
- * Performs an axios request based on the provided options
- * @param { Object} opts
- * @returns { Promise }
- */
-const request = opts => {
-  return axios(opts)
-  .then(response => Promise.resolve(response.data))
-  .catch(err => {
-    if (err && err.response) {
-      return Promise.reject(err.response)
-    } else {
-      return Promise.reject(err.message)
-    }
-  })
-}
-
-export default request
+export const get = params => request(Object.assign({ method: 'GET' }, params))
+export const post = params => request(Object.assign({ method: 'POST' }, params))
+export const put = params => request(Object.assign({ method: 'PUT' }, params))
+export const del = params => request(Object.assign({ method: 'DELETE' }, params))

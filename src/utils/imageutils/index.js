@@ -39,3 +39,27 @@ export const isInViewport = (node, offset = 0) => {
     rect.left < (viewportWidth + offset)
   )
 }
+
+/**
+ *  generatethumbnailFromFiles
+ *  @param  {Array}  files
+ *  @return {Promise}
+ */
+export const generatethumbnailFromFiles = (files = []) => {
+  return new Promise((resolve, reject) => {
+    if (!files.length) {
+      const errorMsg = 'No files'
+      return reject(errorMsg)
+    }
+
+    // Create a new file reader for thumbnail previews.
+    const fileReader = new FileReader()
+
+    // When the file reader has loaded.
+    fileReader.onload = ({target}) => {
+      return resolve([target.result])
+    }
+
+    fileReader.readAsDataURL(files[0])
+  })
+}

@@ -12,7 +12,7 @@ $cta-active-bg: darken($cta-button-bg, 20);
   background: $cta-button-bg;
   text-transform: uppercase;
   transition: background .25s;
-  padding: 0 25px;
+  padding: 0 5px;
   @media (min-width: $screen-md) {
     height: $cta-button-height;
   }
@@ -55,5 +55,13 @@ $cta-active-bg: darken($cta-button-bg, 20);
   }
   &:disabled {
     background: $placeholder-color;
+  }
+
+  @media all and (min-width: $screen-xs) {
+    padding: 0 10px;
+  }
+
+  @media all and (min-width: $screen-sm) {
+    padding: 0 20px;
   }
 }
