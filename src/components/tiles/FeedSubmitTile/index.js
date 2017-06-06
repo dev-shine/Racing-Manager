@@ -191,6 +191,7 @@ class FeedSubmitTile extends Component {
    */
   handleThumbnailDelete () {
     this.props.deleteFeedThumbnail()
+    this.clearFileInputValue()
     this.setState({
       thumbnailSrc: ''
     })
