@@ -19,7 +19,8 @@ import processMediaPayload from 'utils/mediapayload'
 import {
   submitHorseUpdate,
   updateHorseText,
-  addHorseMediaFiles
+  addHorseMediaFiles,
+  deleteHorseMedia
 } from 'actions/horseoverview'
 
 /**
@@ -78,6 +79,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     addFeedMediaFiles: files => {
       dispatch(addHorseMediaFiles(files))
+    },
+    deleteFeedThumbnail: () => {
+      dispatch(deleteHorseMedia())
     }
   }
 }

@@ -31,7 +31,8 @@ import omit from 'utils/objectutils/omit'
 const Thumbnail = props => {
   const {
     className,
-    modifier
+    modifier,
+    handleDelete
   } = props
 
   // Container class names
@@ -42,7 +43,7 @@ const Thumbnail = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <div className='thumbnail__delete'>
+      <div className='thumbnail__delete' onClick={handleDelete}>
         <p className='micro'>x</p>
       </div>
       <Image
@@ -65,7 +66,8 @@ Thumbnail.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  handleDelete: PropTypes.func
 }
 
 /**

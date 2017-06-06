@@ -81,6 +81,7 @@ class FeedSubmitTile extends Component {
     this.focusTextField = this.focusTextField.bind(this)
     this.openBar = this.openBar.bind(this)
     this.closeBar = this.closeBar.bind(this)
+    this.handleThumbnailDelete = this.handleThumbnailDelete.bind(this)
   }
 
   componentWillReceiveProps (nextProps, nextState) {
@@ -184,6 +185,17 @@ class FeedSubmitTile extends Component {
     })
   }
 
+  /**
+   *  handleThumbnailDelete
+   *  @description Will call an action to delete the thumbnail and clear local state.
+   */
+  handleThumbnailDelete () {
+    this.props.deleteFeedThumbnail()
+    this.setState({
+      thumbnailSrc: ''
+    })
+  }
+
   render () {
     const {
       className,
@@ -223,6 +235,7 @@ class FeedSubmitTile extends Component {
             {
               thumbnailSrc &&
               <Thumbnail
+                handleDelete={this.handleThumbnailDelete}
                 imageSrc={thumbnailSrc}
                 className='feed-submit__thumbnail' />
             }

@@ -7,7 +7,8 @@ import {
   FAILED_TO_POST_HORSE_UPDATE,
   UPDATE_HORSE_TEXT,
   ADD_HORSE_MEDIA_FILES,
-  CLEAR_HORSE_SUBMIT_DATA
+  CLEAR_HORSE_SUBMIT_DATA,
+  DELETE_HORSE_MEDIA
 } from 'actions/horseoverview'
 
 /**
@@ -101,6 +102,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         text: '',
+        files: []
+      }
+    case DELETE_HORSE_MEDIA:
+      return {
+        ...state,
         files: []
       }
 
