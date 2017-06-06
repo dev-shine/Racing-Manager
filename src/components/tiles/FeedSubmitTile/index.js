@@ -215,6 +215,8 @@ class FeedSubmitTile extends Component {
 
     const modifiedClassNames = classNames('feed-submit', className, modifier)
 
+    const canSubmit = isOpen ? (feedText || feedFiles.length) : false
+
     return (
       <div className={modifiedClassNames}>
         <div className='feed-submit__title'>
@@ -269,7 +271,7 @@ class FeedSubmitTile extends Component {
                   <TextButton
                     className='feed-submit__button'
                     text='send'
-                    isDisabled={!isOpen}
+                    isDisabled={!canSubmit}
                     onClick={() => { submitFeedUpdate(feedText, feedFiles) }}/>
                 </div>
               </div>
