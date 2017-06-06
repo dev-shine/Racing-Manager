@@ -29,9 +29,11 @@ const Footer = props => {
     <footer className='footer'>
       <div className='row'>
         <div className='col-xs-12 col-sm-4 col-md-6 footer__left'>
-          <Image
-            className='footer__logo'
-            imageSrc={footerLogo} />
+          <a href='/'>
+            <Image
+              className='footer__logo'
+              imageSrc={footerLogo} />
+          </a>
         </div>
         <div className='col-xs-12 col-sm-8 col-md-6 footer__right'>
           <div className='footer__content col-sm-4 footer--text-center'>
