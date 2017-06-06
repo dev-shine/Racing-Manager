@@ -9,6 +9,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 /**
+ *  @module enhanceWithClickOutside
+ */
+import enhanceWithClickOutside from 'react-click-outside'
+
+/**
  * @module classNames
  */
 import classNames from 'utils/classnames'
@@ -73,6 +78,10 @@ class FeedSubmitTile extends Component {
     this.addAttachment = this.addAttachment.bind(this)
     this.clearData = this.clearData.bind(this)
     this.clearFileInputValue = this.clearFileInputValue.bind(this)
+    this.focusTextField = this.focusTextField.bind(this)
+    this.openBar = this.openBar.bind(this)
+    this.closeBar = this.closeBar.bind(this)
+    this.handleThumbnailDelete = this.handleThumbnailDelete.bind(this)
   }
 
   componentWillReceiveProps (nextProps, nextState) {
@@ -109,12 +118,47 @@ class FeedSubmitTile extends Component {
    *  @description Toggles visibilty of the text area
    */
   toggleBar () {
-    this.setState(state => ({
-      isOpen: !state.isOpen
-    }))
+    if (this.state.isOpen) {
+      this.closeBar()
+    } else {
+      this.openBar()
+    }
+  }
 
-    if (!this.state.isOpen) {
+  /**
+   *  openBar
+   */
+  openBar () {
+    this.setState({
+      isOpen: true
+    })
+
+    this.focusTextField()
+  }
+
+  /**
+   *  closeBar
+   */
+  closeBar () {
+    this.setState({
+      isOpen: false
+    })
+  }
+
+  /**
+   *  focusTextField
+   *  @description Focuses the text area.
+   *  @return {Void}
+   */
+  focusTextField () {
+    if (this.refs.textarea) {
       this.refs.textarea.focusField()
+    }
+  }
+
+  handleClickOutside () {
+    if (this.state.isOpen) {
+      this.closeBar()
     }
   }
 
@@ -141,6 +185,18 @@ class FeedSubmitTile extends Component {
     })
   }
 
+  /**
+   *  handleThumbnailDelete
+   *  @description Will call an action to delete the thumbnail and clear local state.
+   */
+  handleThumbnailDelete () {
+    this.props.deleteFeedThumbnail()
+    this.clearFileInputValue()
+    this.setState({
+      thumbnailSrc: ''
+    })
+  }
+
   render () {
     const {
       className,
@@ -159,6 +215,8 @@ class FeedSubmitTile extends Component {
     } = this.state
 
     const modifiedClassNames = classNames('feed-submit', className, modifier)
+
+    const canSubmit = isOpen ? (feedText || feedFiles.length) : false
 
     return (
       <div className={modifiedClassNames}>
@@ -180,12 +238,13 @@ class FeedSubmitTile extends Component {
             {
               thumbnailSrc &&
               <Thumbnail
+                handleDelete={this.handleThumbnailDelete}
                 imageSrc={thumbnailSrc}
                 className='feed-submit__thumbnail' />
             }
           </Accordion>
           <div className='feed-submit__bar row'>
-            <div className='col-xs-6 col-sm-8 align-middle feed-submit__bar__container' onClick={this.toggleBar}>
+            <div className='col-xs-6 col-sm-8 align-middle feed-submit__bar__container' onClick={this.openBar}>
               {
                 !isOpen
                 ? <p className='micro feed-submit__bar__text'>
@@ -202,6 +261,7 @@ class FeedSubmitTile extends Component {
                   <div className='align-middle feed-submit__text-container feed-submit__attachment'>
                     <i className='icon-paperclip'></i>
                     <input
+                      onClick={this.openBar}
                       onChange={this.addAttachment}
                       className='feed-submit__attachmentinput'
                       type='file'
@@ -212,6 +272,7 @@ class FeedSubmitTile extends Component {
                   <TextButton
                     className='feed-submit__button'
                     text='send'
+                    isDisabled={!canSubmit}
                     onClick={() => { submitFeedUpdate(feedText, feedFiles) }}/>
                 </div>
               </div>
@@ -256,4 +317,4 @@ FeedSubmitTile.propTypes = {
 /**
  *  @module FeedSubmitTile
  */
-export default FeedSubmitTile
+export default enhanceWithClickOutside(FeedSubmitTile)

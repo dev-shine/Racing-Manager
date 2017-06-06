@@ -24,15 +24,9 @@ import ImageTile from 'components/tiles/FeedTiles/ImageTile'
 import VideoTile from 'components/tiles/FeedTiles/VideoTile'
 
 /**
- *  @module MediaCarouselTile
- */
-// import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
-
-/**
  *  @module Block, Grid
  */
-// import { Block, Grid } from 'components/masonry'
-import StackGrid from 'react-stack-grid'
+import { Block, Grid } from 'components/masonry'
 
 /**
  *  @class
@@ -68,21 +62,6 @@ class TileGallery extends Component {
       )
     }
 
-    // Media carousel is messed up for the minute, damn SLiCK CAROUSEL
-    /*
-      // Render media carousel tile.
-      if (tile.attachment.length >= 2) {
-        return (
-          <MediaCarouselTile
-            key={`media-${tile.createdAt}`}
-            attachments={tile.attachment}
-            name='Andy Jones'
-            date={tile.createdAt}
-            text={tile.text} />
-        )
-      }
-    */
-
     // Render image tile.
     if (tile.attachment.length && tile.attachment[0].type === 'image') {
       return (
@@ -115,23 +94,9 @@ class TileGallery extends Component {
     } = this.props
 
     return (
-      <StackGrid
-        duration={200}
-        columnWidth={265}
-        gutterWidth={20}
-        gutterHeight={20}>
-        {
-          tiles.map(tile => {
-            return (
-              this.renderChildren(tile)
-            )
-          })
-        }
-      </StackGrid>
-    )
-    /*
-      return (
       <Grid
+        targetBlockWidth={265}
+        center={false}
         maxColumns={4}>
         {
           tiles.map(tile => {
@@ -144,7 +109,6 @@ class TileGallery extends Component {
         }
       </Grid>
     )
-    */
   }
 }
 

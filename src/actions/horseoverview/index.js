@@ -63,6 +63,12 @@ export const ADD_HORSE_MEDIA_FILES = 'ADD_MEDIA_FILES'
 export const CLEAR_HORSE_SUBMIT_DATA = 'CLEAR_HORSE_SUBMIT_DATA'
 
 /**
+ *  DELETE_HORSE_MEDIA
+ *  @type {String}
+ */
+export const DELETE_HORSE_MEDIA = 'DELETE_HORSE_MEDIA'
+
+/**
  *  gettingHorseInfo
  *  @return {Object}
  */
@@ -137,6 +143,14 @@ export const addHorseMediaFiles = files => ({
  */
 export const clearHorseSubmitData = () => ({
   type: CLEAR_HORSE_SUBMIT_DATA
+})
+
+/**
+ *  deleteHorseMedia
+ *  @return {Object}
+ */
+export const deleteHorseMedia = () => ({
+  type: DELETE_HORSE_MEDIA
 })
 
 /**
