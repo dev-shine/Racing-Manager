@@ -40,7 +40,8 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '/dist'),
-    filename: 'js/app.js'
+    filename: 'js/app.js',
+    publicPath: '/'
   },
   resolve: {
     alias: generateAliases('src')
