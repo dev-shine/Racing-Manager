@@ -53,7 +53,7 @@ import { generatethumbnailFromFiles } from 'utils/imageutils'
  *  @description File types allowed for uploading.
  *  @type {Array}
  */
-const allowedFileTypes = ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/quicktime', 'video/x-msvideo']
+const allowedFileTypes = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/quicktime', 'video/x-msvideo']
 
 /**
  *  @class

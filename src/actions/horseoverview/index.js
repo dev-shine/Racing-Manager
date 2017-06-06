@@ -9,6 +9,11 @@ import { get, post } from 'api/Request'
 import { MESSAGE } from 'api/ServiceTypes'
 
 /**
+ *  @module formatHorseData
+ */
+import { formatHorseData } from 'utils/horseutils'
+
+/**
  *  FETCH_HORSE_INFO
  *  @type {String}
  */
@@ -168,13 +173,14 @@ export const fetchHorseInfo = data => {
       data
     })
     .then(response => {
-      dispatch(receivedHorseInfo(response))
-      console.log(response)
+      // Format the response.
+      const formattedResponse = formatHorseData(response)
+
+      dispatch(receivedHorseInfo(formattedResponse))
       return Promise.resolve()
     })
     .catch(error => {
       dispatch(failedToGetHorseInfo())
-      console.log(error)
       return Promise.reject(error)
     })
   }

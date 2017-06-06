@@ -14,7 +14,8 @@
     opacity: 0;
     transition: opacity .2s ease-out;
     cursor: pointer;
-    
+    z-index: 2;
+
     p {
       color: $white;
      @include absolute-center();

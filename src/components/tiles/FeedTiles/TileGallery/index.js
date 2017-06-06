@@ -57,7 +57,7 @@ class TileGallery extends Component {
         <TextTile
           key={`text-${tile.createdAt}`}
           name='Andy Jones'
-          date={tile.createdAt}
+          date={tile.timeStamp}
           text={tile.text} />
       )
     }
@@ -69,7 +69,7 @@ class TileGallery extends Component {
           key={`image-${tile.createdAt}`}
           src={tile.attachment[0].path}
           name='Andy Jones'
-          date={tile.createdAt}
+          date={tile.timeStamp}
           text={tile.text} />
       )
     }
@@ -82,7 +82,7 @@ class TileGallery extends Component {
           src={tile.attachment[0].path}
           poster={tile.attachment[0].thumbnail}
           name='Andy Jones'
-          date={tile.createdAt}
+          date={tile.timeStamp}
           text={tile.text} />
       )
     }
