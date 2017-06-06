@@ -1,4 +1,4 @@
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon--"], [class*=" icon--"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'trmicons' !important;
   speak: none;
@@ -13,21 +13,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-paperclip:before {
+.icon--paperclip:before {
   content: "\e904";
   color: #a6a8ac;
 }
-.icon-leftarrow:before {
+.icon--leftarrow:before {
   content: "\e902";
 }
-.icon-rightarrow:before {
+.icon--rightarrow:before {
   content: "\e903";
 }
-.icon-heart:before {
+.icon--heart:before {
   content: "\e900";
   color: #818181;
 }
-.icon-comment:before {
+.icon--comment:before {
   content: "\e901";
   color: #818181;
 }

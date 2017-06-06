@@ -24,11 +24,11 @@ const TileFooter = props => {
   return (
     <div className={modifiedClassNames}>
       <div className='tile-footer__item'>
-        <span className='tile-footer__icon icon-heart micro'></span>
+        <span className='tile-footer__icon icon--heart micro'></span>
         <p className='tile-footer__text micro'>2</p>
       </div>
       <div className='tile-footer__item'>
-        <span className='tile-footer__icon icon-comment micro'></span>
+        <span className='tile-footer__icon icon--comment micro'></span>
         <p className='tile-footer__text micro'>10</p>
       </div>
     </div>

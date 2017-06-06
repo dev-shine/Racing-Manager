@@ -259,7 +259,7 @@ class FeedSubmitTile extends Component {
               <div className='row feed-submit__flex'>
                 <div className='no-padding col-xs-5 feed-submit__flex feed-submit__flex--align'>
                   <div className='align-middle feed-submit__text-container feed-submit__attachment'>
-                    <i className='icon-paperclip'></i>
+                    <i className='icon--paperclip'></i>
                     <input
                       onClick={this.openBar}
                       onChange={this.addAttachment}
