@@ -1,4 +1,21 @@
-footer {
+$footer-padding-top: 170px;
+
+.footer {
   height: $footer-height;
-  background: $eerie-black;
+  background-color: $eerie-black;
+  padding-top: $footer-padding-top;
+
+  &__left {
+
+  }
+
+  &__right {
+
+  }
+
+  &__logo {
+    position: relative;
+    width: 209px;
+    height: 75px;
+  }
 }

@@ -9,6 +9,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 /**
+ *  @module Image
+ */
+import Image from 'components/image'
+
+/**
+ *  @module footerLogo
+ */
+import { footerLogo } from 'assets/images'
+
+/**
  * Footer component
  * @param { Object } props
  * @returns { React.Component }
@@ -17,6 +27,14 @@ import PropTypes from 'prop-types'
 const Footer = props => {
   return (
     <footer className='footer'>
+      <div className='row'>
+        <div className='col-xs-12 col-sm-4 footer__left'>
+          <Image
+            className='footer__logo'
+            imageSrc={footerLogo} />
+        </div>
+        <div className='col-xs-12 col-sm-8 footer__right'></div>
+      </div>
     </footer>
   )
 }
