@@ -3,9 +3,9 @@
  *  @type {Object}
  */
 export const socialMediaLinks = {
-  facebook: '#',
-  twitter: '#',
-  pinterest: '#'
+  facebook: 'http://www.facebook.com',
+  twitter: 'http://www.twitter.com',
+  pinterest: 'http://www.pinterest.com'
 }
 
 /**
