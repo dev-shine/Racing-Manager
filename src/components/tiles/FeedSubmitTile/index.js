@@ -175,6 +175,9 @@ class FeedSubmitTile extends Component {
   addAttachment (e) {
     processFileUpload(e, allowedFileTypes)
     .then(files => {
+      // Open the bar to reveal text area
+      this.openBar()
+
       // Add the media files to the redux store.
       this.props.addFeedMediaFiles(files)
 
@@ -267,7 +270,6 @@ class FeedSubmitTile extends Component {
                     <Icon
                       modifier='paperclip' />
                     <input
-                      onClick={this.openBar}
                       onChange={this.addAttachment}
                       className='feed-submit__attachmentinput'
                       type='file'
