@@ -31,7 +31,7 @@ import { footerLogo } from 'assets/images'
  */
 const Footer = props => {
   return (
-    <footer className='footer'>
+    <footer className='footer wave-bg-blue'>
       <div className='row'>
         <div className='col-xs-12 col-sm-4 col-md-6 footer__left'>
           <a href='/'>
