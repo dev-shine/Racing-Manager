@@ -24,6 +24,11 @@ import Slider from 'react-slick'
 import Image from 'components/image'
 
 /**
+ *  @module Icon
+ */
+import Icon from 'components/icon'
+
+/**
  *  @module images
  */
 import * as partnerImages from 'assets/home/partners'
@@ -38,7 +43,8 @@ const Arrow = props => {
     <div
       className={_className}
       onClick={onClick}>
-      <i className='icon--leftarrow' />
+      <Icon
+        modifier='leftarrow' />
     </div>
   )
 }

@@ -54,6 +54,11 @@ import TileVideoContent from 'components/tiles/FeedTiles/TileVideoContent'
 import Slider from 'react-slick'
 
 /**
+ *  @module Icon
+ */
+import Icon from 'components/icon'
+
+/**
  *  createSlides
  *  @param  {Array} images
  *  @param  {Array} videos
@@ -99,13 +104,14 @@ const SlideArrow = ({className, modifier, onClick}) => {
 
   // classnames for determining the correct arrow to show.
   const arrowClassNames = baseClassNames({
-    'icon--leftarrow': modifier === 'left',
-    'icon--rightarrow': modifier === 'right'
+    'leftarrow': modifier === 'left',
+    'rightarrow': modifier === 'right'
   })
 
   return (
     <div className={modifiedClassNames} onClick={onClick}>
-      <span className={arrowClassNames}></span>
+      <Icon
+        modifier={arrowClassNames}/>
     </div>
   )
 }

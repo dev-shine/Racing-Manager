@@ -44,6 +44,11 @@ import Thumbnail from 'components/thumbnail'
 import processFileUpload from 'utils/processfileupload'
 
 /**
+ *  @module Icon
+ */
+import Icon from 'components/icon'
+
+/**
  *  @module generatethumbnailFromFiles
  */
 import { generatethumbnailFromFiles } from 'utils/imageutils'
@@ -259,7 +264,8 @@ class FeedSubmitTile extends Component {
               <div className='row feed-submit__flex'>
                 <div className='no-padding col-xs-5 feed-submit__flex feed-submit__flex--align'>
                   <div className='align-middle feed-submit__text-container feed-submit__attachment'>
-                    <i className='icon--paperclip'></i>
+                    <Icon
+                      modifier='paperclip' />
                     <input
                       onClick={this.openBar}
                       onChange={this.addAttachment}
