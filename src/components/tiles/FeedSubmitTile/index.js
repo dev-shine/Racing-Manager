@@ -230,7 +230,7 @@ class FeedSubmitTile extends Component {
       <div className={modifiedClassNames}>
         <div className='feed-submit__title'>
           <p className='micro'>
-            post an update to the syndicate
+            post an update to the horse
           </p>
         </div>
         <div className='feed-submit__bar-container'>
