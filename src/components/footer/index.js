@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import Image from 'components/image'
 
 /**
+ *  @module SocialIconsList
+ */
+import SocialIconsList from 'components/socialmedia/SocialIconsList'
+
+/**
  *  @module footerLogo
  */
 import { footerLogo } from 'assets/images'
@@ -91,6 +96,8 @@ const Footer = props => {
           <div className='footer__content col-sm-4 footer--text-center'>
             <h3>Follow us</h3>
             <span className='footer__break'></span>
+            <SocialIconsList
+              socialIconNames={['facebook', 'twitter', 'pinterest']}/>
           </div>
         </div>
       </div>

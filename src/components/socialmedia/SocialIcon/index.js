@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+ * @module getSocialMediaLinks
+ */
+import { getSocialMediaLinks } from 'utils/socialmedia'
+
+/**
  *  SocialIcon
  *  @param  {Object} props
  *  @return {React.Component}
@@ -31,7 +36,7 @@ const SocialIcon = props => {
   const modifiedIconClassNames = classNames('icon', '', modifier)
 
   return (
-    <a className={modifiedClassNames} target='_blank'>
+    <a className={modifiedClassNames} target='_blank' href={getSocialMediaLinks(modifier)}>
       <span className={modifiedIconClassNames}></span>
     </a>
   )
@@ -46,10 +51,7 @@ SocialIcon.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  modifier: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ])
+  modifier: PropTypes.string
 }
 
 /**

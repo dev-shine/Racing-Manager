@@ -1,10 +1,17 @@
 $footer-padding-top: 170px;
+$footer-padding-right: 20px;
+$footer-padding-bottom: 40px;
 
 .footer {
   min-height: $footer-height;
   background-color: $eerie-black;
   padding-top: $footer-padding-top;
-  padding-right: 20px;
+  padding-right: $footer-padding-right;
+  padding-bottom: $footer-padding-bottom;
+
+  @media all and (max-width: $screen-sm-max) {
+    padding-top: $footer-padding-bottom;
+  }
 
   &--text-center{
     text-align: center;
@@ -19,7 +26,7 @@ $footer-padding-top: 170px;
   }
 
   &__content {
-    padding-top: 20px;
+    padding-top: 40px;
 
     @media all and (min-width: $screen-sm-min) {
       padding-top: 0;
