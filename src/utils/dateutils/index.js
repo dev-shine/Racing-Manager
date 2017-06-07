@@ -11,8 +11,8 @@ import moment from 'moment'
  *  @return {String}
  */
 export const timestampToFeedTimestamp = ts => {
-  let now = moment()
-  let earliest = moment(ts)
+  let now = moment().startOf('day')
+  let earliest = moment(ts).startOf('day')
   const diff = now.diff(earliest, 'days')
 
   return diff <= 0 ? 'Today' : diff === 1 ? `${diff} day ago` : `${diff} days ago`

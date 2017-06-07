@@ -24,6 +24,11 @@ import ImageTile from 'components/tiles/FeedTiles/ImageTile'
 import VideoTile from 'components/tiles/FeedTiles/VideoTile'
 
 /**
+ *  @module MediaCarouselTile
+ */
+import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
+
+/**
  *  @module Block, Grid
  */
 import { Block, Grid } from 'components/masonry'
@@ -59,6 +64,17 @@ class TileGallery extends Component {
           name='Andy Jones'
           date={tile.timeStamp}
           text={tile.text} />
+      )
+    }
+
+    if (tile.attachment.length >= 2) {
+      return (
+        <MediaCarouselTile
+          key={`iv-${tile.createdAt}`}
+          name='Andy Jones'
+          date={tile.timeStamp}
+          text={tile.text}
+          attachments={tile.attachment}/>
       )
     }
 
