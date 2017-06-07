@@ -39,8 +39,8 @@ const SocialIconsList = props => {
   return (
     <div className={modifiedClassNames}>
       {
-        socialIconNames.map(icon => {
-          return <SocialIcon className='social-icons-list__icon' modifier={icon} />
+        socialIconNames.map((icon, index) => {
+          return <SocialIcon key={index} className='social-icons-list__icon' modifier={icon} />
         })
       }
     </div>
