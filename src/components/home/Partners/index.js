@@ -38,7 +38,7 @@ const Arrow = props => {
     <div
       className={_className}
       onClick={onClick}>
-      <i className='icon-leftarrow' />
+      <i className='icon--leftarrow' />
     </div>
   )
 }

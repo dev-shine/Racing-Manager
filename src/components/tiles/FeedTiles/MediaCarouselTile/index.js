@@ -99,8 +99,8 @@ const SlideArrow = ({className, modifier, onClick}) => {
 
   // classnames for determining the correct arrow to show.
   const arrowClassNames = baseClassNames({
-    'icon-leftarrow': modifier === 'left',
-    'icon-rightarrow': modifier === 'right'
+    'icon--leftarrow': modifier === 'left',
+    'icon--rightarrow': modifier === 'right'
   })
 
   return (
