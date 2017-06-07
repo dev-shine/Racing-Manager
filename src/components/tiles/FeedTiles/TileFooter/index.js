@@ -9,6 +9,11 @@ import React from 'react' // eslint-disable-line no-unused-vars
 import PropTypes from 'prop-types'
 
 /**
+ *  @module Icon
+ */
+// import Icon from 'components/icon'
+
+/**
  * @module classNames
  */
 // import classNames from 'utils/classnames'
@@ -20,22 +25,28 @@ const TileFooter = props => {
     modifier
   } = props
   */
+
   // const modifiedClassNames = classNames('tile-footer', className, modifier)
 
   return (
     null
   )
 
-  // Uncomment this when we need them!!!
+ // Uncomment this when we need them!!!
+
  /*
  return (
     <div className={modifiedClassNames}>
       <div className='tile-footer__item'>
-        <span className='tile-footer__icon icon--heart micro'></span>
+        <Icon
+          className='tile-footer__icon micro'
+          modifier='heart' />
         <p className='tile-footer__text micro'>0</p>
       </div>
       <div className='tile-footer__item'>
-        <span className='tile-footer__icon icon--comment micro'></span>
+        <Icon
+          className='tile-footer__icon micro'
+          modifier='comment' />
         <p className='tile-footer__text micro'>0</p>
       </div>
     </div>

@@ -14,34 +14,21 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module Icon
- */
-import Icon from 'components/icon'
-
-/**
- * @module getSocialMediaLinks
- */
-import { getSocialMediaLinks } from 'utils/socialmedia'
-
-/**
- *  SocialIcon
+ *  Icon
  *  @param  {Object} props
  *  @return {React.Component}
  */
-const SocialIcon = props => {
+const Icon = props => {
   const {
     className,
     modifier
   } = props
 
-  // Construct class names.
-  const modifiedClassNames = classNames('social-icon', className)
+  // Get the correct social icon depending on the modifier.
+  const modifiedClassNames = classNames('icon', className, modifier)
 
   return (
-    <a className={modifiedClassNames} target='_blank' href={getSocialMediaLinks(modifier)}>
-      <Icon
-        modifier={modifier} />
-    </a>
+    <i className={modifiedClassNames}></i>
   )
 }
 
@@ -49,7 +36,7 @@ const SocialIcon = props => {
  *  propTypes
  *  @type {Object}
  */
-SocialIcon.propTypes = {
+Icon.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -61,11 +48,11 @@ SocialIcon.propTypes = {
  *  defaultProps
  *  @type {Object}
  */
-SocialIcon.defaultProps = {
+Icon.defaultProps = {
   className: ''
 }
 
 /**
- *  @module SocialIcon
+ *  @module Icon
  */
-export default SocialIcon
+export default Icon
