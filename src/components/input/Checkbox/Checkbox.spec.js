@@ -4,7 +4,6 @@ import Checkbox from './index'
 import chai, { expect } from 'chai'
 import { shallow } from 'enzyme'
 import chaiEnzyme from 'chai-enzyme'
-import { spy } from 'sinon'
 
 chai.use(chaiEnzyme())
 
@@ -62,13 +61,15 @@ describe('Components - Checkbox', () => {
 
   it('should contain the checked state passed to it from "checked" prop (true)', () => {
     const value = true
-    wrapper.setProps({ value })
+    const handleChange = () => {}
+    wrapper.setProps({ value, handleChange })
     expect(wrapper.find('.checkbox__input')).to.be.checked()
   })
 
   it('should contain the checked state passed to it from "checked" prop (false)', () => {
     const value = false
-    wrapper.setProps({ value })
+    const handleChange = () => {}
+    wrapper.setProps({ value, handleChange })
     expect(wrapper.find('.checkbox__input')).to.not.be.checked()
   })
 })
