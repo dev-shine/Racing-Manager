@@ -63,7 +63,8 @@ class TileGallery extends Component {
           key={`text-${tile.createdAt}`}
           name='Andy Jones'
           date={tile.timeStamp}
-          text={tile.text} />
+          text={tile.text}
+          onClick={this.props.onClick} />
       )
     }
 
@@ -74,7 +75,8 @@ class TileGallery extends Component {
           name='Andy Jones'
           date={tile.timeStamp}
           text={tile.text}
-          attachments={tile.attachment}/>
+          attachments={tile.attachment}
+          onClick={this.props.onClick} />
       )
     }
 
@@ -86,7 +88,8 @@ class TileGallery extends Component {
           src={tile.attachment[0].path}
           name='Andy Jones'
           date={tile.timeStamp}
-          text={tile.text} />
+          text={tile.text}
+          onClick={this.props.onClick} />
       )
     }
 
@@ -99,7 +102,8 @@ class TileGallery extends Component {
           poster={tile.attachment[0].thumbnail}
           name='Andy Jones'
           date={tile.timeStamp}
-          text={tile.text} />
+          text={tile.text}
+          onClick={this.props.onClick} />
       )
     }
   }
@@ -133,7 +137,8 @@ class TileGallery extends Component {
  *  @type {Object}
  */
 TileGallery.propTypes = {
-  tiles: PropTypes.array
+  tiles: PropTypes.array,
+  onClick: PropTypes.func
 }
 
 /**

@@ -4,14 +4,22 @@
 import React, { Component } from 'react'
 
 /**
- *  @module enhanceWithClickOutside
- */
-import enhanceWithClickOutside from 'react-click-outside'
-
-/**
  *  @module CloseButton
  */
 import CloseButton from 'components/buttons/CloseButton'
+
+/**
+ *  @module CSSTransition group
+ */
+import { CSSTransitionGroup } from 'react-transition-group'
+
+/**
+ *  @module addClass, removeClass
+ */
+import {
+  addClass,
+  removeClass
+} from 'utils/domutils'
 
 /**
  *  @name BasePopupHoc
@@ -31,21 +39,65 @@ const BasePopupHoc = WrappedComponent => {
      */
     constructor (props) {
       super(props)
+
+      this.state = {
+        isOpen: true
+      }
+
+      this.onClick = this.onClick.bind(this)
+    }
+
+    componentDidMount () {
+      addClass(document.body, 'model-open')
+    }
+
+    onClick () {
+      this.setState(state => ({
+        isOpen: !state.isOpen
+      }))
+
+      if (this.state.isOpen) {
+        removeClass(document.body, 'model-open')
+      }
+
+      if (this.props.onClick) {
+        this.props.onClick()
+      }
+    }
+
+    /**
+     *  @name renderChildren
+     *  @return {React.Component || NULL }
+     */
+    renderChildren () {
+      if (this.state.isOpen) {
+        return (
+          <div className='popup'>
+            <div className='popup__bg' onClick={this.onClick}></div>
+            <div className='popup__container col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2'>
+              <CloseButton className='popup__closebutton' onClick={this.onClick} />
+              <WrappedComponent {...this.props} />
+            </div>
+          </div>
+        )
+      } else {
+        return null
+      }
     }
 
     render () {
       return (
-        <div className='popup'>
-          <div className='popup__container col-xs-12 col-sm-6 col-sm-push-3 col-md-8 col-md-push-2'>
-            <CloseButton className='popup__closebutton' onClick={this.props.onClick} />
-            <WrappedComponent {...this.props} />
-          </div>
-        </div>
+        <CSSTransitionGroup
+          transitionName="fade-in"
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}>
+            { this.renderChildren() }
+        </CSSTransitionGroup>
       )
     }
   }
 
-  return enhanceWithClickOutside(BasePopup)
+  return BasePopup
 }
 
 /**

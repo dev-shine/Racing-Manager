@@ -34,11 +34,15 @@ const BaseTileHoc = WrappedComponent => {
     }
 
     render () {
+      const {
+        className
+      } = this.props
+
       /**
        *  @description If large is passed in as a prop, double the size.
        *  @type {[type]}
        */
-      const modifiedClassNames = baseClassNames('base-tile')
+      const modifiedClassNames = baseClassNames('base-tile', className)
 
       return (
         <div className={modifiedClassNames} style={{...this.props.style}}>

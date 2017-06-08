@@ -161,6 +161,10 @@ class FeedSubmitTile extends Component {
     }
   }
 
+  /**
+   *  handleClickOutside
+   *  @description Custom fn from enhanceClickOutside
+   */
   handleClickOutside () {
     if (this.state.isOpen) {
       this.closeBar()

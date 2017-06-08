@@ -94,7 +94,8 @@ export class HorseOverview extends Component {
             tiles={data}/>
         </div>
         { this.renderAjaxLoader() }
-        <FeedTilesPopup />
+        <FeedTilesPopup
+          tile={data.length ? data[0] : null} />
       </div>
     )
   }
