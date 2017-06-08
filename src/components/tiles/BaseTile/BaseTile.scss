@@ -9,4 +9,10 @@
     min-height: $min-tile-height;
     box-shadow: $tile-box-shadow;
   }
+
+  &--no-box-shadow {
+    .base-tile__content {
+      box-shadow: none;
+    }
+  }
 }

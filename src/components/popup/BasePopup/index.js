@@ -74,9 +74,11 @@ const BasePopupHoc = WrappedComponent => {
         return (
           <div className='popup'>
             <div className='popup__bg' onClick={this.onClick}></div>
-            <div className='popup__container col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2'>
-              <CloseButton className='popup__closebutton' onClick={this.onClick} />
-              <WrappedComponent {...this.props} />
+            <div className='popup__wrapper col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2'>
+              <div className='popup__container'>
+                <CloseButton className='popup__closebutton' onClick={this.onClick} />
+                <WrappedComponent {...this.props} />
+              </div>
             </div>
           </div>
         )
