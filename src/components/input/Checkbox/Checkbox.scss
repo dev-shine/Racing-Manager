@@ -32,7 +32,7 @@
     }
   }
 
-  &__input-element:checked + &__element {
+  &__input:checked + &__element {
     border-color: $vanilla-ice;
     background: $vanilla-ice;
   }
