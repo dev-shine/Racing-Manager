@@ -1,37 +1,43 @@
 .checkbox {
+  $size: 20px;
   position: relative;
-  margin-bottom: 20px;
-  cursor: pointer;
-  &__input-element {
-    width: 20px;
-    height: 20px;
-    border: 2px solid $placeholder-color;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    overflow: hidden;
-    cursor: pointer;
-    transition: background .25s;
-    &:before {
-      content: "";
-      background: white;
-      width: 13px;
-      height: 2px;
-      @include absolute-center(rotate(-45deg));
-    }
-    &:checked {
-      border-color: $vanilla-ice;
-      background: $vanilla-ice;
-    }
-  }
+
   &__label {
     padding-left: 45px;
     font-size: $tiny-text;
     font-weight: 400;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__element {
+    cursor: pointer;
+    width: $size;
+    height: $size;
+    border: 2px solid $placeholder-color;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transition: background .25s;
+
     &:before {
-      width: 22px;
-      height: 22px;
-      border-radius: 5px;
+      content: '';
+      background: #fff;
+      width: 13px;
+      height: 2px;
+      @include absolute-center(rotate(-45deg));
     }
+  }
+
+  &__input-element:checked + &__element {
+    border-color: $vanilla-ice;
+    background: $vanilla-ice;
+  }
+
+  ~ .checkbox {
+    margin-top: 20px;
   }
 }
