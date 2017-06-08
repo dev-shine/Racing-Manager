@@ -40,14 +40,18 @@ const Checkbox = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <input
-        type='checkbox'
-        id={name}
-        value={false}
-        className='checkbox__input-element'
-        onChange={handleChange}
-        checked={value} />
-      <label htmlFor={name} className='checkbox__label'>{label}</label>
+      <label htmlFor={name} className='checkbox__label'>
+        <input
+          type='checkbox'
+          id={name}
+          value={false}
+          className='checkbox__input'
+          onChange={handleChange}
+          checked={value}
+        />
+        <div className='checkbox__element' />
+        {label}
+      </label>
     </div>
   )
 }
@@ -58,10 +62,10 @@ const Checkbox = props => {
  */
 Checkbox.propTypes = {
   label: PropTypes.oneOfType([
-    PropTypes.element.isRequired,
-    PropTypes.node.isRequired,
-    PropTypes.string.isRequired
-  ]),
+    PropTypes.element,
+    PropTypes.node,
+    PropTypes.string
+  ]).isRequired,
   name: PropTypes.string.isRequired,
   modifier: PropTypes.oneOfType([
     PropTypes.string,
