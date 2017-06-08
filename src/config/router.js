@@ -6,7 +6,12 @@ import React from 'react'
 /**
  * @module react-router-dom
  */
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Routes, Switch } from 'react-router-dom'
+
+/**
+ * @module ScrollTop
+ */
+import ScrollTop from 'utils/scrolltop'
 
 /**
  * @module Main
@@ -32,13 +37,15 @@ import HorseOverview from 'views/horseoverview'
  * App router
  */
 const router = (
-  <Router>
-    <Switch>
-      <Main exact path='/' component={Home} />
-      <Main exact path='/register' component={Register} />
-      <Main exact path='/horse/:name' component={HorseOverview} />
-    </Switch>
-  </Router>
+  <Routes>
+    <ScrollTop>
+      <Switch>
+        <Main exact path='/' component={Home} />
+        <Main exact path='/register' component={Register} />
+        <Main exact path='/horse/:name' component={HorseOverview} />
+      </Switch>
+    </ScrollTop>
+  </Routes>
 )
 
 /**
