@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module basePopupTile
+ */
+import basePopupTile from 'components/tiles/BasePopupTile'
+
+/**
  *  @module TileHeader
  */
 import TileHeader from 'components/tiles/FeedTiles/TileHeader'
@@ -106,4 +111,4 @@ VideoPopupTile.defaultProps = {
 /**
  *  @module VideoPopupTile
  */
-export default VideoPopupTile
+export default basePopupTile(VideoPopupTile)

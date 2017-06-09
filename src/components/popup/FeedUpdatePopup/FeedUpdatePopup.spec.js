@@ -4,24 +4,24 @@
 import React from 'react'
 
 /**
- *  @module TextTile
+ *  @module TextPopupTile
  */
-import TextTile from 'components/tiles/FeedTiles/TextTile'
+import TextPopupTile from 'components/tiles/FeedPopupTiles/TextPopupTile'
 
 /**
- *  @module ImageTiles
+ *  @module ImagePopupTile
  */
-import ImageTile from 'components/tiles/FeedTiles/ImageTile'
+import ImagePopupTile from 'components/tiles/FeedPopupTiles/ImagePopupTile'
 
 /**
- *  @module VideoTile
+ *  @module VideoPopupTile
  */
-import VideoTile from 'components/tiles/FeedTiles/VideoTile'
+import VideoPopupTile from 'components/tiles/FeedPopupTiles/VideoPopupTile'
 
 /**
- *  @module MediaCarouselTile
+ *  @module MediaCarouselPopupTile
  */
-import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
+import MediaCarouselPopupTile from 'components/tiles/FeedPopupTiles/MediaCarouselPopupTile'
 
 /**
  *  @module SubmitPost
@@ -71,23 +71,23 @@ describe('Components - FeedUpdatePopup', () => {
 
   it('should not render any tiles', () => {
     expect(wrapper.containsAnyMatchingElements([
-      TextTile,
-      ImageTile,
-      VideoTile,
-      MediaCarouselTile
+      TextPopupTile,
+      ImagePopupTile,
+      VideoPopupTile,
+      MediaCarouselPopupTile
     ])).to.equal(false)
   })
 
-  it('should render a <TextTile/> component if props with text entry and postType equal to text is defined', () => {
+  it('should render a <TextPopupTile/> component if props with text entry and postType equal to text is defined', () => {
     const tile = {
       postType: 'text',
       text: 'hello'
     }
     wrapper.setProps({ tile })
-    expect(wrapper.find(TextTile)).to.have.length(1)
+    expect(wrapper.find(TextPopupTile)).to.have.length(1)
   })
 
-  it('should render an <ImageTile/> component if props with attachment entry and postType equal to image is defined', () => {
+  it('should render an <ImagePopupTile/> component if props with attachment entry and postType equal to image is defined', () => {
     const tile = {
       postType: 'image',
       attachment: [{
@@ -95,10 +95,10 @@ describe('Components - FeedUpdatePopup', () => {
       }]
     }
     wrapper.setProps({ tile })
-    expect(wrapper.find(ImageTile)).to.have.length(1)
+    expect(wrapper.find(ImagePopupTile)).to.have.length(1)
   })
 
-  it('should render an <VideoTile/> component if props with attachment entry and postType equal to video is defined', () => {
+  it('should render an <VideoPopupTile/> component if props with attachment entry and postType equal to video is defined', () => {
     const tile = {
       postType: 'video',
       attachment: [{
@@ -106,10 +106,10 @@ describe('Components - FeedUpdatePopup', () => {
       }]
     }
     wrapper.setProps({ tile })
-    expect(wrapper.find(VideoTile)).to.have.length(1)
+    expect(wrapper.find(VideoPopupTile)).to.have.length(1)
   })
 
-  it('should render an <MediaCarouselTile/> component if props with attachment entry and postType equal to multiplemedia is defined', () => {
+  it('should render an <MediaCarouselPopupTile/> component if props with attachment entry and postType equal to multiplemedia is defined', () => {
     const tile = {
       postType: 'multiplemedia',
       attachment: [{
@@ -122,6 +122,6 @@ describe('Components - FeedUpdatePopup', () => {
       }]
     }
     wrapper.setProps({ tile })
-    expect(wrapper.find(MediaCarouselTile)).to.have.length(1)
+    expect(wrapper.find(MediaCarouselPopupTile)).to.have.length(1)
   })
 })

@@ -14,9 +14,9 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module baseClassNames
+ *  @module basePopupTile
  */
-import baseClassNames from 'classnames'
+import basePopupTile from 'components/tiles/BasePopupTile'
 
 /**
  *  @module TileHeader
@@ -44,14 +44,9 @@ import TileImageContent from 'components/tiles/FeedTiles/TileImageContent'
 import TileVideoContent from 'components/tiles/FeedTiles/TileVideoContent'
 
 /**
- * @module Slider
+ *  @module TileMediaContent
  */
-import Slider from 'react-slick'
-
-/**
- *  @module Icon
- */
-import Icon from 'components/icon'
+import TileMediaContent from 'components/tiles/FeedTiles/TileMediaContent'
 
 /**
  *  createSlides
@@ -64,51 +59,28 @@ export const createSlides = (attachments = [], rootPath) => {
   return attachments.map((attachment, index) => {
     if (attachment.type === 'video') {
       return (
-        <div className='multiple-tile__slidercontainer' key={`mvideo-${index}`}>
+        <div key={`mvideo-${index}`}>
           <TileVideoContent
+            modifier={['no-margin-bottom']}
             rootPath={rootPath}
-            className='multiple-tile__slide'
+            className='multiple-popup-tile__slide'
             poster={attachment.thumbnail}
             src={attachment.path}/>
         </div>
       )
     } else {
       return (
-        <div className='multiple-tile__slidercontainer' key={`mimg-${index}`}>
+        <div key={`mimg-${index}`}>
           <TileImageContent
+            modifier={['no-margin-bottom', 'video-aspect']}
             rootPath={rootPath}
-            className='multiple-tile__slide'
+            className='multiple-popup-tile__slide'
             src={attachment.path}
             alt={'Horse racing'} />
         </div>
       )
     }
   })
-}
-
-/**
- *  SlideArrow
- *  @param  {String} options.className
- *  @param  {String} options.modifier
- *  @param  {Function} options.onClick
- *  @return {Component}
- */
-const SlideArrow = ({className, modifier, onClick}) => {
-  // class names for the container
-  const modifiedClassNames = classNames('multiple-tile__slider__arrow', className, modifier)
-
-  // classnames for determining the correct arrow to show.
-  const arrowClassNames = baseClassNames({
-    'leftarrow': modifier === 'left',
-    'rightarrow': modifier === 'right'
-  })
-
-  return (
-    <div className={modifiedClassNames} onClick={onClick}>
-      <Icon
-        modifier={arrowClassNames}/>
-    </div>
-  )
 }
 
 /**
@@ -123,45 +95,6 @@ class MediaCarouselPopupTile extends Component {
    */
   constructor (props) {
     super(props)
-
-    // Store the slider in a ref
-    this.slideRef = null
-
-    // Bind custom fns
-    this.slidePrev = this.slidePrev.bind(this)
-    this.slideNext = this.slideNext.bind(this)
-  }
-
-  /**
-   *  slidePrev
-   *  @description Slides to the previous slide in the carousel
-   */
-  slidePrev (event) {
-    if (!this.slideRef) {
-      return false
-    }
-
-    if (event) {
-      event.stopPropagation()
-    }
-
-    this.slideRef.slickPrev()
-  }
-
-  /**
-   *  slideNext
-   *  @description Slides to the next slide in the carousel
-   */
-  slideNext (event) {
-    if (!this.slideRef) {
-      return false
-    }
-
-    if (event) {
-      event.stopPropagation()
-    }
-
-    this.slideRef.slickNext()
   }
 
   render () {
@@ -179,24 +112,9 @@ class MediaCarouselPopupTile extends Component {
 
     return (
       <div className={modifiedClassNames}>
-        <div className='multiple-tile__slider'>
-          <Slider
-            ref={ref => { this.slideRef = ref }}
-            className='multiple-tile__slider-wrapper'
-            initialSlide={0}
-            infinite={false}
-            dots={false}
-            fade={false}
-            autoplay={false}
-            slidesToShow={1}
-            arrows={false}
-            speed={400}
-            slidesToScroll={1}>
-            {createSlides(attachments, rootPath)}
-          </Slider>
-          <SlideArrow modifier='left' onClick={this.slidePrev} />
-          <SlideArrow modifier='right' onClick={this.slideNext} />
-        </div>
+        <TileMediaContent>
+          {createSlides(attachments, rootPath)}
+        </TileMediaContent>
         <div className='col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 multiple-popup-tile__container'>
           <TileHeader
             name={name}
@@ -250,4 +168,4 @@ MediaCarouselPopupTile.defaultProps = {
 /**
  *  @module MediaCarouselPopupTile
  */
-export default MediaCarouselPopupTile
+export default basePopupTile(MediaCarouselPopupTile)

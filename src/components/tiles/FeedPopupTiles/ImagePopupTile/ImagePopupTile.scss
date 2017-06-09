@@ -1,11 +1,4 @@
 .image-popup-tile {
-  position: relative;
-  box-shadow: $tile-box-shadow-bottom;
-  width: 100%;
-  padding-bottom: 20px;
-  background-color: $white;
-  @include clearfix();
-
   &__container {
     position: relative;
   }

@@ -13,4 +13,12 @@
     height: 100%;
     background-size: cover;
   }
+
+  &--video-aspect {
+    padding-bottom: $video-aspect-ratio;
+  }
+
+  &--no-margin-bottom {
+    margin-bottom: 0;
+  }
 }

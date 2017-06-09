@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module basePopupTile
+ */
+import basePopupTile from 'components/tiles/BasePopupTile'
+
+/**
  *  @module TileHeader
  */
 import TileHeader from 'components/tiles/FeedTiles/TileHeader'
@@ -91,4 +96,4 @@ TextPopupTile.defaultProps = {
 /**
  *  @module TextPopupTile
  */
-export default TextPopupTile
+export default basePopupTile(TextPopupTile)

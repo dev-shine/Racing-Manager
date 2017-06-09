@@ -44,14 +44,9 @@ import TileImageContent from 'components/tiles/FeedTiles/TileImageContent'
 import TileVideoContent from 'components/tiles/FeedTiles/TileVideoContent'
 
 /**
- * @module Slider
+ *  @module TileMediaContent
  */
-import Slider from 'react-slick'
-
-/**
- *  @module CarouselArrow
- */
-import CarouselArrow from 'components/buttons/CarouselArrow'
+import TileMediaContent from 'components/tiles/FeedTiles/TileMediaContent'
 
 /**
  *  createSlides
@@ -64,20 +59,18 @@ export const createSlides = (attachments = [], rootPath) => {
   return attachments.map((attachment, index) => {
     if (attachment.type === 'video') {
       return (
-        <div className='multiple-tile__slidercontainer' key={`mvideo-${index}`}>
+        <div key={`mvideo-${index}`}>
           <TileVideoContent
             rootPath={rootPath}
-            className='multiple-tile__slide'
             poster={attachment.thumbnail}
             src={attachment.path}/>
         </div>
       )
     } else {
       return (
-        <div className='multiple-tile__slidercontainer' key={`mimg-${index}`}>
+        <div key={`mimg-${index}`}>
           <TileImageContent
             rootPath={rootPath}
-            className='multiple-tile__slide'
             src={attachment.path}
             alt={'Horse racing'} />
         </div>
@@ -98,45 +91,6 @@ class MultipleTile extends Component {
    */
   constructor (props) {
     super(props)
-
-    // Store the slider in a ref
-    this.slideRef = null
-
-    // Bind custom fns
-    this.slidePrev = this.slidePrev.bind(this)
-    this.slideNext = this.slideNext.bind(this)
-  }
-
-  /**
-   *  slidePrev
-   *  @description Slides to the previous slide in the carousel
-   */
-  slidePrev (event) {
-    if (!this.slideRef) {
-      return false
-    }
-
-    if (event) {
-      event.stopPropagation()
-    }
-
-    this.slideRef.slickPrev()
-  }
-
-  /**
-   *  slideNext
-   *  @description Slides to the next slide in the carousel
-   */
-  slideNext (event) {
-    if (!this.slideRef) {
-      return false
-    }
-
-    if (event) {
-      event.stopPropagation()
-    }
-
-    this.slideRef.slickNext()
   }
 
   render () {
@@ -154,24 +108,9 @@ class MultipleTile extends Component {
 
     return (
       <div className={modifiedClassNames}>
-        <div className='multiple-tile__slider'>
-          <Slider
-            ref={ref => { this.slideRef = ref }}
-            className='multiple-tile__slider-wrapper'
-            initialSlide={0}
-            infinite={false}
-            dots={false}
-            fade={false}
-            autoplay={false}
-            slidesToShow={1}
-            arrows={false}
-            speed={400}
-            slidesToScroll={1}>
-            {createSlides(attachments, rootPath)}
-          </Slider>
-          <CarouselArrow className='multiple-tile__slider__arrow' modifier='left' onClick={this.slidePrev} />
-          <CarouselArrow className='multiple-tile__slider__arrow' modifier='right' onClick={this.slideNext} />
-        </div>
+        <TileMediaContent>
+          {createSlides(attachments, rootPath)}
+        </TileMediaContent>
         <TileHeader
           name={name}
           date={date} />

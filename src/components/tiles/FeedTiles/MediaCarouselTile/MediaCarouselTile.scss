@@ -2,25 +2,6 @@
   position: relative;
   padding-bottom: 40px;
   
-  &__slider {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-
-  &__slider-wrapper {
-    position: relative;
-    width: 100%;
-  }
-
-  &__slidercontainer {
-    position: relative;
-    width: 100%;
-    display: inline-block;
-    overflow: hidden; 
-  }
-
   .video__player {
     height: auto;
     width: 100%;
@@ -34,14 +15,4 @@
     height: 100%;
     overflow: hidden;
   }
-
-  .tile-image-content {
-    padding-bottom: $video-aspect-ratio;
-    margin-bottom: 0;
-  }
-
-  .tile-video-content {
-    margin-bottom: 0;
-  }
-
 }
