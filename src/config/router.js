@@ -5,7 +5,7 @@ import {
   BrowserRouter as Routes,
 } from 'react-router-dom'
 
-import PrivateRoute from 'utils/PrivateRoute'
+// import PrivateRoute from 'utils/PrivateRoute'
 import Layout from 'layouts/Layout'
 import ScrollTop from 'utils/scrolltop'
 
@@ -21,7 +21,7 @@ const router = (
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/register' component={Register} />
-          <PrivateRoute path='/horse/:name' component={HorseOverview} />
+          <Route path='/horse/:name' component={HorseOverview} />
           <Route component={PageNotFound} />
         </Switch>
       </ScrollTop>
