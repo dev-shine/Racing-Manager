@@ -1,3 +1,6 @@
+/**
+ *  KEYFRAMES
+ */
 @keyframes small-shift-up {
   from {
     opacity: 0;
@@ -26,4 +29,25 @@
     opacity: 1;
     transform: translate3d(0, 0, 0)
   }
+}
+
+/**
+ *  REACT CSS TRANSITION GROUP ANIMATIONS
+ */
+.fade-in-enter, .fade-in-appear {
+  opacity: 0;
+}
+
+.fade-in-enter.fade-in-enter-active, .fade-in-appear.fade-in-appear-active {
+  opacity: 1;
+  transition: opacity .4s ease-out;
+}
+
+.fade-in-leave {
+  opacity: 1;
+}
+
+.fade-in-leave.fade-in-leave-active {
+  opacity: 0;
+  transition: opacity .4s ease-out;
 }

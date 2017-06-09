@@ -1,0 +1,11 @@
+.close-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: $white;
+  transition: transform .4s ease-out;
+
+  &:hover {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+}
