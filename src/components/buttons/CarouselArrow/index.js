@@ -9,6 +9,11 @@ import React from 'react'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module baseClassNames
+ */
+import baseClassNames from 'classnames'
+
+/**
  *  @module Icon
  */
 import Icon from 'components/icon'
@@ -25,10 +30,10 @@ const CarouselArrow = ({className, modifier, onClick}) => {
   const modifiedClassNames = classNames('carousel-arrow', className, modifier)
 
   // classnames for determining the correct arrow to show.
-  const arrowClassNames = {
+  const arrowClassNames = baseClassNames({
     'leftarrow': modifier === 'left',
     'rightarrow': modifier === 'right'
-  }
+  })
 
   return (
     <div className={modifiedClassNames} onClick={onClick}>
