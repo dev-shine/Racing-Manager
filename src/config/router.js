@@ -19,6 +19,11 @@ import ScrollTop from 'utils/scrolltop'
 import Main from 'layouts/main'
 
 /**
+ * @module PageNotFound
+ */
+import PageNotFound from 'views/PageNotFound'
+
+/**
  * @module Home
  */
 import Home from 'views/home'
@@ -41,8 +46,9 @@ const router = (
     <ScrollTop>
       <Switch>
         <Main exact path='/' component={Home} />
-        <Main exact path='/register' component={Register} />
-        <Main exact path='/horse/:name' component={HorseOverview} />
+        <Main path='/register' component={Register} />
+        <Main path='/horse/:name' component={HorseOverview} />
+        <Main component={PageNotFound} />
       </Switch>
     </ScrollTop>
   </Routes>
