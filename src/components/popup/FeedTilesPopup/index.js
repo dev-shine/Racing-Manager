@@ -16,7 +16,7 @@ import classNames from 'utils/classnames'
 /**
  *  @module TextTile
  */
-import TextTile from 'components/tiles/FeedTiles/TextTile'
+// import TextTile from 'components/tiles/FeedTiles/TextTile'
 
 /**
  *  @module ImageTiles
@@ -26,12 +26,12 @@ import ImageTile from 'components/tiles/FeedTiles/ImageTile'
 /**
  *  @module VideoTile
  */
-import VideoTile from 'components/tiles/FeedTiles/VideoTile'
+// import VideoTile from 'components/tiles/FeedTiles/VideoTile'
 
 /**
  *  @module MediaCarouselTile
  */
-import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
+// import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
 
 /**
  *  @module SubmitPost
@@ -88,6 +88,12 @@ class FeedTilesPopup extends Component {
         <div className='feed-popup__bottom'>
           <div className='col-xs-12 col-sm-10 col-sm-push-1 feed-popup__bottomcontent'>
             <SubmitPost
+              feedText='dfdf'
+              submitFeedUpdate={() => {}}
+              addFeedMediaFiles={() => {}}
+              updateFeedText={() => {}}
+              charCount={400}
+              maxCharCount={400}
               horseId={20} />
           </div>
         </div>
