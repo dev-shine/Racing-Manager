@@ -3,13 +3,16 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
 import Default from './Default'
+import Test from './Test'
 
 class Layout extends Component {
   render () {
-    const { children, history } = this.props
+    const { children, history, testVar } = this.props
     const { location } = history
 
-    switch (location) {
+    switch (location.pathname) {
+      case '/test':
+        return <Test testVar={testVar} />
       default:
         return <Default children={children} />
     }
@@ -17,7 +20,7 @@ class Layout extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  testVar: 'Hello world!'
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
