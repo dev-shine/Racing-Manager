@@ -50,7 +50,7 @@ describe('HOC - BasePopup', () => {
 
   beforeEach(() => {
     const Comp = BasePopup(BasePopUpChild)
-    wrapper = mount(<Comp onClick={clickSpy}/>)
+    wrapper = mount(<Comp isOpen={true} onClick={clickSpy}/>)
   })
 
   it('should exist', () => {
@@ -76,5 +76,12 @@ describe('HOC - BasePopup', () => {
 
   it('First child should have a classname "popup-child"', () => {
     expect(wrapper.find('.popup-child')).to.have.length(1)
+  })
+
+  it('Should not render container with class "popup" if prop isOpen is false', () => {
+    const Comp = BasePopup(BasePopUpChild)
+    wrapper = mount(<Comp isOpen={false} onClick={clickSpy}/>)
+
+    expect(wrapper.find('.popup')).to.have.length(0)
   })
 })

@@ -95,6 +95,8 @@ export class HorseOverview extends Component {
         </div>
         { this.renderAjaxLoader() }
         <FeedTilesPopup
+          isOpen={true}
+          onClick={() => { console.log('hi') }}
           tile={data.length ? data[0] : null} />
       </div>
     )
