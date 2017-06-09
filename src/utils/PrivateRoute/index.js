@@ -1,25 +1,44 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+import { withCookies, Cookies } from 'react-cookie'
+
 import authenticate from 'actions/auth'
+
+const COOKIE_NAME = 'trm_auth'
 
 class PrivateRoute extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      isLoaded: false
     }
   }
 
   componentWillMount () {
-    // this.props.authenticate()
+    const { cookies } = this.props
+    const token = cookies.get(COOKIE_NAME)
+
+    if (token) {
+      /*
+      this.props.authenticate(token)
+        .then(() => {
+        })
+        .catch(() => {
+        })
+       */
+    }
   }
 
   render () {
-    const { isAuthenticated } = this.state
+    const { isAuthenticated, isLoaded } = this.state
     const { component: Component, ...rest } = this.props
+
+    if (!isLoaded) return null
 
     return (
       <Route {...rest} render={props => {
@@ -42,17 +61,19 @@ class PrivateRoute extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  cookie: 'sample-cookie' // TODO: Integrate with storage.cookie
-})
+PrivateRoute.propTypes = {
+  cookies: PropTypes.instanceOf(Cookies)
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  authenticate: () => {
-    return dispatch(authenticate(ownProps.cookie))
+  authenticate: (token) => {
+    return dispatch(authenticate(token))
   }
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PrivateRoute)
+export default withCookies(
+  connect(
+    null,
+    mapDispatchToProps
+  )(PrivateRoute)
+)

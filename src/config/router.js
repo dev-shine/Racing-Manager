@@ -5,7 +5,9 @@ import {
   BrowserRouter as Routes,
 } from 'react-router-dom'
 
+import { CookiesProvider } from 'react-cookie'
 // import PrivateRoute from 'utils/PrivateRoute'
+
 import Layout from 'layouts/Layout'
 import ScrollTop from 'utils/scrolltop'
 
@@ -16,16 +18,18 @@ import HorseOverview from 'views/horseoverview'
 
 const router = (
   <Routes>
-    <Layout>
-      <ScrollTop>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/register' component={Register} />
-          <Route path='/horse/:name' component={HorseOverview} />
-          <Route component={PageNotFound} />
-        </Switch>
-      </ScrollTop>
-    </Layout>
+    <CookiesProvider>
+      <Layout>
+        <ScrollTop>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/register' component={Register} />
+            <Route path='/horse/:name' component={HorseOverview} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </ScrollTop>
+      </Layout>
+    </CookiesProvider>
   </Routes>
 )
 
