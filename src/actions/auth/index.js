@@ -1,5 +1,5 @@
 import { post } from 'api/Request'
-import { requestSuccess, requestFail } from 'actions/common'
+import { requestSuccess, requestFail } from 'actions/request'
 
 export const authenticate = data => {
   return (dispatch, getState) => {
