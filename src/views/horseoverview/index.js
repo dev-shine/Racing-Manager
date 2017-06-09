@@ -86,19 +86,15 @@ export class HorseOverview extends Component {
    *  @param  {String} id
    */
   showFeedTilePopup (id) {
-    console.log(id)
     if (!id) {
       return false
     }
 
-    console.log(this.props.data.map(tile => tile.createdAt))
     // Set the new tile's index
     this.setState({
       tileIndex: this.props.data.map(tile => tile.createdAt).indexOf(id),
       showPopup: true
     })
-
-    console.log(this.state)
   }
 
   /**

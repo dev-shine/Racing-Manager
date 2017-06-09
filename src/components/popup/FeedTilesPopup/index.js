@@ -43,7 +43,7 @@ import SubmitPost from 'components/tiles/FeedSubmitTile'
  *  @name FeedTilesPopup
  *  @extends {Component}
  */
-class FeedTilesPopup extends Component {
+export class FeedTilesPopup extends Component {
   /**
    *  @constructor
    */
