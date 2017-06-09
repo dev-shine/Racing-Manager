@@ -14,11 +14,6 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module baseClassNames
- */
-import baseClassNames from 'classnames'
-
-/**
  *  @module TileHeader
  */
 import TileHeader from 'components/tiles/FeedTiles/TileHeader'
@@ -54,9 +49,9 @@ import TileVideoContent from 'components/tiles/FeedTiles/TileVideoContent'
 import Slider from 'react-slick'
 
 /**
- *  @module Icon
+ *  @module CarouselArrow
  */
-import Icon from 'components/icon'
+import CarouselArrow from 'components/buttons/CarouselArrow'
 
 /**
  *  createSlides
@@ -89,31 +84,6 @@ export const createSlides = (attachments = [], rootPath) => {
       )
     }
   })
-}
-
-/**
- *  SlideArrow
- *  @param  {String} options.className
- *  @param  {String} options.modifier
- *  @param  {Function} options.onClick
- *  @return {Component}
- */
-const SlideArrow = ({className, modifier, onClick}) => {
-  // class names for the container
-  const modifiedClassNames = classNames('multiple-tile__slider__arrow', className, modifier)
-
-  // classnames for determining the correct arrow to show.
-  const arrowClassNames = baseClassNames({
-    'leftarrow': modifier === 'left',
-    'rightarrow': modifier === 'right'
-  })
-
-  return (
-    <div className={modifiedClassNames} onClick={onClick}>
-      <Icon
-        modifier={arrowClassNames}/>
-    </div>
-  )
 }
 
 /**
@@ -199,8 +169,8 @@ class MultipleTile extends Component {
             slidesToScroll={1}>
             {createSlides(attachments, rootPath)}
           </Slider>
-          <SlideArrow modifier='left' onClick={this.slidePrev} />
-          <SlideArrow modifier='right' onClick={this.slideNext} />
+          <CarouselArrow className='multiple-tile__slider__arrow' modifier='left' onClick={this.slidePrev} />
+          <CarouselArrow className='multiple-tile__slider__arrow' modifier='right' onClick={this.slideNext} />
         </div>
         <TileHeader
           name={name}
