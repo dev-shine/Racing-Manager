@@ -14,7 +14,8 @@ class PrivateRoute extends Component {
     super(props)
 
     this.state = {
-      isAuthenticated: false
+      isAuthenticated: false,
+      isLoaded: false
     }
   }
 
@@ -23,13 +24,21 @@ class PrivateRoute extends Component {
     const token = cookies.get(COOKIE_NAME)
 
     if (token) {
-      // this.props.authenticate(token)
+      /*
+      this.props.authenticate(token)
+        .then(() => {
+        })
+        .catch(() => {
+        })
+       */
     }
   }
 
   render () {
-    const { isAuthenticated } = this.state
+    const { isAuthenticated, isLoaded } = this.state
     const { component: Component, ...rest } = this.props
+
+    if (!isLoaded) return null
 
     return (
       <Route {...rest} render={props => {
