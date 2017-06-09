@@ -56,55 +56,67 @@ class TileGallery extends Component {
    *  @return {Component}
    */
   renderChildren (tile) {
-    // Render plain text tile.
-    if (tile.attachment.length <= 0) {
-      return (
-        <TextTile
-          key={`text-${tile.createdAt}`}
-          name='Andy Jones'
-          date={tile.timeStamp}
-          text={tile.text}
-          onClick={this.props.onClick} />
-      )
-    }
+    const {
+      postType,
+      createdAt,
+      timeStamp,
+      text,
+      attachment
+    } = tile
 
-    if (tile.attachment.length >= 2) {
-      return (
-        <MediaCarouselTile
-          key={`iv-${tile.createdAt}`}
-          name='Andy Jones'
-          date={tile.timeStamp}
-          text={tile.text}
-          attachments={tile.attachment}
-          onClick={this.props.onClick} />
-      )
-    }
+    const {
+      onClick
+    } = this.props
 
-    // Render image tile.
-    if (tile.attachment.length && tile.attachment[0].type === 'image') {
-      return (
-        <ImageTile
-          key={`image-${tile.createdAt}`}
-          src={tile.attachment[0].path}
-          name='Andy Jones'
-          date={tile.timeStamp}
-          text={tile.text}
-          onClick={this.props.onClick} />
-      )
-    }
+    // Switch between the post type.
+    switch (postType) {
+      case 'text':
+        return (
+          <TextTile
+            key={`text-${createdAt}`}
+            id={createdAt}
+            name='Andy Jones'
+            date={timeStamp}
+            text={text}
+            onClick={onClick} />
+        )
 
-    // Render video tile.
-    if (tile.attachment.length && tile.attachment[0].type === 'video') {
-      return (
-        <VideoTile
-          key={`video-${tile.createdAt}`}
-          src={tile.attachment[0].path}
-          poster={tile.attachment[0].thumbnail}
-          name='Andy Jones'
-          date={tile.timeStamp}
-          text={tile.text}
-          onClick={this.props.onClick} />
-      )
+      case 'multiplemedia':
+        return (
+          <MediaCarouselTile
+            key={`iv-${createdAt}`}
+            id={createdAt}
+            name='Andy Jones'
+            date={timeStamp}
+            text={text}
+            attachments={attachment}
+            onClick={onClick} />
+        )
+
+      case 'image':
+        return (
+          <ImageTile
+            key={`image-${createdAt}`}
+            id={createdAt}
+            src={attachment[0].path}
+            name='Andy Jones'
+            date={timeStamp}
+            text={text}
+            onClick={onClick} />
+        )
+
+      case 'video':
+        return (
+          <VideoTile
+            key={`video-${createdAt}`}
+            id={createdAt}
+            src={attachment[0].path}
+            poster={attachment[0].thumbnail}
+            name='Andy Jones'
+            date={timeStamp}
+            text={text}
+            onClick={onClick} />
+        )
     }
   }
 

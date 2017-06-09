@@ -47,8 +47,16 @@ export class HorseOverview extends Component {
   constructor (props) {
     super(props)
 
+    // Initial state
+    this.state = {
+      tileIndex: null,
+      showPopup: false
+    }
+
     // Bind custom fns
     this.renderAjaxLoader = this.renderAjaxLoader.bind(this)
+    this.showFeedTilePopup = this.showFeedTilePopup.bind(this)
+    this.closePopup = this.closePopup.bind(this)
   }
 
   componentDidMount () {
@@ -73,11 +81,48 @@ export class HorseOverview extends Component {
     return null
   }
 
+  /**
+   *  showFeedTilePopup
+   *  @param  {String} id
+   */
+  showFeedTilePopup (id) {
+    console.log(id)
+    if (!id) {
+      return false
+    }
+
+    console.log(this.props.data.map(tile => tile.createdAt))
+    // Set the new tile's index
+    this.setState({
+      tileIndex: this.props.data.map(tile => tile.createdAt).indexOf(id),
+      showPopup: true
+    })
+
+    console.log(this.state)
+  }
+
+  /**
+   *  closePopup
+   */
+  closePopup () {
+    this.setState({
+      showPopup: false
+    })
+  }
+
   render () {
     const {
       data,
       match
     } = this.props
+
+    const {
+      showPopup,
+      tileIndex
+    } = this.state
+
+    // Get the tile according to the passed in index.
+    const popupTile = tileIndex >= 0 ? data[tileIndex] : null
 
     return (
       <div className='horse-overview'>
@@ -91,13 +136,14 @@ export class HorseOverview extends Component {
         </div>
         <div className='horse-overview__grid container'>
           <TileGallery
+            onClick={this.showFeedTilePopup}
             tiles={data}/>
         </div>
         { this.renderAjaxLoader() }
         <FeedTilesPopup
-          isOpen={true}
-          onClick={() => { console.log('hi') }}
-          tile={data.length ? data[0] : null} />
+          isOpen={showPopup}
+          onClick={this.closePopup}
+          tile={popupTile} />
       </div>
     )
   }
