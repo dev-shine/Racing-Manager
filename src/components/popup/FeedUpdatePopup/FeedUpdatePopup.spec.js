@@ -29,9 +29,9 @@ import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
 import SubmitPost from 'components/tiles/FeedSubmitTile'
 
 /**
- *  @module FeedTilesPopup
+ *  @module FeedUpdatePopup
  */
-import { FeedTilesPopup } from 'components/popup/FeedTilesPopup'
+import { FeedUpdatePopup } from 'components/popup/FeedUpdatePopup'
 
 /**
  *  @module expect
@@ -50,11 +50,11 @@ import chaiEnzyme from 'chai-enzyme'
 
 chai.use(chaiEnzyme())
 
-describe('Components - FeedTilePopup', () => {
+describe('Components - FeedUpdatePopup', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = mount(<FeedTilesPopup />)
+    wrapper = mount(<FeedUpdatePopup />)
   })
 
   it('should exist', () => {

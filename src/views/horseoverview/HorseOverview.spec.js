@@ -19,9 +19,9 @@ import SubmitPost from 'containers/horseOverview/SubmitPost'
 import AjaxLoader from 'components/ajaxloader'
 
 /**
- *  @module FeedTilesPopup
+ *  @module FeedUpdatePopup
  */
-import FeedTilesPopup from 'components/popup/FeedTilesPopup'
+import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
 
 /**
  *  @module HorseOverview
@@ -105,8 +105,8 @@ describe('Views - horseOverview', () => {
     expect(wrapper.find(TileGallery)).to.have.length(1)
   })
 
-  it('should render a <FeedTilesPopup/> component', () => {
-    expect(wrapper.find(FeedTilesPopup)).to.have.length(1)
+  it('should render a <FeedUpdatePopup/> component', () => {
+    expect(wrapper.find(FeedUpdatePopup)).to.have.length(1)
   })
 
   it('should not render <AjaxLoader/>', () => {

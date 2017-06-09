@@ -24,9 +24,9 @@ import SubmitPost from 'containers/horseOverview/SubmitPost'
 import AjaxLoader from 'components/ajaxloader'
 
 /**
- *  @module FeedTilesPopup
+ *  @module FeedUpdatePopup
  */
-import FeedTilesPopup from 'components/popup/FeedTilesPopup'
+import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
 
 /**
  *  @module fetchHorseInfo
@@ -136,7 +136,7 @@ export class HorseOverview extends Component {
             tiles={data}/>
         </div>
         { this.renderAjaxLoader() }
-        <FeedTilesPopup
+        <FeedUpdatePopup
           isOpen={showPopup}
           onClick={this.closePopup}
           tile={popupTile} />
