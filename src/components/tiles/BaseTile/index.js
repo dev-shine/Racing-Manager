@@ -41,20 +41,31 @@ const BaseTileHoc = WrappedComponent => {
     render () {
       const {
         className,
-        modifier
+        modifier,
+        onClick,
+        id
       } = this.props
 
       /**
        *  @description If large is passed in as a prop, double the size.
-       *  @type {[type]}
        */
       const modifiedClassNames = classNames('base-tile', className, modifier)
 
       // Remove props not needed for wrapped component
-      const modifiedProps = omit(this.props, ['className', 'modifier', 'rootPath'])
+      const modifiedProps = omit(this.props, ['className', 'modifier', 'rootPath', 'onClick'])
+
+      /**
+       *  addIdToOnClick
+       *  @description Will add the id to the onClick function parameter.
+       */
+      const addIdToOnClick = () => {
+        if (onClick) {
+          onClick(id)
+        }
+      }
 
       return (
-        <div className={modifiedClassNames} style={{...this.props.style}}>
+        <div className={modifiedClassNames} style={{...this.props.style}} onClick={addIdToOnClick}>
           <WrappedComponent {...modifiedProps} rootPath={ ROOT_PATH } className='base-tile__content' />
         </div>
       )

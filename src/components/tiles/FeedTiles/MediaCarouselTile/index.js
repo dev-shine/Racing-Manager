@@ -141,9 +141,13 @@ class MultipleTile extends Component {
    *  slidePrev
    *  @description Slides to the previous slide in the carousel
    */
-  slidePrev () {
+  slidePrev (event) {
     if (!this.slideRef) {
       return false
+    }
+
+    if (event) {
+      event.stopPropagation()
     }
 
     this.slideRef.slickPrev()
@@ -153,9 +157,13 @@ class MultipleTile extends Component {
    *  slideNext
    *  @description Slides to the next slide in the carousel
    */
-  slideNext () {
+  slideNext (event) {
     if (!this.slideRef) {
       return false
+    }
+
+    if (event) {
+      event.stopPropagation()
     }
 
     this.slideRef.slickNext()

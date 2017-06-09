@@ -16,7 +16,7 @@ import classNames from 'utils/classnames'
 /**
  *  @module TextTile
  */
-// import TextTile from 'components/tiles/FeedTiles/TextTile'
+import TextTile from 'components/tiles/FeedTiles/TextTile'
 
 /**
  *  @module ImageTiles
@@ -26,12 +26,12 @@ import ImageTile from 'components/tiles/FeedTiles/ImageTile'
 /**
  *  @module VideoTile
  */
-// import VideoTile from 'components/tiles/FeedTiles/VideoTile'
+import VideoTile from 'components/tiles/FeedTiles/VideoTile'
 
 /**
  *  @module MediaCarouselTile
  */
-// import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
+import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
 
 /**
  *  @module SubmitPost
@@ -43,7 +43,7 @@ import SubmitPost from 'components/tiles/FeedSubmitTile'
  *  @name FeedTilesPopup
  *  @extends {Component}
  */
-class FeedTilesPopup extends Component {
+export class FeedTilesPopup extends Component {
   /**
    *  @constructor
    */
@@ -57,17 +57,68 @@ class FeedTilesPopup extends Component {
    *  @return {Component}
    */
   renderTile () {
-    if (this.props.tile) {
-      return (
-        <ImageTile
-          className='feed-popup__tile'
-          key={`image-${this.props.tile.createdAt}`}
-          src={this.props.tile.attachment[0].path}
-          name='Andy Jones'
-          date={this.props.tile.timeStamp}
-          text={this.props.tile.text}
-          onClick={this.props.onClick} />
-      )
+    const {
+      tile
+    } = this.props
+
+    if (tile) {
+      const {
+        postType,
+        createdAt,
+        timeStamp,
+        text,
+        attachment
+      } = tile
+
+      switch (postType) {
+        case 'text':
+          return (
+            <TextTile
+              className='feed-popup__tile'
+              key={`fptext-${createdAt}`}
+              id={createdAt}
+              name='Andy Jones'
+              date={timeStamp}
+              text={text} />
+          )
+
+        case 'multiplemedia':
+          return (
+            <MediaCarouselTile
+              className='feed-popup__tile'
+              key={`fpiv-${createdAt}`}
+              id={createdAt}
+              name='Andy Jones'
+              date={timeStamp}
+              text={text}
+              attachments={attachment} />
+          )
+
+        case 'image':
+          return (
+            <ImageTile
+              className='feed-popup__tile'
+              key={`fpimage-${createdAt}`}
+              id={createdAt}
+              src={attachment[0].path}
+              name='Andy Jones'
+              date={timeStamp}
+              text={text} />
+          )
+
+        case 'video':
+          return (
+            <VideoTile
+              className='feed-popup__tile'
+              key={`fpvideo-${createdAt}`}
+              id={createdAt}
+              src={attachment[0].path}
+              poster={attachment[0].thumbnail}
+              name='Andy Jones'
+              date={timeStamp}
+              text={text} />
+          )
+      }
     }
 
     return null
