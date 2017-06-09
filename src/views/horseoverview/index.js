@@ -83,6 +83,8 @@ export class HorseOverview extends Component {
 
   /**
    *  showFeedTilePopup
+   *  @description Will get the correct index in the data array of the selected tile
+   *               Will set the popup to be true.
    *  @param  {String} id
    */
   showFeedTilePopup (id) {
@@ -99,6 +101,7 @@ export class HorseOverview extends Component {
 
   /**
    *  closePopup
+   *  @description Will hide the popup by setting the showPopup to false
    */
   closePopup () {
     this.setState({
