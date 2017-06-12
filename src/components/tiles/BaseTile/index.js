@@ -45,9 +45,6 @@ const BaseTileHoc = WrappedComponent => {
         id
       } = this.props
 
-      // const modifiedClassNames = classNames('base-tile', className, modifier)
-      // const modifiedProps = omit(this.props, ['className', 'modifier', 'rootPath', 'onClick'])
-
       // Remove props not needed for wrapped component
       const modifiedProps = omit(this.props, ['rootPath', 'onClick', 'className'])
 

@@ -136,7 +136,8 @@ export class FeedUpdatePopup extends Component {
   render () {
     const {
       className,
-      modifier
+      modifier,
+      submitTitle
     } = this.props
 
     // Modified class names for container
@@ -148,7 +149,8 @@ export class FeedUpdatePopup extends Component {
         <div className='feed-popup__bottom'>
           <div className='col-xs-12 col-sm-10 col-sm-push-1 feed-popup__bottomcontent'>
             <SubmitPost
-              feedText='dfdf'
+              title={submitTitle}
+              feedText={''}
               submitFeedUpdate={() => {}}
               addFeedMediaFiles={() => {}}
               updateFeedText={() => {}}

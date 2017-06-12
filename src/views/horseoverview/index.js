@@ -129,6 +129,7 @@ export class HorseOverview extends Component {
           <div className='row'>
             <div className='col-xs-12 col-sm-10 col-sm-push-1'>
               <SubmitPost
+                title='post an update to the horse'
                 horseId={match.params.name} />
             </div>
           </div>
@@ -140,6 +141,7 @@ export class HorseOverview extends Component {
         </div>
         { this.renderAjaxLoader() }
         <FeedUpdatePopup
+          submitTitle='comment on this post'
           isOpen={showPopup}
           onClick={this.closePopup}
           tile={popupTile} />
