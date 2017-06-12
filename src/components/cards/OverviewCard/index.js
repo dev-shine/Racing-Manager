@@ -61,6 +61,9 @@ class OverviewCard extends Component {
               <h3>
                 {title}
               </h3>
+              <h6 className='secondary-font'>
+                2yo Filly, National Hunt (Jump)
+              </h6>
             </div>
           </div>
         </div>

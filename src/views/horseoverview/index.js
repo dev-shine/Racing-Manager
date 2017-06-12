@@ -35,9 +35,6 @@ import {
   fetchHorseInfo
 } from 'actions/horseoverview'
 
-// REMVOVE THIS PLS!
-import HorseOverviewCard from 'components/cards/OverviewCard'
-
 /**
  *  @name HorseOverview
  *  @class
@@ -128,7 +125,6 @@ export class HorseOverview extends Component {
 
     return (
       <div className='horse-overview'>
-        <HorseOverviewCard />
         <div className='container horse-overview__message-post'>
           <div className='row'>
             <div className='col-xs-12 col-sm-10 col-sm-push-1'>
