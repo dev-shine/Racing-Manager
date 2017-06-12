@@ -35,7 +35,7 @@ import chaiEnzyme from 'chai-enzyme'
 
 chai.use(chaiEnzyme())
 
-describe('Component - CloseButton', () => {
+describe('Component - buttons - CloseButton', () => {
   let wrapper
   let clickSpy = spy()
 

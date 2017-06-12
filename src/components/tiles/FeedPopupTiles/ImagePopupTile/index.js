@@ -61,7 +61,7 @@ const ImagePopupTile = props => {
       <TileImageContent
         rootPath={rootPath}
         src={src}/>
-      <div className='col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 image-popup-tile__container'>
+      <div className='col-xs-12 col-sm-10 col-sm-push-1 image-popup-tile__container'>
         <TileHeader
           name={name}
           date={date} />
