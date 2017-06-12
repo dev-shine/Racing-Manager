@@ -182,7 +182,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getHorseInfo: () => {
       // Get the name of the horse from the url.
-      const horseId = ownProps.match.params.name
+      const horseId = ownProps.match.params.id
 
       dispatch(fetchHorseInfo({ horseId }))
     }

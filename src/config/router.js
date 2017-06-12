@@ -24,7 +24,7 @@ const router = (
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/register' component={Register} />
-            <Route path='/horse/:name' component={HorseOverview} />
+            <Route path='/horse/:id' component={HorseOverview} />
             <Route component={PageNotFound} />
           </Switch>
         </ScrollTop>
