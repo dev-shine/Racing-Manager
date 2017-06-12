@@ -1,0 +1,31 @@
+.syndicate {
+
+  &__title {
+    color: #00273A;
+    margin: 40px 10px 25px;
+
+    @media (min-width: $screen-sm-min) {
+      margin: 50px 10px 60px;
+    }
+  }
+
+  &__slider {
+
+  }
+
+  &__feed-section {
+
+  }
+
+  &__syndicate__feed {
+  }
+
+  &__more-btn {
+    margin: 15px auto;
+    display: block;
+
+    @media (min-width: $screen-sm-min) {
+      margin: 50px auto;
+    }
+  }
+}

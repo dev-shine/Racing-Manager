@@ -15,6 +15,7 @@ import PageNotFound from 'views/PageNotFound'
 import Home from 'views/home'
 import Register from 'views/register'
 import HorseOverview from 'views/horseoverview'
+import SyndicateOverview from 'views/SyndicateOverview'
 
 const router = (
   <Routes>
@@ -25,6 +26,7 @@ const router = (
             <Route exact path='/' component={Home} />
             <Route path='/register' component={Register} />
             <Route path='/horse/:id' component={HorseOverview} />
+            <Route path='/syndicate/:id' component={SyndicateOverview} />
             <Route component={PageNotFound} />
           </Switch>
         </ScrollTop>
