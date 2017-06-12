@@ -4,9 +4,9 @@
 import React from 'react'
 
 /**
- *  @module TileGallery
+ *  @module FeedGallery
  */
-import TileGallery from 'components/tiles/FeedTiles/TileGallery'
+import FeedGallery from 'components/tiles/FeedGallery'
 
 /**
  *  @module FeedSubmitTile
@@ -101,8 +101,8 @@ describe('Views - horseOverview', () => {
     expect(wrapper.find(SubmitPost)).to.have.length(1)
   })
 
-  it('should render a <TileGallery/> component', () => {
-    expect(wrapper.find(TileGallery)).to.have.length(1)
+  it('should render a <FeedGallery/> component', () => {
+    expect(wrapper.find(FeedGallery)).to.have.length(1)
   })
 
   it('should render a <FeedUpdatePopup/> component', () => {

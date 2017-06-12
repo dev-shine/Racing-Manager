@@ -16,22 +16,22 @@ import classNames from 'utils/classnames'
 /**
  *  @module TileHeader
  */
-import TileHeader from 'components/tiles/FeedTiles/TileHeader'
+import TileHeader from 'components/tiles/common/TileHeader'
 
 /**
  *  @module TileFooter
  */
-import TileFooter from 'components/tiles/FeedTiles/TileFooter'
+import TileFooter from 'components/tiles/common/TileFooter'
 
 /**
  *  @module TileContent
  */
-import TileContent from 'components/tiles/FeedTiles/TileContent'
+import TileContent from 'components/tiles/common/TileContent'
 
 /**
  *  @module baseTile
  */
-import baseTile from 'components/tiles/BaseTile'
+import baseTile from 'components/tiles/common/BaseTile'
 
 /**
  *  @name TextTile

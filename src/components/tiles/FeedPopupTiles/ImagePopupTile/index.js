@@ -16,27 +16,27 @@ import classNames from 'utils/classnames'
 /**
  *  @module basePopupTile
  */
-import basePopupTile from 'components/tiles/BasePopupTile'
+import basePopupTile from 'components/tiles/common/BasePopupTile'
 
 /**
  *  @module TileHeader
  */
-import TileHeader from 'components/tiles/FeedTiles/TileHeader'
+import TileHeader from 'components/tiles/common/TileHeader'
 
 /**
  *  @module TileFooter
  */
-import TileFooter from 'components/tiles/FeedTiles/TileFooter'
+import TileFooter from 'components/tiles/common/TileFooter'
 
 /**
  *  @module TileContent
  */
-import TileContent from 'components/tiles/FeedTiles/TileContent'
+import TileContent from 'components/tiles/common/TileContent'
 
 /**
  *  @module TileImageContent
  */
-import TileImageContent from 'components/tiles/FeedTiles/TileImageContent'
+import TileImageContent from 'components/tiles/common/TileImageContent'
 
 /**
  *  @name ImagePopupTile

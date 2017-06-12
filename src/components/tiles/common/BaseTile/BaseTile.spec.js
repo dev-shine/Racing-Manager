@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module BaseTile
  */
-import BaseTile from 'components/tiles/BaseTile'
+import BaseTile from 'components/tiles/common/BaseTile'
 
 /**
  *  @module expect
