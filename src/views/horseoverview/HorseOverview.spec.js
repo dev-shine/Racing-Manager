@@ -75,7 +75,7 @@ describe('Views - horseOverview', () => {
     getHorseInfo: spy(),
     match: {
       params: {
-        name: '5'
+        id: 5
       }
     }
   }
