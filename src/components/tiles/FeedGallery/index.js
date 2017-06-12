@@ -35,10 +35,10 @@ import { Block, Grid } from 'components/masonry'
 
 /**
  *  @class
- *  @name TileGallery
+ *  @name FeedGallery
  *  @extends { Component }
  */
-class TileGallery extends Component {
+class FeedGallery extends Component {
   /**
    *  @constructor
    *  @param  {Object} props
@@ -148,7 +148,7 @@ class TileGallery extends Component {
  *  propTypes
  *  @type {Object}
  */
-TileGallery.propTypes = {
+FeedGallery.propTypes = {
   tiles: PropTypes.array,
   onClick: PropTypes.func
 }
@@ -157,11 +157,11 @@ TileGallery.propTypes = {
  *  defaultProps
  *  @type {Object}
  */
-TileGallery.defaultProps = {
+FeedGallery.defaultProps = {
   tiles: []
 }
 
 /**
- *  @module TileGallery
+ *  @module FeedGallery
  */
-export default TileGallery
+export default FeedGallery

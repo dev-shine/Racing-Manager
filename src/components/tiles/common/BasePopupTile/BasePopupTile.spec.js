@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module BasePopupTile
  */
-import BasePopupTile from 'components/tiles/BasePopupTile'
+import BasePopupTile from 'components/tiles/common/BasePopupTile'
 
 /**
  *  @module expect

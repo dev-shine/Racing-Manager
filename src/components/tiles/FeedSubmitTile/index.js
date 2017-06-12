@@ -54,13 +54,6 @@ import Icon from 'components/icon'
 import { generatethumbnailFromFiles } from 'utils/imageutils'
 
 /**
- *  @name allowedFileTypes
- *  @description File types allowed for uploading.
- *  @type {Array}
- */
-const allowedFileTypes = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/quicktime', 'video/x-msvideo']
-
-/**
  *  @class
  *  @name FeedSubmitTile
  *  @extends {Component}
@@ -177,7 +170,7 @@ class FeedSubmitTile extends Component {
    *  @description Will call on the native file uploader.
    */
   addAttachment (e) {
-    processFileUpload(e, allowedFileTypes)
+    processFileUpload(e, this.props.allowedFileTypes)
     .then(files => {
       // Open the bar to reveal text area
       this.openBar()
@@ -305,7 +298,8 @@ FeedSubmitTile.defaultProps = {
   className: '',
   maxCharCount: 400,
   title: 'Post an update',
-  feedFiles: []
+  feedFiles: [],
+  allowedFileTypes: ['image/png', 'image/gif', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/quicktime', 'video/x-msvideo']
 }
 
 /**
@@ -327,7 +321,8 @@ FeedSubmitTile.propTypes = {
   addFeedMediaFiles: PropTypes.func.isRequired,
   updateFeedText: PropTypes.func.isRequired,
   charCount: PropTypes.number,
-  maxCharCount: PropTypes.number
+  maxCharCount: PropTypes.number,
+  allowedFileTypes: PropTypes.array
 }
 
 /**

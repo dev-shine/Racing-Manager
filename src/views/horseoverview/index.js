@@ -9,9 +9,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 /**
- *  @module TileGallery
+ *  @module FeedGallery
  */
-import TileGallery from 'components/tiles/FeedTiles/TileGallery'
+import FeedGallery from 'components/tiles/FeedGallery'
 
 /**
  *  @module FeedSubmitTile
@@ -135,7 +135,7 @@ export class HorseOverview extends Component {
           </div>
         </div>
         <div className='horse-overview__grid container'>
-          <TileGallery
+          <FeedGallery
             onClick={this.showFeedTilePopup}
             tiles={data}/>
         </div>
