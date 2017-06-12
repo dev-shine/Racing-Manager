@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module basePopupTile
+ */
+import basePopupTile from 'components/tiles/BasePopupTile'
+
+/**
  *  @module TileHeader
  */
 import TileHeader from 'components/tiles/FeedTiles/TileHeader'
@@ -27,11 +32,6 @@ import TileFooter from 'components/tiles/FeedTiles/TileFooter'
  *  @module TileContent
  */
 import TileContent from 'components/tiles/FeedTiles/TileContent'
-
-/**
- *  @module baseTile
- */
-import baseTile from 'components/tiles/BaseTile'
 
 /**
  *  @module TileImageContent
@@ -63,6 +63,7 @@ export const createSlides = (attachments = [], rootPath) => {
           <TileVideoContent
             modifier={['no-margin-bottom']}
             rootPath={rootPath}
+            className='multiple-popup-tile__slide'
             poster={attachment.thumbnail}
             src={attachment.path}/>
         </div>
@@ -73,6 +74,7 @@ export const createSlides = (attachments = [], rootPath) => {
           <TileImageContent
             modifier={['no-margin-bottom', 'video-aspect']}
             rootPath={rootPath}
+            className='multiple-popup-tile__slide'
             src={attachment.path}
             alt={'Horse racing'} />
         </div>
@@ -82,11 +84,11 @@ export const createSlides = (attachments = [], rootPath) => {
 }
 
 /**
- *  @name MultipleTile
+ *  @name MediaCarouselPopupTile
  *  @param  {Object} props
  *  @return {React.Component}
  */
-class MultipleTile extends Component {
+class MediaCarouselPopupTile extends Component {
   /**
    *  @constructor
    *  @param  {Object} props
@@ -106,19 +108,21 @@ class MultipleTile extends Component {
       rootPath
     } = this.props
 
-    const modifiedClassNames = classNames('multiple-tile', className, modifier)
+    const modifiedClassNames = classNames('multiple-popup-tile', className, modifier)
 
     return (
       <div className={modifiedClassNames}>
         <TileMediaContent>
           {createSlides(attachments, rootPath)}
         </TileMediaContent>
-        <TileHeader
-          name={name}
-          date={date} />
-        <TileContent
-          text={text}/>
-        <TileFooter/>
+        <div className='col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 multiple-popup-tile__container'>
+          <TileHeader
+            name={name}
+            date={date} />
+          <TileContent
+            text={text}/>
+          <TileFooter/>
+        </div>
       </div>
     )
   }
@@ -128,7 +132,7 @@ class MultipleTile extends Component {
  *  propTypes
  *  @type {Object}
  */
-MultipleTile.propTypes = {
+MediaCarouselPopupTile.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -152,7 +156,7 @@ MultipleTile.propTypes = {
  *  defaultProps
  *  @type {Object}
  */
-MultipleTile.defaultProps = {
+MediaCarouselPopupTile.defaultProps = {
   className: '',
   modifier: '',
   name: '',
@@ -162,6 +166,6 @@ MultipleTile.defaultProps = {
 }
 
 /**
- *  @module MultipleTile
+ *  @module MediaCarouselPopupTile
  */
-export default baseTile(MultipleTile)
+export default basePopupTile(MediaCarouselPopupTile)

@@ -14,24 +14,24 @@ import BasePopup from 'components/popup/BasePopup'
 import classNames from 'utils/classnames'
 
 /**
- *  @module TextTile
+ *  @module TextPopupTile
  */
-import TextTile from 'components/tiles/FeedTiles/TextTile'
+import TextPopupTile from 'components/tiles/FeedPopupTiles/TextPopupTile'
 
 /**
- *  @module ImageTiles
+ *  @module ImagePopupTile
  */
-import ImageTile from 'components/tiles/FeedTiles/ImageTile'
+import ImagePopupTile from 'components/tiles/FeedPopupTiles/ImagePopupTile'
 
 /**
- *  @module VideoTile
+ *  @module VideoPopupTile
  */
-import VideoTile from 'components/tiles/FeedTiles/VideoTile'
+import VideoPopupTile from 'components/tiles/FeedPopupTiles/VideoPopupTile'
 
 /**
- *  @module MediaCarouselTile
+ *  @module MediaCarouselPopupTile
  */
-import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
+import MediaCarouselPopupTile from 'components/tiles/FeedPopupTiles/MediaCarouselPopupTile'
 
 /**
  *  @module SubmitPost
@@ -39,11 +39,16 @@ import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
 import SubmitPost from 'components/tiles/FeedSubmitTile'
 
 /**
+ *  @module BASE_URL
+ */
+import { ROOT_PATH } from 'api/ServiceTypes'
+
+/**
  *  @class
- *  @name FeedTilesPopup
+ *  @name FeedUpdatePopup
  *  @extends {Component}
  */
-export class FeedTilesPopup extends Component {
+export class FeedUpdatePopup extends Component {
   /**
    *  @constructor
    */
@@ -73,7 +78,8 @@ export class FeedTilesPopup extends Component {
       switch (postType) {
         case 'text':
           return (
-            <TextTile
+            <TextPopupTile
+              rootPath={ROOT_PATH}
               className='feed-popup__tile'
               key={`fptext-${createdAt}`}
               id={createdAt}
@@ -84,7 +90,8 @@ export class FeedTilesPopup extends Component {
 
         case 'multiplemedia':
           return (
-            <MediaCarouselTile
+            <MediaCarouselPopupTile
+              rootPath={ROOT_PATH}
               className='feed-popup__tile'
               key={`fpiv-${createdAt}`}
               id={createdAt}
@@ -96,7 +103,8 @@ export class FeedTilesPopup extends Component {
 
         case 'image':
           return (
-            <ImageTile
+            <ImagePopupTile
+              rootPath={ROOT_PATH}
               className='feed-popup__tile'
               key={`fpimage-${createdAt}`}
               id={createdAt}
@@ -108,7 +116,8 @@ export class FeedTilesPopup extends Component {
 
         case 'video':
           return (
-            <VideoTile
+            <VideoPopupTile
+              rootPath={ROOT_PATH}
               className='feed-popup__tile'
               key={`fpvideo-${createdAt}`}
               id={createdAt}
@@ -127,7 +136,8 @@ export class FeedTilesPopup extends Component {
   render () {
     const {
       className,
-      modifier
+      modifier,
+      submitTitle
     } = this.props
 
     // Modified class names for container
@@ -139,7 +149,8 @@ export class FeedTilesPopup extends Component {
         <div className='feed-popup__bottom'>
           <div className='col-xs-12 col-sm-10 col-sm-push-1 feed-popup__bottomcontent'>
             <SubmitPost
-              feedText='dfdf'
+              title={submitTitle}
+              feedText={''}
               submitFeedUpdate={() => {}}
               addFeedMediaFiles={() => {}}
               updateFeedText={() => {}}
@@ -154,6 +165,6 @@ export class FeedTilesPopup extends Component {
 }
 
 /**
- *  @module FeedTilesPopup
+ *  @module FeedUpdatePopup
  */
-export default BasePopup(FeedTilesPopup)
+export default BasePopup(FeedUpdatePopup)

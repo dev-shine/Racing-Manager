@@ -218,7 +218,8 @@ class FeedSubmitTile extends Component {
       charCount,
       maxCharCount,
       submitFeedUpdate,
-      feedFiles
+      feedFiles,
+      title
     } = this.props
 
     const {
@@ -234,7 +235,7 @@ class FeedSubmitTile extends Component {
       <div className={modifiedClassNames}>
         <div className='feed-submit__title'>
           <p className='micro'>
-            post an update to the horse
+            {title}
           </p>
         </div>
         <div className='feed-submit__bar-container'>
@@ -302,7 +303,9 @@ class FeedSubmitTile extends Component {
  */
 FeedSubmitTile.defaultProps = {
   className: '',
-  maxCharCount: 400
+  maxCharCount: 400,
+  title: 'Post an update',
+  feedFiles: []
 }
 
 /**
@@ -310,6 +313,7 @@ FeedSubmitTile.defaultProps = {
  *  @type {Object}
  */
 FeedSubmitTile.propTypes = {
+  title: PropTypes.string,
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)

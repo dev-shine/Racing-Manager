@@ -24,9 +24,9 @@ import SubmitPost from 'containers/horseOverview/SubmitPost'
 import AjaxLoader from 'components/ajaxloader'
 
 /**
- *  @module FeedTilesPopup
+ *  @module FeedUpdatePopup
  */
-import FeedTilesPopup from 'components/popup/FeedTilesPopup'
+import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
 
 /**
  *  @module fetchHorseInfo
@@ -83,6 +83,8 @@ export class HorseOverview extends Component {
 
   /**
    *  showFeedTilePopup
+   *  @description Will get the correct index in the data array of the selected tile
+   *               Will set the popup to be true.
    *  @param  {String} id
    */
   showFeedTilePopup (id) {
@@ -99,6 +101,7 @@ export class HorseOverview extends Component {
 
   /**
    *  closePopup
+   *  @description Will hide the popup by setting the showPopup to false
    */
   closePopup () {
     this.setState({
@@ -126,6 +129,7 @@ export class HorseOverview extends Component {
           <div className='row'>
             <div className='col-xs-12 col-sm-10 col-sm-push-1'>
               <SubmitPost
+                title='post an update to the horse'
                 horseId={match.params.name} />
             </div>
           </div>
@@ -136,7 +140,8 @@ export class HorseOverview extends Component {
             tiles={data}/>
         </div>
         { this.renderAjaxLoader() }
-        <FeedTilesPopup
+        <FeedUpdatePopup
+          submitTitle='comment on this post'
           isOpen={showPopup}
           onClick={this.closePopup}
           tile={popupTile} />
