@@ -39,7 +39,7 @@ export class SyndicateOverview extends Component {
                       text={tile.text}
                       src={tile.src}
                       providerSrc={tile.providerSrc}
-                      date={tile.timeStamp}
+                      date={tile.date}
                       className='syndicate__tile'
                     />
                   </Block>
@@ -64,9 +64,9 @@ const mapStateToProps = (state, ownProps) => ({
   data: {
     tiles: new Array(12).fill({
       text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
-      timeStamp: '2017-06-06T14:11:42.820Z',
-      src: 'a',
-      providerSrc: 'b'
+      src: '/uploads/1/1496758376165/attachment-1496758376164.jpg',
+      providerSrc: '/uploads/1/1496758376165/attachment-1496758376164.jpg',
+      date: '2017-06-06T14:11:42.820Z',
     })
   }
 })

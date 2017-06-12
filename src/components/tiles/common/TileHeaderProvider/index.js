@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
+import Image from 'components/image'
+
 const TileHeaderProvider = props => {
   const {
     className,
@@ -16,7 +18,7 @@ const TileHeaderProvider = props => {
   return (
     <div className={modifiedClassNames}>
       <div className='tile-header-provider__image'>
-        <img src={src} alt={name} />
+        <Image source={src} alt={name} setRef={() => {}} />
       </div>
       <div className='tile-header-provider__date'>
         <p className='micro'>
