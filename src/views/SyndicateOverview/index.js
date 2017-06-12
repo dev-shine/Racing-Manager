@@ -6,6 +6,9 @@ import TextButton from 'components/buttons/TextButton'
 
 import { Block, Grid } from 'components/masonry'
 
+// REMOVE THIS PLS!
+import HorseOverviewCard from 'components/cards/OverviewCard'
+
 export class SyndicateOverview extends Component {
   constructor (props) {
     super(props)
@@ -19,7 +22,7 @@ export class SyndicateOverview extends Component {
       <div className='syndicate'>
         <div className='syndicate__slider'>
           <div className='container'>
-            Your horses slider here
+            <HorseOverviewCard />
           </div>
         </div>
         <div className='syndicate__feed-section container'>
