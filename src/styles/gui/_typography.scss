@@ -88,12 +88,11 @@ h6 {
   line-height: $micro-title-lead;
 }
 
-p, body {
+p, body, ul {
   font-weight: 300;
   font-family: $font-family-secondary;
   font-size: $text-xs;
   line-height: $text-lead;
-  word-break: break-word;
   word-wrap: break-word;
   @media (min-width: $screen-sm) {
     font-size: $text;

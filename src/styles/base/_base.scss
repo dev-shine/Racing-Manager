@@ -27,3 +27,9 @@ hr {
 img {
   max-width: 100%;
 }
+
+ul.disc-list {
+  list-style-type: disc;
+  -webkit-padding-start: 0;
+  padding-left: 15px;
+}
