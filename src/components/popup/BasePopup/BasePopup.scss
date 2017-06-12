@@ -4,8 +4,10 @@ body.model-open {
 
 .popup {
   $padding: 0 20px;
-  $header-offset: ($header-height + 40px);
-  $padding-container: $header-offset 0 $header-offset 0;
+  $header-offset-sm: ($header-height + 40px);
+  $header-offset-xs: ($header-height);
+  $padding-container: $header-offset-sm 0 $header-offset-sm 0;
+  $padding-container-mobile: $header-offset-xs 0 $header-offset-xs 0;
 
   position: fixed;
   top: 0;
@@ -28,7 +30,11 @@ body.model-open {
   &__wrapper {
     position: relative;
     overflow: visible;
-    padding: $padding-container;
+    padding: $padding-container-mobile;
+
+    @media all and (min-width: $screen-sm-min) {
+      padding: $padding-container;
+    }
   }
 
   &__container {

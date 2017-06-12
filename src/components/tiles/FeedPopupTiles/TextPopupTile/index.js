@@ -51,7 +51,7 @@ const TextPopupTile = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <div className='col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 text-popup-tile__container'>
+      <div className='col-sm-10 col-sm-push-1 text-popup-tile__container'>
         <TileHeader
           name={name}
           date={date} />

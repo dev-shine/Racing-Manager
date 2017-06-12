@@ -6,12 +6,11 @@
   &__bottom {
     position: relative;
     background-color: $white;
-    padding-bottom: 40px;
     @include clearfix();
   }
 
   &__bottomcontent {
     position: relative;
-    margin-top: 40px;
+    padding: 0 10px 40px 10px;
   }
 }
