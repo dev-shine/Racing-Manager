@@ -111,6 +111,11 @@ class OverviewCard extends Component {
               <div className='overview-card__gradiant'></div>
             </div>
             <div className='overview-card__extra'>
+              <TextButton
+                text='horse updates'
+                className='overview-card__button'
+                modifier='secondary'
+                onClick={() => {}} />
             </div>
           </div>
         </div>
