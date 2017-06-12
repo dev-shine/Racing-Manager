@@ -1,12 +1,10 @@
 .news-tile {
   padding-bottom: 0;
 
-  &__read {
-    display: block;
-    font-style: italic;
+  &__title {
+    color: #13233A;
+    font-size: 18px;
     text-transform: uppercase;
-    text-align: right;
-    font-size: 12px;
-    padding: 15px 10px;
+    font-family: $font-family-base;
   }
 }

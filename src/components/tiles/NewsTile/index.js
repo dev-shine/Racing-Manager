@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
-import { Link } from 'react-router-dom'
 
-import baseTile from 'components/tiles/BaseTile'
-import TileHeader from 'components/tiles/FeedTiles/TileHeader'
-import TileContent from 'components/tiles/FeedTiles/TileContent'
-// import TileFooter from 'components/tiles/FeedTiles/TileFooter'
+import baseTile from 'components/tiles/common/BaseTile'
+import TileImageContent from 'components/tiles/common/TileImageContent'
+import TileHeaderProvider from 'components/tiles/common/TileHeaderProvider'
+import TileContent from 'components/tiles/common/TileContent'
+import TileReadMore from 'components/tiles/common/TileReadMore'
 
-import TileImageContent from 'components/tiles/FeedTiles/TileImageContent'
+import { timestampToFeedTimestamp } from 'utils/dateutils'
 
 const NewsTile = props => {
   const {
@@ -18,6 +18,7 @@ const NewsTile = props => {
     date,
     text,
     src,
+    providerSrc,
     rootPath
   } = props
 
@@ -27,17 +28,18 @@ const NewsTile = props => {
     <div className={modifiedClassNames}>
       <TileImageContent
         rootPath={rootPath}
-        src={src}/>
-      <TileHeader
+        src={src}
+      />
+      <TileHeaderProvider
         name={name}
-        src={'123'}
-        date={date} />
+        src={providerSrc}
+        date={timestampToFeedTimestamp(date)}
+      />
       <TileContent
         text={text}
+        className='news-tile__title'
       />
-      <Link to='/' className='news-tile__read'>
-        read the full story
-      </Link>
+      <TileReadMore />
     </div>
   )
 }

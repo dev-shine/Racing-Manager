@@ -6,24 +6,13 @@ import TextButton from 'components/buttons/TextButton'
 
 import { Block, Grid } from 'components/masonry'
 
-const data = {
-  tiles: new Array(10).fill({
-    text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
-    timeStamp: '19/06/2017',
-    providerImg: ''
-  })
-}
-
 export class SyndicateOverview extends Component {
   constructor (props) {
     super(props)
   }
 
-  componentWillMount () {
-    this.props.getSyndicate()
-  }
-
   render () {
+    const { data } = this.props
     const { tiles } = data
 
     return (
@@ -48,7 +37,8 @@ export class SyndicateOverview extends Component {
                     <NewsTile
                       id={index}
                       text={tile.text}
-                      authorImg=''
+                      src={tile.src}
+                      providerSrc={tile.providerSrc}
                       date={tile.timeStamp}
                       className='syndicate__tile'
                     />
@@ -61,6 +51,7 @@ export class SyndicateOverview extends Component {
             text='Load more'
             modifier='secondary'
             className='syndicate__more-btn'
+            onClick={() => {}}
           />
         </div>
       </div>
@@ -69,7 +60,15 @@ export class SyndicateOverview extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-
+  // TODO: Use state.syndicateOverview
+  data: {
+    tiles: new Array(12).fill({
+      text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
+      timeStamp: '2017-06-06T14:11:42.820Z',
+      src: 'a',
+      providerSrc: 'b'
+    })
+  }
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => {
