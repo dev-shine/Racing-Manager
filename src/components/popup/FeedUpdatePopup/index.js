@@ -147,7 +147,7 @@ export class FeedUpdatePopup extends Component {
       <div className={modifiedClassNames}>
         { this.renderTile() }
         <div className='feed-popup__bottom'>
-          <div className='col-xs-12 col-sm-10 col-sm-push-1 feed-popup__bottomcontent'>
+          <div className='col-xs-10 col-xs-push-1 feed-popup__bottomcontent'>
             <SubmitPost
               title={submitTitle}
               feedText={''}
