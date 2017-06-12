@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
+import { Link } from 'react-router-dom'
 
 import baseTile from 'components/tiles/BaseTile'
 import TileHeader from 'components/tiles/FeedTiles/TileHeader'
@@ -20,7 +21,7 @@ const NewsTile = props => {
     rootPath
   } = props
 
-  const modifiedClassNames = classNames('image-tile', className, modifier)
+  const modifiedClassNames = classNames('news-tile', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
@@ -34,9 +35,9 @@ const NewsTile = props => {
       <TileContent
         text={text}
       />
-      <div>
-        Read more
-      </div>
+      <Link to='/' className='news-tile__read'>
+        read the full story
+      </Link>
     </div>
   )
 }

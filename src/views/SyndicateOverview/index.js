@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import NewsTile from 'components/tiles/NewsTile'
@@ -46,15 +45,13 @@ export class SyndicateOverview extends Component {
               {
                 tiles.map((tile, index) => (
                   <Block width={1} key={index}>
-                    <Link to={`/link-here`}>
-                      <NewsTile
-                        id={index}
-                        text={tile.text}
-                        authorImg=''
-                        date={tile.timeStamp}
-                        className='syndicate__tile'
-                      />
-                    </Link>
+                    <NewsTile
+                      id={index}
+                      text={tile.text}
+                      authorImg=''
+                      date={tile.timeStamp}
+                      className='syndicate__tile'
+                    />
                   </Block>
                 ))
               }
@@ -64,7 +61,6 @@ export class SyndicateOverview extends Component {
             text='Load more'
             modifier='secondary'
             className='syndicate__more-btn'
-            onClick={() => {}}
           />
         </div>
       </div>
