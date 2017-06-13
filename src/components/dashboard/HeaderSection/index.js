@@ -56,6 +56,7 @@ const swiperNamesOpts = {
   slidesPerView: 5,
   freeModeMomentumRatio: 0.2,
   grabCursor: true,
+  slideToClickedSlide: true,
   breakpoints: {
     480: {
       slidesPerView: 1,
@@ -80,6 +81,7 @@ const swiperHorseOpts = {
   slidesPerView: 4,
   freeModeMomentumRatio: 0.2,
   grabCursor: true,
+  slideToClickedSlide: true,
   breakpoints: {
     720: {
       slidesPerView: 1,
