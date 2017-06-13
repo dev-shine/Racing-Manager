@@ -1,7 +1,64 @@
 .horse-overview {
   position: relative;
   min-height: calc(100vh - #{$header-height + $footer-height});
-  
+
+  &__details {
+
+  }
+
+  &__main-title {
+    margin-top: 20px;
+  }
+
+  &__owner {
+    margin-top: 15px;
+  }
+
+  &__view-details {
+    margin: 20px 0;
+  }
+
+  &__content {
+    padding: 20px 0;
+    background: #051e28;
+  }
+
+  &__involvement {
+    color: white;
+  }
+
+  &__involvement-title {
+    color: white;
+    font-size: 30px;
+  }
+
+  &__small-title {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  &__read-more {
+    color: white;
+  }
+
+  &__accordion {
+    background: #00273A;
+    padding-top: 15px;
+    padding-bottom: 50px;
+  }
+
+  p {
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  &__syndicate-button {
+    display: block;
+    border: 1px solid white;
+    background: transparent;
+    margin: 20px auto 0;
+  }
+
   &__grid {
     position: relative;
     padding: 20px 0;
