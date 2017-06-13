@@ -29,15 +29,9 @@ import OverviewCard from 'components/cards/OverviewCard'
 import CarouselArrow from 'components/buttons/CarouselArrow'
 
 /**
- *  @module debounce
+ *  @module Carousel
  */
-import debounce from 'utils/debounce'
-
-/**
- *  @module Swiper
- */
-import Swiper from 'react-id-swiper'
-require('react-id-swiper/src/styles/scss/swiper.scss')
+import Carousel from 'components/carousel'
 
 /**
  * dummy fn
@@ -110,39 +104,6 @@ class HeaderSection extends Component {
    */
   constructor (props) {
     super(props)
-
-    // Bind custom fn
-    this.onResize = this.onResize.bind(this)
-    this.bindWindowResize = this.bindWindowResize.bind(this)
-    this.unBindWindowResize = this.unBindWindowResize.bind(this)
-    this.debouncedResize = debounce(this.onResize)
-  }
-
-  componentDidMount () {
-    window.d = this.refs.swiperName
-    this.bindWindowResize()
-  }
-
-  componentWillUnmount () {
-    this.unBindWindowResize()
-  }
-
-  bindWindowResize () {
-    window.addEventListener('resize', this.debouncedResize, false)
-  }
-
-  onResize () {
-    if (this.refs.swiperName) {
-      this.refs.swiperName.swiper.updateContainerSize()
-    }
-
-    if (this.refs.swiperHorse) {
-      this.refs.swiperHorse.swiper.updateContainerSize()
-    }
-  }
-
-  unBindWindowResize () {
-    window.removeEventListener('resize', this.debouncedResize, false)
   }
 
   render () {
@@ -177,61 +138,64 @@ class HeaderSection extends Component {
           </div>
         </div>
         <div className='dashboard-header__items-carousel dashboard-header__section'>
-          <Swiper
+          <Carousel
             ref='swiperName'
-            className='dashboard-header__slider'
-            {...swiperNamesOpts} >
+            prevArrow={
+              <CarouselArrow
+                className='dashboard-header__arrow'
+                modifier={['left', 'nobg', 'white']}
+                iconModifier={['leftarrow']}
+                onClick={() => { this.refs.swiperName.prev() }}
+              />
+            }
+            nextArrow={
+              <CarouselArrow
+                className='dashboard-header__arrow'
+                modifier={['right', 'nobg', 'white']}
+                iconModifier={['rightarrow']}
+                onClick={() => { this.refs.swiperName.next() }}
+              />
+            }
+            {...swiperNamesOpts}>
             {
               data.map((child, index) => {
                 return (
-                  <div className='dashboard-header__slide' key={index}>
-                    <h2>The quays horse</h2>
-                  </div>
+                  <h2 key={index}>The quays horse</h2>
                 )
               })
             }
-          </Swiper>
-          <CarouselArrow
-            className='dashboard-header__arrow'
-            modifier={['left', 'nobg', 'white']}
-            iconModifier={['leftarrow']}
-            onClick={() => { this.refs.swiperName.swiper.slidePrev() }}
-          />
-          <CarouselArrow
-            className='dashboard-header__arrow'
-            modifier={['right', 'nobg', 'white']}
-            iconModifier={['rightarrow']}
-            onClick={() => { this.refs.swiperName.swiper.slideNext() }}
-          />
+          </Carousel>
         </div>
         <div className='dashboard-header__items-list dashboard-header__section wave-bg-blue'>
-          <Swiper
+          <Carousel
             ref='swiperHorse'
-            className='dashboard-header__slider'
-            {...swiperHorseOpts} >
+            prevArrow={
+              <CarouselArrow
+                className='dashboard-header__arrow'
+                modifier={['left', 'nobg', 'white', 'bottom']}
+                iconModifier={['leftarrow']}
+                onClick={() => { this.refs.swiperHorse.prev() }}
+              />
+            }
+            nextArrow={
+              <CarouselArrow
+                className='dashboard-header__arrow'
+                modifier={['right', 'nobg', 'white', 'bottom']}
+                iconModifier={['rightarrow']}
+                onClick={() => { this.refs.swiperHorse.next() }}
+              />
+            }
+            {...swiperHorseOpts}>
             {
               data.map((child, index) => {
                 return (
-                  <div className='dashboard-header__slide' key={index}>
-                    <OverviewCard
-                      className='dashboard-header__slide-item' />
-                  </div>
+                  <OverviewCard
+                    key={index}
+                    className='dashboard-header__slide-item' />
                 )
               })
             }
-          </Swiper>
-          <CarouselArrow
-            className='dashboard-header__arrow'
-            modifier={['left', 'bottom', 'nobg', 'white']}
-            iconModifier={['leftarrow']}
-            onClick={() => { this.refs.swiperHorse.swiper.slidePrev() }}
-          />
-          <CarouselArrow
-            className='dashboard-header__arrow'
-            modifier={['right', 'bottom', 'nobg', 'white']}
-            iconModifier={['rightarrow']}
-            onClick={() => { this.refs.swiperHorse.swiper.slideNext() }}
-          />
+          </Carousel>
         </div>
       </div>
     )

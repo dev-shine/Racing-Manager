@@ -6,7 +6,8 @@
   transform: translateY(-50%);
   background-color: rgba($white, 0.65);
   color: $raisin-black;
-
+  cursor: pointer;
+  
   &--left {
     left: 0;
   }
