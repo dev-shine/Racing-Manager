@@ -27,10 +27,30 @@ import classNames from 'utils/classnames'
  */
 import TextButton from 'components/buttons/TextButton'
 
+/**
+ *  @module UpdatesButton
+ */
+import UpdatesButton from 'components/buttons/UpdatesButton'
+
 // Dummy race horse image
 import {
   horseRaceImg
 } from 'assets/dummyassets'
+
+/**
+ *  Dummy function
+ */
+const noop = () => {}
+
+/**
+ *  @name Overlay
+ *  @return {Component}
+ */
+export const Overlay = () => {
+  return (
+    <div className='overview-card__overlay' />
+  )
+}
 
 /**
  *  @class
@@ -52,80 +72,125 @@ class OverviewCard extends Component {
       title,
       subtitle,
       stats,
-      info
+      info,
+      isMember,
+      extra,
+      src,
+      isPending,
+      isActive
     } = this.props
 
     // Modified class names for overview card.
     const modifiedClassNames = classNames('overview-card', className, modifier)
 
+    // Modified class names for the wrapper to scale it down if the component is inactive
+    const modifiedWrapperClassNames = classNames('overview-card__wrapper', '', {
+      inactive: !isActive
+    })
+
     return (
       <div className={modifiedClassNames}>
-        <Image
-          className='overview-card__bg'
-          imageSrc={horseRaceImg}
-          forceShow={true} />
-        <div className='overview-card__content'>
-          <div className='overview-card__card'>
-            <div className='overview-card__heading'>
-              <h3>
-                {title}
-              </h3>
-              <h6 className='secondary-font'>
-                {subtitle}
-              </h6>
-              <div className='overview-card__stats'>
+        <div className={modifiedWrapperClassNames}>
+          {
+            isPending
+            ? <div className='overview-card__banner'>
+                <h6 className='secondary-font'>pending</h6>
+              </div>
+            : null
+          }
+          <Image
+            className='overview-card__bg'
+            imageSrc={src}
+            forceShow={true} />
+          <div className='overview-card__content'>
+            <div className='overview-card__card'>
+              <div className='overview-card__heading'>
+                <h3>
+                  {title}
+                </h3>
+                <h6 className='secondary-font'>
+                  {subtitle}
+                </h6>
+                <div className='overview-card__stats'>
+                  {
+                    stats.map(({name, value}, index) => {
+                      return (
+                        <div className='overview-card__statsitem col-xs-3' key={index}>
+                          <h6 className='secondary-font'>
+                            {name}
+                          </h6>
+                          <h6>
+                            {value}
+                          </h6>
+                        </div>
+                      )
+                    })
+                  }
+                </div>
+              </div>
+              <div className='overview-card__info'>
+                <div className='overview-card__gradiant overview-card__gradiant--top'></div>
+                <ul className='overview-card__infolist'>
+                  {
+                    info.map(({name, value}, index) => {
+                      return (
+                        <li className='overview-card__infoitem' key={index}>
+                          <h6 className='secondary-font col-xs-6'>
+                            {name}
+                          </h6>
+                          <p className='micro col-xs-6'>
+                            {value}
+                          </p>
+                        </li>
+                      )
+                    })
+                  }
+                </ul>
+              </div>
+              <div className='overview-card__extra'>
                 {
-                  stats.map(({name, value}, index) => {
-                    return (
-                      <div className='overview-card__statsitem col-xs-3' key={index}>
+                  !isMember
+                  ? (
+                      <span>
                         <h6 className='secondary-font'>
-                          {name}
+                          {extra.title}
                         </h6>
-                        <h6>
-                          {value}
-                        </h6>
-                      </div>
+                        <p className='micro'>
+                          {extra.text}
+                        </p>
+                      </span>
                     )
-                  })
+                  : (
+                      <UpdatesButton
+                        amount={extra.updateAmount}
+                        text='horse updates'
+                        buttonClassName='overview-card__button'
+                        buttonModifier='secondary'
+                        onClick={noop} />
+                    )
                 }
+                {
+                  isPending
+                  ? <Overlay />
+                  : null
+                }
+                <div className='overview-card__gradiant overview-card__gradiant--top'></div>
               </div>
             </div>
-            <div className='overview-card__info'>
-              <div className='overview-card__gradiant overview-card__gradiant--top'></div>
-              <ul className='overview-card__infolist'>
-                {
-                  info.map(({name, value}, index) => {
-                    return (
-                      <li className='overview-card__infoitem' key={index}>
-                        <h6 className='secondary-font col-xs-6'>
-                          {name}
-                        </h6>
-                        <p className='micro col-xs-6'>
-                          {value}
-                        </p>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
-            <div className='overview-card__extra'>
-              <div className='overview-card__gradiant overview-card__gradiant--top'></div>
-              <TextButton
-                text='horse updates'
-                className='overview-card__button'
-                modifier='secondary'
-                onClick={() => {}} />
-            </div>
+          </div>
+          <div className='overview-card__bottom-button'>
+            <TextButton
+              text={isMember ? 'Syndicate Page' : 'more details'}
+              className='overview-card__button'
+              modifier='secondary'
+              onClick={noop} />
           </div>
         </div>
-        <div className='overview-card__bottom-button'>
-          <TextButton
-            text='more details'
-            className='overview-card__button'
-            modifier='secondary'
-            onClick={() => {}} />
-        </div>
+        {
+          !isActive
+          ? <Overlay />
+          : null
+          }
       </div>
     )
   }
@@ -144,6 +209,7 @@ OverviewCard.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
+  src: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
   stats: PropTypes.arrayOf(PropTypes.shape({
@@ -159,7 +225,18 @@ OverviewCard.propTypes = {
       PropTypes.string,
       PropTypes.number
     ])
-  }))
+  })),
+  extra: PropTypes.shape({
+    title: PropTypes.string,
+    text: PropTypes.string,
+    updateAmount: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
+    ])
+  }),
+  isMember: PropTypes.bool,
+  isPending: PropTypes.bool,
+  isActive: PropTypes.bool
 }
 
 /**
@@ -195,7 +272,16 @@ OverviewCard.defaultProps = {
   }, {
     name: 'Monthly cost/share',
     value: '£4,995 + VAT'
-  }]
+  }],
+  extra: {
+    title: '5 of 20 shares available',
+    text: '*each share is equivalent to 5%',
+    updateAmount: 99
+  },
+  isMember: true,
+  src: horseRaceImg,
+  isPending: false,
+  isActive: true
 }
 
 /**

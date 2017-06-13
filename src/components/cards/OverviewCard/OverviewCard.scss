@@ -7,13 +7,52 @@
   position: relative;
   width: 266px;
   height: 456px;
-  padding-top: 163px;
-  border-left: $overview-border solid transparent;
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 163px;
+    border-left: $overview-border solid transparent;
+
+    &--inactive {
+      transform: scale3d(0.95, 0.95, 0.95);
+    }
+  }
 
   // All text needs to be truncated as per the designs.
   p, h3, h6 {
     line-height: initial;
     @include truncate();
+  }
+
+  &__banner {
+    position: absolute;
+    top: 0;
+    left: -$overview-border;
+    width: 100%;
+    height: 20px;
+    background-color: $silver-chalice;
+    padding: 3px 0;
+    z-index: 2;
+
+    >h6 {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      color: $white;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($white, 0.8);
   }
 
   &__bg {
@@ -76,7 +115,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 5px;
+    height: 20px;
     background: $popup-gradiant-line;
 
     &--top {
@@ -123,7 +162,15 @@
   &__extra {
     position: relative;
     width: 100%;
-    padding: 8px 15px;
+    padding: 7px 15px;
+
+    > span > h6 {
+      color: $davys-gray;
+    }
+
+    > span > p {
+      color: $nickel;
+    }
   }
   
   &__bottom-button {
