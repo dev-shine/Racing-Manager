@@ -89,9 +89,9 @@ class OverviewCard extends Component {
                   })
                 }
               </div>
-              <div className='overview-card__gradiant'></div>
             </div>
             <div className='overview-card__info'>
+              <div className='overview-card__gradiant overview-card__gradiant--top'></div>
               <ul className='overview-card__infolist'>
                 {
                   info.map(({name, value}, index) => {
@@ -108,9 +108,9 @@ class OverviewCard extends Component {
                   })
                 }
               </ul>
-              <div className='overview-card__gradiant'></div>
             </div>
             <div className='overview-card__extra'>
+              <div className='overview-card__gradiant overview-card__gradiant--top'></div>
               <TextButton
                 text='horse updates'
                 className='overview-card__button'

@@ -1,17 +1,18 @@
 .overview-card {
   $overview-border: 15px;
-  $image-top: -25px;
-  $section-padding: 10px 15px;
-  $info-section-padding: 0 15px 20px 15px;
+  $image-top: 0px;
+  $section-padding: 8px 15px 0px 15px;
+  $info-section-padding: 8px 15px 8px 15px;
 
   position: relative;
-  width: 300px;
+  width: 266px;
   height: 456px;
   padding-top: 163px;
   border-left: $overview-border solid transparent;
 
   // All text needs to be truncated as per the designs.
   p, h3, h6 {
+    line-height: initial;
     @include truncate();
   }
 
@@ -27,7 +28,7 @@
   &__content {
     position: relative;
     width: 100%;
-    height: 248px;
+    height: 212px;
   }
 
   &__card {
@@ -42,22 +43,22 @@
   &__heading {
     position: relative;
     width: 100%;
+    height: 80px;
     padding: $section-padding;
 
     >h3 {
-      margin-bottom: 3px;
+      line-height: 18px;
     }
 
     >h6 {
       color: $davys-gray;
-      margin-bottom: 3px;
     }
   }
 
   &__stats {
     position: relative;
     width: 100%;
-    margin-bottom: 5px;
+    margin-top: 5px;
     @include clearfix();
   }
 
@@ -75,8 +76,13 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 10px;
+    height: 5px;
     background: $popup-gradiant-line;
+
+    &--top {
+      top: 0;
+      bottom: initial;
+    }
   }
 
   &__info {
@@ -95,7 +101,7 @@
   &__infoitem {
     position: relative;
     width: 100%;
-    margin-bottom: 0px;
+    margin-bottom: 3px;
     @include clearfix();
 
     &:last-child {
@@ -117,7 +123,7 @@
   &__extra {
     position: relative;
     width: 100%;
-    padding: 0 15px;
+    padding: 8px 15px;
   }
   
   &__bottom-button {
@@ -129,5 +135,6 @@
 
   &__button {
     width: 100%;
+    height: 30px;
   }
 }
