@@ -6,7 +6,7 @@ import TextButton from 'components/buttons/TextButton'
 
 import { Block, Grid } from 'components/masonry'
 
-export class SyndicateOverview extends Component {
+export class Dashboard extends Component {
   constructor (props) {
     super(props)
   }
@@ -16,17 +16,17 @@ export class SyndicateOverview extends Component {
     const { tiles } = data
 
     return (
-      <div className='syndicate'>
-        <div className='syndicate__slider'>
+      <div className='dashboard'>
+        <div className='dashboard__slider'>
           <div className='container'>
             Your horses slider here
           </div>
         </div>
-        <div className='syndicate__feed-section container'>
-          <h1 className='syndicate__title'>
+        <div className='dashboard__feed-section container'>
+          <h1 className='dashboard__title'>
             Racing News
           </h1>
-          <div className='syndicate__feed'>
+          <div className='dashboard__feed'>
             <Grid
               targetBlockWidth={265}
               center={false}
@@ -40,7 +40,7 @@ export class SyndicateOverview extends Component {
                       src={tile.src}
                       providerSrc={tile.providerSrc}
                       date={tile.date}
-                      className='syndicate__tile'
+                      className='dashboard__tile'
                     />
                   </Block>
                 ))
@@ -50,7 +50,7 @@ export class SyndicateOverview extends Component {
           <TextButton
             text='Load more'
             modifier='secondary'
-            className='syndicate__more-btn'
+            className='dashboard__more-btn'
             onClick={() => {}}
           />
         </div>
@@ -60,7 +60,7 @@ export class SyndicateOverview extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  // TODO: Use state.syndicateOverview
+  // TODO: Use state.dashboardOverview
   data: {
     tiles: new Array(12).fill({
       text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
@@ -73,14 +73,11 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getSyndicate: () => {
-      // const syndicateId = ownProps.match.params.id
-      // dispatch(fetchSyndicate({ syndicateId }))
-    }
+    getDashboard: () => {},
   }
 }
 
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(SyndicateOverview))
+)(Dashboard))

@@ -1,0 +1,13 @@
+.syndicate {
+  margin: 50px 0;
+
+  .base-tile:hover {
+    transform: none;
+  }
+
+  &__buttons {
+    max-width: 250px;
+    min-height: initial;
+    padding: 10px;
+  }
+}

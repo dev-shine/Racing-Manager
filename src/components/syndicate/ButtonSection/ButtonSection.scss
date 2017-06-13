@@ -1,0 +1,21 @@
+.button-section {
+
+  &__button {
+    width: 100%;
+    min-width: initial;
+    display: block;
+
+    ~ .button-section__button {
+      margin-top: 8px;
+    }
+  }
+
+  &__link {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    text-transform: uppercase;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}
