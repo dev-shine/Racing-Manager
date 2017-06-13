@@ -9,8 +9,8 @@ const AjaxLoader = props => {
   return (
     <div className='spinner'>
       <div className='spinner__container'>
-        <div className='double-bounce1'></div>
-        <div className='double-bounce2'></div>
+        <div className='double-bounce1' />
+        <div className='double-bounce2' />
       </div>
     </div>
   )
