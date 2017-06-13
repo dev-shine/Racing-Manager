@@ -1,6 +1,7 @@
 $cta-button-bg: $vanilla-ice;
 $cta-mobile-additional-height: 15px;
 $cta-button-height-sm: 25px;
+$cta-button-height-md: 30px;
 $cta-button-height: 35px;
 $cta-secondary-bg: white;
 $cta-hover-bg: darken($cta-button-bg, 10);
@@ -19,6 +20,17 @@ $cta-active-bg: darken($cta-button-bg, 20);
   &--sm {
     min-width: 120px;
     height: $cta-button-height-sm;
+    padding: 0 15px;
+  }
+  &--md {
+    min-width: 170px;
+    height: $cta-button-height-md;
+    padding: 0 15px;
+  }
+  &--fluid {
+    width: 100%;
+    min-width: 0;
+    height: $cta-button-height-md;
     padding: 0 15px;
   }
   &:hover {
@@ -63,5 +75,9 @@ $cta-active-bg: darken($cta-button-bg, 20);
 
   @media all and (min-width: $screen-sm) {
     padding: 0 20px;
+
+    &--md, &--fluid {
+      padding: 0 15px;
+    }
   }
 }

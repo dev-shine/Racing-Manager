@@ -1,11 +1,38 @@
+/**
+ *  @module React, Component
+ */
 import React, { Component } from 'react'
+
+/**
+ *  @module Connect
+ */
 import { connect } from 'react-redux'
 
+/**
+ *  @module NewsTile
+ */
 import NewsTile from 'components/tiles/NewsTile'
+
+/**
+ *  @module TextButton
+ */
 import TextButton from 'components/buttons/TextButton'
 
+/**
+ *  @module HeaderSection
+ */
+import HeaderSection from 'components/dashboard/HeaderSection'
+
+/**
+ *  @module Block, Grid
+ */
 import { Block, Grid } from 'components/masonry'
 
+/**
+ *  @class
+ *  @name Dashboard
+ *  @extends {Component}
+ */
 export class Dashboard extends Component {
   constructor (props) {
     super(props)
@@ -19,7 +46,7 @@ export class Dashboard extends Component {
       <div className='dashboard'>
         <div className='dashboard__slider'>
           <div className='container'>
-            Your horses slider here
+            <HeaderSection />
           </div>
         </div>
         <div className='dashboard__feed-section container'>

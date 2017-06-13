@@ -38,10 +38,8 @@ $container-margin-md: 40px;
 }
 
 // Row
-//
 // Rows contain and clear the floats of your columns.
-
-.row-sm, .row {
+.row-sm, .row, .row-no-margin {
   @include clearfix;
 }
 
@@ -53,6 +51,11 @@ $container-margin-md: 40px;
 .row {
   @include make-row($gutter-xs, $gutter-md);
   @include make-grid-columns($gutter-xs, $gutter-md);
+}
+
+.row-no-margin {
+  @include make-row(0, 0);
+  @include make-grid-columns(0, 0);
 }
 
 .row-sm-margin {
