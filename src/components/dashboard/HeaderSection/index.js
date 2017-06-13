@@ -19,6 +19,11 @@ import classNames from 'utils/classnames'
 import TextButton from 'components/buttons/TextButton'
 
 /**
+ * @module Slider
+ */
+import Slider from 'react-slick'
+
+/**
  * dummy fn
  */
 const noop = () => {}
@@ -66,7 +71,31 @@ class HeaderSection extends Component {
               text={headerButtonText}/>
           </div>
         </div>
-        <div className='dashboard-header__names-list dashboard-header__section'>
+        <div className='dashboard-header__items-list dashboard-header__section'>
+          <Slider
+            ref={ref => { this.slideRef = ref }}
+            className='tile-media-content__slider-wrapper'
+            initialSlide={0}
+            infinite={false}
+            dots={false}
+            fade={false}
+            autoplay={false}
+            slidesToShow={1}
+            arrows={false}
+            speed={400}
+            slidesToScroll={1}>
+            {
+              ['d', 'd'].map((child, index) => {
+                return (
+                  <div className='tile-media-content__slidercontainer' key={index}>
+                    {child}
+                  </div>
+                )
+              })
+            }
+          </Slider>
+        </div>
+        <div className='dashboard-header__items-carousel dashboard-header__section'>
         </div>
       </div>
     )
