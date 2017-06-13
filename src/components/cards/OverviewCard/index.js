@@ -52,7 +52,9 @@ class OverviewCard extends Component {
       title,
       subtitle,
       stats,
-      info
+      info,
+      isMember,
+      extra
     } = this.props
 
     // Modified class names for overview card.
@@ -111,11 +113,26 @@ class OverviewCard extends Component {
             </div>
             <div className='overview-card__extra'>
               <div className='overview-card__gradiant overview-card__gradiant--top'></div>
-              <TextButton
-                text='horse updates'
-                className='overview-card__button'
-                modifier='secondary'
-                onClick={() => {}} />
+              {
+                !isMember
+                ? (
+                    <span>
+                      <h6 className='secondary-font'>
+                        {extra.title}
+                      </h6>
+                      <p className='micro'>
+                          {extra.text}
+                      </p>
+                    </span>
+                  )
+                : (
+                    <TextButton
+                      text='horse updates'
+                      className='overview-card__button'
+                      modifier='secondary'
+                      onClick={() => {}} />
+                  )
+              }
             </div>
           </div>
         </div>
@@ -159,7 +176,12 @@ OverviewCard.propTypes = {
       PropTypes.string,
       PropTypes.number
     ])
-  }))
+  })),
+  extra: PropTypes.shape({
+    title: PropTypes.string,
+    text: PropTypes.string
+  }),
+  isMember: PropTypes.bool
 }
 
 /**
@@ -195,7 +217,12 @@ OverviewCard.defaultProps = {
   }, {
     name: 'Monthly cost/share',
     value: '£4,995 + VAT'
-  }]
+  }],
+  extra: {
+    title: '5 of 20 shares available',
+    text: '*each share is equivalent to 5%'
+  },
+  isMember: false
 }
 
 /**

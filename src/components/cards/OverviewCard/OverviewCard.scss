@@ -124,6 +124,14 @@
     position: relative;
     width: 100%;
     padding: 8px 15px;
+
+    h6 {
+      color: $davys-gray;
+    }
+
+    p {
+      color: $nickel;
+    }
   }
   
   &__bottom-button {
