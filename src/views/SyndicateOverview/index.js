@@ -19,6 +19,7 @@ export class SyndicateOverview extends Component {
       <div className='syndicate'>
         <div className='syndicate__slider'>
           <div className='container'>
+            Your horses slider here
           </div>
         </div>
         <div className='syndicate__feed-section container'>
