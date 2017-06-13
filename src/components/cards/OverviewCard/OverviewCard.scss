@@ -7,8 +7,18 @@
   position: relative;
   width: 266px;
   height: 456px;
-  padding-top: 163px;
-  border-left: $overview-border solid transparent;
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top: 163px;
+    border-left: $overview-border solid transparent;
+
+    &--inactive {
+      transform: scale3d(0.95, 0.95, 0.95);
+    }
+  }
 
   // All text needs to be truncated as per the designs.
   p, h3, h6 {
@@ -152,13 +162,13 @@
   &__extra {
     position: relative;
     width: 100%;
-    padding: 8px 15px;
+    padding: 7px 15px;
 
-    h6 {
+    > span > h6 {
       color: $davys-gray;
     }
 
-    p {
+    > span > p {
       color: $nickel;
     }
   }
