@@ -33,6 +33,21 @@ import {
 } from 'assets/dummyassets'
 
 /**
+ *  Dummy function
+ */
+const noop = () => {}
+
+/**
+ *  @name Overlay
+ *  @return {Component}
+ */
+const Overlay = () => {
+  return (
+    <div className='overview-card__overlay' />
+  )
+}
+
+/**
  *  @class
  *  @name OverviewCard
  *  @extends {Component}
@@ -54,7 +69,9 @@ class OverviewCard extends Component {
       stats,
       info,
       isMember,
-      extra
+      extra,
+      src,
+      isPending
     } = this.props
 
     // Modified class names for overview card.
@@ -62,9 +79,16 @@ class OverviewCard extends Component {
 
     return (
       <div className={modifiedClassNames}>
+        {
+          isPending
+          ? <div className='overview-card__banner'>
+              <h6 className='secondary-font'>pending</h6>
+            </div>
+          : null
+        }
         <Image
           className='overview-card__bg'
-          imageSrc={horseRaceImg}
+          imageSrc={src}
           forceShow={true} />
         <div className='overview-card__content'>
           <div className='overview-card__card'>
@@ -112,7 +136,6 @@ class OverviewCard extends Component {
               </ul>
             </div>
             <div className='overview-card__extra'>
-              <div className='overview-card__gradiant overview-card__gradiant--top'></div>
               {
                 !isMember
                 ? (
@@ -121,7 +144,7 @@ class OverviewCard extends Component {
                         {extra.title}
                       </h6>
                       <p className='micro'>
-                          {extra.text}
+                        {extra.text}
                       </p>
                     </span>
                   )
@@ -130,18 +153,24 @@ class OverviewCard extends Component {
                       text='horse updates'
                       className='overview-card__button'
                       modifier='secondary'
-                      onClick={() => {}} />
+                      onClick={noop} />
                   )
               }
+              {
+                isPending
+                ? <Overlay />
+                : null
+              }
+              <div className='overview-card__gradiant overview-card__gradiant--top'></div>
             </div>
           </div>
         </div>
         <div className='overview-card__bottom-button'>
           <TextButton
-            text='more details'
+            text={isMember ? 'Syndicate Page' : 'more details'}
             className='overview-card__button'
             modifier='secondary'
-            onClick={() => {}} />
+            onClick={noop} />
         </div>
       </div>
     )
@@ -161,6 +190,7 @@ OverviewCard.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
+  src: PropTypes.string,
   title: PropTypes.string,
   subtitle: PropTypes.string,
   stats: PropTypes.arrayOf(PropTypes.shape({
@@ -181,7 +211,8 @@ OverviewCard.propTypes = {
     title: PropTypes.string,
     text: PropTypes.string
   }),
-  isMember: PropTypes.bool
+  isMember: PropTypes.bool,
+  isPending: PropTypes.bool
 }
 
 /**
@@ -222,7 +253,9 @@ OverviewCard.defaultProps = {
     title: '5 of 20 shares available',
     text: '*each share is equivalent to 5%'
   },
-  isMember: false
+  isMember: true,
+  src: horseRaceImg,
+  isPending: false
 }
 
 /**
