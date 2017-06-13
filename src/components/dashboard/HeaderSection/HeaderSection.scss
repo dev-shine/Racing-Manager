@@ -2,11 +2,13 @@
   position: relative;
   width: 100%;
   padding-top: 50px;
+  padding-bottom: 50px;
   background-color: $yankees-blue;
 
   &__heading {
     position: relative;
     padding: 0 10px;
+    margin-bottom: 40px;
     @include clearfix();
 
     h1 {
@@ -18,22 +20,73 @@
     float: right;
   }
 
+  &__items-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
   &__items-list {
     position: relative;
     width: 100%;
+    padding-top: 30px;
+    overflow: hidden;
   }
 
-  &__items-carousel {
-
-  }
-  
   &__section {
     @media all and (min-width: $screen-sm-min) {
-      padding: 0 20px;
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     @media all and (min-width: $screen-md-min) {
-      padding: 0 40px;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
+
+  &__slider {
+    position: relative;
+    width: 100%;
+    position: relative;
+  }
+
+  &__slide {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  &__slide-item {
+    display: inline-block;
+  }
+
+  &__arrow {
+    width: 10px;
+    opacity: 0.5;
+
+    @media all and (min-width: $screen-sm-min) {
+      width: 20px;
+    }
+
+    @media all and (min-width: $screen-md-min) {
+      width: 40px;
+    }
+  }
+
+  .swiper-slide {
+    h2 {
+      font-weight: 100;
+      color: $white;
+      opacity: 0.5;
+      transition: opacity .2s ease-out;
+    }
+    &-active {
+      h2 {
+        font-weight: 400;
+        opacity: 1;
+      }
     }
   }
 }

@@ -110,8 +110,18 @@ class MediaTileContent extends Component {
             })
           }
         </Slider>
-        <CarouselArrow className='tile-media-content__slider__arrow' modifier='left' onClick={this.slidePrev} />
-        <CarouselArrow className='tile-media-content__slider__arrow' modifier='right' onClick={this.slideNext} />
+        <CarouselArrow
+          className='tile-media-content__slider__arrow'
+          modifier='left'
+          iconModifier='leftarrow'
+          onClick={this.slidePrev}
+        />
+        <CarouselArrow
+          className='tile-media-content__slider__arrow'
+          modifier='right'
+          iconModifier='rightarrow'
+          onClick={this.slideNext}
+        />
       </div>
     )
   }

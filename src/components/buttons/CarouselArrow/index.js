@@ -4,14 +4,14 @@
 import React from 'react'
 
 /**
+ *  @module PropTypes
+ */
+import PropTypes from 'prop-types'
+
+/**
  *  @module classNames
  */
 import classNames from 'utils/classnames'
-
-/**
- *  @module baseClassNames
- */
-import baseClassNames from 'classnames'
 
 /**
  *  @module Icon
@@ -25,22 +25,50 @@ import Icon from 'components/icon'
  *  @param  {Function} options.onClick
  *  @return {Component}
  */
-const CarouselArrow = ({className, modifier, onClick}) => {
+const CarouselArrow = (props) => {
+  const {
+    className,
+    modifier,
+    onClick,
+    iconModifier
+  } = props
+
   // class names for the container
   const modifiedClassNames = classNames('carousel-arrow', className, modifier)
-
-  // classnames for determining the correct arrow to show.
-  const arrowClassNames = baseClassNames({
-    'leftarrow': modifier === 'left',
-    'rightarrow': modifier === 'right'
-  })
 
   return (
     <div className={modifiedClassNames} onClick={onClick}>
       <Icon
-        modifier={arrowClassNames}/>
+        modifier={iconModifier}/>
     </div>
   )
+}
+
+/**
+ *  propTypes
+ *  @type {Object}
+ */
+CarouselArrow.propTypes = {
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  modifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  iconModifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  onClick: PropTypes.func
+}
+
+/**
+ *  defaultProps
+ *  @type {Object}
+ */
+CarouselArrow.defaultProps = {
 }
 
 /**

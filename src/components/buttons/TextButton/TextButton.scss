@@ -43,18 +43,18 @@ $cta-active-bg: darken($cta-button-bg, 20);
     color: white;
   }
   &--secondary {
-    background: $cta-secondary-bg;
+    background: transparent;
     border: 1px solid $cta-button-bg;
     transition-property: background, border;
     &:hover {
-      background: white;
+      background: transparent;
       border-color: $cta-hover-bg;
       .text-button__text {
         color: $cta-hover-bg;
       }
     }
     &:active {
-      background: white;
+      background: transparent;
       border-color: $cta-active-bg;
       .text-button__text {
         color: $cta-active-bg;
