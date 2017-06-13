@@ -38,7 +38,7 @@ class ButtonSection extends Component {
           className='button-section__button'
           onClick={this.handleTalkToManager}
         />
-        <Link to='/' className='button-section__link'>
+        <Link to='/' className='link link--italic button-section__link'>
           Save it for later
         </Link>
       </div>

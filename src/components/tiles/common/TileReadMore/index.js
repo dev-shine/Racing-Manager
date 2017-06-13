@@ -11,7 +11,7 @@ const TileReadMore = props => {
     href,
   } = props
 
-  const modifiedClassNames = classNames('tile-read-more', className, modifier)
+  const modifiedClassNames = classNames('link link--italic tile-read-more', className, modifier)
 
   return (
      <Link to={href} className={modifiedClassNames}>
