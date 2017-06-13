@@ -82,6 +82,7 @@ const swiperHorseOpts = {
   freeModeMomentumRatio: 0.2,
   grabCursor: true,
   slideToClickedSlide: true,
+  preventClicks: true,
   breakpoints: {
     720: {
       slidesPerView: 1,
