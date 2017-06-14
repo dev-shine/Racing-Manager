@@ -94,7 +94,7 @@ const mapStateToProps = (state, ownProps) => ({
       providerSrc: '/uploads/1/1496758376165/attachment-1496758376164.jpg',
       date: '2017-06-06T14:11:42.820Z',
     }),
-    horses: new Array(20).fill(
+    horses: new Array(5).fill(
       'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
     )
   }
