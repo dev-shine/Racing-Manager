@@ -52,8 +52,6 @@ class Carousel extends Component {
   }
 
   componentDidMount () {
-    window.d = this.carousel.swiper
-
     this.bindWindowResize()
   }
 
