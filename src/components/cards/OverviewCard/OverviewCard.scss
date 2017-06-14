@@ -5,10 +5,15 @@
   $info-section-padding: 8px 15px 8px 15px;
 
   position: relative;
-  width: 266px;
-  max-height: 456px;
+  width: 300px;
+  max-height: 464px;
   text-align: left;
   
+  @media all and (min-width: $screen-sm-min) {
+    width: 266px;
+    height: 456px;
+  }
+
   &__wrapper {
     position: relative;
     width: 100%;
@@ -68,7 +73,11 @@
   &__content {
     position: relative;
     width: 100%;
-    height: 212px;
+    height: 229px;
+
+     @media all and (min-width: $screen-sm-min) {
+      height: 212px;
+     }
   }
 
   &__card {
@@ -158,6 +167,13 @@
       padding-left: 10px;
       color: $nickel;
     }
+
+    @media all and (max-width: $screen-sm) {
+      >h6, >p {
+        font-size: $tiny-title;
+      }
+    }
+
   }
 
   &__extra {
@@ -183,6 +199,10 @@
 
   &__button {
     width: 100%;
-    height: 30px;
+    height: 40px;
+
+    @media all and (min-width: $screen-sm-min) {
+      height: 30px;
+    }
   }
 }

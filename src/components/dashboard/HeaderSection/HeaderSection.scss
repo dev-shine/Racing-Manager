@@ -75,7 +75,7 @@
   &__slide {
     width: 100%;
 
-    @media all and (min-width: $screen-xs-min) {
+    @media all and (min-width: $screen-sm-min) {
       width: 266px;
     }
   }
