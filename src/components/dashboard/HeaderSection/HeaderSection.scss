@@ -45,6 +45,18 @@
     }
   }
 
+  &__slide {
+    width: 100%;
+
+    @media all and (min-width: $screen-xs-min) {
+      width: 50%;
+    }
+
+    @media all and (min-width: $screen-md-min) {
+      width: 266px;
+    }
+  }
+
   &__slide-item {
     display: inline-block;
   }

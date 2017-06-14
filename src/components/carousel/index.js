@@ -66,7 +66,7 @@ class Carousel extends Component {
   onResize () {
     setTimeout(() => {
       if (this.carousel) {
-        this.carousel.swiper.onResize()
+        this.carousel.swiper.resizeFix()
       }
     }, 0)
   }

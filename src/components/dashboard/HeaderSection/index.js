@@ -39,58 +39,14 @@ import Carousel from 'components/carousel'
 const noop = () => {}
 
 /**
- *  swiperNamesOpts
+ *  swiperOpts
  *  @type {Object}
  */
-const swiperNamesOpts = {
-  centeredSlides: true,
-  freeMode: true,
-  freeModeSticky: true,
-  spaceBetween: 10,
-  slidesPerView: 5,
-  freeModeMomentumRatio: 0.2,
+const swiperOpts = {
+  spaceBetween: 30,
+  slidesPerView: 'auto',
   grabCursor: true,
-  slideToClickedSlide: true,
-  breakpoints: {
-    480: {
-      slidesPerView: 1,
-      spaceBetween: 5
-    },
-    720: {
-      slidesPerView: 3,
-      spaceBetween: 5
-    }
-  }
-}
-
-/**
- *  swiperHorseOpts
- *  @type {Object}
- */
-const swiperHorseOpts = {
-  centeredSlides: true,
-  freeMode: true,
-  freeModeSticky: true,
-  spaceBetween: 10,
-  slidesPerView: 4,
-  freeModeMomentumRatio: 0.2,
-  grabCursor: true,
-  slideToClickedSlide: true,
-  preventClicks: true,
-  breakpoints: {
-    720: {
-      slidesPerView: 1,
-      spaceBetween: 5
-    },
-    980: {
-      slidesPerView: 2,
-      spaceBetween: 10
-    },
-    1200: {
-      slidesPerView: 3,
-      spaceBetween: 10
-    }
-  }
+  slideToClickedSlide: true
 }
 
 /**
@@ -140,6 +96,7 @@ class HeaderSection extends Component {
         <div className='dashboard-header__items-carousel dashboard-header__section'>
           <Carousel
             ref='swiperName'
+            slideClassName='dashboard-header__slide'
             prevArrow={
               <CarouselArrow
                 className='dashboard-header__arrow'
@@ -156,7 +113,7 @@ class HeaderSection extends Component {
                 onClick={() => { this.refs.swiperName.next() }}
               />
             }
-            {...swiperNamesOpts}>
+            {...swiperOpts}>
             {
               data.map((child, index) => {
                 return (
@@ -168,6 +125,7 @@ class HeaderSection extends Component {
         </div>
         <div className='dashboard-header__items-list dashboard-header__section wave-bg-blue'>
           <Carousel
+            slideClassName='dashboard-header__slide'
             ref='swiperHorse'
             prevArrow={
               <CarouselArrow
@@ -185,7 +143,7 @@ class HeaderSection extends Component {
                 onClick={() => { this.refs.swiperHorse.next() }}
               />
             }
-            {...swiperHorseOpts}>
+            {...swiperOpts}>
             {
               data.map((child, index) => {
                 return (
