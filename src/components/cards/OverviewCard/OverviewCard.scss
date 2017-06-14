@@ -20,9 +20,11 @@
     height: 100%;
     padding-top: 163px;
     border-left: $overview-border solid transparent;
+    transition: opacity .2s ease-out, transform .2s ease-out;
 
     &--inactive {
       transform: scale3d(0.95, 0.95, 0.95);
+      opacity: 0.2;
     }
   }
 

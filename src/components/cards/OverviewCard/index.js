@@ -186,11 +186,6 @@ class OverviewCard extends Component {
               onClick={noop} />
           </div>
         </div>
-        {
-          !isActive
-          ? <Overlay />
-          : null
-          }
       </div>
     )
   }
