@@ -52,6 +52,8 @@ class Carousel extends Component {
   }
 
   componentDidMount () {
+    window.d = this.carousel.swiper
+
     this.bindWindowResize()
   }
 
@@ -66,7 +68,7 @@ class Carousel extends Component {
   onResize () {
     setTimeout(() => {
       if (this.carousel) {
-        this.carousel.swiper.resizeFix()
+        this.carousel.swiper.update()
       }
     }, 0)
   }

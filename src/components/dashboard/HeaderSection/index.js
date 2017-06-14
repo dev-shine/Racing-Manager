@@ -46,7 +46,15 @@ const swiperOpts = {
   spaceBetween: 30,
   slidesPerView: 'auto',
   grabCursor: true,
-  slideToClickedSlide: true
+  slideToClickedSlide: true,
+  breakpoints: {
+    480: {
+      spaceBetween: 10
+    },
+    780: {
+      spaceBetween: 20
+    }
+  }
 }
 
 /**

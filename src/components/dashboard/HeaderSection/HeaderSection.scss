@@ -1,13 +1,11 @@
 .dashboard-header {
   position: relative;
   width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
   background-color: $yankees-blue;
+  padding: 50px 10px; 
 
   &__heading {
     position: relative;
-    padding: 0 10px;
     margin-bottom: 40px;
     @include clearfix();
 
@@ -34,6 +32,8 @@
   }
 
   &__section {
+    padding-left: 0 10px;
+
     @media all and (min-width: $screen-sm-min) {
       padding-left: 20px;
       padding-right: 20px;
@@ -48,7 +48,7 @@
   &__slide {
     width: 100%;
 
-    @media all and (min-width: $screen-xs-min) {
+    @media all and (min-width: $screen-sm-min) {
       width: 50%;
     }
 
