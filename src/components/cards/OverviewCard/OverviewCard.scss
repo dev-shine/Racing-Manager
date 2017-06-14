@@ -188,6 +188,16 @@
     > span > p {
       color: $nickel;
     }
+
+    @media all and (max-width: $screen-sm) {
+      > span > h6 {
+       font-size: $tiny-title;
+      }
+
+      > span > p {
+        font-size: $micro-title;
+      }
+    }
   }
   
   &__bottom-button {
