@@ -116,10 +116,10 @@ export class HorseOverview extends Component {
   render () {
     const { showPopup, tileIndex } = this.state
     const { data = {}, match } = this.props
-    const { messages } = data
+    const { messages = [] } = data
 
     // Get the tile according to the passed in index.
-    // const popupTile = tileIndex >= 0 ? data[tileIndex] : null
+    const popupTile = tileIndex >= 0 ? messages[tileIndex] : null
 
     return (
       <div className='horse-overview'>
@@ -146,7 +146,7 @@ export class HorseOverview extends Component {
           submitTitle='comment on this post'
           isOpen={showPopup}
           onClick={this.closePopup}
-          tile={tileIndex} />
+          tile={popupTile} />
       </div>
     )
   }
