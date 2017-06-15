@@ -8,11 +8,7 @@
   }
 
   &__headline {
-    font-size: 35px;
     color: $space-cadet;
-    @media (min-width: $screen-sm) {
-      font-size: 50px;
-    }
   }
   
   &__hr {

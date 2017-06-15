@@ -1,11 +1,38 @@
+/**
+ *  @module React, Component
+ */
 import React, { Component } from 'react'
+
+/**
+ *  @module Connect
+ */
 import { connect } from 'react-redux'
 
+/**
+ *  @module NewsTile
+ */
 import NewsTile from 'components/tiles/NewsTile'
+
+/**
+ *  @module TextButton
+ */
 import TextButton from 'components/buttons/TextButton'
 
+/**
+ *  @module HeaderSection
+ */
+import HeaderSection from 'components/dashboard/HeaderSection'
+
+/**
+ *  @module Block, Grid
+ */
 import { Block, Grid } from 'components/masonry'
 
+/**
+ *  @class
+ *  @name Dashboard
+ *  @extends {Component}
+ */
 export class Dashboard extends Component {
   constructor (props) {
     super(props)
@@ -13,14 +40,13 @@ export class Dashboard extends Component {
 
   render () {
     const { data } = this.props
-    const { tiles } = data
+    const { tiles, horses } = data
 
     return (
       <div className='dashboard'>
         <div className='dashboard__slider'>
-          <div className='container'>
-            Your horses slider here
-          </div>
+          <HeaderSection
+            data={horses}/>
         </div>
         <div className='dashboard__feed-section container'>
           <h1 className='dashboard__title'>
@@ -67,7 +93,10 @@ const mapStateToProps = (state, ownProps) => ({
       src: '/uploads/1/1496758376165/attachment-1496758376164.jpg',
       providerSrc: '/uploads/1/1496758376165/attachment-1496758376164.jpg',
       date: '2017-06-06T14:11:42.820Z',
-    })
+    }),
+    horses: new Array(5).fill(
+      'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
+    )
   }
 })
 

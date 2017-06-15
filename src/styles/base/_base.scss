@@ -33,3 +33,10 @@ ul.disc-list {
   -webkit-padding-start: 0;
   padding-left: 15px;
 }
+
+sup {
+  &.small {
+    top: -1em;
+    font-size: 50%;
+  }
+}

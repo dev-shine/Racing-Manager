@@ -56,8 +56,12 @@ h4, h5, h6 {
 }
 
 h1 {
-  font-size: $title;
+  font-size: $subtitle; // $title;
   line-height: $title-lead;
+
+  @media (min-width: $screen-md) {
+    font-size: $title;
+  }
 }
 
 h2 {
