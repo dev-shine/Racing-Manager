@@ -6,12 +6,17 @@ import { get, post } from 'api/Request'
 /**
  *  @module MESSAGE
  */
-import { MESSAGE } from 'api/ServiceTypes'
+import { MESSAGE, HORSE } from 'api/ServiceTypes'
 
 /**
  *  @module formatHorseData
  */
 import { formatHorseData } from 'utils/horseutils'
+
+/**
+ * @module common actions
+ */
+import { requestFail } from 'actions/request'
 
 /**
  *  FETCH_HORSE_INFO
@@ -169,18 +174,25 @@ export const fetchHorseInfo = data => {
     dispatch(gettingHorseInfo())
 
     return get({
-      url: MESSAGE,
+      url: HORSE,
       data
+    })
+    .then(response => {
+      if (response && response.status !== 'success') {
+        return Promise.reject(response)
+      } else {
+        return Promise.resolve(response)
+      }
     })
     .then(response => {
       // Format the response.
       const formattedResponse = formatHorseData(response)
 
       dispatch(receivedHorseInfo(formattedResponse))
-      return Promise.resolve()
+      return Promise.resolve(response.data)
     })
     .catch(error => {
-      dispatch(failedToGetHorseInfo())
+      dispatch(requestFail(error))
       return Promise.reject(error)
     })
   }

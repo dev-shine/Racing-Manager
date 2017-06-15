@@ -31,9 +31,12 @@ import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
 /**
  *  @module fetchHorseInfo
  */
-import {
-  fetchHorseInfo
-} from 'actions/horseoverview'
+import { fetchHorseInfo } from 'actions/horseoverview'
+
+/**
+ * @module HorseHeader
+ */
+import HorseHeader from 'components/horse/HorseHeader'
 
 /**
  *  @name HorseOverview
@@ -50,7 +53,7 @@ export class HorseOverview extends Component {
     // Initial state
     this.state = {
       tileIndex: null,
-      showPopup: false
+      showPopup: false,
     }
 
     // Bind custom fns
@@ -94,7 +97,7 @@ export class HorseOverview extends Component {
 
     // Set the new tile's index
     this.setState({
-      tileIndex: this.props.data.map(tile => tile.createdAt).indexOf(id),
+      tileIndex: this.props.data.messages.map(tile => tile.createdAt).indexOf(id),
       showPopup: true
     })
   }
@@ -110,23 +113,21 @@ export class HorseOverview extends Component {
   }
 
   render () {
-    const {
-      data,
-      match
-    } = this.props
-
-    const {
-      showPopup,
-      tileIndex
-    } = this.state
+    const { showPopup, tileIndex } = this.state
+    const { data = {}, match } = this.props
+    const { messages = [] } = data
 
     // Get the tile according to the passed in index.
-    const popupTile = tileIndex >= 0 ? data[tileIndex] : null
+    const popupTile = tileIndex >= 0 ? messages[tileIndex] : null
 
     return (
       <div className='horse-overview'>
+        <HorseHeader data={data} />
         <div className='container horse-overview__message-post'>
           <div className='row'>
+            <h1 className='horse-overview__main-title horse-overview__update-title'>
+              Updates
+            </h1>
             <div className='col-xs-12 col-sm-10 col-sm-push-1'>
               <SubmitPost
                 title='post an update to the horse'
@@ -137,7 +138,7 @@ export class HorseOverview extends Component {
         <div className='horse-overview__grid container'>
           <FeedGallery
             onClick={this.showFeedTilePopup}
-            tiles={data}/>
+            tiles={messages} />
         </div>
         { this.renderAjaxLoader() }
         <FeedUpdatePopup
@@ -182,9 +183,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getHorseInfo: () => {
       // Get the name of the horse from the url.
-      const horseId = ownProps.match.params.id
-
-      dispatch(fetchHorseInfo({ horseId }))
+      const name = ownProps.match.params.name
+      dispatch(fetchHorseInfo({ name }))
     }
   }
 }

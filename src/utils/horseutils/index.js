@@ -34,20 +34,23 @@ const horsePostType = (attachment) => {
 /**
  *  formatHorseData
  *  @description Utility for modifying the created at.
- *  @param  {Array}  data
- *  @return {Array}
+ *  @param  {Object} response
+ *  @return {Object}
  */
-export const formatHorseData = (data = []) => {
-  return data.map(obj => {
-    const {
-      createdAt,
-      attachment
-    } = obj
+export const formatHorseData = (response = {}) => {
+  const { data } = response
+  const { messages } = data
 
-    // Format the createdAt timestamp.
-    obj.timeStamp = timestampToFeedTimestamp(createdAt)
-    obj.postType = horsePostType(attachment)
+  return {
+    ...data,
+    messages: messages.map(obj => {
+      const { createdAt, attachment } = obj
 
-    return obj
-  })
+      // Format the createdAt timestamp.
+      obj.timeStamp = timestampToFeedTimestamp(createdAt)
+      obj.postType = horsePostType(attachment)
+
+      return obj
+    })
+  }
 }
