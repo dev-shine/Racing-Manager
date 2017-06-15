@@ -63,6 +63,7 @@ const swiperOpts = {
   spaceBetween: 30,
   slidesPerView: 'auto',
   grabCursor: true,
+  observer: true,
   slideToClickedSlide: true,
   breakpoints: {
     480: {
@@ -89,13 +90,13 @@ class HeaderSection extends PureComponent {
     // Initial state
     this.state = {
       horseActiveIndex: 0,
-      nameActiveIndex: 0,
-      slidesLength: 0
+      currentSyndName: ''
     }
 
     // bind custom fns
     this.updateHorseActiveIndex = this.updateHorseActiveIndex.bind(this)
     this.updateNameActiveIndex = this.updateNameActiveIndex.bind(this)
+    this.formatHorseData = this.formatHorseData.bind(this)
 
     // Options for the name.
     this.swiperNameOpts = {
@@ -109,14 +110,7 @@ class HeaderSection extends PureComponent {
     this.swiperHorseOpts = {
       ...swiperOpts,
       onTransitionStart: ({realIndex}) => {
-        // Update the horse active index, to get the correct pagination.
         this.updateHorseActiveIndex(realIndex)
-      },
-      onInit: ({slides}) => {
-        // Set the slides length according to the carousel
-        this.setState({
-          slidesLength: slides.length
-        })
       }
     }
   }
@@ -127,8 +121,23 @@ class HeaderSection extends PureComponent {
    *  @param  {Number} index
    */
   updateHorseActiveIndex (index) {
+    // Get the horse syndicate name from the horses array with the given index.
+    const {
+      syndName
+    } = this.carouselData.syndHorses[index]
+
+    // Get the index of the syndicate name in the syndNames array
+    // This will map to the correct carousel index.
+    const nameActiveIndex = this.carouselData.syndNames.map(({name}) => name).indexOf(syndName)
+
+    // Tell the name carousel to go to the correct index.
+    if (this.refs.swiperName) {
+      this.refs.swiperName.slideTo(nameActiveIndex, 200, false)
+    }
+
     this.setState({
-      horseActiveIndex: index
+      horseActiveIndex: index,
+      currentSyndName: syndName
     })
   }
 
@@ -138,8 +147,57 @@ class HeaderSection extends PureComponent {
    *  @param  {Number} index
    */
   updateNameActiveIndex (index) {
+    const {
+      name
+    } = this.carouselData.syndNames[index]
+
+    // Get the first index of the horse depending on the name of the syndicate.
+    const horseActiveIndex = this.carouselData.syndHorses.map(({syndName}) => syndName).indexOf(name)
+
+    if (this.refs.swiperHorse) {
+      this.refs.swiperHorse.slideTo(horseActiveIndex, 200, false)
+    }
+
     this.setState({
-      nameActiveIndex: index
+      horseActiveIndex,
+      currentSyndName: name
+    })
+  }
+
+  /**
+   *  formatHorseData
+   *  @description Will create formatted data for use on the carousels.
+   *  @return {Object}
+   */
+  formatHorseData () {
+    const {
+      data
+    } = this.props
+
+    return data.reduce((obj, syndicate, index) => {
+      const { horses } = syndicate
+
+      // Push data for the syndicate names carousel
+      obj.syndNames.push({
+        name: syndicate.name,
+        length: horses.length
+      })
+
+      // Push an array of all horses in each syndicate, used for the horse card carousel.
+      obj.syndHorses.push(...horses.map(horse => ({
+        syndName: syndicate.name,
+        syndSlug: syndicate.slug,
+        ...horse
+      })))
+
+      // Update the length of the overall horses for pagination buttons.
+      obj.length += horses.length
+
+      return obj
+    }, {
+      syndNames: [],
+      syndHorses: [],
+      length: 0
     })
   }
 
@@ -148,15 +206,16 @@ class HeaderSection extends PureComponent {
       className,
       modifier,
       title,
-      headerButtonText,
-      data
+      headerButtonText
     } = this.props
 
     const {
       horseActiveIndex,
-      slidesLength,
-      nameActiveIndex
+      currentSyndName
     } = this.state
+
+    // Get the data needed for the carousels
+    this.carouselData = this.formatHorseData()
 
     /**
      *  Class names for the container
@@ -208,11 +267,11 @@ class HeaderSection extends PureComponent {
             }
             {...this.swiperNameOpts}>
             {
-              data.map(({name, horses}, index) => {
+              this.carouselData.syndNames.map(({name, length}, index) => {
                 return (
                   <h2
                     key={index}>
-                    {name}<sup className='small'>{horses.length}</sup>
+                    {name}<sup className='small'>{length}</sup>
                   </h2>
                 )
               })
@@ -242,60 +301,51 @@ class HeaderSection extends PureComponent {
             }
             {...this.swiperHorseOpts}>
             {
-              data.reduce((arr, syndicate, index) => {
-                const { horses } = syndicate
-
-                // Loop around all the syndicates and put the horses into the overall array to display
-                // on the carousel.
-                // If anyone has a better way to do this, please do it
-                arr.push(...horses.map(horse => {
-                  return (
-                    <HorseCard
-                      isActive={index === nameActiveIndex}
-                      key={index}
-                      title={horse.name}
-                      subtitle={`${horse.age}yo ${horse.gender}`} // Needs to have the STYLE too!
-                      stats={[{
-                        name: 'runs',
-                        value: horse.runs
-                      }, {
-                        name: 'wins',
-                        value: horse.wins
-                      }, {
-                        name: 'places',
-                        value: horse.places
-                      }, {
-                        name: 'OR',
-                        value: '-'
-                      }]}
-                      info={[{
-                        name: 'Trainer name',
-                        value: horse.trainer.name
-                      }, {
-                        name: 'Syndicate name',
-                        value: syndicate.name
-                      }, {
-                        name: 'Manager',
-                        value: horse.owner.name
-                      }, {
-                        name: 'Ownership',
-                        value: '5/12 shares'
-                      }]}
-                      extra={{
-                        url: `/horse/${horse.slug}`
-                      }}
-                      bottomUrl={`/syndicate/${syndicate.slug}`}
-                      className='dashboard-header__slide-item' />
-                  )
-                }))
-
-                return arr
-              }, [])
+              this.carouselData.syndHorses.map((horse, index) => {
+                return (
+                  <HorseCard
+                    isActive={horse.syndName === currentSyndName}
+                    key={index}
+                    title={horse.name}
+                    subtitle={`${horse.age}yo ${horse.gender}`} // Needs to have the STYLE too!
+                    stats={[{
+                      name: 'runs',
+                      value: horse.runs
+                    }, {
+                      name: 'wins',
+                      value: horse.wins
+                    }, {
+                      name: 'places',
+                      value: horse.places
+                    }, {
+                      name: 'OR',
+                      value: '-'
+                    }]}
+                    info={[{
+                      name: 'Trainer name',
+                      value: horse.trainer.name
+                    }, {
+                      name: 'Syndicate name',
+                      value: horse.syndName
+                    }, {
+                      name: 'Manager',
+                      value: horse.owner.name
+                    }, {
+                      name: 'Ownership',
+                      value: '5/12 shares'
+                    }]}
+                    extra={{
+                      url: `/horse/${horse.slug}`
+                    }}
+                    bottomUrl={`/syndicate/${horse.syndSlug}`}
+                    className='dashboard-header__slide-item' />
+                )
+              })
             }
           </Carousel>
           <div className='dashboard-header__pagination hidden-sm-up'>
             <CarouselPaginationButton
-              length={slidesLength}
+              length={this.carouselData.length}
               activeIndex={horseActiveIndex} />
           </div>
         </div>

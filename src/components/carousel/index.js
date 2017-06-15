@@ -47,6 +47,7 @@ class Carousel extends Component {
     this.debouncedResize = debounce(this.onResize)
     this.next = this.next.bind(this)
     this.prev = this.prev.bind(this)
+    this.slideTo = this.slideTo.bind(this)
     this.renderNextArrow = this.renderNextArrow.bind(this)
     this.renderPrevArrow = this.renderPrevArrow.bind(this)
   }
@@ -84,6 +85,12 @@ class Carousel extends Component {
   prev () {
     if (this.carousel) {
       this.carousel.swiper.slidePrev()
+    }
+  }
+
+  slideTo (...opts) {
+    if (this.carousel) {
+      this.carousel.swiper.slideTo(...opts)
     }
   }
 
