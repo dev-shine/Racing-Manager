@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const HorseNumericDetails = props => {
   const { data } = props
@@ -19,6 +20,31 @@ const HorseNumericDetails = props => {
       }
     </div>
   )
+}
+
+HorseNumericDetails.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ])
+    })
+  )
+}
+
+HorseNumericDetails.defaultProps = {
+  data: [
+    {
+      title: 'Runs',
+      value: 20
+    },
+    {
+      title: 'Wins',
+      value: 7
+    },
+  ],
 }
 
 export default HorseNumericDetails

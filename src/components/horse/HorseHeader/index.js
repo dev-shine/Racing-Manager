@@ -18,6 +18,8 @@ import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
 import Carousel from 'components/carousel'
 import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
 
+import { timestampToDate } from 'utils/dateutils'
+
 class HorseHeader extends Component {
   constructor (props) {
     super(props)
@@ -59,6 +61,10 @@ class HorseHeader extends Component {
       runs,
       wins,
       places,
+      trainer = {},
+      sire = {},
+      dam = {},
+      foalingDate,
     } = data
 
     const briefData = {
@@ -66,7 +72,7 @@ class HorseHeader extends Component {
       age,
       color,
       gender,
-      owner
+      owner,
     }
 
     const numericData = [
@@ -92,9 +98,69 @@ class HorseHeader extends Component {
       }
     ]
 
-    const detailsData = {
-
-    }
+    const detailsData = [
+      {
+        title: 'Trainer',
+        value: trainer.name,
+        isLink: true,
+        href: '/',
+      },
+      {
+        title: 'Prev Trainers',
+        value: '-',
+        isLink: true,
+        href: '/',
+      },
+      {
+        title: 'Breeder',
+        value: '-',
+      },
+      {
+        title: 'Style',
+        value: '-',
+      },
+      {
+        title: 'Foaling Date',
+        value: timestampToDate(foalingDate, 'D MMMM YYYY')
+      },
+      {
+        title: 'Sire',
+        value: sire.name,
+        isLink: true,
+        href: '/',
+      },
+      {
+        title: 'Dam',
+        value: dam.name,
+        isLink: true,
+        href: '/',
+      },
+      {
+        title: 'Dam Sire',
+        value: dam.sireName,
+        isLink: true,
+        href: '/',
+      },
+      {
+        title: 'Racetrack Siblings',
+        value: '-',
+        isLink: true,
+        href: '/',
+      },
+      {
+        title: 'Prize Money',
+        value: '£-',
+        className: '',
+      },
+      {
+        title: 'Public Sales Price',
+        value: '£-',
+      },
+      {
+        title: 'Current Value',
+        value: '£-',
+      },
+    ]
 
     const ownershipData = [
       '2 years fixed period ownership',
@@ -121,77 +187,81 @@ class HorseHeader extends Component {
                 <HorseBrief data={briefData} />
                 <HorseNumericDetails data={numericData} />
               </div>
-              <HorseDetails data={data} />
+              <HorseDetails data={detailsData} />
             </div>
           </div>
         </div>
         <div className='row visible-md-up'>
-          <div className='col-md-8'>
-            <div className='horse-header__about-section'>
+          <div className='horse-header__about-section'>
+            <div className='col-md-8'>
               <HorseAboutInfo />
             </div>
-          </div>
-          <div className='col-md-4'>
-            <div className='horse-header__involvement'>
-              <div className='container'>
-                <h1 className='horse-header__description-title'>
-                  Your Involvement
-                </h1>
-                <Separator modifier='white' />
-                <HorseOwnershipInfo data={ownershipData} />
-                <Separator modifier='white' />
-                <HorseBenefitsInfo data={benefitsData} />
+            <div className='col-md-4'>
+              <div className='horse-header__involvement'>
+                <div className='container'>
+                  <h1 className='horse-header__description-title'>
+                    Your Involvement
+                  </h1>
+                  <Separator modifier='white' />
+                  <HorseOwnershipInfo data={ownershipData} />
+                  <Separator modifier='white' />
+                  <HorseBenefitsInfo data={benefitsData} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className='container hidden-md-up'>
-          <HorseBrief data={briefData} />
-          <TextButton
-            text={isOpen ? 'Hide details' : 'View details'}
-            className='horse-header__btn-details'
-            modifier={['md', 'secondary']}
-            onClick={this.handleToggleDetails}
-          />
-        </div>
         <div className='hidden-md-up'>
+          <div className='container'>
+            <div className='horse-header__brief-info'>
+              <HorseBrief data={briefData} />
+              <TextButton
+                text={isOpen ? 'Hide details' : 'View details'}
+                className='horse-header__btn-details'
+                modifier={['md', 'secondary']}
+                onClick={this.handleToggleDetails}
+              />
+            </div>
+          </div>
           <Accordion isOpen={isOpen}>
             <div className='horse-header__details'>
               <div className='container'>
-                <div className='horse-header__small-details row'>
+                <div className='row'>
                   <HorseNumericDetails data={numericData} />
                 </div>
-                <div className='row'>
-                  <HorseDetails data={data} />
+                <div className='row horse-header__full-details'>
+                  <HorseDetails data={detailsData} />
                 </div>
               </div>
             </div>
             <div className='horse-header__about-section'>
               <div className='container'>
-                <div className='col-xs-12 col-md-7'>
-                  <HorseAboutInfo />
-                  <TextButton
-                    text='Syndicate page'
-                    className='horse-header__syndicate-button'
-                    modifier={['sm']}
-                    onClick={() => {}}
-                  />
-                </div>
+                <HorseAboutInfo />
+                <TextButton
+                  text='Syndicate page'
+                  className='horse-header__syndicate-button'
+                  modifier='md'
+                  onClick={() => {}}
+                />
               </div>
             </div>
           </Accordion>
           <div className='horse-header__involvement'>
             <div className='container'>
-              <Carousel slideClassName='horse-header__slide' ref='swiperHorseOverview' onSlideChangeStart={this.handleSlideChange}>
+              <Carousel
+                slideClassName='horse-header__slide'
+                ref='swiperHorseOverview'
+                onSlideChangeStart={this.handleSlideChange}
+              >
                 <div>
-                  <h1 className='horse-header__description-title'>
+                  <h1 className='horse-header__medium-title'>
                     Your Involvement
                   </h1>
                   <Separator modifier='white' />
                   <HorseOwnershipInfo data={ownershipData} />
                 </div>
                 <div>
-                  <h1 className='horse-header__description-title'>
+                  <h1 className='horse-header__medium-title'>
                     Your Involvement
                   </h1>
                   <Separator modifier='white' />
@@ -202,6 +272,7 @@ class HorseHeader extends Component {
                 <CarouselPaginationButton
                   length={2}
                   activeIndex={activeSlide}
+                  className='horse-header__pagination'
                 />
               </div>
             </div>

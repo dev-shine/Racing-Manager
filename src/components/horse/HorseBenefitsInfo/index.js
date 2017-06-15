@@ -30,7 +30,7 @@ const HorseBenefitsInfo = props => {
 HorseBenefitsInfo.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.string
-  )
+  ).isRequired
 }
 
 HorseBenefitsInfo.defaultProps = {

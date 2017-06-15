@@ -5,7 +5,7 @@ import Separator from 'components/gui/Separator'
 const HorseAboutInfo = () => {
   return (
     <div className='horse-about'>
-      <h1 className='horse-header__description-title'>
+      <h1 className='horse-header__medium-title'>
         About the horse
       </h1>
       <Separator modifier='white' />
