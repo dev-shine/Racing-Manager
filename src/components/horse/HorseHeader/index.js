@@ -181,19 +181,21 @@ class HorseHeader extends Component {
         <div className='horse-header__image'>
           <Hero featuredImage='../assets/dummyassets/horse-overview.png'>
           </Hero>
-          <div className='horse-header__details-tile col-xs-4 visible-md-up'>
-            <div className='horse-header__details'>
-              <div className='horse-header__small-details'>
-                <HorseBrief data={briefData} />
-                <HorseNumericDetails data={numericData} />
+          <div className='horse-header__details-container visible-md-up'>
+            <div className='horse-header__details-tile'>
+              <div className='horse-header__details'>
+                <div className='horse-header__small-details'>
+                  <HorseBrief data={briefData} />
+                  <HorseNumericDetails data={numericData} />
+                </div>
+                <HorseDetails data={detailsData} />
               </div>
-              <HorseDetails data={detailsData} />
             </div>
           </div>
         </div>
         <div className='row visible-md-up'>
-          <div className='horse-header__about-section'>
-            <div className='col-md-8'>
+          <div className='horse-header__content container no-padding'>
+            <div className='horse-header__about-section col-md-8'>
               <HorseAboutInfo />
             </div>
             <div className='col-md-4'>
@@ -204,7 +206,6 @@ class HorseHeader extends Component {
                   </h1>
                   <Separator modifier='white' />
                   <HorseOwnershipInfo data={ownershipData} />
-                  <Separator modifier='white' />
                   <HorseBenefitsInfo data={benefitsData} />
                 </div>
               </div>
@@ -237,12 +238,6 @@ class HorseHeader extends Component {
             <div className='horse-header__about-section'>
               <div className='container'>
                 <HorseAboutInfo />
-                <TextButton
-                  text='Syndicate page'
-                  className='horse-header__syndicate-button'
-                  modifier='md'
-                  onClick={() => {}}
-                />
               </div>
             </div>
           </Accordion>

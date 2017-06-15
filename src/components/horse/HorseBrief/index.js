@@ -12,7 +12,7 @@ const HorseBrief = props => {
         {name}
       </h1>
       <div className='horse-header__horse-brief'>
-        {age}yo <span className='horse-header__horse-gender'>{color} {gender}</span> Owned by: <Link to='' className='link--italic'>{owner.name}</Link>
+        {age}yo <span className='horse-header__horse-gender'>{color} {gender}</span> Owned by: <Link to='' className='link--italic capitalize'>{owner.name}</Link>
       </div>
     </div>
   )

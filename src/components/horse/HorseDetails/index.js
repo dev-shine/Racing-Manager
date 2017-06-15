@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'utils/classnames'
 import { Link } from 'react-router-dom'
 
 const HorseDetails = props => {
   const { data } = props
 
+  const constructClassName = className => classNames('row', className)
+
   return (
     <div className='horse-details-list'>
       {
         data.map((item, index) => (
-          <div className='row' key={index}>
+          <div className={constructClassName(item.className)} key={index}>
             <div className='horse-details__title col-xs-6'>
               {item.title}
             </div>

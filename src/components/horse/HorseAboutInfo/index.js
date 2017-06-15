@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import Separator from 'components/gui/Separator'
+import TextButton from 'components/buttons/TextButton'
 
 const HorseAboutInfo = () => {
   return (
@@ -24,6 +26,12 @@ const HorseAboutInfo = () => {
       <Link to='/' className='link--italic horse-header__read-more'>
         Read more...
       </Link>
+      <TextButton
+        text='Syndicate page'
+        className='horse-header__syndicate-button'
+        modifier='md'
+        onClick={() => {}}
+      />
     </div>
   )
 }

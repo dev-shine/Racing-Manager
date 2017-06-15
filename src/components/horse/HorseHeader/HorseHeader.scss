@@ -1,8 +1,21 @@
 .horse-header {
 
+  &__details-container {
+    width: auto;
+
+    @media (min-width: $screen-lg) {
+      position: absolute;
+      width: 1170px;
+      height: 100%;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+  }
+
   &__details-tile {
     min-width: 400px;
-    height: 420px; // Nick: Smoke weed everyday
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -66,10 +79,6 @@
 
   &__horse-brief {
     margin-top: 15px;
-
-    a {
-      text-transform: capitalize;
-    }
   }
 
   &__btn-details {
@@ -105,6 +114,16 @@
     color: white;
     background: #00273A;
     padding: 35px 0 25px;
+
+    @media (min-width: $screen-md) {
+      min-height: 100%;
+      padding: 55px 30px 45px;
+      flex: 1;
+    }
+  }
+
+  &__content {
+    display: flex;
   }
 
   &__comment-title {
@@ -117,6 +136,10 @@
     border: 1px solid white;
     background: transparent;
     margin: 25px auto 0;
+
+    @media (min-width: $screen-md) {
+      margin-left: 0;
+    }
   }
 
 // -----
@@ -125,6 +148,18 @@
     color: white;
     padding: 35px 0 25px;
     background: darken(#00273A, 2%);
+
+    @media (min-width: $screen-md) {
+      height: 100%;
+      padding: 55px 30px 45px;
+    }
+  }
+
+  &__description-title {
+    @media (min-width: $screen-md) {
+      color: white;
+      font-size: 30px
+    }
   }
 
   &__read-more {

@@ -34,11 +34,11 @@ const horsePostType = (attachment) => {
 /**
  *  formatHorseData
  *  @description Utility for modifying the created at.
- *  @param  {Object}  responce
+ *  @param  {Object} response
  *  @return {Object}
  */
-export const formatHorseData = (responce = {}) => {
-  const { data } = responce
+export const formatHorseData = (response = {}) => {
+  const { data } = response
   const { messages } = data
 
   return {
