@@ -1,8 +1,4 @@
 /**
- *  This card is used for the horse overview and syndicate overview pages.
- */
-
-/**
  *  @module React
  */
 import React, { Component } from 'react'
@@ -32,6 +28,11 @@ import TextButton from 'components/buttons/TextButton'
  */
 import UpdatesButton from 'components/buttons/UpdatesButton'
 
+/**
+ *  @module Link
+ */
+import { Link } from 'react-router-dom'
+
 // Dummy race horse image
 import {
   horseRaceImg
@@ -48,16 +49,16 @@ const noop = () => {}
  */
 export const Overlay = () => {
   return (
-    <div className='overview-card__overlay' />
+    <div className='horse-card__overlay' />
   )
 }
 
 /**
  *  @class
- *  @name OverviewCard
+ *  @name HorseCard
  *  @extends {Component}
  */
-class OverviewCard extends Component {
+class HorseCard extends Component {
   /**
    *  @constructor
    */
@@ -77,14 +78,15 @@ class OverviewCard extends Component {
       extra,
       src,
       isPending,
-      isActive
+      isActive,
+      bottomUrl
     } = this.props
 
-    // Modified class names for overview card.
-    const modifiedClassNames = classNames('overview-card', className, modifier)
+    // Modified class names for horse card.
+    const modifiedClassNames = classNames('horse-card', className, modifier)
 
     // Modified class names for the wrapper to scale it down if the component is inactive
-    const modifiedWrapperClassNames = classNames('overview-card__wrapper', '', {
+    const modifiedWrapperClassNames = classNames('horse-card__wrapper', '', {
       inactive: !isActive
     })
 
@@ -93,29 +95,29 @@ class OverviewCard extends Component {
         <div className={modifiedWrapperClassNames}>
           {
             isPending
-            ? <div className='overview-card__banner'>
+            ? <div className='horse-card__banner'>
                 <h6 className='secondary-font'>pending</h6>
               </div>
             : null
           }
           <Image
-            className='overview-card__bg'
+            className='horse-card__bg'
             imageSrc={src}
             forceShow={true} />
-          <div className='overview-card__content'>
-            <div className='overview-card__card'>
-              <div className='overview-card__heading'>
+          <div className='horse-card__content'>
+            <div className='horse-card__card'>
+              <div className='horse-card__heading'>
                 <h3>
                   {title}
                 </h3>
                 <h6 className='secondary-font'>
                   {subtitle}
                 </h6>
-                <div className='overview-card__stats'>
+                <div className='horse-card__stats'>
                   {
                     stats.map(({name, value}, index) => {
                       return (
-                        <div className='overview-card__statsitem col-xs-3' key={index}>
+                        <div className='horse-card__statsitem col-xs-3' key={index}>
                           <h6 className='secondary-font'>
                             {name}
                           </h6>
@@ -128,13 +130,13 @@ class OverviewCard extends Component {
                   }
                 </div>
               </div>
-              <div className='overview-card__info'>
-                <div className='overview-card__gradiant overview-card__gradiant--top'></div>
-                <ul className='overview-card__infolist'>
+              <div className='horse-card__info'>
+                <div className='horse-card__gradiant horse-card__gradiant--top'></div>
+                <ul className='horse-card__infolist'>
                   {
                     info.map(({name, value}, index) => {
                       return (
-                        <li className='overview-card__infoitem' key={index}>
+                        <li className='horse-card__infoitem' key={index}>
                           <h6 className='secondary-font col-xs-6'>
                             {name}
                           </h6>
@@ -147,7 +149,7 @@ class OverviewCard extends Component {
                   }
                 </ul>
               </div>
-              <div className='overview-card__extra'>
+              <div className='horse-card__extra'>
                 {
                   !isMember
                   ? (
@@ -161,12 +163,14 @@ class OverviewCard extends Component {
                       </span>
                     )
                   : (
-                      <UpdatesButton
-                        amount={extra.updateAmount}
-                        text='horse updates'
-                        buttonClassName='overview-card__button'
-                        buttonModifier='secondary'
-                        onClick={noop} />
+                      <Link to={extra.url}>
+                        <UpdatesButton
+                          amount={extra.updateAmount}
+                          text='horse updates'
+                          buttonClassName='horse-card__button'
+                          buttonModifier='secondary'
+                          onClick={noop} />
+                      </Link>
                     )
                 }
                 {
@@ -174,16 +178,18 @@ class OverviewCard extends Component {
                   ? <Overlay />
                   : null
                 }
-                <div className='overview-card__gradiant overview-card__gradiant--top'></div>
+                <div className='horse-card__gradiant horse-card__gradiant--top'></div>
               </div>
             </div>
           </div>
-          <div className='overview-card__bottom-button'>
-            <TextButton
-              text={isMember ? 'Syndicate Page' : 'more details'}
-              className='overview-card__button'
-              modifier='secondary'
-              onClick={noop} />
+          <div className='horse-card__bottom-button'>
+            <Link to={bottomUrl}>
+              <TextButton
+                text={isMember ? 'Syndicate Page' : 'more details'}
+                className='horse-card__button'
+                modifier='secondary'
+                onClick={noop} />
+            </Link>
           </div>
         </div>
       </div>
@@ -195,7 +201,7 @@ class OverviewCard extends Component {
  *  propTypes
  *  @type {Object}
  */
-OverviewCard.propTypes = {
+HorseCard.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -238,7 +244,7 @@ OverviewCard.propTypes = {
  *  defaultProps
  *  @type {Object}
  */
-OverviewCard.defaultProps = {
+HorseCard.defaultProps = {
   className: '',
   title: 'contrabrand horse',
   subtitle: '2yo Filly, National Hunt (Jump)',
@@ -271,8 +277,10 @@ OverviewCard.defaultProps = {
   extra: {
     title: '5 of 20 shares available',
     text: '*each share is equivalent to 5%',
-    updateAmount: 99
+    updateAmount: 99,
+    url: 'null'
   },
+  bottomUrl: 'null',
   isMember: true,
   src: horseRaceImg,
   isPending: false,
@@ -280,6 +288,6 @@ OverviewCard.defaultProps = {
 }
 
 /**
- *  @module OverviewCard
+ *  @module HorseCard
  */
-export default OverviewCard
+export default HorseCard

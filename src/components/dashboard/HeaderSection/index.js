@@ -1,7 +1,7 @@
 /**
  *  @module React
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  *  @module PropTypes
@@ -19,9 +19,9 @@ import classNames from 'utils/classnames'
 import TextButton from 'components/buttons/TextButton'
 
 /**
- *  @module OverviewCard
+ *  @module HorseCard
  */
-import OverviewCard from 'components/cards/OverviewCard'
+import HorseCard from 'components/cards/HorseCard'
 
 /**
  *  @module CarouselArrow
@@ -44,7 +44,18 @@ import CarouselPaginationButton from 'components/buttons/CarouselPaginationButto
 const noop = () => {}
 
 /**
+ *  Gradiant
+ *  @description Div block with a gradiant color.
+ */
+const Gradiant = props => {
+  return (
+    <div className='dashboard-header__gradiant' />
+  )
+}
+
+/**
  *  swiperOpts
+ *  @description Default options.
  *  @type {Object}
  */
 const swiperOpts = {
@@ -64,26 +75,72 @@ const swiperOpts = {
 }
 
 /**
- *  Gradiant
- *  @description Div block with a gradiant color.
- */
-const Gradiant = props => {
-  return (
-    <div className='dashboard-header__gradiant' />
-  )
-}
-
-/**
  *  @class
  *  @name HeaderSection
- *  @extends {Component}
+ *  @extends {PureComponent}
  */
-class HeaderSection extends Component {
+class HeaderSection extends PureComponent {
   /**
    *  @constructor
    */
   constructor (props) {
     super(props)
+
+    // Initial state
+    this.state = {
+      horseActiveIndex: 0,
+      nameActiveIndex: 0,
+      slidesLength: 0
+    }
+
+    // bind custom fns
+    this.updateHorseActiveIndex = this.updateHorseActiveIndex.bind(this)
+    this.updateNameActiveIndex = this.updateNameActiveIndex.bind(this)
+
+    // Options for the name.
+    this.swiperNameOpts = {
+      ...swiperOpts,
+      onTransitionStart: ({realIndex}) => {
+        this.updateNameActiveIndex(realIndex)
+      }
+    }
+
+    // Options for horse
+    this.swiperHorseOpts = {
+      ...swiperOpts,
+      onTransitionStart: ({realIndex}) => {
+        // Update the horse active index, to get the correct pagination.
+        this.updateHorseActiveIndex(realIndex)
+      },
+      onInit: ({slides}) => {
+        // Set the slides length according to the carousel
+        this.setState({
+          slidesLength: slides.length
+        })
+      }
+    }
+  }
+
+  /**
+   *  updateHorseActiveIndex
+   *  @description Will update the horse pagination to the correct slide.
+   *  @param  {Number} index
+   */
+  updateHorseActiveIndex (index) {
+    this.setState({
+      horseActiveIndex: index
+    })
+  }
+
+  /**
+   *  updateNameActiveIndex
+   *  @description Will update the horse slider position to the correct slide depending on syndicate chosen.
+   *  @param  {Number} index
+   */
+  updateNameActiveIndex (index) {
+    this.setState({
+      nameActiveIndex: index
+    })
   }
 
   render () {
@@ -94,6 +151,12 @@ class HeaderSection extends Component {
       headerButtonText,
       data
     } = this.props
+
+    const {
+      horseActiveIndex,
+      slidesLength,
+      nameActiveIndex
+    } = this.state
 
     /**
      *  Class names for the container
@@ -143,20 +206,20 @@ class HeaderSection extends Component {
                 onClick={() => { this.refs.swiperName.next() }}
               />
             }
-            {...swiperOpts}>
+            {...this.swiperNameOpts}>
             {
-              data.map((child, index) => {
+              data.map(({name, horses}, index) => {
                 return (
                   <h2
                     key={index}>
-                    The quays horse<sup className='small'>2</sup>
+                    {name}<sup className='small'>{horses.length}</sup>
                   </h2>
                 )
               })
             }
           </Carousel>
         </div>
-        <div className='dashboard-header__items-list dashboard-header__section wave-bg-blue'>
+        <div className='dashboard-header__items-list dashboard-header__section wave-bg--faded'>
           <Gradiant />
           <Carousel
             slideClassName='dashboard-header__slide'
@@ -177,21 +240,63 @@ class HeaderSection extends Component {
                 onClick={() => { this.refs.swiperHorse.next() }}
               />
             }
-            {...swiperOpts}>
+            {...this.swiperHorseOpts}>
             {
-              data.map((child, index) => {
-                return (
-                  <OverviewCard
-                    key={index}
-                    className='dashboard-header__slide-item' />
-                )
-              })
+              data.reduce((arr, syndicate, index) => {
+                const { horses } = syndicate
+
+                // Loop around all the syndicates and put the horses into the overall array to display
+                // on the carousel.
+                // If anyone has a better way to do this, please do it
+                arr.push(...horses.map(horse => {
+                  return (
+                    <HorseCard
+                      isActive={index === nameActiveIndex}
+                      key={index}
+                      title={horse.name}
+                      subtitle={`${horse.age}yo ${horse.gender}`} // Needs to have the STYLE too!
+                      stats={[{
+                        name: 'runs',
+                        value: horse.runs
+                      }, {
+                        name: 'wins',
+                        value: horse.wins
+                      }, {
+                        name: 'places',
+                        value: horse.places
+                      }, {
+                        name: 'OR',
+                        value: '-'
+                      }]}
+                      info={[{
+                        name: 'Trainer name',
+                        value: horse.trainer.name
+                      }, {
+                        name: 'Syndicate name',
+                        value: syndicate.name
+                      }, {
+                        name: 'Manager',
+                        value: horse.owner.name
+                      }, {
+                        name: 'Ownership',
+                        value: '5/12 shares'
+                      }]}
+                      extra={{
+                        url: `/horse/${horse.slug}`
+                      }}
+                      bottomUrl={`/syndicate/${syndicate.slug}`}
+                      className='dashboard-header__slide-item' />
+                  )
+                }))
+
+                return arr
+              }, [])
             }
           </Carousel>
           <div className='dashboard-header__pagination hidden-sm-up'>
             <CarouselPaginationButton
-              length={data.length}
-              activeIndex={0} />
+              length={slidesLength}
+              activeIndex={horseActiveIndex} />
           </div>
         </div>
       </div>
