@@ -1,18 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'utils/classnames'
 
 const HorseNumericDetails = props => {
-  const {
-    className,
-    modifier,
-    data,
-  } = props
-
-  const modifiedClassNames = classNames('horse-num-details', className, modifier)
+  const { data } = props
 
   return (
-    <div className={modifiedClassNames}>
+    <div className='horse-num-details'>
       {
         data.map((item, index) => (
           <div className='horse-num-details__item col-xs-1' key={index}>
@@ -27,17 +19,6 @@ const HorseNumericDetails = props => {
       }
     </div>
   )
-}
-
-PropTypes.propTypes = {
-  data: PropTypes.arrayOf({
-    title: PropTypes.string,
-    value: PropTypes.any,
-  })
-}
-
-PropTypes.defaultProps = {
-  data: []
 }
 
 export default HorseNumericDetails

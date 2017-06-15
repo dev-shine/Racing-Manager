@@ -1,23 +1,45 @@
 .horse-header {
 
-  &__paragraph {
-    color: white;
+  &__image {
+    .parallax-hero__image {
+      height: 130px;
+      background-position: top center;
+
+      @media (min-width: $screen-md) {
+        height: 500px;
+      }
+    }
   }
 
-  &__details-tile {
-    //position: absolute;
-    //top: 20px;
-    //left: 20px;
-    //content: '';
-    max-width: 400px;
+  &__main-title {
+    margin-top: 20px;
+  }
+
+  &__brief-info {
+    margin-top: 15px;
+
+    a {
+      text-transform: capitalize;
+    }
   }
 
   &__info {
     text-transform: capitalize;
   }
 
-  &__main-title {
-    margin-top: 20px;
+  &__comment-title {
+    margin: 15px 0;
+  }
+
+  &__paragraph {
+    color: white;
+  }
+
+  &__details-tile {
+    position: absolute;
+    top: 50px;
+    bottom: 30px;
+    left: 0;
   }
 
   &__small-title {
@@ -25,16 +47,8 @@
     text-transform: uppercase;
   }
 
-  &__image {
-    height: 160px;
-  }
-
   &__btn-details {
     margin: 20px 0;
-  }
-
-  &__brief-info {
-    margin-top: 15px;
   }
 
   &__details {
@@ -54,12 +68,10 @@
     font-weight: 600;
   }
 
-  &__details-link {
-    font-style: italic;
-
-    &:hover {
-      text-decoration: underline;
-    }
+  &__about-section {
+    color: white;
+    background: #00273A;
+    padding: 25px 0;
   }
 
   &__details-prices {
@@ -83,16 +95,6 @@
     margin-top: 15px;
   }
 
-  &__accordion {
-    color: white;
-    background: #00273A;
-    padding: 25px 0;
-  }
-
-  &__comment-title {
-    margin-top: 15px;
-  }
-
   &__syndicate-button {
     width: 230px;
     height: 30px;
@@ -101,5 +103,9 @@
     border: 1px solid white;
     background: transparent;
     margin: 20px auto 0;
+  }
+
+  &__slide {
+    text-align: left;
   }
 }

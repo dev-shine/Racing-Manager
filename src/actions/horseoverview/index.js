@@ -14,6 +14,11 @@ import { MESSAGE, HORSE } from 'api/ServiceTypes'
 import { formatHorseData } from 'utils/horseutils'
 
 /**
+ * @module common actions
+ */
+import { requestFail } from 'actions/request'
+
+/**
  *  FETCH_HORSE_INFO
  *  @type {String}
  */
@@ -173,14 +178,21 @@ export const fetchHorseInfo = data => {
       data
     })
     .then(response => {
+      if (response && response.status !== 'success') {
+        return Promise.reject(response)
+      } else {
+        return Promise.resolve(response)
+      }
+    })
+    .then(response => {
       // Format the response.
       const formattedResponse = formatHorseData(response)
 
       dispatch(receivedHorseInfo(formattedResponse))
-      return Promise.resolve()
+      return Promise.resolve(response.data)
     })
     .catch(error => {
-      dispatch(failedToGetHorseInfo())
+      dispatch(requestFail(error))
       return Promise.reject(error)
     })
   }

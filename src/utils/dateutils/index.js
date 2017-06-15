@@ -19,5 +19,6 @@ export const timestampToFeedTimestamp = ts => {
 }
 
 export const timestampToDate = (ts, format = 'DD/MM/YYYY') => {
+  if (!ts) return
   return moment(ts).format(format)
 }

@@ -1,22 +1,12 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-import classNames from 'utils/classnames'
-
 import { Link } from 'react-router-dom'
 
 const HorseBrief = props => {
-  const {
-    className,
-    modifier,
-    data = {}
-  } = props
-
+  const { data } = props
   const { name, age, color, gender, owner = {} } = data
 
-  const modifiedClassNames = classNames('horse-brief', className, modifier)
-
   return (
-    <div className={modifiedClassNames}>
+    <div className='horse-brief'>
       <h1 className='horse-header__main-title'>
         {name}
       </h1>
@@ -25,12 +15,6 @@ const HorseBrief = props => {
       </div>
     </div>
   )
-}
-
-HorseBrief.propTypes = {
-}
-
-HorseBrief.defaultProps = {
 }
 
 export default HorseBrief

@@ -20,7 +20,7 @@ const HorseDetails = props => {
         </div>
         <div className='col-xs-6'>
           <Link to='/' className='horse-header__details-link'>
-            {trainer.name}
+            {trainer.name || '-'}
           </Link>
         </div>
       </div>
@@ -55,7 +55,7 @@ const HorseDetails = props => {
           Foaling Date
         </div>
         <div className='col-xs-6'>
-          {timestampToDate(foalingDate, 'D MMMM YYYY')}
+          {timestampToDate(foalingDate, 'D MMMM YYYY') || '-'}
         </div>
       </div>
       <div className='row'>
@@ -64,7 +64,7 @@ const HorseDetails = props => {
         </div>
         <div className='col-xs-6'>
           <Link to='/' className='horse-header__details-link'>
-            {sire.name}
+            {sire.name || '-'}
           </Link>
         </div>
       </div>
@@ -72,7 +72,7 @@ const HorseDetails = props => {
         <div className='horse-header__details-title col-xs-6'>Dam</div>
         <div className='col-xs-6'>
           <Link to='/' className='horse-header__details-link'>
-            {dam.name}
+            {dam.name || '-'}
           </Link>
         </div>
       </div>
@@ -80,7 +80,7 @@ const HorseDetails = props => {
         <div className='horse-header__details-title col-xs-6'>Dam Sire</div>
         <div className='col-xs-6'>
           <Link to='/' className='horse-header__details-link'>
-            {dam.sireName}
+            {dam.sireName || '-'}
           </Link>
         </div>
       </div>
