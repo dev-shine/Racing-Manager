@@ -1,7 +1,7 @@
 /**
  *  @type {String}
  */
-export const ROOT_PATH = 'http://54.72.10.134'
+export const ROOT_PATH = 'http://52.209.171.180:3000'
 
 /**
  * @type {string}
@@ -22,3 +22,8 @@ export const REGISTRATION = `${USER}/registration`
  *  @type {String}
  */
 export const MESSAGE = `${BASE_URL}/message`
+
+/**
+ * @type {String}
+ */
+export const HORSE = `${BASE_URL}/horse`

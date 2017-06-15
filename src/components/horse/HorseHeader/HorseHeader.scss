@@ -1,0 +1,105 @@
+.horse-header {
+
+  &__paragraph {
+    color: white;
+  }
+
+  &__details-tile {
+    //position: absolute;
+    //top: 20px;
+    //left: 20px;
+    //content: '';
+    max-width: 400px;
+  }
+
+  &__info {
+    text-transform: capitalize;
+  }
+
+  &__main-title {
+    margin-top: 20px;
+  }
+
+  &__small-title {
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  &__image {
+    height: 160px;
+  }
+
+  &__btn-details {
+    margin: 20px 0;
+  }
+
+  &__brief-info {
+    margin-top: 15px;
+  }
+
+  &__details {
+    color: #6D6E71;
+    font-size: 12px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    background: #fff;
+    box-shadow: inset 0 20px 37px -37px rgba(0, 0, 0, .75);
+  }
+
+  &__small-details {
+    margin-bottom: 20px;
+  }
+
+  &__details-title {
+    font-weight: 600;
+  }
+
+  &__details-link {
+    font-style: italic;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__details-prices {
+    margin-top: 15px;
+  }
+
+  &__involvement {
+    color: white;
+    padding: 35px 0 25px;
+    background: darken(#00273A, 2%);
+  }
+
+  &__description-title {
+    color: white;
+    font-size: 30px;
+  }
+
+  &__read-more {
+    color: white;
+    display: block;
+    margin-top: 15px;
+  }
+
+  &__accordion {
+    color: white;
+    background: #00273A;
+    padding: 25px 0;
+  }
+
+  &__comment-title {
+    margin-top: 15px;
+  }
+
+  &__syndicate-button {
+    width: 230px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    border: 1px solid white;
+    background: transparent;
+    margin: 20px auto 0;
+  }
+}

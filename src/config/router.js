@@ -28,7 +28,7 @@ const router = (
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
-            <Route path='/horse/:id' component={HorseOverview} />
+            <Route path='/horse/:name' component={HorseOverview} />
             <Route path='/dashboard' component={Dashboard} />
             <PrivateRoute path='/syndicate/:id' component={PrivateSyndicate} />
             <Route component={PageNotFound} />

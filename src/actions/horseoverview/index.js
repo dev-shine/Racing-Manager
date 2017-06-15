@@ -6,7 +6,7 @@ import { get, post } from 'api/Request'
 /**
  *  @module MESSAGE
  */
-import { MESSAGE } from 'api/ServiceTypes'
+import { MESSAGE, HORSE } from 'api/ServiceTypes'
 
 /**
  *  @module formatHorseData
@@ -169,7 +169,7 @@ export const fetchHorseInfo = data => {
     dispatch(gettingHorseInfo())
 
     return get({
-      url: MESSAGE,
+      url: HORSE,
       data
     })
     .then(response => {

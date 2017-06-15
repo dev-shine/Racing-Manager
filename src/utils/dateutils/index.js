@@ -17,3 +17,7 @@ export const timestampToFeedTimestamp = ts => {
 
   return diff <= 0 ? 'Today' : diff === 1 ? `${diff} day ago` : `${diff} days ago`
 }
+
+export const timestampToDate = (ts, format = 'DD/MM/YYYY') => {
+  return moment(ts).format(format)
+}
