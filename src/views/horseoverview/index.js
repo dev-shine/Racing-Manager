@@ -54,7 +54,6 @@ export class HorseOverview extends Component {
     this.state = {
       tileIndex: null,
       showPopup: false,
-      showDetails: true
     }
 
     // Bind custom fns
