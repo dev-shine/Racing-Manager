@@ -58,7 +58,7 @@ class HorseHeader extends Component {
       color,
       gender,
       owner,
-      image = 'IMAGE',
+      featuredImage = '../assets/dummyassets/horse-overview.png',
       description,
       timeformComment,
       style,
@@ -159,16 +159,16 @@ class HorseHeader extends Component {
       },
       {
         title: 'Prize Money',
-        value: '£-',
+        value: '-',
         className: 'horse-header__details-prices',
       },
       {
         title: 'Public Sales Price',
-        value: '£-',
+        value: '-',
       },
       {
         title: 'Current Value',
-        value: '£-',
+        value: '-',
       },
     ]
 
@@ -199,7 +199,7 @@ class HorseHeader extends Component {
     return (
       <div className={modifiedClassNames}>
         <div className='horse-header__image'>
-          <Hero featuredImage='../assets/dummyassets/horse-overview.png'>
+          <Hero featuredImage={featuredImage}>
           </Hero>
           <div className='horse-header__details-container visible-md-up'>
             <div className='horse-header__details-tile'>
@@ -218,15 +218,13 @@ class HorseHeader extends Component {
             <div className='horse-header__about-section col-md-8'>
               <HorseAboutInfo data={aboutData} />
             </div>
-            <div className='col-md-4'>
-              <div className='horse-header__involvement'>
-                <h1 className='horse-header__description-title'>
-                  Your Involvement
-                </h1>
-                <Separator modifier='white' />
-                <HorseOwnershipInfo data={ownershipData} />
-                <HorseBenefitsInfo data={benefitsData} />
-              </div>
+            <div className='horse-header__involvement col-md-4'>
+              <h1 className='horse-header__description-title'>
+                Your Involvement
+              </h1>
+              <Separator modifier='white' />
+              <HorseOwnershipInfo data={ownershipData} />
+              <HorseBenefitsInfo data={benefitsData} />
             </div>
           </div>
         </div>
@@ -248,7 +246,7 @@ class HorseHeader extends Component {
                 <div className='row'>
                   <HorseNumericDetails data={numericData} />
                 </div>
-                <div className='row horse-header__full-details'>
+                <div className='row'>
                   <HorseDetails data={detailsData} />
                 </div>
               </div>
