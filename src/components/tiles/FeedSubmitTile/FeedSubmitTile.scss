@@ -38,7 +38,6 @@ $thumbnail-size: 122px;
   &__bar-container {
     position: relative;
     width: 100%;
-    box-shadow: $tile-box-shadow;
     background-color: $white;
 
     &:before {
@@ -52,7 +51,6 @@ $thumbnail-size: 122px;
       border-color: transparent transparent $white $white;
       transform-origin: 0 0;
       transform: rotate(-45deg);
-      box-shadow:$tile-box-shadow-inverse;
     }
   }
 

@@ -1,7 +1,7 @@
 /**
  *  @module React
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  *  @module PropTypes
@@ -19,9 +19,9 @@ import classNames from 'utils/classnames'
 import TextButton from 'components/buttons/TextButton'
 
 /**
- *  @module OverviewCard
+ *  @module HorseCard
  */
-import OverviewCard from 'components/cards/OverviewCard'
+import HorseCard from 'components/cards/HorseCard'
 
 /**
  *  @module CarouselArrow
@@ -45,6 +45,7 @@ const noop = () => {}
 
 /**
  *  swiperOpts
+ *  @description Default options.
  *  @type {Object}
  */
 const swiperOpts = {
@@ -53,6 +54,7 @@ const swiperOpts = {
   slidesPerView: 'auto',
   grabCursor: true,
   slideToClickedSlide: true,
+  initialSlide: 0,
   breakpoints: {
     480: {
       spaceBetween: 10
@@ -64,26 +66,165 @@ const swiperOpts = {
 }
 
 /**
- *  Gradiant
- *  @description Div block with a gradiant color.
- */
-const Gradiant = props => {
-  return (
-    <div className='dashboard-header__gradiant' />
-  )
-}
-
-/**
  *  @class
  *  @name HeaderSection
- *  @extends {Component}
+ *  @extends {PureComponent}
  */
-class HeaderSection extends Component {
+class HeaderSection extends PureComponent {
   /**
    *  @constructor
    */
   constructor (props) {
     super(props)
+
+    // Initial state
+    this.state = {
+      horseActiveIndex: 0,
+      currentSyndName: ''
+    }
+
+    // bind custom fns
+    this.updateHorseActiveIndex = this.updateHorseActiveIndex.bind(this)
+    this.updateNameActiveIndex = this.updateNameActiveIndex.bind(this)
+    this.formatHorseData = this.formatHorseData.bind(this)
+    this.forceCarouselUpdate = this.forceCarouselUpdate.bind(this)
+
+    // Options for the name.
+    this.swiperNameOpts = {
+      ...swiperOpts,
+      onTransitionStart: ({realIndex}) => {
+        this.updateNameActiveIndex(realIndex)
+      }
+    }
+
+    // Options for horse
+    this.swiperHorseOpts = {
+      ...swiperOpts,
+      onInit: () => { // This will handle the data coming in straight away and force an update.
+        this.forceCarouselUpdate()
+      },
+      onTransitionStart: ({realIndex}) => {
+        this.updateHorseActiveIndex(realIndex)
+      }
+    }
+  }
+
+  // Check and update the horse active index!
+  // Only update if the props length is different.
+  componentWillReceiveProps (nextProps) {
+    if (this.props.data.length !== nextProps.data.length) {
+      setTimeout(() => { this.forceCarouselUpdate() }, 0)
+    }
+  }
+
+  /**
+   *  forceCarouselUpdate
+   *  @description Swiper js doesn't handle the removing / adding of slides great.
+   *               So in order to get the custom features working this has to be done.
+   *  @return {Void}
+   */
+  forceCarouselUpdate () {
+    const {
+      horseActiveIndex
+    } = this.state
+
+    const {
+      data
+    } = this.props
+
+    const {
+      syndHorses
+    } = this.carouselData
+
+    if (data && syndHorses.length) {
+      this.updateHorseActiveIndex(horseActiveIndex)
+    }
+  }
+
+  /**
+   *  updateHorseActiveIndex
+   *  @description Will update the horse pagination to the correct slide.
+   *  @param  {Number} index
+   */
+  updateHorseActiveIndex (index) {
+    // Get the horse syndicate name from the horses array with the given index.
+    const {
+      syndName
+    } = this.carouselData.syndHorses[index]
+
+    // Get the index of the syndicate name in the syndNames array
+    // This will map to the correct carousel index.
+    const nameActiveIndex = this.carouselData.syndNames.map(({name}) => name).indexOf(syndName)
+
+    // Tell the name carousel to go to the correct index.
+    if (this.refs.swiperName) {
+      this.refs.swiperName.slideTo(nameActiveIndex, 300, false)
+    }
+
+    this.setState({
+      horseActiveIndex: index,
+      currentSyndName: syndName
+    })
+  }
+
+  /**
+   *  updateNameActiveIndex
+   *  @description Will update the horse slider position to the correct slide depending on syndicate chosen.
+   *  @param  {Number} index
+   */
+  updateNameActiveIndex (index) {
+    const {
+      name
+    } = this.carouselData.syndNames[index]
+
+    // Get the first index of the horse depending on the name of the syndicate.
+    const horseActiveIndex = this.carouselData.syndHorses.map(({syndName}) => syndName).indexOf(name)
+
+    if (this.refs.swiperHorse) {
+      this.refs.swiperHorse.slideTo(horseActiveIndex, 300, false)
+    }
+
+    this.setState({
+      horseActiveIndex,
+      currentSyndName: name
+    })
+  }
+
+  /**
+   *  formatHorseData
+   *  @description Will create formatted data for use on the carousels.
+   *  @return {Object}
+   */
+  formatHorseData () {
+    const {
+      data
+    } = this.props
+
+    return data.reduce((obj, syndicate, index) => {
+      const { horses } = syndicate
+
+      // Push data for the syndicate names carousel
+      obj.syndNames.push({
+        name: syndicate.name,
+        length: horses.length
+      })
+
+      // Push an array of all horses in each syndicate, used for the horse card carousel.
+      obj.syndHorses.push(...horses.map(horse => ({
+        syndName: syndicate.name,
+        syndSlug: syndicate.slug,
+        ...horse
+      })))
+
+      // Update the length of the overall horses for pagination buttons.
+      obj.length += horses.length
+
+      return obj
+    }, {
+      syndNames: [],
+      syndHorses: [],
+      length: 0
+    })
   }
 
   render () {
@@ -91,9 +232,16 @@ class HeaderSection extends Component {
       className,
       modifier,
       title,
-      headerButtonText,
-      data
+      headerButtonText
     } = this.props
+
+    const {
+      horseActiveIndex,
+      currentSyndName
+    } = this.state
+
+    // Get the data needed for the carousels
+    this.carouselData = this.formatHorseData()
 
     /**
      *  Class names for the container
@@ -143,21 +291,20 @@ class HeaderSection extends Component {
                 onClick={() => { this.refs.swiperName.next() }}
               />
             }
-            {...swiperOpts}>
+            {...this.swiperNameOpts}>
             {
-              data.map((child, index) => {
+              this.carouselData.syndNames.map(({name, length}, index) => {
                 return (
                   <h2
                     key={index}>
-                    The quays horse<sup className='small'>2</sup>
+                    {name}<sup className='small'>{length}</sup>
                   </h2>
                 )
               })
             }
           </Carousel>
         </div>
-        <div className='dashboard-header__items-list dashboard-header__section wave-bg-blue'>
-          <Gradiant />
+        <div className='dashboard-header__items-list dashboard-header__section wave-bg--faded section-shadow--carousel'>
           <Carousel
             slideClassName='dashboard-header__slide'
             ref='swiperHorse'
@@ -177,12 +324,45 @@ class HeaderSection extends Component {
                 onClick={() => { this.refs.swiperHorse.next() }}
               />
             }
-            {...swiperOpts}>
+            {...this.swiperHorseOpts}>
             {
-              data.map((child, index) => {
+              this.carouselData.syndHorses.map((horse, index) => {
                 return (
-                  <OverviewCard
+                  <HorseCard
+                    isActive={horse.syndName === currentSyndName}
                     key={index}
+                    title={horse.name}
+                    subtitle={`${horse.age}yo ${horse.gender}`} // Needs to have the STYLE too!
+                    stats={[{
+                      name: 'runs',
+                      value: horse.runs
+                    }, {
+                      name: 'wins',
+                      value: horse.wins
+                    }, {
+                      name: 'places',
+                      value: horse.places
+                    }, {
+                      name: 'OR',
+                      value: '-'
+                    }]}
+                    info={[{
+                      name: 'Trainer name',
+                      value: horse.trainer.name
+                    }, {
+                      name: 'Syndicate name',
+                      value: horse.syndName
+                    }, {
+                      name: 'Manager',
+                      value: horse.owner.name
+                    }, {
+                      name: 'Ownership',
+                      value: '5/12 shares'
+                    }]}
+                    extra={{
+                      url: `/horse/${horse.slug}`
+                    }}
+                    bottomUrl={`/syndicate/${horse.syndSlug}`}
                     className='dashboard-header__slide-item' />
                 )
               })
@@ -190,8 +370,8 @@ class HeaderSection extends Component {
           </Carousel>
           <div className='dashboard-header__pagination hidden-sm-up'>
             <CarouselPaginationButton
-              length={data.length}
-              activeIndex={0} />
+              length={this.carouselData.length}
+              activeIndex={horseActiveIndex} />
           </div>
         </div>
       </div>

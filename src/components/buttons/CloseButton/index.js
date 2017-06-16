@@ -54,7 +54,7 @@ const CloseButton = props => {
 
   return (
     <Button
-      className={modifiedClassNames}
+      className={`section-shadow--tile ${modifiedClassNames}`}
       {...modifiedProps}>
       <Icon
         modifier='close'/>

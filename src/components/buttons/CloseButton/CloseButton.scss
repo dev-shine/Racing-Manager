@@ -3,7 +3,7 @@
   height: 40px;
   background-color: $white;
   transition: transform .4s ease-out;
-  box-shadow: $tile-box-shadow;
+  // box-shadow: $tile-box-shadow;
 
   &:hover {
     transform: scale3d(1.05, 1.05, 1.05);

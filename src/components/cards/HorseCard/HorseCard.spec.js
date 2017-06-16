@@ -4,9 +4,9 @@
 import React from 'react'
 
 /**
- *  @module OverviewCard
+ *  @module HorseCard
  */
-import OverviewCard, { Overlay } from 'components/cards/OverviewCard'
+import HorseCard, { Overlay } from 'components/cards/HorseCard'
 
 /**
  *  @module expect
@@ -25,11 +25,11 @@ import chaiEnzyme from 'chai-enzyme'
 
 chai.use(chaiEnzyme())
 
-describe('Components - cards - OverviewCard', () => {
+describe('Components - cards - HorseCard', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(<OverviewCard src='' />)
+    wrapper = shallow(<HorseCard src='' />)
   })
 
   it('should exist', () => {
@@ -41,7 +41,7 @@ describe('Components - cards - OverviewCard', () => {
       isPending: true
     })
 
-    expect(wrapper.find('.overview-card__banner')).to.have.length(1)
+    expect(wrapper.find('.horse-card__banner')).to.have.length(1)
     expect(wrapper.find(Overlay)).to.have.length(1)
   })
 })
