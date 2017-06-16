@@ -60,7 +60,7 @@ class HorseHeader extends Component {
       owner,
       featuredImage = '../assets/dummyassets/horse-overview.png',
       description,
-      timeformComment,
+      timeformComments = {},
       style,
       shares = {
         owned: 0,
@@ -174,7 +174,7 @@ class HorseHeader extends Component {
 
     const aboutData = {
       description,
-      timeformComment
+      timeformComments
     }
 
     const ownershipYears = 2

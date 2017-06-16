@@ -6,7 +6,8 @@ import Separator from 'components/gui/Separator'
 import TextButton from 'components/buttons/TextButton'
 
 const HorseAboutInfo = props => {
-  const { description, timeformComment } = props
+  const { data } = props
+  const { description, timeformComments } = data
 
   return (
     <div className='horse-about'>
@@ -14,23 +15,27 @@ const HorseAboutInfo = props => {
         About the horse
       </h1>
       <Separator modifier='white' />
-      <p className='horse-header__paragraph'>
-        {description}
-      </p>
-      <Link to='/' className='link--italic horse-header__read-more'>
-        Read more...
-      </Link>
+      {description && (
+        <div>
+          <p className='horse-header__paragraph'>
+            {description}
+          </p>
+          <Link to='/' className='link--italic horse-header__read-more'>
+            Read more...
+          </Link>
+        </div>
+      )}
       <div className='horse-header__small-title horse-header__comment-title'>
         Timeform comment
       </div>
-      {timeformComment.flat && (
+      {timeformComments.flat && (
         <p className='horse-header__paragraph'>
-          Flat: {timeformComment.flat}
+          Flat: {timeformComments.flat}
         </p>
       )}
-      {timeformComment.jump && (
+      {timeformComments.jump && (
         <p className='horse-header__paragraph'>
-          Jump: {timeformComment.jump}
+          Jump: {timeformComments.jump}
         </p>
       )}
       <Link to='/' className='link--italic horse-header__read-more'>
@@ -47,19 +52,17 @@ const HorseAboutInfo = props => {
 }
 
 HorseAboutInfo.propTypes = {
-  description: PropTypes.string.isRequired,
-  timeformComment: PropTypes.shape({
-    flat: PropTypes.string,
-    jump: PropTypes.string
+  data: PropTypes.shape({
+    description: PropTypes.string,
+    timeformComments: PropTypes.shape({
+      flat: PropTypes.string,
+      jump: PropTypes.string
+    })
   })
 }
 
 HorseAboutInfo.defaultProps = {
-  description: '-',
-  timeformComment: {
-    flat: '-',
-    jump: '-'
-  }
+  data: {}
 }
 
 export default HorseAboutInfo
