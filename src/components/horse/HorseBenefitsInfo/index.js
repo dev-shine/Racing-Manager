@@ -36,4 +36,5 @@ HorseBenefitsInfo.propTypes = {
 HorseBenefitsInfo.defaultProps = {
   data: []
 }
+
 export default HorseBenefitsInfo

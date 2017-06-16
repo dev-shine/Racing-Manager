@@ -54,3 +54,8 @@ export const formatHorseData = (response = {}) => {
     })
   }
 }
+
+export const calcPercent = (num, total) => {
+  if (!num || !total) return 0
+  return (num / total) * 100
+}
