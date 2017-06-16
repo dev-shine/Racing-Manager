@@ -43,7 +43,7 @@ import HorseHeader from 'components/horse/HorseHeader'
  *  @class
  *  @extends {Component}
  */
-export class HorseOverview extends Component {
+export class PrivateHorse extends Component {
   /**
    *  @constructor
    */
@@ -114,7 +114,7 @@ export class HorseOverview extends Component {
 
   render () {
     const { showPopup, tileIndex } = this.state
-    const { data = {}, match } = this.props
+    const { data = {} } = this.props
     const { messages = [] } = data
 
     // Get the tile according to the passed in index.
@@ -131,7 +131,7 @@ export class HorseOverview extends Component {
             <div className='col-xs-12 col-sm-10 col-sm-push-1'>
               <SubmitPost
                 title='post an update to the horse'
-                horseId={match.params.name} />
+                horseId={data._id} />
             </div>
           </div>
         </div>
@@ -195,4 +195,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(HorseOverview))
+)(PrivateHorse))

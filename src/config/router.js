@@ -15,9 +15,13 @@ import PageNotFound from 'views/PageNotFound'
 import Home from 'views/home'
 import Login from 'views/Login'
 import Register from 'views/register'
-import HorseOverview from 'views/horseoverview'
 import Dashboard from 'views/Dashboard'
-import PrivateSyndicate from 'views/PrivateSyndicate'
+
+import PrivateHorse from 'views/horse/PrivateHorse'
+import PublicHorse from 'views/horse/PublicHorse'
+
+import PrivateSyndicate from 'views/syndicate/PrivateSyndicate'
+import PublicSyndicate from 'views/syndicate/PublicSyndicate'
 
 const router = (
   <Routes>
@@ -28,9 +32,9 @@ const router = (
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
-            <Route path='/horse/:name' component={HorseOverview} />
-            <Route path='/dashboard' component={Dashboard} />
-            <PrivateRoute path='/syndicate/:id' component={PrivateSyndicate} />
+            <PrivateRoute path='/dashboard' component={Dashboard} />
+            <PrivateRoute path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
+            <PrivateRoute path='/syndicate/:id' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <Route component={PageNotFound} />
           </Switch>
         </ScrollTop>
