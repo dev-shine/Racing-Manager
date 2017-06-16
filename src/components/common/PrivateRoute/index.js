@@ -37,7 +37,7 @@ class PrivateRoute extends Component {
 
   render () {
     const { isAuthenticated, isLoaded } = this.state
-    const { component: Component, ...rest } = this.props
+    const { component: Component, redirect: RedirectComponent, ...rest } = this.props
 
     if (!isLoaded) return null
 
@@ -49,12 +49,16 @@ class PrivateRoute extends Component {
           )
         } else {
           return (
-            <Redirect to={{
-              pathname: '/login',
-              state: {
-                from: props.location
-              }
-            }} />
+            RedirectComponent ? (
+              <RedirectComponent {...props} />
+            ) : (
+              <Redirect to={{
+                pathname: '/login',
+                state: {
+                  from: props.location
+                }
+              }} />
+            )
           )
         }
       }} />
@@ -62,8 +66,15 @@ class PrivateRoute extends Component {
   }
 }
 
+const instancePropTypes = PropTypes.oneOfType([
+  PropTypes.func,
+  PropTypes.instanceOf(Component)
+])
+
 PrivateRoute.propTypes = {
-  cookies: PropTypes.instanceOf(Cookies)
+  component: instancePropTypes,
+  redirect: instancePropTypes,
+  cookies: PropTypes.instanceOf(Cookies),
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

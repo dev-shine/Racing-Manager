@@ -43,7 +43,7 @@ import HorseHeader from 'components/horse/HorseHeader'
  *  @class
  *  @extends {Component}
  */
-export class HorseOverview extends Component {
+export class PrivateHorse extends Component {
   /**
    *  @constructor
    */
@@ -195,4 +195,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(HorseOverview))
+)(PrivateHorse))
