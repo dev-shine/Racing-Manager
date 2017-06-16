@@ -231,7 +231,7 @@ class FeedSubmitTile extends Component {
             {title}
           </p>
         </div>
-        <div className='feed-submit__bar-container'>
+        <div className='feed-submit__bar-container section-shadow--tile section-shadow--tile--inverse'>
           <Accordion isOpen={isOpen}>
             <TextArea
               ref='textarea'

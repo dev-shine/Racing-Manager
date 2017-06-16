@@ -44,16 +44,6 @@ import CarouselPaginationButton from 'components/buttons/CarouselPaginationButto
 const noop = () => {}
 
 /**
- *  Gradiant
- *  @description Div block with a gradiant color.
- */
-const Gradiant = props => {
-  return (
-    <div className='dashboard-header__gradiant' />
-  )
-}
-
-/**
  *  swiperOpts
  *  @description Default options.
  *  @type {Object}
@@ -314,8 +304,7 @@ class HeaderSection extends PureComponent {
             }
           </Carousel>
         </div>
-        <div className='dashboard-header__items-list dashboard-header__section wave-bg--faded'>
-          <Gradiant />
+        <div className='dashboard-header__items-list dashboard-header__section wave-bg--faded section-shadow--carousel'>
           <Carousel
             slideClassName='dashboard-header__slide'
             ref='swiperHorse'

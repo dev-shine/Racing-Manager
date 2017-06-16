@@ -183,7 +183,7 @@ class HorseHeader extends Component {
           </Hero>
           <div className='horse-header__details-container visible-md-up'>
             <div className='horse-header__details-tile'>
-              <div className='horse-header__details'>
+              <div className='horse-header__details section-shadow'>
                 <div className='horse-header__small-details'>
                   <HorseBrief data={briefData} />
                   <HorseNumericDetails data={numericData} />
@@ -225,7 +225,7 @@ class HorseHeader extends Component {
             </div>
           </div>
           <Accordion isOpen={isOpen}>
-            <div className='horse-header__details'>
+            <div className='horse-header__details section-shadow'>
               <div className='container'>
                 <div className='row'>
                   <HorseNumericDetails data={numericData} />

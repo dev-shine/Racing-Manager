@@ -11,14 +11,15 @@
     margin-right: 20px;
     opacity: 0.75;
     border: 1px solid $white;
-    background-color: transparent;
-    transform: scale3d(0.8, 0.8, 0.8) rotate(45deg);
+    background: transparent;
+    transform: rotate(45deg);
     transition: transform .2s ease-out, opacity .2s ease-out, background-color .2s ease-out;
 
     &--active {
       opacity: 1;
-      transform: scale3d(1, 1, 1) rotate(45deg);
-      background-color: $white;
+      transform: rotate(45deg);
+      border-color: transparent;
+      background: $white;
     }
   }
 }

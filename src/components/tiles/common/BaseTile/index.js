@@ -67,7 +67,7 @@ const BaseTileHoc = WrappedComponent => {
 
       return (
         <div className='base-tile' style={{...this.props.style}} onClick={addIdToOnClick}>
-          <WrappedComponent {...modifiedProps} rootPath={ checkedRootPath } className={modifiedClassNames} />
+          <WrappedComponent {...modifiedProps} rootPath={ checkedRootPath } className={`section-shadow--tile ${modifiedClassNames}`} />
         </div>
       )
     }

@@ -32,7 +32,6 @@ const BasePopupTileHOC = WrappedComponent => {
       return (
         <div className='base-popup-tile'>
           <WrappedComponent {...this.props} rootPath={ ROOT_PATH } className='base-popup-tile__content' />
-          <div className='base-popup-tile__gradiant'></div>
         </div>
       )
     }

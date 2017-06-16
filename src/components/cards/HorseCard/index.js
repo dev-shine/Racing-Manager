@@ -105,7 +105,7 @@ class HorseCard extends Component {
             imageSrc={src}
             forceShow={true} />
           <div className='horse-card__content'>
-            <div className='horse-card__card'>
+            <div className='horse-card__card section-shadow--tile'>
               <div className='horse-card__heading'>
                 <h3>
                   {title}
@@ -130,8 +130,7 @@ class HorseCard extends Component {
                   }
                 </div>
               </div>
-              <div className='horse-card__info'>
-                <div className='horse-card__gradiant horse-card__gradiant--top'></div>
+              <div className='horse-card__info section-shadow'>
                 <ul className='horse-card__infolist'>
                   {
                     info.map(({name, value}, index) => {
@@ -149,7 +148,7 @@ class HorseCard extends Component {
                   }
                 </ul>
               </div>
-              <div className='horse-card__extra'>
+              <div className='horse-card__extra section-shadow'>
                 {
                   !isMember
                   ? (
@@ -178,7 +177,6 @@ class HorseCard extends Component {
                   ? <Overlay />
                   : null
                 }
-                <div className='horse-card__gradiant horse-card__gradiant--top'></div>
               </div>
             </div>
           </div>
