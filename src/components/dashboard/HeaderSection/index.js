@@ -213,6 +213,7 @@ class HeaderSection extends PureComponent {
       obj.syndHorses.push(...horses.map(horse => ({
         syndName: syndicate.name,
         syndSlug: syndicate.slug,
+        syndColor: syndicate.color,
         ...horse
       })))
 
@@ -332,6 +333,7 @@ class HeaderSection extends PureComponent {
                     isActive={horse.syndName === currentSyndName}
                     key={index}
                     title={horse.name}
+                    color={horse.syndColor}
                     subtitle={`${horse.age}yo ${horse.gender}`} // Needs to have the STYLE too!
                     stats={[{
                       name: 'runs',

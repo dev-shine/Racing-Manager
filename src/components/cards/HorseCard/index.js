@@ -35,7 +35,7 @@ import { Link } from 'react-router-dom'
 
 // Dummy race horse image
 import {
-  horseRaceImg
+  horseOverview
 } from 'assets/dummyassets'
 
 /**
@@ -72,6 +72,7 @@ class HorseCard extends Component {
       modifier,
       title,
       subtitle,
+      color,
       stats,
       info,
       isMember,
@@ -105,12 +106,12 @@ class HorseCard extends Component {
             imageSrc={src}
             forceShow={true} />
           <div className='horse-card__content'>
-            <div className='horse-card__card section-shadow--tile'>
+            <div className='horse-card__card section-shadow--tile' style={{borderColor: color}}>
               <div className='horse-card__heading'>
                 <h3>
                   {title}
                 </h3>
-                <h6 className='secondary-font'>
+                <h6 className='secondary-font capitalize'>
                   {subtitle}
                 </h6>
                 <div className='horse-card__stats'>
@@ -246,6 +247,7 @@ HorseCard.defaultProps = {
   className: '',
   title: 'contrabrand horse',
   subtitle: '2yo Filly, National Hunt (Jump)',
+  color: '#000',
   stats: [{
     name: 'runs',
     value: 6
@@ -280,7 +282,7 @@ HorseCard.defaultProps = {
   },
   bottomUrl: 'null',
   isMember: true,
-  src: horseRaceImg,
+  src: horseOverview,
   isPending: false,
   isActive: true
 }

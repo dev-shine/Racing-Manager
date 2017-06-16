@@ -114,7 +114,8 @@
 
   &__statsitem {
     position: relative;
-
+    z-index: 2;
+    
     >h6 {
       position: relative;
       color: $x11-gray;
