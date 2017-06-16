@@ -42,7 +42,8 @@ const BaseTileHoc = WrappedComponent => {
       const {
         className,
         onClick,
-        id
+        id,
+        rootPath
       } = this.props
 
       // Remove props not needed for wrapped component
@@ -50,6 +51,9 @@ const BaseTileHoc = WrappedComponent => {
 
       // Modified classNames
       const modifiedClassNames = classNames('base-tile__content', className)
+
+      // If there is a supplied root path, use that otherwise default to the ROOT_PATH
+      const checkedRootPath = rootPath === '' ? rootPath : ROOT_PATH
 
       /**
        *  addIdToOnClick
@@ -63,7 +67,7 @@ const BaseTileHoc = WrappedComponent => {
 
       return (
         <div className='base-tile' style={{...this.props.style}} onClick={addIdToOnClick}>
-          <WrappedComponent {...modifiedProps} rootPath={ ROOT_PATH } className={modifiedClassNames} />
+          <WrappedComponent {...modifiedProps} rootPath={ checkedRootPath } className={modifiedClassNames} />
         </div>
       )
     }

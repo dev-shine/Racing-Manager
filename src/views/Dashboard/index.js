@@ -29,6 +29,11 @@ import HeaderSection from 'components/dashboard/HeaderSection'
 import { Block, Grid } from 'components/masonry'
 
 /**
+ *  @module newsImage
+ */
+import { newsImage } from 'assets/dummyassets'
+
+/**
  *  @class
  *  @name Dashboard
  *  @extends {Component}
@@ -62,6 +67,7 @@ export class Dashboard extends Component {
                   <Block width={1} key={index}>
                     <NewsTile
                       id={index}
+                      rootPath={tile.rootPath}
                       text={tile.text}
                       src={tile.src}
                       providerSrc={tile.providerSrc}
@@ -90,8 +96,9 @@ const mapStateToProps = (state, ownProps) => ({
   data: {
     tiles: new Array(12).fill({
       text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
-      src: '/uploads/1/1496758376165/attachment-1496758376164.jpg',
-      providerSrc: '/uploads/1/1496758376165/attachment-1496758376164.jpg',
+      rootPath: '',
+      src: newsImage,
+      providerSrc: newsImage,
       date: '2017-06-06T14:11:42.820Z'
     }),
     syndicates: [{
