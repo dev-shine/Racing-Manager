@@ -24,9 +24,9 @@ import AjaxLoader from 'components/ajaxloader'
 import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
 
 /**
- *  @module HorseOverview
+ *  @module PrivateHorse
  */
-import { HorseOverview } from 'views/horseoverview'
+import { PrivateHorse } from 'views/horse/PrivateHorse'
 
 /**
  *  @module expect
@@ -60,16 +60,18 @@ import chaiEnzyme from 'chai-enzyme'
 
 chai.use(chaiEnzyme())
 
-describe('Views - horseOverview', () => {
+describe('Views - Private Horse', () => {
   let wrapper
   const props = {
     posted: false,
-    data: [{
-      createdAt: '12-05-1992',
-      postType: 'text',
-      text: 'hi',
-      timeStamp: 'today'
-    }],
+    data: {
+      messages: [{
+        createdAt: '12-05-1992',
+        postType: 'text',
+        text: 'hi',
+        timeStamp: 'today'
+      }]
+    },
     fetching: false,
     posting: false,
     getHorseInfo: spy(),
@@ -86,7 +88,7 @@ describe('Views - horseOverview', () => {
   const options = { context: { store } }
 
   beforeEach(() => {
-    wrapper = shallow(<HorseOverview {...props} store={store} />, options)
+    wrapper = shallow(<PrivateHorse {...props} store={store} />, options)
   })
 
   it('should exist', () => {
@@ -137,7 +139,7 @@ describe('Views - horseOverview', () => {
   })
 
   it('showPopup should be true and tileIndex should be 0 if showFeedTilePopup is called with id "12-05-1992"', () => {
-    wrapper.instance().showFeedTilePopup(props.data[0].createdAt)
+    wrapper.instance().showFeedTilePopup(props.data.messages[0].createdAt)
     expect(wrapper.state().showPopup).to.be.true
     expect(wrapper.state().tileIndex).to.equal(0)
   })
