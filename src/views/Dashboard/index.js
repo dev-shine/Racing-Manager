@@ -36,10 +36,6 @@ import { Block, Grid } from 'components/masonry'
 export class Dashboard extends Component {
   constructor (props) {
     super(props)
-
-    this.state = {
-      syndicates: []
-    }
   }
 
   render () {
