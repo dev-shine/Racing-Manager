@@ -40,6 +40,12 @@ class Carousel extends Component {
 
     this.carousel = null
 
+    // Default opts.
+    this.defaultOpts = {
+      observer: true,
+      initialSlide: 0
+    }
+
     // Bind custom fn
     this.onResize = this.onResize.bind(this)
     this.bindWindowResize = this.bindWindowResize.bind(this)
@@ -125,12 +131,17 @@ class Carousel extends Component {
     // Slide class names
     const slideClassNames = classNames('slider__slide', slideClassName)
 
+    const sliderOpts = {
+      ...this.defaultOpts,
+      ...swiperProps
+    }
+
     return (
       <div>
         <Swiper
           ref={ref => { this.carousel = ref }}
           className={sliderClassNames}
-          {...swiperProps}>
+          {...sliderOpts}>
           {
             children.map((child, index) => {
               return (

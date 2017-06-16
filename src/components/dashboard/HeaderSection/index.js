@@ -63,8 +63,8 @@ const swiperOpts = {
   spaceBetween: 30,
   slidesPerView: 'auto',
   grabCursor: true,
-  observer: true,
   slideToClickedSlide: true,
+  initialSlide: 0,
   breakpoints: {
     480: {
       spaceBetween: 10
@@ -97,6 +97,7 @@ class HeaderSection extends PureComponent {
     this.updateHorseActiveIndex = this.updateHorseActiveIndex.bind(this)
     this.updateNameActiveIndex = this.updateNameActiveIndex.bind(this)
     this.formatHorseData = this.formatHorseData.bind(this)
+    this.forceCarouselUpdate = this.forceCarouselUpdate.bind(this)
 
     // Options for the name.
     this.swiperNameOpts = {
@@ -109,9 +110,44 @@ class HeaderSection extends PureComponent {
     // Options for horse
     this.swiperHorseOpts = {
       ...swiperOpts,
+      onInit: () => { // This will handle the data coming in straight away and force an update.
+        this.forceCarouselUpdate()
+      },
       onTransitionStart: ({realIndex}) => {
         this.updateHorseActiveIndex(realIndex)
       }
+    }
+  }
+
+  // Check and update the horse active index!
+  // Only update if the props length is different.
+  componentWillReceiveProps (nextProps) {
+    if (this.props.data.length !== nextProps.data.length) {
+      setTimeout(() => { this.forceCarouselUpdate() }, 0)
+    }
+  }
+
+  /**
+   *  forceCarouselUpdate
+   *  @description Swiper js doesn't handle the removing / adding of slides great.
+   *               So in order to get the custom features working this has to be done.
+   *  @return {Void}
+   */
+  forceCarouselUpdate () {
+    const {
+      horseActiveIndex
+    } = this.state
+
+    const {
+      data
+    } = this.props
+
+    const {
+      syndHorses
+    } = this.carouselData
+
+    if (data && syndHorses.length) {
+      this.updateHorseActiveIndex(horseActiveIndex)
     }
   }
 
@@ -132,7 +168,7 @@ class HeaderSection extends PureComponent {
 
     // Tell the name carousel to go to the correct index.
     if (this.refs.swiperName) {
-      this.refs.swiperName.slideTo(nameActiveIndex, 200, false)
+      this.refs.swiperName.slideTo(nameActiveIndex, 300, false)
     }
 
     this.setState({
@@ -155,7 +191,7 @@ class HeaderSection extends PureComponent {
     const horseActiveIndex = this.carouselData.syndHorses.map(({syndName}) => syndName).indexOf(name)
 
     if (this.refs.swiperHorse) {
-      this.refs.swiperHorse.slideTo(horseActiveIndex, 200, false)
+      this.refs.swiperHorse.slideTo(horseActiveIndex, 300, false)
     }
 
     this.setState({
