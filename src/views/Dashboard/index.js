@@ -34,6 +34,16 @@ import { Block, Grid } from 'components/masonry'
 import { newsImage } from 'assets/dummyassets'
 
 /**
+ * @module post
+ */
+import { get } from 'api/Request'
+
+/**
+ * @module DASHBOARD
+ */
+import { DASHBOARD } from 'api/ServiceTypes'
+
+/**
  *  @class
  *  @name Dashboard
  *  @extends {Component}
@@ -41,11 +51,45 @@ import { newsImage } from 'assets/dummyassets'
 export class Dashboard extends Component {
   constructor (props) {
     super(props)
+
+    // Initial state
+    this.state = {
+      syndicates: []
+    }
+
+    // Bind custom fns
+    this.fetchDashboardData = this.fetchDashboardData.bind(this)
+  }
+
+  componentWillMount () {
+    // Fetch the data.
+    this.fetchDashboardData()
+  }
+
+  /**
+   *  fetchDashboardData
+   *  @description Will make an ajax call to get the dashboard data.
+   *  @return {Void}
+   */
+  fetchDashboardData () {
+    get({
+      url: DASHBOARD
+    })
+    .then(response => {
+      // Successfull.
+      this.setState({
+        syndicates: response.data.ownership
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 
   render () {
     const { data } = this.props
-    const { tiles, syndicates } = data
+    const { tiles } = data
+    const { syndicates } = this.state
 
     return (
       <div className='dashboard'>
@@ -100,125 +144,7 @@ const mapStateToProps = (state, ownProps) => ({
       src: newsImage,
       providerSrc: newsImage,
       date: '2017-06-06T14:11:42.820Z'
-    }),
-    syndicates: [{
-      name: 'The down quay club',
-      color: '',
-      slug: 'the-down-quay-club',
-      horses: [
-        {
-          '_id': '59401a77371c882d01addc71',
-          'name': 'A A BAMBA',
-          slug: 'a-a-bamba',
-          'age': '28',
-          'gender': 'filly',
-          'foalingDate': '1989-02-08T00:00:00.000Z',
-          'color': 'bay',
-          'trainer': {
-            'name': 'N. A. Callaghan'
-          },
-          'dam': {
-            'sireName': 'NIJINSKY (CAN)',
-            'name': 'ENCHANTING DANCER (FR)'
-          },
-          'sire': {
-            'name': 'SLIP ANCHOR'
-          },
-          'owner': {
-            'name': 'Mr Michael Hill'
-          },
-          'runs': 15,
-          'wins': 1,
-          'places': 2,
-          'messages': []
-        },
-        {
-          '_id': '59401a77371c882ddfdaddc71',
-          'name': 'MR. MAJESTIC',
-          slug: 'mr-majestic',
-          'age': '30',
-          'gender': 'filly',
-          'foalingDate': '2012-02-08T00:00:00.000Z',
-          'color': 'bay',
-          'trainer': {
-            'name': 'N. D. DE ROZ'
-          },
-          'dam': {
-            'sireName': 'MRMAJ (CAN)',
-            'name': 'MESMORIZING DANCER (DE)'
-          },
-          'sire': {
-            'name': 'DIP ANCHOR'
-          },
-          'owner': {
-            'name': 'Mr Michael Bolton'
-          },
-          'runs': 12,
-          'wins': 5,
-          'places': 3,
-          'messages': []
-        }
-      ]
-    },
-    {
-      name: 'The Lunar Happiness',
-      color: '',
-      slug: 'the-lunar-happiness',
-      horses: [
-        {
-          '_id': '59401a77371c8ddv01addc71',
-          'name': 'DUSTY',
-          slug: 'dusty',
-          'age': '12',
-          'gender': 'filly',
-          'foalingDate': '1999-02-08T00:00:00.000Z',
-          'color': 'bay',
-          'trainer': {
-            'name': 'B. D. Jones'
-          },
-          'dam': {
-            'sireName': 'SWEET (CAN)',
-            'name': 'SWIMMER (FR)'
-          },
-          'sire': {
-            'name': 'BOAT'
-          },
-          'owner': {
-            'name': 'Mr John Mal'
-          },
-          'runs': 2,
-          'wins': 2,
-          'places': 2,
-          'messages': []
-        },
-        {
-          '_id': '59401a773kkl882ddfdaddc71',
-          'name': 'MRS. PASTOR',
-          slug: 'mrs-pastor',
-          'age': '18',
-          'gender': 'filly',
-          'foalingDate': '2008-02-08T00:00:00.000Z',
-          'color': 'bay',
-          'trainer': {
-            'name': 'P. D. NIN'
-          },
-          'dam': {
-            'sireName': 'PAS (CAN)',
-            'name': 'PAS DANCER (DE)'
-          },
-          'sire': {
-            'name': 'RUN ANCHOR'
-          },
-          'owner': {
-            'name': 'Mrs May Lun'
-          },
-          'runs': 20,
-          'wins': 9,
-          'places': 2,
-          'messages': []
-        }
-      ]
-    }]
+    })
   }
 })
 

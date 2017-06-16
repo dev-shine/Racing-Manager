@@ -27,3 +27,8 @@ export const MESSAGE = `${BASE_URL}/message`
  * @type {String}
  */
 export const HORSE = `${BASE_URL}/horse`
+
+/**
+ *  @type {String}
+ */
+export const DASHBOARD = `${BASE_URL}/user/dashboard`

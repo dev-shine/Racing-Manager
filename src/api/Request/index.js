@@ -30,7 +30,9 @@ const request = params => {
   }
 
   if (['GET', 'DELETE'].indexOf(method) > -1) {
-    qs = '?' + getQueryString(params.data)
+    if (params.data) {
+      qs = '?' + getQueryString(params.data)
+    }
   } else { // POST or PUT
     body = params.data
   }
