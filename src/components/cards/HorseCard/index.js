@@ -111,7 +111,7 @@ class HorseCard extends Component {
                 <h3>
                   {title}
                 </h3>
-                <h6 className='secondary-font'>
+                <h6 className='secondary-font capitalize'>
                   {subtitle}
                 </h6>
                 <div className='horse-card__stats'>
