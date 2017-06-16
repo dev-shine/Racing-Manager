@@ -19,6 +19,7 @@ import Carousel from 'components/carousel'
 import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
 
 import { timestampToDate } from 'utils/dateutils'
+import { calcPercent } from 'utils/horseutils'
 
 class HorseHeader extends Component {
   constructor (props) {
@@ -58,9 +59,18 @@ class HorseHeader extends Component {
       gender,
       owner,
       image = 'IMAGE',
+      description,
+      timeformComment,
+      style,
+      shares = {
+        owned: 0,
+        total: 0
+      },
       runs,
       wins,
       places,
+      or,
+      tfr,
       trainer = {},
       sire = {},
       dam = {},
@@ -90,11 +100,11 @@ class HorseHeader extends Component {
       },
       {
         title: 'OR',
-        value: '-'
+        value: or
       },
       {
         title: 'TFR',
-        value: '-'
+        value: tfr
       }
     ]
 
@@ -117,7 +127,7 @@ class HorseHeader extends Component {
       },
       {
         title: 'Style',
-        value: '-',
+        value: style,
       },
       {
         title: 'Foaling Date',
@@ -150,7 +160,7 @@ class HorseHeader extends Component {
       {
         title: 'Prize Money',
         value: '£-',
-        className: '',
+        className: 'horse-header__details-prices',
       },
       {
         title: 'Public Sales Price',
@@ -162,10 +172,20 @@ class HorseHeader extends Component {
       },
     ]
 
+    const aboutData = {
+      description,
+      timeformComment
+    }
+
+    const ownershipYears = 2
+    const ownershipEndDate = timestampToDate(
+      new Date(new Date().setFullYear(new Date().getFullYear() + ownershipYears))
+    )
+
     const ownershipData = [
-      '2 years fixed period ownership',
-      'Ends on 02/04/2018',
-      'You own 5 shares out of 20 (25%)',
+      `${ownershipYears} years fixed period ownership`,
+      `Ends on ${ownershipEndDate}`,
+      `You own ${shares.owned} shares out of ${shares.total} (${calcPercent(shares.owned, shares.total)}%)`,
     ]
 
     const benefitsData = [
@@ -196,18 +216,16 @@ class HorseHeader extends Component {
         <div className='row visible-md-up'>
           <div className='horse-header__content container no-padding'>
             <div className='horse-header__about-section col-md-8'>
-              <HorseAboutInfo />
+              <HorseAboutInfo data={aboutData} />
             </div>
             <div className='col-md-4'>
               <div className='horse-header__involvement'>
-                <div className='container'>
-                  <h1 className='horse-header__description-title'>
-                    Your Involvement
-                  </h1>
-                  <Separator modifier='white' />
-                  <HorseOwnershipInfo data={ownershipData} />
-                  <HorseBenefitsInfo data={benefitsData} />
-                </div>
+                <h1 className='horse-header__description-title'>
+                  Your Involvement
+                </h1>
+                <Separator modifier='white' />
+                <HorseOwnershipInfo data={ownershipData} />
+                <HorseBenefitsInfo data={benefitsData} />
               </div>
             </div>
           </div>
@@ -237,7 +255,7 @@ class HorseHeader extends Component {
             </div>
             <div className='horse-header__about-section'>
               <div className='container'>
-                <HorseAboutInfo />
+                <HorseAboutInfo data={aboutData} />
               </div>
             </div>
           </Accordion>
