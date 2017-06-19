@@ -29,6 +29,11 @@ import HorseCard from 'components/cards/HorseCard'
 import Carousel from 'components/carousel'
 
 /**
+ *  @module constructStaticUrl
+ */
+import { constructStaticUrl } from 'utils/horseutils'
+
+/**
  * dummy fn
  */
 const noop = () => {}
@@ -79,7 +84,7 @@ class HeaderSection extends PureComponent {
 
     this.setState({
       horseActiveIndex: index,
-      currentSyndIndex: index
+      currentSyndIndex: nameActiveIndex
     })
   }
 
@@ -240,6 +245,7 @@ class HeaderSection extends PureComponent {
                   <HorseCard
                     isActive={horse.syndIndex === currentSyndIndex}
                     key={index}
+                    src={constructStaticUrl(horse.featuredImage)}
                     title={horse.name}
                     color={horse.syndColor}
                     subtitle={`${horse.age}yo ${horse.gender}`} // Needs to have the STYLE too!

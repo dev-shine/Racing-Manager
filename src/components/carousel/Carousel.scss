@@ -18,6 +18,11 @@
     padding: 0;
     box-sizing: border-box;
     height: auto;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
 
     &--animate {
       transition: transform .4s ease-out;
@@ -25,7 +30,6 @@
   }
 
   &__slide {
-    // position: absolute;
     position: relative;
     list-style-type: none;
     vertical-align: top;

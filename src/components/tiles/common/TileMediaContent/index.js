@@ -14,14 +14,9 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- * @module Slider
+ *  @module Carousel
  */
-import Slider from 'react-slick'
-
-/**
- *  @module CarouselArrow
- */
-import CarouselArrow from 'components/buttons/CarouselArrow'
+import Carousel from 'components/carousel'
 
 /**
  *  @name  MediaTileContent
@@ -35,45 +30,6 @@ class MediaTileContent extends Component {
    */
   constructor (props) {
     super(props)
-
-    // Store the slider in a ref
-    this.slideRef = null
-
-    // Bind custom fns
-    this.slidePrev = this.slidePrev.bind(this)
-    this.slideNext = this.slideNext.bind(this)
-  }
-
-   /**
-   *  slidePrev
-   *  @description Slides to the previous slide in the carousel
-   */
-  slidePrev (event) {
-    if (!this.slideRef) {
-      return false
-    }
-
-    if (event) {
-      event.stopPropagation()
-    }
-
-    this.slideRef.slickPrev()
-  }
-
-  /**
-   *  slideNext
-   *  @description Slides to the next slide in the carousel
-   */
-  slideNext (event) {
-    if (!this.slideRef) {
-      return false
-    }
-
-    if (event) {
-      event.stopPropagation()
-    }
-
-    this.slideRef.slickNext()
   }
 
   render () {
@@ -88,18 +44,10 @@ class MediaTileContent extends Component {
 
     return (
       <div className={modifiedClassNames}>
-        <Slider
-          ref={ref => { this.slideRef = ref }}
-          className='tile-media-content__slider-wrapper'
-          initialSlide={0}
-          infinite={false}
-          dots={false}
-          fade={false}
-          autoplay={false}
-          slidesToShow={1}
-          arrows={false}
-          speed={400}
-          slidesToScroll={1}>
+        <Carousel
+          showArrows
+          nextArrowModifier={['bg', 'right']}
+          prevArrowModifier={['bg']}>
           {
             children.map((child, index) => {
               return (
@@ -109,19 +57,7 @@ class MediaTileContent extends Component {
               )
             })
           }
-        </Slider>
-        <CarouselArrow
-          className='tile-media-content__slider__arrow'
-          modifier='left'
-          iconModifier='leftarrow'
-          onClick={this.slidePrev}
-        />
-        <CarouselArrow
-          className='tile-media-content__slider__arrow'
-          modifier='right'
-          iconModifier='rightarrow'
-          onClick={this.slideNext}
-        />
+        </Carousel>
       </div>
     )
   }

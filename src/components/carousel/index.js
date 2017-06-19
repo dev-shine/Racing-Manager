@@ -141,7 +141,8 @@ class Carousel extends Component {
   getListStyles () {
     const {
       children,
-      cellSpacing
+      cellSpacing,
+      vertical
     } = this.props
 
     const {
@@ -159,10 +160,9 @@ class Carousel extends Component {
       transform,
       WebkitTransform: transform,
       msTransform,
-      margin: this.props.vertical ? (this.props.cellSpacing / 2) * -1 + 'px 0px'
-                                  : '0px ' + (this.props.cellSpacing / 2) * -1 + 'px',
-      width: this.props.vertical ? 'auto' : listWidth + spacingOffset,
-      cursor: this.state.dragging === true ? 'pointer' : 'inherit'
+      margin: vertical ? (cellSpacing / 2) * -1 + 'px 0px'
+                                  : '0px ' + (cellSpacing / 2) * -1 + 'px',
+      width: vertical ? 'auto' : listWidth + spacingOffset,
     }
   }
 
@@ -683,7 +683,7 @@ class Carousel extends Component {
     })
 
     this.animateTimeout = setTimeout(() => {
-      if (callback) {
+      if (typeof callback === 'function') {
         callback()
       }
     }, 1000)
@@ -796,7 +796,7 @@ class Carousel extends Component {
       })
       return (
         <li
-          onClick={ () => { if (!this.clickSafe) { setTimeout(() => { this.goToSlide(index) }, 0) } }}
+          onClick={ e => { if (!this.clickSafe) { setTimeout(() => { this.handleClick(e); this.goToSlide(index) }, 0) } }}
           className={className}
           style={this.getSlideStyles(index, positionValue)}
           key={index}>
@@ -994,11 +994,20 @@ class Carousel extends Component {
           className={className}
           modifier={prevArrowModifier}
           iconModifier={['leftarrow']}
-          onClick={ () => { setTimeout(() => { this.prevSlide() }, 0) } }/>
+          onClick={ e => {
+            this.handleClick(e)
+            setTimeout(() => {
+              this.prevSlide()
+            }, 0)
+          }}/>
       </div>
     )
   }
 
+  /**
+   *  renderNextArrow
+   *  @return {React.Component}
+   */
   renderNextArrow () {
     const {
       showArrows,
@@ -1023,11 +1032,20 @@ class Carousel extends Component {
           className={className}
           modifier={nextArrowModifier}
           iconModifier={['rightarrow']}
-          onClick={ () => { setTimeout(() => { this.nextSlide() }, 0) } }/>
+          onClick={ e => {
+            this.handleClick(e)
+            setTimeout(() => {
+              this.nextSlide()
+            }, 0)
+          }}/>
       </div>
     )
   }
 
+  /**
+   *  renderPagination
+   *  @return {React.Component}
+   */
   renderPagination () {
     const {
       showPagination,
@@ -1119,8 +1137,6 @@ Carousel.propTypes = {
   cellSpacing: PropTypes.number,
   data: PropTypes.func,
   dragging: PropTypes.bool,
-  easing: PropTypes.string,
-  edgeEasing: PropTypes.string,
   framePadding: PropTypes.string,
   frameOverflow: PropTypes.string,
   initialSlideHeight: PropTypes.number,
@@ -1170,8 +1186,6 @@ Carousel.defaultProps = {
   cellSpacing: 0,
   data: noop,
   dragging: true,
-  easing: 'easeOutCirc',
-  edgeEasing: 'easeOutElastic',
   framePadding: '0px',
   frameOverflow: 'hidden',
   slideIndex: 0,

@@ -54,6 +54,7 @@ class LazyImage extends Component {
     // Cache the timeout
     this.timeoutCache = null
     this.mounted = false
+    this.recheckImageOnFail = null
 
     // Bind custom functions
     this.handleImgLoad = this.handleImgLoad.bind(this)
@@ -73,6 +74,9 @@ class LazyImage extends Component {
    *  @return {Void}
    */
   handleImgLoad () {
+    // Clear the timeout for rechecking if the image failed.
+    clearTimeout(this.recheckImageOnFail)
+
     if (!this.mounted) {
       return false
     }
@@ -99,6 +103,11 @@ class LazyImage extends Component {
       error: true,
       isLoading: false
     })
+
+    // Force a recheck if it fails.
+    this.recheckImageOnFail = setTimeout(() => {
+      this.checkViewport()
+    }, 400)
   }
 
   componentDidMount () {

@@ -9,11 +9,11 @@
   cursor: pointer;
   
   &--left {
-    left: 5px;
+    left: 0px;
   }
 
   &--right {
-    right: 5px;
+    right: 0px;
   }
 
   &--bottom {
@@ -30,6 +30,7 @@
 
   &--nobg {
     background-color: transparent;
+    width: 30px;
   }
 
   .icon--leftarrow, .icon--rightarrow {

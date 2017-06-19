@@ -62,6 +62,12 @@ export const formatHorseData = (response = {}) => {
   }
 }
 
+/**
+ *  calcPercent
+ *  @param  {Number} num
+ *  @param  {Number} total
+ *  @return {Number}
+ */
 export const calcPercent = (num, total) => {
   if (total <= 0 ||
       !isNumber(num) ||
@@ -70,6 +76,11 @@ export const calcPercent = (num, total) => {
   return parseInt((Number(num) / Number(total)) * 100, 10)
 }
 
+/**
+ *  constructStaticUrl
+ *  @param  {String} path
+ *  @return {String}
+ */
 export const constructStaticUrl = (path = '') => {
   return `${ROOT_PATH}${path}`
 }
