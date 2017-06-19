@@ -13,12 +13,12 @@ $partners-height-sm: 100px;
   }
   
   &__carousel {
+    padding: 0 30px;
   }
-  
+
   &__carousel-wrapper {
     height: 100%;
-    margin: 0 $partners-slider-margin;
-    width: 100vw - $partners-slider-margin * 2;
+    width: 100%;
     position: relative;
   }
   
@@ -46,42 +46,5 @@ $partners-height-sm: 100px;
       height: 50px;
       width: 100px;
     }
-  }
-  
-  &__arrow-image {
-    @include absolute-center;
-    width: 10px;
-    height: 10px;
-    @media (min-width: $screen-sm) {
-      width: 20px;
-      height: 20px;
-    }
-  }
-  
-  &__arrow {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    background-color: $partners-background;
-    height: 100%;
-    width: $partners-slider-margin;
-    cursor: pointer;
-
-    .icon--leftarrow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: $white;
-    }
-  }
-  
-  &__arrow-prev {
-    left: -$partners-slider-margin;
-  }
-  
-  &__arrow-next {
-    right: -$partners-slider-margin;
-    transform: rotate(180deg);
   }
 }

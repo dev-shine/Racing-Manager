@@ -271,6 +271,7 @@ class FeedSubmitTile extends Component {
                       onChange={this.addAttachment}
                       className='feed-submit__attachmentinput'
                       type='file'
+                      multiple
                       ref={ref => { this.attachmentRef = ref }}/>
                   </div>
                 </div>
