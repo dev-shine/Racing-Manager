@@ -1,10 +1,36 @@
-.slider {
+.nica-carousel {
   position: relative;
-  width: 100%;
+  display: block;
+  height: auto;
+  box-sizing: border-box;
+
+  &__frame {
+    position: relative;
+    display: block;
+    padding: 0;
+    transform: translate3d(0, 0, 0);
+    box-sizing: border-box;
+  }
+
+  &__list {
+    position: relative;
+    display: block;
+    padding: 0;
+    box-sizing: border-box;
+    height: auto;
+
+    &--animate {
+      transition: transform .4s ease-out;
+    }
+  }
 
   &__slide {
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
+    // position: absolute;
+    position: relative;
+    list-style-type: none;
+    vertical-align: top;
+    height: auto;
+    box-sizing: border-box;
+    z-index: 2;
   }
 }

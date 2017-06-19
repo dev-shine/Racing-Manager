@@ -24,19 +24,9 @@ import TextButton from 'components/buttons/TextButton'
 import HorseCard from 'components/cards/HorseCard'
 
 /**
- *  @module CarouselArrow
- */
-import CarouselArrow from 'components/buttons/CarouselArrow'
-
-/**
- *  @module CarouselPaginationButton
- */
-import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
-
-/**
  *  @module Carousel
  */
-import CarouselNew from 'components/carousel/newCarousel'
+import Carousel from 'components/carousel'
 
 /**
  * dummy fn
@@ -164,7 +154,6 @@ class HeaderSection extends PureComponent {
     } = this.props
 
     const {
-      horseActiveIndex,
       currentSyndIndex
     } = this.state
 
@@ -199,16 +188,17 @@ class HeaderSection extends PureComponent {
               text='+'/>
           </div>
         </div>
-        <div className='dashboard-header__items-carousel dashboard-header__section'>
-          <CarouselNew
+        <div className='dashboard-header__items-carousel'>
+          <Carousel
+            containerClassName='dashboard-header__section'
             ref='carousel'
+            showArrows
             slideWidth={'266px'}
             breakPoints={{
               480: {
                 slideWidth: 1
               }
             }}
-            onSlideClick={index => { this.refs.carousel.goToSlide(index) }}
             afterSlide={ index => { this.updateNameActiveIndex(index) }}
             cellAlign='left'
             cellSpacing={30}>
@@ -222,28 +212,23 @@ class HeaderSection extends PureComponent {
                 )
               })
             }
-          </CarouselNew>
-          <CarouselArrow
-            className='dashboard-header__arrow'
-            modifier={['left', 'nobg', 'white']}
-            iconModifier={['leftarrow']}
-            onClick={() => { this.refs.carousel.prevSlide() }}
-          />
-          <CarouselArrow
-            className='dashboard-header__arrow'
-            modifier={['right', 'nobg', 'white']}
-            iconModifier={['rightarrow']}
-            onClick={() => { this.refs.carousel.nextSlide() }}
-          />
+          </Carousel>
         </div>
-        <div className='dashboard-header__items-list dashboard-header__section wave-bg--faded section-shadow--carousel'>
-          <CarouselNew
+        <div className='dashboard-header__items-list wave-bg--faded section-shadow--carousel'>
+          <Carousel
             ref='horseCarousel'
-            onSlideClick={index => { this.refs.horseCarousel.goToSlide(index) }}
+            containerClassName='dashboard-header__section'
             afterSlide={index => { this.updateHorseActiveIndex(index) }}
             cellAlign='left'
             cellSpacing={30}
             slideWidth={'266px'}
+            showArrows
+            showPagination
+            paginationClassName='hidden-sm-up'
+            nextArrowClassName='visible-sm-up'
+            prevArrowClassName='visible-sm-up'
+            nextArrowModifier={['right', 'nobg', 'white', 'bottom']}
+            prevArrowModifier={['left', 'nobg', 'white', 'bottom']}
             breakPoints={{
               480: {
                 slideWidth: 1
@@ -292,24 +277,7 @@ class HeaderSection extends PureComponent {
                 )
               })
             }
-          </CarouselNew>
-          <CarouselArrow
-              className='dashboard-header__arrow visible-sm-up'
-              modifier={['left', 'nobg', 'white', 'bottom']}
-              iconModifier={['leftarrow']}
-              onClick={() => { this.refs.horseCarousel.prevSlide() }}
-            />
-            <CarouselArrow
-              className='dashboard-header__arrow visible-sm-up'
-              modifier={['right', 'nobg', 'white', 'bottom']}
-              iconModifier={['rightarrow']}
-              onClick={() => { this.refs.horseCarousel.nextSlide() }}
-            />
-          <div className='dashboard-header__pagination hidden-sm-up'>
-            <CarouselPaginationButton
-              length={this.carouselData.length}
-              activeIndex={horseActiveIndex} />
-          </div>
+          </Carousel>
         </div>
       </div>
     )
