@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "trm-front-end",
   "version": "1.0.0",
-  "description": "Vitamin boilerplate for React/Redux projects",
+  "description": "The Racing Manager",
   "main": "index.js",
   "scripts": {
     "production": "NODE_ENV=production webpack --config webpack.prod.config.js",
