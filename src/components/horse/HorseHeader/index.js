@@ -11,6 +11,9 @@ import HorseBrief from 'components/horse/HorseBrief'
 import HorseNumericDetails from 'components/horse/HorseNumericDetails'
 import HorseDetails from 'components/horse/HorseDetails'
 
+import HorseBigSection from 'components/horse/HorseBigSection'
+import HorseSmallSection from 'components/horse/HorseSmallSection'
+
 import HorseAboutInfo from 'components/horse/HorseAboutInfo'
 import HorseOwnershipInfo from 'components/horse/HorseOwnershipInfo'
 import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
@@ -204,17 +207,17 @@ class HorseHeader extends Component {
         </div>
         <div className='row visible-md-up'>
           <div className='horse-header__content container no-padding'>
-            <div className='horse-header__about-section col-md-8'>
+            <HorseBigSection className='col-md-8'>
               <HorseAboutInfo data={aboutData} />
-            </div>
-            <div className='horse-header__involvement col-md-4'>
+            </HorseBigSection>
+            <HorseSmallSection className='col-md-4'>
               <h1 className='horse-header__description-title'>
                 Your Involvement
               </h1>
               <Separator modifier='white' />
               <HorseOwnershipInfo data={ownershipData} />
               <HorseBenefitsInfo data={benefitsData} />
-            </div>
+            </HorseSmallSection>
           </div>
         </div>
         <div className='hidden-md-up'>
@@ -240,13 +243,13 @@ class HorseHeader extends Component {
                 </div>
               </div>
             </div>
-            <div className='horse-header__about-section'>
+            <HorseBigSection className='col-md-8'>
               <div className='container'>
                 <HorseAboutInfo data={aboutData} />
               </div>
-            </div>
+            </HorseBigSection>
           </Accordion>
-          <div className='horse-header__involvement'>
+          <HorseSmallSection className='col-md-8'>
             <HorseHeaderSlider className='horse-header__slide'>
               <div className='container'>
                 <h1 className='horse-header__medium-title'>
@@ -263,7 +266,7 @@ class HorseHeader extends Component {
                 <HorseBenefitsInfo data={benefitsData} />
               </div>
             </HorseHeaderSlider>
-          </div>
+          </HorseSmallSection>
         </div>
       </div>
     )
