@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import classNames from 'utils/classnames'
-import { Link } from 'react-router-dom'
 
 const HorseDetails = props => {
   const { data } = props
@@ -17,13 +17,7 @@ const HorseDetails = props => {
               {item.title}
             </div>
             <div className='col-xs-6'>
-              {item.isLink ? (
-                <Link to={item.href} className='link--italic'>
-                  {item.value || '-'}
-                </Link>
-              ) : (
-                item.value || '-'
-              )}
+              {item.value || '-'}
             </div>
           </div>
         ))
@@ -44,3 +38,9 @@ HorseDetails.propTypes = {
 }
 
 export default HorseDetails
+
+/*
+<Link to={item.href} className='link--italic'>
+  item.value ? capitalize(item.value) : '-'
+</Link>
+*/

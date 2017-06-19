@@ -8,6 +8,8 @@ $cta-hover-bg: darken($cta-button-bg, 10);
 $cta-active-bg: darken($cta-button-bg, 20);
 
 .text-button {
+  $blue: #2D87BD;
+
   min-width: 190px;
   height: $cta-button-height + $cta-mobile-additional-height;
   background: $cta-button-bg;
@@ -70,6 +72,31 @@ $cta-active-bg: darken($cta-button-bg, 20);
       color: $cta-button-bg;
     }
   }
+  &--blue {
+    background: $blue;
+    border: 1px solid $blue;
+    &:hover {
+      background: darken($blue, 15%);
+    }
+  }
+
+  &--secondary-blue {
+    background: transparent;
+    border: 1px solid $blue;
+
+    h6 {
+      color: $blue;
+    }
+
+    &:hover {
+      background: $blue;
+
+      h6 {
+        color: white;
+      }
+    }
+  }
+
   &:disabled {
     background: $placeholder-color;
   }

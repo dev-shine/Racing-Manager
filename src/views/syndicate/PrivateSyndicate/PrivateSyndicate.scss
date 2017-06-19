@@ -1,13 +1,55 @@
 .syndicate {
-  margin: 50px 0;
 
-  .base-tile:hover {
-    transform: none;
+  &__image {
+    height: 300px; //TODO
+  }
+
+  h1, p {
+    color: white;
+  }
+
+  p, ul {
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  &__content {
+    margin-bottom: 150px;
+  }
+
+  &__benefits {
+    position: relative;
   }
 
   &__buttons {
-    max-width: 250px;
-    min-height: initial;
+    width: 100%;
+    max-width: 80%;
+    height: 130px;
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
     padding: 10px;
+  }
+
+  &__button {
+    width: 100%;
+    min-width: initial;
+    display: block;
+
+    ~ .syndicate__button {
+      margin-top: 8px;
+    }
+  }
+
+  &__link {
+    color: #2D87BD;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
   }
 }

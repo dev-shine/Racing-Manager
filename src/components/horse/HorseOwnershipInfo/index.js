@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // import { Link } from 'react-router-dom'
+import List from 'components/gui/List'
 
 const HorseOwnershipInfo = props => {
   const { data } = props
@@ -11,15 +12,7 @@ const HorseOwnershipInfo = props => {
       <div className='horse-header__small-title'>
         Ownership
       </div>
-      <ul className='disc-list'>
-        {
-          data.map((item, index) => (
-            <li key={index}>
-              {item}
-            </li>
-          ))
-        }
-      </ul>
+      <List items={data} />
     </div>
   )
 }
