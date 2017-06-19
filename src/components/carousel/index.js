@@ -683,7 +683,7 @@ class Carousel extends Component {
     })
 
     this.animateTimeout = setTimeout(() => {
-      if (callback) {
+      if (typeof callback === 'function') {
         callback()
       }
     }, 1000)
