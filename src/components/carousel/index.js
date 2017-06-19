@@ -1004,6 +1004,10 @@ class Carousel extends Component {
     )
   }
 
+  /**
+   *  renderNextArrow
+   *  @return {React.Component}
+   */
   renderNextArrow () {
     const {
       showArrows,
@@ -1038,6 +1042,10 @@ class Carousel extends Component {
     )
   }
 
+  /**
+   *  renderPagination
+   *  @return {React.Component}
+   */
   renderPagination () {
     const {
       showPagination,
