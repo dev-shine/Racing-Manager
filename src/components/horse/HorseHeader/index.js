@@ -14,9 +14,7 @@ import HorseDetails from 'components/horse/HorseDetails'
 import HorseAboutInfo from 'components/horse/HorseAboutInfo'
 import HorseOwnershipInfo from 'components/horse/HorseOwnershipInfo'
 import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
-
-import Carousel from 'components/carousel'
-import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
+import HorseHeaderSlider from 'components/horse/HorseHeaderSlider'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
@@ -26,12 +24,10 @@ class HorseHeader extends Component {
     super(props)
 
     this.state = {
-      showDetails: false,
-      activeSlide: 0,
+      showDetails: false
     }
 
     this.handleToggleDetails = this.handleToggleDetails.bind(this)
-    this.handleSlideChange = this.handleSlideChange.bind(this)
   }
 
   handleToggleDetails () {
@@ -40,14 +36,8 @@ class HorseHeader extends Component {
     }))
   }
 
-  handleSlideChange (instance) {
-    this.setState({
-      activeSlide: instance.activeIndex
-    })
-  }
-
   render () {
-    const { showDetails: isOpen, activeSlide } = this.state
+    const { showDetails: isOpen } = this.state
     const { className, modifier, data = {} } = this.props
 
     const modifiedClassNames = classNames('horse-header', className, modifier)
@@ -257,37 +247,22 @@ class HorseHeader extends Component {
             </div>
           </Accordion>
           <div className='horse-header__involvement'>
-            <Carousel
-              slideClassName='horse-header__slide'
-              ref='swiperHorseOverview'
-              onSlideChangeStart={this.handleSlideChange}
-            >
-              <div>
-                <div className='container'>
-                  <h1 className='horse-header__medium-title'>
-                    Your Involvement
-                  </h1>
-                  <Separator modifier='white' />
-                  <HorseOwnershipInfo data={ownershipData} />
-                </div>
+            <HorseHeaderSlider className='horse-header__slide'>
+              <div className='container'>
+                <h1 className='horse-header__medium-title'>
+                  Your Involvement
+                </h1>
+                <Separator modifier='white' />
+                <HorseOwnershipInfo data={ownershipData} />
               </div>
-              <div>
-                <div className='container'>
-                  <h1 className='horse-header__medium-title'>
-                    Your Involvement
-                  </h1>
-                  <Separator modifier='white' />
-                  <HorseBenefitsInfo data={benefitsData} />
-                </div>
+              <div className='container'>
+                <h1 className='horse-header__medium-title'>
+                  Your Involvement
+                </h1>
+                <Separator modifier='white' />
+                <HorseBenefitsInfo data={benefitsData} />
               </div>
-            </Carousel>
-            <div>
-              <CarouselPaginationButton
-                length={2}
-                activeIndex={activeSlide}
-                className='horse-header__pagination'
-              />
-            </div>
+            </HorseHeaderSlider>
           </div>
         </div>
       </div>

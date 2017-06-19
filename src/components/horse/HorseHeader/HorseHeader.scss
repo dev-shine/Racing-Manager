@@ -51,10 +51,10 @@
 
   &__image {
     position: relative;
+    background: #eee;
 
     .parallax-hero__image {
       height: 200px;
-      background: #eee;
       background-position: top center;
 
       @media (min-width: $screen-sm) {
