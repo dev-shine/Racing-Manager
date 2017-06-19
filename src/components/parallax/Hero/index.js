@@ -35,8 +35,6 @@ const Hero = props => {
 
   const modifiedClassNames = classNames('parallax-hero', className, modifier)
 
-  console.log(featuredImage)
-
   return (
     <div className={modifiedClassNames}>
       <div className='parallax-hero__parallax'>
