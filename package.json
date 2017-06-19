@@ -58,6 +58,7 @@
     "webpack-validator": "^3.0.0"
   },
   "dependencies": {
+    "@tweenjs/tween.js": "^16.7.0",
     "bootstrap-grid": "^2.0.1",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
