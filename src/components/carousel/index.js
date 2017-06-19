@@ -142,33 +142,19 @@ class Carousel extends Component {
     const {
       children,
       cellSpacing,
-      grabCursor,
       vertical
     } = this.props
 
     const {
       slideWidth,
       left,
-      top,
-      dragging
+      top
     } = this.state
 
     const listWidth = slideWidth * React.Children.count(children)
     const spacingOffset = cellSpacing * React.Children.count(children)
     const transform = `translate3d(${left}px, ${top}px, 0)`
     const msTransform = `translate(${left}px, ${top}px)`
-
-    // Set the default cursor.
-    let cursor = 'inherit'
-
-    // If grab cursor is active, check which state the dragging is in.
-    if (grabCursor) {
-      if (dragging === true) {
-        cursor = '-webkit-grabbing'
-      } else {
-        cursor = '-webkit-grab'
-      }
-    }
 
     return {
       transform,
@@ -177,7 +163,6 @@ class Carousel extends Component {
       margin: vertical ? (cellSpacing / 2) * -1 + 'px 0px'
                                   : '0px ' + (cellSpacing / 2) * -1 + 'px',
       width: vertical ? 'auto' : listWidth + spacingOffset,
-      cursor
     }
   }
 
@@ -1185,8 +1170,7 @@ Carousel.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  prevArrowClassName: PropTypes.string,
-  grabCursor: PropTypes.bool
+  prevArrowClassName: PropTypes.string
 }
 
 /**
@@ -1220,8 +1204,7 @@ Carousel.defaultProps = {
   nextArrowModifier: ['right', 'nobg', 'white'],
   nextArrowClassName: '',
   prevArrowModifier: ['left', 'nobg', 'white'],
-  prevArrowClassName: '',
-  grabCursor: true
+  prevArrowClassName: ''
 }
 
 /**
