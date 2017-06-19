@@ -19,7 +19,7 @@ import Carousel from 'components/carousel'
 import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
 
 import { timestampToDate } from 'utils/dateutils'
-import { calcPercent } from 'utils/horseutils'
+import { calcPercent, constructStaticUrl } from 'utils/horseutils'
 
 class HorseHeader extends Component {
   constructor (props) {
@@ -67,7 +67,7 @@ class HorseHeader extends Component {
       foalingDate,
       sire = {},
       dam = {},
-      featuredImage = '../assets/dummyassets/horse-overview.png',
+      featuredImage,
       description,
       timeformComments = {},
       style,
@@ -199,8 +199,7 @@ class HorseHeader extends Component {
     return (
       <div className={modifiedClassNames}>
         <div className='horse-header__image'>
-          <Hero featuredImage={featuredImage}>
-          </Hero>
+          <Hero featuredImage={constructStaticUrl(featuredImage)} />
           <div className='horse-header__details-container visible-md-up'>
             <div className='horse-header__details-tile'>
               <div className='horse-header__details section-shadow'>
