@@ -19,7 +19,7 @@ import Carousel from 'components/carousel'
 import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
 
 import { timestampToDate } from 'utils/dateutils'
-import { calcPercent } from 'utils/horseutils'
+import { calcPercent, constructStaticUrl } from 'utils/horseutils'
 
 class HorseHeader extends Component {
   constructor (props) {
@@ -58,7 +58,16 @@ class HorseHeader extends Component {
       color,
       gender,
       owner,
-      featuredImage = '../assets/dummyassets/horse-overview.png',
+      runs,
+      wins,
+      places,
+      or,
+      tfr,
+      trainer = {},
+      foalingDate,
+      sire = {},
+      dam = {},
+      featuredImage,
       description,
       timeformComments = {},
       style,
@@ -66,15 +75,6 @@ class HorseHeader extends Component {
         owned: 0,
         total: 0
       },
-      runs,
-      wins,
-      places,
-      or,
-      tfr,
-      trainer = {},
-      sire = {},
-      dam = {},
-      foalingDate,
     } = data
 
     const briefData = {
@@ -112,14 +112,14 @@ class HorseHeader extends Component {
       {
         title: 'Trainer',
         value: trainer.name,
-        isLink: true,
-        href: '/',
+        // isLink: true,
+        // href: '/',
       },
       {
         title: 'Prev Trainers',
         value: '-',
-        isLink: true,
-        href: '/',
+        // isLink: true,
+        // href: '/',
       },
       {
         title: 'Breeder',
@@ -136,26 +136,26 @@ class HorseHeader extends Component {
       {
         title: 'Sire',
         value: sire.name,
-        isLink: true,
-        href: '/',
+        // isLink: true,
+        // href: '/',
       },
       {
         title: 'Dam',
         value: dam.name,
-        isLink: true,
-        href: '/',
+        // isLink: true,
+        // href: '/',
       },
       {
         title: 'Dam Sire',
         value: dam.sireName,
-        isLink: true,
-        href: '/',
+        // isLink: true,
+        // href: '/',
       },
       {
         title: 'Racetrack Siblings',
         value: '-',
-        isLink: true,
-        href: '/',
+        // isLink: true,
+        // href: '/',
       },
       {
         title: 'Prize Money',
@@ -199,8 +199,7 @@ class HorseHeader extends Component {
     return (
       <div className={modifiedClassNames}>
         <div className='horse-header__image'>
-          <Hero featuredImage={featuredImage}>
-          </Hero>
+          <Hero featuredImage={constructStaticUrl(featuredImage)} />
           <div className='horse-header__details-container visible-md-up'>
             <div className='horse-header__details-tile'>
               <div className='horse-header__details section-shadow'>
@@ -258,34 +257,36 @@ class HorseHeader extends Component {
             </div>
           </Accordion>
           <div className='horse-header__involvement'>
-            <div className='container'>
-              <Carousel
-                slideClassName='horse-header__slide'
-                ref='swiperHorseOverview'
-                onSlideChangeStart={this.handleSlideChange}
-              >
-                <div>
+            <Carousel
+              slideClassName='horse-header__slide'
+              ref='swiperHorseOverview'
+              onSlideChangeStart={this.handleSlideChange}
+            >
+              <div>
+                <div className='container'>
                   <h1 className='horse-header__medium-title'>
                     Your Involvement
                   </h1>
                   <Separator modifier='white' />
                   <HorseOwnershipInfo data={ownershipData} />
                 </div>
-                <div>
+              </div>
+              <div>
+                <div className='container'>
                   <h1 className='horse-header__medium-title'>
                     Your Involvement
                   </h1>
                   <Separator modifier='white' />
                   <HorseBenefitsInfo data={benefitsData} />
                 </div>
-              </Carousel>
-              <div>
-                <CarouselPaginationButton
-                  length={2}
-                  activeIndex={activeSlide}
-                  className='horse-header__pagination'
-                />
               </div>
+            </Carousel>
+            <div>
+              <CarouselPaginationButton
+                length={2}
+                activeIndex={activeSlide}
+                className='horse-header__pagination'
+              />
             </div>
           </div>
         </div>

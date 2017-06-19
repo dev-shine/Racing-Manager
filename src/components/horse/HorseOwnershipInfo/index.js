@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 const HorseOwnershipInfo = props => {
   const { data } = props
@@ -20,9 +20,6 @@ const HorseOwnershipInfo = props => {
           ))
         }
       </ul>
-      <Link to='/' className='link--italic horse-header__read-more'>
-        Read more...
-      </Link>
     </div>
   )
 }
@@ -38,3 +35,9 @@ HorseOwnershipInfo.defaultProps = {
 }
 
 export default HorseOwnershipInfo
+
+/*
+<Link to='/' className='link--italic horse-header__read-more'>
+  Read more...
+</Link>
+ */

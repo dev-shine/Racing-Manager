@@ -31,6 +31,10 @@
 
   &__paragraph {
     color: white;
+
+    ~ .horse-header__paragraph {
+      margin-top: 10px;
+    }
   }
 
   &__small-title {
@@ -50,6 +54,7 @@
 
     .parallax-hero__image {
       height: 200px;
+      background: #eee;
       background-position: top center;
 
       @media (min-width: $screen-sm) {

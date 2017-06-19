@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import Separator from 'components/gui/Separator'
-import TextButton from 'components/buttons/TextButton'
+
+// import { Link } from 'react-router-dom'
+// import TextButton from 'components/buttons/TextButton'
 
 const HorseAboutInfo = props => {
   const { data } = props
-  const { description, timeformComments } = data
+  const { description, timeformComments = {} } = data
 
   return (
     <div className='horse-about'>
@@ -15,19 +16,19 @@ const HorseAboutInfo = props => {
         About the horse
       </h1>
       <Separator modifier='white' />
-      {description && (
-        <div>
-          <p className='horse-header__paragraph'>
-            {description}
-          </p>
-          <Link to='/' className='link--italic horse-header__read-more'>
-            Read more...
-          </Link>
-        </div>
-      )}
+      <div>
+        <p className='horse-header__paragraph'>
+          {description || 'No description ...'}
+        </p>
+      </div>
       <div className='horse-header__small-title horse-header__comment-title'>
         Timeform comment
       </div>
+      {(!timeformComments.flat && !timeformComments.jump) && (
+        <p className='horse-header__paragraph'>
+          No timeform comments..
+        </p>
+      )}
       {timeformComments.flat && (
         <p className='horse-header__paragraph'>
           Flat: {timeformComments.flat}
@@ -38,15 +39,6 @@ const HorseAboutInfo = props => {
           Jump: {timeformComments.jump}
         </p>
       )}
-      <Link to='/' className='link--italic horse-header__read-more'>
-        Read more...
-      </Link>
-      <TextButton
-        text='Syndicate page'
-        className='horse-header__syndicate-button'
-        modifier='md'
-        onClick={() => {}}
-      />
     </div>
   )
 }
@@ -66,3 +58,19 @@ HorseAboutInfo.defaultProps = {
 }
 
 export default HorseAboutInfo
+
+/*
+<Link to='/' className='link--italic horse-header__read-more'>
+  Read more...
+</Link>
+
+<Link to='/' className='link--italic horse-header__read-more'>
+  Read more...
+</Link>
+<TextButton
+  text='Syndicate page'
+  className='horse-header__syndicate-button'
+  modifier='md'
+  onClick={() => {}}
+/>
+*/
