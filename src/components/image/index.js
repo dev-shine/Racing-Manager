@@ -79,7 +79,8 @@ class LazyImage extends Component {
 
     this.setState({
       loaded: true,
-      isLoading: false
+      isLoading: false,
+      error: false
     })
   }
 
@@ -168,7 +169,7 @@ class LazyImage extends Component {
     return nextState.loaded
   }
 
-  componentWillReceiveProps () {
+  componentWillReceiveProps (nextProps) {
     this.checkViewport()
   }
 

@@ -24,46 +24,14 @@ import TextButton from 'components/buttons/TextButton'
 import HorseCard from 'components/cards/HorseCard'
 
 /**
- *  @module CarouselArrow
- */
-import CarouselArrow from 'components/buttons/CarouselArrow'
-
-/**
  *  @module Carousel
  */
 import Carousel from 'components/carousel'
 
 /**
- *  @module CarouselPaginationButton
- */
-import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
-
-/**
  * dummy fn
  */
 const noop = () => {}
-
-/**
- *  swiperOpts
- *  @description Default options.
- *  @type {Object}
- */
-const swiperOpts = {
-  centeredSlides: true,
-  spaceBetween: 30,
-  slidesPerView: 'auto',
-  grabCursor: true,
-  slideToClickedSlide: true,
-  initialSlide: 0,
-  breakpoints: {
-    480: {
-      spaceBetween: 10
-    },
-    780: {
-      spaceBetween: 20
-    }
-  }
-}
 
 /**
  *  @class
@@ -80,65 +48,13 @@ class HeaderSection extends PureComponent {
     // Initial state
     this.state = {
       horseActiveIndex: 0,
-      currentSyndName: ''
+      currentSyndIndex: 0
     }
 
     // bind custom fns
     this.updateHorseActiveIndex = this.updateHorseActiveIndex.bind(this)
     this.updateNameActiveIndex = this.updateNameActiveIndex.bind(this)
     this.formatHorseData = this.formatHorseData.bind(this)
-    this.forceCarouselUpdate = this.forceCarouselUpdate.bind(this)
-
-    // Options for the name.
-    this.swiperNameOpts = {
-      ...swiperOpts,
-      onTransitionStart: ({realIndex}) => {
-        this.updateNameActiveIndex(realIndex)
-      }
-    }
-
-    // Options for horse
-    this.swiperHorseOpts = {
-      ...swiperOpts,
-      onInit: () => { // This will handle the data coming in straight away and force an update.
-        this.forceCarouselUpdate()
-      },
-      onTransitionStart: ({realIndex}) => {
-        this.updateHorseActiveIndex(realIndex)
-      }
-    }
-  }
-
-  // Check and update the horse active index!
-  // Only update if the props length is different.
-  componentWillReceiveProps (nextProps) {
-    if (this.props.data.length !== nextProps.data.length) {
-      setTimeout(() => { this.forceCarouselUpdate() }, 0)
-    }
-  }
-
-  /**
-   *  forceCarouselUpdate
-   *  @description Swiper js doesn't handle the removing / adding of slides great.
-   *               So in order to get the custom features working this has to be done.
-   *  @return {Void}
-   */
-  forceCarouselUpdate () {
-    const {
-      horseActiveIndex
-    } = this.state
-
-    const {
-      data
-    } = this.props
-
-    const {
-      syndHorses
-    } = this.carouselData
-
-    if (data && syndHorses.length) {
-      this.updateHorseActiveIndex(horseActiveIndex)
-    }
   }
 
   /**
@@ -157,13 +73,13 @@ class HeaderSection extends PureComponent {
     const nameActiveIndex = this.carouselData.syndNames.map(({name}) => name).indexOf(syndName)
 
     // Tell the name carousel to go to the correct index.
-    if (this.refs.swiperName) {
-      this.refs.swiperName.slideTo(nameActiveIndex, 300, false)
+    if (this.refs.carousel) {
+      this.refs.carousel.goToSlide(nameActiveIndex, false)
     }
 
     this.setState({
       horseActiveIndex: index,
-      currentSyndName: syndName
+      currentSyndIndex: index
     })
   }
 
@@ -180,13 +96,13 @@ class HeaderSection extends PureComponent {
     // Get the first index of the horse depending on the name of the syndicate.
     const horseActiveIndex = this.carouselData.syndHorses.map(({syndName}) => syndName).indexOf(name)
 
-    if (this.refs.swiperHorse) {
-      this.refs.swiperHorse.slideTo(horseActiveIndex, 300, false)
+    if (this.refs.horseCarousel) {
+      this.refs.horseCarousel.goToSlide(horseActiveIndex, false)
     }
 
     this.setState({
       horseActiveIndex,
-      currentSyndName: name
+      currentSyndIndex: index
     })
   }
 
@@ -214,6 +130,7 @@ class HeaderSection extends PureComponent {
         syndName: syndicate.name,
         syndSlug: syndicate.slug,
         syndColor: syndicate.color,
+        syndIndex: index, // Used to determine which horse cards to highlight
         ...horse
       })))
 
@@ -237,8 +154,7 @@ class HeaderSection extends PureComponent {
     } = this.props
 
     const {
-      horseActiveIndex,
-      currentSyndName
+      currentSyndIndex
     } = this.state
 
     // Get the data needed for the carousels
@@ -272,27 +188,20 @@ class HeaderSection extends PureComponent {
               text='+'/>
           </div>
         </div>
-        <div className='dashboard-header__items-carousel dashboard-header__section'>
+        <div className='dashboard-header__items-carousel'>
           <Carousel
-            ref='swiperName'
-            slideClassName='dashboard-header__slide'
-            prevArrow={
-              <CarouselArrow
-                className='dashboard-header__arrow'
-                modifier={['left', 'nobg', 'white']}
-                iconModifier={['leftarrow']}
-                onClick={() => { this.refs.swiperName.prev() }}
-              />
-            }
-            nextArrow={
-              <CarouselArrow
-                className='dashboard-header__arrow'
-                modifier={['right', 'nobg', 'white']}
-                iconModifier={['rightarrow']}
-                onClick={() => { this.refs.swiperName.next() }}
-              />
-            }
-            {...this.swiperNameOpts}>
+            containerClassName='dashboard-header__section'
+            ref='carousel'
+            showArrows
+            slideWidth={'266px'}
+            breakPoints={{
+              480: {
+                slideWidth: 1
+              }
+            }}
+            afterSlide={ index => { this.updateNameActiveIndex(index) }}
+            cellAlign='left'
+            cellSpacing={30}>
             {
               this.carouselData.syndNames.map(({name, length}, index) => {
                 return (
@@ -305,32 +214,31 @@ class HeaderSection extends PureComponent {
             }
           </Carousel>
         </div>
-        <div className='dashboard-header__items-list dashboard-header__section wave-bg--faded section-shadow--carousel'>
+        <div className='dashboard-header__items-list wave-bg--faded section-shadow--carousel'>
           <Carousel
-            slideClassName='dashboard-header__slide'
-            ref='swiperHorse'
-            prevArrow={
-              <CarouselArrow
-                className='dashboard-header__arrow visible-sm-up'
-                modifier={['left', 'nobg', 'white', 'bottom']}
-                iconModifier={['leftarrow']}
-                onClick={() => { this.refs.swiperHorse.prev() }}
-              />
-            }
-            nextArrow={
-              <CarouselArrow
-                className='dashboard-header__arrow visible-sm-up'
-                modifier={['right', 'nobg', 'white', 'bottom']}
-                iconModifier={['rightarrow']}
-                onClick={() => { this.refs.swiperHorse.next() }}
-              />
-            }
-            {...this.swiperHorseOpts}>
+            ref='horseCarousel'
+            containerClassName='dashboard-header__section'
+            afterSlide={index => { this.updateHorseActiveIndex(index) }}
+            cellAlign='left'
+            cellSpacing={30}
+            slideWidth={'266px'}
+            showArrows
+            showPagination
+            paginationClassName='hidden-sm-up'
+            nextArrowClassName='visible-sm-up'
+            prevArrowClassName='visible-sm-up'
+            nextArrowModifier={['right', 'nobg', 'white', 'bottom']}
+            prevArrowModifier={['left', 'nobg', 'white', 'bottom']}
+            breakPoints={{
+              480: {
+                slideWidth: 1
+              }
+            }}>
             {
               this.carouselData.syndHorses.map((horse, index) => {
                 return (
                   <HorseCard
-                    isActive={horse.syndName === currentSyndName}
+                    isActive={horse.syndIndex === currentSyndIndex}
                     key={index}
                     title={horse.name}
                     color={horse.syndColor}
@@ -370,11 +278,6 @@ class HeaderSection extends PureComponent {
               })
             }
           </Carousel>
-          <div className='dashboard-header__pagination hidden-sm-up'>
-            <CarouselPaginationButton
-              length={this.carouselData.length}
-              activeIndex={horseActiveIndex} />
-          </div>
         </div>
       </div>
     )
