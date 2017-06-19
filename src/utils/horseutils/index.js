@@ -4,6 +4,11 @@
 import { timestampToFeedTimestamp } from 'utils/dateutils'
 
 /**
+ * @module is-number
+ */
+import isNumber from 'is-number'
+
+/**
  *  @name horsePostType
  *  @description Will determine the post type. For instance 'text', 'video', 'multiplemedia'
  *  @param  {Array} attachment
@@ -56,6 +61,9 @@ export const formatHorseData = (response = {}) => {
 }
 
 export const calcPercent = (num, total) => {
-  if (!num || !total) return 0
-  return (num / total) * 100
+  if (total <= 0 ||
+      !isNumber(num) ||
+      !isNumber(total)) return 0
+
+  return parseInt((Number(num) / Number(total)) * 100, 10)
 }

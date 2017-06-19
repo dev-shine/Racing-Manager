@@ -31,6 +31,10 @@
 
   &__paragraph {
     color: white;
+
+    ~ .horse-header__paragraph {
+      margin-top: 10px;
+    }
   }
 
   &__small-title {
