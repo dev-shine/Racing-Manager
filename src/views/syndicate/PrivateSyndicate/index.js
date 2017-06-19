@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 
 import Separator from 'components/gui/Separator'
 import List from 'components/gui/List'
+import Carousel from 'components/carousel'
 
 import HorseBigSection from 'components/horse/HorseBigSection'
 import HorseSmallSection from 'components/horse/HorseSmallSection'
-
-import HorseHeaderSlider from 'components/horse/HorseHeaderSlider'
-// import ButtonSection from 'components/syndicate/ButtonSection'
+import ButtonSection from 'components/syndicate/ButtonSection'
 
 export class PrivateSyndicate extends Component {
   constructor (props) {
@@ -58,20 +57,20 @@ export class PrivateSyndicate extends Component {
             </HorseBigSection>
             <HorseSmallSection className='col-md-4'>
               {involvementSection}
+              <ButtonSection className='syndicate__buttons' />
             </HorseSmallSection>
           </div>
         </div>
         <HorseBigSection className='syndicate__slider hidden-md-up'>
-          <HorseHeaderSlider>
+          <Carousel ref='carousel' showPagination>
             <div className='container'>
               {aboutSection}
             </div>
             <div className='container'>
               {involvementSection}
             </div>
-          </HorseHeaderSlider>
+          </Carousel>
         </HorseBigSection>
-        {/*<ButtonSection className='syndicate__buttons' />*/}
       </div>
     )
   }

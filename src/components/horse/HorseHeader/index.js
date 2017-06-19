@@ -6,6 +6,7 @@ import TextButton from 'components/buttons/TextButton'
 import Separator from 'components/gui/Separator'
 import Accordion from 'components/accordion/BaseAccordion'
 import Hero from 'components/parallax/Hero'
+import Carousel from 'components/carousel'
 
 import HorseBrief from 'components/horse/HorseBrief'
 import HorseNumericDetails from 'components/horse/HorseNumericDetails'
@@ -17,7 +18,6 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 import HorseAboutInfo from 'components/horse/HorseAboutInfo'
 import HorseOwnershipInfo from 'components/horse/HorseOwnershipInfo'
 import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
-import HorseHeaderSlider from 'components/horse/HorseHeaderSlider'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
@@ -250,7 +250,7 @@ class HorseHeader extends Component {
             </HorseBigSection>
           </Accordion>
           <HorseSmallSection className='col-md-8'>
-            <HorseHeaderSlider className='horse-header__slide'>
+            <Carousel ref='carousel' showPagination>
               <div className='container'>
                 <h1 className='horse-header__medium-title'>
                   Your Involvement
@@ -265,7 +265,7 @@ class HorseHeader extends Component {
                 <Separator modifier='white' />
                 <HorseBenefitsInfo data={benefitsData} />
               </div>
-            </HorseHeaderSlider>
+            </Carousel>
           </HorseSmallSection>
         </div>
       </div>
