@@ -13,6 +13,9 @@ import { MESSAGE, HORSE } from 'api/ServiceTypes'
  */
 import { formatHorseData } from 'utils/horseutils'
 
+/**
+ *  @module verifyServerFormat
+ */
 import verifyServerFormat from 'utils/request'
 
 /**
@@ -202,6 +205,7 @@ export const submitHorseUpdate = data => {
       url: MESSAGE,
       data
     })
+    .then(verifyServerFormat)
     .then(response => {
       dispatch(postedHorseUpdate(response))
       return Promise.resolve()

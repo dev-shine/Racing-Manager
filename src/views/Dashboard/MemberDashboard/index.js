@@ -45,10 +45,10 @@ import { DASHBOARD } from 'api/ServiceTypes'
 
 /**
  *  @class
- *  @name Dashboard
+ *  @name MemberDashboard
  *  @extends {Component}
  */
-export class Dashboard extends Component {
+export class MemberDashboard extends Component {
   constructor (props) {
     super(props)
 
@@ -92,16 +92,16 @@ export class Dashboard extends Component {
     const { syndicates } = this.state
 
     return (
-      <div className='dashboard'>
-        <div className='dashboard__slider'>
+      <div className='member-dashboard'>
+        <div className='member-dashboard__slider'>
           <HeaderSection
             data={syndicates}/>
         </div>
-        <div className='dashboard__feed-section container'>
-          <h1 className='dashboard__title'>
+        <div className='member-dashboard__feed-section container'>
+          <h1 className='member-dashboard__title'>
             Racing News
           </h1>
-          <div className='dashboard__feed'>
+          <div className='member-dashboard__feed'>
             <Grid
               targetBlockWidth={265}
               center={false}
@@ -116,7 +116,7 @@ export class Dashboard extends Component {
                       src={tile.src}
                       providerSrc={tile.providerSrc}
                       date={tile.date}
-                      className='dashboard__tile'
+                      className='member-dashboard__tile'
                     />
                   </Block>
                 ))
@@ -126,7 +126,7 @@ export class Dashboard extends Component {
           <TextButton
             text='Load more'
             modifier='secondary'
-            className='dashboard__more-btn'
+            className='member-dashboard__more-btn'
             onClick={() => {}}
           />
         </div>
@@ -157,4 +157,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard))
+)(MemberDashboard))

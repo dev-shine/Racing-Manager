@@ -9,6 +9,11 @@ import { post } from 'api/Request'
 import { REGISTRATION } from 'api/ServiceTypes'
 
 /**
+ *  @module verifyServerFormat
+ */
+import verifyServerFormat from 'utils/request'
+
+/**
  *  @name REGISTER_UPDATE
  *  @type {String}
  */
@@ -113,6 +118,7 @@ export const submitFormData = data => {
       data,
       url: REGISTRATION
     })
+    .then(verifyServerFormat)
     .then(response => {
       dispatch(submittedRegisterForm())
       return Promise.resolve(response)

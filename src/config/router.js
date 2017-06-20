@@ -15,7 +15,7 @@ import PageNotFound from 'views/PageNotFound'
 import Home from 'views/home'
 import Login from 'views/Login'
 import Register from 'views/register'
-import Dashboard from 'views/Dashboard'
+import MemberDashboard from 'views/Dashboard/MemberDashboard'
 
 import PrivateHorse from 'views/horse/PrivateHorse'
 import PublicHorse from 'views/horse/PublicHorse'
@@ -32,7 +32,7 @@ const router = (
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
-            <PrivateRoute path='/dashboard' component={Dashboard} />
+            <PrivateRoute path='/dashboard' component={MemberDashboard} />
             <PrivateRoute path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
             <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <Route component={PageNotFound} />
