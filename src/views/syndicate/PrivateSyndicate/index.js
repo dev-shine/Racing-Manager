@@ -14,7 +14,7 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 
 import { constructStaticUrl } from 'utils/horseutils'
 
-import { fetchSyndicateInfo } from 'actions/syndicate'
+// import { fetchSyndicateInfo } from 'actions/syndicate'
 
 export class PrivateSyndicate extends Component {
   constructor (props) {
@@ -142,33 +142,14 @@ export class PrivateSyndicate extends Component {
   }
 }
 
-const mapStateToProps = ({ syndicate }, ownProps) => {
-  const {
-    data,
-    posting,
-    fetching,
-    posted
-  } = syndicate
+const mapStateToProps = (state, ownProps) => ({
+})
 
-  return {
-    data,
-    fetching,
-    posting,
-    posted
-  }
-}
-
-/**
- *  @name mapDispatchToProps
- *  @param  {Function} dispatch
- *  @param  {Object} ownProps
- *  @return {Object}
- */
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getSyndicateInfo: () => {
-      const name = ownProps.match.params.name
-      dispatch(fetchSyndicateInfo({ name }))
+      // const name = ownProps.match.params.name
+      // dispatch(fetchSyndicateInfo({ name }))
     }
   }
 }

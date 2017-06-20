@@ -157,7 +157,7 @@ export class PrivateHorse extends Component {
  *  @param  {Object} ownProps
  *  @return {Object}
  */
-const mapStateToProps = ({horseoverview}, ownProps) => {
+const mapStateToProps = ({ horseoverview }, ownProps) => {
   const {
     data,
     posting,
@@ -182,7 +182,6 @@ const mapStateToProps = ({horseoverview}, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getHorseInfo: () => {
-      // Get the name of the horse from the url.
       const name = ownProps.match.params.name
       dispatch(fetchHorseInfo({ name }))
     }

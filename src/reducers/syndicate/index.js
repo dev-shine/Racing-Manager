@@ -2,17 +2,17 @@ import {
   FETCH_SYNDICATE_INFO,
   RECEIVED_SYNDICATE_INFO,
   FAILED_TO_FETCH_SYNDICATE_INFO
-} from 'actions/horseoverview'
+} from 'actions/syndicate'
 
 const initialState = {
-  fetching: false,
   data: [],
+  fetching: false,
   error: false
 }
 
 const reducer = (state = initialState, action) => {
   const type = action.type
-  const payload = action.playload
+  const payload = action.payload
 
   switch (type) {
     case FETCH_SYNDICATE_INFO:
