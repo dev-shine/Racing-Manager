@@ -29,6 +29,11 @@ import { getImage, isInViewport } from 'utils/imageutils'
 import throttle from 'utils/throttle'
 
 /**
+ *  @module ROOT_PATH
+ */
+import { ROOT_PATH } from 'api/ServiceTypes'
+
+/**
  *  LazyImage
  *  @description [Will take a image src and wait for it to loader and show a placeholder]
  *  @example <BackgroundImage src={source} placeholder={localImage} {...other attributes}>
@@ -178,7 +183,11 @@ class LazyImage extends Component {
       return false
     }
 
-    if (!this.state.isLoading && !this.state.loaded && !this.state.error) {
+    /*
+      Please forgive me with the 'imageSrc !== ROOT_PATH' ... Until we find a way to get images on the server
+      to show without the 'localhost' prefix...
+     */
+    if (!this.state.isLoading && !this.state.loaded && !this.state.error && imageSrc !== ROOT_PATH) {
       if (isInViewport(this.imageRef) || this.props.forceShow) {
         // if is in viewport and is not requesting start fetching
         this.fetchImage(imageSrc)
