@@ -14,7 +14,7 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 
 import { constructStaticUrl } from 'utils/horseutils'
 
-// import { fetchSyndicateInfo } from 'actions/syndicate'
+import { fetchSyndicateInfo } from 'actions/syndicate'
 
 export class PrivateSyndicate extends Component {
   constructor (props) {
@@ -25,7 +25,7 @@ export class PrivateSyndicate extends Component {
   }
 
   componentDidMount () {
-    // this.props.getSyndicateInfo()
+    this.props.getSyndicateInfo()
   }
 
   handleRequestToJoin () {
@@ -47,7 +47,7 @@ export class PrivateSyndicate extends Component {
         name: 'Andy Ash'
       },
       featuredImage = '',
-      logoImage = '',
+      logo = '',
       description = defaultDescription
     } = data
 
@@ -89,7 +89,7 @@ export class PrivateSyndicate extends Component {
             <div className='syndicate__logo-img'>
               <Image
                 className='syndicate__logo-element absolute-center'
-                imageSrc={constructStaticUrl(logoImage)}
+                imageSrc={constructStaticUrl(logo)}
               />
             </div>
             <div className='syndicate__logo-desc section-shadow'>
@@ -145,13 +145,14 @@ export class PrivateSyndicate extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
+  ...state.syndicate
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getSyndicateInfo: () => {
-      // const name = ownProps.match.params.name
-      // dispatch(fetchSyndicateInfo({ name }))
+      const name = ownProps.match.params.name
+      dispatch(fetchSyndicateInfo({ name }))
     }
   }
 }

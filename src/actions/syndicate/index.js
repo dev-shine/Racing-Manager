@@ -32,11 +32,9 @@ export const fetchSyndicateInfo = data => {
       data
     })
     .then(verifyServerFormat)
-    .then(response => {
-      // const formattedResponse = formatSyndicateData(response)
-
-      dispatch(receivedSyndicateInfo(response))
-      return Promise.resolve(response.data)
+    .then(data => {
+      dispatch(receivedSyndicateInfo(data))
+      return Promise.resolve(data)
     })
     .catch(error => {
       dispatch(failedToGetSyndicateInfo(error))
