@@ -245,7 +245,7 @@ class HeaderSection extends PureComponent {
                   <HorseCard
                     isActive={horse.syndIndex === currentSyndIndex}
                     key={index}
-                    src={constructStaticUrl(horse.featuredImage)}
+                    src={constructStaticUrl(horse.thumbnailImage)}
                     title={horse.name}
                     color={horse.syndColor}
                     subtitle={`${horse.age}yo ${horse.gender}`} // Needs to have the STYLE too!

@@ -16,6 +16,11 @@ import { constructStaticUrl } from 'utils/horseutils'
 
 import { fetchSyndicateInfo } from 'actions/syndicate'
 
+/**
+ *  @module FeedGallery
+ */
+import FeedGallery from 'components/tiles/FeedGallery'
+
 export class PrivateSyndicate extends Component {
   constructor (props) {
     super(props)
@@ -48,7 +53,8 @@ export class PrivateSyndicate extends Component {
       },
       featuredImage = '',
       logo = '',
-      description = defaultDescription
+      description = defaultDescription,
+      messages = []
     } = data
 
     const benefits = [
@@ -139,6 +145,10 @@ export class PrivateSyndicate extends Component {
             </div>
           </Carousel>
         </HorseBigSection>
+        <div className='syndicate__grid container'>
+          <FeedGallery
+            tiles={messages} />
+        </div>
       </div>
     )
   }

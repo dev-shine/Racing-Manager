@@ -2,7 +2,7 @@ import { get } from 'api/Request'
 import { SYNDICATE } from 'api/ServiceTypes'
 import verifyServerFormat from 'utils/request'
 
-// import { formatHorseData } from 'utils/horseutils'
+import { formatHorseData } from 'utils/horseutils'
 
 export const FETCH_SYNDICATE_INFO = 'FETCH_SYNDICATE_INFO'
 export const RECEIVED_SYNDICATE_INFO = 'RECEIVED_SYNDICATE_INFO'
@@ -32,11 +32,12 @@ export const fetchSyndicateInfo = data => {
       data
     })
     .then(verifyServerFormat)
-    .then(data => {
+    .then(formatHorseData)
+    .then((data) => {
       dispatch(receivedSyndicateInfo(data))
       return Promise.resolve(data)
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch(failedToGetSyndicateInfo(error))
       return Promise.reject(error)
     })

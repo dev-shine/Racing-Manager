@@ -119,13 +119,13 @@ export const submitFormData = data => {
       url: REGISTRATION
     })
     .then(verifyServerFormat)
-    .then(response => {
-      dispatch(submittedRegisterForm())
-      return Promise.resolve(response)
+    .then((data) => {
+      dispatch(submittedRegisterForm(data))
+      return Promise.resolve(data)
     })
-    .catch(error => {
-      dispatch(failedToSubmitRegisterForm())
-      return Promise.reject(error.statusText)
+    .catch((error) => {
+      dispatch(failedToSubmitRegisterForm(error))
+      return Promise.reject(error)
     })
   }
 }

@@ -178,13 +178,12 @@ export const fetchHorseInfo = data => {
       data
     })
     .then(verifyServerFormat)
-    .then(data => {
-      const formattedResponse = formatHorseData(data)
-
-      dispatch(receivedHorseInfo(formattedResponse))
-      return Promise.resolve(formattedResponse)
+    .then(formatHorseData)
+    .then((data) => {
+      dispatch(receivedHorseInfo(data))
+      return Promise.resolve(data)
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch(failedToGetHorseInfo(error))
       return Promise.reject(error)
     })
@@ -206,11 +205,11 @@ export const submitHorseUpdate = data => {
       data
     })
     .then(verifyServerFormat)
-    .then(response => {
-      dispatch(postedHorseUpdate(response))
-      return Promise.resolve()
+    .then((data) => {
+      dispatch(postedHorseUpdate(data))
+      return Promise.resolve(data)
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch(failedToPostHorseUpdate(error))
       return Promise.reject(error)
     })
