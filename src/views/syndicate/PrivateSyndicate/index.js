@@ -39,16 +39,18 @@ export class PrivateSyndicate extends Component {
       data = {}
     } = this.props
 
+    const defaultDescription = 'We put together small groups of people to share in a number of top quality racehorses in order to experience racing at the highest level in the UK and around the world. Highclere Thoroughbred Racing takes its name from Highclere Castle, Harry Herbert’s ancestral home and the location of Highclere Stud where we hold our annual Yearling Parade. We treat each owner as if he or she own their horses outright. We keep our owners fully up to date with every aspect of their bloodstock’s progress from training yard to racetrack. The number of shares available per syndicate varies between ten and twenty...'
+
     const {
       // name,
       owner = {
         name: 'Andy Ash'
       },
       featuredImage = '',
-      syndicateImage = '',
+      logoImage = '',
+      description = defaultDescription
     } = data
 
-    const description = 'We put together small groups of people to share in a number of top quality racehorses in order to experience racing at the highest level in the UK and around the world. Highclere Thoroughbred Racing takes its name from Highclere Castle, Harry Herbert’s ancestral home and the location of Highclere Stud where we hold our annual Yearling Parade. We treat each owner as if he or she own their horses outright. We keep our owners fully up to date with every aspect of their bloodstock’s progress from training yard to racetrack. The number of shares available per syndicate varies between ten and twenty...'
     const benefits = [
       'Pro rata prize money share',
       'Pro rata share of resale proceeds',
@@ -87,7 +89,7 @@ export class PrivateSyndicate extends Component {
             <div className='syndicate__logo-img'>
               <Image
                 className='syndicate__logo-element absolute-center'
-                imageSrc={constructStaticUrl(syndicateImage)}
+                imageSrc={constructStaticUrl(logoImage)}
               />
             </div>
             <div className='syndicate__logo-desc section-shadow'>
