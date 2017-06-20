@@ -34,6 +34,11 @@ import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
 import { Block, Grid } from 'components/masonry'
 
 /**
+ *  @module FeedUpdatePopup
+ */
+import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
+
+/**
  *  @class
  *  @name FeedGallery
  *  @extends { Component }
@@ -46,8 +51,63 @@ class FeedGallery extends Component {
   constructor (props) {
     super(props)
 
+    // Initial state
+    this.state = {
+      tileIndex: null,
+      showPopup: false,
+    }
+
     // Bind this
     this.renderChildren = this.renderChildren.bind(this)
+    this.showFeedTilePopup = this.showFeedTilePopup.bind(this)
+    this.closePopup = this.closePopup.bind(this)
+    this.handleTileClick = this.handleTileClick.bind(this)
+  }
+
+  /**
+   *  showFeedTilePopup
+   *  @description Will get the correct index in the data array of the selected tile
+   *               Will set the popup to be true.
+   *  @param  {String} id
+   */
+  showFeedTilePopup (id) {
+    if (!id || !this.props.allowPopups) {
+      return false
+    }
+
+    // Set the new tile's index
+    this.setState({
+      tileIndex: this.props.tiles.map(tile => tile.createdAt).indexOf(id),
+      showPopup: true
+    })
+  }
+
+  /**
+   *  closePopup
+   *  @description Will hide the popup by setting the showPopup to false
+   */
+  closePopup () {
+    this.setState({
+      showPopup: false
+    })
+  }
+
+  /**
+   *  handleTileClick
+   *  @param  {Number} id
+   */
+  handleTileClick (id) {
+    const {
+      onClick
+    } = this.props
+
+    // show the popup according to the tile.
+    this.showFeedTilePopup(id)
+
+    // If there is a onClick in props, fire it.
+    if (onClick) {
+      onClick(id)
+    }
   }
 
   /**
@@ -64,10 +124,6 @@ class FeedGallery extends Component {
       attachment
     } = tile
 
-    const {
-      onClick
-    } = this.props
-
     // Switch between the post type.
     switch (postType) {
       case 'text':
@@ -78,7 +134,7 @@ class FeedGallery extends Component {
             name='Andy Jones'
             date={timeStamp}
             text={text}
-            onClick={onClick} />
+            onClick={this.handleTileClick} />
         )
 
       case 'multiplemedia':
@@ -90,7 +146,7 @@ class FeedGallery extends Component {
             date={timeStamp}
             text={text}
             attachments={attachment}
-            onClick={onClick} />
+            onClick={this.handleTileClick} />
         )
 
       case 'image':
@@ -102,7 +158,7 @@ class FeedGallery extends Component {
             name='Andy Jones'
             date={timeStamp}
             text={text}
-            onClick={onClick} />
+            onClick={this.handleTileClick} />
         )
 
       case 'video':
@@ -115,31 +171,48 @@ class FeedGallery extends Component {
             name='Andy Jones'
             date={timeStamp}
             text={text}
-            onClick={onClick} />
+            onClick={this.handleTileClick} />
         )
     }
   }
 
   render () {
     const {
-      tiles
+      tiles,
+      popupTitle
     } = this.props
 
+    const {
+      showPopup,
+      tileIndex
+    } = this.state
+
+    // Get the tile according to the passed in index.
+    const popupTile = tileIndex >= 0 ? tiles[tileIndex] : null
+
+    console.log(tiles)
     return (
-      <Grid
-        targetBlockWidth={265}
-        center={false}
-        maxColumns={4}>
-        {
-          tiles.map(tile => {
-            return (
-              <Block width={1} key={tile.createdAt}>
-                {this.renderChildren(tile)}
-              </Block>
-            )
-          })
-        }
-      </Grid>
+      <span>
+        <Grid
+          targetBlockWidth={265}
+          center={false}
+          maxColumns={4}>
+          {
+            tiles.map(tile => {
+              return (
+                <Block width={1} key={tile.createdAt}>
+                  {this.renderChildren(tile)}
+                </Block>
+              )
+            })
+          }
+        </Grid>
+        <FeedUpdatePopup
+          submitTitle={popupTitle}
+          isOpen={showPopup}
+          onClick={this.closePopup}
+          tile={popupTile} />
+      </span>
     )
   }
 }
@@ -150,7 +223,9 @@ class FeedGallery extends Component {
  */
 FeedGallery.propTypes = {
   tiles: PropTypes.array,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  popupTitle: PropTypes.string,
+  allowPopups: PropTypes.bool
 }
 
 /**
@@ -158,7 +233,9 @@ FeedGallery.propTypes = {
  *  @type {Object}
  */
 FeedGallery.defaultProps = {
-  tiles: []
+  tiles: [],
+  popupTitle: 'comment on this post',
+  allowPopups: true
 }
 
 /**

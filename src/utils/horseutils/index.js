@@ -47,7 +47,7 @@ const horsePostType = (attachment) => {
 export const formatHorseData = (data = {}) => {
   const { messages } = data
 
-  return {
+  return Promise.resolve({
     ...data,
     messages: messages.map(obj => {
       const message = Object.assign({}, obj)
@@ -58,7 +58,7 @@ export const formatHorseData = (data = {}) => {
 
       return message
     })
-  }
+  })
 }
 
 /**
