@@ -105,7 +105,10 @@ class LazyImage extends Component {
 
     // Check the viewport and see if the image is in view. Let the browser breath and do this on the next tick
     this.timeoutCache = setTimeout(() => {
-      this.checkViewport()
+      if (this.mounted) {
+        this.checkViewport()
+      }
+
       this.timeoutCache = null
     }, 0)
 
