@@ -24,11 +24,6 @@ import SubmitPost from 'containers/horseOverview/SubmitPost'
 import AjaxLoader from 'components/ajaxloader'
 
 /**
- *  @module FeedUpdatePopup
- */
-import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
-
-/**
  *  @module fetchHorseInfo
  */
 import { fetchHorseInfo } from 'actions/horseoverview'
@@ -50,16 +45,8 @@ export class PrivateHorse extends Component {
   constructor (props) {
     super(props)
 
-    // Initial state
-    this.state = {
-      tileIndex: null,
-      showPopup: false,
-    }
-
     // Bind custom fns
     this.renderAjaxLoader = this.renderAjaxLoader.bind(this)
-    this.showFeedTilePopup = this.showFeedTilePopup.bind(this)
-    this.closePopup = this.closePopup.bind(this)
   }
 
   componentDidMount () {
@@ -84,41 +71,9 @@ export class PrivateHorse extends Component {
     return null
   }
 
-  /**
-   *  showFeedTilePopup
-   *  @description Will get the correct index in the data array of the selected tile
-   *               Will set the popup to be true.
-   *  @param  {String} id
-   */
-  showFeedTilePopup (id) {
-    if (!id) {
-      return false
-    }
-
-    // Set the new tile's index
-    this.setState({
-      tileIndex: this.props.data.messages.map(tile => tile.createdAt).indexOf(id),
-      showPopup: true
-    })
-  }
-
-  /**
-   *  closePopup
-   *  @description Will hide the popup by setting the showPopup to false
-   */
-  closePopup () {
-    this.setState({
-      showPopup: false
-    })
-  }
-
   render () {
-    const { showPopup, tileIndex } = this.state
     const { data = {} } = this.props
     const { messages = [] } = data
-
-    // Get the tile according to the passed in index.
-    const popupTile = tileIndex >= 0 ? messages[tileIndex] : null
 
     return (
       <div className='horse-overview'>
@@ -137,15 +92,9 @@ export class PrivateHorse extends Component {
         </div>
         <div className='horse-overview__grid container'>
           <FeedGallery
-            onClick={this.showFeedTilePopup}
             tiles={messages} />
         </div>
         { this.renderAjaxLoader() }
-        <FeedUpdatePopup
-          submitTitle='comment on this post'
-          isOpen={showPopup}
-          onClick={this.closePopup}
-          tile={popupTile} />
       </div>
     )
   }
