@@ -44,7 +44,7 @@ export class PrivateSyndicate extends Component {
     const {
       // name,
       owner = {
-        name: 'Andy Ash'
+        name: '-'
       },
       featuredImage = '',
       logo = '',

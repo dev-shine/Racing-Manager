@@ -19,11 +19,6 @@ import SubmitPost from 'containers/horseOverview/SubmitPost'
 import AjaxLoader from 'components/ajaxloader'
 
 /**
- *  @module FeedUpdatePopup
- */
-import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
-
-/**
  *  @module PrivateHorse
  */
 import { PrivateHorse } from 'views/horse/PrivateHorse'
@@ -107,10 +102,6 @@ describe('Views - Private Horse', () => {
     expect(wrapper.find(FeedGallery)).to.have.length(1)
   })
 
-  it('should render a <FeedUpdatePopup/> component', () => {
-    expect(wrapper.find(FeedUpdatePopup)).to.have.length(1)
-  })
-
   it('should not render <AjaxLoader/>', () => {
     expect(wrapper.find(AjaxLoader)).to.have.length(0)
   })
@@ -131,17 +122,6 @@ describe('Views - Private Horse', () => {
       fetching
     })
     expect(wrapper.find(AjaxLoader)).to.have.length(1)
-  })
-
-  it('showPopup should be true if closePopup is called', () => {
-    wrapper.instance().closePopup()
-    expect(wrapper.state().showPopup).to.be.false
-  })
-
-  it('showPopup should be true and tileIndex should be 0 if showFeedTilePopup is called with id "12-05-1992"', () => {
-    wrapper.instance().showFeedTilePopup(props.data.messages[0].createdAt)
-    expect(wrapper.state().showPopup).to.be.true
-    expect(wrapper.state().tileIndex).to.equal(0)
   })
 
   it('should return null on renderAjaxLoader function', () => {
