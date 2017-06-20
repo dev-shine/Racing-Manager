@@ -175,12 +175,11 @@ export const fetchHorseInfo = data => {
       data
     })
     .then(verifyServerFormat)
-    .then(response => {
-      // Format the response.
-      const formattedResponse = formatHorseData(response)
+    .then(data => {
+      const formattedResponse = formatHorseData(data)
 
       dispatch(receivedHorseInfo(formattedResponse))
-      return Promise.resolve(response.data)
+      return Promise.resolve(formattedResponse)
     })
     .catch(error => {
       dispatch(failedToGetHorseInfo(error))
