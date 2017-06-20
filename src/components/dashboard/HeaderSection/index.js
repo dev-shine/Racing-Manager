@@ -273,7 +273,7 @@ class HeaderSection extends PureComponent {
                       value: horse.owner.name
                     }, {
                       name: 'Ownership',
-                      value: '5/12 shares'
+                      value: `${horse.shares.owned}/${horse.shares.total} shares`
                     }]}
                     extra={{
                       url: `/horse/${horse.slug}`

@@ -796,7 +796,12 @@ class Carousel extends Component {
       })
       return (
         <li
-          onClick={ e => { if (!this.clickSafe) { setTimeout(() => { this.handleClick(e); this.goToSlide(index) }, 0) } }}
+          onClick={ e => {
+            if (!this.clickSafe) {
+              this.handleClick(e)
+              this.goToSlide(index)
+            }
+          }}
           className={className}
           style={this.getSlideStyles(index, positionValue)}
           key={index}>
@@ -978,7 +983,11 @@ class Carousel extends Component {
       prevArrowModifier
     } = this.props
 
-    if (!showArrows) {
+    const {
+      currentSlide
+    } = this.state
+
+    if (!showArrows || currentSlide <= 0) {
       return null
     }
 
@@ -996,9 +1005,7 @@ class Carousel extends Component {
           iconModifier={['leftarrow']}
           onClick={ e => {
             this.handleClick(e)
-            setTimeout(() => {
-              this.prevSlide()
-            }, 0)
+            this.prevSlide()
           }}/>
       </div>
     )
@@ -1016,7 +1023,12 @@ class Carousel extends Component {
       nextArrowModifier
     } = this.props
 
-    if (!showArrows) {
+    const {
+      currentSlide,
+      slideCount
+    } = this.state
+
+    if (!showArrows || currentSlide >= (slideCount - 1)) {
       return null
     }
 
@@ -1034,9 +1046,7 @@ class Carousel extends Component {
           iconModifier={['rightarrow']}
           onClick={ e => {
             this.handleClick(e)
-            setTimeout(() => {
-              this.nextSlide()
-            }, 0)
+            this.nextSlide()
           }}/>
       </div>
     )
