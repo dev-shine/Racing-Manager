@@ -1,7 +1,49 @@
 .syndicate {
 
   &__image {
-    height: 300px; //TODO
+    background: #eee;
+    position: relative;
+
+    .parallax-hero__image {
+      height: calc(100vh - 100px);
+      background-repeat: no-repeat;
+      background-position: top center;
+
+      @media (min-width: $screen-sm) {
+        height: 500px;
+      }
+
+      @media (min-width: $screen-md) {
+        height: 550px;
+      }
+    }
+  }
+
+  &__logo {
+    width: 300px;
+    min-height: 190px;
+    background: white;
+    text-align: center;
+
+    @media (min-width: $screen-md) {
+      width: 360px;
+    }
+  }
+
+  &__logo-img {
+    height: 125px;
+    position: relative;
+  }
+
+  &__logo-element {
+    width: 130px;
+    height: 80px;
+  }
+
+  &__logo-desc {
+    color: #58595B;
+    text-transform: uppercase;
+    padding: 15px 0;
   }
 
   h1, p {

@@ -6,9 +6,15 @@ import TextButton from 'components/buttons/TextButton'
 import Separator from 'components/gui/Separator'
 import List from 'components/gui/List'
 import Carousel from 'components/carousel'
+import Hero from 'components/parallax/Hero'
+import Image from 'components/image'
 
 import HorseBigSection from 'components/horse/HorseBigSection'
 import HorseSmallSection from 'components/horse/HorseSmallSection'
+
+import { constructStaticUrl } from 'utils/horseutils'
+
+import { fetchSyndicateInfo } from 'actions/syndicate'
 
 export class PrivateSyndicate extends Component {
   constructor (props) {
@@ -18,6 +24,10 @@ export class PrivateSyndicate extends Component {
     this.handleTalkToManager = this.handleTalkToManager.bind(this)
   }
 
+  componentDidMount () {
+    // this.props.getSyndicateInfo()
+  }
+
   handleRequestToJoin () {
   }
 
@@ -25,6 +35,19 @@ export class PrivateSyndicate extends Component {
   }
 
   render () {
+    const {
+      data = {}
+    } = this.props
+
+    const {
+      // name,
+      owner = {
+        name: 'Andy Ash'
+      },
+      featuredImage = '',
+      syndicateImage = '',
+    } = data
+
     const description = 'We put together small groups of people to share in a number of top quality racehorses in order to experience racing at the highest level in the UK and around the world. Highclere Thoroughbred Racing takes its name from Highclere Castle, Harry Herbert’s ancestral home and the location of Highclere Stud where we hold our annual Yearling Parade. We treat each owner as if he or she own their horses outright. We keep our owners fully up to date with every aspect of their bloodstock’s progress from training yard to racetrack. The number of shares available per syndicate varies between ten and twenty...'
     const benefits = [
       'Pro rata prize money share',
@@ -36,7 +59,7 @@ export class PrivateSyndicate extends Component {
 
     const aboutSection = (
       <div>
-        <h1>
+        <h1 className='horse-header__medium-title'>
           About the syndicate
         </h1>
         <Separator modifier='white' />
@@ -48,7 +71,7 @@ export class PrivateSyndicate extends Component {
 
     const involvementSection = (
       <div>
-        <h1>
+        <h1 className='horse-header__medium-title'>
           Benefits
         </h1>
         <Separator modifier='white' />
@@ -59,32 +82,49 @@ export class PrivateSyndicate extends Component {
     return (
       <div className='syndicate'>
         <div className='syndicate__image'>
+          <Hero featuredImage={constructStaticUrl(featuredImage)} />
+          <div className='syndicate__logo absolute-center'>
+            <div className='syndicate__logo-img'>
+              <Image
+                className='syndicate__logo-element absolute-center'
+                imageSrc={constructStaticUrl(syndicateImage)}
+              />
+            </div>
+            <div className='syndicate__logo-desc section-shadow'>
+              <div>Racing Club</div>
+              <div>Managed by {owner.name}</div>
+            </div>
+          </div>
         </div>
         <div className='row visible-md-up'>
-          <div className='horse-header__content syndicate__content container no-padding'>
-            <HorseBigSection className='col-md-8'>
-              {aboutSection}
-            </HorseBigSection>
-            <HorseSmallSection className='col-md-4 syndicate__benefits'>
-              {involvementSection}
-              <div className='syndicate__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                <TextButton
-                  text='Request to join'
-                  className='syndicate__button'
-                  modifier={['md', 'blue']}
-                  onClick={this.handleRequestToJoin}
-                />
-                <TextButton
-                  text='Talk to the manager'
-                  className='syndicate__button'
-                  modifier={['md', 'secondary-blue']}
-                  onClick={this.handleTalkToManager}
-                />
-                <Link to='/' className='link--italic syndicate__link'>
-                  Save it for later
-                </Link>
+          <div className='syndicate__content'>
+            <div className='horse-header__content section-holder'>
+              <div className='container  no-padding'>
+                <HorseBigSection className='col-md-8'>
+                  {aboutSection}
+                </HorseBigSection>
+                <HorseSmallSection className='col-md-4 syndicate__benefits'>
+                  {involvementSection}
+                  <div className='syndicate__buttons section-shadow section-shadow--tile section-shadow--bottom'>
+                    <TextButton
+                      text='Request to join'
+                      className='syndicate__button'
+                      modifier={['md', 'blue']}
+                      onClick={this.handleRequestToJoin}
+                    />
+                    <TextButton
+                      text='Talk to the manager'
+                      className='syndicate__button'
+                      modifier={['md', 'secondary-blue']}
+                      onClick={this.handleTalkToManager}
+                    />
+                    <Link to='/' className='link--italic syndicate__link'>
+                      Save it for later
+                    </Link>
+                  </div>
+                </HorseSmallSection>
               </div>
-            </HorseSmallSection>
+            </div>
           </div>
         </div>
         <HorseBigSection className='hidden-md-up'>
@@ -102,11 +142,36 @@ export class PrivateSyndicate extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-})
+const mapStateToProps = ({ syndicate }, ownProps) => {
+  const {
+    data,
+    posting,
+    fetching,
+    posted
+  } = syndicate
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-})
+  return {
+    data,
+    fetching,
+    posting,
+    posted
+  }
+}
+
+/**
+ *  @name mapDispatchToProps
+ *  @param  {Function} dispatch
+ *  @param  {Object} ownProps
+ *  @return {Object}
+ */
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getSyndicateInfo: () => {
+      const name = ownProps.match.params.name
+      dispatch(fetchSyndicateInfo({ name }))
+    }
+  }
+}
 
 export default (connect(
   mapStateToProps,
