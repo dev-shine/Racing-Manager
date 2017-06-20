@@ -47,11 +47,8 @@
     padding: 15px 0;
   }
 
-  h1, p {
-    color: white;
-  }
-
-  p, ul {
+  .horse-header__paragraph,
+  .disc-list {
     font-size: 16px;
     font-weight: 300;
   }
@@ -98,6 +95,6 @@
 
   &__grid {
     position: relative;
-    padding: 20px 0;
+    padding-top: 20px;
   }
 }
