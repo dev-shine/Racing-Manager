@@ -54,7 +54,6 @@ class LazyImage extends Component {
     // Cache the timeout
     this.timeoutCache = null
     this.mounted = false
-    this.recheckImageOnFail = null
 
     // Bind custom functions
     this.handleImgLoad = this.handleImgLoad.bind(this)
@@ -64,7 +63,6 @@ class LazyImage extends Component {
     this.unBindScrollEvent = this.unBindScrollEvent.bind(this)
     this.fetchImage = this.fetchImage.bind(this)
     this.setRef = this.setRef.bind(this)
-
     this.throttleResize = throttle(this.checkViewport)
   }
 
@@ -74,9 +72,6 @@ class LazyImage extends Component {
    *  @return {Void}
    */
   handleImgLoad () {
-    // Clear the timeout for rechecking if the image failed.
-    clearTimeout(this.recheckImageOnFail)
-
     if (!this.mounted) {
       return false
     }
@@ -103,11 +98,6 @@ class LazyImage extends Component {
       error: true,
       isLoading: false
     })
-
-    // Force a recheck if it fails.
-    this.recheckImageOnFail = setTimeout(() => {
-      this.checkViewport()
-    }, 400)
   }
 
   componentDidMount () {
@@ -156,14 +146,7 @@ class LazyImage extends Component {
    *  fetchImage
    *  @return {Void}
    */
-  fetchImage () {
-    /**
-     *  @const
-     */
-    const {
-      imageSrc
-    } = this.props
-
+  fetchImage (imageSrc) {
     if (!imageSrc) {
       return false
     }
@@ -178,22 +161,24 @@ class LazyImage extends Component {
     return nextState.loaded
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.checkViewport()
+  componentWillReceiveProps (nextProps, nextState) {
+    if (nextProps.imageSrc !== this.props.imageSrc) {
+      this.checkViewport(nextProps.imageSrc)
+    }
   }
 
   /**
    *  @name checkViewport
    */
-  checkViewport () {
+  checkViewport (imageSrc = this.props.imageSrc) {
     if (!this.imageRef || !this.mounted) {
       return false
     }
 
-    if (!this.state.isLoading && !this.state.loaded) {
+    if (!this.state.isLoading && !this.state.loaded && !this.state.error) {
       if (isInViewport(this.imageRef) || this.props.forceShow) {
         // if is in viewport and is not requesting start fetching
-        this.fetchImage()
+        this.fetchImage(imageSrc)
       }
     }
 

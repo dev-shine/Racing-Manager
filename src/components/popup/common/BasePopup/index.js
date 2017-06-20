@@ -66,6 +66,11 @@ const BasePopupHoc = WrappedComponent => {
       }
     }
 
+    componentWillUnmount () {
+      // When the component is released, change the body to be scrollable.
+      this.allowBodyScroll()
+    }
+
     /**
      *  preventBodyScroll
      *  @description Adds a class on the body to prevent scrolling.
