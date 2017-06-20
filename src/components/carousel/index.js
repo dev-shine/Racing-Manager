@@ -978,7 +978,11 @@ class Carousel extends Component {
       prevArrowModifier
     } = this.props
 
-    if (!showArrows) {
+    const {
+      currentSlide
+    } = this.state
+
+    if (!showArrows || currentSlide <= 0) {
       return null
     }
 
@@ -1016,7 +1020,12 @@ class Carousel extends Component {
       nextArrowModifier
     } = this.props
 
-    if (!showArrows) {
+    const {
+      currentSlide,
+      slideCount
+    } = this.state
+
+    if (!showArrows || currentSlide >= (slideCount - 1)) {
       return null
     }
 
