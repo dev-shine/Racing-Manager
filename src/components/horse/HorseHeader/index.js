@@ -206,18 +206,20 @@ class HorseHeader extends Component {
           </div>
         </div>
         <div className='row visible-md-up'>
-          <div className='horse-header__content container no-padding'>
-            <HorseBigSection className='col-md-8'>
-              <HorseAboutInfo data={aboutData} />
-            </HorseBigSection>
-            <HorseSmallSection className='col-md-4'>
-              <h1 className='horse-header__description-title'>
-                Your Involvement
-              </h1>
-              <Separator modifier='white' />
-              <HorseOwnershipInfo data={ownershipData} />
-              <HorseBenefitsInfo data={benefitsData} />
-            </HorseSmallSection>
+          <div className='horse-header__content section-holder'>
+            <div className='container no-padding'>
+              <HorseBigSection className='col-md-8'>
+                <HorseAboutInfo data={aboutData} />
+              </HorseBigSection>
+              <HorseSmallSection className='col-md-4'>
+                <h1 className='horse-header__description-title'>
+                  Your Involvement
+                </h1>
+                <Separator modifier='white' />
+                <HorseOwnershipInfo data={ownershipData} />
+                <HorseBenefitsInfo data={benefitsData} />
+              </HorseSmallSection>
+            </div>
           </div>
         </div>
         <div className='hidden-md-up'>

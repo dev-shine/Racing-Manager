@@ -32,3 +32,5 @@ export const HORSE = `${BASE_URL}/horse`
  *  @type {String}
  */
 export const DASHBOARD = `${BASE_URL}/user/dashboard`
+
+export const SYNDICATE = `${BASE_URL}/syndicate`
