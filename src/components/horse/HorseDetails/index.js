@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import classNames from 'utils/classnames'
+import capitalize from 'utils/capitalize'
 
 const HorseDetails = props => {
   const { data } = props
@@ -17,7 +18,7 @@ const HorseDetails = props => {
               {item.title}
             </div>
             <div className='col-xs-6'>
-              {item.value || '-'}
+              {item.value ? capitalize(item.value) : '-'}
             </div>
           </div>
         ))

@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
+import capitalize from 'utils/capitalize'
+
 const HorseBrief = props => {
   const { data } = props
   const { name, age, color, gender, owner = {} } = data
@@ -12,7 +14,7 @@ const HorseBrief = props => {
         {name}
       </h1>
       <div className='horse-header__horse-brief'>
-        {age}yo <span className='horse-header__horse-gender'>{color} {gender}</span> Owned by: <Link to='' className='link--italic capitalize'>{owner.name}</Link>
+        {age}yo <span className='horse-header__horse-gender'>{color} {gender}</span> Owned by: <Link to='' className='link--italic horse-brief__owner'>{capitalize(owner.name)}</Link>
       </div>
     </div>
   )

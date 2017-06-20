@@ -106,7 +106,7 @@ class HorseCard extends Component {
             imageSrc={src}
             forceShow={true} />
           <div className='horse-card__content'>
-            <div className='horse-card__card section-shadow--tile' style={{borderColor: color}}>
+            <div className='horse-card__card' style={{ borderColor: color }}>
               <div className='horse-card__heading'>
                 <h3>
                   {title}
