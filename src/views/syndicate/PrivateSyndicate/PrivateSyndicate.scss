@@ -24,6 +24,7 @@
     min-height: 190px;
     background: white;
     text-align: center;
+    z-index: 2;
 
     @media (min-width: $screen-md) {
       width: 360px;
