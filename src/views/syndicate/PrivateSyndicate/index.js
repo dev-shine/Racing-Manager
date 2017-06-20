@@ -71,7 +71,7 @@ export class PrivateSyndicate extends Component {
           About the syndicate
         </h1>
         <Separator modifier='white' />
-        <p>
+        <p className='horse-header__paragraph'>
           {description}
         </p>
       </div>
@@ -146,6 +146,9 @@ export class PrivateSyndicate extends Component {
           </Carousel>
         </HorseBigSection>
         <div className='syndicate__grid container'>
+          <h1 className='horse-overview__main-title horse-overview__update-title'>
+            Updates
+          </h1>
           <FeedGallery
             tiles={messages} />
         </div>

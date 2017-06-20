@@ -166,7 +166,7 @@ export const deleteHorseMedia = () => ({
 /**
  *  fetchHorseInfo [async]
  *  @param {Object} data
- *  @return {Promise}
+ *  @return {Function}
  */
 export const fetchHorseInfo = data => {
   return (dispatch, getState) => {
