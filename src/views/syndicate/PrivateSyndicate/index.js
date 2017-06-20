@@ -145,10 +145,12 @@ export class PrivateSyndicate extends Component {
             </div>
           </Carousel>
         </HorseBigSection>
-        <div className='syndicate__grid container'>
+        <div className='syndicate__grid__title container'>
           <h1 className='horse-overview__main-title horse-overview__update-title'>
             Updates
           </h1>
+        </div>
+        <div className='syndicate__grid container'>
           <FeedGallery
             tiles={messages} />
         </div>
