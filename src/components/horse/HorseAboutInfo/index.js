@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import Separator from 'components/gui/Separator'
-
-// import { Link } from 'react-router-dom'
-// import TextButton from 'components/buttons/TextButton'
+import TextButton from 'components/buttons/TextButton'
 
 const HorseAboutInfo = props => {
   const { data } = props
-  const { description, timeformComments = {} } = data
+  const { description, timeformComments = {}, syndicateSlug } = data
 
   return (
     <div className='horse-about'>
@@ -39,6 +38,14 @@ const HorseAboutInfo = props => {
           Jump: {timeformComments.jump}
         </p>
       )}
+      <Link to={`/syndicate/${syndicateSlug}`}>
+        <TextButton
+          text='Syndicate page'
+          className='horse-header__syndicate-button'
+          modifier='md'
+          onClick={() => {}}
+        />
+      </Link>
     </div>
   )
 }
@@ -49,7 +56,8 @@ HorseAboutInfo.propTypes = {
     timeformComments: PropTypes.shape({
       flat: PropTypes.string,
       jump: PropTypes.string
-    })
+    }),
+    syndicateSlug: PropTypes.string
   })
 }
 
@@ -67,10 +75,4 @@ export default HorseAboutInfo
 <Link to='/' className='link--italic horse-header__read-more'>
   Read more...
 </Link>
-<TextButton
-  text='Syndicate page'
-  className='horse-header__syndicate-button'
-  modifier='md'
-  onClick={() => {}}
-/>
 */

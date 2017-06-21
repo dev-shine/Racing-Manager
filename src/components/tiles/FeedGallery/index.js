@@ -190,7 +190,6 @@ class FeedGallery extends Component {
     // Get the tile according to the passed in index.
     const popupTile = tileIndex >= 0 ? tiles[tileIndex] : null
 
-    console.log(tiles)
     return (
       <span>
         <Grid
