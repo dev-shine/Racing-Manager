@@ -124,7 +124,8 @@ class HorseHeader extends Component {
       },
       {
         title: 'Foaling Date',
-        value: timestampToDate(foalingDate, 'D MMMM YYYY')
+        value: timestampToDate(foalingDate, 'D MMMM YYYY'),
+        isHidden: age < 3
       },
       {
         title: 'Sire',
