@@ -50,7 +50,7 @@ class HorseHeader extends Component {
       age,
       color,
       gender,
-      owner,
+      owner = {},
       runs,
       wins,
       places,
@@ -70,12 +70,15 @@ class HorseHeader extends Component {
       },
     } = data
 
+    const syndicateSlug = owner.slug
+
     const briefData = {
       name,
       age,
       color,
       gender,
       owner,
+      syndicateSlug,
     }
 
     const numericData = [
@@ -125,7 +128,7 @@ class HorseHeader extends Component {
       {
         title: 'Foaling Date',
         value: timestampToDate(foalingDate, 'D MMMM YYYY'),
-        isHidden: age < 3
+        isHidden: age >= 3
       },
       {
         title: 'Sire',
@@ -168,7 +171,8 @@ class HorseHeader extends Component {
 
     const aboutData = {
       description,
-      timeformComments
+      timeformComments,
+      syndicateSlug,
     }
 
     const ownershipYears = 2
