@@ -47,7 +47,7 @@ export class PrivateSyndicate extends Component {
     const defaultDescription = 'We put together small groups of people to share in a number of top quality racehorses in order to experience racing at the highest level in the UK and around the world. Highclere Thoroughbred Racing takes its name from Highclere Castle, Harry Herbert’s ancestral home and the location of Highclere Stud where we hold our annual Yearling Parade. We treat each owner as if he or she own their horses outright. We keep our owners fully up to date with every aspect of their bloodstock’s progress from training yard to racetrack. The number of shares available per syndicate varies between ten and twenty...'
 
     const {
-      // name,
+      name,
       owner = {
         name: '-'
       },
@@ -93,10 +93,18 @@ export class PrivateSyndicate extends Component {
           <Hero featuredImage={constructStaticUrl(featuredImage)} />
           <div className='syndicate__logo absolute-center'>
             <div className='syndicate__logo-img'>
-              <Image
-                className='syndicate__logo-element absolute-center'
-                imageSrc={constructStaticUrl(logo)}
-              />
+              {
+                logo ? (
+                  <Image
+                    className='syndicate__logo-element absolute-center'
+                    imageSrc={constructStaticUrl(logo)}
+                  />
+                ) : (
+                  <h1 className='horse-header__medium-title syndicate__logo-title absolute-center'>
+                    {name}
+                  </h1>
+                )
+              }
             </div>
             <div className='syndicate__logo-desc section-shadow'>
               <div>Racing Club</div>

@@ -6,7 +6,7 @@ import capitalize from 'utils/capitalize'
 
 const HorseBrief = props => {
   const { data } = props
-  const { name, age, color, gender, owner = {} } = data
+  const { name, age, color, gender, owner = {}, syndicateSlug } = data
 
   return (
     <div className='horse-brief'>
@@ -14,7 +14,7 @@ const HorseBrief = props => {
         {name}
       </h1>
       <div className='horse-header__horse-brief'>
-        {age}yo <span className='horse-header__horse-gender'>{color} {gender}</span> Owned by: <Link to='' className='link--italic horse-brief__owner'>{capitalize(owner.name)}</Link>
+        {age}yo <span className='horse-header__horse-gender'>{color} {gender}</span> Owned by: <Link to={`/syndicate/${syndicateSlug}`} className='link--italic horse-brief__owner'>{capitalize(owner.name)}</Link>
       </div>
     </div>
   )
@@ -29,6 +29,7 @@ HorseBrief.propTypes = {
     owner: PropTypes.shape({
       name: PropTypes.string
     }),
+    syndicateSlug: PropTypes.string
   }),
 }
 

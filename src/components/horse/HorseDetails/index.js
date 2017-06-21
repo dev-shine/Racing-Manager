@@ -13,14 +13,16 @@ const HorseDetails = props => {
     <div className='horse-details-list'>
       {
         data.map((item, index) => (
-          <div className={constructClassName(item.className)} key={index}>
-            <div className='horse-details__title col-xs-6'>
-              {item.title}
+          !item.isHidden && (
+            <div className={constructClassName(item.className)} key={index}>
+              <div className='horse-details__title col-xs-6'>
+                {item.title}
+              </div>
+              <div className='col-xs-6'>
+                {item.value ? capitalize(item.value) : '-'}
+              </div>
             </div>
-            <div className='col-xs-6'>
-              {item.value ? capitalize(item.value) : '-'}
-            </div>
-          </div>
+          )
         ))
       }
     </div>
