@@ -22,12 +22,17 @@ import { heroBg } from 'assets/images'
  *  TitleHero
  *  @return {React.Component}
  */
-const TitleHero = props => {
+const TitleHero = ({title}) => {
   return (
     <div className='title-hero'>
       <Image
         className='title-hero__bg'
         imageSrc={heroBg}/>
+      <div className='title-hero__title'>
+        <div className='container'>
+          <h1 className='uppercase'>{title}</h1>
+        </div>
+      </div>
     </div>
   )
 }
@@ -37,7 +42,7 @@ const TitleHero = props => {
  *  @type {Object}
  */
 TitleHero.PropTypes = {
-
+  title: PropTypes.string
 }
 
 /**
@@ -45,7 +50,7 @@ TitleHero.PropTypes = {
  *  @type {Object}
  */
 TitleHero.defaultProps = {
-
+  title: 'Join the action'
 }
 
 /**

@@ -19,6 +19,11 @@ import RegisterContainer from 'containers/register'
 import { withRouter } from 'react-router-dom'
 
 /**
+ *  @module TitleHero
+ */
+import TitleHero from 'components/common/TitleHero'
+
+/**
  *  @module resetRegisterForm
  */
 import {
@@ -71,11 +76,8 @@ export class Register extends Component {
   render () {
     return (
       <div className='register'>
-        <div className='register__title-container'>
-          <div className='container'>
-            <h1 className='register__title'>Join the action!</h1>
-          </div>
-        </div>
+        <TitleHero
+          title='Join the action!'/>
         <div className='container'>
           <div className='row register__content'>
             <div className='col-sm-8 col-md-7 register__form-container'>
