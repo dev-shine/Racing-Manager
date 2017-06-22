@@ -7,3 +7,5 @@ export const wave = require('./wave.svg')
 export const footerLogo = require('./footer-logo.svg')
 
 export const waveBlue = require('./wave-blue.svg')
+
+export const pageNotFound = require('./page-not-found.png')

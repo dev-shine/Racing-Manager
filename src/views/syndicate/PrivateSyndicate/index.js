@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import FeedGallery from 'components/tiles/FeedGallery'
 import TextButton from 'components/buttons/TextButton'
 import Separator from 'components/gui/Separator'
 import List from 'components/gui/List'
@@ -15,11 +16,6 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 import { constructStaticUrl } from 'utils/horseutils'
 
 import { fetchSyndicateInfo } from 'actions/syndicate'
-
-/**
- *  @module FeedGallery
- */
-import FeedGallery from 'components/tiles/FeedGallery'
 
 export class PrivateSyndicate extends Component {
   constructor (props) {
