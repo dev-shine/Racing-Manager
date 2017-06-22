@@ -1,0 +1,59 @@
+/**
+ *  @module React
+ */
+import React from 'react'
+
+/**
+ *  @module PropTypes
+ */
+import PropTypes from 'prop-types'
+
+/**
+ *  @module Image
+ */
+import Image from 'components/image'
+
+/**
+ *  @module heroBg
+ */
+import { heroBg } from 'assets/images'
+
+/**
+ *  TitleHero
+ *  @return {React.Component}
+ */
+const TitleHero = ({title}) => {
+  return (
+    <div className='title-hero'>
+      <Image
+        className='title-hero__bg'
+        imageSrc={heroBg}/>
+      <div className='title-hero__title'>
+        <div className='container'>
+          <h1 className='uppercase'>{title}</h1>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/**
+ *  PropTypes
+ *  @type {Object}
+ */
+TitleHero.PropTypes = {
+  title: PropTypes.string
+}
+
+/**
+ *  defaultProps
+ *  @type {Object}
+ */
+TitleHero.defaultProps = {
+  title: 'Join the action'
+}
+
+/**
+ *  @module TitleHero
+ */
+export default TitleHero
