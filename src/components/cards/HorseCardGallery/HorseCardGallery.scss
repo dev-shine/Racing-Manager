@@ -1,0 +1,16 @@
+.horse-card-gallery {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media all and (min-width: $screen-xs-min) {
+    justify-content: left;
+  }
+
+  &__item {
+    position: relative;
+    margin: 10px;
+  }
+}

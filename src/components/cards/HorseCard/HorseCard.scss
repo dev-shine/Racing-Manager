@@ -11,7 +11,7 @@
   
   @media all and (min-width: $screen-sm-min) {
     width: 266px;
-    height: 456px;
+    // height: 456px; // If problems persist with diff heights then activate this.
   }
 
   &__wrapper {
