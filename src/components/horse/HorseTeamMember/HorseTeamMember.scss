@@ -1,0 +1,38 @@
+.team-member {
+  $image-size: 150px;
+
+  width: $image-size;
+  text-align: center;
+  display: inline-block;
+  margin: 0 20px;
+  font-family: Times, sans-serif;
+
+  &__image {
+    width: $image-size;
+    height: $image-size;
+    border-radius: 100%;
+    background: #eee;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  &__name {
+    margin-top: 10px;
+  }
+
+  &__name,
+  &__role,
+  &__description {
+    color: #13233A;
+  }
+
+  &__name,
+  &__role {
+    font-weight: bold;
+  }
+
+  &__description {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+}
