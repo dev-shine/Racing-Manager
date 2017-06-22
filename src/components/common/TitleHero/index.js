@@ -14,6 +14,11 @@ import PropTypes from 'prop-types'
 import Image from 'components/image'
 
 /**
+ *  @module heroBg
+ */
+import { heroBg } from 'assets/images'
+
+/**
  *  TitleHero
  *  @return {React.Component}
  */
@@ -22,7 +27,7 @@ const TitleHero = props => {
     <div className='title-hero'>
       <Image
         className='title-hero__bg'
-        imageSrc={''}/>
+        imageSrc={heroBg}/>
     </div>
   )
 }
