@@ -29,6 +29,11 @@ import { getImage, isInViewport } from 'utils/imageutils'
 import throttle from 'utils/throttle'
 
 /**
+ *  @module ROOT_PATH
+ */
+import { ROOT_PATH } from 'api/ServiceTypes'
+
+/**
  *  LazyImage
  *  @description [Will take a image src and wait for it to loader and show a placeholder]
  *  @example <BackgroundImage src={source} placeholder={localImage} {...other attributes}>
@@ -63,7 +68,6 @@ class LazyImage extends Component {
     this.unBindScrollEvent = this.unBindScrollEvent.bind(this)
     this.fetchImage = this.fetchImage.bind(this)
     this.setRef = this.setRef.bind(this)
-
     this.throttleResize = throttle(this.checkViewport)
   }
 
@@ -79,7 +83,8 @@ class LazyImage extends Component {
 
     this.setState({
       loaded: true,
-      isLoading: false
+      isLoading: false,
+      error: false
     })
   }
 
@@ -105,7 +110,10 @@ class LazyImage extends Component {
 
     // Check the viewport and see if the image is in view. Let the browser breath and do this on the next tick
     this.timeoutCache = setTimeout(() => {
-      this.checkViewport()
+      if (this.mounted) {
+        this.checkViewport()
+      }
+
       this.timeoutCache = null
     }, 0)
 
@@ -146,14 +154,7 @@ class LazyImage extends Component {
    *  fetchImage
    *  @return {Void}
    */
-  fetchImage () {
-    /**
-     *  @const
-     */
-    const {
-      imageSrc
-    } = this.props
-
+  fetchImage (imageSrc) {
     if (!imageSrc) {
       return false
     }
@@ -168,22 +169,28 @@ class LazyImage extends Component {
     return nextState.loaded
   }
 
-  componentWillReceiveProps () {
-    this.checkViewport()
+  componentWillReceiveProps (nextProps, nextState) {
+    if (nextProps.imageSrc !== this.props.imageSrc) {
+      this.checkViewport(nextProps.imageSrc)
+    }
   }
 
   /**
    *  @name checkViewport
    */
-  checkViewport () {
+  checkViewport (imageSrc = this.props.imageSrc) {
     if (!this.imageRef || !this.mounted) {
       return false
     }
 
-    if (!this.state.isLoading && !this.state.loaded) {
+    /*
+      Please forgive me with the 'imageSrc !== ROOT_PATH' ... Until we find a way to get images on the server
+      to show without the 'localhost' prefix...
+     */
+    if (!this.state.isLoading && !this.state.loaded && !this.state.error && imageSrc !== ROOT_PATH) {
       if (isInViewport(this.imageRef) || this.props.forceShow) {
         // if is in viewport and is not requesting start fetching
-        this.fetchImage()
+        this.fetchImage(imageSrc)
       }
     }
 

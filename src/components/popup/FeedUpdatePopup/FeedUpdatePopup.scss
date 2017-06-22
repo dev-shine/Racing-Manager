@@ -1,0 +1,17 @@
+.feed-popup {
+  &__tile {
+    z-index: 2;
+  }
+
+  &__bottom {
+    position: relative;
+    background-color: $white;
+    padding-top: 30px;
+    @include clearfix();
+  }
+
+  &__bottomcontent {
+    position: relative;
+    padding: 0 10px 40px 10px;
+  }
+}

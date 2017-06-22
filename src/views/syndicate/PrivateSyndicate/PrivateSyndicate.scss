@@ -1,0 +1,112 @@
+.syndicate {
+
+  &__image {
+    background: #eee;
+    position: relative;
+
+    .parallax-hero__image {
+      height: calc(100vh - 100px);
+      background-repeat: no-repeat;
+      background-position: top center;
+
+      @media (min-width: $screen-sm) {
+        height: 500px;
+      }
+
+      @media (min-width: $screen-md) {
+        height: 550px;
+      }
+    }
+  }
+
+  &__logo {
+    width: 300px;
+    min-height: 190px;
+    background: white;
+    text-align: center;
+    z-index: 2;
+
+    @media (min-width: $screen-md) {
+      width: 360px;
+    }
+  }
+
+  &__logo-img {
+    min-height: 125px;
+    position: relative;
+  }
+
+  &__logo-element {
+    width: 130px;
+    height: 80px;
+  }
+
+  &__logo-title {
+    color: #58595B;
+    width: 100%;
+  }
+
+  &__logo-desc {
+    color: #58595B;
+    text-transform: uppercase;
+    padding: 15px 0;
+  }
+
+  .horse-header__paragraph,
+  .disc-list {
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  &__content {
+    margin-bottom: 150px;
+  }
+
+  &__benefits {
+    position: relative;
+  }
+
+  &__buttons {
+    width: 100%;
+    max-width: 80%;
+    height: 130px;
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    padding: 10px;
+  }
+
+  &__button {
+    width: 100%;
+    min-width: initial;
+    display: block;
+
+    ~ .syndicate__button {
+      margin-top: 8px;
+    }
+  }
+
+  &__link {
+    color: #2D87BD;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  &__grid {
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &__grid__title {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+}

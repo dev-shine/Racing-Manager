@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--close:before {
+  content: "\e908";
+  color: #000;
+}
 .icon--paperclip:before {
   content: "\e904";
   color: #a6a8ac;

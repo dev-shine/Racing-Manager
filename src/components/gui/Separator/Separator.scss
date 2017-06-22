@@ -1,0 +1,14 @@
+.separator {
+  width: 75px;
+  height: 2px;
+  margin: 20px 0;
+  background: #f18a9b;
+
+  &--white {
+    background: #fff;
+  }
+
+  &--black {
+    background: #000;
+  }
+}

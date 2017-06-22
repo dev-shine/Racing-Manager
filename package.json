@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "trm-front-end",
   "version": "1.0.0",
-  "description": "Vitamin boilerplate for React/Redux projects",
+  "description": "The Racing Manager",
   "main": "index.js",
   "scripts": {
     "production": "NODE_ENV=production webpack --config webpack.prod.config.js",
@@ -63,21 +63,24 @@
     "classnames": "^2.2.5",
     "css-animation": "^1.3.2",
     "es6-promise": "^4.1.0",
+    "is-number": "^3.0.0",
     "moment": "^2.18.1",
     "normalize.css": "^6.0.0",
     "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-click-outside": "^2.3.1",
+    "react-cookie": "^2.0.7",
     "react-dom": "^15.4.2",
     "react-motion": "^0.5.0",
     "react-redux": "^5.0.2",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "react-slick": "^0.14.11",
     "react-stack-grid": "^0.2.1",
     "react-tap-event-plugin": "^2.0.1",
+    "react-transition-group": "^1.1.3",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
+    "titleize": "^1.0.0",
     "whatwg-fetch": "^2.0.3"
   }
 }

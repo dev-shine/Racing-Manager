@@ -1,0 +1,165 @@
+.horse-header {
+
+  &__details-container {
+    width: auto;
+
+    @media (min-width: $screen-lg) {
+      position: absolute;
+      width: 1170px;
+      height: 100%;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  &__details-tile {
+    min-width: 400px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    z-index: 2;
+
+    .horse-header__details {
+      padding: 20px 75px 30px;
+    }
+  }
+
+// ----
+
+  &__paragraph {
+    color: white;
+
+    ~ .horse-header__paragraph {
+      margin-top: 10px;
+    }
+  }
+
+  &__small-title {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__medium-title {
+    color: white;
+    font-size: 30px;
+  }
+
+// ----
+
+  &__image {
+    position: relative;
+    background: #eee;
+
+    .parallax-hero__image {
+      height: 200px;
+      background-repeat: no-repeat;
+      background-position: top center;
+
+      @media (min-width: $screen-sm) {
+        height: 350px;
+      }
+
+      @media (min-width: $screen-md) {
+        height: 550px;
+      }
+    }
+  }
+
+// ----
+
+  &__brief-info {
+    padding: 20px 0 25px;
+  }
+
+  &__horse-gender {
+    text-transform: capitalize;
+  }
+
+  &__big-title {
+    font-size: 45px;
+    text-transform: uppercase;
+  }
+
+  &__horse-brief {
+    margin-top: 15px;
+  }
+
+  &__btn-details {
+    margin-top: 15px;
+  }
+
+// ----
+
+  &__details {
+    color: #6D6E71;
+    font-size: 12px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    background: #fff;
+
+    @media (min-width: $screen-md) {
+      box-shadow: none;
+    }
+  }
+
+  &__details-prices {
+    margin-top: 20px;
+  }
+
+// ----
+
+  &__content {
+    display: flex;
+  }
+
+  &__comment-title {
+    margin: 20px 0 10px;
+  }
+
+  &__syndicate-button {
+    width: 205px;
+    display: block;
+    border: 1px solid white;
+    background: transparent;
+    margin: 25px auto 0;
+
+    @media (min-width: $screen-md) {
+      margin-left: 0;
+    }
+  }
+
+// -----
+
+  &__description-title {
+    @media (min-width: $screen-md) {
+      color: white;
+      font-size: 30px
+    }
+  }
+
+  &__read-more {
+    color: white;
+    display: block;
+    margin-top: 20px;
+  }
+
+  &__pagination {
+    .carousel-pagination {
+      &__btn {
+        background: transparent;
+        border: 2px solid white;
+        opacity: 1;
+        transform: scale3d(1, 1, 1) rotate(45deg);
+
+        &--active {
+          background: white;
+          border-color: transparent;
+        }
+      }
+    }
+  }
+}

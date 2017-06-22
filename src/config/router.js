@@ -1,47 +1,46 @@
-/**
- * @module react
- */
 import React from 'react'
+import {
+  Route,
+  Switch,
+  BrowserRouter as Routes,
+} from 'react-router-dom'
 
-/**
- * @module react-router-dom
- */
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { CookiesProvider } from 'react-cookie'
+import PrivateRoute from 'components/common/PrivateRoute'
 
-/**
- * @module Main
- */
-import Main from 'layouts/main'
+import Layout from 'layouts/Layout'
+import ScrollTop from 'components/common/ScrollTop'
+import PageNotFound from 'views/PageNotFound'
 
-/**
- * @module Home
- */
 import Home from 'views/home'
-
-/**
- * @module Register
- */
+import Login from 'views/Login'
 import Register from 'views/register'
+import MemberDashboard from 'views/Dashboard/MemberDashboard'
 
-/**
- *  @module HorseOverview
- */
-import HorseOverview from 'views/horseoverview'
+import PrivateHorse from 'views/horse/PrivateHorse'
+import PublicHorse from 'views/horse/PublicHorse'
 
-/**
- * App router
- */
+import PrivateSyndicate from 'views/syndicate/PrivateSyndicate'
+import PublicSyndicate from 'views/syndicate/PublicSyndicate'
+
 const router = (
-  <Router>
-    <Switch>
-      <Main exact path='/' component={Home} />
-      <Main exact path='/register' component={Register} />
-      <Main exact path='/horse/:name' component={HorseOverview} />
-    </Switch>
-  </Router>
+  <Routes>
+    <CookiesProvider>
+      <Layout>
+        <ScrollTop>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/login' component={Login} />
+            <Route path='/register' component={Register} />
+            <PrivateRoute path='/dashboard' component={MemberDashboard} />
+            <PrivateRoute path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
+            <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </ScrollTop>
+      </Layout>
+    </CookiesProvider>
+  </Routes>
 )
 
-/**
- *  @module router
- */
 export default router

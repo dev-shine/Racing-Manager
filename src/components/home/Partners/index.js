@@ -14,9 +14,9 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- * @module Slider
+ *  @module Carousel
  */
-import Slider from 'react-slick'
+import Carousel from 'components/carousel'
 
 /**
  * @module Image
@@ -24,30 +24,9 @@ import Slider from 'react-slick'
 import Image from 'components/image'
 
 /**
- *  @module Icon
- */
-import Icon from 'components/icon'
-
-/**
  *  @module images
  */
 import * as partnerImages from 'assets/home/partners'
-
-/**
- * @name Arrow
- * @returns { React.Component }
- */
-const Arrow = props => {
-  const { _className, onClick } = props
-  return (
-    <div
-      className={_className}
-      onClick={onClick}>
-      <Icon
-        modifier='leftarrow' />
-    </div>
-  )
-}
 
 /**
  * Partners component
@@ -70,7 +49,7 @@ const Partners = props => {
           key={i}
           className='partners__partner'>
           <Image
-            forceShow={true} // Have to force show because stupid slick carousel.
+            forceShow={true}
             className='partners__partner-image image-background'
             imageSrc={partnerImages[`p${i}`]} />
         </div>
@@ -82,18 +61,12 @@ const Partners = props => {
   return (
     <div className={modifiedClassNames}>
       <div className='partners__carousel-wrapper hidden-md-up'>
-        <Slider
-          className='partners__carousel'
-          infinite
-          autoplay
-          initialSlide={1}
-          prevArrow={<Arrow _className='partners__arrow-prev partners__arrow' />}
-          nextArrow={<Arrow _className='partners__arrow-next partners__arrow' />}
-          slidesToShow={3}
-          speed={500}
-          slidesToScroll={1}>
+        <Carousel
+          containerClassName='partners__carousel'
+          slideWidth={0.4}
+          showArrows>
           {slides()}
-        </Slider>
+        </Carousel>
       </div>
       <div className='container visible-md-up'>
         <div className='partners__carousel-desktop'>

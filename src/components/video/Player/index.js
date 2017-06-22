@@ -107,10 +107,15 @@ class Player extends Component {
 
   /**
    *  toggleVideo
+   *  @param {Object} event
    *  @description Will toggle the video between playing and pausing
    *  @return {Void}
    */
-  toggleVideo () {
+  toggleVideo (event) {
+    if (event) {
+      event.stopPropagation()
+    }
+
     if (this.state.showPlayButton) {
       this.playVideo()
     } else {

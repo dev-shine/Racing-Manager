@@ -14,49 +14,39 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module baseClassNames
- */
-import baseClassNames from 'classnames'
-
-/**
  *  @module TileHeader
  */
-import TileHeader from 'components/tiles/FeedTiles/TileHeader'
+import TileHeader from 'components/tiles/common/TileHeader'
 
 /**
  *  @module TileFooter
  */
-import TileFooter from 'components/tiles/FeedTiles/TileFooter'
+import TileFooter from 'components/tiles/common/TileFooter'
 
 /**
  *  @module TileContent
  */
-import TileContent from 'components/tiles/FeedTiles/TileContent'
+import TileContent from 'components/tiles/common/TileContent'
 
 /**
  *  @module baseTile
  */
-import baseTile from 'components/tiles/BaseTile'
+import baseTile from 'components/tiles/common/BaseTile'
 
 /**
  *  @module TileImageContent
  */
-import TileImageContent from 'components/tiles/FeedTiles/TileImageContent'
+import TileImageContent from 'components/tiles/common/TileImageContent'
 
 /**
  *  @module TileVideoContent
  */
-import TileVideoContent from 'components/tiles/FeedTiles/TileVideoContent'
+import TileVideoContent from 'components/tiles/common/TileVideoContent'
 
 /**
- * @module Slider
+ *  @module TileMediaContent
  */
-import Slider from 'react-slick'
-
-/**
- *  @module Icon
- */
-import Icon from 'components/icon'
+import TileMediaContent from 'components/tiles/common/TileMediaContent'
 
 /**
  *  createSlides
@@ -69,51 +59,26 @@ export const createSlides = (attachments = [], rootPath) => {
   return attachments.map((attachment, index) => {
     if (attachment.type === 'video') {
       return (
-        <div className='multiple-tile__slidercontainer' key={`mvideo-${index}`}>
+        <div key={`mvideo-${index}`}>
           <TileVideoContent
+            modifier={['no-margin-bottom']}
             rootPath={rootPath}
-            className='multiple-tile__slide'
             poster={attachment.thumbnail}
             src={attachment.path}/>
         </div>
       )
     } else {
       return (
-        <div className='multiple-tile__slidercontainer' key={`mimg-${index}`}>
+        <div key={`mimg-${index}`}>
           <TileImageContent
+            modifier={['no-margin-bottom', 'video-aspect']}
             rootPath={rootPath}
-            className='multiple-tile__slide'
             src={attachment.path}
             alt={'Horse racing'} />
         </div>
       )
     }
   })
-}
-
-/**
- *  SlideArrow
- *  @param  {String} options.className
- *  @param  {String} options.modifier
- *  @param  {Function} options.onClick
- *  @return {Component}
- */
-const SlideArrow = ({className, modifier, onClick}) => {
-  // class names for the container
-  const modifiedClassNames = classNames('multiple-tile__slider__arrow', className, modifier)
-
-  // classnames for determining the correct arrow to show.
-  const arrowClassNames = baseClassNames({
-    'leftarrow': modifier === 'left',
-    'rightarrow': modifier === 'right'
-  })
-
-  return (
-    <div className={modifiedClassNames} onClick={onClick}>
-      <Icon
-        modifier={arrowClassNames}/>
-    </div>
-  )
 }
 
 /**
@@ -128,37 +93,6 @@ class MultipleTile extends Component {
    */
   constructor (props) {
     super(props)
-
-    // Store the slider in a ref
-    this.slideRef = null
-
-    // Bind custom fns
-    this.slidePrev = this.slidePrev.bind(this)
-    this.slideNext = this.slideNext.bind(this)
-  }
-
-  /**
-   *  slidePrev
-   *  @description Slides to the previous slide in the carousel
-   */
-  slidePrev () {
-    if (!this.slideRef) {
-      return false
-    }
-
-    this.slideRef.slickPrev()
-  }
-
-  /**
-   *  slideNext
-   *  @description Slides to the next slide in the carousel
-   */
-  slideNext () {
-    if (!this.slideRef) {
-      return false
-    }
-
-    this.slideRef.slickNext()
   }
 
   render () {
@@ -176,24 +110,9 @@ class MultipleTile extends Component {
 
     return (
       <div className={modifiedClassNames}>
-        <div className='multiple-tile__slider'>
-          <Slider
-            ref={ref => { this.slideRef = ref }}
-            className='multiple-tile__slider-wrapper'
-            initialSlide={0}
-            infinite={false}
-            dots={false}
-            fade={false}
-            autoplay={false}
-            slidesToShow={1}
-            arrows={false}
-            speed={400}
-            slidesToScroll={1}>
-            {createSlides(attachments, rootPath)}
-          </Slider>
-          <SlideArrow modifier='left' onClick={this.slidePrev} />
-          <SlideArrow modifier='right' onClick={this.slideNext} />
-        </div>
+        <TileMediaContent>
+          {createSlides(attachments, rootPath)}
+        </TileMediaContent>
         <TileHeader
           name={name}
           date={date} />

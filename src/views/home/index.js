@@ -90,45 +90,47 @@ export class Home extends Component {
           featuredImage={m1}>
           <p>
             Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
-            <br/>
-            <br/>• Advertise for new and loyal members in one marketplace.
-            <br/>• Set a customised webpage for your syndicate’s brand and horses.
-            <br/>• Find all your accounting, messaging and management in one place.
           </p>
+          <ul className='disc-list'>
+            <li>Advertise for new and loyal members in one marketplace.</li>
+            <li>Set a customised webpage for your syndicate’s brand and horses.</li>
+            <li>Find all your accounting, messaging and management in one place.</li>
+          </ul>
         </CopySection>
         <CopySection
           headline="stay organised"
           featuredImage={m2}>
-          <p>
-            • Schedule events, tickets and hospitality with ease for your members.
-            <br/>• Consolidate all of your management accounts to our new platform.
-            <br/>• Instantly message any members or trainers by desktop, tablet or app.
-            <br/>• Fast, secure and regular payment collection with our bank integration.
-            <br/>• Get an extra level of control with our tailored management settings.
-          </p>
+          <ul className='disc-list'>
+            <li>Schedule events, tickets and hospitality with ease for your members.</li>
+            <li>Consolidate all of your management accounts to our new platform.</li>
+            <li>Instantly message any members or trainers by desktop, tablet or app.</li>
+            <li>Fast, secure and regular payment collection with our bank integration.</li>
+            <li>Get an extra level of control with our tailored management settings.</li>
+          </ul>
         </CopySection>
         <CopySection
           headline="engage members"
           featuredImage={m3}>
-          <p>
-            • Regularly prompted updates from your trainer, straight to your group.
-            <br/>• A wide range of custom media including photos, videos and polls.
-            <br/>• Build a community with a curated update feed and thread replies.
-            <br/>• On raceday, experience live updates and a sleek user experience.
-            <br/>• Industry updates from partners such as the Racing Post and TRM.
-          </p>
+          <ul className='disc-list'>
+            <li>Regularly prompted updates from your trainer, straight to your group.</li>
+            <li>A wide range of custom media including photos, videos and polls.</li>
+            <li>Build a community with a curated update feed and thread replies.</li>
+            <li>On race day, experience live updates and a sleek user experience.</li>
+            <li>Industry updates from partners such as the Racing Post and TRM.</li>
+          </ul>
         </CopySection>
         <CopySection
           headline="safe and secure"
           featuredImage={m4}>
           <p>
             Managing a syndicate ultimately comes down to money:
-            <br/>
-            <br/>• Simple HMRC and  VAT solutions for yourself and members.
-            <br/>• Syndicate, member and horse insurance against unforseen events.
-            <br/>• Regular payment collection and distribution backed by our T&Cs.
-            <br/>• AML and KYC checks on new syndicate members.
           </p>
+          <ul className='disc-list'>
+            <li>Simple HMRC and VAT solutions for yourself and members.</li>
+            <li>Syndicate, member and horse insurance against unforeseen events.</li>
+            <li>Regular payment collection and distribution backed by our T&Cs.</li>
+            <li>AML and KYC checks on new syndicate members.</li>
+          </ul>
         </CopySection>
         <BottomCta />
       </div>

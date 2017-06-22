@@ -6,12 +6,17 @@ import { get, post } from 'api/Request'
 /**
  *  @module MESSAGE
  */
-import { MESSAGE } from 'api/ServiceTypes'
+import { MESSAGE, HORSE } from 'api/ServiceTypes'
 
 /**
  *  @module formatHorseData
  */
 import { formatHorseData } from 'utils/horseutils'
+
+/**
+ *  @module verifyServerFormat
+ */
+import verifyServerFormat from 'utils/request'
 
 /**
  *  FETCH_HORSE_INFO
@@ -161,7 +166,7 @@ export const deleteHorseMedia = () => ({
 /**
  *  fetchHorseInfo [async]
  *  @param {Object} data
- *  @return {Promise}
+ *  @return {Function}
  */
 export const fetchHorseInfo = data => {
   return (dispatch, getState) => {
@@ -169,18 +174,17 @@ export const fetchHorseInfo = data => {
     dispatch(gettingHorseInfo())
 
     return get({
-      url: MESSAGE,
+      url: HORSE,
       data
     })
-    .then(response => {
-      // Format the response.
-      const formattedResponse = formatHorseData(response)
-
-      dispatch(receivedHorseInfo(formattedResponse))
-      return Promise.resolve()
+    .then(verifyServerFormat)
+    .then(formatHorseData)
+    .then((data) => {
+      dispatch(receivedHorseInfo(data))
+      return Promise.resolve(data)
     })
-    .catch(error => {
-      dispatch(failedToGetHorseInfo())
+    .catch((error) => {
+      dispatch(failedToGetHorseInfo(error))
       return Promise.reject(error)
     })
   }
@@ -200,11 +204,12 @@ export const submitHorseUpdate = data => {
       url: MESSAGE,
       data
     })
-    .then(response => {
-      dispatch(postedHorseUpdate(response))
-      return Promise.resolve()
+    .then(verifyServerFormat)
+    .then((data) => {
+      dispatch(postedHorseUpdate(data))
+      return Promise.resolve(data)
     })
-    .catch(error => {
+    .catch((error) => {
       dispatch(failedToPostHorseUpdate(error))
       return Promise.reject(error)
     })

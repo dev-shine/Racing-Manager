@@ -29,12 +29,12 @@ describe('Utils - headerContentStates', () => {
   }
 
   it('should render cta button on homepage url', () => {
-    const wrapper = renderContent({ location: '#/' })
+    const wrapper = renderContent({ location: '/' })
     expect(wrapper.find('.header__register-button')).to.have.length(1)
   })
 
   it('should render nothing on unused url', () => {
-    const wrapper = renderContent({ location: '#/this-is-useless-url' })
+    const wrapper = renderContent({ location: '/this-is-useless-url' })
     expect(wrapper).to.equal(null)
   })
 })

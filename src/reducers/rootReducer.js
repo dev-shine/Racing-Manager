@@ -13,13 +13,16 @@ import register from 'reducers/register'
  */
 import horseoverview from 'reducers/horseoverview'
 
+import syndicate from './syndicate'
+
 /**
  * @name rootReducer
  * @type { Reducer }
  */
 const rootReducer = combineReducers({
   register,
-  horseoverview
+  horseoverview,
+  syndicate
 })
 
 /**

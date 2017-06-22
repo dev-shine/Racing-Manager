@@ -54,13 +54,6 @@ import Icon from 'components/icon'
 import { generatethumbnailFromFiles } from 'utils/imageutils'
 
 /**
- *  @name allowedFileTypes
- *  @description File types allowed for uploading.
- *  @type {Array}
- */
-const allowedFileTypes = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/quicktime', 'video/x-msvideo']
-
-/**
  *  @class
  *  @name FeedSubmitTile
  *  @extends {Component}
@@ -161,6 +154,10 @@ class FeedSubmitTile extends Component {
     }
   }
 
+  /**
+   *  handleClickOutside
+   *  @description Custom fn from enhanceClickOutside
+   */
   handleClickOutside () {
     if (this.state.isOpen) {
       this.closeBar()
@@ -173,7 +170,7 @@ class FeedSubmitTile extends Component {
    *  @description Will call on the native file uploader.
    */
   addAttachment (e) {
-    processFileUpload(e, allowedFileTypes)
+    processFileUpload(e, this.props.allowedFileTypes)
     .then(files => {
       // Open the bar to reveal text area
       this.openBar()
@@ -214,7 +211,8 @@ class FeedSubmitTile extends Component {
       charCount,
       maxCharCount,
       submitFeedUpdate,
-      feedFiles
+      feedFiles,
+      title
     } = this.props
 
     const {
@@ -230,10 +228,10 @@ class FeedSubmitTile extends Component {
       <div className={modifiedClassNames}>
         <div className='feed-submit__title'>
           <p className='micro'>
-            post an update to the horse
+            {title}
           </p>
         </div>
-        <div className='feed-submit__bar-container'>
+        <div className='feed-submit__bar-container section-shadow--tile section-shadow--tile--inverse'>
           <Accordion isOpen={isOpen}>
             <TextArea
               ref='textarea'
@@ -273,6 +271,7 @@ class FeedSubmitTile extends Component {
                       onChange={this.addAttachment}
                       className='feed-submit__attachmentinput'
                       type='file'
+                      multiple
                       ref={ref => { this.attachmentRef = ref }}/>
                   </div>
                 </div>
@@ -298,7 +297,10 @@ class FeedSubmitTile extends Component {
  */
 FeedSubmitTile.defaultProps = {
   className: '',
-  maxCharCount: 400
+  maxCharCount: 400,
+  title: 'Post an update',
+  feedFiles: [],
+  allowedFileTypes: ['image/png', 'image/gif', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/quicktime', 'video/x-msvideo']
 }
 
 /**
@@ -306,6 +308,7 @@ FeedSubmitTile.defaultProps = {
  *  @type {Object}
  */
 FeedSubmitTile.propTypes = {
+  title: PropTypes.string,
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -319,7 +322,8 @@ FeedSubmitTile.propTypes = {
   addFeedMediaFiles: PropTypes.func.isRequired,
   updateFeedText: PropTypes.func.isRequired,
   charCount: PropTypes.number,
-  maxCharCount: PropTypes.number
+  maxCharCount: PropTypes.number,
+  allowedFileTypes: PropTypes.array
 }
 
 /**

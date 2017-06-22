@@ -1,0 +1,14 @@
+.tile-video-content {
+  position: relative; 
+  padding-bottom: $video-aspect-ratio;
+  height: 0; 
+  overflow: hidden; 
+  max-width: 100%; 
+  height: auto; 
+  background-color: $gainsboro;
+  margin-bottom: 10px;
+
+  &--no-margin-bottom {
+    margin-bottom: 0;
+  }
+ } 
