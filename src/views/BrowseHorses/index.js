@@ -8,6 +8,9 @@ import React, { Component } from 'react'
  */
 import { connect } from 'react-redux'
 
+import View from 'components/common/View'
+import { BROWSE_HORSES as title } from 'data/titles'
+
 /**
  *  @module TitleHero
  */
@@ -20,9 +23,11 @@ export class BrowseHorses extends Component {
 
   render () {
     return (
-      <div className='browse-horses'>
-        <TitleHero/>
-      </div>
+      <View title={title}>
+        <div className='browse-horses'>
+          <TitleHero/>
+        </div>
+      </View>
     )
   }
 }
