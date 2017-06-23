@@ -18,7 +18,8 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 import HorseAboutInfo from 'components/horse/HorseAboutInfo'
 import HorseOwnershipInfo from 'components/horse/HorseOwnershipInfo'
 import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
-import HorseTeamMember from 'components/horse/HorseTeamMember'
+// import HorseTeamMember from 'components/horse/HorseTeamMember'
+import HorseAccordion from 'components/horse/HorseAccordion'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
@@ -243,30 +244,6 @@ class HorseHeader extends Component {
             <div className='container no-padding'>
               <HorseBigSection className='col-md-8'>
                 <HorseAboutInfo data={aboutData} />
-                <div className='horse-header__team'>
-                  <Carousel
-                    ref='carousel'
-                    showArrows
-                    slideWidth={0.25}
-                    breakPoints={{
-                      1240: {
-                        slideWidth: 0.33
-                      }
-                    }}
-                  >
-                    {
-                      members.map((member, index) => (
-                        <HorseTeamMember
-                          key={index}
-                          image={member.image}
-                          name={member.name}
-                          role={member.role}
-                          description={member.description}
-                        />
-                      ))
-                    }
-                  </Carousel>
-                </div>
               </HorseBigSection>
               <HorseSmallSection className='col-md-4'>
                 <h1 className='horse-header__description-title'>
@@ -277,6 +254,11 @@ class HorseHeader extends Component {
                 <HorseBenefitsInfo data={benefitsData} />
               </HorseSmallSection>
             </div>
+          </div>
+          <div className='accordions'>
+            <HorseAccordion>
+              hello there
+            </HorseAccordion>
           </div>
         </div>
         <div className='hidden-md-up'>
@@ -349,3 +331,30 @@ HorseHeader.defaultProps = {
 }
 
 export default HorseHeader
+
+/*
+ <div className='horse-header__team'>
+ <Carousel
+ ref='carousel'
+ showArrows
+ slideWidth={0.25}
+ breakPoints={{
+ 1240: {
+ slideWidth: 0.33
+ }
+ }}
+ >
+ {
+ members.map((member, index) => (
+ <HorseTeamMember
+ key={index}
+ image={member.image}
+ name={member.name}
+ role={member.role}
+ description={member.description}
+ />
+ ))
+ }
+ </Carousel>
+ </div>
+ */

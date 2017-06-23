@@ -1,0 +1,24 @@
+.horse-accordion {
+
+  &__header {
+    width: 100%;
+    height: 50px;
+    background: #E9E9E9;
+  }
+
+  &__content {
+    position: relative;
+
+    &::before {
+      content: '+';
+
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00273A;
+    padding-left: 30px;
+  }
+}
