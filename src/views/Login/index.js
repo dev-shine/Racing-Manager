@@ -1,9 +1,14 @@
 import React from 'react'
 
+import View from 'components/common/View'
+import { LOGIN as title } from 'data/titles'
+
 const Login = () => (
-  <div className='login'>
-    Login here
-  </div>
+  <View title={title}>
+    <div className='login'>
+      Login here
+    </div>
+  </View>
 )
 
 export default Login

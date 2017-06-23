@@ -33,6 +33,9 @@ import { fetchHorseInfo } from 'actions/horseoverview'
  */
 import HorseHeader from 'components/horse/HorseHeader'
 
+import View from 'components/common/View'
+import titleize from 'titleize'
+
 /**
  *  @name HorseOverview
  *  @class
@@ -76,26 +79,28 @@ export class PrivateHorse extends Component {
     const { messages = [] } = data
 
     return (
-      <div className='horse-overview'>
-        <HorseHeader data={data} />
-        <div className='container horse-overview__message-post'>
-          <div className='row'>
-            <h1 className='horse-overview__main-title horse-overview__update-title'>
-              Updates
-            </h1>
-            <div className='col-xs-12 col-sm-10 col-sm-push-1'>
-              <SubmitPost
-                title='post an update to the horse'
-                horseId={data._id} />
+      <View title={titleize(data.name || '')} isPrefixed={false}>
+        <div className='horse-overview'>
+          <HorseHeader data={data} />
+          <div className='container horse-overview__message-post'>
+            <div className='row'>
+              <h1 className='horse-overview__main-title horse-overview__update-title'>
+                Updates
+              </h1>
+              <div className='col-xs-12 col-sm-10 col-sm-push-1'>
+                <SubmitPost
+                  title='post an update to the horse'
+                  horseId={data._id} />
+              </div>
             </div>
           </div>
+          <div className='horse-overview__grid container'>
+            <FeedGallery
+              tiles={messages} />
+          </div>
+          { this.renderAjaxLoader() }
         </div>
-        <div className='horse-overview__grid container'>
-          <FeedGallery
-            tiles={messages} />
-        </div>
-        { this.renderAjaxLoader() }
-      </div>
+      </View>
     )
   }
 }
