@@ -1,24 +1,66 @@
 .horse-accordion {
+  $icon-a: 14px;
+  $icon-b: 3px;
+  $icon-pos: 6px;
+  $icon-rot: 90deg;
+
+  $header-h: 50px;
+
+  border-bottom: 2px solid white;
 
   &__header {
-    width: 100%;
-    height: 50px;
+    cursor: pointer;
+    height: $header-h;
     background: #E9E9E9;
+    position: relative;
   }
 
   &__content {
     position: relative;
+  }
+
+  &__icon {
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #F3889A;
+    }
 
     &::before {
-      content: '+';
+      width: $icon-a;
+      height: $icon-b;
+    }
 
+    &::after {
+      will-change: opacity;
+      width: $icon-b;
+      height: $icon-a;
+      left: $icon-pos;
+      top: -$icon-pos;
+      transition: .2s ease-out opacity,
+                  .3s ease-in transform;
     }
   }
 
   &__title {
     font-size: 16px;
     font-weight: 600;
+    line-height: $header-h;
     color: #00273A;
-    padding-left: 30px;
+    padding-left: 20px;
+    text-transform: uppercase;
+  }
+
+  &--open {
+    .horse-accordion__icon {
+      &::after {
+        transform: rotate($icon-rot);
+        opacity: 0;
+      }
+    }
   }
 }

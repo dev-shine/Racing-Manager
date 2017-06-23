@@ -256,8 +256,25 @@ class HorseHeader extends Component {
             </div>
           </div>
           <div className='accordions'>
-            <HorseAccordion>
-              hello there
+            <HorseAccordion title='The Team'>
+              <div className='container'>
+                team content
+              </div>
+            </HorseAccordion>
+            <HorseAccordion title='Racing History'>
+              <div className='container'>
+                racing history content
+              </div>
+            </HorseAccordion>
+            <HorseAccordion title='Racing plans'>
+              <div className='container'>
+                racing plans content
+              </div>
+            </HorseAccordion>
+            <HorseAccordion title="FAQ's">
+              <div className='container'>
+                faqs
+              </div>
             </HorseAccordion>
           </div>
         </div>

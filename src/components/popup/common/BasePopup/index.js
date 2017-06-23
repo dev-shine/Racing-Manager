@@ -10,7 +10,7 @@ const BasePopupHoc = WrappedComponent => {
     const { isOpen, onClick } = props
 
     return (
-      <BodyStyle className={isOpen && 'model-open'}>
+      <BodyStyle className={isOpen ? 'model-open' : ''}>
         <CSSTransitionGroup
           transitionName="fade-in"
           transitionEnterTimeout={400}
