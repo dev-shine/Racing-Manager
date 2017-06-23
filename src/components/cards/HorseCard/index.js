@@ -97,7 +97,7 @@ const HorseCard = props => {
           className='horse-card__bg'
           imageSrc={src}
           forceShow={true} />
-        <div className='horse-card__content'>
+        <div className='horse-card__content section-shadow--tile'>
           <div className='horse-card__card' style={{ borderColor: color }}>
             <div className='horse-card__heading'>
               <h3>

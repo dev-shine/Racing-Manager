@@ -1,4 +1,29 @@
 .browse-horses {
   position: relative;
   width: 100%;
+
+  &__grid {
+    @media all and (max-width: $screen-xs) {
+      width: 100%;
+    }
+  }
+
+  &__filters__container {
+    position: relative;
+
+    @media all and (max-width: $screen-xs) {
+      width: 100%;
+    }
+  }
+
+  &__filters {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: purple;
+  }
+
+  .row-sm {
+    display: flex;
+  }
 }

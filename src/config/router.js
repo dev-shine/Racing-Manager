@@ -32,7 +32,7 @@ const router = (
             <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
-            <Route path='/browsehorses' component={BrowseHorses} />
+            <Route path='/browse-horses' component={BrowseHorses} />
             <PrivateRoute path='/dashboard' component={MemberDashboard} />
             <Route path='/horse/:name' component={PublicHorse} />
             <Route path='/private-horse/:name' component={PrivateHorse} />

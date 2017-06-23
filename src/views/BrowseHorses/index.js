@@ -8,7 +8,14 @@ import React, { Component } from 'react'
  */
 import { connect } from 'react-redux'
 
+/**
+ *  @module View
+ */
 import View from 'components/common/View'
+
+/**
+ *  @module title
+ */
 import { BROWSE_HORSES as title } from 'data/titles'
 
 /**
@@ -21,19 +28,58 @@ import TitleHero from 'components/common/TitleHero'
  */
 import HorseCardGallery from 'components/cards/HorseCardGallery'
 
+/**
+ *  @module classNames
+ */
+import classNames from 'classnames'
+
 export class BrowseHorses extends Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      filterOpen: false
+    }
   }
 
   render () {
+    const {
+      filterOpen
+    } = this.state
+
+    const {
+      horses
+    } = this.props
+
+    const modifiedClassGalleryCols = classNames('browse-horses__grid', {
+      'col-xs-6 col-sm-7 col-md-9': filterOpen,
+      'col-sm-12': !filterOpen
+    })
+
+    const modifiedClassFilterCols = classNames('browse-horses__filters__container', {
+      'col-xs-6 col-sm-5 col-md-3': filterOpen
+    })
+
     return (
       <View title={title}>
         <div className='browse-horses'>
           <TitleHero/>
           <div className='container'>
-            <HorseCardGallery
-              data={this.props.horses}/>
+            <div className='row-sm'>
+              <div className={modifiedClassGalleryCols}>
+                <HorseCardGallery
+                  threeCol={filterOpen}
+                  data={horses}
+                />
+              </div>
+              <div className={modifiedClassFilterCols}>
+                {
+                  filterOpen
+                  ? <div className='browse-horses__filters section-shadow--left'></div>
+                  : null
+                }
+              </div>
+            </div>
           </div>
         </div>
       </View>
