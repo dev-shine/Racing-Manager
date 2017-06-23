@@ -13,6 +13,7 @@
     height: $header-h;
     background: #E9E9E9;
     position: relative;
+    user-select: none;
   }
 
   &__content {
