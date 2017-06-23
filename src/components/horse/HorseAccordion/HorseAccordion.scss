@@ -14,13 +14,19 @@
     background: #E9E9E9;
     position: relative;
     user-select: none;
+    transition: .3s ease-out background;
   }
 
-  &__content {
+  &__head-content {
     position: relative;
   }
 
   &__icon {
+    left: 15px;
+
+    @media (min-width: $screen-md) {
+      left: 0;
+    }
 
     &::before,
     &::after {
@@ -52,15 +58,25 @@
     font-weight: 600;
     line-height: $header-h;
     color: #00273A;
-    padding-left: 20px;
+    padding-left: 35px;
     text-transform: uppercase;
+
+    @media (min-width: $screen-md) {
+      padding-left: 20px;
+    }
   }
 
   &--open {
-    .horse-accordion__icon {
-      &::after {
-        transform: rotate($icon-rot);
-        opacity: 0;
+    .horse-accordion {
+      &__header {
+        background: darken(#E9E9E9, 5%);
+      }
+
+      &__icon {
+        &::after {
+          transform: rotate($icon-rot);
+          opacity: 0;
+        }
       }
     }
   }

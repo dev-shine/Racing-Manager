@@ -28,13 +28,11 @@ import AjaxLoader from 'components/ajaxloader'
  */
 import { fetchHorseInfo } from 'actions/horseoverview'
 
-/**
- * @module HorseHeader
- */
-import HorseHeader from 'components/horse/HorseHeader'
-
 import View from 'components/common/View'
 import titleize from 'titleize'
+
+import HorseHeader from 'components/horse/HorseHeader'
+import HorseAccordions from 'components/horse/HorseAccordions'
 
 /**
  *  @name HorseOverview
@@ -82,6 +80,7 @@ export class PrivateHorse extends Component {
       <View title={titleize(data.name || '')} isPrefixed={false}>
         <div className='horse-overview'>
           <HorseHeader data={data} />
+          <HorseAccordions />
           <div className='container horse-overview__message-post'>
             <div className='row'>
               <h1 className='horse-overview__main-title horse-overview__update-title'>

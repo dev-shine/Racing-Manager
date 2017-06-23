@@ -32,14 +32,14 @@ class HorseAccordion extends Component {
     return (
       <div className={modifiedClassNames}>
         <div className='horse-accordion__header' onClick={this.handleToggle}>
-          <div className='horse-accordion__content container'>
+          <div className='horse-accordion__head-content container'>
             <div className='horse-accordion__icon absolute-center-v' />
             <div className='horse-accordion__title'>
               {title}
             </div>
           </div>
         </div>
-        <Accordion isOpen={isOpen}>
+        <Accordion isOpen={isOpen} className='horse-accordion__content'>
           {children}
         </Accordion>
       </div>

@@ -18,8 +18,6 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 import HorseAboutInfo from 'components/horse/HorseAboutInfo'
 import HorseOwnershipInfo from 'components/horse/HorseOwnershipInfo'
 import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
-// import HorseTeamMember from 'components/horse/HorseTeamMember'
-import HorseAccordion from 'components/horse/HorseAccordion'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
@@ -196,33 +194,6 @@ class HorseHeader extends Component {
       'Live content from the races',
     ]
 
-    const members = [
-      {
-        image: '',
-        name: 'Harry Herbert',
-        role: 'Chairman & MD',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      },
-      {
-        image: '',
-        name: 'John Warren',
-        role: 'Director',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      },
-      {
-        image: '',
-        name: 'Alex Smith',
-        role: 'Director',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      },
-      {
-        image: '',
-        name: 'Alison Begley',
-        role: 'Director',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      }
-    ]
-
     return (
       <div className={modifiedClassNames}>
         <div className='horse-header__image'>
@@ -254,28 +225,6 @@ class HorseHeader extends Component {
                 <HorseBenefitsInfo data={benefitsData} />
               </HorseSmallSection>
             </div>
-          </div>
-          <div className='accordions'>
-            <HorseAccordion title='The Team'>
-              <div className='container'>
-                team content
-              </div>
-            </HorseAccordion>
-            <HorseAccordion title='Racing History'>
-              <div className='container'>
-                racing history content
-              </div>
-            </HorseAccordion>
-            <HorseAccordion title='Racing plans'>
-              <div className='container'>
-                racing plans content
-              </div>
-            </HorseAccordion>
-            <HorseAccordion title="FAQ's">
-              <div className='container'>
-                faqs
-              </div>
-            </HorseAccordion>
           </div>
         </div>
         <div className='hidden-md-up'>
@@ -361,17 +310,7 @@ export default HorseHeader
  }
  }}
  >
- {
- members.map((member, index) => (
- <HorseTeamMember
- key={index}
- image={member.image}
- name={member.name}
- role={member.role}
- description={member.description}
- />
- ))
- }
+
  </Carousel>
  </div>
  */
