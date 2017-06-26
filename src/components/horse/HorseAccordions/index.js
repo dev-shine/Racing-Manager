@@ -1,6 +1,8 @@
 import React from 'react'
+
 import Separator from 'components/gui/Separator'
 import Table from 'components/gui/Table'
+import TextButton from 'components/buttons/TextButton'
 
 import HorseAccordion from 'components/horse/HorseAccordion'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
@@ -111,6 +113,51 @@ const entries = {
   ]
 }
 
+const results = {
+  titles: [
+    'Date',
+    'Course',
+    'Result',
+    'Btn',
+    'Type',
+    'OR',
+    'Dis',
+    'Going',
+    'EQ',
+    'Jockey',
+    'ISP',
+    'BSP',
+    'IP HI/LO',
+    'IPS',
+    'FS%',
+    'TGIF',
+    'TFR',
+    'Notes'
+  ],
+  data: [
+    [
+      '15 May 07',
+      'Hun',
+      '1/13',
+      2.50,
+      'Chase',
+      'N',
+      '20.5f',
+      'Good',
+      '-',
+      'Felix de Giles (5)',
+      '8/11f',
+      '-',
+      '-',
+      '-',
+      '-',
+      '-',
+      '-',
+    ],
+    []
+  ]
+}
+
 const HorseAccordions = () => {
   return (
     <div className='horse-accordions'>
@@ -124,6 +171,7 @@ const HorseAccordions = () => {
                   name={member.name}
                   role={member.role}
                   description={member.description}
+                  className='horse-accordions__member'
                 />
               </div>
             ))
@@ -149,31 +197,18 @@ const HorseAccordions = () => {
             data={entries.data}
           />
           <h1 className='horse-accordions__middle-title'>
-            Statistics
+            Results
           </h1>
           <Separator modifier='blue' />
           <Table
-            titles={[
-              'Date',
-              'Course',
-              'Result',
-              'BTN',
-              'Type',
-              'OR',
-              'DIS',
-              'Going',
-              'EQ',
-              'Jockey',
-              'ISP',
-              'BSP',
-              'IP HI/LO',
-              'IPS',
-              'FS%',
-              'TGIF',
-              'TFR',
-              'Notes'
-            ]}
-            data={[]}
+            titles={results.titles}
+            data={results.data}
+          />
+          <TextButton
+            text='Load more'
+            modifier={['md', 'secondary']}
+            className='horse-accordions__load-more'
+            onClick={() => {}}
           />
         </div>
       </HorseAccordion>

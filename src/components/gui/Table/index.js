@@ -21,7 +21,7 @@ const Table = props => {
         </thead>
         <tbody className='table__body'>
           {data.map((row, index) => (
-            <tr key={index} className='table__row'>
+            <tr key={index} className='table__row table__row-normal'>
               {row.map((col, index) => (
                 <td key={index} className='table__cell'>
                   {col}

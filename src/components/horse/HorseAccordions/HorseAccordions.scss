@@ -1,7 +1,16 @@
 .horse-accordions {
   &__content {
     padding-top: 30px;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
+  }
+
+  &__member {
+    margin: 10px auto;
+  }
+
+  &__load-more {
+    display: block;
+    margin: 0 auto;
   }
 
   p ~ p {
