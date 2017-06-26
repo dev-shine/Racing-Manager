@@ -1,0 +1,10 @@
+.search-input {
+  position: relative;
+  width: 100%;
+  max-width: 454px;
+
+  input::placeholder {
+    text-transform: uppercase;
+    font-size: $micro-title;
+  }
+}

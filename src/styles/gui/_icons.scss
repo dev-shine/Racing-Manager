@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--magnifying-glass:before {
+  content: "\e909";
+  color: #595a5c;
+}
+.icon--dropdown:before {
+  content: "\e90a";
+  color: #595a5c;
+}
 .icon--close:before {
   content: "\e908";
   color: #000;

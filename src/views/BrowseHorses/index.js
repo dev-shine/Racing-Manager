@@ -29,6 +29,11 @@ import TitleHero from 'components/common/TitleHero'
 import HorseCardGallery from 'components/cards/HorseCardGallery'
 
 /**
+ *  @module SearchAndFilterBar
+ */
+import SearchAndFilterBar from 'components/searchandfilter/SearchAndFilterBar'
+
+/**
  *  @module classNames
  */
 import classNames from 'classnames'
@@ -51,34 +56,29 @@ export class BrowseHorses extends Component {
       horses
     } = this.props
 
-    const modifiedClassGalleryCols = classNames('browse-horses__grid', {
-      'col-xs-6 col-sm-7 col-md-9': filterOpen,
-      'col-sm-12': !filterOpen
-    })
+    const modifiedClassGalleryCols = classNames('browse-horses__grid', 'col-xs-12')
 
-    const modifiedClassFilterCols = classNames('browse-horses__filters__container', {
-      'col-xs-6 col-sm-5 col-md-3': filterOpen
-    })
+    const modifiedClassFilterCols = classNames('browse-horses__filters__container', 'col-xs-0')
 
     return (
       <View title={title}>
         <div className='browse-horses'>
           <TitleHero/>
+          <SearchAndFilterBar
+            placeholder='search by horses, trainers or syndicates' />
           <div className='container'>
-            <div className='row-sm'>
-              <div className={modifiedClassGalleryCols}>
-                <HorseCardGallery
-                  threeCol={filterOpen}
-                  data={horses}
-                />
-              </div>
-              <div className={modifiedClassFilterCols}>
-                {
-                  filterOpen
-                  ? <div className='browse-horses__filters section-shadow--left'></div>
-                  : null
-                }
-              </div>
+            <div className={modifiedClassGalleryCols}>
+              <HorseCardGallery
+                threeCol={filterOpen}
+                data={horses}
+              />
+            </div>
+            <div className={modifiedClassFilterCols}>
+              {
+                filterOpen
+                ? <div className='browse-horses__filters section-shadow--left'></div>
+                : null
+              }
             </div>
           </div>
         </div>
