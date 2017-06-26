@@ -27,6 +27,7 @@ const SearchInput = props => {
       <Input
         {...props} />
       <Icon
+        className='search-input__icon'
         modifier='magnifying-glass' />
     </div>
   )
