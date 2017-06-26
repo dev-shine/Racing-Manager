@@ -72,7 +72,7 @@ export const calcPercent = (num, total) => {
       !isNumber(num) ||
       !isNumber(total)) return 0
 
-  return parseInt((Number(num) / Number(total)) * 100, 10)
+  return (Number(num) / Number(total)) * 100
 }
 
 /**

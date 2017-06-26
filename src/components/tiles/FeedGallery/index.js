@@ -117,9 +117,8 @@ class FeedGallery extends Component {
    */
   renderChildren (tile) {
     const {
-      _id,
       postType,
-      // createdAt,
+      createdAt,
       timeStamp,
       text,
       attachment
@@ -130,8 +129,8 @@ class FeedGallery extends Component {
       case 'text':
         return (
           <TextTile
-            key={`text-${_id}`}
-            id={_id}
+            key={`text-${createdAt}`}
+            id={createdAt}
             name='Andy Jones'
             date={timeStamp}
             text={text}
@@ -141,8 +140,8 @@ class FeedGallery extends Component {
       case 'multiplemedia':
         return (
           <MediaCarouselTile
-            key={`iv-${_id}`}
-            id={_id}
+            key={`iv-${createdAt}`}
+            id={createdAt}
             name='Andy Jones'
             date={timeStamp}
             text={text}
@@ -153,8 +152,8 @@ class FeedGallery extends Component {
       case 'image':
         return (
           <ImageTile
-            key={`image-${_id}`}
-            id={_id}
+            key={`image-${createdAt}`}
+            id={createdAt}
             src={attachment[0].path}
             name='Andy Jones'
             date={timeStamp}
@@ -165,8 +164,8 @@ class FeedGallery extends Component {
       case 'video':
         return (
           <VideoTile
-            key={`video-${_id}`}
-            id={_id}
+            key={`video-${createdAt}`}
+            id={createdAt}
             src={attachment[0].path}
             poster={attachment[0].thumbnail}
             name='Andy Jones'
@@ -200,7 +199,7 @@ class FeedGallery extends Component {
           {
             tiles.map(tile => {
               return (
-                <Block width={1} key={tile._id}>
+                <Block width={1} key={tile.createdAt}>
                   {this.renderChildren(tile)}
                 </Block>
               )

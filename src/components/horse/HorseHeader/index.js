@@ -183,7 +183,7 @@ class HorseHeader extends Component {
     const ownershipData = [
       `${ownershipYears} years fixed period ownership`,
       `Ends on ${ownershipEndDate}`,
-      `You own ${calcPercent(shares.owned, shares.total)}% shares (${shares.owned} out of ${shares.total})`,
+      `You own ${calcPercent(shares.owned, shares.total).toFixed(2)}% shares (${shares.owned} out of ${shares.total})`,
     ]
 
     const benefitsData = [
