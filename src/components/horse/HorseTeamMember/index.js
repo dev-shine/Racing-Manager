@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classNames from 'utils/classnames'
 
 import Image from 'components/image'
 
 const HorseTeamMember = props => {
-  const { image, name, role, description } = props
+  const { image, name, role, description, className, modifier } = props
+
+  const modifiedClassNames = classNames('team-member', className, modifier)
 
   return (
-    <div className='team-member'>
+    <div className={modifiedClassNames}>
       <div className='team-member__image'>
         <Image
           className=''
@@ -32,7 +35,15 @@ HorseTeamMember.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   role: PropTypes.string.isRequired,
-  description: PropTypes.string
+  description: PropTypes.string,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  modifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 export default HorseTeamMember

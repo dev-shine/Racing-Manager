@@ -114,7 +114,7 @@
 
   &__content {
     display: flex;
-    margin-bottom: 230px;
+    //margin-bottom: 230px; add this later
   }
 
   &__comment-title {
@@ -146,22 +146,6 @@
     color: white;
     display: block;
     margin-top: 20px;
-  }
-
-  &__pagination {
-    .carousel-pagination {
-      &__btn {
-        background: transparent;
-        border: 2px solid white;
-        opacity: 1;
-        transform: scale3d(1, 1, 1) rotate(45deg);
-
-        &--active {
-          background: white;
-          border-color: transparent;
-        }
-      }
-    }
   }
 
   &__team {

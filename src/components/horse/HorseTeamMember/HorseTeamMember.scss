@@ -1,19 +1,22 @@
 .team-member {
   $image-size: 150px;
+  $image-size-s: 130px;
 
   width: $image-size;
   text-align: center;
-  display: inline-block;
-  margin: 0 20px;
-  font-family: Times, sans-serif;
 
   &__image {
-    width: $image-size;
-    height: $image-size;
+    width: $image-size-s;
+    height: $image-size-s;
     border-radius: 100%;
     background: #eee;
     margin: 0 auto;
     overflow: hidden;
+
+    @media (min-width: $screen-sm) {
+      width: $image-size;
+      height: $image-size;
+    }
   }
 
   &__name {
@@ -23,16 +26,17 @@
   &__name,
   &__role,
   &__description {
-    color: #13233A;
+    color: #00273A;
   }
 
   &__name,
   &__role {
-    font-weight: bold;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
   &__description {
     font-size: 14px;
-    margin-top: 15px;
+    margin-top: 5px;
   }
 }

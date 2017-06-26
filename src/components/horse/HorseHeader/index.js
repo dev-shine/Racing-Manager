@@ -18,7 +18,6 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 import HorseAboutInfo from 'components/horse/HorseAboutInfo'
 import HorseOwnershipInfo from 'components/horse/HorseOwnershipInfo'
 import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
-import HorseTeamMember from 'components/horse/HorseTeamMember'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
@@ -184,7 +183,7 @@ class HorseHeader extends Component {
     const ownershipData = [
       `${ownershipYears} years fixed period ownership`,
       `Ends on ${ownershipEndDate}`,
-      `You own ${calcPercent(shares.owned, shares.total)}% shares (${shares.owned} out of ${shares.total})`,
+      `You own ${calcPercent(shares.owned, shares.total).toFixed(2)}% shares (${shares.owned} out of ${shares.total})`,
     ]
 
     const benefitsData = [
@@ -193,33 +192,6 @@ class HorseHeader extends Component {
       'Regular yard visits',
       'Personalised messages and clips from the team',
       'Live content from the races',
-    ]
-
-    const members = [
-      {
-        image: '',
-        name: 'Harry Herbert',
-        role: 'Chairman & MD',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      },
-      {
-        image: '',
-        name: 'John Warren',
-        role: 'Director',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      },
-      {
-        image: '',
-        name: 'Alex Smith',
-        role: 'Director',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      },
-      {
-        image: '',
-        name: 'Alison Begley',
-        role: 'Director',
-        description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
-      }
     ]
 
     return (
@@ -243,30 +215,6 @@ class HorseHeader extends Component {
             <div className='container no-padding'>
               <HorseBigSection className='col-md-8'>
                 <HorseAboutInfo data={aboutData} />
-                <div className='horse-header__team'>
-                  <Carousel
-                    ref='carousel'
-                    showArrows
-                    slideWidth={0.25}
-                    breakPoints={{
-                      1240: {
-                        slideWidth: 0.33
-                      }
-                    }}
-                  >
-                    {
-                      members.map((member, index) => (
-                        <HorseTeamMember
-                          key={index}
-                          image={member.image}
-                          name={member.name}
-                          role={member.role}
-                          description={member.description}
-                        />
-                      ))
-                    }
-                  </Carousel>
-                </div>
               </HorseBigSection>
               <HorseSmallSection className='col-md-4'>
                 <h1 className='horse-header__description-title'>
@@ -349,3 +297,20 @@ HorseHeader.defaultProps = {
 }
 
 export default HorseHeader
+
+/*
+ <div className='horse-header__team'>
+ <Carousel
+ ref='carousel'
+ showArrows
+ slideWidth={0.25}
+ breakPoints={{
+ 1240: {
+ slideWidth: 0.33
+ }
+ }}
+ >
+
+ </Carousel>
+ </div>
+ */

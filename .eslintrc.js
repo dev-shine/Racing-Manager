@@ -29,7 +29,7 @@ module.exports = {
     "no-trailing-spaces": WARN,
     "indent": WARN,
     "semi": WARN,
-    "eol-last": WARN,
+    "eol-last": OFF,
     "padded-blocks": WARN,
     "spaced-comment": WARN,
     "no-multiple-empty-lines": WARN,
