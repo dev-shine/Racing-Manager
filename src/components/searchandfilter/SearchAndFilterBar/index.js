@@ -1,7 +1,7 @@
 /**
- *  @module React
+ *  @module React, Component
  */
-import React from 'react'
+import React, { Component } from 'react'
 
 /**
  *  @module PropTypes
@@ -19,37 +19,56 @@ import SearchInput from 'components/input/SearchInput'
 import Select from 'components/input/Select'
 
 /**
- *  @name SearchAndFilterBar
+ *  @module Icon
  */
-const SearchAndFilterBar = (props) => {
-  const {
-    placeholder,
-    sortTitle
-  } = props
+import Icon from 'components/icon'
 
-  return (
-    <div className='search-filter-bar section-shadow--bottom'>
-      <div className='container'>
-        <div className='col-sm-9 align-middle'>
-          <div className='row'>
-            <div className='col-sm-6'>
+/**
+ *  @name SearchAndFilterBar
+ *  @class
+ *  @extends {Component}
+ */
+class SearchAndFilterBar extends Component {
+  constructor (props) {
+    super(props)
+  }
+
+  render () {
+    const {
+      placeholder,
+      sortTitle,
+      resultsAmount
+    } = this.props
+
+    return (
+      <div className='search-filter-bar section-shadow--bottom'>
+        <div className='container'>
+          <div className='row relative'>
+            <div className='col-md-5 align-middle search-filter-bar__search-container'>
               <SearchInput
+                name='search'
                 placeholder={placeholder} />
             </div>
-            <div className='col-sm-5 col-sm-push-1'>
+            <div className='col-sm-3 col-sm-push-1 col-md-3 col-md-push-1 align-middle'>
               <Select
                 title={sortTitle}>
                 <option value='lowest to highest'>lowest to highest</option>
                 <option value='highest to lowest'>highest to lowest</option>
               </Select>
             </div>
+            <div className='col-sm-3 col-sm-push-1 col-md-3 col-md-push-1 align-middle text-center'>
+              <h5 className='uppercase search-filter-bar__filter-text'>
+                filter the {resultsAmount} results
+              </h5>
+              <Icon
+                className='search-filter-bar__dropdown'
+                modifier='dropdown'/>
+            </div>
           </div>
         </div>
-        <div className='col-sm-3 align-middle'>
-        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 SearchAndFilterBar.propTypes = {

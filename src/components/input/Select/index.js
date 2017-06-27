@@ -51,7 +51,7 @@ const Select = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <div className='select__left'>
+      <div className='select__left visible-sm-up'>
         <h6 className='secondary-font uppercase'>
           {title}
         </h6>
@@ -66,9 +66,9 @@ const Select = props => {
           value={value}>
           {children}
         </select>
-        <InputLine error={hasError} />
+        <InputLine error={hasError} className='visible-sm-up' />
       </div>
-      <div className='select__right'>
+      <div className='select__right visible-sm-up'>
         <Icon
           className='select__dropdown-icon'
           modifier='dropdown' />

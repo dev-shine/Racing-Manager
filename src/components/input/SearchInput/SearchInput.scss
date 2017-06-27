@@ -1,20 +1,71 @@
 .search-input {
+  $icon-margin-top: -3px;
+
   position: relative;
-  width: 100%;
-  // max-width: 454px;
+  width: 0;
+  display: flex;
+  align-items: center;
+
+  @media all and (max-width: $screen-md) {
+    transition: width .4s ease-out;
+    background-color: $white;
+  }
+
+  &--active {
+    width: 100%;
+  }
+
+  @media all and (min-width: $screen-md-min) {
+    width: 100%;
+  }
 
   input::placeholder {
     text-transform: uppercase;
     font-size: $micro-title;
   }
 
-  input {
-    padding-right: 20px;
+  .input {
+    overflow: hidden;
   }
 
-  &__icon {
-    position: absolute;
-    top: 0;
-    right: 0;
+  input {
+    padding-left: 25px;
+
+    @media all and (min-width: $screen-md-min) {
+      padding-right: 25px;
+      padding-left: 0;
+    }
+  }
+
+  &__close-container {
+    position: relative;
+    visibility: hidden;
+
+    &--active {
+      visibility: visible;
+    }
+  }
+
+  &__close {
+    position: relative;
+    margin: $icon-margin-top 0 0 15px;
+    z-index: 1;
+    cursor: pointer;
+
+    &:before {
+      color: $vanilla-ice;
+    }
+  }
+
+  &__glass {
+    margin-top: $icon-margin-top;
+    cursor: pointer;
+    z-index: 1;
+
+    @media all and (min-width: $screen-md-min) {
+      cursor: initial;
+      left: initial;
+      right: 0;
+    }
   }
 }

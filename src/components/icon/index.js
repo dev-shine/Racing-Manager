@@ -21,14 +21,15 @@ import classNames from 'utils/classnames'
 const Icon = props => {
   const {
     className,
-    modifier
+    modifier,
+    onClick
   } = props
 
   // Get the correct social icon depending on the modifier.
   const modifiedClassNames = classNames('icon', className, modifier)
 
   return (
-    <i className={modifiedClassNames}></i>
+    <i className={modifiedClassNames} onClick={onClick}></i>
   )
 }
 
@@ -44,7 +45,8 @@ Icon.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  onClick: PropTypes.func
 }
 
 /**

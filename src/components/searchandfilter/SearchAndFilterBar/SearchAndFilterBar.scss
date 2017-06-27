@@ -2,5 +2,34 @@
   position: relative;
   width: 100%;
   background: $white;
-  padding-bottom: 10px;
+  padding: 20px 0;
+  height: auto;
+
+  &__filter-text {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+    color: $maastricht-blue;
+  }
+
+  &__dropdown {
+    position: relative;
+    display: inline-block;
+    font-size: $nano-title;
+
+    &:before {
+      color: $maastricht-blue;
+    }
+  }
+
+  &__search-container {
+    @media all and (max-width: $screen-sm) {
+      position: absolute !important;
+      width: 100%;
+      top: 0;
+      left: 0;
+      height: 100%;
+      z-index: 2;
+    }
+  }
 }

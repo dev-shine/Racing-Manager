@@ -1,7 +1,6 @@
 .select {
   position: relative;
   width: 100%;
-  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,11 +28,15 @@
   &__select-input {
     position: relative;
     width: 100%;
-    border-bottom: 1px solid $form-input-color;
     line-height: $input-height;
     font-size: $micro-title;
     font-family: $font-family-secondary;
     text-transform: uppercase;
+    border: 0;
+
+    @media all and (min-width: $screen-sm-min) {
+      border-bottom: 1px solid $form-input-color;
+    }
 
     &::placeholder {
       color: $placeholder-color;

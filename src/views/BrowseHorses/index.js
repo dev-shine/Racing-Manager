@@ -65,7 +65,7 @@ export class BrowseHorses extends Component {
         <div className='browse-horses'>
           <TitleHero/>
           <SearchAndFilterBar
-            placeholder='search by horses, trainers or syndicates' />
+            placeholder='Search horses, trainer or syndicates' />
           <div className='container'>
             <div className={modifiedClassGalleryCols}>
               <HorseCardGallery
