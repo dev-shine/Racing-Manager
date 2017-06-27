@@ -30,7 +30,7 @@ const Button = props => {
       className={modifiedClassNames}
       style={style}
       onClick={!isDisabled && onClick}
-      disabled={isDisabled || !onClick}>
+      disabled={isDisabled}>
       {children}
     </button>
   )

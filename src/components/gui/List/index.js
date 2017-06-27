@@ -5,7 +5,7 @@ import classNames from 'utils/classnames'
 const List = props => {
   const { items, className, modifier } = props
 
-  const modifiedClassNames = classNames('disc-list', className, modifier)
+  const modifiedClassNames = classNames('list', className, modifier)
 
   return (
     <ul className={modifiedClassNames}>
