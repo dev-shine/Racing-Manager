@@ -22,14 +22,17 @@
     }
   }
 
-  &__search-container {
-    @media all and (max-width: $screen-sm) {
+  &__mobile-search {
+    @media all and (max-width: $screen-md) {
       position: absolute !important;
       width: 100%;
       top: 0;
       left: 0;
       height: 100%;
-      z-index: 2;
     }
+  }
+
+  &__search-input {
+    z-index: 2;
   }
 }

@@ -1,14 +1,9 @@
 .horse-card-gallery {
   position: relative;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   padding-top: 20px;
-
-  @media all and (min-width: $screen-sm-min) {
-    justify-content: left;
-  }
+  text-align: center;
+  @include clearfix();
 
   &__item {
     position: relative;
@@ -17,9 +12,9 @@
     @media all and (min-width: $screen-xs-min) {
       padding: 0 20px 40px 0px;
     }
+  }
 
-    @media all and (min-width: $screen-md-min) {
-      max-width: 282px;
-    }
+  &__card {
+    display: inline-block;
   }
 }

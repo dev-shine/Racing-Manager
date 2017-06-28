@@ -14,14 +14,19 @@ import PropTypes from 'prop-types'
 import SearchInput from 'components/input/SearchInput'
 
 /**
- *  @module Select
+ *  @module SortSelect
  */
-import Select from 'components/input/Select'
+import SortSelect from 'components/input/SortSelect'
 
 /**
  *  @module Icon
  */
 import Icon from 'components/icon'
+
+/**
+ *  @module MediaQuery
+ */
+import MediaQuery from 'react-responsive'
 
 /**
  *  @name SearchAndFilterBar
@@ -44,26 +49,44 @@ class SearchAndFilterBar extends Component {
       <div className='search-filter-bar section-shadow--bottom'>
         <div className='container'>
           <div className='row relative'>
-            <div className='col-md-5 align-middle search-filter-bar__search-container'>
+            <div className='col-md-5 align-middle search-filter-bar__mobile-search'>
               <SearchInput
                 name='search'
+                containerClassName='search-filter-bar__search-input'
                 placeholder={placeholder} />
             </div>
-            <div className='col-sm-3 col-sm-push-1 col-md-3 col-md-push-1 align-middle'>
-              <Select
-                title={sortTitle}>
-                <option value='lowest to highest'>lowest to highest</option>
-                <option value='highest to lowest'>highest to lowest</option>
-              </Select>
-            </div>
-            <div className='col-sm-3 col-sm-push-1 col-md-3 col-md-push-1 align-middle text-center'>
-              <h5 className='uppercase search-filter-bar__filter-text'>
-                filter the {resultsAmount} results
-              </h5>
-              <Icon
-                className='search-filter-bar__dropdown'
-                modifier='dropdown'/>
-            </div>
+            <MediaQuery minWidth={768}>
+              <div className='col-xs-push-2 col-sm-4 col-sm-push-2 col-md-3 col-md-push-1 align-middle'>
+                <SortSelect
+                  title={sortTitle}>
+                  <option value='lowest to highest'>lowest to highest</option>
+                  <option value='highest to lowest'>highest to lowest</option>
+                </SortSelect>
+              </div>
+            </MediaQuery>
+            <MediaQuery minWidth={768}>
+              <div className='col-xs-push-2 col-sm-push-3 col-md-3 col-md-push-1 text-center align-middle'>
+                <h5 className='uppercase search-filter-bar__filter-text'>
+                  filter the {resultsAmount} results
+                </h5>
+                <Icon
+                  className='search-filter-bar__dropdown'
+                  modifier='dropdown'/>
+              </div>
+            </MediaQuery>
+            {/* Mobile */}
+            <MediaQuery maxWidth={767}>
+              <div>
+                <h5 className='uppercase search-filter-bar__filter-text'>
+                  filter
+                </h5>
+                <SortSelect
+                  title={sortTitle}>
+                  <option value='lowest to highest'>lowest to highest</option>
+                  <option value='highest to lowest'>highest to lowest</option>
+                </SortSelect>
+              </div>
+            </MediaQuery>
           </div>
         </div>
       </div>

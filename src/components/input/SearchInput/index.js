@@ -24,6 +24,16 @@ import Icon from 'components/icon'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module throttle
+ */
+import throttle from 'utils/throttle'
+
+/**
+ *  @module omit
+ */
+import omit from 'utils/objectutils/omit'
+
+/**
  *  @class
  *  @name SearchInput
  *  @extends {Component}
@@ -40,6 +50,9 @@ class SearchInput extends Component {
     // Bind custom fn
     this.openSearch = this.openSearch.bind(this)
     this.closeSearch = this.closeSearch.bind(this)
+    this.onResize = this.onResize.bind(this)
+
+    this.throttledResize = throttle(this.onResize)
   }
 
   /**
@@ -62,18 +75,33 @@ class SearchInput extends Component {
     })
   }
 
+  /**
+   *  onResize
+   *  @description Callback for window resizing
+   */
+  onResize () {
+
+  }
+
   render () {
+    const {
+      containerClassName
+    } = this.props
+
     const {
       open
     } = this.state
 
-    const modifiedClassNames = classNames('search-input', '', {
+    const modifiedClassNames = classNames('search-input', containerClassName, {
       'active': open
     })
 
-    const closeModifiedClassNames = classNames('search-input__close-container', 'hidden-sm-up', {
+    const closeModifiedClassNames = classNames('search-input__close-container', 'hidden-md-up', {
       'active': open
     })
+
+    // Props for the input excluding any props meant for parent component.
+    const inputProps = omit(this.props, ['containerClassName'])
 
     return (
       <div className={modifiedClassNames}>
@@ -82,7 +110,7 @@ class SearchInput extends Component {
           className='search-input__glass absolute-center-v'
           modifier='magnifying-glass' />
         <Input
-          {...this.props} />
+          {...inputProps} />
         <div className={closeModifiedClassNames}>
           <Icon
             onClick={this.closeSearch}
@@ -95,7 +123,7 @@ class SearchInput extends Component {
 }
 
 SearchInput.propTypes = {
-
+  containerClassName: PropTypes.string
 }
 
 /**

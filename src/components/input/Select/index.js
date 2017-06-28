@@ -19,11 +19,6 @@ import InputLine from 'components/input/InputLine'
 import classNames from 'utils/classnames'
 
 /**
- *  @module Icon
- */
-import Icon from 'components/icon'
-
-/**
  *  @name Select
  */
 const Select = props => {
@@ -36,8 +31,7 @@ const Select = props => {
     value,
     error,
     onChange,
-    defaultValue,
-    title
+    defaultValue
   } = props
 
   const modifiedClassNames = classNames('select', className, modifier)
@@ -51,28 +45,16 @@ const Select = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <div className='select__left visible-sm-up'>
-        <h6 className='secondary-font uppercase'>
-          {title}
-        </h6>
-      </div>
-      <div className='select__middle'>
-        <select
-          className='select__select-input'
-          name={name}
-          defaultValue={defaultValue}
-          placeholder={placeholder}
-          onChange={onChange}
-          value={value}>
-          {children}
-        </select>
-        <InputLine error={hasError} className='visible-sm-up' />
-      </div>
-      <div className='select__right visible-sm-up'>
-        <Icon
-          className='select__dropdown-icon'
-          modifier='dropdown' />
-      </div>
+      <select
+        className='select__select-input'
+        name={name}
+        defaultValue={defaultValue}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}>
+        {children}
+      </select>
+      <InputLine error={hasError} />
     </div>
   )
 }
@@ -83,7 +65,6 @@ Select.defaultProps = {
   defaultValue: '',
   value: '',
   className: '',
-  title: ''
 }
 
 Select.propTypes = {
@@ -100,8 +81,7 @@ Select.propTypes = {
   ]),
   name: PropTypes.string,
   defaultValue: PropTypes.string,
-  handleChange: PropTypes.func,
-  title: PropTypes.string
+  handleChange: PropTypes.func
 }
 
 /**

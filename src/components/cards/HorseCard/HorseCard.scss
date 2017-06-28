@@ -5,13 +5,13 @@
   $info-section-padding: 8px 15px 8px 15px;
 
   position: relative;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   max-height: 464px;
   text-align: left;
   
   @media all and (min-width: $screen-sm-min) {
     width: 266px;
-    // height: 456px; // If problems persist with diff heights then activate this.
   }
 
   &__wrapper {
