@@ -1,0 +1,14 @@
+.filter-panel {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+
+  @media all and (min-width: $screen-md) {
+    padding: 40px 0;
+  }
+
+  &__title {
+    margin-bottom: 15px;
+    color: $outer-space;
+  }
+}

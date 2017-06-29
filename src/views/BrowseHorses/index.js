@@ -34,6 +34,11 @@ import HorseCardGallery from 'components/cards/HorseCardGallery'
 import SearchAndFilterBar from 'components/searchandfilter/SearchAndFilterBar'
 
 /**
+ *  @module FilterPanel
+ */
+import FilterPanel from 'components/searchandfilter/FilterPanel'
+
+/**
  *  @module classNames
  */
 import classNames from 'classnames'
@@ -67,6 +72,7 @@ export class BrowseHorses extends Component {
           <SearchAndFilterBar
             placeholder='Search horses, trainer or syndicates' />
           <div className='container'>
+            <FilterPanel />
             <div className={modifiedClassGalleryCols}>
               <HorseCardGallery
                 threeCol={filterOpen}
