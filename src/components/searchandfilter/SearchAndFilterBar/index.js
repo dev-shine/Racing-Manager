@@ -16,7 +16,7 @@ import SearchInput from 'components/input/SearchInput'
 /**
  *  @module SortSelect
  */
-import SortSelect from 'components/input/SortSelect'
+import SortSelect, { Option } from 'components/input/SortSelect'
 
 /**
  *  @module Icon
@@ -58,9 +58,10 @@ class SearchAndFilterBar extends Component {
             <MediaQuery minWidth={768}>
               <div className='col-xs-push-2 col-sm-4 col-sm-push-2 col-md-3 col-md-push-1 align-middle'>
                 <SortSelect
+                  defaultValue='lowest to highest'
                   title={sortTitle}>
-                  <option value='lowest to highest'>lowest to highest</option>
-                  <option value='highest to lowest'>highest to lowest</option>
+                  <Option value='lowest to highest'>lowest to highest</Option>
+                  <Option value='highest to lowest'>highest to lowest</Option>
                 </SortSelect>
               </div>
             </MediaQuery>
@@ -76,14 +77,18 @@ class SearchAndFilterBar extends Component {
             </MediaQuery>
             {/* Mobile */}
             <MediaQuery maxWidth={767}>
-              <div>
+              <div className='search-filter-bar__mobile'>
                 <h5 className='uppercase search-filter-bar__filter-text'>
                   filter
                 </h5>
+                <h5 className='search-filter-bar__filter-text search-filter-bar__filter-text--pipe'>|</h5>
                 <SortSelect
+                  mobileText={'Sort by'}
+                  className='search-filter-bar__mobile__sort-select'
+                  defaultValue='lowest to highest'
                   title={sortTitle}>
-                  <option value='lowest to highest'>lowest to highest</option>
-                  <option value='highest to lowest'>highest to lowest</option>
+                  <Option value='lowest to highest'>lowest to highest</Option>
+                  <Option value='highest to lowest'>highest to lowest</Option>
                 </SortSelect>
               </div>
             </MediaQuery>

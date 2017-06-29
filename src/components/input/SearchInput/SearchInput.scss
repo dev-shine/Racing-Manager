@@ -1,5 +1,5 @@
 .search-input {
-  $icon-margin-top: -3px;
+  $icon-margin-top: 0;
 
   position: relative;
   width: 0;
@@ -30,6 +30,11 @@
 
   input {
     padding-left: 25px;
+    
+    @media all and (max-width: $screen-md) {
+      border: 0;
+      line-height: initial;
+    }
 
     @media all and (min-width: $screen-md-min) {
       padding-right: 25px;

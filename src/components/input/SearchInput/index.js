@@ -110,6 +110,7 @@ class SearchInput extends Component {
           className='search-input__glass absolute-center-v'
           modifier='magnifying-glass' />
         <Input
+          inputClassName='visible-md-up'
           {...inputProps} />
         <div className={closeModifiedClassNames}>
           <Icon

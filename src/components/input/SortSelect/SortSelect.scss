@@ -21,16 +21,16 @@
   }
 
   &__right {
-    position: relative;
     padding-left: 15px;
+    right: 0;
+    left: initial;
+    margin-top: -2px;
   }
 
   &__select-input {
-    select {   
-      @media all and (max-width: $screen-sm) {
-        // border: 0;
-        width: auto;
-      }
+    @media all and (max-width: $screen-xs) {
+      border: 0;
+      width: auto;
     }
   }
 

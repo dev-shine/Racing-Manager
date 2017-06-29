@@ -45,7 +45,8 @@ const Input = props => {
     handleSubmit,
     handleBlur,
     handleFocus,
-    handleChange
+    handleChange,
+    inputClassName
   } = props
 
   /**
@@ -55,15 +56,14 @@ const Input = props => {
    */
   const hasError = error && !!error.length
 
-  /**
-   *  className
-   *  @const
-   *  @type {String}
-   */
-  const className = classNames('input')
+  // Class names for the container
+  const modifiedClassName = classNames('input')
+
+  // Class names for the input line
+  const inputLineClassNames = classNames('input__line', inputClassName)
 
   return (
-    <div className={className}>
+    <div className={modifiedClassName}>
       <input
         className='input__input-element'
         type={type}
@@ -74,7 +74,7 @@ const Input = props => {
         onBlur={handleBlur}
         onFocus={handleFocus}
         onChange={handleChange} />
-      <InputLine error={hasError} />
+      <InputLine error={hasError} className={inputLineClassNames} />
       <Accordion
         className='input__accordion'
         isOpen={hasError}>
@@ -108,7 +108,8 @@ Input.propTypes = {
   handleSubmit: PropTypes.func,
   handleBlur: PropTypes.func,
   handleFocus: PropTypes.func,
-  handleChange: PropTypes.func
+  handleChange: PropTypes.func,
+  inputClassName: PropTypes.string
 }
 
 /**

@@ -50,7 +50,8 @@ InputLine.propTypes = {
   ]),
   modifier: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.object
   ])
 }
 

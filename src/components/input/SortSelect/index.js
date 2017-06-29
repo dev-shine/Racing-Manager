@@ -16,7 +16,7 @@ import classNames from 'utils/classnames'
 /**
  *  @module Select
  */
-import Select from 'components/input/Select'
+import Select, { Option } from 'components/input/Select'
 
 /**
  *  @module Icon
@@ -34,10 +34,11 @@ import omit from 'utils/objectutils/omit'
 const SortSelect = props => {
   const {
     title,
-    children
+    children,
+    className
   } = props
 
-  const modifiedClassNames = classNames('sort-select')
+  const modifiedClassNames = classNames('sort-select', className)
 
   // Props for the select component
   const selectProps = omit(props, ['title', 'children'])
@@ -57,7 +58,7 @@ const SortSelect = props => {
           {children}
         </Select>
       </div>
-      <div className='sort-select__right visible-sm-up'>
+      <div className='sort-select__right visible-sm-up absolute-center-v'>
         <Icon
           className='sort-select__dropdown-icon'
           modifier='dropdown' />
@@ -72,6 +73,10 @@ SortSelect.defaultProps = {
 
 SortSelect.propTypes = {
   title: PropTypes.string
+}
+
+export {
+  Option
 }
 
 /**
