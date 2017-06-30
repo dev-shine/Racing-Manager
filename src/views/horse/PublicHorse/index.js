@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import View from 'components/common/View'
-import titleize from 'titleize'
+import capitalize from 'utils/capitalize'
 
 import AjaxLoader from 'components/ajaxloader'
 import { fetchHorseInfo } from 'actions/horse'
@@ -20,7 +20,8 @@ import HorseHeader from 'components/horse/HorseHeader'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
 import HorseCard from 'components/cards/HorseCard'
 
-import { constructStaticUrl } from 'utils/horseutils'
+import { calcPercent, constructStaticUrl } from 'utils/horseutils'
+import { roundNumberWithoutZeros } from 'utils/number'
 
 // mockup data
 import {
@@ -51,11 +52,19 @@ class PublicHorse extends Component {
       name,
       owner = {},
       description,
+      shares = {
+        owned: 0,
+        total: 0
+      },
       messages = []
     } = data
 
     const { name: ownerName, slug } = owner
     const syndicateLink = `/syndicate/${slug}`
+
+    const eachShare = roundNumberWithoutZeros(
+      calcPercent(1, shares.total)
+    )
 
     const updatesInfo = (
       <p className='public-horse__updates-info'>
@@ -104,7 +113,7 @@ class PublicHorse extends Component {
     ))
 
     return (
-      <View title={titleize(name || '')} notPrefixed>
+      <View title={capitalize(name)} notPrefixed>
         <div className='public-horse'>
           <div className='public-horse__header'>
             <HorseHeader
@@ -254,11 +263,11 @@ class PublicHorse extends Component {
                       value: '-'
                     }]}
                     extra={{
-                      title: '5 of 20 shares available',
-                      text: '*each share is equivalent to 5%'
+                      title: `${shares.owned} of ${shares.total} shares available`,
+                      text: `*each share is equivalent to ${eachShare}%`
                     }}
                     isMember={false}
-                    bottomUrl={syndicateLink}
+                    bottomUrl={null}
                     className='horse-card-gallery__card'
                   />
                 </div>

@@ -181,15 +181,18 @@ class HorseCard extends Component {
               </div>
             </div>
           </div>
-          <div className='horse-card__bottom-button'>
-            <Link to={bottomUrl}>
-              <TextButton
-                text={isMember ? 'Syndicate Page' : 'more details'}
-                className='horse-card__button'
-                modifier='secondary'
-                onClick={noop} />
-            </Link>
-          </div>
+          {bottomUrl && (
+              <div className='horse-card__bottom-button'>
+                <Link to={bottomUrl}>
+                  <TextButton
+                    text={isMember ? 'Syndicate Page' : 'more details'}
+                    className='horse-card__button'
+                    modifier='secondary'
+                  />
+                </Link>
+              </div>
+            )
+          }
         </div>
       </div>
     )

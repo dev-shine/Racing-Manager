@@ -165,7 +165,7 @@ export const deleteHorseMedia = () => ({
 
 /**
  *  fetchHorseInfo [async]
- *  @param {Object} data
+ *  @param {String} name
  *  @return {Function}
  */
 export const fetchHorseInfo = name => {

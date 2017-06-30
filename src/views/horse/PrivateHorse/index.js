@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import titleize from 'titleize'
 
 import View from 'components/common/View'
+import capitalize from 'utils/capitalize'
 
 import AjaxLoader from 'components/ajaxloader'
 import { fetchHorseInfo } from 'actions/horse'
@@ -16,11 +16,12 @@ import Separator from 'components/gui/Separator'
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseAccordion from 'components/horse/HorseAccordion'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
-// import SubmitPost from 'containers/horseOverview/SubmitPost'
+import SubmitPost from 'containers/horseOverview/SubmitPost'
 import FeedGallery from 'components/tiles/FeedGallery'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent } from 'utils/horseutils'
+import { roundNumberWithoutZeros } from 'utils/number'
 
 // mockup data
 import {
@@ -66,6 +67,10 @@ export class PrivateHorse extends Component {
     const ownershipYears = 2
     const ownershipEndDate = timestampToDate(
       new Date(new Date().setFullYear(new Date().getFullYear() + ownershipYears))
+    )
+
+    const percentShares = roundNumberWithoutZeros(
+      calcPercent(shares.owned, shares.total)
     )
 
     const aboutSection = (
@@ -120,7 +125,7 @@ export class PrivateHorse extends Component {
           <List items={[
             `${ownershipYears} years fixed period ownership`,
             `Ends on ${ownershipEndDate}`,
-            `You own ${calcPercent(shares.owned, shares.total).toFixed(2)}% shares (${shares.owned} out of ${shares.total})`,
+            `You own ${percentShares}% shares (${shares.owned} out of ${shares.total})`,
           ]} />
           <h4 className='uppercase private-horse__benefits-title'>
             Benefits
@@ -131,7 +136,7 @@ export class PrivateHorse extends Component {
     )
 
     return (
-      <View title={titleize(data.name || '')} notPrefixed>
+      <View title={capitalize(data.name)} notPrefixed>
         <div className='horse-overview'>
           <HorseHeader
             data={data}
@@ -206,6 +211,12 @@ export class PrivateHorse extends Component {
               <h1 className='horse-overview__main-title horse-overview__update-title'>
                 Updates
               </h1>
+              <div className='col-xs-12 col-sm-10 col-sm-push-1'>
+                <SubmitPost
+                  title='post an update to the horse'
+                  horseId={_id}
+                />
+              </div>
             </div>
           </div>
           <div className='horse-overview__grid container'>
@@ -234,56 +245,3 @@ export default (connect(
   mapStateToProps,
   mapDispatchToProps
 )(PrivateHorse))
-
-// const div = () => (
-//   <div>
-
-//   </div>
-// )
-
-/*
- const aboutData = {
- description,
- timeformComments,
- slug
- }
-
- const ownershipYears = 2
- const ownershipEndDate = timestampToDate(
- new Date(new Date().setFullYear(new Date().getFullYear() + ownershipYears))
- )
-
- const ownershipData = [
- `${ownershipYears} years fixed period ownership`,
- `Ends on ${ownershipEndDate}`,
- `You own ${calcPercent(shares.owned, shares.total).toFixed(2)}% shares (${shares.owned} out of ${shares.total})`,
- ]
-
- 1.<HorseAboutInfo data={aboutData} />
-
- 2
- <h1 className='horse-header__description-title'>
- Your Involvement
- </h1>
- <Separator modifier='white' />
- <HorseOwnershipInfo data={ownershipData} />
- <HorseBenefitsInfo data={benefitsList} />
-
-
- 3
-
- <div className='container'>
- <h1 className='horse-header__medium-title'>
- Your Involvement
- </h1>
- <Separator modifier='white' />
- <HorseOwnershipInfo data={ownershipData} />
- </div>
- <div className='container'>
- <h1 className='horse-header__medium-title'>
- Your Involvement
- </h1>
- <Separator modifier='white' />
- <HorseBenefitsInfo data={benefitsList} />
- </div>
- */
