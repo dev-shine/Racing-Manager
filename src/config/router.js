@@ -35,6 +35,7 @@ const router = (
             <Route path='/browsehorses' component={BrowseHorses} />
             <PrivateRoute path='/dashboard' component={MemberDashboard} />
             <PrivateRoute path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
+            <Route path='/phorse/:name' component={PublicHorse} />
             <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <Route component={PageNotFound} />
           </Switch>

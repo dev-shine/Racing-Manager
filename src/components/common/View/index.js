@@ -5,10 +5,10 @@ import DocumentTitle from 'react-document-title'
 import { SITE_NAME as prefix } from 'data/titles'
 
 const View = props => {
-  const { title, isPrefixed, children: Component } = props
+  const { title, notPrefixed, children: Component } = props
 
   const prefixedTitle = `${prefix} - ${title}`
-  const documentTitle = isPrefixed ? prefixedTitle : title
+  const documentTitle = !notPrefixed ? prefixedTitle : title
 
   return (
     <DocumentTitle title={documentTitle}>
@@ -19,13 +19,13 @@ const View = props => {
 
 View.propTypes = {
   title: PropTypes.string.isRequired,
-  isPrefixed: PropTypes.bool,
+  notPrefixed: PropTypes.bool,
   children: PropTypes.any
 }
 
 View.defaultProps = {
   title: '',
-  isPrefixed: true
+  notPrefixed: false
 }
 
 export default View

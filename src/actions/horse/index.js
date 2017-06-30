@@ -168,14 +168,16 @@ export const deleteHorseMedia = () => ({
  *  @param {Object} data
  *  @return {Function}
  */
-export const fetchHorseInfo = data => {
+export const fetchHorseInfo = name => {
   return (dispatch, getState) => {
     // Signal to the store a fetch is going to happen
     dispatch(gettingHorseInfo())
 
     return get({
       url: HORSE,
-      data
+      data: {
+        name
+      }
     })
     .then(verifyServerFormat)
     .then(formatHorseData)

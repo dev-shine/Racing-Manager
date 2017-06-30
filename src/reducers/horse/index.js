@@ -9,7 +9,7 @@ import {
   ADD_HORSE_MEDIA_FILES,
   CLEAR_HORSE_SUBMIT_DATA,
   DELETE_HORSE_MEDIA
-} from 'actions/horseoverview'
+} from 'actions/horse'
 
 /**
  * @name initialState
