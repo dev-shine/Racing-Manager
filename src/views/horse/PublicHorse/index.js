@@ -109,6 +109,7 @@ class PublicHorse extends Component {
         name={member.name}
         role={member.role}
         description={member.description}
+        className='public-horse__member-tile'
       />
     ))
 
@@ -157,8 +158,18 @@ class PublicHorse extends Component {
             <Carousel
               containerClassName='public-horse__mobile-carousel'
               ref='carousel'
+              slideWidth={0.33}
+              cellAlign='left'
+              breakPoints={{
+                400: {
+                  slideWidth: 1,
+                  cellAlign: 'center'
+                },
+                480: {
+                  slideWidth: 0.5
+                }
+              }}
               showArrows
-              slideWidth={'190px'}
             >
               {members}
             </Carousel>

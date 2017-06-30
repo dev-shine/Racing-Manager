@@ -221,7 +221,8 @@ export class PrivateHorse extends Component {
           </div>
           <div className='horse-overview__grid container'>
             <FeedGallery
-              tiles={messages} />
+              tiles={messages}
+            />
           </div>
           {(posting || fetching) && <AjaxLoader />}
         </div>
@@ -237,7 +238,7 @@ const mapStateToProps = ({ horse }) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getHorseInfo: () => {
     const name = ownProps.match.params.name
-    dispatch(fetchHorseInfo(name))
+    return dispatch(fetchHorseInfo(name))
   }
 })
 
