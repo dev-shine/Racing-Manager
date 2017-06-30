@@ -9,9 +9,14 @@ import React, { Component } from 'react'
 import Checkbox from 'components/input/Checkbox'
 
 /**
- *  @module TextButton
+ *  @module ToggleButton
  */
-import TextButton from 'components/buttons/TextButton'
+import ToggleButton from 'components/buttons/ToggleButton'
+
+/**
+ *  @module Counter
+ */
+import Counter from 'components/buttons/Counter'
 
 class FilterPanel extends Component {
   constructor (props) {
@@ -28,61 +33,66 @@ class FilterPanel extends Component {
             </h5>
             <Checkbox
               label='Fixed Period'
+              modifier={['blue']}
               name='fixed-period'/>
             <Checkbox
               label='Open Ended Period'
+              modifier={['blue']}
               name='open-ended-period'/>
           </div>
           <div className='col-sm-4 col-md-2'>
             <h5 className='uppercase filter-panel__title'>
               number of years
             </h5>
+            <Counter
+              min={1}
+              defaultCount={0}/>
           </div>
           <div className='col-sm-4 col-md-2'>
             <h5 className='uppercase filter-panel__title'>
               racing history
             </h5>
-            <TextButton
+            <ToggleButton
               text='Raced'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
-            <TextButton
+            <ToggleButton
               text='Unraced'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
           </div>
           <div className='col-sm-4 col-md-2'>
             <h5 className='uppercase filter-panel__title'>
               age of horse
             </h5>
-            <TextButton
+            <ToggleButton
               text='0-2'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
-            <TextButton
+            <ToggleButton
               text='3-5'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
-            <TextButton
+            <ToggleButton
               text='Older Horse'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
           </div>
           <div className='col-sm-4 col-md-2'>
             <h5 className='uppercase filter-panel__title'>
               racing type
             </h5>
-            <TextButton
+            <ToggleButton
               text='National Hunt'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
-            <TextButton
+            <ToggleButton
               text='Flat Racing'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
-            <TextButton
+            <ToggleButton
               text='Dual Purpose'
-              modifier={['fluid', 'secondary']}
+              modifier={['fluid', 'secondary-blue']}
               onClick={() => {}}/>
           </div>
         </div>

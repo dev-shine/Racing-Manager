@@ -8,13 +8,11 @@ $cta-hover-bg: darken($cta-button-bg, 10);
 $cta-active-bg: darken($cta-button-bg, 20);
 
 .text-button {
-  $blue: #2D87BD;
-
   min-width: 190px;
   height: $cta-button-height + $cta-mobile-additional-height;
   background: $cta-button-bg;
   text-transform: uppercase;
-  transition: background .25s;
+  transition: background .25s ease-out;
   padding: 0 5px;
   @media (min-width: $screen-md) {
     height: $cta-button-height;
@@ -68,10 +66,11 @@ $cta-active-bg: darken($cta-button-bg, 20);
       }
     }
     .text-button__text {
-      transition: color .25s;
+      transition: color .25s ease-out;
       color: $cta-button-bg;
     }
   }
+
   &--blue {
     background: $blue;
     border: 1px solid $blue;
@@ -88,7 +87,8 @@ $cta-active-bg: darken($cta-button-bg, 20);
       color: $blue;
     }
 
-    &:hover {
+    &:hover,
+    &.text-button--active {
       background: $blue;
 
       h6 {

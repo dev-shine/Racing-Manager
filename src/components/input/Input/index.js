@@ -46,7 +46,8 @@ const Input = props => {
     handleBlur,
     handleFocus,
     handleChange,
-    inputClassName
+    inputClassName,
+    inputLineClassName
   } = props
 
   /**
@@ -60,12 +61,15 @@ const Input = props => {
   const modifiedClassName = classNames('input')
 
   // Class names for the input line
-  const inputLineClassNames = classNames('input__line', inputClassName)
+  const inputLineClassNames = classNames('input__line', inputLineClassName)
+
+  // Class names for the input
+  const inputClassNames = classNames('input__input-element', inputClassName)
 
   return (
     <div className={modifiedClassName}>
       <input
-        className='input__input-element'
+        className={inputClassNames}
         type={type}
         name={name}
         value={value}
@@ -103,13 +107,16 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.string,
   validate: PropTypes.arrayOf(PropTypes.string),
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   error: PropTypes.array,
   handleSubmit: PropTypes.func,
   handleBlur: PropTypes.func,
   handleFocus: PropTypes.func,
   handleChange: PropTypes.func,
-  inputClassName: PropTypes.string
+  inputLineClassName: PropTypes.string
 }
 
 /**

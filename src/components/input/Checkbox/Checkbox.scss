@@ -40,4 +40,11 @@
   ~ .checkbox {
     margin-top: 20px;
   }
+
+  &--blue {
+    .checkbox__input:checked + .checkbox__element {
+      border-color: $blue;
+      background: $blue;
+    }
+  }
 }
