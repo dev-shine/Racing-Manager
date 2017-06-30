@@ -5,7 +5,7 @@ import classNames from 'utils/classnames'
 const HorseBigSection = props => {
   const { children, className, modifier } = props
 
-  const modifiedClassNames = classNames('horse-big-section', className, modifier)
+  const modifiedClassNames = classNames('horse-big-section horse-padding', className, modifier)
 
   return (
     <div className={modifiedClassNames}>

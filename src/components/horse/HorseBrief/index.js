@@ -5,44 +5,36 @@ import { Link } from 'react-router-dom'
 import capitalize from 'utils/capitalize'
 
 const HorseBrief = props => {
-  const { data } = props
-  const { name, age, color, gender, owner = {}, syndicateSlug } = data
+  const {
+    name,
+    age,
+    color,
+    gender,
+    owner = {},
+    slug
+  } = props
 
   return (
     <div className='horse-brief'>
-      <h1 className='horse-header__big-title'>
+      <h1 className='horse-brief__title'>
         {name}
       </h1>
-      <div className='horse-header__horse-brief'>
-        {age}yo <span className='horse-header__horse-gender'>{color} {gender}</span> Owned by: <Link to={`/syndicate/${syndicateSlug}`} className='link--italic horse-brief__owner'>{capitalize(owner.name)}</Link>
+      <div className='horse-brief__description'>
+        {age}yo <span className='horse-brief__gender'>{color} {gender}</span> Owned by: <Link to={`/syndicate/${slug}`} className='link--italic horse-brief__owner'>{capitalize(owner.name)}</Link>
       </div>
     </div>
   )
 }
 
 HorseBrief.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string,
-    age: PropTypes.string,
-    color: PropTypes.string,
-    gender: PropTypes.string,
-    owner: PropTypes.shape({
-      name: PropTypes.string
-    }),
-    syndicateSlug: PropTypes.string
+  name: PropTypes.string,
+  age: PropTypes.string,
+  color: PropTypes.string,
+  gender: PropTypes.string,
+  owner: PropTypes.shape({
+    name: PropTypes.string
   }),
-}
-
-HorseBrief.defaultProps = {
-  data: {
-    name: 'TOBEFAIR',
-    age: '7',
-    color: 'Bay',
-    gender: 'Gelding',
-    owner: {
-      name: 'Down the Quay Club'
-    },
-  },
+  slug: PropTypes.string
 }
 
 export default HorseBrief

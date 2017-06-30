@@ -21,7 +21,7 @@ import {
   updateHorseText,
   addHorseMediaFiles,
   deleteHorseMedia
-} from 'actions/horseoverview'
+} from 'actions/horse'
 
 /**
  *  mapStateToProps

@@ -1,11 +1,9 @@
 .horse-small-section {
-  color: white;
-  padding: 35px 0 25px;
-  background: darken(#00273A, 2%);
   position: relative;
   z-index: 2;
+  background: darken(#00273A, 2%);
 
   @media (min-width: $screen-md) {
-    padding: 55px 0 45px 30px;
+    padding-left: 30px;
   }
 }

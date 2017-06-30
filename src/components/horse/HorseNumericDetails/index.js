@@ -34,17 +34,4 @@ HorseNumericDetails.propTypes = {
   )
 }
 
-HorseNumericDetails.defaultProps = {
-  data: [
-    {
-      title: 'Runs',
-      value: 20
-    },
-    {
-      title: 'Wins',
-      value: 7
-    },
-  ],
-}
-
 export default HorseNumericDetails

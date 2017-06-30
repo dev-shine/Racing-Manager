@@ -166,15 +166,6 @@ export const horseValue = {
   )
 }
 
-export const publicAvailabilityList = [
-  '2 years fixed period',
-  'initial cost per percent, £14,300',
-  'ongoing monthly cost per percent, £800',
-  'Total cost per percent over lifespan, £33,500',
-  '5% available',
-  '3/12 member places available'
-]
-
 export const benefitsList = [
   'Pro rata prize money share',
   'Pro rata share of resale proceeds',
@@ -338,3 +329,5 @@ export const horse = {
     'total': 26
   }
 }
+
+export const horseQuote = 'The most incredible horse in Highclere’s history. ever.'

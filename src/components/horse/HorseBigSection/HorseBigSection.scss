@@ -1,13 +1,10 @@
 .horse-big-section {
-  color: white;
-  background: #00273A;
-  padding: 35px 0 25px;
   position: relative;
+  background: #00273A;
   z-index: 2;
 
   @media (min-width: $screen-md) {
     min-height: 100%;
-    padding: 55px 30px 45px 0;
     flex: 1;
   }
 }

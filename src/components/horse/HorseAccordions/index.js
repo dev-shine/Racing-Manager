@@ -6,7 +6,6 @@ import TextButton from 'components/buttons/TextButton'
 
 import HorseAccordion from 'components/horse/HorseAccordion'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
-import HorseParagraphSection from 'components/horse/HorseParagraphSection'
 
 // mockup data
 import {
@@ -27,11 +26,8 @@ const HorseAccordions = () => {
             syndicateMembers.map((member, index) => (
               <div key={index} className='col-xs-6 col-sm-3 col-md-2'>
                 <HorseTeamMember
-                  image={member.image}
-                  name={member.name}
-                  role={member.role}
-                  description={member.description}
                   className='horse-accordions__member'
+                  {...member}
                 />
               </div>
             ))
@@ -66,12 +62,24 @@ const HorseAccordions = () => {
       <HorseAccordion title='Racing plans'>
         <div className='horse-accordions__content container'>
           <div className='col-xs-12 col-md-7'>
-            <HorseParagraphSection title={racePlans.title}>
-              {racePlans.text}
-            </HorseParagraphSection>
-            <HorseParagraphSection title={horseValue.title}>
-              {horseValue.text}
-            </HorseParagraphSection>
+            <div>
+              <h1>
+                {racePlans.title}
+              </h1>
+              <Separator modifier='blue' />
+              <div>
+                {racePlans.text}
+              </div>
+            </div>
+            <div>
+              <h1>
+                {horseValue.title}
+              </h1>
+              <Separator modifier='blue' />
+              <div>
+                {horseValue.text}
+              </div>
+            </div>
           </div>
         </div>
       </HorseAccordion>

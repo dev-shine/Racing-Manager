@@ -18,9 +18,9 @@
     min-width: 400px;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    left: 0;
+    left: 20px;
     z-index: 2;
+    transform: translateY(-50%);
 
     .horse-header__details {
       padding: 20px 75px 30px;
@@ -71,25 +71,8 @@
 
 // ----
 
-  &__brief-info {
-    padding: 20px 0 25px;
-  }
-
-  &__horse-gender {
-    text-transform: capitalize;
-  }
-
-  &__big-title {
-    font-size: 45px;
-    text-transform: uppercase;
-  }
-
-  &__horse-brief {
-    margin-top: 15px;
-  }
-
   &__btn-details {
-    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
 // ----
@@ -119,18 +102,6 @@
 
   &__comment-title {
     margin: 20px 0 10px;
-  }
-
-  &__syndicate-button {
-    width: 205px;
-    display: block;
-    border: 1px solid white;
-    background: transparent;
-    margin: 25px auto 0;
-
-    @media (min-width: $screen-md) {
-      margin-left: 0;
-    }
   }
 
 // -----

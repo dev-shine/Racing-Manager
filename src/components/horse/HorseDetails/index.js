@@ -37,13 +37,7 @@ HorseDetails.propTypes = {
       isLink: PropTypes.bool,
       href: PropTypes.string
     })
-  ),
+  )
 }
 
 export default HorseDetails
-
-/*
-<Link to={item.href} className='link--italic'>
-  item.value ? capitalize(item.value) : '-'
-</Link>
-*/

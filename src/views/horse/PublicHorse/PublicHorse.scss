@@ -1,0 +1,125 @@
+.public-horse {
+
+  &__section {
+    padding-top: 35px;
+    padding-bottom: 45px;
+  }
+
+// Buttons --------------------------------------
+  &__buttons {
+    position: absolute;
+    left: 25px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: -60px;
+    background: white;
+    padding: 10px;
+
+    a {
+      display: block;
+
+      ~ a {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &__button {
+    width: 100%;
+  }
+
+  &__mobile-carousel {
+    .carousel-arrow--white .icon--leftarrow,
+    .carousel-arrow--white .icon--rightarrow {
+      color: black;
+    }
+  }
+
+// Hero -----------------------------------------
+  &__hero {
+    height: 500px;
+    position: relative;
+    background: #eee;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  &__hero-image {
+    width: 100%;
+    height: 500px;
+  }
+
+  &__hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e3e3e3;
+    opacity: 0.7;
+  }
+
+// Footer ---------------------------------------
+  &__footer {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: white;
+      box-shadow: rgba(0, 0, 0, 0.75) 0 20px 37px -37px inset;
+      
+      @media (min-width: $screen-sm) {
+        width: 50%;
+        height: 100%;
+      }
+    }
+  }
+
+  &__footer-cont {
+    position: relative;
+
+    @media (min-width: $screen-sm) {
+      display: flex;
+    }
+  }
+
+  &__involvement {
+    min-height: 600px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+
+    p, ul {
+      color: #00273A;
+    }
+  }
+
+  &__updates-info {
+    font-weight: 600;
+    margin-top: 15px;
+  }
+
+  &__availability-section {
+    margin-top: 25px;
+  }
+
+  &__join-button {
+    min-width: 265px;
+    margin-top: 30px;
+  }
+
+  &__horse-section {
+    min-height: 600px;
+    position: relative;
+    flex: 1;
+  }
+
+  &__horse-card {
+    position: absolute;
+  }
+}
