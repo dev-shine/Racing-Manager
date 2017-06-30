@@ -64,8 +64,10 @@ sup {
   text-transform: uppercase;
 }
 
-.m-paragraphs {
-  ~ .m-paragraphs {
-    margin-top: 10px;
-  }
+.pos-absolute {
+  position: absolute;
+}
+
+.pos-relative {
+  position: relative;
 }

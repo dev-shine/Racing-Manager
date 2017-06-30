@@ -28,3 +28,9 @@
     padding-bottom: 45px;
   }
 }
+
+.horse-paragraphs {
+  ~ .horse-paragraphs {
+    margin-top: 15px;
+  }
+}

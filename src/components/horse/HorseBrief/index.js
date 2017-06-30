@@ -28,7 +28,7 @@ const HorseBrief = props => {
 
 HorseBrief.propTypes = {
   name: PropTypes.string,
-  age: PropTypes.string,
+  age: PropTypes.number,
   color: PropTypes.string,
   gender: PropTypes.string,
   owner: PropTypes.shape({

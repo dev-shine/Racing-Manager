@@ -52,11 +52,11 @@ class HorseHeader extends Component {
       wins,
       places,
       trainer = {},
+      style,
       foalingDate,
       sire = {},
       dam = {},
-      featuredImage,
-      style,
+      featuredImage
     } = data
 
     const { slug } = owner
@@ -120,18 +120,22 @@ class HorseHeader extends Component {
           <Hero featuredImage={constructStaticUrl(featuredImage)} />
           <div className='horse-header__details-container visible-md-up'>
             <div className='horse-header__details-tile'>
-              <div className='horse-header__details section-shadow'>
-                <div className='horse-header__small-details'>
+              <div className='horse-header__details'>
+                <div className='horse-header__tile-padding'>
                   <HorseBrief {...briefData} />
-                  <HorseNumericDetails data={numericData} />
                 </div>
-                <HorseDetails data={detailsData} />
+                <div className='horse-header__tile-details horse-header__tile-padding section-shadow'>
+                  <HorseNumericDetails data={numericData} />
+                  <div className='horse-header__details-list'>
+                    <HorseDetails data={detailsData} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className='row visible-md-up'>
-          <div className='horse-header__content section-holder'>
+          <div className='horse-header__content'>
             <div className='container'>
               <HorseBigSection className='col-md-8'>
                 {leftSection}
@@ -155,7 +159,7 @@ class HorseHeader extends Component {
             </div>
           </div>
           <Accordion isOpen={isOpen}>
-            <div className='horse-header__details section-shadow'>
+            <div className='horse-header__details horse-header__mobile-details section-shadow'>
               <div className='container'>
                 <div className='row'>
                   <HorseNumericDetails data={numericData} />
@@ -168,13 +172,15 @@ class HorseHeader extends Component {
           </Accordion>
           {
             slideSection && (
-              <Carousel ref='carousel' showPagination>
-                {slideSection.map((slide, index) => (
-                  <div key={index}>
-                    {slide}
-                  </div>
-                ))}
-              </Carousel>
+              <HorseBigSection>
+                <Carousel ref='carousel' containerClassName='horse-header__slider' showPagination>
+                  {slideSection.map((slide, index) => (
+                    <div className='container' key={index}>
+                      {slide}
+                    </div>
+                  ))}
+                </Carousel>
+              </HorseBigSection>
             )
           }
         </div>

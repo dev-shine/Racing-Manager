@@ -1,5 +1,26 @@
 .horse-header {
 
+// Image ----------------------------------------
+  &__image {
+    position: relative;
+    background: #eee;
+
+    .parallax-hero__image {
+      height: 200px;
+      background-repeat: no-repeat;
+      background-position: top center;
+
+      @media (min-width: $screen-sm) {
+        height: 350px;
+      }
+
+      @media (min-width: $screen-md) {
+        height: 550px;
+      }
+    }
+  }
+
+// Header tile ----------------------------------
   &__details-container {
     width: auto;
 
@@ -21,11 +42,52 @@
     left: 20px;
     z-index: 2;
     transform: translateY(-50%);
+    background: white;
+    padding: 10px 0 30px;
+  }
 
-    .horse-header__details {
-      padding: 20px 75px 30px;
+  &__tile-padding {
+    padding: 0 45px 0 75px;
+  }
+
+  &__tile-details {
+    padding-top: 15px;
+  }
+
+  &__details-list {
+    margin-top: 10px;
+  }
+
+  &__mobile-details {
+    padding: 10px 0;
+  }
+
+// Section --------------------------------------
+  &__content {
+    display: flex;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      width: 50%;
+      height: 100%;
+      top: 0;
+      position: absolute;
+      z-index: 1;
+    }
+
+    &::before {
+      left: 0;
+      background: #00273A;
+    }
+
+    &::after {
+      right: 0;
+      background: darken(#00273A, 2%);
     }
   }
+
 
 // ----
 
@@ -37,37 +99,9 @@
     }
   }
 
-  &__small-title {
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  &__medium-title {
-    color: white;
-    font-size: 30px;
-  }
-
 // ----
 
-  &__image {
-    position: relative;
-    background: #eee;
 
-    .parallax-hero__image {
-      height: 200px;
-      background-repeat: no-repeat;
-      background-position: top center;
-
-      @media (min-width: $screen-sm) {
-        height: 350px;
-      }
-
-      @media (min-width: $screen-md) {
-        height: 550px;
-      }
-    }
-  }
 
 // ----
 
@@ -77,28 +111,19 @@
 
 // ----
 
-  &__details {
-    color: #6D6E71;
-    font-size: 12px;
-    padding-top: 15px;
-    padding-bottom: 25px;
-    background: #fff;
-
-    @media (min-width: $screen-md) {
-      box-shadow: none;
-    }
-  }
-
-  &__details-prices {
-    margin-top: 20px;
-  }
+  //&__details {
+  //  color: #6D6E71;
+  //  font-size: 12px;
+  //  padding-top: 15px;
+  //  padding-bottom: 25px;
+  //  background: #fff;
+  //
+  //  @media (min-width: $screen-md) {
+  //    box-shadow: none;
+  //  }
+  //}
 
 // ----
-
-  &__content {
-    display: flex;
-    //margin-bottom: 230px; add this later
-  }
 
   &__comment-title {
     margin: 20px 0 10px;
@@ -113,17 +138,20 @@
     }
   }
 
-  &__read-more {
-    color: white;
-    display: block;
-    margin-top: 20px;
+// Slider ---------------------------------------
+  &__slider {
+    .nica-carousel__slide {
+      padding-bottom: 30px;
+    }
   }
 
-  &__team {
-    width: 100%;
-    position: absolute;
-    bottom: -230px;
-    left: 0;
-    z-index: 2;
+  &__text-section {
+    ~ .horse-header__text-section {
+      margin-top: 50px;
+    }
+  }
+
+  &__timeford-title {
+    margin-top: 15px;
   }
 }

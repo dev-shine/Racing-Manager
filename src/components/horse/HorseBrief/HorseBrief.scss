@@ -1,5 +1,5 @@
 .horse-brief {
-  margin: 20px 0;
+  margin: 15px 0;
 
   &__title {
     color: #00273A;
@@ -15,9 +15,5 @@
 
   &__owner {
     text-transform: none;
-  }
-
-  @media (min-width: $screen-sm) {
-    margin: 0;
   }
 }

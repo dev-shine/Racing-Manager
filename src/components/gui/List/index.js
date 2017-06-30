@@ -22,7 +22,7 @@ const List = props => {
 
 List.propTypes = {
   items: PropTypes.arrayOf(
-    PropTypes.string
+    PropTypes.any
   ).isRequired,
   className: PropTypes.oneOfType([
     PropTypes.string,

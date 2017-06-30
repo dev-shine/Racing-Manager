@@ -8,16 +8,13 @@ import titleize from 'titleize'
 import AjaxLoader from 'components/ajaxloader'
 import { fetchHorseInfo } from 'actions/horse'
 
-import Image from 'components/image'
+// import Image from 'components/image'
 // import Hero from 'components/parallax/Hero'
 import Separator from 'components/gui/Separator'
 import Table from 'components/gui/Table'
 import List from 'components/gui/List'
 import TextButton from 'components/buttons/TextButton'
 import Carousel from 'components/carousel'
-
-import HorseBigSection from 'components/horse/HorseBigSection'
-import HorseSmallSection from 'components/horse/HorseSmallSection'
 
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
@@ -30,13 +27,11 @@ import {
   syndicateMembers,
   tableStatistics,
   racePlans,
-  horseQuote,
   horseValue,
   benefitsList
 } from 'data/horse'
 
 import {
-  aboutDescription,
   availabilityList
 } from 'data/horse/publicHorse'
 
@@ -59,8 +54,14 @@ class PublicHorse extends Component {
       messages = []
     } = data
 
-    const { slug } = owner
+    const { name: ownerName, slug } = owner
     const syndicateLink = `/syndicate/${slug}`
+
+    const updatesInfo = (
+      <p className='public-horse__updates-info'>
+        There are {messages.length} updates associated with this horse. Request to join and get full access.
+      </p>
+    )
 
     const aboutSection = (
       <div>
@@ -83,26 +84,24 @@ class PublicHorse extends Component {
 
     const availabilitySection = (
       <div>
-        <h4 className='uppercase'>
+        <h1>
           Availability
-        </h4>
+        </h1>
+        <Separator modifier='white' />
         <List items={availabilityList} />
+        {updatesInfo}
       </div>
     )
 
-    // TODO: Members
     const members = syndicateMembers.map((member, index) => (
       <HorseTeamMember
         key={index}
-        {...member}
+        image={member.image}
+        name={member.name}
+        role={member.role}
+        description={member.description}
       />
     ))
-
-    const updatesInfo = (
-      <p className='public-horse__updates-info'>
-        There are {messages.length} updates associated with this horse. Request to join and get full access.
-      </p>
-    )
 
     return (
       <View title={titleize(name || '')} notPrefixed>
@@ -115,14 +114,12 @@ class PublicHorse extends Component {
                   {aboutSection}
                   <div>
                     {/* TODO: Members */}
-                    {/* {members} */}
                   </div>
                 </div>
               )}
               rightSection={(
                 <div>
                   {availabilitySection}
-                  {updatesInfo}
                   <div className='public-horse__buttons section-shadow section-shadow--tile section-shadow--bottom'>
                     <Link to={syndicateLink}>
                       <TextButton
@@ -141,22 +138,9 @@ class PublicHorse extends Component {
                   </div>
                 </div>
               )}
-              mobileSection={aboutSection}
               slideSection={[
-                (
-                <HorseBigSection>
-                  <div className='container'>
-                    {aboutSection}
-                  </div>
-                </HorseBigSection>
-                ), (
-                <HorseSmallSection>
-                  <div className='container'>
-                    {availabilitySection}
-                    {updatesInfo}
-                  </div>
-                </HorseSmallSection>
-                )
+                aboutSection,
+                availabilitySection
               ]}
             />
           </div>
@@ -190,19 +174,14 @@ class PublicHorse extends Component {
           </div>
           <div className='public-horse__hero'>
             <div className='public-horse__hero-overlay' />
-            <Image
-              className='public-horse__hero-image'
-              imageSrc={constructStaticUrl(data.featuredImage)}
-              setRef={() => {}}
-            />
             <h1 className='absolute-center'>
-              {horseQuote}
+              The most incredible horse in {ownerName}’s history. ever.
             </h1>
           </div>
           <div className='public-horse__section container'>
             <div className='col-xs-12 col-md-7 no-padding'>
               <h1>
-                Expectations
+                {horseValue.title}
               </h1>
               <Separator modifier='blue' />
               <div>
@@ -210,9 +189,9 @@ class PublicHorse extends Component {
               </div>
             </div>
           </div>
-          <div className='public-horse__footer wave-bg section-shadow'>
-            <div className='public-horse__footer-cont container'>
-              <div className='public-horse__involvement col-xs-12 col-sm-6'>
+          <div className='public-horse__footer-section wave-bg section-shadow'>
+            <div className='container pos-relative'>
+              <div className='public-horse__involvement-section col-xs-12 col-sm-6'>
                 <h1>
                   Involvement
                 </h1>
@@ -220,13 +199,16 @@ class PublicHorse extends Component {
                 <h4 className='uppercase'>
                   Benefits
                 </h4>
-                <p className='hidden'>
+                <p className='public-horse__benefits-description'>
                   For this filly we offer the following guarantee:  If due to injury or retirement, this filly's season is cut short and will not race again, and she has not raced at least twice, we will replace her with a similar horse for the remainder of the 2017 turf season. Please note that we are unable to pay prizemoney on any replacements and the replacement will be a horse of our own choosing.
                 </p>
-                <List items={benefitsList} />
+                <List items={benefitsList} className='public-horse__benefits-list' />
                 {updatesInfo}
                 <div className='public-horse__availability-section'>
-                  {availabilitySection}
+                  <h4 className='uppercase'>
+                    Availability
+                  </h4>
+                  <List items={availabilityList} />
                 </div>
                 <Link to={syndicateLink}>
                   <TextButton
@@ -240,6 +222,7 @@ class PublicHorse extends Component {
                 {/* TODO: Update horse card */}
                 <div className='public-horse__horse-card absolute-center'>
                   <HorseCard
+                    isActive={true}
                     src={constructStaticUrl(data.thumbnailImage)}
                     title={data.name}
                     color={data.syndColor}
@@ -259,23 +242,24 @@ class PublicHorse extends Component {
                     }]}
                     info={[{
                       name: 'Trainer name',
-                      value: 'Jacob William Beckett'
+                      value: data.trainer && data.trainer.name
                     }, {
                       name: 'Syndicate name',
-                      value: 'Vitamin London'
+                      value: data.syndName
                     }, {
                       name: 'Initial cost/share',
-                      value: '£15,750 + VAT'
+                      value: '-'
                     }, {
                       name: 'Monthly cost/share',
-                      value: '£4,995 + VAT'
+                      value: '-'
                     }]}
                     extra={{
                       title: '5 of 20 shares available',
-                      text: '*each share is equivalent to 5%',
-                      updateAmount: 99,
-                      url: 'null'
+                      text: '*each share is equivalent to 5%'
                     }}
+                    isMember={false}
+                    bottomUrl={syndicateLink}
+                    className='horse-card-gallery__card'
                   />
                 </div>
               </div>
