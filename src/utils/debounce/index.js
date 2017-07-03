@@ -7,13 +7,13 @@
  */
 const debounce = (f, rate = 45) => {
   let timeout = 0
-  return () => {
+  return (...props) => {
     if (timeout !== 0) {
       clearTimeout(timeout)
     }
     timeout = setTimeout(() => {
       timeout = 0
-      f()
+      f(...props)
     }, rate)
   }
 }

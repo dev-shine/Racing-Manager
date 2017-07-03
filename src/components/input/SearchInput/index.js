@@ -24,9 +24,9 @@ import Icon from 'components/icon'
 import classNames from 'utils/classnames'
 
 /**
- *  @module throttle
+ *  @module debounce
  */
-import throttle from 'utils/throttle'
+import debounce from 'utils/debounce'
 
 /**
  *  @module omit
@@ -50,9 +50,10 @@ class SearchInput extends Component {
     // Bind custom fn
     this.openSearch = this.openSearch.bind(this)
     this.closeSearch = this.closeSearch.bind(this)
-    this.onResize = this.onResize.bind(this)
+    this.handleSearchResult = this.handleSearchResult.bind(this)
+    this.emitSearchResult = this.emitSearchResult.bind(this)
 
-    this.throttledResize = throttle(this.onResize)
+    this.debouncedSearch = debounce(this.emitSearchResult, 400)
   }
 
   /**
@@ -75,12 +76,17 @@ class SearchInput extends Component {
     })
   }
 
-  /**
-   *  onResize
-   *  @description Callback for window resizing
-   */
-  onResize () {
+  handleSearchResult (event) {
+    const value = event.target.value
+    this.debouncedSearch(value)
+  }
 
+  emitSearchResult (value) {
+    const {
+      onChange
+    } = this.props
+
+    onChange && onChange(value)
   }
 
   render () {
@@ -101,7 +107,7 @@ class SearchInput extends Component {
     })
 
     // Props for the input excluding any props meant for parent component.
-    const inputProps = omit(this.props, ['containerClassName'])
+    const inputProps = omit(this.props, ['containerClassName', 'handleChange'])
 
     return (
       <div className={modifiedClassNames}>
@@ -111,6 +117,7 @@ class SearchInput extends Component {
           modifier='magnifying-glass' />
         <Input
           inputLineClassName='visible-md-up'
+          handleChange={this.handleSearchResult}
           {...inputProps} />
         <div className={closeModifiedClassNames}>
           <Icon
@@ -124,7 +131,8 @@ class SearchInput extends Component {
 }
 
 SearchInput.propTypes = {
-  containerClassName: PropTypes.string
+  containerClassName: PropTypes.string,
+  onChange: PropTypes.func
 }
 
 /**

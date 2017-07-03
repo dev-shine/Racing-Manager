@@ -191,6 +191,11 @@ class Select extends Component {
     const modifiedClassNames = classNames('select', modifier)
 
     const modifiedSelectClassNames = classNames('select__select-input', className)
+
+    const mobileTextClassNames = classNames('select__mobile-title', 'uppercase hidden-sm-up', {
+      'active': open
+    })
+
     /**
      *  hasError
      *  @const
@@ -202,7 +207,7 @@ class Select extends Component {
       <div className={modifiedClassNames} onClick={this.toggleDropDown}>
         <div className={modifiedSelectClassNames}>
           <h6 className='uppercase visible-sm-up'>{value}</h6>
-          <h5 className='uppercase hidden-sm-up'>{mobileText}</h5>
+          <h5 className={mobileTextClassNames}>{mobileText}</h5>
         </div>
         {
           showLine && <InputLine className='visible-sm-up' error={hasError} modifier={{active: open, 'left': true}} />

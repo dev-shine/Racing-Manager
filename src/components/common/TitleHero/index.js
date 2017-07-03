@@ -19,15 +19,20 @@ import Image from 'components/image'
 import { heroBg } from 'assets/images'
 
 /**
+ *  @module Hero
+ */
+import Hero from 'components/parallax/Hero'
+
+/**
  *  TitleHero
  *  @return {React.Component}
  */
 const TitleHero = ({title}) => {
   return (
     <div className='title-hero'>
-      <Image
+      <Hero
         className='title-hero__bg'
-        imageSrc={heroBg}/>
+        featuredImage={heroBg} />
       <div className='title-hero__title'>
         <div className='container'>
           <h1 className='uppercase'>{title}</h1>

@@ -29,6 +29,11 @@ import Icon from 'components/icon'
 import MediaQuery from 'react-responsive'
 
 /**
+ *  @module classNames
+ */
+import classNames from 'utils/classnames'
+
+/**
  *  @name SearchAndFilterBar
  *  @class
  *  @extends {Component}
@@ -42,8 +47,18 @@ class SearchAndFilterBar extends Component {
     const {
       placeholder,
       sortTitle,
-      resultsAmount
+      resultsAmount,
+      onFilterClick,
+      filterActive,
+      selectOptions,
+      defaultSortValue,
+      onSearchUpdate,
+      onSelectUpdate
     } = this.props
+
+    const mobileFilterClassNames = classNames('search-filter-bar__filter-text', 'uppercase search-filter-bar__click-text', {
+      'active': filterActive
+    })
 
     return (
       <div className='search-filter-bar section-shadow--bottom'>
@@ -52,21 +67,28 @@ class SearchAndFilterBar extends Component {
             <div className='col-md-5 align-middle search-filter-bar__mobile-search'>
               <SearchInput
                 name='search'
+                onChange={onSearchUpdate}
                 containerClassName='search-filter-bar__search-input'
                 placeholder={placeholder} />
             </div>
             <MediaQuery minWidth={768}>
               <div className='col-xs-push-2 col-sm-4 col-sm-push-2 col-md-3 col-md-push-1 align-middle'>
                 <SortSelect
-                  defaultValue='lowest to highest'
+                  onChange={onSelectUpdate}
+                  defaultValue={defaultSortValue}
                   title={sortTitle}>
-                  <Option value='lowest to highest'>lowest to highest</Option>
-                  <Option value='highest to lowest'>highest to lowest</Option>
+                  {
+                    selectOptions.map((value, index) => {
+                      return (
+                        <Option key={index} value={value}>{value}</Option>
+                      )
+                    })
+                  }
                 </SortSelect>
               </div>
             </MediaQuery>
             <MediaQuery minWidth={768}>
-              <div className='col-xs-push-2 col-sm-push-3 col-md-3 col-md-push-1 text-center align-middle'>
+              <div className='col-xs-push-2 col-sm-push-3 col-md-3 col-md-push-1 text-center align-middle search-filter-bar__click-text' onClick={onFilterClick}>
                 <h5 className='uppercase search-filter-bar__filter-text'>
                   filter the {resultsAmount} results
                 </h5>
@@ -78,17 +100,23 @@ class SearchAndFilterBar extends Component {
             {/* Mobile */}
             <MediaQuery maxWidth={767}>
               <div className='search-filter-bar__mobile'>
-                <h5 className='uppercase search-filter-bar__filter-text'>
+                <h5 className={mobileFilterClassNames} onClick={onFilterClick}>
                   filter
                 </h5>
                 <h5 className='search-filter-bar__filter-text search-filter-bar__filter-text--pipe'>|</h5>
                 <SortSelect
+                  onChange={onSelectUpdate}
                   mobileText={'Sort by'}
                   className='search-filter-bar__mobile__sort-select'
-                  defaultValue='lowest to highest'
+                  defaultValue={defaultSortValue}
                   title={sortTitle}>
-                  <Option value='lowest to highest'>lowest to highest</Option>
-                  <Option value='highest to lowest'>highest to lowest</Option>
+                  {
+                    selectOptions.map((value, index) => {
+                      return (
+                        <Option key={index} value={value}>{value}</Option>
+                      )
+                    })
+                  }
                 </SortSelect>
               </div>
             </MediaQuery>
@@ -102,13 +130,21 @@ class SearchAndFilterBar extends Component {
 SearchAndFilterBar.propTypes = {
   resultsAmount: PropTypes.number,
   placeholder: PropTypes.string,
-  sortTitle: PropTypes.string
+  sortTitle: PropTypes.string,
+  onFilterClick: PropTypes.func,
+  filterActive: PropTypes.bool,
+  selectOptions: PropTypes.array,
+  defaultSortValue: PropTypes.string,
+  onSearchUpdate: PropTypes.func,
+  onSelectUpdate: PropTypes.func
 }
 
 SearchAndFilterBar.defaultProps = {
   resultsAmount: 0,
   placeholder: '',
-  sortTitle: 'sort:'
+  sortTitle: 'sort:',
+  filterActive: false,
+  selectOptions: []
 }
 
 /**

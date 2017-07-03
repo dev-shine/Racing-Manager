@@ -34,3 +34,5 @@ export const HORSE = `${BASE_URL}/horse`
 export const DASHBOARD = `${BASE_URL}/user/dashboard`
 
 export const SYNDICATE = `${BASE_URL}/syndicate`
+
+export const SEARCH = `${BASE_URL}/search`

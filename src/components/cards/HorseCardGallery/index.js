@@ -43,7 +43,7 @@ class HorseCardGallery extends PureComponent {
         src={constructStaticUrl(entry.thumbnailImage)}
         title={entry.name}
         color={entry.syndColor}
-        subtitle={`${entry.age}yo ${entry.gender}`} // Needs to have the STYLE too!
+        subtitle={`${entry.age}yo ${entry.gender}, ${entry.racingType}`} // Needs to have the STYLE too!
         stats={[{
           name: 'runs',
           value: entry.runs
@@ -62,20 +62,20 @@ class HorseCardGallery extends PureComponent {
           value: entry.trainer.name
         }, {
           name: 'Syndicate name',
-          value: entry.syndName
+          value: entry.owner.name
         }, {
-          name: 'Initial cost/share',
-          value: '-'
+          name: 'Initial cost per %',
+          value: `£${entry.cost.initial} +VAT`
         }, {
-          name: 'Monthly cost/share',
-          value: '-'
+          name: 'Monthly cost per %',
+          value: `£${entry.cost.monthly} +VAT`
         }]}
         extra={{
-          title: '5 of 20 shares available',
-          text: '*each share is equivalent to 5%'
+          title: '12% available',
+          text: '1.5% minimum purchase'
         }}
         isMember={false}
-        bottomUrl={`/syndicate/${entry.syndSlug}`}
+        bottomUrl={`/horse/${entry.slug}`}
         className='horse-card-gallery__card'/>
     )
   }

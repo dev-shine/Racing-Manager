@@ -26,10 +26,6 @@
     > h6 {
       line-height: $input-height;
     }
-
-    > h5 {
-      color: $maastricht-blue;
-    }
   }
 
   &__results {
@@ -66,7 +62,7 @@
     width: 100%;
     cursor: pointer;
     transition: opacity .4s ease-out;
-    padding: 0 5px;
+    padding: 10px 5px;
     min-height: 35px;
 
     &:last-child {
@@ -88,6 +84,14 @@
           color: $white;
         }
       }
+    }
+  }
+
+  &__mobile-title {
+    color: $davys-gray;
+
+    &--active {
+      color: $space-cadet;
     }
   }
 }

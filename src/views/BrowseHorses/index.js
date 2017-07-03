@@ -43,50 +43,164 @@ import FilterPanel from 'components/searchandfilter/FilterPanel'
  */
 import classNames from 'classnames'
 
+/**
+ *  @module searchHorses
+ */
+import { searchHorses } from 'actions/browsehorses'
+
+/**
+ *  @module AjaxLoader
+ */
+import AjaxLoader from 'components/ajaxloader'
+
 export class BrowseHorses extends Component {
   constructor (props) {
     super(props)
 
+    // Initial state
     this.state = {
-      filterOpen: false
+      filterOpen: false,
+      filtering: {
+        ownershipType: {
+          fixedPeriod: false,
+          openEndedPeriod: false
+        },
+        numberOfYears: 1,
+        racingHistory: {
+          raced: false,
+          unraced: false
+        },
+        ageOfHorse: {
+          '0-2': false,
+          '3-5': false,
+          olderHorse: false
+        },
+        racingType: {
+          nationalHunt: false,
+          flatRacing: false,
+          dualPurpose: false
+        },
+        monthlyCostPerShare: {
+          min: 0,
+          max: 20000
+        }
+      },
+      searching: {
+        value: ''
+      },
+      sortOptions: [
+        'price lowest to highest',
+        'price highest to lowest',
+        'shares lowest to highest',
+        'shares highest to lowest'
+      ],
+      sorting: {
+        value: 'price lowest to highest'
+      },
+      resultsAmount: 0,
+      results: [],
+      searchingHorses: false
     }
+
+    // Bind custom Fn
+    this.searchForHorses = this.searchForHorses.bind(this)
+    this.toggleFilter = this.toggleFilter.bind(this)
+    this.onSearchUpdate = this.onSearchUpdate.bind(this)
+    this.onSelectUpdate = this.onSelectUpdate.bind(this)
+  }
+
+  componentWillMount () {
+    this.searchForHorses()
+  }
+
+  toggleFilter () {
+    this.setState((state) => ({
+      filterOpen: !state.filterOpen
+    }))
+  }
+
+  onSearchUpdate (value) {
+    this.setState({
+      searching: {
+        value
+      }
+    })
+  }
+
+  onSelectUpdate (value) {
+    this.setState({
+      sorting: {
+        value
+      }
+    })
+  }
+
+  searchForHorses () {
+    this.setState({
+      searchingHorses: true
+    })
+
+    searchHorses({
+      query: '',
+      sort: {
+        field: 'monthlyCost',
+        order: 'asc'
+      }
+    })
+    .then(({resultsAmount, results}) => {
+      this.setState({
+        resultsAmount,
+        results,
+        searchingHorses: false
+      })
+    })
+    .catch(error => {
+      console.error(error)
+      this.setState({
+        searchingHorses: false
+      })
+    })
   }
 
   render () {
     const {
-      filterOpen
+      filterOpen,
+      filtering,
+      sorting,
+      searching,
+      sortOptions,
+      resultsAmount,
+      results,
+      searchingHorses
     } = this.state
 
-    const {
-      horses
-    } = this.props
-
     const modifiedClassGalleryCols = classNames('browse-horses__grid', 'col-xs-12')
-
-    const modifiedClassFilterCols = classNames('browse-horses__filters__container', 'col-xs-0')
 
     return (
       <View title={title}>
         <div className='browse-horses'>
-          <TitleHero/>
+          <TitleHero />
           <SearchAndFilterBar
-            placeholder='Search horses, trainer or syndicates' />
+            resultsAmount={resultsAmount}
+            onFilterClick={this.toggleFilter}
+            filterActive={filterOpen}
+            placeholder='Search horses, trainer or syndicates'
+            selectOptions={sortOptions}
+            defaultSortValue={sorting.value}
+            onSearchUpdate={this.onSearchUpdate}
+            onSelectUpdate={this.onSelectUpdate}
+          />
           <div className='container'>
-            <FilterPanel />
+            {
+              filterOpen && <FilterPanel />
+            }
             <div className={modifiedClassGalleryCols}>
               <HorseCardGallery
-                threeCol={filterOpen}
-                data={horses}
+                data={results}
               />
             </div>
-            <div className={modifiedClassFilterCols}>
-              {
-                filterOpen
-                ? <div className='browse-horses__filters section-shadow--left'></div>
-                : null
-              }
-            </div>
           </div>
+          { searchingHorses && <AjaxLoader /> }
         </div>
       </View>
     )
@@ -99,9 +213,9 @@ export class BrowseHorses extends Component {
  *  @param  {Object} ownProps
  *  @return {Object}
  */
-const mapStateToProps = (state, ownProps) => ({
-  horses: [{'_id': '594a734c371c882d01addd23', 'name': 'ELATION (IRE)', 'age': '10', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'Mark Johnston'}, 'featuredImage': '/uploads/horses/1498051404610/HERO_elation.jpg', 'thumbnailImage': '/uploads/horses/1498051404610/CARD_elation.jpg', 'slug': 'elation-(ire)', 'runs': 2, 'wins': 1, 'places': 0, 'shares': {'total': 26, 'owned': 6}}, {'_id': '594a734c371c882d01addd24', 'name': 'CONTENTMENT', 'age': '3', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'William Haggas'}, 'style': 'flat', 'featuredImage': '/uploads/horses/1498051404601/HERO_contentment.jpg', 'thumbnailImage': '/uploads/horses/1498051404601/CARD_contentment.jpg', 'slug': 'contentment', 'runs': 5, 'wins': 1, 'places': 2, 'shares': {'total': 26, 'owned': 1}}, {'_id': '594a734c371c882d01addd24', 'name': 'CONTENTMENT', 'age': '3', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'William Haggas'}, 'style': 'flat', 'featuredImage': '/uploads/horses/1498051404601/HERO_contentment.jpg', 'thumbnailImage': '/uploads/horses/1498051404601/CARD_contentment.jpg', 'slug': 'contentment', 'runs': 5, 'wins': 1, 'places': 2, 'shares': {'total': 26, 'owned': 1}}, {'_id': '594a734c371c882d01addd24', 'name': 'CONTENTMENT', 'age': '3', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'William Haggas'}, 'style': 'flat', 'featuredImage': '/uploads/horses/1498051404601/HERO_contentment.jpg', 'thumbnailImage': '/uploads/horses/1498051404601/CARD_contentment.jpg', 'slug': 'contentment', 'runs': 5, 'wins': 1, 'places': 2, 'shares': {'total': 26, 'owned': 1}}, {'_id': '594a734c371c882d01addd24', 'name': 'CONTENTMENT', 'age': '3', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'William Haggas'}, 'style': 'flat', 'featuredImage': '/uploads/horses/1498051404601/HERO_contentment.jpg', 'thumbnailImage': '/uploads/horses/1498051404601/CARD_contentment.jpg', 'slug': 'contentment', 'runs': 5, 'wins': 1, 'places': 2, 'shares': {'total': 26, 'owned': 1}}, {'_id': '594a734c371c882d01addd24', 'name': 'CONTENTMENT', 'age': '3', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'William Haggas'}, 'style': 'flat', 'featuredImage': '/uploads/horses/1498051404601/HERO_contentment.jpg', 'thumbnailImage': '/uploads/horses/1498051404601/CARD_contentment.jpg', 'slug': 'contentment', 'runs': 5, 'wins': 1, 'places': 2, 'shares': {'total': 26, 'owned': 1}}, {'_id': '594a734c371c882d01addd24', 'name': 'CONTENTMENT', 'age': '3', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'William Haggas'}, 'style': 'flat', 'featuredImage': '/uploads/horses/1498051404601/HERO_contentment.jpg', 'thumbnailImage': '/uploads/horses/1498051404601/CARD_contentment.jpg', 'slug': 'contentment', 'runs': 5, 'wins': 1, 'places': 2, 'shares': {'total': 26, 'owned': 1}}, {'_id': '594a734c371c882d01addd24', 'name': 'CONTENTMENT', 'age': '3', 'gender': 'filly', 'owner': {'name': 'HIGHCLERE', 'slug': 'highclere'}, 'trainer': {'name': 'William Haggas'}, 'style': 'flat', 'featuredImage': '/uploads/horses/1498051404601/HERO_contentment.jpg', 'thumbnailImage': '/uploads/horses/1498051404601/CARD_contentment.jpg', 'slug': 'contentment', 'runs': 5, 'wins': 1, 'places': 2, 'shares': {'total': 26, 'owned': 1}}]
-})
+const mapStateToProps = (state, ownProps) => {
+  return {}
+}
 
 /**
  *  mapDispatchToProps
