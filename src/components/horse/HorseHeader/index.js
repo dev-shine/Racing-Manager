@@ -136,7 +136,7 @@ class HorseHeader extends Component {
         </div>
         <div className='row visible-md-up'>
           <div className='horse-header__content'>
-            <div className='container'>
+            <div className='container no-padding'>
               <HorseBigSection className='col-md-8'>
                 {leftSection}
               </HorseBigSection>

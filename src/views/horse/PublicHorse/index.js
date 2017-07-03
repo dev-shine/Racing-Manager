@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 
 import View from 'components/common/View'
 import capitalize from 'utils/capitalize'
@@ -79,7 +80,7 @@ class PublicHorse extends Component {
         </h1>
         <Separator modifier='white' />
         <p>
-          {description}
+          {description || 'No description ...'}
         </p>
         <Link to={syndicateLink}>
           <TextButton
@@ -93,12 +94,15 @@ class PublicHorse extends Component {
 
     const availabilitySection = (
       <div>
-        <h1>
+        <h2>
           Availability
-        </h1>
+        </h2>
         <Separator modifier='white' />
         <List items={availabilityList} />
         {updatesInfo}
+        <HashLink to='#benefits-section' className='link link--italic public-horse__see-benefits'>
+          See benefits
+        </HashLink>
       </div>
     )
 
@@ -109,8 +113,11 @@ class PublicHorse extends Component {
         name={member.name}
         role={member.role}
         description={member.description}
+        className='public-horse__member-tile'
       />
     ))
+
+    const horseQuote = `The most incredible horse in ${ownerName}’s history. ever.`
 
     return (
       <View title={capitalize(name)} notPrefixed>
@@ -122,7 +129,7 @@ class PublicHorse extends Component {
                 <div>
                   {aboutSection}
                   <div>
-                    {/* TODO: Members */}
+                    {/* members */}
                   </div>
                 </div>
               )}
@@ -157,8 +164,18 @@ class PublicHorse extends Component {
             <Carousel
               containerClassName='public-horse__mobile-carousel'
               ref='carousel'
+              slideWidth={0.33}
+              cellAlign='left'
+              breakPoints={{
+                400: {
+                  slideWidth: 1,
+                  cellAlign: 'center'
+                },
+                480: {
+                  slideWidth: 0.5
+                }
+              }}
               showArrows
-              slideWidth={'190px'}
             >
               {members}
             </Carousel>
@@ -184,7 +201,7 @@ class PublicHorse extends Component {
           <div className='public-horse__hero'>
             <div className='public-horse__hero-overlay' />
             <h1 className='absolute-center'>
-              The most incredible horse in {ownerName}’s history. ever.
+              {horseQuote}
             </h1>
           </div>
           <div className='public-horse__section container'>
@@ -198,7 +215,7 @@ class PublicHorse extends Component {
               </div>
             </div>
           </div>
-          <div className='public-horse__footer-section wave-bg section-shadow'>
+          <div id="benefits-section" className='public-horse__footer-section wave-bg section-shadow'>
             <div className='container pos-relative'>
               <div className='public-horse__involvement-section col-xs-12 col-sm-6'>
                 <h1>
@@ -296,3 +313,24 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PublicHorse)
+
+/*
+ <Carousel
+ containerClassName='public-horse__mobile-carousel'
+ ref='carousel'
+ slideWidth={0.33}
+ cellAlign='left'
+ breakPoints={{
+ 400: {
+ slideWidth: 1,
+ cellAlign: 'center'
+ },
+ 480: {
+ slideWidth: 0.5
+ }
+ }}
+ showArrows
+ >
+ {members}
+ </Carousel>
+ */

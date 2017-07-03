@@ -11,9 +11,9 @@ const HorseTeamMember = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <div className='team-member__image'>
+      <div className='team-member__image-wrapper'>
         <Image
-          className=''
+          className='team-member__image'
           imageSrc={image}
           setRef={() => {}}
         />

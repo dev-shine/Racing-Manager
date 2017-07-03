@@ -5,7 +5,7 @@
   width: $image-size;
   text-align: center;
 
-  &__image {
+  &__image-wrapper {
     width: $image-size-s;
     height: $image-size-s;
     border-radius: 100%;
@@ -17,6 +17,12 @@
       width: $image-size;
       height: $image-size;
     }
+  }
+
+  &__image {
+    width: 150px;
+    height: 150px;
+    background-size: cover;
   }
 
   &__name {

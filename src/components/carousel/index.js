@@ -867,6 +867,7 @@ class Carousel extends Component {
       for (let point in props.breakPoints) {
         if (parseInt(point) >= window.innerWidth) {
           bSlideWidth = props.breakPoints[point].slideWidth
+          break
         }
       }
     }

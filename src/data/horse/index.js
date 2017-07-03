@@ -1,5 +1,12 @@
 import React from 'react'
 
+import {
+  harryImage,
+  johnImage,
+  alexImage,
+  alisonImage
+} from 'assets/dummyassets'
+
 export const tableStatistics = {
   titles: [
     'Code',
@@ -176,41 +183,53 @@ export const benefitsList = [
 
 export const syndicateMembers = [
   {
-    image: '',
+    image: harryImage,
     name: 'Harry Herbert',
     role: 'Chairman & MD',
     description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
   },
   {
-    image: '',
+    image: johnImage,
     name: 'John Warren',
     role: 'Director',
     description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
   },
   {
-    image: '',
+    image: alexImage,
     name: 'Alex Smith',
     role: 'Director',
     description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
   },
   {
-    image: '',
+    image: alisonImage,
     name: 'Alison Begley',
     role: 'Director',
     description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
   },
   {
-    image: '',
+    image: harryImage,
     name: 'Harry Herbert',
     role: 'Chairman & MD',
     description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
   },
   {
-    image: '',
+    image: johnImage,
     name: 'John Warren',
     role: 'Director',
     description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
   },
+  {
+    image: alexImage,
+    name: 'Alex Smith',
+    role: 'Director',
+    description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
+  },
+  {
+    image: alisonImage,
+    name: 'Alison Begley',
+    role: 'Director',
+    description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
+  }
 ]
 
 export const horse = {

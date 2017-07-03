@@ -37,6 +37,10 @@
     }
   }
 
+  &__member-tile {
+    margin: 0 auto;
+  }
+
 // Hero -----------------------------------------
   &__hero {
     height: 500px;
@@ -122,5 +126,13 @@
 
   &__horse-card {
     position: absolute;
+  }
+
+// ----------------------------------------------
+
+  &__see-benefits {
+    display: block;
+    color: white;
+    margin: 15px 0;
   }
 }
