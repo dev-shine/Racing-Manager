@@ -80,7 +80,7 @@ class PublicHorse extends Component {
         </h1>
         <Separator modifier='white' />
         <p>
-          {description}
+          {description || 'No description ...'}
         </p>
         <Link to={syndicateLink}>
           <TextButton
