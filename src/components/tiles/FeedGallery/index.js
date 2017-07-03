@@ -77,7 +77,7 @@ class FeedGallery extends Component {
 
     // Set the new tile's index
     this.setState({
-      tileIndex: this.props.tiles.findIndex(tile => tile._id === id),
+      tileIndex: this.props.tiles.map(tile => tile._id).indexOf(id),
       showPopup: true
     })
   }

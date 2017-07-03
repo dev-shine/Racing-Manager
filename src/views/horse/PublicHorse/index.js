@@ -117,6 +117,8 @@ class PublicHorse extends Component {
       />
     ))
 
+    const horseQuote = `The most incredible horse in ${ownerName}’s history. ever.`
+
     return (
       <View title={capitalize(name)} notPrefixed>
         <div className='public-horse'>
@@ -199,7 +201,7 @@ class PublicHorse extends Component {
           <div className='public-horse__hero'>
             <div className='public-horse__hero-overlay' />
             <h1 className='absolute-center'>
-              The most incredible horse in {ownerName}’s history. ever.
+              {horseQuote}
             </h1>
           </div>
           <div className='public-horse__section container'>
