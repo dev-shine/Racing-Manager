@@ -77,7 +77,7 @@ class FeedGallery extends Component {
 
     // Set the new tile's index
     this.setState({
-      tileIndex: this.props.tiles.map(tile => tile.createdAt).indexOf(id),
+      tileIndex: this.props.tiles.findIndex(tile => tile._id === id),
       showPopup: true
     })
   }
@@ -117,6 +117,7 @@ class FeedGallery extends Component {
    */
   renderChildren (tile) {
     const {
+      _id,
       postType,
       createdAt,
       timeStamp,
@@ -130,7 +131,7 @@ class FeedGallery extends Component {
         return (
           <TextTile
             key={`text-${createdAt}`}
-            id={createdAt}
+            id={_id}
             name='Andy Jones'
             date={timeStamp}
             text={text}
@@ -141,7 +142,7 @@ class FeedGallery extends Component {
         return (
           <MediaCarouselTile
             key={`iv-${createdAt}`}
-            id={createdAt}
+            id={_id}
             name='Andy Jones'
             date={timeStamp}
             text={text}
@@ -153,7 +154,7 @@ class FeedGallery extends Component {
         return (
           <ImageTile
             key={`image-${createdAt}`}
-            id={createdAt}
+            id={_id}
             src={attachment[0].path}
             name='Andy Jones'
             date={timeStamp}
@@ -165,7 +166,7 @@ class FeedGallery extends Component {
         return (
           <VideoTile
             key={`video-${createdAt}`}
-            id={createdAt}
+            id={_id}
             src={attachment[0].path}
             poster={attachment[0].thumbnail}
             name='Andy Jones'
@@ -199,7 +200,7 @@ class FeedGallery extends Component {
           {
             tiles.map(tile => {
               return (
-                <Block width={1} key={tile.createdAt}>
+                <Block width={1} key={tile._id}>
                   {this.renderChildren(tile)}
                 </Block>
               )

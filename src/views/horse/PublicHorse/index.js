@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 
 import View from 'components/common/View'
 import capitalize from 'utils/capitalize'
@@ -93,12 +94,15 @@ class PublicHorse extends Component {
 
     const availabilitySection = (
       <div>
-        <h1>
+        <h2>
           Availability
-        </h1>
+        </h2>
         <Separator modifier='white' />
         <List items={availabilityList} />
         {updatesInfo}
+        <HashLink to='#benefits-section' className='link link--italic public-horse__see-benefits'>
+          See benefits
+        </HashLink>
       </div>
     )
 
@@ -123,7 +127,7 @@ class PublicHorse extends Component {
                 <div>
                   {aboutSection}
                   <div>
-                    {/* TODO: Members */}
+                    {/* members */}
                   </div>
                 </div>
               )}
@@ -209,7 +213,7 @@ class PublicHorse extends Component {
               </div>
             </div>
           </div>
-          <div className='public-horse__footer-section wave-bg section-shadow'>
+          <div id="benefits-section" className='public-horse__footer-section wave-bg section-shadow'>
             <div className='container pos-relative'>
               <div className='public-horse__involvement-section col-xs-12 col-sm-6'>
                 <h1>
@@ -307,3 +311,24 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PublicHorse)
+
+/*
+ <Carousel
+ containerClassName='public-horse__mobile-carousel'
+ ref='carousel'
+ slideWidth={0.33}
+ cellAlign='left'
+ breakPoints={{
+ 400: {
+ slideWidth: 1,
+ cellAlign: 'center'
+ },
+ 480: {
+ slideWidth: 0.5
+ }
+ }}
+ showArrows
+ >
+ {members}
+ </Carousel>
+ */
