@@ -34,16 +34,12 @@ import { Block, Grid } from 'components/masonry'
 import { newsImage } from 'assets/dummyassets'
 
 /**
- * @module post
+ *  @module getDashboard
  */
-import { get } from 'api/Request'
-
-/**
- * @module DASHBOARD
- */
-import { DASHBOARD } from 'api/ServiceTypes'
+import { getDashboard } from 'actions/dashboard'
 
 import View from 'components/common/View'
+
 import { MEMBER_DASHBOARD as title } from 'data/titles'
 
 /**
@@ -75,17 +71,14 @@ export class MemberDashboard extends Component {
    *  @return {Void}
    */
   fetchDashboardData () {
-    get({
-      url: DASHBOARD
-    })
-    .then(response => {
-      // Successfull.
+    getDashboard()
+    .then(({ownership}) => {
       this.setState({
-        syndicates: response.data.ownership
+        syndicates: ownership
       })
     })
     .catch(error => {
-      console.log(error)
+      console && console.error(error)
     })
   }
 
@@ -155,7 +148,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getDashboard: () => {},
   }
 }
 

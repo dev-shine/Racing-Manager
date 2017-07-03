@@ -53,7 +53,8 @@ class SearchAndFilterBar extends Component {
       selectOptions,
       defaultSortValue,
       onSearchUpdate,
-      onSelectUpdate
+      onSelectUpdate,
+      searchValue
     } = this.props
 
     const mobileFilterClassNames = classNames('search-filter-bar__filter-text', 'uppercase search-filter-bar__click-text', {
@@ -67,6 +68,7 @@ class SearchAndFilterBar extends Component {
             <div className='col-md-5 align-middle search-filter-bar__mobile-search'>
               <SearchInput
                 name='search'
+                value={searchValue}
                 onChange={onSearchUpdate}
                 containerClassName='search-filter-bar__search-input'
                 placeholder={placeholder} />

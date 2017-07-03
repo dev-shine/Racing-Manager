@@ -53,6 +53,11 @@ import { searchHorses } from 'actions/browsehorses'
  */
 import AjaxLoader from 'components/ajaxloader'
 
+/**
+ *  @module debounce
+ */
+import debounce from 'utils/debounce'
+
 export class BrowseHorses extends Component {
   constructor (props) {
     super(props)
@@ -88,15 +93,15 @@ export class BrowseHorses extends Component {
       searching: {
         value: ''
       },
+      sorting: {
+        value: 'price lowest to highest'
+      },
       sortOptions: [
         'price lowest to highest',
         'price highest to lowest',
         'shares lowest to highest',
         'shares highest to lowest'
       ],
-      sorting: {
-        value: 'price lowest to highest'
-      },
       resultsAmount: 0,
       results: [],
       searchingHorses: false
@@ -107,6 +112,8 @@ export class BrowseHorses extends Component {
     this.toggleFilter = this.toggleFilter.bind(this)
     this.onSearchUpdate = this.onSearchUpdate.bind(this)
     this.onSelectUpdate = this.onSelectUpdate.bind(this)
+
+    this.debouncedSearch = debounce(this.searchForHorses, 500)
   }
 
   componentWillMount () {
@@ -124,6 +131,8 @@ export class BrowseHorses extends Component {
       searching: {
         value
       }
+    }, () => {
+      this.debouncedSearch()
     })
   }
 
@@ -132,6 +141,8 @@ export class BrowseHorses extends Component {
       sorting: {
         value
       }
+    }, () => {
+      this.debouncedSearch()
     })
   }
 
@@ -140,13 +151,9 @@ export class BrowseHorses extends Component {
       searchingHorses: true
     })
 
-    searchHorses({
-      query: '',
-      sort: {
-        field: 'monthlyCost',
-        order: 'asc'
-      }
-    })
+    const payload = this.state.payload
+
+    searchHorses(payload)
     .then(({resultsAmount, results}) => {
       this.setState({
         resultsAmount,
@@ -165,7 +172,6 @@ export class BrowseHorses extends Component {
   render () {
     const {
       filterOpen,
-      filtering,
       sorting,
       searching,
       sortOptions,
@@ -189,6 +195,7 @@ export class BrowseHorses extends Component {
             defaultSortValue={sorting.value}
             onSearchUpdate={this.onSearchUpdate}
             onSelectUpdate={this.onSelectUpdate}
+            searchValue={searching.value}
           />
           <div className='container'>
             {

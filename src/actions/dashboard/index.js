@@ -1,19 +1,24 @@
-import { post } from 'api/Request'
+/**
+ * @module post
+ */
+import { get } from 'api/Request'
 
-import { SEARCH } from 'api/ServiceTypes'
+/**
+ * @module DASHBOARD
+ */
+import { DASHBOARD } from 'api/ServiceTypes'
 
 import verifyServerFormat from 'utils/request'
 
 /**
- *  @name  searchHorses
+ *  @name  getDashboard
  *  @param  {Object} data
  *  @return {Promise}
  */
-export const searchHorses = data => {
+export const getDashboard = () => {
   return new Promise((resolve, reject) => {
-    return post({
-      url: SEARCH,
-      data
+    return get({
+      url: DASHBOARD
     })
     .then(verifyServerFormat)
     .then((data) => {

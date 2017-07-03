@@ -25,6 +25,8 @@
 
     > h6 {
       line-height: $input-height;
+      @include truncate();
+      overflow: visible;
     }
   }
 
@@ -89,7 +91,9 @@
 
   &__mobile-title {
     color: $davys-gray;
-
+    @include truncate();
+    overflow: visible;
+    
     &--active {
       color: $space-cadet;
     }

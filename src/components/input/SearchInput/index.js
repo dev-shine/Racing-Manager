@@ -24,11 +24,6 @@ import Icon from 'components/icon'
 import classNames from 'utils/classnames'
 
 /**
- *  @module debounce
- */
-import debounce from 'utils/debounce'
-
-/**
  *  @module omit
  */
 import omit from 'utils/objectutils/omit'
@@ -51,9 +46,6 @@ class SearchInput extends Component {
     this.openSearch = this.openSearch.bind(this)
     this.closeSearch = this.closeSearch.bind(this)
     this.handleSearchResult = this.handleSearchResult.bind(this)
-    this.emitSearchResult = this.emitSearchResult.bind(this)
-
-    this.debouncedSearch = debounce(this.emitSearchResult, 400)
   }
 
   /**
@@ -78,10 +70,7 @@ class SearchInput extends Component {
 
   handleSearchResult (event) {
     const value = event.target.value
-    this.debouncedSearch(value)
-  }
 
-  emitSearchResult (value) {
     const {
       onChange
     } = this.props
