@@ -9,11 +9,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 /**
- *  @module Image
- */
-import Image from 'components/image'
-
-/**
  *  @module heroBg
  */
 import { heroBg } from 'assets/images'
