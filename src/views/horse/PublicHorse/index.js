@@ -20,6 +20,7 @@ import Carousel from 'components/carousel'
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
 import HorseCard from 'components/cards/HorseCard'
+import HorseHero from 'components/horse/HorseHero'
 
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
 import { roundNumberWithoutZeros } from 'utils/number'
@@ -30,7 +31,8 @@ import {
   tableStatistics,
   racePlans,
   horseValue,
-  benefitsList
+  benefitsList,
+  horseHero
 } from 'data/horse'
 
 import {
@@ -117,8 +119,6 @@ class PublicHorse extends Component {
       />
     ))
 
-    const horseQuote = `The most incredible horse in ${ownerName}’s history. ever.`
-
     return (
       <View title={capitalize(name)} notPrefixed>
         <div className='public-horse'>
@@ -198,12 +198,10 @@ class PublicHorse extends Component {
               </div>
             </div>
           </div>
-          <div className='public-horse__hero'>
-            <div className='public-horse__hero-overlay' />
-            <h1 className='absolute-center'>
-              {horseQuote}
-            </h1>
-          </div>
+          <HorseHero
+            title={horseHero.title(ownerName)}
+            image={horseHero.image}
+          />
           <div className='public-horse__section container'>
             <div className='col-xs-12 col-md-7 no-padding'>
               <h1>

@@ -59,7 +59,7 @@
   }
 
   &__content {
-    margin-bottom: 150px;
+    //margin-bottom: 150px;
   }
 
   &__benefits {
@@ -108,5 +108,12 @@
     position: relative;
     margin-top: 40px;
     margin-bottom: 20px;
+  }
+}
+
+.private-syndicate {
+  &__paragraph-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }

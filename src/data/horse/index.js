@@ -4,7 +4,8 @@ import {
   harryImage,
   johnImage,
   alexImage,
-  alisonImage
+  alisonImage,
+  horseHeroImage
 } from 'assets/dummyassets'
 
 export const tableStatistics = {
@@ -347,4 +348,9 @@ export const horse = {
     'owned': 1,
     'total': 26
   }
+}
+
+export const horseHero = {
+  title: (name) => `The most incredible horse in ${name}’s history. ever.`,
+  image: horseHeroImage
 }

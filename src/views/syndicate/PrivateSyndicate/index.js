@@ -15,10 +15,16 @@ import Image from 'components/image'
 
 import HorseBigSection from 'components/horse/HorseBigSection'
 import HorseSmallSection from 'components/horse/HorseSmallSection'
+import HorseHero from 'components/horse/HorseHero'
 
 import { constructStaticUrl } from 'utils/horseutils'
-
 import { fetchSyndicateInfo } from 'actions/syndicate'
+
+// mockup data
+import {
+  syndicateUpperHero,
+  syndicateLowerHero
+} from 'data/syndicate'
 
 export class PrivateSyndicate extends Component {
   constructor (props) {
@@ -153,6 +159,31 @@ export class PrivateSyndicate extends Component {
               </div>
             </Carousel>
           </HorseBigSection>
+          <div className='private-syndicate'>
+            <div className='private-syndicate__paragraph-section container'>
+              <div className='col-xs-12 col-md-6'>
+                <h1>
+                  Benefits
+                </h1>
+                <Separator modifier='blue' />
+                <p>
+                  For this filly we offer the following guarantee:  If due to injury or retirement, this filly's season is cut short and will not race again, and she has not raced at least twice, we will replace her with a similar horse for the remainder of the 2017 turf season. Please note that we are unable to pay prizemoney on any replacements and the replacement will be a horse of our own choosing.
+                </p>
+              </div>
+              <div className='col-xs-12 col-md-6 hidden'>
+                image here
+              </div>
+            </div>
+            <div className=''>
+              <HorseHero {...syndicateUpperHero} />
+            </div>
+            <div className=''>
+              &nbsp;
+            </div>
+            <div className=''>
+              <HorseHero {...syndicateLowerHero} />
+            </div>
+          </div>
           <div className='syndicate__grid__title container'>
             <h1 className='horse-overview__main-title horse-overview__update-title'>
               Updates
@@ -168,18 +199,16 @@ export class PrivateSyndicate extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  ...state.syndicate
+const mapStateToProps = ({ syndicate }, ownProps) => ({
+  ...syndicate
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    getSyndicateInfo: () => {
-      const name = ownProps.match.params.name
-      dispatch(fetchSyndicateInfo({ name }))
-    }
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  getSyndicateInfo: () => {
+    const name = ownProps.match.params.name
+    dispatch(fetchSyndicateInfo({ name }))
   }
-}
+})
 
 export default (connect(
   mapStateToProps,

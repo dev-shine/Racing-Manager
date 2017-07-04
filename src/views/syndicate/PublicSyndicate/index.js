@@ -3,7 +3,7 @@ import View from 'components/common/View'
 
 const PublicSyndicate = () => (
   <View title='Public syndicate page'>
-    <div>
+    <div className='public-syndicate'>
       Public syndicate page
     </div>
   </View>
