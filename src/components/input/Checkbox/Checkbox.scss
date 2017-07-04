@@ -40,4 +40,11 @@
   ~ .checkbox {
     margin-top: 20px;
   }
+
+  &--navy {
+    .checkbox__input:checked + .checkbox__element {
+      border-color: $space-cadet;
+      background: $space-cadet;
+    }
+  }
 }

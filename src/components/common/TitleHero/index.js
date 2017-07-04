@@ -9,14 +9,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 /**
- *  @module Image
- */
-import Image from 'components/image'
-
-/**
  *  @module heroBg
  */
 import { heroBg } from 'assets/images'
+
+/**
+ *  @module Hero
+ */
+import Hero from 'components/parallax/Hero'
 
 /**
  *  TitleHero
@@ -25,9 +25,9 @@ import { heroBg } from 'assets/images'
 const TitleHero = ({title}) => {
   return (
     <div className='title-hero'>
-      <Image
+      <Hero
         className='title-hero__bg'
-        imageSrc={heroBg}/>
+        featuredImage={heroBg} />
       <div className='title-hero__title'>
         <div className='container'>
           <h1 className='uppercase'>{title}</h1>

@@ -28,13 +28,16 @@ const TextButton = props => {
   const {
     text,
     className,
-    modifier
+    modifier,
+    active
   } = props
 
   /**
    *  @type {String}
    */
-  const modifiedClassNames = classNames('text-button', className, modifier)
+  const modifiedClassNames = classNames('text-button', className, modifier, {
+    active
+  })
 
   return (
     Button({
@@ -57,8 +60,10 @@ TextButton.propTypes = {
   ]),
   modifier: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ])
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.object
+  ]),
+  active: PropTypes.bool
 }
 
 /**
@@ -68,7 +73,8 @@ TextButton.propTypes = {
 TextButton.defaultProps = {
   text: '',
   className: '',
-  modifiers: ''
+  modifiers: '',
+  active: false
 }
 
 export default TextButton

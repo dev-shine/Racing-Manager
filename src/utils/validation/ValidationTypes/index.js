@@ -463,3 +463,12 @@ export const CARD_CVV = (cardNum, value) => {
 
   return CARD_CVV_REG.test(value)
 }
+
+/**
+ *  IS_NUMBER
+ *  @param  {Number} num
+ *  @return {Boolean}
+ */
+export const IS_NUMBER = (num) => {
+  return NUMBER_REG.test(num)
+}

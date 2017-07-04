@@ -44,11 +44,19 @@ sup {
   text-transform: capitalize;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .absolute-center-v {
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translate(-50%);
+  transform: translate(0, -50%);
 }
 
 .absolute-center-h {

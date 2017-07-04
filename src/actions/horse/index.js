@@ -204,7 +204,8 @@ export const submitHorseUpdate = data => {
 
     return post({
       url: MESSAGE,
-      data
+      data,
+      headers: {} // Let fetch set the headers for multipart form data
     })
     .then(verifyServerFormat)
     .then((data) => {

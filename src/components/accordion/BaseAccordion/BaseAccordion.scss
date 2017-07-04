@@ -4,6 +4,7 @@
 
   &__container {
     position: relative;
+    padding-top: 5px;
     @include clearfix();
   }
 

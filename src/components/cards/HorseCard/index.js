@@ -1,7 +1,7 @@
 /**
  *  @module React
  */
-import React, { Component } from 'react'
+import React from 'react'
 
 /**
  *  @module PropTypes
@@ -58,145 +58,136 @@ export const Overlay = () => {
  *  @name HorseCard
  *  @extends {Component}
  */
-class HorseCard extends Component {
-  /**
-   *  @constructor
-   */
-  constructor (props) {
-    super(props)
-  }
+const HorseCard = props => {
+  const {
+    className,
+    modifier,
+    title,
+    subtitle,
+    color,
+    stats,
+    info,
+    isMember,
+    extra,
+    src,
+    isPending,
+    isActive,
+    bottomUrl
+  } = props
 
-  render () {
-    const {
-      className,
-      modifier,
-      title,
-      subtitle,
-      color,
-      stats,
-      info,
-      isMember,
-      extra,
-      src,
-      isPending,
-      isActive,
-      bottomUrl
-    } = this.props
+  // Modified class names for horse card.
+  const modifiedClassNames = classNames('horse-card', className, modifier)
 
-    // Modified class names for horse card.
-    const modifiedClassNames = classNames('horse-card', className, modifier)
+  // Modified class names for the wrapper to scale it down if the component is inactive
+  const modifiedWrapperClassNames = classNames('horse-card__wrapper', '', {
+    inactive: !isActive
+  })
 
-    // Modified class names for the wrapper to scale it down if the component is inactive
-    const modifiedWrapperClassNames = classNames('horse-card__wrapper', '', {
-      inactive: !isActive
-    })
-
-    return (
-      <div className={modifiedClassNames}>
-        <div className={modifiedWrapperClassNames}>
-          {
-            isPending
-            ? <div className='horse-card__banner'>
-                <h6 className='secondary-font'>pending</h6>
-              </div>
-            : null
-          }
-          <Image
-            className='horse-card__bg'
-            imageSrc={src}
-            forceShow={true} />
-          <div className='horse-card__content'>
-            <div className='horse-card__card' style={{ borderColor: color }}>
-              <div className='horse-card__heading'>
-                <h3>
-                  {title}
-                </h3>
-                <h6 className='secondary-font capitalize'>
-                  {subtitle}
-                </h6>
-                <div className='horse-card__stats'>
-                  {
-                    stats.map(({name, value}, index) => {
-                      return (
-                        <div className='horse-card__statsitem col-xs-3' key={index}>
-                          <h6 className='secondary-font'>
-                            {name}
-                          </h6>
-                          <h6>
-                            {value}
-                          </h6>
-                        </div>
-                      )
-                    })
-                  }
-                </div>
-              </div>
-              <div className='horse-card__info section-shadow'>
-                <ul className='horse-card__infolist'>
-                  {
-                    info.map(({name, value}, index) => {
-                      return (
-                        <li className='horse-card__infoitem' key={index}>
-                          <h6 className='secondary-font col-xs-6'>
-                            {name}
-                          </h6>
-                          <p className='micro col-xs-6'>
-                            {value}
-                          </p>
-                        </li>
-                      )
-                    })
-                  }
-                </ul>
-              </div>
-              <div className='horse-card__extra section-shadow'>
+  return (
+    <div className={modifiedClassNames}>
+      <div className={modifiedWrapperClassNames}>
+        {
+          isPending
+          ? <div className='horse-card__banner'>
+              <h6 className='secondary-font'>pending</h6>
+            </div>
+          : null
+        }
+        <Image
+          className='horse-card__bg'
+          imageSrc={src}
+          forceShow={true} />
+        <div className='horse-card__content section-shadow--tile'>
+          <div className='horse-card__card' style={{ borderColor: color }}>
+            <div className='horse-card__heading'>
+              <h3>
+                {title}
+              </h3>
+              <h6 className='secondary-font capitalize'>
+                {subtitle}
+              </h6>
+              <div className='horse-card__stats'>
                 {
-                  !isMember
-                  ? (
-                      <span>
+                  stats.map(({name, value}, index) => {
+                    return (
+                      <div className='horse-card__statsitem col-xs-3' key={index}>
                         <h6 className='secondary-font'>
-                          {extra.title}
+                          {name}
                         </h6>
-                        <p className='micro'>
-                          {extra.text}
-                        </p>
-                      </span>
+                        <h6>
+                          {value}
+                        </h6>
+                      </div>
                     )
-                  : (
-                      <Link to={extra.url}>
-                        <UpdatesButton
-                          amount={extra.updateAmount}
-                          text='horse updates'
-                          buttonClassName='horse-card__button'
-                          buttonModifier='secondary'
-                          onClick={noop} />
-                      </Link>
-                    )
-                }
-                {
-                  isPending
-                  ? <Overlay />
-                  : null
+                  })
                 }
               </div>
             </div>
+            <div className='horse-card__info section-shadow'>
+              <ul className='horse-card__infolist'>
+                {
+                  info.map(({name, value}, index) => {
+                    return (
+                      <li className='horse-card__infoitem' key={index}>
+                        <h6 className='secondary-font col-xs-6'>
+                          {name}
+                        </h6>
+                        <p className='micro col-xs-6'>
+                          {value}
+                        </p>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+            <div className='horse-card__extra section-shadow'>
+              {
+                !isMember
+                ? (
+                    <span>
+                      <h6 className='secondary-font'>
+                        {extra.title}
+                      </h6>
+                      <p className='micro'>
+                        {extra.text}
+                      </p>
+                    </span>
+                  )
+                : (
+                    <Link to={extra.url}>
+                      <UpdatesButton
+                        amount={extra.updateAmount}
+                        text='horse updates'
+                        buttonClassName='horse-card__button'
+                        buttonModifier='secondary'
+                        onClick={noop} />
+                    </Link>
+                  )
+              }
+              {
+                isPending
+                ? <Overlay />
+                : null
+              }
+            </div>
           </div>
-          {bottomUrl && (
-              <div className='horse-card__bottom-button'>
-                <Link to={bottomUrl}>
-                  <TextButton
-                    text={isMember ? 'Syndicate Page' : 'more details'}
-                    className='horse-card__button'
-                    modifier='secondary'
-                  />
-                </Link>
-              </div>
-            )
-          }
-        </div>
+         </div>
+        {bottomUrl && (
+            <div className='horse-card__bottom-button'>
+              <Link to={bottomUrl}>
+                <TextButton
+                  text={isMember ? 'Syndicate Page' : 'more details'}
+                  className='horse-card__button'
+                  modifier='secondary'
+                />
+              </Link>
+            </div>
+          )
+        }
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 /**

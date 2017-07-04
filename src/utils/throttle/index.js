@@ -11,14 +11,10 @@ const throttle = (func, delay = 100) => {
     if (!resizeTimeout) {
       resizeTimeout = setTimeout(function () {
         resizeTimeout = null
-        actualResizeHandler()
+        func()
 
         // The actualResizeHandler will execute at a rate of 15fps
       }, delay)
-    }
-
-    function actualResizeHandler () {
-      func()
     }
   }
 }
