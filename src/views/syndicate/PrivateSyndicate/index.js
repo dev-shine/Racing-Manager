@@ -120,7 +120,7 @@ export class PrivateSyndicate extends Component {
                   <HorseSmallSection className='col-md-4 syndicate__benefits'>
                     {involvementSection}
                     <div className='syndicate__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                      <a href={requestToJoin}>
+                      <a href={requestToJoin} target='_blank'>
                         <TextButton
                           text='Request to join'
                           modifier={['md', 'fluid', 'blue']}

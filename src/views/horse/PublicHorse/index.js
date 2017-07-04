@@ -138,7 +138,7 @@ class PublicHorse extends Component {
                 <div>
                   {availabilitySection}
                   <div className='public-horse__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                    <a href={requestToJoin}>
+                    <a href={requestToJoin} target='_blank'>
                       <TextButton
                         text='Request to join'
                         className='public-horse__button'
@@ -235,7 +235,7 @@ class PublicHorse extends Component {
                   </h4>
                   <List items={availabilityList} />
                 </div>
-                <a href={requestToJoin}>
+                <a href={requestToJoin} target='_blank'>
                   <TextButton
                     text='Request to join'
                     modifier='md'

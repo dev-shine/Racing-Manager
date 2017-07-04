@@ -355,4 +355,4 @@ export const horseHero = {
   image: horseHeroImage
 }
 
-export const requestToJoin = 'https://www.invisionapp.com/'
+export const requestToJoin = 'https://projects.invisionapp.com/share/PRCFNZTC8#/screens/242040942_Request-To-Join-Syndicate-P1'
