@@ -32,7 +32,8 @@ import {
   racePlans,
   horseValue,
   benefitsList,
-  horseHero
+  horseHero,
+  requestToJoin
 } from 'data/horse'
 
 import {
@@ -137,13 +138,13 @@ class PublicHorse extends Component {
                 <div>
                   {availabilitySection}
                   <div className='public-horse__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                    <Link to={syndicateLink}>
+                    <a href={requestToJoin}>
                       <TextButton
                         text='Request to join'
                         className='public-horse__button'
                         modifier='md'
                       />
-                    </Link>
+                    </a>
                     <Link to='/'>
                       <TextButton
                         text='Get in touch'
@@ -234,13 +235,13 @@ class PublicHorse extends Component {
                   </h4>
                   <List items={availabilityList} />
                 </div>
-                <Link to={syndicateLink}>
+                <a href={requestToJoin}>
                   <TextButton
                     text='Request to join'
                     modifier='md'
                     className='public-horse__join-button'
                   />
-                </Link>
+                </a>
               </div>
               <div className='public-horse__horse-section col-xs-12 col-sm-6'>
                 {/* TODO: Update horse card */}

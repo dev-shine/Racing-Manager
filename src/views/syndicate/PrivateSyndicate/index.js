@@ -26,22 +26,14 @@ import {
   syndicateLowerHero
 } from 'data/syndicate'
 
+// mockup data
+import {
+  requestToJoin
+} from 'data/horse'
+
 export class PrivateSyndicate extends Component {
-  constructor (props) {
-    super(props)
-
-    this.handleRequestToJoin = this.handleRequestToJoin.bind(this)
-    this.handleTalkToManager = this.handleTalkToManager.bind(this)
-  }
-
   componentDidMount () {
     this.props.getSyndicateInfo()
-  }
-
-  handleRequestToJoin () {
-  }
-
-  handleTalkToManager () {
   }
 
   render () {
@@ -128,18 +120,21 @@ export class PrivateSyndicate extends Component {
                   <HorseSmallSection className='col-md-4 syndicate__benefits'>
                     {involvementSection}
                     <div className='syndicate__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                      <TextButton
-                        text='Request to join'
-                        className='syndicate__button'
-                        modifier={['md', 'blue']}
-                        onClick={this.handleRequestToJoin}
-                      />
-                      <TextButton
-                        text='Talk to the manager'
-                        className='syndicate__button'
-                        modifier={['md', 'secondary-blue']}
-                        onClick={this.handleTalkToManager}
-                      />
+                      <a href={requestToJoin}>
+                        <TextButton
+                          text='Request to join'
+                          className='public-horse__button'
+                          modifier={['md', 'blue']}
+                        />
+                      </a>
+                      <Link to='/'>
+                        <TextButton
+                          text='Talk to the manager'
+                          className='syndicate__button'
+                          modifier={['md', 'secondary-blue']}
+                          onClick={this.handleTalkToManager}
+                        />
+                      </Link>
                       <Link to='/' className='link--italic syndicate__link'>
                         Save it for later
                       </Link>
@@ -176,9 +171,6 @@ export class PrivateSyndicate extends Component {
             </div>
             <div className=''>
               <HorseHero {...syndicateUpperHero} />
-            </div>
-            <div className=''>
-              &nbsp;
             </div>
             <div className=''>
               <HorseHero {...syndicateLowerHero} />

@@ -354,3 +354,5 @@ export const horseHero = {
   title: (name) => `The most incredible horse in ${name}’s history. ever.`,
   image: horseHeroImage
 }
+
+export const requestToJoin = 'https://www.invisionapp.com/'
