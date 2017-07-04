@@ -34,8 +34,8 @@ const router = (
             <Route path='/register' component={Register} />
             <Route path='/browsehorses' component={BrowseHorses} />
             <PrivateRoute path='/dashboard' component={MemberDashboard} />
-            <PrivateRoute path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
-            <Route path='/phorse/:name' component={PublicHorse} />
+            <Route path='/horse/:name' component={PublicHorse} />
+            <Route path='/private-horse/:name' component={PrivateHorse} />
             <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <Route component={PageNotFound} />
           </Switch>
@@ -46,3 +46,7 @@ const router = (
 )
 
 export default router
+
+/*
+<Route path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
+*/

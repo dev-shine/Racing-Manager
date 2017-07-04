@@ -59,7 +59,7 @@
   }
 
   &__content {
-    margin-bottom: 150px;
+    //margin-bottom: 150px;
   }
 
   &__benefits {
@@ -69,7 +69,6 @@
   &__buttons {
     width: 100%;
     max-width: 80%;
-    height: 130px;
     position: absolute;
     bottom: -100px;
     left: 0;
@@ -78,15 +77,13 @@
     margin-right: auto;
     background: white;
     padding: 10px;
-  }
 
-  &__button {
-    width: 100%;
-    min-width: initial;
-    display: block;
+    a {
+      display: block;
 
-    ~ .syndicate__button {
-      margin-top: 8px;
+      ~ a {
+        margin-top: 8px;
+      }
     }
   }
 
@@ -108,5 +105,12 @@
     position: relative;
     margin-top: 40px;
     margin-bottom: 20px;
+  }
+}
+
+.private-syndicate {
+  &__paragraph-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }

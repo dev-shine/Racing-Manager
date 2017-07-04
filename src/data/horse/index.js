@@ -4,7 +4,8 @@ import {
   harryImage,
   johnImage,
   alexImage,
-  alisonImage
+  alisonImage,
+  horseHeroImage
 } from 'assets/dummyassets'
 
 export const tableStatistics = {
@@ -348,3 +349,10 @@ export const horse = {
     'total': 26
   }
 }
+
+export const horseHero = {
+  title: (name) => `The most incredible horse in ${name}’s history. ever.`,
+  image: horseHeroImage
+}
+
+export const requestToJoin = 'https://projects.invisionapp.com/share/PRCFNZTC8#/screens/242040942_Request-To-Join-Syndicate-P1'

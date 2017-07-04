@@ -20,6 +20,7 @@ import Carousel from 'components/carousel'
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
 import HorseCard from 'components/cards/HorseCard'
+import HorseHero from 'components/horse/HorseHero'
 
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
 import { roundNumberWithoutZeros } from 'utils/number'
@@ -30,7 +31,9 @@ import {
   tableStatistics,
   racePlans,
   horseValue,
-  benefitsList
+  benefitsList,
+  horseHero,
+  requestToJoin
 } from 'data/horse'
 
 import {
@@ -117,8 +120,6 @@ class PublicHorse extends Component {
       />
     ))
 
-    const horseQuote = `The most incredible horse in ${ownerName}’s history. ever.`
-
     return (
       <View title={capitalize(name)} notPrefixed>
         <div className='public-horse'>
@@ -137,13 +138,13 @@ class PublicHorse extends Component {
                 <div>
                   {availabilitySection}
                   <div className='public-horse__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                    <Link to={syndicateLink}>
+                    <a href={requestToJoin} target='_blank'>
                       <TextButton
                         text='Request to join'
                         className='public-horse__button'
                         modifier='md'
                       />
-                    </Link>
+                    </a>
                     <Link to='/'>
                       <TextButton
                         text='Get in touch'
@@ -198,12 +199,10 @@ class PublicHorse extends Component {
               </div>
             </div>
           </div>
-          <div className='public-horse__hero'>
-            <div className='public-horse__hero-overlay' />
-            <h1 className='absolute-center'>
-              {horseQuote}
-            </h1>
-          </div>
+          <HorseHero
+            title={horseHero.title(ownerName)}
+            image={horseHero.image}
+          />
           <div className='public-horse__section container'>
             <div className='col-xs-12 col-md-7 no-padding'>
               <h1>
@@ -236,13 +235,13 @@ class PublicHorse extends Component {
                   </h4>
                   <List items={availabilityList} />
                 </div>
-                <Link to={syndicateLink}>
+                <a href={requestToJoin} target='_blank'>
                   <TextButton
                     text='Request to join'
                     modifier='md'
                     className='public-horse__join-button'
                   />
-                </Link>
+                </a>
               </div>
               <div className='public-horse__horse-section col-xs-12 col-sm-6'>
                 {/* TODO: Update horse card */}
