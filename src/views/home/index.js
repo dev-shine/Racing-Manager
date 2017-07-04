@@ -28,6 +28,8 @@ import CopySection from 'components/home/CopySection'
  */
 import BottomCta from 'components/home/BottomCta'
 
+import List from 'components/gui/List'
+
 import {
   homeHero
 } from 'assets/home'
@@ -95,33 +97,33 @@ export class Home extends Component {
             <p>
               Managing a syndicate encompasses a lot and has never been easy, until now. The Racing Manager has a fully responsive site and app so you can:
             </p>
-            <ul className='disc-list'>
-              <li>Advertise for new and loyal members in one marketplace.</li>
-              <li>Set a customised webpage for your syndicate’s brand and horses.</li>
-              <li>Find all your accounting, messaging and management in one place.</li>
-            </ul>
+            <List items={[
+              'Advertise for new and loyal members in one marketplace.',
+              'Set a customised web page for your syndicate’s brand and horses.',
+              'Find all your accounting, messaging and management in one place.'
+            ]} />
           </CopySection>
           <CopySection
             headline="stay organised"
             featuredImage={m2}>
-            <ul className='disc-list'>
-              <li>Schedule events, tickets and hospitality with ease for your members.</li>
-              <li>Consolidate all of your management accounts to our new platform.</li>
-              <li>Instantly message any members or trainers by desktop, tablet or app.</li>
-              <li>Fast, secure and regular payment collection with our bank integration.</li>
-              <li>Get an extra level of control with our tailored management settings.</li>
-            </ul>
+            <List items={[
+              'Schedule events, tickets and hospitality with ease for your members.',
+              'Consolidate all of your management accounts to our new platform.',
+              'Instantly message any members or trainers by desktop, tablet or app.',
+              'Fast, secure and regular payment collection with our bank integration.',
+              'Get an extra level of control with our tailored management settings.'
+            ]} />
           </CopySection>
           <CopySection
             headline="engage members"
             featuredImage={m3}>
-            <ul className='disc-list'>
-              <li>Regularly prompted updates from your trainer, straight to your group.</li>
-              <li>A wide range of custom media including photos, videos and polls.</li>
-              <li>Build a community with a curated update feed and thread replies.</li>
-              <li>On race day, experience live updates and a sleek user experience.</li>
-              <li>Industry updates from partners such as the Racing Post and TRM.</li>
-            </ul>
+            <List items={[
+              'Regularly prompted updates from your trainer, straight to your group.',
+              'A wide range of custom media including photos, videos and polls.',
+              'Build a community with a curated update feed and thread replies.',
+              'On race day, experience live updates and a sleek user experience.',
+              'Industry updates from partners such as the Racing Post and TRM.'
+            ]} />
           </CopySection>
           <CopySection
             headline="safe and secure"
@@ -129,12 +131,12 @@ export class Home extends Component {
             <p>
               Managing a syndicate ultimately comes down to money:
             </p>
-            <ul className='disc-list'>
-              <li>Simple HMRC and VAT solutions for yourself and members.</li>
-              <li>Syndicate, member and horse insurance against unforeseen events.</li>
-              <li>Regular payment collection and distribution backed by our T&Cs.</li>
-              <li>AML and KYC checks on new syndicate members.</li>
-            </ul>
+            <List items={[
+              'Simple HMRC and VAT solutions for yourself and members.',
+              'Syndicate, member and horse insurance against unforeseen events.',
+              'Regular payment collection and distribution backed by our T&Cs.',
+              'AML and KYC checks on new syndicate members.'
+            ]} />
           </CopySection>
           <BottomCta />
         </div>
