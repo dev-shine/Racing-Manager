@@ -88,12 +88,14 @@ const RegisterForm = props => {
             validate={['termsAndConditions']}
             name='termsAndConditions' />
         </div>
-        <Submit component={(props) => TextButton({
-          ...props,
-          text: 'submit',
-          className: 'register-form__submit',
-          isDisabled: !canProgress
-        })} />
+        <Link to='/browse-horses'>
+          <Submit component={(props) => TextButton({
+            ...props,
+            text: 'submit',
+            className: 'register-form__submit',
+            isDisabled: !canProgress
+          })} />
+        </Link>
       </Form>
     </div>
   )
