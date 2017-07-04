@@ -249,10 +249,9 @@ export class BrowseHorses extends Component {
     ILIYAN DONT KILL ME WHEN YOU SEE THIS I WILL REFACTOR THIS STUFF NEXT SPRINT!!!!
      */
     const reduced = Object.keys(ownershipType).reduce((obj, item) => {
-      console.log(item)
       if (item === name) {
         obj[item] = !ownershipType[item]
-        obj['value'] = item
+        obj['value'] = item === 'fixedPeriod' ? 'fixed period' : item === 'openEndedPeriod' ? 'open Ended Period' : item
       } else {
         if (item !== 'value') obj[item] = false
       }
@@ -309,7 +308,10 @@ export class BrowseHorses extends Component {
     const reduced = Object.keys(racingHistory).reduce((obj, item) => {
       if (item === name) {
         obj[item] = !racingHistory[item]
-        obj['value'] = item
+        //obj['value'] = item
+        obj['value'] = {
+          hasBeenRaced: item === 'raced'
+        }
       } else {
         if (item !== 'value') obj[item] = false
       }
@@ -414,7 +416,8 @@ export class BrowseHorses extends Component {
     const reduced = Object.keys(racingType).reduce((obj, item) => {
       if (item === name) {
         obj[item] = !racingType[item]
-        obj['value'] = item
+        // obj['value'] = item
+        obj['value'] = item === 'nationalHunt' ? 'National Hunt' : item === 'flatRacing' ? 'Flat Racing' : item === 'dualPurpose' ? 'Dual Purpose' : item
       } else {
         if (item !== 'value') obj[item] = false
       }
@@ -590,7 +593,6 @@ export class BrowseHorses extends Component {
               />
             </div>
           </div>
-          { searchingHorses && <AjaxLoader /> }
         </div>
       </View>
     )
