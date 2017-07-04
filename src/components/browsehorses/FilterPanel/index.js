@@ -91,19 +91,19 @@ class FilterPanel extends PureComponent {
               age of horse
             </h5>
             <ToggleButton
-              active={filterOpts.ageOfHorse.young}
+              active={filterOpts.age.young}
               text='0-2'
               modifier={['fluid', 'secondary-navy-blue']}
               onClick={() => {}}
               onChange={(value) => { onAgeChange('young', value) }} />
             <ToggleButton
-              active={filterOpts.ageOfHorse.adult}
+              active={filterOpts.age.adult}
               text='3-5'
               modifier={['fluid', 'secondary-navy-blue']}
               onClick={() => {}}
               onChange={(value) => { onAgeChange('adult', value) }} />
             <ToggleButton
-              active={filterOpts.ageOfHorse.old}
+              active={filterOpts.age.old}
               text='Older Horse'
               modifier={['fluid', 'secondary-navy-blue']}
               onClick={() => {}}

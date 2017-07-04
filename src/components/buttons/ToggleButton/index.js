@@ -50,15 +50,15 @@ class ToggleButton extends PureComponent {
 
   componentWillReceiveProps (nextProps, nextState) {
     if (nextProps.active !== this.props.active && nextProps.active !== this.state.active) {
-      this.toggleActive()
+      this.toggleActive(false)
     }
   }
 
-  toggleActive () {
+  toggleActive (emitEvent = true) {
     this.setState((state) => ({
       active: !state.active
     }), () => {
-      this.fireOnChange()
+      emitEvent && this.fireOnChange()
     })
   }
 

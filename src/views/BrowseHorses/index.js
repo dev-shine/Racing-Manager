@@ -80,7 +80,7 @@ const getSortValue = name => {
     case 'shares highest to lowest':
       return {
         'field': 'sharesAvailable',
-        'order': 'asc'
+        'order': 'desc'
       }
 
     default:
@@ -97,7 +97,13 @@ const constructPayload = (opts, applyFilters) => {
       obj['sort'] = getSortValue(opts[item])
     } else
     if (item === 'ownershipType' && applyFilters) {
-
+      const value = opts[item].value
+      if (value) {
+        obj.filter.push({
+          field: item,
+          value: opts[item].value
+        })
+      }
     } else
     if (item === 'numberOfYears' && applyFilters) {
       obj.filter.push({
@@ -106,12 +112,31 @@ const constructPayload = (opts, applyFilters) => {
       })
     } else
     if (item === 'racingHistory' && applyFilters) {
+      const value = opts[item].value
+      if (value) {
+        obj.filter.push({
+          field: item,
+          value: opts[item].value
+        })
+      }
     } else
-    if (item === 'ageOfHorse' && applyFilters) {
-
+    if (item === 'age' && applyFilters) {
+      const value = opts[item].value
+      if (value.min !== 0 && value.max !== 0) {
+        obj.filter.push({
+          field: item,
+          value: opts[item].value
+        })
+      }
     } else
     if (item === 'racingType' && applyFilters) {
-
+      const value = opts[item].value
+      if (value) {
+        obj.filter.push({
+          field: item,
+          value: opts[item].value
+        })
+      }
     } else
     if (item === 'monthlyCostPerShare' && applyFilters) {
       const value = opts[item].value
@@ -140,7 +165,8 @@ export class BrowseHorses extends Component {
       filterOpen: false,
       ownershipType: {
         fixedPeriod: false,
-        openEndedPeriod: false
+        openEndedPeriod: false,
+        value: ''
       },
       numberOfYears: {
         value: 1,
@@ -149,17 +175,23 @@ export class BrowseHorses extends Component {
       },
       racingHistory: {
         raced: false,
-        unraced: false
+        unraced: false,
+        value: ''
       },
-      ageOfHorse: {
+      age: {
         'young': false,
         'adult': false,
-        'old': false
+        'old': false,
+        value: {
+          min: 0,
+          max: 0
+        }
       },
       racingType: {
         nationalHunt: false,
         flatRacing: false,
-        dualPurpose: false
+        dualPurpose: false,
+        value: ''
       },
       monthlyCostPerShare: {
         min: 0,
@@ -209,12 +241,41 @@ export class BrowseHorses extends Component {
    *  @param  {String} name
    */
   onOwnerShipChange (name) {
+    const {
+      ownershipType
+    } = this.state
+
+    /*
+    ILIYAN DONT KILL ME WHEN YOU SEE THIS I WILL REFACTOR THIS STUFF NEXT SPRINT!!!!
+     */
+    const reduced = Object.keys(ownershipType).reduce((obj, item) => {
+      console.log(item)
+      if (item === name) {
+        obj[item] = !ownershipType[item]
+        obj['value'] = item
+      } else {
+        if (item !== 'value') obj[item] = false
+      }
+
+      return obj
+    }, {})
+
+    this.setState({
+      ownershipType: {
+        ...reduced
+      }
+    }, () => {
+      this.debouncedSearch()
+    })
+
+    /*
     this.setState({
       ownershipType: {
         ...this.state.ownershipType,
         [name]: !this.state.ownershipType[name]
       }
     })
+    */
   }
 
   /**
@@ -238,12 +299,40 @@ export class BrowseHorses extends Component {
    *  @param  {Boolean} value
    */
   onRacingHistoryChange (name, value) {
+    const {
+      racingHistory
+    } = this.state
+
+    /*
+    ILIYAN DONT KILL ME WHEN YOU SEE THIS I WILL REFACTOR THIS STUFF NEXT SPRINT!!!!
+     */
+    const reduced = Object.keys(racingHistory).reduce((obj, item) => {
+      if (item === name) {
+        obj[item] = !racingHistory[item]
+        obj['value'] = item
+      } else {
+        if (item !== 'value') obj[item] = false
+      }
+
+      return obj
+    }, {})
+
+    this.setState({
+      racingHistory: {
+        ...reduced
+      }
+    }, () => {
+      this.debouncedSearch()
+    })
+
+    /*
     this.setState({
       racingHistory: {
         ...this.state.racingHistory,
         [name]: value
       }
     })
+    */
   }
 
   /**
@@ -252,12 +341,61 @@ export class BrowseHorses extends Component {
    *  @param  {Boolean} value
    */
   onAgeChange (name, value) {
+    const {
+      age
+    } = this.state
+
+    /*
+    ILIYAN DONT KILL ME WHEN YOU SEE THIS I WILL REFACTOR THIS STUFF NEXT SPRINT!!!!
+     */
+    const reduced = Object.keys(age).reduce((obj, item) => {
+      if (item === name) {
+        obj[item] = !age[item]
+
+        let value
+
+        if (item === 'young') {
+          value = {
+            min: 0,
+            max: 2
+          }
+        } else
+        if (item === 'adult') {
+          value = {
+            min: 3,
+            max: 5
+          }
+        } else
+        if (item === 'old') {
+          value = {
+            min: 6
+          }
+        }
+
+        obj['value'] = value
+      } else {
+        if (item !== 'value') obj[item] = false
+      }
+
+      return obj
+    }, {})
+
     this.setState({
-      ageOfHorse: {
-        ...this.state.ageOfHorse,
+      age: {
+        ...reduced
+      }
+    }, () => {
+      this.debouncedSearch()
+    })
+
+    /*
+    this.setState({
+      age: {
+        ...this.state.age,
         [name]: value
       }
     })
+    */
   }
 
   /**
@@ -266,12 +404,40 @@ export class BrowseHorses extends Component {
    *  @param  {Boolean} value
    */
   onRacingTypeChange (name, value) {
+    const {
+      racingType
+    } = this.state
+
+    /*
+    ILIYAN DONT KILL ME WHEN YOU SEE THIS I WILL REFACTOR THIS STUFF NEXT SPRINT!!!!
+     */
+    const reduced = Object.keys(racingType).reduce((obj, item) => {
+      if (item === name) {
+        obj[item] = !racingType[item]
+        obj['value'] = item
+      } else {
+        if (item !== 'value') obj[item] = false
+      }
+
+      return obj
+    }, {})
+
+    this.setState({
+      racingType: {
+        ...reduced
+      }
+    }, () => {
+      this.debouncedSearch()
+    })
+
+    /*
     this.setState({
       racingType: {
         ...this.state.racingType,
         [name]: value
       }
     })
+    */
   }
 
   /**
@@ -324,7 +490,7 @@ export class BrowseHorses extends Component {
       ownershipType,
       numberOfYears,
       racingHistory,
-      ageOfHorse,
+      age,
       racingType,
       monthlyCostPerShare,
       query,
@@ -336,7 +502,7 @@ export class BrowseHorses extends Component {
       ownershipType,
       numberOfYears,
       racingHistory,
-      ageOfHorse,
+      age,
       racingType,
       monthlyCostPerShare,
       query,
@@ -365,7 +531,7 @@ export class BrowseHorses extends Component {
       ownershipType,
       numberOfYears,
       racingHistory,
-      ageOfHorse,
+      age,
       racingType,
       monthlyCostPerShare,
       query,
@@ -381,7 +547,7 @@ export class BrowseHorses extends Component {
       ownershipType,
       numberOfYears,
       racingHistory,
-      ageOfHorse,
+      age,
       racingType,
       monthlyCostPerShare
     }
