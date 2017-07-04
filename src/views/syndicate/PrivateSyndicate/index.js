@@ -123,16 +123,13 @@ export class PrivateSyndicate extends Component {
                       <a href={requestToJoin}>
                         <TextButton
                           text='Request to join'
-                          className='public-horse__button'
-                          modifier={['md', 'blue']}
+                          modifier={['md', 'fluid', 'blue']}
                         />
                       </a>
                       <Link to='/'>
                         <TextButton
                           text='Talk to the manager'
-                          className='syndicate__button'
-                          modifier={['md', 'secondary-blue']}
-                          onClick={this.handleTalkToManager}
+                          modifier={['md', 'fluid', 'secondary-blue']}
                         />
                       </Link>
                       <Link to='/' className='link--italic syndicate__link'>
