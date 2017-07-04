@@ -9,11 +9,11 @@ import verifyServerFormat from 'utils/request'
  *  @param  {Object} data
  *  @return {Promise}
  */
-export const searchHorses = data => {
+export const searchHorses = payload => {
   return new Promise((resolve, reject) => {
     return post({
       url: SEARCH,
-      data
+      data: JSON.stringify(payload)
     })
     .then(verifyServerFormat)
     .then((data) => {

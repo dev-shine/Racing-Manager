@@ -53,6 +53,7 @@ class Slider extends PureComponent {
 
     // Bind custom fn
     this.onChange = this.onChange.bind(this)
+    this.emitChange = this.emitChange.bind(this)
     this.updateTipValues = this.updateTipValues.bind(this)
   }
 
@@ -79,7 +80,17 @@ class Slider extends PureComponent {
     this.setState({
       leftTipValue: leftValue,
       rightTipValue: rightValue
+    }, () => {
+      this.emitChange()
     })
+  }
+
+  emitChange () {
+    const {
+      onChange
+    } = this.props
+
+    onChange && onChange([this.state.leftTipValue, this.state.rightTipValue])
   }
 
   render () {

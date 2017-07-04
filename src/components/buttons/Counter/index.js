@@ -41,6 +41,7 @@ class Counter extends PureComponent {
     this.adjustCountToState = this.adjustCountToState.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
     this.incrementCounter = this.incrementCounter.bind(this)
+    this.emitChange = this.emitChange.bind(this)
     this.decrementCounter = this.decrementCounter.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
   }
@@ -53,6 +54,15 @@ class Counter extends PureComponent {
     if (nextProps.min !== this.props.min || nextProps.max !== this.props.max) {
       this.adjustCountToState(this.state.count, nextProps.min, nextProps.max)
     }
+  }
+
+  emitChange () {
+    const {
+      onChange
+    } = this.props
+
+    // Cast to a float
+    onChange && onChange(parseFloat(this.state.count, 10))
   }
 
   /**
@@ -72,6 +82,8 @@ class Counter extends PureComponent {
 
     this.setState({
       count
+    }, () => {
+      this.emitChange()
     })
   }
 
@@ -85,6 +97,8 @@ class Counter extends PureComponent {
     if (count === '') {
       return this.setState({
         count
+      }, () => {
+        this.emitChange()
       })
     }
 
@@ -102,6 +116,8 @@ class Counter extends PureComponent {
     if (incCount <= this.props.max) {
       this.setState({
         count: incCount
+      }, () => {
+        this.emitChange()
       })
     }
   }
@@ -112,6 +128,8 @@ class Counter extends PureComponent {
     if (decCount >= this.props.min) {
       this.setState({
         count: decCount
+      }, () => {
+        this.emitChange()
       })
     }
   }
@@ -120,6 +138,8 @@ class Counter extends PureComponent {
     if (this.state.count === '') {
       this.setState({
         count: this.props.min
+      }, () => {
+        this.emitChange()
       })
     }
   }
@@ -153,7 +173,8 @@ class Counter extends PureComponent {
 Counter.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
-  defaultCount: PropTypes.number
+  defaultCount: PropTypes.number,
+  onChange: PropTypes.func
 }
 
 Counter.defaultProps = {

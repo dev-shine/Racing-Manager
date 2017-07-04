@@ -7,11 +7,11 @@
 const throttle = (func, delay = 100) => {
   let resizeTimeout
     // ignore resize events as long as an actualResizeHandler execution is in the queue
-  return function (...props) {
+  return function () {
     if (!resizeTimeout) {
       resizeTimeout = setTimeout(function () {
         resizeTimeout = null
-        func(...props)
+        func()
 
         // The actualResizeHandler will execute at a rate of 15fps
       }, delay)

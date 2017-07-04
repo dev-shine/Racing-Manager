@@ -34,7 +34,18 @@ class ToggleButton extends PureComponent {
 
     // Bind custom fn
     this.toggleActive = this.toggleActive.bind(this)
+    this.setInitialActiveState = this.setInitialActiveState.bind(this)
     this.fireOnChange = this.fireOnChange.bind(this)
+  }
+
+  componentWillMount () {
+    this.setInitialActiveState()
+  }
+
+  setInitialActiveState () {
+    this.setState({
+      active: this.props.active
+    })
   }
 
   componentWillReceiveProps (nextProps, nextState) {
