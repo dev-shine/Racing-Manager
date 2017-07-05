@@ -19,11 +19,19 @@ import RegisterContainer from 'containers/register'
 import { withRouter } from 'react-router-dom'
 
 /**
+ *  @module TitleHero
+ */
+import TitleHero from 'components/common/TitleHero'
+
+/**
  *  @module resetRegisterForm
  */
 import {
   resetRegisterForm
 } from 'actions/register'
+
+import View from 'components/common/View'
+import { REGISTER as title } from 'data/titles'
 
 /**
  * @name Register
@@ -70,25 +78,24 @@ export class Register extends Component {
    */
   render () {
     return (
-      <div className='register'>
-        <div className='register__title-container'>
+      <View title={title}>
+        <div className='register'>
+          <TitleHero
+            title='Join the action!'/>
           <div className='container'>
-            <h1 className='register__title'>Join the action!</h1>
-          </div>
-        </div>
-        <div className='container'>
-          <div className='row register__content'>
-            <div className='col-sm-8 col-md-7 register__form-container'>
-              <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
-                your account.</p>
-              <RegisterContainer
-                onSubmitSuccess={this.submitFormDataSuccess}
-                onSubmitFail={this.submitFormDataFail} />
+            <div className='row register__content'>
+              <div className='col-sm-8 col-md-7 register__form-container'>
+                <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
+                  your account.</p>
+                <RegisterContainer
+                  onSubmitSuccess={this.submitFormDataSuccess}
+                  onSubmitFail={this.submitFormDataFail} />
+              </div>
+              <div className='col-sm-4 col-md-5 register__quick-register' />
             </div>
-            <div className='col-sm-4 col-md-5 register__quick-register' />
           </div>
         </div>
-      </div>
+      </View>
     )
   }
 }

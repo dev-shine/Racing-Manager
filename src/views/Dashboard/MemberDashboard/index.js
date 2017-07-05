@@ -34,14 +34,13 @@ import { Block, Grid } from 'components/masonry'
 import { newsImage } from 'assets/dummyassets'
 
 /**
- * @module post
+ *  @module getDashboard
  */
-import { get } from 'api/Request'
+import { getDashboard } from 'actions/dashboard'
 
-/**
- * @module DASHBOARD
- */
-import { DASHBOARD } from 'api/ServiceTypes'
+import View from 'components/common/View'
+
+import { MEMBER_DASHBOARD as title } from 'data/titles'
 
 /**
  *  @class
@@ -72,17 +71,14 @@ export class MemberDashboard extends Component {
    *  @return {Void}
    */
   fetchDashboardData () {
-    get({
-      url: DASHBOARD
-    })
-    .then(response => {
-      // Successfull.
+    getDashboard()
+    .then(({ownership}) => {
       this.setState({
-        syndicates: response.data.ownership
+        syndicates: ownership
       })
     })
     .catch(error => {
-      console.log(error)
+      console && console.error(error)
     })
   }
 
@@ -92,45 +88,47 @@ export class MemberDashboard extends Component {
     const { syndicates } = this.state
 
     return (
-      <div className='member-dashboard'>
-        <div className='member-dashboard__slider'>
-          <HeaderSection
-            data={syndicates}/>
-        </div>
-        <div className='member-dashboard__feed-section container'>
-          <h1 className='member-dashboard__title'>
-            Racing News
-          </h1>
-          <div className='member-dashboard__feed'>
-            <Grid
-              targetBlockWidth={265}
-              center={false}
-              maxColumns={4}>
-              {
-                tiles.map((tile, index) => (
-                  <Block width={1} key={index}>
-                    <NewsTile
-                      id={index}
-                      rootPath={tile.rootPath}
-                      text={tile.text}
-                      src={tile.src}
-                      providerSrc={tile.providerSrc}
-                      date={tile.date}
-                      className='member-dashboard__tile'
-                    />
-                  </Block>
-                ))
-              }
-            </Grid>
+      <View title={title}>
+        <div className='member-dashboard'>
+          <div className='member-dashboard__slider'>
+            <HeaderSection
+              data={syndicates}/>
           </div>
-          <TextButton
-            text='Load more'
-            modifier='secondary'
-            className='member-dashboard__more-btn'
-            onClick={() => {}}
-          />
+          <div className='member-dashboard__feed-section container'>
+            <h1 className='member-dashboard__title'>
+              Racing News
+            </h1>
+            <div className='member-dashboard__feed'>
+              <Grid
+                targetBlockWidth={265}
+                center={false}
+                maxColumns={4}>
+                {
+                  tiles.map((tile, index) => (
+                    <Block width={1} key={index}>
+                      <NewsTile
+                        id={index}
+                        rootPath={tile.rootPath}
+                        text={tile.text}
+                        src={tile.src}
+                        providerSrc={tile.providerSrc}
+                        date={tile.date}
+                        className='member-dashboard__tile'
+                      />
+                    </Block>
+                  ))
+                }
+              </Grid>
+            </div>
+            <TextButton
+              text='Load more'
+              modifier='secondary'
+              className='member-dashboard__more-btn'
+              onClick={() => {}}
+            />
+          </div>
         </div>
-      </div>
+      </View>
     )
   }
 }
@@ -150,7 +148,6 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getDashboard: () => {},
   }
 }
 

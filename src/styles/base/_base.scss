@@ -28,10 +28,9 @@ img {
   max-width: 100%;
 }
 
-ul.disc-list {
-  list-style-type: disc;
-  -webkit-padding-start: 0;
-  padding-left: 15px;
+ul {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 sup {
@@ -43,4 +42,48 @@ sup {
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.absolute-center-v {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.absolute-center-h {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.pos-absolute {
+  position: absolute;
+}
+
+.pos-relative {
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'utils/classnames'
 
 import TextButton from 'components/buttons/TextButton'
-import Separator from 'components/gui/Separator'
 import Accordion from 'components/accordion/BaseAccordion'
 import Hero from 'components/parallax/Hero'
 import Carousel from 'components/carousel'
@@ -15,12 +12,8 @@ import HorseDetails from 'components/horse/HorseDetails'
 import HorseBigSection from 'components/horse/HorseBigSection'
 import HorseSmallSection from 'components/horse/HorseSmallSection'
 
-import HorseAboutInfo from 'components/horse/HorseAboutInfo'
-import HorseOwnershipInfo from 'components/horse/HorseOwnershipInfo'
-import HorseBenefitsInfo from 'components/horse/HorseBenefitsInfo'
-
 import { timestampToDate } from 'utils/dateutils'
-import { calcPercent, constructStaticUrl } from 'utils/horseutils'
+import { constructStaticUrl } from 'utils/horseutils'
 
 class HorseHeader extends Component {
   constructor (props) {
@@ -41,9 +34,13 @@ class HorseHeader extends Component {
 
   render () {
     const { showDetails: isOpen } = this.state
-    const { className, modifier, data = {} } = this.props
 
-    const modifiedClassNames = classNames('horse-header', className, modifier)
+    const {
+      data = {},
+      leftSection,
+      rightSection,
+      slideSection
+    } = this.props
 
     const {
       name,
@@ -54,23 +51,15 @@ class HorseHeader extends Component {
       runs,
       wins,
       places,
-      or,
-      tfr,
       trainer = {},
+      style,
       foalingDate,
       sire = {},
       dam = {},
-      featuredImage,
-      description,
-      timeformComments = {},
-      style,
-      shares = {
-        owned: 0,
-        total: 0
-      },
+      featuredImage
     } = data
 
-    const syndicateSlug = owner.slug
+    const { slug } = owner
 
     const briefData = {
       name,
@@ -78,151 +67,81 @@ class HorseHeader extends Component {
       color,
       gender,
       owner,
-      syndicateSlug,
+      slug,
     }
 
-    const numericData = [
-      {
-        title: 'Runs',
-        value: runs
-      },
-      {
-        title: 'Wins',
-        value: wins
-      },
-      {
-        title: 'Places',
-        value: places
-      },
-      {
-        title: 'OR',
-        value: or
-      },
-      {
-        title: 'TFR',
-        value: tfr
-      }
-    ]
+    const numericData = [{
+      title: 'Runs',
+      value: runs
+    }, {
+      title: 'Wins',
+      value: wins
+    }, {
+      title: 'Places',
+      value: places
+    }, {
+      title: 'OR',
+      value: null
+    }]
 
-    const detailsData = [
-      {
-        title: 'Trainer',
-        value: trainer.name,
-        // isLink: true,
-        // href: '/',
-      },
-      {
-        title: 'Prev Trainers',
-        value: '-',
-        // isLink: true,
-        // href: '/',
-      },
-      {
-        title: 'Breeder',
-        value: '-',
-      },
-      {
-        title: 'Style',
-        value: style,
-      },
-      {
-        title: 'Foaling Date',
-        value: timestampToDate(foalingDate, 'D MMMM YYYY'),
-        isHidden: age >= 3
-      },
-      {
-        title: 'Sire',
-        value: sire.name,
-        // isLink: true,
-        // href: '/',
-      },
-      {
-        title: 'Dam',
-        value: dam.name,
-        // isLink: true,
-        // href: '/',
-      },
-      {
-        title: 'Dam Sire',
-        value: dam.sireName,
-        // isLink: true,
-        // href: '/',
-      },
-      {
-        title: 'Racetrack Siblings',
-        value: '-',
-        // isLink: true,
-        // href: '/',
-      },
-      {
-        title: 'Prize Money',
-        value: '-',
-        className: 'horse-header__details-prices',
-      },
-      {
-        title: 'Public Sales Price',
-        value: '-',
-      },
-      {
-        title: 'Current Value',
-        value: '-',
-      },
-    ]
-
-    const aboutData = {
-      description,
-      timeformComments,
-      syndicateSlug,
-    }
-
-    const ownershipYears = 2
-    const ownershipEndDate = timestampToDate(
-      new Date(new Date().setFullYear(new Date().getFullYear() + ownershipYears))
-    )
-
-    const ownershipData = [
-      `${ownershipYears} years fixed period ownership`,
-      `Ends on ${ownershipEndDate}`,
-      `You own ${calcPercent(shares.owned, shares.total)}% shares (${shares.owned} out of ${shares.total})`,
-    ]
-
-    const benefitsData = [
-      'Pro rata prize money share',
-      'Pro rata share of resale proceeds',
-      'Regular yard visits',
-      'Personalised messages and clips from the team',
-      'Live content from the races',
-    ]
+    const detailsData = [{
+      title: 'Trainer',
+      value: trainer.name
+    }, {
+      title: 'Prev Trainers',
+      value: null
+    }, {
+      title: 'Breeder',
+      value: null
+    }, {
+      title: 'Style',
+      value: style
+    }, {
+      title: 'Foaling Date',
+      value: timestampToDate(foalingDate, 'D MMMM YYYY'),
+      isHidden: age >= 3
+    }, {
+      title: 'Sire',
+      value: sire.name
+    }, {
+      title: 'Dam',
+      value: dam.name
+    }, {
+      title: 'Dam Sire',
+      value: dam.sireName
+    }, {
+      title: 'Prize Money',
+      value: null
+    }]
 
     return (
-      <div className={modifiedClassNames}>
+      <div className='horse-header'>
         <div className='horse-header__image'>
           <Hero featuredImage={constructStaticUrl(featuredImage)} />
           <div className='horse-header__details-container visible-md-up'>
             <div className='horse-header__details-tile'>
-              <div className='horse-header__details section-shadow'>
-                <div className='horse-header__small-details'>
-                  <HorseBrief data={briefData} />
-                  <HorseNumericDetails data={numericData} />
+              <div className='horse-header__details'>
+                <div className='horse-header__tile-padding'>
+                  <HorseBrief {...briefData} />
                 </div>
-                <HorseDetails data={detailsData} />
+                <div className='horse-header__tile-details horse-header__tile-padding section-shadow'>
+                  <HorseNumericDetails data={numericData} />
+                  <div className='horse-header__details-list'>
+                    <HorseDetails data={detailsData} />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className='row visible-md-up'>
-          <div className='horse-header__content section-holder'>
+          <div className='horse-header__content'>
             <div className='container no-padding'>
               <HorseBigSection className='col-md-8'>
-                <HorseAboutInfo data={aboutData} />
+                {leftSection}
               </HorseBigSection>
               <HorseSmallSection className='col-md-4'>
-                <h1 className='horse-header__description-title'>
-                  Your Involvement
-                </h1>
-                <Separator modifier='white' />
-                <HorseOwnershipInfo data={ownershipData} />
-                <HorseBenefitsInfo data={benefitsData} />
+                {rightSection}
               </HorseSmallSection>
             </div>
           </div>
@@ -230,7 +149,7 @@ class HorseHeader extends Component {
         <div className='hidden-md-up'>
           <div className='container'>
             <div className='horse-header__brief-info'>
-              <HorseBrief data={briefData} />
+              <HorseBrief {...briefData} />
               <TextButton
                 text={isOpen ? 'Hide details' : 'View details'}
                 className='horse-header__btn-details'
@@ -240,7 +159,7 @@ class HorseHeader extends Component {
             </div>
           </div>
           <Accordion isOpen={isOpen}>
-            <div className='horse-header__details section-shadow'>
+            <div className='horse-header__details horse-header__mobile-details section-shadow'>
               <div className='container'>
                 <div className='row'>
                   <HorseNumericDetails data={numericData} />
@@ -250,50 +169,24 @@ class HorseHeader extends Component {
                 </div>
               </div>
             </div>
-            <HorseBigSection className='col-md-8'>
-              <div className='container'>
-                <HorseAboutInfo data={aboutData} />
-              </div>
-            </HorseBigSection>
           </Accordion>
-          <HorseSmallSection className='col-md-8'>
-            <Carousel ref='carousel' showPagination>
-              <div className='container'>
-                <h1 className='horse-header__medium-title'>
-                  Your Involvement
-                </h1>
-                <Separator modifier='white' />
-                <HorseOwnershipInfo data={ownershipData} />
-              </div>
-              <div className='container'>
-                <h1 className='horse-header__medium-title'>
-                  Your Involvement
-                </h1>
-                <Separator modifier='white' />
-                <HorseBenefitsInfo data={benefitsData} />
-              </div>
-            </Carousel>
-          </HorseSmallSection>
+          {
+            slideSection && (
+              <HorseBigSection>
+                <Carousel ref='carousel' containerClassName='horse-header__slider' showPagination>
+                  {slideSection.map((slide, index) => (
+                    <div className='container' key={index}>
+                      {slide}
+                    </div>
+                  ))}
+                </Carousel>
+              </HorseBigSection>
+            )
+          }
         </div>
       </div>
     )
   }
-}
-
-HorseHeader.propTypes = {
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]),
-  modifier: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]),
-}
-
-HorseHeader.defaultProps = {
-  className: '',
-  modifier: '',
 }
 
 export default HorseHeader

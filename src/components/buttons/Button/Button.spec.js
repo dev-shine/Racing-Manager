@@ -43,8 +43,6 @@ describe('Components - Button - Events', () => {
   })
 
   it('should be active by default when the prop "onClick" is passed', () => {
-    wrapper.setProps({onClick: null})
-    expect(wrapper).to.have.attr('disabled')
     wrapper.setProps({onClick: () => {}})
     expect(wrapper).to.not.have.attr('disabled')
   })

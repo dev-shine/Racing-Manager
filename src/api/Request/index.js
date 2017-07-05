@@ -40,13 +40,9 @@ const request = params => {
   let url = params.url + qs
 
   let opts = {
+    headers,
     method,
     body
-  }
-
-  // to make this work with multipart
-  if (params.noHeaders) {
-    opts.headers = headers
   }
 
   return fetch(url, opts)

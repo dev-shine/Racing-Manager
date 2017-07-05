@@ -5,7 +5,7 @@ import classNames from 'utils/classnames'
 const List = props => {
   const { items, className, modifier } = props
 
-  const modifiedClassNames = classNames('disc-list', className, modifier)
+  const modifiedClassNames = classNames('list', className, modifier)
 
   return (
     <ul className={modifiedClassNames}>
@@ -22,7 +22,7 @@ const List = props => {
 
 List.propTypes = {
   items: PropTypes.arrayOf(
-    PropTypes.string
+    PropTypes.any
   ).isRequired,
   className: PropTypes.oneOfType([
     PropTypes.string,

@@ -72,6 +72,10 @@ module.exports = {
         loaders: ['style', 'css', 'postcss', 'sass']
       },
       {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      {
         test: /\.(jpe?g|png|gif|svg|ttf|woff|eot|mp4)$/i,
         loader: 'file-loader',
         query: {

@@ -10,12 +10,12 @@ const HorseDetails = props => {
   const constructClassName = className => classNames('row', className)
 
   return (
-    <div className='horse-details-list'>
+    <div className='horse-details-list col-xs-12'>
       {
         data.map((item, index) => (
           !item.isHidden && (
             <div className={constructClassName(item.className)} key={index}>
-              <div className='horse-details__title col-xs-6'>
+              <div className='horse-details-list__title col-xs-6'>
                 {item.title}
               </div>
               <div className='col-xs-6'>
@@ -37,13 +37,7 @@ HorseDetails.propTypes = {
       isLink: PropTypes.bool,
       href: PropTypes.string
     })
-  ),
+  )
 }
 
 export default HorseDetails
-
-/*
-<Link to={item.href} className='link--italic'>
-  item.value ? capitalize(item.value) : '-'
-</Link>
-*/

@@ -21,7 +21,7 @@ import {
   updateHorseText,
   addHorseMediaFiles,
   deleteHorseMedia
-} from 'actions/horseoverview'
+} from 'actions/horse'
 
 /**
  *  mapStateToProps
@@ -35,7 +35,7 @@ const mapStateToProps = (state, ownProps) => {
     maxCharCount,
     files,
     posted
-  } = state.horseoverview
+  } = state.horse
 
   // Get the char count.
   const charCount = (maxCharCount - text.length)

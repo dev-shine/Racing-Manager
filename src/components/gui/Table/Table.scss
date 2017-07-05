@@ -1,0 +1,48 @@
+.table {
+  overflow-x: scroll;
+
+  &__el {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+  }
+
+  &__head {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    background: #00273A;
+  }
+
+  &__body {
+
+  }
+
+  &__row,
+  &__cell {
+    padding-left: 13px;
+  }
+
+  &__row {
+    cursor: pointer;
+    height: 35px;
+    line-height: 35px;
+
+    ~ .table__row {
+      border-top: 1px solid #B2B4B5;
+    }
+  }
+
+  &__row-normal {
+    transition: .3s background ease-out;
+
+    &:hover {
+      background: #f6f6f6;
+    }
+  }
+
+  &__cell {
+    //min-width: 80px;
+  }
+}

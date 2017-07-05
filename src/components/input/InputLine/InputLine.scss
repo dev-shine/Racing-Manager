@@ -37,7 +37,8 @@ $form-input-line-height: 2px;
 }
 
 *:focus ~ .form-input-line,
-*:active ~ .form-input-line {
+*:active ~ .form-input-line,
+.form-input-line--active {
   transform:scale(1,1);
   transform:scale3d(1,1,1);
 }

@@ -10,3 +10,7 @@
     cursor: not-allowed;
   }
 }
+
+.button ~ .button {
+  margin-top: 10px;
+}

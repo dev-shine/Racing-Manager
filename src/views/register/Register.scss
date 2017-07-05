@@ -1,20 +1,4 @@
 .register {
-  &__title-container {
-    background: $yankees-blue;
-  }
-  &__title {
-    font-size: $subtitle;
-    line-height: 60px;
-    @media (min-width: $screen-sm) {
-      padding-left: 20px;
-    }
-    @media (min-width: $screen-md) {
-      line-height: 96px;
-      font-size: $title;
-      padding-left: 5px;
-    }
-    color: white;
-  }
   &__form-container {
     background-color: white;
     padding-top: 40px;
