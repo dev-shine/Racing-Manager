@@ -1,12 +1,9 @@
-import { post } from 'api/Request'
+import { requestAuth } from 'api/Services'
 import { requestSuccess, requestFail } from 'actions/request'
 
 export const authenticate = data => {
   return (dispatch, getState) => {
-    return post({
-      data,
-      url: ''
-    })
+    return requestAuth(data)
     .then(response => {
       dispatch(requestSuccess(response))
       return Promise.resolve(response)

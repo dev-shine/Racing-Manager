@@ -3,6 +3,8 @@
  */
 import 'whatwg-fetch'
 
+import verifyServerFormat from 'utils/request'
+
 /**
  *  getQueryString
  *  @param  {Object} params
@@ -47,6 +49,7 @@ const request = params => {
 
   return fetch(url, opts)
   .then(response => Promise.resolve(response.json()))
+  .then(verifyServerFormat)
   .catch(error => Promise.reject(error))
 }
 

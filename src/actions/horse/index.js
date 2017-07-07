@@ -1,22 +1,12 @@
-/**
- * @module post
- */
-import { get, post } from 'api/Request'
-
-/**
- *  @module MESSAGE
- */
-import { MESSAGE, HORSE } from 'api/ServiceTypes'
+import {
+  getHorseInfo,
+  performHorseUpdate
+} from 'api/Services'
 
 /**
  *  @module formatHorseData
  */
 import { formatHorseData } from 'utils/horseutils'
-
-/**
- *  @module verifyServerFormat
- */
-import verifyServerFormat from 'utils/request'
 
 /**
  *  FETCH_HORSE_INFO
@@ -168,18 +158,12 @@ export const deleteHorseMedia = () => ({
  *  @param {String} name
  *  @return {Function}
  */
-export const fetchHorseInfo = name => {
+export const fetchHorseInfo = (name) => {
   return (dispatch, getState) => {
     // Signal to the store a fetch is going to happen
     dispatch(gettingHorseInfo())
 
-    return get({
-      url: HORSE,
-      data: {
-        name
-      }
-    })
-    .then(verifyServerFormat)
+    return getHorseInfo(name)
     .then(formatHorseData)
     .then((data) => {
       dispatch(receivedHorseInfo(data))
@@ -197,17 +181,12 @@ export const fetchHorseInfo = name => {
  *  @param {Object} data
  *  @return {Promise}
  */
-export const submitHorseUpdate = data => {
+export const submitHorseUpdate = (data) => {
   return (dispatch, getState) => {
     // Dispatch an action for starting the posting.
     dispatch(postingHorseUpdate())
 
-    return post({
-      url: MESSAGE,
-      data,
-      headers: {} // Let fetch set the headers for multipart form data
-    })
-    .then(verifyServerFormat)
+    return performHorseUpdate(data)
     .then((data) => {
       dispatch(postedHorseUpdate(data))
       return Promise.resolve(data)
