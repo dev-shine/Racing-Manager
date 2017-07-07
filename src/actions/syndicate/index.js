@@ -1,6 +1,4 @@
-import { get } from 'api/Request'
-import { SYNDICATE } from 'api/ServiceTypes'
-import verifyServerFormat from 'utils/request'
+import { getSyndicateInfo } from 'api/Services'
 
 import { formatHorseData } from 'utils/horseutils'
 
@@ -27,11 +25,7 @@ export const fetchSyndicateInfo = data => {
   return (dispatch, getState) => {
     dispatch(gettingSyndicateInfo())
 
-    return get({
-      url: SYNDICATE,
-      data
-    })
-    .then(verifyServerFormat)
+    return getSyndicateInfo(data)
     .then(formatHorseData)
     .then((data) => {
       dispatch(receivedSyndicateInfo(data))

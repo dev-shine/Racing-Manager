@@ -1,17 +1,4 @@
-/**
- * @module post
- */
-import { post } from 'api/Request'
-
-/**
- * @module REGISTRATION
- */
-import { REGISTRATION } from 'api/ServiceTypes'
-
-/**
- *  @module verifyServerFormat
- */
-import verifyServerFormat from 'utils/request'
+import { performRegistration } from 'api/Services'
 
 /**
  *  @name REGISTER_UPDATE
@@ -114,11 +101,7 @@ export const submitFormData = data => {
   return (dispatch, getState) => {
     dispatch(submitRegisterForm())
 
-    return post({
-      data,
-      url: REGISTRATION
-    })
-    .then(verifyServerFormat)
+    return performRegistration(data)
     .then((data) => {
       dispatch(submittedRegisterForm(data))
       return Promise.resolve(data)

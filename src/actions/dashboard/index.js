@@ -1,14 +1,4 @@
-/**
- * @module post
- */
-import { get } from 'api/Request'
-
-/**
- * @module DASHBOARD
- */
-import { DASHBOARD } from 'api/ServiceTypes'
-
-import verifyServerFormat from 'utils/request'
+import { getMemberDashboard } from 'api/Services'
 
 /**
  *  @name  getDashboard
@@ -17,10 +7,7 @@ import verifyServerFormat from 'utils/request'
  */
 export const getDashboard = () => {
   return new Promise((resolve, reject) => {
-    return get({
-      url: DASHBOARD
-    })
-    .then(verifyServerFormat)
+    return getMemberDashboard()
     .then((data) => {
       return resolve(data)
     })
