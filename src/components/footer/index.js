@@ -36,6 +36,8 @@ const Footer = props => {
         <div className='col-xs-12 col-sm-4 col-md-6 footer__left'>
           <a href='/'>
             <Image
+              isImage
+              alt={'The Racing Manager'}
               className='footer__logo'
               imageSrc={footerLogo} />
           </a>
