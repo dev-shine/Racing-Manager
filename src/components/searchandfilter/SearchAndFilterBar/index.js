@@ -11,12 +11,12 @@ import PropTypes from 'prop-types'
 /**
  *  @module SearchInput
  */
-import SearchInput from 'components/input/SearchInput'
+import SearchInput from 'components/searchandfilter/SearchInput'
 
 /**
  *  @module SortSelect
  */
-import SortSelect, { Option } from 'components/input/SortSelect'
+import SortSelect, { Option } from 'components/searchandfilter/SortSelect'
 
 /**
  *  @module Icon

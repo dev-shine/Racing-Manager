@@ -31,7 +31,7 @@ import HorseCardGallery from 'components/cards/HorseCardGallery'
 /**
  *  @module SearchAndFilterBar
  */
-import SearchAndFilterBar from 'components/browsehorses/SearchAndFilterBar'
+import SearchAndFilterBar from 'components/searchandfilter/SearchAndFilterBar'
 
 /**
  *  @module FilterPanel
