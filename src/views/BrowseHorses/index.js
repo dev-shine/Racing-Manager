@@ -49,11 +49,6 @@ import classNames from 'classnames'
 import { searchHorses } from 'actions/browsehorses'
 
 /**
- *  @module AjaxLoader
- */
-import AjaxLoader from 'components/ajaxloader'
-
-/**
  *  @module debounce
  */
 import debounce from 'utils/debounce'
@@ -308,7 +303,7 @@ export class BrowseHorses extends Component {
     const reduced = Object.keys(racingHistory).reduce((obj, item) => {
       if (item === name) {
         obj[item] = !racingHistory[item]
-        //obj['value'] = item
+        // obj['value'] = item
         obj['value'] = {
           hasBeenRaced: item === 'raced'
         }
@@ -541,8 +536,7 @@ export class BrowseHorses extends Component {
       sortValue,
       sortOptions,
       resultsAmount,
-      results,
-      searchingHorses
+      results
     } = this.state
 
     // Filter opts for the filter panel
