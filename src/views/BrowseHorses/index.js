@@ -545,20 +545,15 @@ export class BrowseHorses extends Component {
             searchValue={query}
           />
           <div className='container'>
-            {
-              filterOpen
-              ? (
-                  <FilterPanel
-                    filterOpts={filterOpts}
-                    onOwnerShipChange={this.onOwnerShipChange}
-                    onNumberOfYearsChange={this.onNumberOfYearsChange}
-                    onRacingHistoryChange={this.onRacingHistoryChange}
-                    onAgeChange={this.onAgeChange}
-                    onRacingTypeChange={this.onRacingTypeChange}
-                    onMonthlyCostPerShareChange={this.onMonthlyCostPerShareChange} />
-                )
-              : null
-            }
+            <FilterPanel
+              isOpen={filterOpen}
+              filterOpts={filterOpts}
+              onOwnerShipChange={this.onOwnerShipChange}
+              onNumberOfYearsChange={this.onNumberOfYearsChange}
+              onRacingHistoryChange={this.onRacingHistoryChange}
+              onAgeChange={this.onAgeChange}
+              onRacingTypeChange={this.onRacingTypeChange}
+              onMonthlyCostPerShareChange={this.onMonthlyCostPerShareChange} />
             <div className={modifiedClassGalleryCols}>
               <HorseCardGallery
                 data={results}
