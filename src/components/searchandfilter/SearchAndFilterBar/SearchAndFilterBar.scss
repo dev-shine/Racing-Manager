@@ -15,8 +15,13 @@
       color: $space-cadet;
     }
 
+    @media all and (min-width: $screen-sm-min) {
+      padding-right: 10px;
+      color: $maastricht-blue;
+    }
+
     @media all and (min-width: $screen-md-min) {
-      margin-right: 20px;
+      padding-right: 20px;
       color: $maastricht-blue;
 
       &--active {
@@ -33,7 +38,6 @@
     position: relative;
     display: inline-block;
     font-size: $nano-title;
-    margin-left: 20px;
 
     &:before {
       color: $maastricht-blue;

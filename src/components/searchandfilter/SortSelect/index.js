@@ -53,12 +53,11 @@ const SortSelect = props => {
       <div className='sort-select__middle'>
         <Select
           className='sort-select__select-input'
-          {...selectProps}
-        >
+          {...selectProps}>
           {children}
         </Select>
       </div>
-      <div className='sort-select__right visible-sm-up absolute-center-v'>
+      <div className='sort-select__right visible-sm-up'>
         <Icon
           className='sort-select__dropdown-icon'
           modifier='dropdown' />
