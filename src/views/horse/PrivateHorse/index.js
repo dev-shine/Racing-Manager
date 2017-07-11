@@ -16,7 +16,7 @@ import Separator from 'components/gui/Separator'
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseAccordion from 'components/horse/HorseAccordion'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
-import SubmitPost from 'containers/horseOverview/SubmitPost'
+import SubmitPost from 'containers/privateHorse/SubmitPost'
 import FeedGallery from 'components/tiles/FeedGallery'
 
 import { timestampToDate } from 'utils/dateutils'

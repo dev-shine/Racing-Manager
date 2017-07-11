@@ -13,7 +13,7 @@
 }
 
 @keyframes sk-bounce {
-  0%, 100% { 
+  0%, 100% {
     transform: scale3d(0.0, 0.0, 0.0);
   } 50% { 
     transform: scale3d(1.0, 1.0, 1.0);
@@ -33,6 +33,10 @@
 
 /**
  *  REACT CSS TRANSITION GROUP ANIMATIONS
+ */
+
+/**
+ *  FADE
  */
 .fade-in-enter, .fade-in-appear {
   opacity: 0;

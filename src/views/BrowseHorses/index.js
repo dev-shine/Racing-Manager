@@ -31,7 +31,7 @@ import HorseCardGallery from 'components/cards/HorseCardGallery'
 /**
  *  @module SearchAndFilterBar
  */
-import SearchAndFilterBar from 'components/browsehorses/SearchAndFilterBar'
+import SearchAndFilterBar from 'components/searchandfilter/SearchAndFilterBar'
 
 /**
  *  @module FilterPanel
@@ -47,11 +47,6 @@ import classNames from 'classnames'
  *  @module searchHorses
  */
 import { searchHorses } from 'actions/browsehorses'
-
-/**
- *  @module AjaxLoader
- */
-import AjaxLoader from 'components/ajaxloader'
 
 /**
  *  @module debounce
@@ -251,7 +246,11 @@ export class BrowseHorses extends Component {
     const reduced = Object.keys(ownershipType).reduce((obj, item) => {
       if (item === name) {
         obj[item] = !ownershipType[item]
-        obj['value'] = item === 'fixedPeriod' ? 'fixed period' : item === 'openEndedPeriod' ? 'open Ended Period' : item
+        if (obj[item]) {
+          obj['value'] = item === 'fixedPeriod' ? 'fixed period' : item === 'openEndedPeriod' ? 'open Ended Period' : ''
+        } else {
+          obj['value'] = ''
+        }
       } else {
         if (item !== 'value') obj[item] = false
       }
@@ -266,15 +265,6 @@ export class BrowseHorses extends Component {
     }, () => {
       this.debouncedSearch()
     })
-
-    /*
-    this.setState({
-      ownershipType: {
-        ...this.state.ownershipType,
-        [name]: !this.state.ownershipType[name]
-      }
-    })
-    */
   }
 
   /**
@@ -308,9 +298,13 @@ export class BrowseHorses extends Component {
     const reduced = Object.keys(racingHistory).reduce((obj, item) => {
       if (item === name) {
         obj[item] = !racingHistory[item]
-        //obj['value'] = item
-        obj['value'] = {
-          hasBeenRaced: item === 'raced'
+        // obj['value'] = item
+        if (obj[item]) {
+          obj['value'] = {
+            hasBeenRaced: item === 'raced'
+          }
+        } else {
+          obj['value'] = ''
         }
       } else {
         if (item !== 'value') obj[item] = false
@@ -326,15 +320,6 @@ export class BrowseHorses extends Component {
     }, () => {
       this.debouncedSearch()
     })
-
-    /*
-    this.setState({
-      racingHistory: {
-        ...this.state.racingHistory,
-        [name]: value
-      }
-    })
-    */
   }
 
   /**
@@ -354,23 +339,25 @@ export class BrowseHorses extends Component {
       if (item === name) {
         obj[item] = !age[item]
 
-        let value
+        let value = {}
 
-        if (item === 'young') {
-          value = {
-            min: 0,
-            max: 2
-          }
-        } else
-        if (item === 'adult') {
-          value = {
-            min: 3,
-            max: 5
-          }
-        } else
-        if (item === 'old') {
-          value = {
-            min: 6
+        if (obj[item]) {
+          if (item === 'young') {
+            value = {
+              min: 0,
+              max: 2
+            }
+          } else
+          if (item === 'adult') {
+            value = {
+              min: 3,
+              max: 5
+            }
+          } else
+          if (item === 'old') {
+            value = {
+              min: 6
+            }
           }
         }
 
@@ -389,15 +376,6 @@ export class BrowseHorses extends Component {
     }, () => {
       this.debouncedSearch()
     })
-
-    /*
-    this.setState({
-      age: {
-        ...this.state.age,
-        [name]: value
-      }
-    })
-    */
   }
 
   /**
@@ -417,7 +395,11 @@ export class BrowseHorses extends Component {
       if (item === name) {
         obj[item] = !racingType[item]
         // obj['value'] = item
-        obj['value'] = item === 'nationalHunt' ? 'National Hunt' : item === 'flatRacing' ? 'Flat Racing' : item === 'dualPurpose' ? 'Dual Purpose' : item
+        if (obj[item]) {
+          obj['value'] = item === 'nationalHunt' ? 'National Hunt' : item === 'flatRacing' ? 'Flat Racing' : item === 'dualPurpose' ? 'Dual Purpose' : ''
+        } else {
+          obj['value'] = ''
+        }
       } else {
         if (item !== 'value') obj[item] = false
       }
@@ -432,15 +414,6 @@ export class BrowseHorses extends Component {
     }, () => {
       this.debouncedSearch()
     })
-
-    /*
-    this.setState({
-      racingType: {
-        ...this.state.racingType,
-        [name]: value
-      }
-    })
-    */
   }
 
   /**
@@ -541,8 +514,7 @@ export class BrowseHorses extends Component {
       sortValue,
       sortOptions,
       resultsAmount,
-      results,
-      searchingHorses
+      results
     } = this.state
 
     // Filter opts for the filter panel
@@ -573,20 +545,15 @@ export class BrowseHorses extends Component {
             searchValue={query}
           />
           <div className='container'>
-            {
-              filterOpen
-              ? (
-                  <FilterPanel
-                    filterOpts={filterOpts}
-                    onOwnerShipChange={this.onOwnerShipChange}
-                    onNumberOfYearsChange={this.onNumberOfYearsChange}
-                    onRacingHistoryChange={this.onRacingHistoryChange}
-                    onAgeChange={this.onAgeChange}
-                    onRacingTypeChange={this.onRacingTypeChange}
-                    onMonthlyCostPerShareChange={this.onMonthlyCostPerShareChange} />
-                )
-              : null
-            }
+            <FilterPanel
+              isOpen={filterOpen}
+              filterOpts={filterOpts}
+              onOwnerShipChange={this.onOwnerShipChange}
+              onNumberOfYearsChange={this.onNumberOfYearsChange}
+              onRacingHistoryChange={this.onRacingHistoryChange}
+              onAgeChange={this.onAgeChange}
+              onRacingTypeChange={this.onRacingTypeChange}
+              onMonthlyCostPerShareChange={this.onMonthlyCostPerShareChange} />
             <div className={modifiedClassGalleryCols}>
               <HorseCardGallery
                 data={results}

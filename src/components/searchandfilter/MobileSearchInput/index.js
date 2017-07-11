@@ -1,7 +1,7 @@
 /**
  *  @module React
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  *  @module PropTypes
@@ -31,9 +31,9 @@ import omit from 'utils/objectutils/omit'
 /**
  *  @class
  *  @name SearchInput
- *  @extends {Component}
+ *  @extends {PureComponent}
  */
-class SearchInput extends Component {
+class SearchInput extends PureComponent {
   constructor (props) {
     super(props)
 
@@ -45,7 +45,20 @@ class SearchInput extends Component {
     // Bind custom fn
     this.openSearch = this.openSearch.bind(this)
     this.closeSearch = this.closeSearch.bind(this)
+    this.updateOpenFromProps = this.updateOpenFromProps.bind(this)
     this.handleSearchResult = this.handleSearchResult.bind(this)
+  }
+
+  componentWillMount () {
+    if (this.props.open) {
+      this.updateOpenFromProps()
+    }
+  }
+
+  updateOpenFromProps (open = this.props.open) {
+    this.setState({
+      open
+    })
   }
 
   /**
@@ -68,6 +81,12 @@ class SearchInput extends Component {
     })
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.open !== this.props.open) {
+      this.updateOpenFromProps(nextProps.open)
+    }
+  }
+
   handleSearchResult (event) {
     const value = event.target.value
 
@@ -87,11 +106,11 @@ class SearchInput extends Component {
       open
     } = this.state
 
-    const modifiedClassNames = classNames('search-input', containerClassName, {
+    const modifiedClassNames = classNames('mobile-search-input', containerClassName, {
       'active': open
     })
 
-    const closeModifiedClassNames = classNames('search-input__close-container', 'hidden-md-up', {
+    const closeModifiedClassNames = classNames('mobile-search-input__close-container', '', {
       'active': open
     })
 
@@ -102,16 +121,16 @@ class SearchInput extends Component {
       <div className={modifiedClassNames}>
         <Icon
           onClick={this.openSearch}
-          className='search-input__glass absolute-center-v'
+          className='mobile-search-input__glass absolute-center-v'
           modifier='magnifying-glass' />
         <Input
-          inputLineClassName='visible-md-up'
+          inputLineClassName='hidden'
           handleChange={this.handleSearchResult}
           {...inputProps} />
         <div className={closeModifiedClassNames}>
           <Icon
             onClick={this.closeSearch}
-            className='search-input__close'
+            className='mobile-search-input__close'
             modifier='close'/>
         </div>
       </div>
@@ -121,7 +140,12 @@ class SearchInput extends Component {
 
 SearchInput.propTypes = {
   containerClassName: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  open: PropTypes.bool
+}
+
+SearchInput.defaultProps = {
+  open: false
 }
 
 /**

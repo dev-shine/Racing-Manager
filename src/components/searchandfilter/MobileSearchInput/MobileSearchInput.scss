@@ -1,21 +1,14 @@
-.search-input {
+.mobile-search-input {
   $icon-margin-top: 0;
 
-  position: relative;
-  width: 0;
   display: flex;
   align-items: center;
-
-  @media all and (max-width: $screen-md) {
-    transition: width .4s ease-out;
-    background-color: $white;
-  }
-
+  position: relative;
+  width: 0;
+  transition: width .4s ease-out;
+  background-color: $white;
+  
   &--active {
-    width: 100%;
-  }
-
-  @media all and (min-width: $screen-md-min) {
     width: 100%;
   }
 
@@ -30,16 +23,8 @@
 
   input {
     padding-left: 25px;
-    
-    @media all and (max-width: $screen-md) {
-      border: 0;
-      line-height: initial;
-    }
-
-    @media all and (min-width: $screen-md-min) {
-      padding-right: 25px;
-      padding-left: 0;
-    }
+    border: 0;
+    line-height: initial;
   }
 
   &__close-container {
@@ -66,11 +51,5 @@
     margin-top: $icon-margin-top;
     cursor: pointer;
     z-index: 1;
-
-    @media all and (min-width: $screen-md-min) {
-      cursor: initial;
-      left: initial;
-      right: 0;
-    }
   }
 }
