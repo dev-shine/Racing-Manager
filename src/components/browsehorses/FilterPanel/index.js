@@ -68,7 +68,7 @@ class FilterPanel extends PureComponent {
       { isOpen &&
         <div className={modifiedClassNames}>
           <div className='row'>
-            <div className='filter-panel__column col-sm-6 col-md-4 col-lg-2'>
+            <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
                 ownership type
               </h5>
@@ -87,7 +87,7 @@ class FilterPanel extends PureComponent {
                 id='open-ended-period'
                 onChange={(event) => { onOwnerShipChange('openEndedPeriod', event) }} />
             </div>
-            <div className='filter-panel__column col-sm-6 col-md-4 col-lg-2'>
+            <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
                 number of years
               </h5>
@@ -97,7 +97,7 @@ class FilterPanel extends PureComponent {
                 defaultCount={filterOpts.numberOfYears.value}
                 onChange={onNumberOfYearsChange} />
             </div>
-            <div className='filter-panel__column col-sm-6 col-md-4 col-lg-2'>
+            <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
                 racing history
               </h5>
@@ -114,7 +114,7 @@ class FilterPanel extends PureComponent {
                 onChange={(value) => { onRacingHistoryChange('unraced', value) }}
                 onClick={() => {}} />
             </div>
-            <div className='filter-panel__column col-sm-6 col-md-4 col-lg-2'>
+            <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
                 age of horse
               </h5>
@@ -137,7 +137,7 @@ class FilterPanel extends PureComponent {
                 onClick={() => {}}
                 onChange={(value) => { onAgeChange('old', value) }} />
             </div>
-            <div className='filter-panel__column col-sm-6 col-md-4 col-lg-2'>
+            <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
                 racing type
               </h5>

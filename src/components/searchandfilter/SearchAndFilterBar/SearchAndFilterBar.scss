@@ -38,9 +38,14 @@
     position: relative;
     display: inline-block;
     font-size: $nano-title;
-
+    transition: transform .4s ease-out;
+    
     &:before {
       color: $maastricht-blue;
+    }
+
+    &--active {
+      transform: rotate(180deg);
     }
   }
 

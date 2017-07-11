@@ -66,6 +66,10 @@ class SearchAndFilterBar extends PureComponent {
       'active': filterActive
     })
 
+    const filterResultsDropdown = classNames('search-filter-bar__dropdown', '', {
+      'active': filterActive
+    })
+
     return (
       <div className='search-filter-bar section-shadow--bottom'>
         <div className='container'>
@@ -98,7 +102,7 @@ class SearchAndFilterBar extends PureComponent {
                   filter the {resultsAmount} results
                 </h5>
                 <Icon
-                  className='search-filter-bar__dropdown'
+                  className={filterResultsDropdown}
                   modifier='dropdown'/>
               </div>
             </div>

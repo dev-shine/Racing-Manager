@@ -27,7 +27,7 @@
       }
     }
 
-    @media all and (min-width: $screen-md) {
+    @media all and (min-width: $screen-lg) {
       &:nth-child(3) {
         clear: none;
       }
@@ -42,7 +42,7 @@
 
   &__range-slider {
     margin-top: 40px;
-    padding: 0 20px;
+    padding: 0 40px;
 
     @media all and (min-width: $screen-sm) {
       padding: 0;
