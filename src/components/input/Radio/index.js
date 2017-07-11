@@ -19,19 +19,21 @@ const Radio = props => {
   const modifiedClassNames = classNames('radio', className, modifier)
 
   return (
-    <label className={modifiedClassNames} htmlFor={id}>
-      <input
-        className='radio__input'
-        type='radio'
-        id={id}
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={(e) => { console.log('hi!'); onChange(e) }}
-        />
-      <span className='radio__button'></span>
-      <h5 className='radio__label'>{label}</h5>
-    </label>
+    <div className={modifiedClassNames}>
+      <label htmlFor={id} className='radio__label'>
+        <input
+          className='radio__input'
+          type='radio'
+          id={id}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={(e) => { onChange(e) }}
+          />
+        <span className='radio__button'></span>
+        <h5 className='radio__label__text'>{label}</h5>
+      </label>
+    </div>
   )
 }
 

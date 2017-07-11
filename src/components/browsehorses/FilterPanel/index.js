@@ -73,14 +73,16 @@ class FilterPanel extends PureComponent {
                 ownership type
               </h5>
               <Radio
+                label='Fixed Period'
                 value='fixed-period'
-                checked={filterOpts.ownershipType.value === 'fixed-period'}
+                checked={filterOpts.ownershipType.value === 'fixed period'}
                 name='ownershiptype'
                 id='fixed-period'
                 onChange={(event) => { onOwnerShipChange('fixedPeriod', event) }} />
               <Radio
+                label='Open Ended Period'
                 value='Open Ended Period'
-                cchecked={filterOpts.ownershipType.value === 'Open Ended Period'}
+                checked={filterOpts.ownershipType.value === 'open Ended Period'}
                 name='ownershiptype'
                 id='open-ended-period'
                 onChange={(event) => { onOwnerShipChange('openEndedPeriod', event) }} />
