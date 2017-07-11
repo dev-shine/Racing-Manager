@@ -9,9 +9,9 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 /**
- *  @module Checkbox
+ *  @module Radio
  */
-import Checkbox from 'components/input/Checkbox'
+import Radio from 'components/input/Radio'
 
 /**
  *  @module ToggleButton
@@ -33,6 +33,11 @@ import Slider from 'components/input/Slider'
  */
 import { CSSTransitionGroup } from 'react-transition-group'
 
+/**
+ *  @module classNames
+ */
+import classNames from 'utils/classnames'
+
 class FilterPanel extends PureComponent {
   constructor (props) {
     super(props)
@@ -47,8 +52,12 @@ class FilterPanel extends PureComponent {
       onAgeChange,
       onRacingTypeChange,
       onMonthlyCostPerShareChange,
-      isOpen
+      isOpen,
+      className,
+      modifier
     } = this.props
+
+    const modifiedClassNames = classNames('filter-panel', className, modifier)
 
     return (
       <CSSTransitionGroup
@@ -57,24 +66,24 @@ class FilterPanel extends PureComponent {
         transitionLeaveTimeout={400}
       >
       { isOpen &&
-        <div className='filter-panel'>
+        <div className={modifiedClassNames}>
           <div className='row'>
             <div className='filter-panel__column col-sm-6 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
                 ownership type
               </h5>
-              <Checkbox
-                value={filterOpts.ownershipType.fixedPeriod}
-                label='Fixed Period'
-                modifier={['navy']}
-                name='fixed-period'
-                handleChange={(event) => { onOwnerShipChange('fixedPeriod', event) }} />
-              <Checkbox
-                value={filterOpts.ownershipType.openEndedPeriod}
-                label='Open Ended Period'
-                modifier={['navy']}
-                name='open-ended-period'
-                handleChange={(event) => { onOwnerShipChange('openEndedPeriod', event) }} />
+              <Radio
+                value='fixed-period'
+                checked={filterOpts.ownershipType.value === 'fixed-period'}
+                name='ownershiptype'
+                id='fixed-period'
+                onChange={(event) => { onOwnerShipChange('fixedPeriod', event) }} />
+              <Radio
+                value='Open Ended Period'
+                cchecked={filterOpts.ownershipType.value === 'Open Ended Period'}
+                name='ownershiptype'
+                id='open-ended-period'
+                onChange={(event) => { onOwnerShipChange('openEndedPeriod', event) }} />
             </div>
             <div className='filter-panel__column col-sm-6 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
@@ -169,7 +178,17 @@ class FilterPanel extends PureComponent {
 }
 
 FilterPanel.propTypes = {
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  className: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.object
+  ]),
+  modifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.object
+  ])
 }
 
 /**
