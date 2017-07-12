@@ -1,10 +1,10 @@
 .filter-panel {
   position: relative;
   width: 100%;
-  padding: 20px 0;
+  padding: 20px 20px;
 
   @media all and (min-width: $screen-md) {
-    padding: 40px 0;
+    padding: 40px 20px;
   }
 
   &__title {
@@ -42,7 +42,7 @@
 
   &__range-slider {
     margin-top: 40px;
-    padding: 0 40px;
+    padding: 0 10px;
 
     @media all and (min-width: $screen-sm) {
       padding: 0;

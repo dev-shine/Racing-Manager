@@ -29,14 +29,14 @@ import Counter from 'components/buttons/Counter'
 import Slider from 'components/input/Slider'
 
 /**
- *  @module CSSTransitionGroup
- */
-import { CSSTransitionGroup } from 'react-transition-group'
-
-/**
  *  @module classNames
  */
 import classNames from 'utils/classnames'
+
+/**
+ *  @module Accordion
+ */
+import Accordion from 'components/accordion/BaseAccordion'
 
 class FilterPanel extends PureComponent {
   constructor (props) {
@@ -60,12 +60,8 @@ class FilterPanel extends PureComponent {
     const modifiedClassNames = classNames('filter-panel', className, modifier)
 
     return (
-      <CSSTransitionGroup
-        transitionName="fade-in"
-        transitionEnterTimeout={400}
-        transitionLeaveTimeout={400}
-      >
-      { isOpen &&
+      <Accordion
+        isOpen={isOpen}>
         <div className={modifiedClassNames}>
           <div className='row'>
             <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
@@ -173,8 +169,7 @@ class FilterPanel extends PureComponent {
             className='filter-panel__range-slider' />
           </div>
         </div>
-      }
-      </CSSTransitionGroup>
+      </Accordion>
     )
   }
 }

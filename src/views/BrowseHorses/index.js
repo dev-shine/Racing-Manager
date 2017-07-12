@@ -44,14 +44,13 @@ import FilterPanel from 'components/browsehorses/FilterPanel'
 import classNames from 'classnames'
 
 /**
- *  @module searchHorses
- */
-import { searchForHorses as searchHorses } from 'api/Services'
-
-/**
  *  @module debounce
  */
 import debounce from 'utils/debounce'
+
+import {
+  requestFilteredHorses
+} from 'actions/browsehorses'
 
 const getSortValue = name => {
   switch (name) {
@@ -485,20 +484,8 @@ export class BrowseHorses extends Component {
       sortValue
     }, filterOpen)
 
-    searchHorses(payload)
-    .then(({resultsAmount, results}) => {
-      this.setState({
-        resultsAmount,
-        results,
-        searchingHorses: false
-      })
-    })
-    .catch(error => {
-      console.error(error)
-      this.setState({
-        searchingHorses: false
-      })
-    })
+    // Make a call to the backend to retrieve filtered horses.
+    this.props.requestFilteredHorses(payload)
   }
 
   render () {
@@ -573,7 +560,17 @@ export class BrowseHorses extends Component {
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  const {
+    results,
+    fetchingHorses,
+    resultsAmount
+  } = state.browseHorses
+
+  return {
+    results,
+    fetchingHorses,
+    resultsAmount
+  }
 }
 
 /**
@@ -584,6 +581,9 @@ const mapStateToProps = (state, ownProps) => {
  */
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    requestFilteredHorses: () => {
+      return dispatch(requestFilteredHorses())
+    }
   }
 }
 
