@@ -46,7 +46,7 @@ import classNames from 'classnames'
 /**
  *  @module searchHorses
  */
-import { searchHorses } from 'actions/browsehorses'
+import { searchForHorses as searchHorses } from 'api/Services'
 
 /**
  *  @module debounce
