@@ -15,7 +15,8 @@ import HeaderHome from 'components/header/HeaderHome'
  */
 import {
   Route,
-  withRouter
+  withRouter,
+  Switch
 } from 'react-router-dom'
 
 class HeaderContainer extends PureComponent {
@@ -27,9 +28,9 @@ class HeaderContainer extends PureComponent {
     return (
       <Header
         logohref='/'>
-        <div className='header__content'>
-          <Route exact path='/' component={HeaderHome} />
-        </div>
+          <Switch>
+            <Route exact path='/' component={HeaderHome} />
+          </Switch>
       </Header>
     )
   }
