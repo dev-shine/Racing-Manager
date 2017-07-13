@@ -220,7 +220,7 @@ class Select extends Component {
           >
             {
               open && (
-                <ul aria-label='Main menu' >
+                <ul aria-label='main menu' >
                   {this.renderChildren()}
                 </ul>
               )

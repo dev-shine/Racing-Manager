@@ -39,6 +39,7 @@
     display: inline-block;
     font-size: $nano-title;
     transition: transform .4s ease-out;
+    transform-origin: center;
     
     &:before {
       color: $maastricht-blue;

@@ -4,8 +4,12 @@ import {
   FAILED_TO_FETCH_SEARCH_FILTER_ATTRIBUTES,
   FETCH_FILTERED_HORSES,
   FETCHED_FILTERED_HORSES,
-  FAILED_TO_FETCH_FILTERED_HORSES
-} from 'actions/searchandfilterhorses'
+  FAILED_TO_FETCH_FILTERED_HORSES,
+  TOGGLE_HORSE_FILTER_PANEL,
+  UPDATE_HORSE_SEARCH_QUERY,
+  UPDATE_HORSE_SORT,
+  UPDATE_HORSE_FILTERS
+} from 'actions/browsehorses'
 
 /**
  *  initialState
@@ -30,8 +34,7 @@ const reducer = (state = initialState, action) => {
     case FETCH_SEARCH_FILTER_ATTRIBUTES:
       return {
         ...state,
-        fetchingAttributes: true,
-        hasAttributes: false
+        fetchingAttributes: true
       }
 
     case FETCHED_SEARCH_FILTER_ATTRIBUTES:
@@ -39,7 +42,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingAttributes: false,
         hasAttributes: true,
-        attributes: action.data.attributes
+        attributes: action.data
       }
 
     case FAILED_TO_FETCH_SEARCH_FILTER_ATTRIBUTES:
@@ -47,7 +50,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingAttributes: false,
         hasAttributes: false,
-        attributes: []
+        attributes: {}
       }
 
     case FETCH_FILTERED_HORSES:
@@ -68,6 +71,42 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingHorses: false,
         error: action.error
+      }
+
+    case TOGGLE_HORSE_FILTER_PANEL:
+      return {
+        ...state,
+        filterOpen: !state.filterOpen
+      }
+
+    case UPDATE_HORSE_SEARCH_QUERY:
+      return {
+        ...state,
+        query: action.query
+      }
+
+    case UPDATE_HORSE_SORT:
+      const sort = state.attributes.sort.reduce((obj, {field, values}) => {
+        values.map(({displayName, order}) => {
+          if (displayName === action.name) {
+            obj = {
+              field,
+              order,
+              displayName
+            }
+          }
+        })
+        return obj
+      }, {})
+
+      return {
+        ...state,
+        sort
+      }
+
+    case UPDATE_HORSE_FILTERS:
+      return {
+        ...state
       }
 
     default:

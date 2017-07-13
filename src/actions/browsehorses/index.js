@@ -19,6 +19,14 @@ export const FETCHED_FILTERED_HORSES = 'FETCHED_FILTERED_HORSES'
 
 export const FAILED_TO_FETCH_FILTERED_HORSES = 'FAILED_TO_FETCH_FILTERED_HORSES'
 
+export const TOGGLE_HORSE_FILTER_PANEL = 'TOGGLE_HORSE_FILTER_PANEL'
+
+export const UPDATE_HORSE_SEARCH_QUERY = 'UPDATE_HORSE_SEARCH_QUERY'
+
+export const UPDATE_HORSE_SORT = 'UPDATE_HORSE_SORT'
+
+export const UPDATE_HORSE_FILTERS = 'UPDATE_HORSE_FILTERS'
+
 /*
   Action creators
  */
@@ -50,18 +58,52 @@ export const failedToFetchFilteredHorses = (error) => ({
   error
 })
 
-/*
-  async actions
- */
-export const requestSearchFilterAttrs = () => {
-  return (dispatch, getState) => {
+export const toggleHorseFilterPanel = () => ({
+  type: TOGGLE_HORSE_FILTER_PANEL
+})
+
+export const updateHorseSeachQuery = (query) => ({
+  type: UPDATE_HORSE_SEARCH_QUERY,
+  query
+})
+
+export const updateHorseSort = (name) => ({
+  type: UPDATE_HORSE_SORT,
+  name
+})
+
+const requestSearchFilters = () => {
+  return (dispatch) => {
+    dispatch(fetchSearchFilterAttrs())
+
     return getSearchAttributesForHorses()
     .then((response) => {
+      dispatch(fetchedSearchFilterAttrs(response))
       return Promise.resolve(response)
     })
     .catch((error) => {
+      dispatch(failedToFetchSearchFilterAttrs(error))
       return Promise.reject(error)
     })
+  }
+}
+
+const shouldRequestSearchFilters = (state) => {
+  if (state.browseHorses.hasAttributes || state.browseHorses.fetchingAttributes) {
+    return false
+  }
+
+  return true
+}
+
+/*
+  async actions
+ */
+export const requestSearchFiltersIfNeeded = () => {
+  return (dispatch, getState) => {
+    if (shouldRequestSearchFilters(getState())) {
+      return dispatch(requestSearchFilters())
+    }
   }
 }
 

@@ -41,12 +41,40 @@ import Accordion from 'components/accordion/BaseAccordion'
 class FilterPanel extends PureComponent {
   constructor (props) {
     super(props)
+
+    this.renderFilterType = this.renderFilterType.bind(this)
+  }
+
+  renderFilterType (filter, index) {
+    if (filter.field === 'ownership.type') {
+      return (
+        <div key={index} className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
+          <h5 className='uppercase filter-panel__title'>
+            {filter.displayName}
+          </h5>
+          {
+            filter.values.map((value, findex) => {
+              return (
+                <Radio
+                  key={findex}
+                  label={value}
+                  value={value}
+                  checked={false}
+                  name={filter.field}
+                  id={value}
+                  onChange={(event) => {}} />
+              )
+            })
+          }
+        </div>
+      )
+    }
+
+    return null
   }
 
   render () {
     const {
-      filterOpts,
-      onOwnerShipChange,
       onNumberOfYearsChange,
       onRacingHistoryChange,
       onAgeChange,
@@ -54,7 +82,8 @@ class FilterPanel extends PureComponent {
       onMonthlyCostPerShareChange,
       isOpen,
       className,
-      modifier
+      modifier,
+      filterOpts
     } = this.props
 
     const modifiedClassNames = classNames('filter-panel', className, modifier)
@@ -64,33 +93,19 @@ class FilterPanel extends PureComponent {
         isOpen={isOpen}>
         <div className={modifiedClassNames}>
           <div className='row'>
-            <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
-              <h5 className='uppercase filter-panel__title'>
-                ownership type
-              </h5>
-              <Radio
-                label='Fixed Period'
-                value='fixed-period'
-                checked={filterOpts.ownershipType.value === 'fixed period'}
-                name='ownershiptype'
-                id='fixed-period'
-                onChange={(event) => { onOwnerShipChange('fixedPeriod', event) }} />
-              <Radio
-                label='Open Ended Period'
-                value='Open Ended Period'
-                checked={filterOpts.ownershipType.value === 'open Ended Period'}
-                name='ownershiptype'
-                id='open-ended-period'
-                onChange={(event) => { onOwnerShipChange('openEndedPeriod', event) }} />
-            </div>
+            {
+              filterOpts.map((filter, index) => {
+                return this.renderFilterType(filter, index)
+              })
+            }
             <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
               <h5 className='uppercase filter-panel__title'>
                 number of years
               </h5>
               <Counter
-                min={filterOpts.numberOfYears.min}
-                max={filterOpts.numberOfYears.max}
-                defaultCount={filterOpts.numberOfYears.value}
+                min={0}
+                max={3}
+                defaultCount={2}
                 onChange={onNumberOfYearsChange} />
             </div>
             <div className='filter-panel__column col-xs-12 col-sm-4 col-md-4 col-lg-2'>
@@ -98,13 +113,13 @@ class FilterPanel extends PureComponent {
                 racing history
               </h5>
               <ToggleButton
-                active={filterOpts.racingHistory.raced}
+                active={false}
                 text='Raced'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onClick={() => {}}
                 onChange={(value) => { onRacingHistoryChange('raced', value) }} />
               <ToggleButton
-                active={filterOpts.racingHistory.unraced}
+                active={false}
                 text='Unraced'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onChange={(value) => { onRacingHistoryChange('unraced', value) }}
@@ -115,19 +130,19 @@ class FilterPanel extends PureComponent {
                 age of horse
               </h5>
               <ToggleButton
-                active={filterOpts.age.young}
+                active={false}
                 text='0-2'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onClick={() => {}}
                 onChange={(value) => { onAgeChange('young', value) }} />
               <ToggleButton
-                active={filterOpts.age.adult}
+                active={false}
                 text='3-5'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onClick={() => {}}
                 onChange={(value) => { onAgeChange('adult', value) }} />
               <ToggleButton
-                active={filterOpts.age.old}
+                active={false}
                 text='Older Horse'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onClick={() => {}}
@@ -138,19 +153,19 @@ class FilterPanel extends PureComponent {
                 racing type
               </h5>
               <ToggleButton
-                active={filterOpts.racingType.nationalHunt}
+                active={false}
                 text='National Hunt'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onClick={() => {}}
                 onChange={(value) => { onRacingTypeChange('nationalHunt', value) }} />
               <ToggleButton
-                active={filterOpts.racingType.flatRacing}
+                active={false}
                 text='Flat Racing'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onClick={() => {}}
                 onChange={(value) => { onRacingTypeChange('flatRacing', value) }} />
               <ToggleButton
-                active={filterOpts.racingType.dualPurpose}
+                active={false}
                 text='Dual Purpose'
                 modifier={['fluid', 'secondary-navy-blue']}
                 onClick={() => {}}
@@ -158,14 +173,22 @@ class FilterPanel extends PureComponent {
             </div>
           </div>
           <div className='filter-panel__slider-container'>
-           <h5 className='uppercase filter-panel__title'>
-              monthly cost per %
-            </h5>
+            <div className='row'>
+              <h5 className='uppercase filter-panel__title col-xs-6 text-left'>
+                monthly cost per %
+              </h5>
+              <h4 className='uppercase filter-panel__title regular col-xs-6 text-right'>
+                £0 - £500
+              </h4>
+            </div>
            <Slider
             onChange={onMonthlyCostPerShareChange}
-            min={filterOpts.monthlyCostPerShare.min}
-            max={filterOpts.monthlyCostPerShare.max}
-            defaultValue={filterOpts.monthlyCostPerShare.value}
+            min={0}
+            max={20000}
+            defaultValue={[
+              0,
+              500
+            ]}
             className='filter-panel__range-slider' />
           </div>
         </div>

@@ -45,30 +45,6 @@ export const POSTED_HORSE_UPDATE = 'POSTED_HORSE_UPDATE'
 export const FAILED_TO_POST_HORSE_UPDATE = 'FAILED_TO_POST_HORSE_UPDATE'
 
 /**
- *  UPDATE_HORSE_TEXT
- *  @type {String}
- */
-export const UPDATE_HORSE_TEXT = 'UPDATE_HORSE_TEXT'
-
-/**
- *  ADD_HORSE_MEDIA_FILES
- *  @type {String}
- */
-export const ADD_HORSE_MEDIA_FILES = 'ADD_MEDIA_FILES'
-
-/**
- *  CLEAR_HORSE_SUBMIT_DATA
- *  @type {String}
- */
-export const CLEAR_HORSE_SUBMIT_DATA = 'CLEAR_HORSE_SUBMIT_DATA'
-
-/**
- *  DELETE_HORSE_MEDIA
- *  @type {String}
- */
-export const DELETE_HORSE_MEDIA = 'DELETE_HORSE_MEDIA'
-
-/**
  *  gettingHorseInfo
  *  @return {Object}
  */
@@ -115,42 +91,6 @@ export const postedHorseUpdate = () => ({
  */
 export const failedToPostHorseUpdate = () => ({
   type: FAILED_TO_POST_HORSE_UPDATE
-})
-
-/**
- *  updateHorseText
- *  @param  {String} text
- *  @return {Object}
- */
-export const updateHorseText = text => ({
-  type: UPDATE_HORSE_TEXT,
-  text
-})
-
-/**
- *  addHorseMediaFiles
- *  @param  {Object} files
- *  @return {Object}
- */
-export const addHorseMediaFiles = files => ({
-  type: ADD_HORSE_MEDIA_FILES,
-  files
-})
-
-/**
- *  clearHorseSubmitData
- *  @return {Object}
- */
-export const clearHorseSubmitData = () => ({
-  type: CLEAR_HORSE_SUBMIT_DATA
-})
-
-/**
- *  deleteHorseMedia
- *  @return {Object}
- */
-export const deleteHorseMedia = () => ({
-  type: DELETE_HORSE_MEDIA
 })
 
 /**

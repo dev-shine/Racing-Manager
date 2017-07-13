@@ -1,7 +1,4 @@
-/**
- * @module react-redux
- */
-import { connect } from 'react-redux'
+import React, { PureComponent } from 'react'
 
 /**
  *  @module Header
@@ -9,39 +6,33 @@ import { connect } from 'react-redux'
 import Header from 'components/header'
 
 /**
- *  @module HeaderContentStates
+ *  @module HeaderHome
  */
-import headerContentStates from 'containers/header/HeaderContentStates'
+import HeaderHome from 'components/header/HeaderHome'
 
 /**
  *  @module withRouter
  */
-import { withRouter } from 'react-router-dom'
+import {
+  Route,
+  withRouter
+} from 'react-router-dom'
 
-const mapStateToProps = (state, ownProps) => {
-  const {
-    pathname
-  } = ownProps.location
+class HeaderContainer extends PureComponent {
+  constructor (props) {
+    super(props)
+  }
 
-  const content = headerContentStates({
-    location: pathname
-  })
-
-  return {
-    content,
-    logohref: '/'
+  render () {
+    return (
+      <Header
+        logohref='/'>
+        <div className='header__content'>
+          <Route exact path='/' component={HeaderHome} />
+        </div>
+      </Header>
+    )
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
-}
-
-/**
- *  Export the header
- */
-
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header))
+export default withRouter(HeaderContainer)
