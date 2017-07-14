@@ -8,7 +8,12 @@ import React from 'react'
  */
 import TextButton from 'components/buttons/TextButton'
 
+/**
+ *  @module Link
+ */
 import { Link } from 'react-router-dom'
+
+import BurgerMenu from 'components/burgermenu'
 
 const HeaderHome = (props) => {
   return (
@@ -19,6 +24,9 @@ const HeaderHome = (props) => {
           modifier='sm'
           text='Register for FREE' />
       </Link>
+      <BurgerMenu
+        isActive={props.burgerMenuActive}
+        onClick={props.onClick} />
     </div>
   )
 }

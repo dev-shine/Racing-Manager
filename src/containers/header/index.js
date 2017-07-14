@@ -14,14 +14,22 @@ import HeaderHome from 'components/header/HeaderHome'
  *  @module withRouter
  */
 import {
-  Route,
   withRouter,
   Switch
 } from 'react-router-dom'
 
+/**
+ *  @module RouteWithProps
+ */
+import RouteWithProps from 'components/common/RouteWithProps'
+
 class HeaderContainer extends PureComponent {
   constructor (props) {
     super(props)
+
+    this.state = {
+      burgerMenuActive: true
+    }
   }
 
   render () {
@@ -29,7 +37,12 @@ class HeaderContainer extends PureComponent {
       <Header
         logohref='/'>
           <Switch>
-            <Route exact path='/' component={HeaderHome} />
+            <RouteWithProps
+              exact
+              path='/'
+              burgerMenuActive={this.state.burgerMenuActive}
+              onClick={() => { console.log('hi!'); this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }}
+              component={HeaderHome} />
           </Switch>
       </Header>
     )
