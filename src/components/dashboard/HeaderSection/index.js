@@ -31,7 +31,12 @@ import Carousel from 'components/carousel'
 /**
  *  @module constructStaticUrl
  */
-import { constructStaticUrl } from 'utils/horseutils'
+import { constructStaticUrl, calcPercent } from 'utils/horseutils'
+
+/**
+ *  @module roundNumberWithoutZeros
+ */
+import { roundNumberWithoutZeros } from 'utils/number'
 
 /**
  * dummy fn
@@ -273,7 +278,7 @@ class HeaderSection extends PureComponent {
                       value: horse.owner.name
                     }, {
                       name: 'Ownership',
-                      value: `${horse.shares.owned}/${horse.shares.total} shares`
+                      value: `${roundNumberWithoutZeros(calcPercent(horse.shares.owned, horse.shares.total))}%`
                     }]}
                     extra={{
                       url: `/horse/${horse.slug}`

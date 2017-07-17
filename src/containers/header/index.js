@@ -41,7 +41,7 @@ class HeaderContainer extends PureComponent {
               exact
               path='/'
               burgerMenuActive={this.state.burgerMenuActive}
-              onClick={() => { console.log('hi!'); this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }}
+              onClick={() => { this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }}
               component={HeaderHome} />
           </Switch>
       </Header>

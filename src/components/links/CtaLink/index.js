@@ -2,23 +2,28 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-import CtaLink from 'components/links/CtaLink'
+import classNames from 'utils/classnames'
 
-const TileReadMore = props => {
+import { Link } from 'react-router-dom'
+
+const CtaLink = props => {
   const {
-    href
+    className,
+    modifier,
+    href,
+    text
   } = props
 
+  const modifiedClassNames = classNames('link', className, modifier)
+
   return (
-    <CtaLink
-      href={href}
-      className='tile-read-more'
-      modifier='italic'
-      text='read the full story' />
+     <Link to={href} className={modifiedClassNames}>
+       {text}
+     </Link>
   )
 }
 
-TileReadMore.propTypes = {
+CtaLink.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -30,10 +35,10 @@ TileReadMore.propTypes = {
   href: PropTypes.string
 }
 
-TileReadMore.defaultProps = {
+CtaLink.defaultProps = {
   className: '',
   modifier: '',
   href: '/'
 }
 
-export default TileReadMore
+export default CtaLink

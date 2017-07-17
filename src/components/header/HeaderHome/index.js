@@ -13,7 +13,7 @@ import TextButton from 'components/buttons/TextButton'
  */
 import { Link } from 'react-router-dom'
 
-import BurgerMenu from 'components/burgermenu'
+import LoginForm from 'components/forms/Login'
 
 const HeaderHome = (props) => {
   return (
@@ -24,9 +24,10 @@ const HeaderHome = (props) => {
           modifier='sm'
           text='Register for FREE' />
       </Link>
-      <BurgerMenu
-        isActive={props.burgerMenuActive}
-        onClick={props.onClick} />
+      <div className='header__login'>
+        <LoginForm
+          />
+      </div>
     </div>
   )
 }

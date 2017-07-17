@@ -1,0 +1,27 @@
+.social-button {
+  position: relative;
+  width: 100%;
+  max-width: 225px;
+  min-height: 35px;
+
+  &--facebook {
+    background-color: $facebook;
+  }
+
+  &--twitter {
+    background-color: $twitter;
+  }
+
+  &__icon {
+    font-size: $minor-title;
+
+    &:before {
+      color: $white;
+    }
+  }
+
+  &__text,
+  &__icon-container {
+    display: inline-block;
+  }
+}
