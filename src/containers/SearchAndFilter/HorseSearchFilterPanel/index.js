@@ -36,18 +36,20 @@ class HorseSearchFilterPanel extends Component {
 
   render () {
     const {
-      isOpen,
+      filterOpen,
       filters,
       updateOwnerShipType,
       updateYears,
       updateRacingHistory,
       updateAge,
-      updateRacingType
+      updateRacingType,
+      updateCostMonthly,
+      applyFilters
     } = this.props
 
     return (
       <FilterPanel
-        isOpen={isOpen}>
+        isOpen={filterOpen}>
         <div className='row'>
           <Column
             className='col-xs-12 col-sm-4 col-md-4 col-lg-2'>
@@ -168,27 +170,37 @@ class HorseSearchFilterPanel extends Component {
               }}
               />
           </Column>
+
+          <Column className='col-xs-12 col-sm-12'>
+            <div className='row'>
+              <Header className='col-xs-6 text-left'>
+                monthly cost per 1% share
+              </Header>
+
+              <Header className='uppercase regular col-xs-6 text-right'>
+                {`£${filters['cost.monthly'].value.min} - £${filters['cost.monthly'].value.max}`}
+              </Header>
+            </div>
+
+           <Slider
+            onChange={(values) => { updateCostMonthly(values) }}
+            min={0}
+            max={20000}
+            defaultValue={[
+              filters['cost.monthly'].value.min,
+              filters['cost.monthly'].value.max
+            ]}
+            className='filter-panel__range-slider' />
+
+          </Column>
         </div>
 
-        <div className='filter-panel__slider-container'>
-          <div className='row'>
-            <Header className='col-xs-6 text-left'>
-              monthly cost per 1% share
-            </Header>
-
-            <Header className='uppercase regular col-xs-6 text-right'>
-              £0 - £500
-            </Header>
-          </div>
-         <Slider
-          onChange={() => {}}
-          min={0}
-          max={20000}
-          defaultValue={[
-            0,
-            500
-          ]}
-          className='filter-panel__range-slider' />
+        <div className='hidden-sm-up'>
+          <TextButton
+            text='apply filters'
+            modifier={['fluid']}
+            onClick={applyFilters}
+          />
         </div>
       </FilterPanel>
     )
@@ -197,11 +209,13 @@ class HorseSearchFilterPanel extends Component {
 
 const mapStateToProps = ({browseHorses}, ownProps) => {
   const {
-    filters
+    filters,
+    filterOpen
   } = browseHorses
 
   return {
-    filters
+    filters,
+    filterOpen
   }
 }
 
@@ -212,6 +226,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         name: 'ownership.type',
         value
       }))
+
+      ownProps.onUpdate()
     },
     updateYears: (value) => {
       dispatch(updateHorseFilters({
@@ -220,24 +236,43 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           min: value
         }
       }))
+
+      ownProps.onUpdate()
     },
     updateRacingHistory: (value) => {
       dispatch(updateHorseFilters({
         name: 'racingHistory',
         value
       }))
+
+      ownProps.onUpdate()
     },
     updateAge: (value) => {
       dispatch(updateHorseFilters({
         name: 'age',
         value
       }))
+
+      ownProps.onUpdate()
     },
     updateRacingType: (value) => {
       dispatch(updateHorseFilters({
         name: 'racingType',
         value
       }))
+
+      ownProps.onUpdate()
+    },
+    updateCostMonthly: (values) => {
+      dispatch(updateHorseFilters({
+        name: 'cost.monthly',
+        value: {
+          min: values[0],
+          max: values[1]
+        }
+      }))
+
+      ownProps.onUpdate()
     }
   }
 }

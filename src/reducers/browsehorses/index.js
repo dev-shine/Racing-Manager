@@ -36,8 +36,8 @@ const initialState = {
     },
     'cost.monthly': {
       value: {
-        min: 0,
-        max: 0
+        min: 1000,
+        max: 5000
       }
     },
     'racingHistory': {

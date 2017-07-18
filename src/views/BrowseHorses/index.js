@@ -29,14 +29,19 @@ import TitleHero from 'components/common/TitleHero'
 import HorseCardGallery from 'components/cards/HorseCardGallery'
 
 /**
- *  @module SearchAndFilterBar
+ *  @module HorseSearchAndFilterBar
  */
-import SearchAndFilterBar from 'components/searchandfilter/SearchAndFilterBar'
+import HorseSearchAndFilterBar from 'containers/SearchAndFilter/HorseSearchBar'
 
 /**
  *  @module HorseSearchFilterPanel
  */
 import HorseSearchFilterPanel from 'containers/SearchAndFilter/HorseSearchFilterPanel'
+
+/**
+ *  @module debounce
+ */
+import debounce from 'utils/debounce'
 
 /**
  *  @module classNames
@@ -45,55 +50,47 @@ import classNames from 'classnames'
 
 import {
   requestFilteredHorses,
-  requestSearchFiltersIfNeeded,
-  toggleHorseFilterPanel,
-  updateHorseSeachQuery,
-  updateHorseSort
+  requestSearchFiltersIfNeeded
 } from 'actions/browsehorses'
 
 export class BrowseHorses extends Component {
   constructor (props) {
     super(props)
+
+    this.submitSearch = this.submitSearch.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
+
+    this.debouncedSubmit = debounce(this.submitSearch, 200)
   }
 
   componentWillMount () {
     this.props.requestSearchFiltersIfNeeded()
   }
 
+  handleSearch () {
+    this.debouncedSubmit()
+  }
+
+  submitSearch () {
+    this.props.requestFilteredHorses()
+  }
+
   render () {
     const {
-      query,
-      filterOpen,
-      resultsAmount,
-      toggleHorseFilterPanel,
-      updateHorseSeachQuery,
-      updateHorseSort,
-      results,
-      attributes,
-      sort
+      results
     } = this.props
 
     const modifiedClassGalleryCols = classNames('browse-horses__grid', 'col-xs-12')
-
-    const noop = () => {}
 
     return (
       <View title={title}>
         <div className='browse-horses'>
           <TitleHero />
-          <SearchAndFilterBar
-            resultsAmount={resultsAmount}
-            onFilterClick={toggleHorseFilterPanel}
-            filterActive={filterOpen}
-            placeholder='Search horses, trainer or syndicates'
-            selectOptions={attributes.sort}
-            defaultSortValue={sort.displayName || 'Recommended'}
-            onSearchUpdate={updateHorseSeachQuery}
-            onSelectUpdate={updateHorseSort}
-            searchValue={query}
-          />
+          <HorseSearchAndFilterBar
+            onUpdate={this.handleSearch}
+            placeholder='Search horses, trainer or syndicates' />
           <div className='container'>
-            <HorseSearchFilterPanel isOpen={filterOpen} />
+            <HorseSearchFilterPanel onUpdate={this.handleSearch}/>
             <div className={modifiedClassGalleryCols}>
               <HorseCardGallery
                 data={results}
@@ -129,15 +126,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     requestSearchFiltersIfNeeded: () => {
       return dispatch(requestSearchFiltersIfNeeded())
-    },
-    toggleHorseFilterPanel: () => {
-      return dispatch(toggleHorseFilterPanel())
-    },
-    updateHorseSeachQuery: (query) => {
-      return dispatch(updateHorseSeachQuery(query))
-    },
-    updateHorseSort: (name) => {
-      return dispatch(updateHorseSort(name))
     }
   }
 }

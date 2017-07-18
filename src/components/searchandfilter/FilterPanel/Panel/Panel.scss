@@ -15,10 +15,6 @@
   &__column {
     margin-bottom: 50px;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
-
     // To clear variable heights in the columns on tablet
     // Could use flex but thats unnesscary IMHO
     @media only screen and (min-width: $screen-sm) {

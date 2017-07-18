@@ -4,6 +4,10 @@ import {
     searchForHorses
 } from 'api/Services'
 
+import {
+  preparePayloadForHorseSearch
+} from 'utils/filtering'
+
 /*
   Action Types
  */
@@ -114,11 +118,17 @@ export const requestSearchFiltersIfNeeded = () => {
 
 export const requestFilteredHorses = () => {
   return (dispatch, getState) => {
-    return searchForHorses()
+    const payload = preparePayloadForHorseSearch(getState().browseHorses)
+
+    dispatch(fetchFilteredHorses())
+
+    return searchForHorses(payload)
     .then((response) => {
+      dispatch(fetchedFilteredHorses(response))
       return Promise.resolve(response)
     })
     .catch((error) => {
+      dispatch(failedToFetchFilteredHorses(error))
       return Promise.reject(error)
     })
   }
