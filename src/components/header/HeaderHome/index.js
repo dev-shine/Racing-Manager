@@ -13,20 +13,65 @@ import TextButton from 'components/buttons/TextButton'
  */
 import { Link } from 'react-router-dom'
 
-import LoginForm from 'components/forms/Login'
+import LoginFormContainer from 'containers/login'
+
+import TextCtaButton from 'components/buttons/TextCtaButton'
+
+import { CSSTransitionGroup } from 'react-transition-group'
+
+import Icon from 'components/icon'
 
 const HeaderHome = (props) => {
+  const {
+    onLoginButtonClick,
+    showLogin
+  } = props
+
   return (
     <div className='header__content'>
+      <div className='header__search'>
+        <Link to='/browse-horses'>
+          <Icon
+            modifier='magnifying-glass' />
+        </Link>
+      </div>
+
+      <TextCtaButton
+        onClick={onLoginButtonClick}
+        className='header__login-button uppercase semi-bold'
+        text={'log in'}
+        active={!showLogin} />
+
       <Link to='/register'>
-        <TextButton
-          className='header__register-button visible-sm-up'
-          modifier='sm'
-          text='Register for FREE' />
+        {
+        !showLogin
+        ? (
+            <TextButton
+              className='header__register-button'
+              modifier='sm'
+              text='register free' />
+          )
+        : (
+            <TextCtaButton
+              className='header__register-button uppercase semi-bold'
+              text={'register free'} />
+          )
+        }
       </Link>
+
       <div className='header__login'>
-        <LoginForm
-          />
+        <CSSTransitionGroup
+          transitionName="fade-in"
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}>
+          {
+            showLogin && (
+              <LoginFormContainer
+                className='section-shadow'
+                closeLogin={onLoginButtonClick} />
+            )
+          }
+        </CSSTransitionGroup>
       </div>
     </div>
   )

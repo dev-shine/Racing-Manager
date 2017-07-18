@@ -29,17 +29,16 @@ const SocialButton = (props) => {
   const modifiedClassNames = classNames('social-button', className, modifier)
 
   return (
-    <div className={modifiedClassNames}>
-      <div className='social-button__content'>
-        <div className='social-button__icon-container'>
-          <Icon
-            className='social-button__icon'
-            modifier={modifier} />
-          
-        </div>
-        <div className='social-button__text'>
+    <div className={modifiedClassNames} onClick={onClick}>
+      <div className='social-button__icon-container'>
+        <Icon
+          className='social-button__icon'
+          modifier={modifier} />
+      </div>
+      <div className='social-button__text'>
+        <h6 className='uppercase'>
           {text}
-        </div>
+        </h6>
       </div>
     </div>
   )

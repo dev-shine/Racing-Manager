@@ -72,6 +72,11 @@ export const updateHorseSort = (name) => ({
   name
 })
 
+export const updateHorseFilters = (payload) => ({
+  type: UPDATE_HORSE_FILTERS,
+  payload
+})
+
 const requestSearchFilters = () => {
   return (dispatch) => {
     dispatch(fetchSearchFilterAttrs())

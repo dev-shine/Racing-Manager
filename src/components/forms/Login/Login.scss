@@ -3,9 +3,13 @@
   top: 100%;
   right: 0;
   width: 100%;
-  max-width: 380px;
-  padding: 20px 40px;
+  padding: 10px;
   background: $white;
+
+  @media all and (min-width: $screen-sm) {
+    max-width: 305px;
+    padding: 20px 40px;
+  }
 
   &__form {
     position: relative;

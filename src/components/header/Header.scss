@@ -35,13 +35,31 @@
   }
   
   &__content {
-    display: inline-block;
+    display: none;
     float: right;
     height: $header-height;
     padding: ($header-height - 25px)/2 0;
     margin-right: 30px;
+
+    @media all and (min-width: $screen-sm-min) {
+      display: inline-block;
+    }
   }
   
   &__register-button {
+    display: inline-block;
+  }
+
+  &__login-button {
+    position: relative;
+    display: inline-block;
+    margin-right: 40px;
+  }
+
+  &__search {
+    position: relative;
+    display: inline-block;
+    margin-right: 40px;
+    vertical-align: middle;
   }
 }

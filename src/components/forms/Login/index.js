@@ -15,6 +15,10 @@ import Checkbox from 'components/input/Checkbox'
 
 import SocialButton from 'components/socialmedia/SocialButton'
 
+import classNames from 'utils/classnames'
+
+import omit from 'utils/objectutils/omit'
+
 /**
  *  @module Form, Field
  */
@@ -23,19 +27,26 @@ import { Form, Field, Submit } from 'components/forms/BaseForm'
 const LoginForm = (props) => {
   const {
     submitForm,
-    values
+    values,
+    className,
+    modifier
   } = props
 
+  const modifiedClassNames = classNames('login-form', className, modifier)
+
+  const formProps = omit(props, ['className', 'modifier', 'handleSubmit'])
+
   return (
-    <div className='login-form'>
+    <div className={modifiedClassNames}>
       <Form
         className='login-form__form'
         handleSubmit={() => { submitForm(values) }}
-        {...props}>
+        {...formProps}>
 
         <div className='form__group'>
           <Field
             component={Input}
+            type='email'
             placeholder='EMAIL ADDRESS'
             validate={['email']}
             name='email' />
@@ -43,11 +54,12 @@ const LoginForm = (props) => {
         <div className='form__group'>
           <Field
             component={Input}
+            type='password'
             placeholder='PASSWORD'
             validate={['password']}
             name='password' />
         </div>
-        <div className='row'>
+        <div className='row-sm'>
           <div className='col-xs-12 col-sm-6 align-middle form__group'>
             <Submit
               component={TextButton}
@@ -58,7 +70,7 @@ const LoginForm = (props) => {
           <div className='col-xs-12 col-sm-6 align-middle form__group text-center'>
             <CtaLink
               modifier={['italic']}
-              text='Forgotten details' />
+              text={<h6>Forgotten details</h6>} />
           </div>
         </div>
         <div className='form__group'>

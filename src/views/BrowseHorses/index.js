@@ -34,19 +34,14 @@ import HorseCardGallery from 'components/cards/HorseCardGallery'
 import SearchAndFilterBar from 'components/searchandfilter/SearchAndFilterBar'
 
 /**
- *  @module FilterPanel
+ *  @module HorseSearchFilterPanel
  */
-import FilterPanel from 'components/browsehorses/FilterPanel'
+import HorseSearchFilterPanel from 'containers/SearchAndFilter/HorseSearchFilterPanel'
 
 /**
  *  @module classNames
  */
 import classNames from 'classnames'
-
-/**
- *  @module debounce
- */
-import debounce from 'utils/debounce'
 
 import {
   requestFilteredHorses,
@@ -98,16 +93,7 @@ export class BrowseHorses extends Component {
             searchValue={query}
           />
           <div className='container'>
-            <FilterPanel
-              filterOpts={attributes.filter || []}
-              isOpen={filterOpen}
-              onOwnerShipChange={noop}
-              onNumberOfYearsChange={noop}
-              onRacingHistoryChange={noop}
-              onAgeChange={noop}
-              onRacingTypeChange={noop}
-              onMonthlyCostPerShareChange={noop}
-            />
+            <HorseSearchFilterPanel isOpen={filterOpen} />
             <div className={modifiedClassGalleryCols}>
               <HorseCardGallery
                 data={results}

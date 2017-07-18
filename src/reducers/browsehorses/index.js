@@ -22,7 +22,31 @@ const initialState = {
   attributes: {},
   query: '',
   sort: {},
-  filters: [],
+  filters: {
+    'ownership.type': {
+      value: ''
+    },
+    'ownership.years': {
+      value: {
+        min: 2
+      }
+    },
+    'racingType': {
+      value: ''
+    },
+    'cost.monthly': {
+      value: {
+        min: 0,
+        max: 0
+      }
+    },
+    'racingHistory': {
+      value: ''
+    },
+    'age': {
+      value: ''
+    }
+  },
   results: [],
   fetchingHorses: false,
   resultsAmount: 0,
@@ -105,8 +129,19 @@ const reducer = (state = initialState, action) => {
       }
 
     case UPDATE_HORSE_FILTERS:
+      const {
+        name,
+        value
+      } = action.payload
+
       return {
-        ...state
+        ...state,
+        filters: {
+          ...state.filters,
+          [name]: {
+            value
+          }
+        }
       }
 
     default:
