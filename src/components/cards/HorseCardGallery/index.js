@@ -18,6 +18,9 @@ import HorseCard from 'components/cards/HorseCard'
  */
 import { constructStaticUrl, calcSharesAvailable } from 'utils/horseutils'
 
+/**
+ *  @module CSSTransitionGroup
+ */
 import { CSSTransitionGroup } from 'react-transition-group'
 
 /**
