@@ -23,8 +23,14 @@ import Counter from 'components/buttons/Counter'
  */
 import Slider from 'components/input/Slider'
 
+/**
+ *  @module TextButton
+ */
 import TextButton from 'components/buttons/TextButton'
 
+/**
+ *  @module updateHorseFilters
+ */
 import {
   updateHorseFilters
 } from 'actions/browsehorses'
@@ -44,8 +50,17 @@ class HorseSearchFilterPanel extends Component {
       updateAge,
       updateRacingType,
       updateCostMonthly,
-      applyFilters
+      applyFilters,
+      attributes,
+      hasAttributes
     } = this.props
+
+    // If there is no filters in the attributes then it's either fetching or isn't available.
+    if (!hasAttributes) {
+      return (
+        null
+      )
+    }
 
     return (
       <FilterPanel
@@ -55,126 +70,104 @@ class HorseSearchFilterPanel extends Component {
             className='col-xs-12 col-sm-4 col-md-4 col-lg-2'>
 
             <Header>
-              Ownership Type
+              {attributes.filter['ownership.type'].displayName}
             </Header>
 
-            <Radio
-              label={'Fixed Period'}
-              value={'Fixed Period'}
-              checked={filters['ownership.type'].value === 'Fixed Period'}
-              name={'ownership type'}
-              id={'Fixed Period'}
-              onChange={() => { updateOwnerShipType('Fixed Period') }}/>
-
-            <Radio
-              label={'Open Ended Period'}
-              value={'Open Ended Period'}
-              checked={filters['ownership.type'].value === 'Open Ended Period'}
-              name={'ownership type'}
-              id={'Open Ended Period'}
-              onChange={() => { updateOwnerShipType('Open Ended Period') }}/>
+            {
+              attributes.filter['ownership.type'].values.map((value, index) => {
+                return (
+                  <Radio
+                    key={index}
+                    label={value}
+                    value={value}
+                    checked={filters['ownership.type'].value === value}
+                    name={attributes.filter['ownership.type'].displayName}
+                    id={`${attributes.filter['ownership.type'].displayName}-${index}`}
+                    onChange={() => { updateOwnerShipType(value) }}/>
+                )
+              })
+            }
           </Column>
 
           <Column className='col-xs-12 col-sm-4 col-md-4 col-lg-2'>
             <Header>
-              number of years
+              {attributes.filter['ownership.years'].displayName}
             </Header>
 
             <Counter
-              min={0}
-              max={50}
-              defaultCount={filters['ownership.years'].value.min}
+              min={attributes.filter['ownership.years'].values.min || 0}
+              max={attributes.filter['ownership.years'].values.max || Infinity}
+              defaultCount={
+                filters['ownership.years'].value
+                ? filters['ownership.years'].value.min
+                : attributes.filter['ownership.years'].default
+              }
               onChange={(value) => { updateYears(value) }} />
           </Column>
 
           <Column className='col-xs-12 col-sm-4 col-md-4 col-lg-2'>
             <Header>
-              racing history
+              {attributes.filter['racingHistory'].displayName}
             </Header>
 
-            <TextButton
-              active={filters['racingHistory'].value === 'Raced'}
-              text='Raced'
-              modifier={['fluid', 'secondary-navy-blue']}
-              onClick={() => { updateRacingHistory('Raced') }} />
-
-            <TextButton
-              active={filters['racingHistory'].value === 'Unraced'}
-              text='Unraced'
-              modifier={['fluid', 'secondary-navy-blue']}
-              onClick={ () => { updateRacingHistory('Unraced') }} />
+            {
+              attributes.filter['racingHistory'].values.map((value, index) => {
+                return (
+                  <TextButton
+                    key={index}
+                    active={filters['racingHistory'].value === value}
+                    text={value}
+                    modifier={['fluid', 'secondary-navy-blue']}
+                    onClick={() => { updateRacingHistory(value) }} />
+                )
+              })
+            }
           </Column>
 
           <Column className='col-xs-12 col-sm-4 col-md-4 col-lg-2'>
             <Header>
-              age of horse
+              {attributes.filter['age'].displayName}
             </Header>
 
-            <TextButton
-              active={filters['age'].value === '0-2'}
-              text='0-2'
-              modifier={['fluid', 'secondary-navy-blue']}
-              onClick={() => {
-                updateAge('0-2')
-              }}
-              />
-
-            <TextButton
-              text='3-5'
-              modifier={['fluid', 'secondary-navy-blue']}
-              active={filters['age'].value === '3-5'}
-              onClick={() => {
-                updateAge('3-5')
-              }}
-            />
-
-            <TextButton
-              active={filters['age'].value === 'Older Horse'}
-              text='Older Horse'
-              modifier={['fluid', 'secondary-navy-blue']}
-              onClick={() => {
-                updateAge('Older Horse')
-              }}
-              />
+            {
+              attributes.filter['age'].options.map((option, index) => {
+                console.log(filters['age'])
+                console.log(`DISPLAYNAME: ${option.displayName}`)
+                return (
+                  <TextButton
+                    key={index}
+                    active={filters['age'].nameValue === option.displayName}
+                    text={option.displayName}
+                    modifier={['fluid', 'secondary-navy-blue']}
+                    onClick={() => { updateAge(option.displayName, option.values) }} />
+                )
+              })
+            }
           </Column>
 
           <Column className='col-xs-12 col-sm-4 col-md-4 col-lg-2'>
             <Header>
-              racing type
+              {attributes.filter['racingType'].displayName}
             </Header>
 
-            <TextButton
-              active={filters['racingType'].value === 'National Hunt'}
-              text='National Hunt'
-              modifier={['fluid', 'secondary-navy-blue']}
-              onClick={() => {
-                updateRacingType('National Hunt')
-              }}
-              />
-
-            <TextButton
-              active={filters['racingType'].value === 'Flat Racing'}
-              text='Flat Racing'
-              modifier={['fluid', 'secondary-navy-blue']}
-              onClick={() => {
-                updateRacingType('Flat Racing')
-              }}
-              />
-
-            <TextButton
-              active={filters['racingType'].value === 'Dual Purpose'}
-              text='Dual Purpose'
-              modifier={['fluid', 'secondary-navy-blue']}
-              onClick={() => {
-                updateRacingType('Dual Purpose')
-              }}
-              />
+            {
+              attributes.filter['racingType'].values.map((value, index) => {
+                return (
+                  <TextButton
+                    key={index}
+                    active={filters['racingType'].value === value}
+                    text={value}
+                    modifier={['fluid', 'secondary-navy-blue']}
+                    onClick={() => { updateRacingType(value) }} />
+                )
+              })
+            }
           </Column>
 
           <Column className='col-xs-12 col-sm-12'>
             <div className='row'>
               <Header className='col-xs-6 text-left'>
-                monthly cost per 1% share
+                {attributes.filter['cost.monthly'].displayName}
               </Header>
 
               <Header className='uppercase regular col-xs-6 text-right'>
@@ -184,11 +177,11 @@ class HorseSearchFilterPanel extends Component {
 
            <Slider
             onChange={(values) => { updateCostMonthly(values) }}
-            min={0}
-            max={20000}
+            min={attributes.filter['cost.monthly'].values.min}
+            max={attributes.filter['cost.monthly'].values.max}
             defaultValue={[
-              filters['cost.monthly'].value.min,
-              filters['cost.monthly'].value.max
+              attributes.filter['cost.monthly'].values.min,
+              attributes.filter['cost.monthly'].values.max
             ]}
             className='filter-panel__range-slider' />
 
@@ -210,12 +203,16 @@ class HorseSearchFilterPanel extends Component {
 const mapStateToProps = ({browseHorses}, ownProps) => {
   const {
     filters,
-    filterOpen
+    filterOpen,
+    attributes,
+    hasAttributes
   } = browseHorses
 
   return {
     filters,
-    filterOpen
+    filterOpen,
+    attributes,
+    hasAttributes
   }
 }
 
@@ -247,10 +244,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       ownProps.onUpdate()
     },
-    updateAge: (value) => {
+    updateAge: (nameValue, value) => {
       dispatch(updateHorseFilters({
         name: 'age',
-        value
+        value,
+        nameValue
       }))
 
       ownProps.onUpdate()

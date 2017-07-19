@@ -44,7 +44,8 @@ const initialState = {
       value: ''
     },
     'age': {
-      value: ''
+      value: '',
+      nameValue: ''
     }
   },
   results: [],
@@ -131,7 +132,8 @@ const reducer = (state = initialState, action) => {
     case UPDATE_HORSE_FILTERS:
       const {
         name,
-        value
+        value,
+        ...rest
       } = action.payload
 
       return {
@@ -139,7 +141,8 @@ const reducer = (state = initialState, action) => {
         filters: {
           ...state.filters,
           [name]: {
-            value
+            value,
+            ...rest
           }
         }
       }

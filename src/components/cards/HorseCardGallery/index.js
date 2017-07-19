@@ -16,7 +16,7 @@ import HorseCard from 'components/cards/HorseCard'
 /**
  *  @module constructStaticUrl
  */
-import { constructStaticUrl } from 'utils/horseutils'
+import { constructStaticUrl, calcSharesAvailable } from 'utils/horseutils'
 
 /**
  *  HorseCardGallery
@@ -64,14 +64,14 @@ class HorseCardGallery extends PureComponent {
           name: 'Syndicate name',
           value: entry.owner.name
         }, {
-          name: 'Initial cost per %',
+          name: 'Initial cost per 1%',
           value: `£${entry.cost.initial} +VAT`
         }, {
-          name: 'Monthly cost per %',
+          name: 'Monthly cost per 1%',
           value: `£${entry.cost.monthly} +VAT`
         }]}
         extra={{
-          title: '12% available',
+          title: `${calcSharesAvailable(entry.shares.owned, entry.shares.total).toFixed(2)}% available`,
           text: '1.5% minimum purchase'
         }}
         isMember={false}
