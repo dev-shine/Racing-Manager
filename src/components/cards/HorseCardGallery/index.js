@@ -18,6 +18,8 @@ import HorseCard from 'components/cards/HorseCard'
  */
 import { constructStaticUrl, calcSharesAvailable } from 'utils/horseutils'
 
+import { CSSTransitionGroup } from 'react-transition-group'
+
 /**
  *  HorseCardGallery
  *  @param  {Object} props
@@ -87,6 +89,11 @@ class HorseCardGallery extends PureComponent {
 
     return (
       <div className='horse-card-gallery'>
+        <CSSTransitionGroup
+          transitionName="fade-in"
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+        >
         {
           data.map((entry, index) => {
             return (
@@ -96,6 +103,7 @@ class HorseCardGallery extends PureComponent {
             )
           })
         }
+        </CSSTransitionGroup>
       </div>
     )
   }
