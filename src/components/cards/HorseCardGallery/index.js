@@ -100,7 +100,7 @@ class HorseCardGallery extends PureComponent {
         {
           data.map((entry, index) => {
             return (
-              <div className='horse-card-gallery__item col-xs-12 col-sm-5 col-sm-push-1 col-md-4 col-md-push-0 col-lg-3' key={index}>
+              <div className='horse-card-gallery__item col-xs-12 col-sm-5 col-sm-push-1 col-md-4 col-md-push-0 col-lg-3' key={entry._id}>
                 {this.renderChildren(entry)}
               </div>
             )
