@@ -60,7 +60,7 @@ export class BrowseHorses extends Component {
     this.submitSearch = this.submitSearch.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
 
-    this.debouncedSubmit = debounce(this.submitSearch, 200)
+    this.debouncedSubmit = debounce(this.submitSearch, 300)
   }
 
   componentWillMount () {
