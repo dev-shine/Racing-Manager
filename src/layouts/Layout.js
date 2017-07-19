@@ -4,18 +4,34 @@ import { connect } from 'react-redux'
 
 import Default from './Default'
 import Test from './Test'
+import BodyStyle from 'components/common/BodyStyle'
+
+import { isTouchDevice } from 'utils/domutils'
+
+/**
+ *  Gets the correct layout depending on the pathname
+ */
+const getLayoutPerRoute = (props) => {
+  switch (props.location.pathname) {
+    case '/test':
+      return <Test testVar={props.testVar} />
+    default:
+      return <Default children={props.children} />
+  }
+}
 
 class Layout extends Component {
   render () {
     const { children, history, testVar } = this.props
     const { location } = history
 
-    switch (location.pathname) {
-      case '/test':
-        return <Test testVar={testVar} />
-      default:
-        return <Default children={children} />
-    }
+    return (
+      <BodyStyle className={!isTouchDevice() ? 'no-touch' : ''}>
+      {
+        getLayoutPerRoute({children, location, testVar})
+      }
+      </BodyStyle>
+    )
   }
 }
 

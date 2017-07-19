@@ -89,10 +89,12 @@ class SearchAndFilterBar extends PureComponent {
                   defaultValue={defaultSortValue}
                   title={sortTitle}>
                   {
-                    selectOptions.map((value, index) => {
-                      return (
-                        <Option key={index} value={value}>{value}</Option>
-                      )
+                    selectOptions.map((obj) => {
+                      return obj.values.map(({displayName}) => {
+                        return (
+                          <Option key={displayName} value={displayName}>{displayName}</Option>
+                        )
+                      })
                     })
                   }
                 </SortSelect>
@@ -129,22 +131,26 @@ class SearchAndFilterBar extends PureComponent {
 
                 <div className='search-filter-bar__mobile__sort-select'>
                   <SortSelect
+                    mobileText='Sort by'
                     onChange={onSelectUpdate}
-                    mobileText={'Sort by'}
                     defaultValue={defaultSortValue}
                     title={sortTitle}>
                     {
-                      selectOptions.map((value, index) => {
-                        return (
-                          <Option key={index} value={value}>{value}</Option>
-                        )
+                      selectOptions.map((obj) => {
+                        return obj.values.map(({displayName}) => {
+                          return (
+                            <Option key={displayName} value={displayName}>{displayName}</Option>
+                          )
+                        })
                       })
                     }
                   </SortSelect>
                 </div>
-
               </div>
             </div>
+            <p className='search-filter-bar__mobile_results regular'>
+              {resultsAmount} results
+            </p>
           </MediaQuery>
         </div>
       </div>
@@ -169,7 +175,8 @@ SearchAndFilterBar.defaultProps = {
   placeholder: '',
   sortTitle: 'sort:',
   filterActive: false,
-  selectOptions: []
+  selectOptions: [],
+  defaultSortValue: ''
 }
 
 /**

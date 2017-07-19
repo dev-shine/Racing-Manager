@@ -13,14 +13,15 @@ import FeedSubmitTile from 'components/tiles/FeedSubmitTile'
  */
 import processMediaPayload from 'utils/mediapayload'
 
-/**
- *  @module submitHorseUpdate
- */
 import {
-  submitHorseUpdate,
-  updateHorseText,
-  addHorseMediaFiles,
-  deleteHorseMedia
+  updateFeedText,
+  addFeedMediaFiles,
+  clearFeedData,
+  deleteFeedMedia
+} from 'actions/submitfeedpost'
+
+import {
+  submitHorseUpdate
 } from 'actions/horse'
 
 /**
@@ -34,11 +35,12 @@ const mapStateToProps = (state, ownProps) => {
     text,
     maxCharCount,
     files,
-    posted
-  } = state.horse
+    charCount
+  } = state.horse.submitFeedData
 
-  // Get the char count.
-  const charCount = (maxCharCount - text.length)
+  const {
+    posted,
+  } = state.horse.horseInfo
 
   return {
     feedText: text,
@@ -56,32 +58,40 @@ const mapStateToProps = (state, ownProps) => {
  *  @return {Object}
  */
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const {
+    reducerName // reducerName which will correspond to the correct reducer
+  } = ownProps
+
   return {
     submitFeedUpdate: (text, files) => {
       const {
-        horseId
+        horseId,
+        trainerId = 'test'
       } = ownProps
 
-      const trainerId = 'lsdhflksdhflksdh'
+      const attachment = files
 
       // Construct data
       const data = processMediaPayload({
         horseId,
         trainerId,
-        attachment: files,
+        attachment,
         text
       })
 
       dispatch(submitHorseUpdate(data))
     },
     updateFeedText: text => {
-      dispatch(updateHorseText(text))
+      dispatch(updateFeedText(text, reducerName))
     },
     addFeedMediaFiles: files => {
-      dispatch(addHorseMediaFiles(files))
+      dispatch(addFeedMediaFiles(files, reducerName))
     },
     deleteFeedThumbnail: () => {
-      dispatch(deleteHorseMedia())
+      dispatch(deleteFeedMedia(reducerName))
+    },
+    clearFeedData: () => {
+      dispatch(clearFeedData(reducerName))
     }
   }
 }

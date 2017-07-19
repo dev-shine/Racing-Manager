@@ -29,6 +29,11 @@ import classNames from 'utils/classnames'
 import omit from 'utils/objectutils/omit'
 
 /**
+ *  @module CSSTransitionGroup
+ */
+import { CSSTransitionGroup } from 'react-transition-group'
+
+/**
  *  @class
  *  @name SearchInput
  *  @extends {PureComponent}
@@ -110,10 +115,6 @@ class SearchInput extends PureComponent {
       'active': open
     })
 
-    const closeModifiedClassNames = classNames('mobile-search-input__close-container', '', {
-      'active': open
-    })
-
     // Props for the input excluding any props meant for parent component.
     const inputProps = omit(this.props, ['containerClassName', 'handleChange'])
 
@@ -127,11 +128,18 @@ class SearchInput extends PureComponent {
           inputLineClassName='hidden'
           handleChange={this.handleSearchResult}
           {...inputProps} />
-        <div className={closeModifiedClassNames}>
-          <Icon
-            onClick={this.closeSearch}
-            className='mobile-search-input__close'
-            modifier='close'/>
+        <div className='mobile-search-input__close-container'>
+          <CSSTransitionGroup
+            transitionName="fade-in"
+            transitionEnterTimeout={400}
+            transitionLeaveTimeout={400}>
+            {
+              open && <Icon
+              onClick={this.closeSearch}
+              className='mobile-search-input__close'
+              modifier='close'/>
+            }
+          </CSSTransitionGroup>
         </div>
       </div>
     )

@@ -1,11 +1,7 @@
 .filter-panel {
   position: relative;
   width: 100%;
-  padding: 20px 0;
-
-  @media all and (min-width: $screen-md) {
-    padding: 40px 0;
-  }
+  padding: 40px 20px;
 
   &__title {
     margin-bottom: 15px;
@@ -14,10 +10,6 @@
 
   &__column {
     margin-bottom: 50px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
 
     // To clear variable heights in the columns on tablet
     // Could use flex but thats unnesscary IMHO
@@ -42,7 +34,7 @@
 
   &__range-slider {
     margin-top: 40px;
-    padding: 0 40px;
+    padding: 0 10px;
 
     @media all and (min-width: $screen-sm) {
       padding: 0;

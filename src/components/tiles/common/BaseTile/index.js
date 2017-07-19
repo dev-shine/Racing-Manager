@@ -19,6 +19,11 @@ import { ROOT_PATH } from 'api/ServiceTypes'
 import omit from 'utils/objectutils/omit'
 
 /**
+ *  @module hasTextSelection
+ */
+import { hasTextSelection } from 'utils/domutils'
+
+/**
  *  @name BaseTileHoc
  *  @description Higher order component to wrap an extra class for base tiles.
  *  @param  {Component} WrappedComponent
@@ -60,7 +65,7 @@ const BaseTileHoc = WrappedComponent => {
        *  @description Will add the id to the onClick function parameter.
        */
       const addIdToOnClick = () => {
-        if (onClick) {
+        if (onClick && !hasTextSelection()) { // Prevent the popup from triggering a click if there is text being highlighted
           onClick(id)
         }
       }

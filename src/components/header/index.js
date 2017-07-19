@@ -30,7 +30,7 @@ import { logo } from 'assets/images'
  * @constructor
  */
 const Header = props => {
-  const { content, logohref } = props
+  const { children, logohref } = props
   return (
     <header className='header'>
       <Link to={logohref} className='header__logo'>
@@ -42,7 +42,7 @@ const Header = props => {
           <span className='hidden-sm-up'>TRM</span>
         </h5>
       </Link>
-      {content}
+      {children}
     </header>
   )
 }
@@ -52,7 +52,7 @@ const Header = props => {
  * @type { Object }
  */
 Header.propTypes = {
-  content: PropTypes.oneOfType([
+  children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.node
   ]),

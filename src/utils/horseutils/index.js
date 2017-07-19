@@ -76,6 +76,21 @@ export const calcPercent = (num, total) => {
 }
 
 /**
+ *  calcSharesAvailable
+ *  @description Will take a owned value and a total and work out how much shares are left in percentage
+ *  @param  {Number} num
+ *  @param  {Number} total
+ *  @return {Number}
+ */
+export const calcSharesAvailable = (num, total) => {
+  if (!isNumber(total) || !isNumber(num)) {
+    return 0
+  }
+
+  return ((total - num) / total) * 100
+}
+
+/**
  *  constructStaticUrl
  *  @param  {String} path
  *  @return {String}

@@ -27,6 +27,38 @@ export const isTouchDevice = () => {
 }
 
 /**
+ *  Will return boolean if there is any highlighted text
+ *  @return {Boolean}
+ */
+export const getTextSelection = () => {
+  if (window.getSelection) {
+    return window.getSelection()
+  } else
+  if (document.getSelection) {
+    return window.getSelection()
+  } else
+  if (document.selection) {
+    const selection = document.selection.createRange()
+
+    if (selection.text) {
+      return selection
+    }
+  }
+}
+
+export const hasTextSelection = () => {
+  const selection = getTextSelection()
+
+  // If there is no selection, return false
+  if (!selection) {
+    return false
+  }
+
+  // Cast selection to string and then cast to boolean
+  return !!(selection.toString())
+}
+
+/**
  * @name addClass
  * @description  Adds a class to passed element
  * @param { HTMLElement } element

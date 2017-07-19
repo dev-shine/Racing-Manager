@@ -9,8 +9,6 @@ import capitalize from 'utils/capitalize'
 import AjaxLoader from 'components/ajaxloader'
 import { fetchHorseInfo } from 'actions/horse'
 
-// import Image from 'components/image'
-// import Hero from 'components/parallax/Hero'
 import Separator from 'components/gui/Separator'
 import Table from 'components/gui/Table'
 import List from 'components/gui/List'
@@ -298,7 +296,8 @@ class PublicHorse extends Component {
 }
 
 const mapStateToProps = ({ horse }) => ({
-  ...horse
+  ...horse.horseInfo,
+  ...horse.submitFeedData
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -312,24 +311,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PublicHorse)
-
-/*
- <Carousel
- containerClassName='public-horse__mobile-carousel'
- ref='carousel'
- slideWidth={0.33}
- cellAlign='left'
- breakPoints={{
- 400: {
- slideWidth: 1,
- cellAlign: 'center'
- },
- 480: {
- slideWidth: 0.5
- }
- }}
- showArrows
- >
- {members}
- </Carousel>
- */

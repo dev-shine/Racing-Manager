@@ -154,6 +154,7 @@ export class FeedUpdatePopup extends Component {
               submitFeedUpdate={() => {}}
               addFeedMediaFiles={() => {}}
               updateFeedText={() => {}}
+              clearFeedData={() => {}}
               charCount={400}
               maxCharCount={400}
               horseId={20} />

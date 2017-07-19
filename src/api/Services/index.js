@@ -19,6 +19,12 @@ export const searchForHorses = (data) => {
   })
 }
 
+export const getSearchAttributesForHorses = () => {
+  return get({
+    url: SERVICE_TYPES.SEARCH_ATTRIBUTES
+  })
+}
+
 export const getMemberDashboard = () => {
   return get({
     url: SERVICE_TYPES.DASHBOARD

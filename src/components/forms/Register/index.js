@@ -50,43 +50,60 @@ const RegisterForm = props => {
         {...props}
         className='register-form__form'>
 
-        <h2 className='register-form__section-label'>Name</h2>
-        <div className='input-group'>
+        <div className='form__group'>
+          <h2 className='register-form__section-label'>Name</h2>
+        </div>
+
+        <div className='form__group'>
           <Field
             component={Input}
             placeholder='First Name'
             validate={['firstname']}
             name='firstname' />
+        </div>
+        <div className='form__group'>
           <Field
             component={Input}
             placeholder='Surname'
             validate={['surname']}
             name='surname' />
         </div>
-        <h2 className='register-form__section-label'>Email</h2>
-        <Field
-          component={Input}
-          placeholder='Enter your email address'
-          validate={['email']}
-          name='email' />
-        <h2 className='register-form__section-label'>Password</h2>
-        <Field
-          component={Input}
-          placeholder='Min 8 characters, 1 uppercase and 1 digit'
-          validate={['password']}
-          type='password'
-          name='password' />
-        <div className='register-form__checkboxes'>
+        <div className='form__group'>
+          <h2 className='register-form__section-label'>Email</h2>
+        </div>
+
+        <div className='form__group'>
           <Field
-            component={Checkbox}
-            label='Are you over 18?'
-            validate={['overEighteen']}
-            name='overEighteen' />
+            component={Input}
+            placeholder='Enter your email address'
+            validate={['email']}
+            name='email' />
+        </div>
+
+        <div className='form__group'>
+          <h2 className='register-form__section-label'>Password</h2>
+        </div>
+        <div className='form__group'>
           <Field
-            component={Checkbox}
-            label={<span>Do you agree to <Link to="/terms-and-conditions">terms and conditions</Link>?</span>}
-            validate={['termsAndConditions']}
-            name='termsAndConditions' />
+            component={Input}
+            placeholder='Min 8 characters, 1 uppercase and 1 digit'
+            validate={['password']}
+            type='password'
+            name='password' />
+        </div>
+        <div className='form__group'>
+          <div className='register-form__checkboxes'>
+            <Field
+              component={Checkbox}
+              label='Are you over 18?'
+              validate={['overEighteen']}
+              name='overEighteen' />
+            <Field
+              component={Checkbox}
+              label={<span>Do you agree to <Link to="/terms-and-conditions">terms and conditions</Link>?</span>}
+              validate={['termsAndConditions']}
+              name='termsAndConditions' />
+          </div>
         </div>
         <Link to='/browse-horses'>
           <Submit component={(props) => TextButton({

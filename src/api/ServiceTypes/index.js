@@ -16,3 +16,5 @@ export const DASHBOARD = `${BASE_URL}/user/dashboard`
 export const SYNDICATE = `${BASE_URL}/syndicate`
 
 export const SEARCH = `${BASE_URL}/search`
+
+export const SEARCH_ATTRIBUTES = `${BASE_URL}/search/attributes`
