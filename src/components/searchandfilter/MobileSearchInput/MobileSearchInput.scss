@@ -29,11 +29,6 @@
 
   &__close-container {
     position: relative;
-    visibility: hidden;
-
-    &--active {
-      visibility: visible;
-    }
   }
 
   &__close {
