@@ -146,9 +146,11 @@ class SearchAndFilterBar extends PureComponent {
                     }
                   </SortSelect>
                 </div>
-
               </div>
             </div>
+            <p className='search-filter-bar__mobile_results regular'>
+              {resultsAmount} results
+            </p>
           </MediaQuery>
         </div>
       </div>

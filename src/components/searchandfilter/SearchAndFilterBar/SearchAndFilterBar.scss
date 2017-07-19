@@ -78,4 +78,14 @@
   &__click-text {
     cursor: pointer;
   }
+
+  &__mobile_results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 8px;
+    color: $davys-gray;
+  }
 }
