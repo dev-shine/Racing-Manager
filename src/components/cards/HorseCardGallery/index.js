@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import HorseCard from 'components/cards/HorseCard'
 
 /**
- *  @module constructStaticUrl
+ *  @module constructStaticUrl, calcSharesAvailable
  */
 import { constructStaticUrl, calcSharesAvailable } from 'utils/horseutils'
 
@@ -93,7 +93,7 @@ class HorseCardGallery extends PureComponent {
     return (
       <div className='horse-card-gallery'>
         <CSSTransitionGroup
-          transitionName="fade-in"
+          transitionName="fade-shift"
           transitionEnterTimeout={400}
           transitionLeaveTimeout={400}
         >
