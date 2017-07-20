@@ -9,9 +9,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 /**
- *  @module RegisterContainer
+ *  @module RegisterFormContainer
  */
-import RegisterContainer from 'containers/register'
+import RegisterFormContainer from 'containers/RegisterForm'
 
 /**
  *  @module withRouter
@@ -31,6 +31,7 @@ import {
 } from 'actions/register'
 
 import View from 'components/routing/View'
+
 import { REGISTER as title } from 'data/titles'
 
 /**
@@ -87,7 +88,7 @@ export class Register extends Component {
               <div className='col-sm-8 col-md-7 register__form-container'>
                 <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
                   your account.</p>
-                <RegisterContainer
+                <RegisterFormContainer
                   onSubmitSuccess={this.submitFormDataSuccess}
                   onSubmitFail={this.submitFormDataFail} />
               </div>

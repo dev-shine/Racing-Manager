@@ -19,7 +19,7 @@ import HorseTeamMember from 'components/horse/HorseTeamMember'
 
 import FeedGallery from 'components/tiles/FeedGallery'
 
-import SubmitPost from 'containers/submitUpdateToHorse'
+import SubmitPost from 'containers/SubmitUpdateToHorse'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent } from 'utils/horseutils'

@@ -13,7 +13,7 @@ import TextButton from 'components/buttons/TextButton'
  */
 import { Link } from 'react-router-dom'
 
-import LoginFormContainer from 'containers/login'
+import LoginFormContainer from 'containers/LoginForm'
 
 import TextCtaButton from 'components/buttons/TextCtaButton'
 
