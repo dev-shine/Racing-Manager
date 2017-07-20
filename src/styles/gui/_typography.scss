@@ -109,6 +109,10 @@ p, body, ul {
 }
 
 p {
+  &.small {
+    font-size: $small-title;
+    line-height: $small-title-lead;
+  }
   &.tiny {
     font-size: $tiny-text;
     line-height: $tiny-text-lead;

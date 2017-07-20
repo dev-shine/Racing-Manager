@@ -86,13 +86,15 @@ export class Register extends Component {
           <div className='container'>
             <div className='row register__content'>
               <div className='col-sm-8 col-md-7 register__form-container'>
-                <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
+                <p className='small regular register__form-opening-text'>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
                   your account.</p>
                 <RegisterFormContainer
                   onSubmitSuccess={this.submitFormDataSuccess}
                   onSubmitFail={this.submitFormDataFail} />
               </div>
-              <div className='col-sm-4 col-md-5 register__quick-register' />
+              <div className='col-sm-4 col-md-5 register__quick-register'>
+
+              </div>
             </div>
           </div>
         </div>

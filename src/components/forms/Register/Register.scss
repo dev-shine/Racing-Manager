@@ -2,8 +2,13 @@
   
   &__section-label {
     font-family: $font-family-secondary;
-    text-transform: none;
+    color: $color-text-strong;
     margin-top: 45px;
+    text-transform: capitalize;
+    
+    @media all and (min-width: $screen-md) {
+      text-transform: uppercase;
+    }
   }
   
   &__checkboxes {
