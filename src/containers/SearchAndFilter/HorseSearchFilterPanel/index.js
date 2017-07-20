@@ -131,8 +131,6 @@ class HorseSearchFilterPanel extends Component {
 
             {
               attributes.filter['age'].options.map((option, index) => {
-                console.log(filters['age'])
-                console.log(`DISPLAYNAME: ${option.displayName}`)
                 return (
                   <TextButton
                     key={index}

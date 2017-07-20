@@ -32,6 +32,10 @@ $outer-space: #494949;
 $blue-yonder: #5170A7;
 $sky-blue: #88d0ed;
 
+// Bg
+$color-popup-bg: $white;
+$color-faded-popup-bg: rgba($white, 0.4);
+
 // Inputs
 $form-input-color: $nickel;
 $form-input-color-active: $vanilla-ice;
@@ -43,3 +47,6 @@ $cta-link-color: $vanilla-ice;
 // Social
 $twitter: $sky-blue;
 $facebook: $blue-yonder;
+
+// loader
+$color-loader: $vanilla-ice;

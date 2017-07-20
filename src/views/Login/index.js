@@ -1,6 +1,6 @@
 import React from 'react'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import { LOGIN as title } from 'data/titles'
 
 const Login = () => (

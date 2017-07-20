@@ -26,7 +26,7 @@ import {
 /**
  *  @module RouteWithProps
  */
-import RouteWithProps from 'components/common/RouteWithProps'
+import RouteWithProps from 'components/routing/RouteWithProps'
 
 class HeaderContainer extends PureComponent {
   constructor (props) {

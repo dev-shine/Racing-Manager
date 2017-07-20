@@ -6,10 +6,10 @@ import {
 } from 'react-router-dom'
 
 import { CookiesProvider } from 'react-cookie'
-import PrivateRoute from 'components/common/PrivateRoute'
+import PrivateRoute from 'components/routing/PrivateRoute'
 
 import Layout from 'layouts/Layout'
-import ScrollTop from 'components/common/ScrollTop'
+import ScrollTop from 'components/routing/ScrollTop'
 import PageNotFound from 'views/PageNotFound'
 
 import Home from 'views/home'

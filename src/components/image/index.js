@@ -141,6 +141,7 @@ class LazyImage extends Component {
    */
   bindScrollEvent () {
     window.addEventListener('scroll', this.throttleResize, false)
+    window.addEventListener('resize', this.throttleResize, false)
   }
 
   /**
@@ -148,6 +149,7 @@ class LazyImage extends Component {
    */
   unBindScrollEvent () {
     window.removeEventListener('scroll', this.throttleResize, false)
+    window.removeEventListener('resize', this.throttleResize, false)
   }
 
   /**
