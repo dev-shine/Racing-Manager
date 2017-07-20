@@ -14,9 +14,14 @@ import PropTypes from 'prop-types'
 import HorseCard from 'components/cards/HorseCard'
 
 /**
- *  @module constructStaticUrl
+ *  @module constructStaticUrl, calcSharesAvailable
  */
-import { constructStaticUrl } from 'utils/horseutils'
+import { constructStaticUrl, calcSharesAvailable } from 'utils/horseutils'
+
+/**
+ *  @module CSSTransitionGroup
+ */
+import { CSSTransitionGroup } from 'react-transition-group'
 
 /**
  *  HorseCardGallery
@@ -64,14 +69,14 @@ class HorseCardGallery extends PureComponent {
           name: 'Syndicate name',
           value: entry.owner.name
         }, {
-          name: 'Initial cost per %',
+          name: 'Initial cost per 1%',
           value: `£${entry.cost.initial} +VAT`
         }, {
-          name: 'Monthly cost per %',
+          name: 'Monthly cost per 1%',
           value: `£${entry.cost.monthly} +VAT`
         }]}
         extra={{
-          title: '12% available',
+          title: `${calcSharesAvailable(entry.shares.owned, entry.shares.total).toFixed(2)}% available`,
           text: '1.5% minimum purchase'
         }}
         isMember={false}
@@ -87,15 +92,21 @@ class HorseCardGallery extends PureComponent {
 
     return (
       <div className='horse-card-gallery'>
+        <CSSTransitionGroup
+          transitionName="fade-shift"
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}
+        >
         {
           data.map((entry, index) => {
             return (
-              <div className='horse-card-gallery__item col-xs-12 col-sm-5 col-sm-push-1 col-md-4 col-md-push-0 col-lg-3' key={index}>
+              <div className='horse-card-gallery__item col-xs-12 col-sm-5 col-sm-push-1 col-md-4 col-md-push-0 col-lg-3' key={entry._id}>
                 {this.renderChildren(entry)}
               </div>
             )
           })
         }
+        </CSSTransitionGroup>
       </div>
     )
   }

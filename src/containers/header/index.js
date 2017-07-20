@@ -1,7 +1,4 @@
-/**
- * @module react-redux
- */
-import { connect } from 'react-redux'
+import React, { PureComponent } from 'react'
 
 /**
  *  @module Header
@@ -9,39 +6,65 @@ import { connect } from 'react-redux'
 import Header from 'components/header'
 
 /**
- *  @module HeaderContentStates
+ *  @module HeaderHome
  */
-import headerContentStates from 'containers/header/HeaderContentStates'
+import HeaderHome from 'components/header/HeaderHome'
+
+/**
+ *  @module HeaderHome
+ */
+import HeaderDashboard from 'components/header/HeaderDashboard'
 
 /**
  *  @module withRouter
  */
-import { withRouter } from 'react-router-dom'
+import {
+  withRouter,
+  Switch
+} from 'react-router-dom'
 
-const mapStateToProps = (state, ownProps) => {
-  const {
-    pathname
-  } = ownProps.location
+/**
+ *  @module RouteWithProps
+ */
+import RouteWithProps from 'components/common/RouteWithProps'
 
-  const content = headerContentStates({
-    location: pathname
-  })
+class HeaderContainer extends PureComponent {
+  constructor (props) {
+    super(props)
 
-  return {
-    content,
-    logohref: '/'
+    this.state = {
+      burgerMenuActive: true,
+      showLogin: false
+    }
+
+    this.toggleLogin = this.toggleLogin.bind(this)
+  }
+
+  toggleLogin () {
+    this.setState((state) => ({
+      showLogin: !state.showLogin
+    }))
+  }
+
+  render () {
+    return (
+      <Header
+        logohref='/'>
+          <Switch>
+            <RouteWithProps
+              exact
+              path='/'
+              onLoginButtonClick={this.toggleLogin}
+              showLogin={this.state.showLogin}
+              burgerMenuActive={this.state.burgerMenuActive}
+              onClick={() => { this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }}
+              component={HeaderHome} />
+            <RouteWithProps
+              component={HeaderDashboard} />
+          </Switch>
+      </Header>
+    )
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
-}
-
-/**
- *  Export the header
- */
-
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header))
+export default withRouter(HeaderContainer)

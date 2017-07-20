@@ -109,6 +109,8 @@ class FeedSubmitTile extends Component {
       isOpen: false,
       thumbnailSrc: ''
     })
+
+    this.props.clearFeedData()
   }
 
   /**
@@ -323,7 +325,8 @@ FeedSubmitTile.propTypes = {
   updateFeedText: PropTypes.func.isRequired,
   charCount: PropTypes.number,
   maxCharCount: PropTypes.number,
-  allowedFileTypes: PropTypes.array
+  allowedFileTypes: PropTypes.array,
+  clearFeedData: PropTypes.func.isRequired
 }
 
 /**

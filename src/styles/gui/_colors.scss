@@ -1,23 +1,23 @@
-$snow: rgb(249, 249, 249);
-$isabelline: rgb(234, 234, 234);
-$gainsboro: rgb(222, 222, 222);
-$x11-gray: rgb(190, 190, 190);
-$taupe-gray: rgb(138, 138, 138);
-$old-silver: rgb(130, 130, 130);
-$nickel: rgb(110, 110, 110);
-$davys-gray: rgb(89, 89, 89);
+$snow: #f9f9f9;
+$isabelline: #eaeaea;
+$gainsboro: #dedede;
+$x11-gray: #bebebe;
+$taupe-gray: #8a8a8a;
+$old-silver: #828282;
+$nickel: #6e6e6e;
+$davys-gray: #58595b;
 
-$vanilla-ice: rgb(241, 138, 155);
-$pale-violet-red: rgb(220, 119, 141);
-$cinnamon-satin: rgb(195, 97, 123);
+$vanilla-ice: #f18a9b;
+$pale-violet-red: #dc778d;
+$cinnamon-satin: #c3617b;
 
-$raspberry-glace: rgb(144, 98, 121);
-$raspberry-glace-2: rgb(136, 88, 114);
-$twilight-lavender: rgb(141, 71, 114);
+$raspberry-glace: #906279;
+$raspberry-glace-2: #885872;
+$twilight-lavender: #8d4772;
 
-$space-cadet: rgb(35, 53, 83);
-$yankees-blue: rgb(20, 35, 57);
-$eerie-black: rgb(13, 26, 38);
+$space-cadet: #233654;
+$yankees-blue: #142339;
+$eerie-black: #0d1a26;
 
 $black: #000;
 $white: #fff;
@@ -29,6 +29,9 @@ $maastricht-blue: #00273a;
 $silver-chalice: #ababab;
 $outer-space: #494949;
 
+$blue-yonder: #5170A7;
+$sky-blue: #88d0ed;
+
 // Inputs
 $form-input-color: $nickel;
 $form-input-color-active: $vanilla-ice;
@@ -36,3 +39,7 @@ $placeholder-color: $taupe-gray;
 
 // Cta
 $cta-link-color: $vanilla-ice;
+
+// Social
+$twitter: $sky-blue;
+$facebook: $blue-yonder;

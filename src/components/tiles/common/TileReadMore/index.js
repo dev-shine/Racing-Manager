@@ -1,22 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'utils/classnames'
 
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+import CtaLink from 'components/links/CtaLink'
 
 const TileReadMore = props => {
   const {
-    className,
-    modifier,
-    href,
+    href
   } = props
 
-  const modifiedClassNames = classNames('link link--italic tile-read-more', className, modifier)
-
   return (
-     <Link to={href} className={modifiedClassNames}>
-       read the full story
-     </Link>
+    <CtaLink
+      href={href}
+      className='tile-read-more'
+      modifier='italic'
+      text='read the full story' />
   )
 }
 

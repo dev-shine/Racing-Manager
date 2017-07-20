@@ -16,8 +16,10 @@ import Separator from 'components/gui/Separator'
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseAccordion from 'components/horse/HorseAccordion'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
-import SubmitPost from 'containers/horseOverview/SubmitPost'
+
 import FeedGallery from 'components/tiles/FeedGallery'
+
+import SubmitPost from 'containers/submitUpdateToHorse'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent } from 'utils/horseutils'
@@ -215,6 +217,7 @@ export class PrivateHorse extends Component {
                 <SubmitPost
                   title='post an update to the horse'
                   horseId={_id}
+                  reducerName='horseFeedData'
                 />
               </div>
             </div>
@@ -231,9 +234,12 @@ export class PrivateHorse extends Component {
   }
 }
 
-const mapStateToProps = ({ horse }) => ({
-  ...horse
-})
+const mapStateToProps = ({ horse }) => {
+  return {
+    ...horse.horseInfo,
+    ...horse.submitFeedData
+  }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getHorseInfo: () => {

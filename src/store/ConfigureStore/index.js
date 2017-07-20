@@ -18,25 +18,31 @@ import { createLogger } from 'redux-logger'
  */
 import rootReducer from 'reducers/rootReducer'
 
-/**
- * composeEnhancers
- * @type { Function }
- */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+import isDev from 'isdev'
 
-/**
- * Configure the store
- * @param { Object } initialState
- * @returns { Object }
- */
-const configureStore = initialState => {
-  return createStore(
-    rootReducer,
-    initialState,
-    composeEnhancers(
-      applyMiddleware(thunkMiddleware, createLogger())
+let configureStore
+
+// If the app is running in debug, add in redux dev tools.
+if (isDev) {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+  configureStore = initialState => {
+    return createStore(
+      rootReducer,
+      initialState,
+      composeEnhancers(
+        applyMiddleware(thunkMiddleware, createLogger())
+      )
     )
-  )
+  }
+} else {
+  configureStore = initialState => {
+    return createStore(
+      rootReducer,
+      initialState,
+      applyMiddleware(thunkMiddleware)
+    )
+  }
 }
 
 export default configureStore

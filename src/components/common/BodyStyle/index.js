@@ -22,7 +22,7 @@ const reducePropsToState = (propsList) => {
     Object.assign(style, prop.style)
 
     if (prop.className) {
-      className = prop.className
+      className += `${prop.className} `
     }
   })
 

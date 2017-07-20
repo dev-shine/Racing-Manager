@@ -38,7 +38,7 @@ $cta-active-bg: darken($cta-button-bg, 20);
     height: $cta-button-height-md;
     padding: 0 15px;
   }
-  &:hover {
+  body.no-touch &:hover {
     background: $cta-hover-bg
   }
   &:active {
@@ -51,7 +51,7 @@ $cta-active-bg: darken($cta-button-bg, 20);
     background: transparent;
     border: 1px solid $cta-button-bg;
     transition-property: background, border;
-    &:hover {
+    body.no-touch &:hover {
       background: transparent;
       border-color: $cta-hover-bg;
       .text-button__text {
@@ -74,7 +74,7 @@ $cta-active-bg: darken($cta-button-bg, 20);
   &--blue {
     background: $blue;
     border: 1px solid $blue;
-    &:hover {
+    body.no-touch &:hover {
       background: darken($blue, 15%);
     }
   }
@@ -88,8 +88,9 @@ $cta-active-bg: darken($cta-button-bg, 20);
       color: $blue;
     }
 
-    &:hover,
-    &.text-button--active {
+    body.no-touch &:hover,
+    &.text-button--active,
+    &:active {
       background: $blue;
 
       h6 {
@@ -107,8 +108,9 @@ $cta-active-bg: darken($cta-button-bg, 20);
       color: $space-cadet;
     }
 
-    &:hover,
-    &.text-button--active {
+    body.no-touch &:hover,
+    &.text-button--active,
+    &:active {
       background: $space-cadet;
 
       h6 {

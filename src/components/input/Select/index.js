@@ -220,7 +220,7 @@ class Select extends Component {
           >
             {
               open && (
-                <ul>
+                <ul aria-label='main menu' >
                   {this.renderChildren()}
                 </ul>
               )
@@ -255,7 +255,7 @@ Select.propTypes = {
   ]),
   name: PropTypes.string,
   defaultValue: PropTypes.string,
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
   showLine: PropTypes.bool
 }
 
