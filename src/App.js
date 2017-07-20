@@ -1,4 +1,14 @@
 /**
+ * @module styles
+ */
+import 'styles/index.scss'
+
+/**
+ *  @module isDev
+ */
+import isDev from 'isdev'
+
+/**
  * @module react
  */
 import React from 'react'
@@ -29,14 +39,14 @@ import store from './store'
 import { queryBySelector } from 'utils/domutils'
 
 /**
- * @module styles
- */
-import 'styles/index.scss'
-
-/**
  * @module injectTapEventPlugin
  */
 import injectTapEventPlugin from 'react-tap-event-plugin'
+
+if (isDev) {
+  // Explicitly set Perf to be in the global scope.
+  window.Perf = require('react-addons-perf')
+}
 
 // Initialise for tap events
 injectTapEventPlugin()
