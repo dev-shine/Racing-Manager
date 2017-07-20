@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import capitalize from 'utils/capitalize'
 
 import AjaxLoader from 'components/ajaxloader'

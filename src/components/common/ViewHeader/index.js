@@ -19,16 +19,16 @@ import { heroBg } from 'assets/images'
 import Hero from 'components/parallax/Hero'
 
 /**
- *  TitleHero
+ *  ViewHeader
  *  @return {React.Component}
  */
-const TitleHero = ({title}) => {
+const ViewHeader = ({title}) => {
   return (
-    <div className='title-hero'>
+    <div className='view-header'>
       <Hero
-        className='title-hero__bg'
+        className='view-header__bg'
         featuredImage={heroBg} />
-      <div className='title-hero__title'>
+      <div className='view-header__title'>
         <div className='container'>
           <h1 className='uppercase'>{title}</h1>
         </div>
@@ -41,7 +41,7 @@ const TitleHero = ({title}) => {
  *  PropTypes
  *  @type {Object}
  */
-TitleHero.PropTypes = {
+ViewHeader.PropTypes = {
   title: PropTypes.string
 }
 
@@ -49,11 +49,11 @@ TitleHero.PropTypes = {
  *  defaultProps
  *  @type {Object}
  */
-TitleHero.defaultProps = {
+ViewHeader.defaultProps = {
   title: 'Join the action'
 }
 
 /**
- *  @module TitleHero
+ *  @module ViewHeader
  */
-export default TitleHero
+export default ViewHeader

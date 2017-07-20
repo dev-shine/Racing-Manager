@@ -38,7 +38,7 @@ import { newsImage } from 'assets/dummyassets'
  */
 import { getDashboard } from 'actions/dashboard'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 
 import { MEMBER_DASHBOARD as title } from 'data/titles'
 

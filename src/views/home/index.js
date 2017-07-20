@@ -41,7 +41,7 @@ import {
   m4
 } from 'assets/home/manager'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import { HOMEPAGE as title } from 'data/titles'
 
 /**

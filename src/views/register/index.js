@@ -19,9 +19,9 @@ import RegisterContainer from 'containers/register'
 import { withRouter } from 'react-router-dom'
 
 /**
- *  @module TitleHero
+ *  @module ViewHeader
  */
-import TitleHero from 'components/common/TitleHero'
+import ViewHeader from 'components/common/ViewHeader'
 
 /**
  *  @module resetRegisterForm
@@ -30,7 +30,7 @@ import {
   resetRegisterForm
 } from 'actions/register'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import { REGISTER as title } from 'data/titles'
 
 /**
@@ -80,7 +80,7 @@ export class Register extends Component {
     return (
       <View title={title}>
         <div className='register'>
-          <TitleHero
+          <ViewHeader
             title='Join the action!'/>
           <div className='container'>
             <div className='row register__content'>

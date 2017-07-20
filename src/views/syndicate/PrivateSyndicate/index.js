@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import titleize from 'titleize'
 
 import FeedGallery from 'components/tiles/FeedGallery'

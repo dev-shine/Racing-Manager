@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import { PAGE_NOT_FOUND as title } from 'data/titles'
 
 import Image from 'components/image'

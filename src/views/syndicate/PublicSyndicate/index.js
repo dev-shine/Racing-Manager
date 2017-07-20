@@ -1,5 +1,5 @@
 import React from 'react'
-import View from 'components/common/View'
+import View from 'components/routing/View'
 
 const PublicSyndicate = () => (
   <View title='Public syndicate page'>
