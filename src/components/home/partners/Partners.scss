@@ -30,6 +30,8 @@ $partners-height-sm: 100px;
   &__partner {
     display: inline-block;
     height: $partners-height;
+    width: 100%;
+    
     @media (min-width: $screen-sm) {
       height: $partners-height-sm;
     }
