@@ -1,12 +1,14 @@
 .register {
   &__form-container {
-    background-color: white;
-    padding-top: 40px;
+    background-color: $color-bg-secondary;
     padding-bottom: 65px;
+
     @media (min-width: $screen-sm) {
-      padding: 40px 20px 40px !important;
+      padding: 0px 20px 40px;
     }
-    @media (min-width: $screen-md) {
+
+    &--heading {
+      padding-top: 40px;
     }
   }
   &__content {
@@ -15,5 +17,9 @@
 
   &__form-opening-text {
     color: $color-text-strong;
+  }
+
+  &__quick-register-container {
+    position: relative;
   }
 }

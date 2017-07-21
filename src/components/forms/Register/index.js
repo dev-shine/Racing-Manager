@@ -33,6 +33,14 @@ import TextButton from 'components/buttons/TextButton'
  */
 import { Link } from 'react-router-dom'
 
+import {
+  FIRSTNAME_PLACEHOLDER,
+  SURNAME_PLACEHOLDER,
+  EMAIL_PLACEHOLDER,
+  PASSWORD_PLACEHOLDER,
+  AGE_CHECK_PLACEHOLDER
+} from 'texts/forms'
+
 /**
  * @name RegisterForm
  * @extends {PureComponent}
@@ -63,36 +71,36 @@ class RegisterForm extends PureComponent {
           <div className='form__group'>
             <Field
               component={Input}
-              placeholder='First Name'
+              placeholder={FIRSTNAME_PLACEHOLDER}
               validate={['firstname']}
               name='firstname' />
           </div>
           <div className='form__group'>
             <Field
               component={Input}
-              placeholder='Surname'
+              placeholder={SURNAME_PLACEHOLDER}
               validate={['surname']}
               name='surname' />
           </div>
           <div className='form__group'>
-            <h4 className='register-form__section-label'>Email</h4>
+            <h4 className='register-form__section-label register-form__section-label--title-margin'>Email</h4>
           </div>
 
           <div className='form__group'>
             <Field
               component={Input}
-              placeholder='Enter your email address'
+              placeholder={EMAIL_PLACEHOLDER}
               validate={['email']}
               name='email' />
           </div>
 
           <div className='form__group'>
-            <h4 className='register-form__section-label'>Password</h4>
+            <h4 className='register-form__section-label register-form__section-label--title-margin'>Password</h4>
           </div>
           <div className='form__group'>
             <Field
               component={Input}
-              placeholder='Min 8 characters, 1 uppercase and 1 digit'
+              placeholder={PASSWORD_PLACEHOLDER}
               validate={['password']}
               type='password'
               name='password' />
@@ -101,7 +109,7 @@ class RegisterForm extends PureComponent {
             <div className='register-form__checkboxes'>
               <Field
                 component={Checkbox}
-                label='Are you over 18?'
+                label={AGE_CHECK_PLACEHOLDER}
                 validate={['overEighteen']}
                 name='overEighteen' />
               <Field

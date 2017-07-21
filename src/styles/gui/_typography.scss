@@ -29,6 +29,16 @@ $nano-title-lead: 14px;
 $nano-text: $nano-title;
 $nano-text-lead: $nano-title-lead;
 
+h1, h2, h3 {
+  font-weight: 500;
+  font-family: $font-family-base;
+}
+
+h4, h5, h6 {
+  font-weight: 600;
+  font-family: $font-family-secondary;
+}
+
 h1, h2, h3, h4, h5, h6, p, a, span {
   color: black;
   margin: 0;
@@ -43,23 +53,11 @@ h1, h2, h3, h4, h5, h6, p, a, span {
   }
   &.secondary-font {
     font-family: $font-family-secondary;
-    font-weight: 600;
   }
 }
 
-h1, h2, h3 {
-  font-weight: 500;
-  font-family: $font-family-base;
-  text-transform: uppercase;
-}
-
-h4, h5, h6 {
-  font-weight: 600;
-  font-family: $font-family-secondary;
-}
-
 h1 {
-  font-size: $subtitle; // $title;
+  font-size: $subtitle;
   line-height: $title-lead;
 
   @media (min-width: $screen-md) {

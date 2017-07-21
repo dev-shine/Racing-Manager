@@ -3,14 +3,17 @@
   &__section-label {
     font-family: $font-family-secondary;
     color: $color-text-strong;
-    margin-top: 45px;
     text-transform: capitalize;
     
     @media all and (min-width: $screen-md) {
       text-transform: uppercase;
     }
+
+    &--title-margin {
+      margin-top: 45px;
+    }
   }
-  
+
   &__checkboxes {
     margin: 55px 0;
   }

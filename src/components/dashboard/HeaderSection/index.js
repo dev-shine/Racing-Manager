@@ -180,7 +180,7 @@ class HeaderSection extends PureComponent {
       <div className={modifiedClassNames}>
         <div className='dashboard-header__heading row-no-margin dashboard-header__section'>
           <div className='col-xs-8 col-sm-6 align-middle'>
-            <h1>
+            <h1 className='uppercase'>
               {title}
             </h1>
           </div>

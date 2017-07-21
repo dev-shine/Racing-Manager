@@ -34,6 +34,13 @@ import View from 'components/routing/View'
 
 import { REGISTER as title } from 'data/titles'
 
+import SocialButton from 'components/socialmedia/SocialButton'
+
+import {
+  FACEBOOK_REGISTER,
+  TWITTER_REGISTER
+} from 'texts/forms'
+
 /**
  * @name Register
  * @class
@@ -85,15 +92,35 @@ export class Register extends Component {
             title='Join the action!'/>
           <div className='container'>
             <div className='row register__content'>
+              <div className='col-sm-8 col-md-7 register__form-container register__form-container--heading'>
+                <p className='small regular register__form-opening-text'>
+                  We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
+                  your account.
+                </p>
+              </div>
               <div className='col-sm-8 col-md-7 register__form-container'>
-                <p className='small regular register__form-opening-text'>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
-                  your account.</p>
                 <RegisterFormContainer
                   onSubmitSuccess={this.submitFormDataSuccess}
                   onSubmitFail={this.submitFormDataFail} />
               </div>
               <div className='col-sm-4 col-md-5 register__quick-register'>
-
+                <div className='register__quick-register-container col-sm-10 col-sm-push-1'>
+                  <div className='form__group'>
+                    <h2 className='extra-light secondary-font'>
+                      Quick sign up with
+                    </h2>
+                  </div>
+                  <div className='form__group'>
+                    <SocialButton
+                      text={FACEBOOK_REGISTER}
+                      modifier='facebook' />
+                  </div>
+                  <div className='form__group'>
+                    <SocialButton
+                      text={TWITTER_REGISTER}
+                      modifier='twitter' />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -17,6 +17,11 @@ import classNames from 'utils/classnames'
 
 import omit from 'utils/objectutils/omit'
 
+import {
+  FACEBOOK_LOGIN,
+  TWITTER_LOGIN
+} from 'texts/forms'
+
 /**
  *  @module Form, Field
  */
@@ -79,12 +84,12 @@ const LoginForm = (props) => {
         <div className='form__group'>
           <SocialButton
             modifier='facebook'
-            text='log in with facebook' />
+            text={FACEBOOK_LOGIN} />
         </div>
         <div className='form__group'>
           <SocialButton
             modifier='twitter'
-            text='log in with twitter' />
+            text={TWITTER_LOGIN} />
         </div>
       </Form>
     </div>
