@@ -14,39 +14,48 @@ $cta-active-bg: darken($cta-button-bg, 20);
   text-transform: uppercase;
   transition: background .25s ease-out;
   padding: 0 5px;
+
   @media (min-width: $screen-md) {
     height: $cta-button-height;
   }
+
   &--xs {
     min-width: 0;
     height: $cta-button-height-md;
     padding: 0 15px;
   }
+
   &--sm {
     min-width: 120px;
     height: $cta-button-height-sm;
     padding: 0 15px;
   }
+
   &--md {
     min-width: 170px;
     height: $cta-button-height-md;
     padding: 0 15px;
   }
+
   &--fluid {
     width: 100%;
     min-width: 0;
     height: $cta-button-height-md;
     padding: 0 15px;
   }
+
   body.no-touch &:hover {
     background: $cta-hover-bg
   }
+
   &:active {
     background: $cta-active-bg
   }
+  
   &__text {
     color: white;
   }
+  
   &--secondary {
     background: transparent;
     border: 1px solid $cta-button-bg;
@@ -119,6 +128,7 @@ $cta-active-bg: darken($cta-button-bg, 20);
     }
   }
 
+  body.no-touch &:disabled,
   &:disabled {
     background: $placeholder-color;
   }
