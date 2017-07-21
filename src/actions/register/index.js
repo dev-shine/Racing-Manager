@@ -76,8 +76,9 @@ export const submittedRegisterForm = () => ({
  *  @name failedToSubmitRegisterForm
  *  @return {Object}
  */
-export const failedToSubmitRegisterForm = () => ({
-  type: REGISTER_SUBMITTING_FAILED
+export const failedToSubmitRegisterForm = (error) => ({
+  type: REGISTER_SUBMITTING_FAILED,
+  error
 })
 
 /**

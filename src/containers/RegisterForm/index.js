@@ -39,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
   let canProgress = true
 
   // Items to ommit from form checking.
-  const ommittedItems = ['isSubmitting', 'submitError', 'errors']
+  const ommittedItems = ['isSubmitting', 'submitError', 'errors', 'username']
 
   for (let key in state.register) {
     if (!state.register[key] && !~ommittedItems.indexOf(key)) {

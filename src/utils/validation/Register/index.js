@@ -24,7 +24,8 @@ export const registerValidators = (type, formValues = {}) => {
     email,
     password,
     overEighteen,
-    termsAndConditions
+    termsAndConditions,
+    username
   } = formValues
 
   switch (type) {
@@ -45,6 +46,9 @@ export const registerValidators = (type, formValues = {}) => {
 
     case 'termsAndConditions':
       return termsAndConditions === true ? [] : [ERROR.MUST_ACCEPT_T_AND_C]
+
+    case 'username':
+      return !VALIDATE.REQUIRED(username) || VALIDATE.NAME(username) ? [] : [ERROR.USERNAME]
 
     default:
       return []

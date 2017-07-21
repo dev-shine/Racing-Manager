@@ -84,7 +84,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isSubmitting: false,
-        submitError: true
+        submitError: true,
+        errors: {
+          ...state.errors,
+          ...action.error.errors
+        }
       }
 
     default:
