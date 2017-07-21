@@ -93,7 +93,7 @@ export class Register extends Component {
           <div className='container'>
             <div className='row register__content'>
               <div className='col-sm-8 col-md-7 register__form-container register__form-container--heading'>
-                <p className='small regular register__form-opening-text'>
+                <p className='small extra-light register__form-opening-text'>
                   We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
                   your account.
                 </p>
