@@ -38,7 +38,8 @@ import {
   SURNAME_PLACEHOLDER,
   EMAIL_PLACEHOLDER,
   PASSWORD_PLACEHOLDER,
-  AGE_CHECK_PLACEHOLDER
+  AGE_CHECK_PLACEHOLDER,
+  USERNAME_PLACEHOLDER
 } from 'texts/forms'
 
 /**
@@ -81,6 +82,13 @@ class RegisterForm extends PureComponent {
               placeholder={SURNAME_PLACEHOLDER}
               validate={['surname']}
               name='surname' />
+          </div>
+          <div className='form__group'>
+            <Field
+              component={Input}
+              placeholder={USERNAME_PLACEHOLDER}
+              validate={['username']}
+              name='username' />
           </div>
           <div className='form__group'>
             <h4 className='register-form__section-label register-form__section-label--title-margin'>Email</h4>

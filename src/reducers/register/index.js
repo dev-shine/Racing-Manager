@@ -17,6 +17,7 @@ const initialState = {
   surname: '',
   email: '',
   password: '',
+  username: '',
   overEighteen: false,
   termsAndConditions: false,
   isSubmitting: false,
@@ -24,6 +25,7 @@ const initialState = {
   errors: {
     firstname: [],
     surname: [],
+    username: [],
     email: [],
     password: [],
     overEighteen: [],

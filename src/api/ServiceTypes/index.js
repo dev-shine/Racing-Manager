@@ -5,7 +5,9 @@ export const BASE_URL = `${ROOT_PATH}/api/v1`
 
 export const USER = `${BASE_URL}/user`
 
-export const REGISTRATION = `${USER}/registration`
+export const REGISTRATION = `${USER}/register`
+
+export const LOGIN = `${USER}/login`
 
 export const MESSAGE = `${BASE_URL}/message`
 

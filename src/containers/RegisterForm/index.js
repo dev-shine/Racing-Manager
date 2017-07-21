@@ -88,7 +88,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         name: values.firstname,
         surname: values.surname,
         password: values.password,
-        email: values.email
+        email: values.email,
+        username: values.username
       }))
       .then(onSubmitSuccess)
       .catch(onSubmitFail)

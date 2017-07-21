@@ -50,7 +50,7 @@ export const performHorseUpdate = (data) => {
 
 export const performRegistration = (data) => {
   return post({
-    data,
+    data: JSON.stringify(data),
     url: SERVICE_TYPES.REGISTRATION
   })
 }
