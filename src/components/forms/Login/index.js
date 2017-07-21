@@ -3,8 +3,6 @@
  */
 import React from 'react'
 
-import PropTypes from 'prop-types'
-
 import Input from 'components/input/Input'
 
 import TextButton from 'components/buttons/TextButton'
@@ -18,6 +16,12 @@ import SocialButton from 'components/socialmedia/SocialButton'
 import classNames from 'utils/classnames'
 
 import omit from 'utils/objectutils/omit'
+
+import {
+  FACEBOOK_LOGIN,
+  TWITTER_LOGIN,
+  LINKEDIN_LOGIN
+} from 'texts/forms'
 
 /**
  *  @module Form, Field
@@ -81,12 +85,17 @@ const LoginForm = (props) => {
         <div className='form__group'>
           <SocialButton
             modifier='facebook'
-            text='log in with facebook' />
+            text={FACEBOOK_LOGIN} />
         </div>
         <div className='form__group'>
           <SocialButton
             modifier='twitter'
-            text='log in with twitter' />
+            text={TWITTER_LOGIN} />
+        </div>
+        <div className='form__group'>
+          <SocialButton
+            text={LINKEDIN_LOGIN}
+            modifier='linked-in' />
         </div>
       </Form>
     </div>

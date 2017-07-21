@@ -95,7 +95,7 @@ export class MemberDashboard extends Component {
               data={syndicates}/>
           </div>
           <div className='member-dashboard__feed-section container'>
-            <h1 className='member-dashboard__title'>
+            <h1 className='member-dashboard__title uppercase'>
               Racing News
             </h1>
             <div className='member-dashboard__feed'>

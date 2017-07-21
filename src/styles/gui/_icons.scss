@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--linked-in:before {
+  content: "\e90d";
+  color: #e8808f;
+}
 .icon--plus:before {
   content: "\e90b";
   color: #595a5c;

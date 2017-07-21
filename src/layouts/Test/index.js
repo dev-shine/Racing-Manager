@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Header from 'containers/header'
+import Header from 'containers/Header'
 import Footer from 'components/footer'
 
 const Test = props => {

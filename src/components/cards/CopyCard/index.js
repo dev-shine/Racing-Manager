@@ -26,7 +26,7 @@ const CopyCard = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <h1 className="copy-card__headline">{headline}</h1>
+      <h1 className="copy-card__headline uppercase">{headline}</h1>
       <hr className="copy-card__hr"/>
       {children}
     </div>

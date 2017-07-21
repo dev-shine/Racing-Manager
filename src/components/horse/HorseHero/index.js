@@ -13,7 +13,7 @@ class HorseHero extends Component {
     return (
       <div className={modifiedClassNames}>
         <div className='horse-hero__overlay'>
-          <h1 className='horse-hero__title absolute-center'>
+          <h1 className='horse-hero__title absolute-center uppercase'>
             {title}
           </h1>
         </div>

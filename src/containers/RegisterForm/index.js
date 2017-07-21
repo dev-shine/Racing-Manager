@@ -4,9 +4,9 @@
 import { connect } from 'react-redux'
 
 /**
- *  @module NameForm
+ *  @module RegisterForm
  */
-import Register from 'components/forms/Register'
+import RegisterForm from 'components/forms/Register'
 
 /**
  *  @module updateRegisterForm, submitRegisterForm, updateRegisterFormError
@@ -88,7 +88,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         name: values.firstname,
         surname: values.surname,
         password: values.password,
-        email: values.email
+        email: values.email,
+        username: values.username
       }))
       .then(onSubmitSuccess)
       .catch(onSubmitFail)
@@ -102,4 +103,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Register)
+)(RegisterForm)

@@ -31,8 +31,11 @@ $outer-space: #494949;
 
 $blue-yonder: #5170A7;
 $sky-blue: #88d0ed;
+$queen-blue: #476591;
 
 // Bg
+$color-bg: $snow;
+$color-bg-secondary: $white;
 $color-popup-bg: $white;
 $color-faded-popup-bg: rgba($white, 0.4);
 
@@ -45,8 +48,12 @@ $placeholder-color: $taupe-gray;
 $cta-link-color: $vanilla-ice;
 
 // Social
-$twitter: $sky-blue;
-$facebook: $blue-yonder;
+$color-twitter: $sky-blue;
+$color-facebook: $blue-yonder;
+$color-linked-in: $queen-blue;
 
 // loader
 $color-loader: $vanilla-ice;
+
+// texts
+$color-text-strong: $yankees-blue;
