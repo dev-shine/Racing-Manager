@@ -19,7 +19,8 @@ import omit from 'utils/objectutils/omit'
 
 import {
   FACEBOOK_LOGIN,
-  TWITTER_LOGIN
+  TWITTER_LOGIN,
+  LINKEDIN_LOGIN
 } from 'texts/forms'
 
 /**
@@ -90,6 +91,11 @@ const LoginForm = (props) => {
           <SocialButton
             modifier='twitter'
             text={TWITTER_LOGIN} />
+        </div>
+        <div className='form__group'>
+          <SocialButton
+            text={LINKEDIN_LOGIN}
+            modifier='linked-in' />
         </div>
       </Form>
     </div>

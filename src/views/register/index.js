@@ -38,7 +38,8 @@ import SocialButton from 'components/socialmedia/SocialButton'
 
 import {
   FACEBOOK_REGISTER,
-  TWITTER_REGISTER
+  TWITTER_REGISTER,
+  LINKEDIN_REGISTER
 } from 'texts/forms'
 
 /**
@@ -119,6 +120,11 @@ export class Register extends Component {
                     <SocialButton
                       text={TWITTER_REGISTER}
                       modifier='twitter' />
+                  </div>
+                  <div className='form__group'>
+                    <SocialButton
+                      text={LINKEDIN_REGISTER}
+                      modifier='linked-in' />
                   </div>
                 </div>
               </div>

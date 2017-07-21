@@ -1,8 +1,10 @@
 export const FACEBOOK_LOGIN = 'log in with facebook'
 export const TWITTER_LOGIN = 'log in with twitter'
+export const LINKEDIN_LOGIN = 'log in with linkedin'
 
 export const FACEBOOK_REGISTER = 'register with facebook'
 export const TWITTER_REGISTER = 'register with twitter'
+export const LINKEDIN_REGISTER = 'register with linkedin'
 
 // Placeholders
 export const FIRSTNAME_PLACEHOLDER = 'First Name'
