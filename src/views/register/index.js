@@ -90,24 +90,20 @@ export class Register extends Component {
       <View title={title}>
         <div className='register'>
           <ViewHeader
-            title='Join the action!'/>
+            title='Join the action!' />
           <div className='container'>
             <div className='row register__content'>
-              <div className='col-sm-8 col-md-7 register__form-container register__form-container--heading'>
-                <p className='small extra-light register__form-opening-text'>
-                  We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
-                  your account.
-                </p>
+              <div className='col-xs-12 no-padding'>
+                <div className='col-sm-7 col-md-7 register__form-container register__form-container--heading'>
+                  <p className='small extra-light register__form-opening-text'>
+                    We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop your account.
+                  </p>
+                </div>
               </div>
-              <div className='col-sm-8 col-md-7 register__form-container'>
-                <RegisterFormContainer
-                  onSubmitSuccess={this.submitFormDataSuccess}
-                  onSubmitFail={this.submitFormDataFail} />
-              </div>
-              <div className='col-sm-4 col-md-5 register__quick-register'>
-                <div className='register__quick-register-container col-sm-8 col-sm-push-2'>
+              <div className='col-sm-5 col-md-5 col-sm-push-7 col-md-push-7 register__quick-register'>
+                <div className='register__quick-register-container col-sm-10 col-sm-push-1 col-md-8 col-md-push-2'>
                   <div className='form__group'>
-                    <h2 className='extra-light secondary-font'>
+                    <h2 className='extra-light secondary-font text-center'>
                       Quick sign up with
                     </h2>
                   </div>
@@ -126,6 +122,13 @@ export class Register extends Component {
                       text={LINKEDIN_REGISTER}
                       modifier='linked-in' />
                   </div>
+                </div>
+              </div>
+              <div className='col-sm-7 col-md-7 col-sm-pull-5 col-md-pull-5 no-padding'>
+                <div className='register__form-container'>
+                  <RegisterFormContainer
+                    onSubmitSuccess={this.submitFormDataSuccess}
+                    onSubmitFail={this.submitFormDataFail} />
                 </div>
               </div>
             </div>
