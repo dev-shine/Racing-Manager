@@ -105,7 +105,7 @@ export class Register extends Component {
                   onSubmitFail={this.submitFormDataFail} />
               </div>
               <div className='col-sm-4 col-md-5 register__quick-register'>
-                <div className='register__quick-register-container col-sm-10 col-sm-push-1'>
+                <div className='register__quick-register-container col-sm-8 col-sm-push-2'>
                   <div className='form__group'>
                     <h2 className='extra-light secondary-font'>
                       Quick sign up with
