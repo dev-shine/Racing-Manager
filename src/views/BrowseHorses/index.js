@@ -63,7 +63,7 @@ export class BrowseHorses extends Component {
     this.debouncedSubmit = debounce(this.submitSearch, 300)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.requestSearchFiltersIfNeeded()
   }
 

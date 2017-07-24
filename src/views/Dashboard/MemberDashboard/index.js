@@ -60,7 +60,7 @@ export class MemberDashboard extends Component {
     this.fetchDashboardData = this.fetchDashboardData.bind(this)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     // Fetch the data.
     this.fetchDashboardData()
   }

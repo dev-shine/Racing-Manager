@@ -35,10 +35,10 @@ import { CSSTransitionGroup } from 'react-transition-group'
 
 /**
  *  @class
- *  @name SearchInput
+ *  @name MobileSearchInput
  *  @extends {PureComponent}
  */
-class SearchInput extends PureComponent {
+class MobileSearchInput extends PureComponent {
   constructor (props) {
     super(props)
 
@@ -60,10 +60,10 @@ class SearchInput extends PureComponent {
     }
   }
 
-  updateOpenFromProps (open = this.props.open) {
-    this.setState({
+  updateOpenFromProps () {
+    this.setState((state, {open}) => ({
       open
-    })
+    }))
   }
 
   /**
@@ -88,7 +88,7 @@ class SearchInput extends PureComponent {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.open !== this.props.open) {
-      this.updateOpenFromProps(nextProps.open)
+      this.updateOpenFromProps()
     }
   }
 
@@ -146,17 +146,17 @@ class SearchInput extends PureComponent {
   }
 }
 
-SearchInput.propTypes = {
+MobileSearchInput.propTypes = {
   containerClassName: PropTypes.string,
   onChange: PropTypes.func,
   open: PropTypes.bool
 }
 
-SearchInput.defaultProps = {
+MobileSearchInput.defaultProps = {
   open: false
 }
 
 /**
- *  @module SearchInput
+ *  @module MobileSearchInput
  */
-export default SearchInput
+export default MobileSearchInput

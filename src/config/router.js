@@ -35,7 +35,7 @@ const router = (
             <Route path='/register' component={Register} />
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
-            <PrivateRoute path='/dashboard' component={MemberDashboard} />
+            <PrivateRoute path='/dashboard' component={MemberDashboard} redirect={Home} />
             <Route path='/horse/:name' component={PublicHorse} />
             <Route path='/private-horse/:name' component={PrivateHorse} />
             <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
