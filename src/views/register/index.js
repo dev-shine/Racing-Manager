@@ -1,7 +1,7 @@
 /**
  *  @module react
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  * @module react-redux
@@ -45,9 +45,9 @@ import {
 /**
  * @name Register
  * @class
- * @extends Component
+ * @extends PureComponent
  */
-export class Register extends Component {
+export class Register extends PureComponent {
   /**
    * @constructor
    * @param { Object } props
@@ -65,7 +65,7 @@ export class Register extends Component {
    *  @return {Void}
    */
   submitFormDataSuccess () {
-    this.props.history.push('/')
+    this.props.history.push('/registration-successful', { email: this.props.email })
   }
 
   /**
@@ -146,7 +146,9 @@ export class Register extends Component {
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    email: state.register.email
+  }
 }
 
 /**

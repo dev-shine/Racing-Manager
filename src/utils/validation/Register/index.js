@@ -48,7 +48,7 @@ export const registerValidators = (type, formValues = {}) => {
       return termsAndConditions === true ? [] : [ERROR.MUST_ACCEPT_T_AND_C]
 
     case 'username':
-      return !VALIDATE.REQUIRED(username) || VALIDATE.NAME(username) ? [] : [ERROR.USERNAME]
+      return !VALIDATE.REQUIRED(username) || VALIDATE.USERNAME(username) ? [] : [ERROR.USERNAME]
 
     default:
       return []

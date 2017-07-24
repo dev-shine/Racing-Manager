@@ -2,21 +2,21 @@
   width: 75px;
   height: 2px;
   margin: 20px 0;
-  background: #f18a9b;
+  background: $color-seperator-primary;
 
   &--white {
-    background: #fff;
+    background: $color-seperator-light;
   }
 
   &--black {
-    background: #000;
+    background: $color-seperator-dark;
   }
 
   &--blue {
-    background: #004370;
+    background: $color-seperator-strong;
   }
 
   &--grey {
-    background: #8B8D90;
+    background: $color-seperator-weak;
   }
 }

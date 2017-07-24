@@ -43,6 +43,12 @@ const EMAIL_REG = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z
 */
 const NAME_REG = /^(?=[a-zA-Z-\s]{2,}$)^[a-zA-Z\s]+(-[a-zA-Z\s]+)*$/
 
+/**
+ *  @name USERNAME_REG
+ *  @type {RegExp}
+ */
+const USERNAME_REG = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
+
 /*
 *  @name PHONE_REG
 *  @type { REGEX }
@@ -293,6 +299,13 @@ export const EMAIL = email => EMAIL_REG.test(email)
 *  @return { boolean }
 */
 export const NAME = name => REQUIRED(name) && NAME_REG.test(name) && DOUBLE_SPACES(name) && TRAILING_SPACES(name)
+
+/**
+ *  @name USERNAME
+ *  @param  {String} name
+ *  @return {Boolean}
+ */
+export const USERNAME = name => USERNAME_REG.test(name)
 
 /*
 *  @name DATE_OF_BIRTH
