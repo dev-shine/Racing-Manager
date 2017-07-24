@@ -3,17 +3,12 @@
  */
 import React from 'react'
 
+import { MemoryRouter } from 'react-router-dom'
+
+/**
+ *  @module RegisterForm
+ */
 import { RegisterForm } from 'components/forms/Register'
-
-/**
- * @module Input
- */
-import Input from 'components/input/Input'
-
-/**
- * @module Checkbox
- */
-import Checkbox from 'components/input/Checkbox'
 
 /**
  *  @module Form, Field
@@ -21,28 +16,9 @@ import Checkbox from 'components/input/Checkbox'
 import { Form, Field, Submit } from 'components/forms/BaseForm'
 
 /**
- * @module TextButton
- */
-import TextButton from 'components/buttons/TextButton'
-
-/**
  *  @module signUpFormValidators
  */
 import { registerValidators } from 'utils/validation/Register'
-
-/**
- *  @module Link
- */
-import { Link } from 'react-router-dom'
-
-import {
-  FIRSTNAME_PLACEHOLDER,
-  SURNAME_PLACEHOLDER,
-  EMAIL_PLACEHOLDER,
-  PASSWORD_PLACEHOLDER,
-  AGE_CHECK_PLACEHOLDER,
-  USERNAME_PLACEHOLDER
-} from 'texts/forms'
 
 /**
  *  @module expect
@@ -52,7 +28,7 @@ import chai, { expect } from 'chai'
 /**
  *  @module shallow
  */
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 
 /**
  *  @module ChaiEnzyme
@@ -65,6 +41,7 @@ chai.use(chaiEnzyme())
 
 describe('Components - forms - Register', () => {
   let wrapper
+  let instance
 
   const initialProps = {
     onSubmitSuccess: spy(),
@@ -96,8 +73,13 @@ describe('Components - forms - Register', () => {
     submitForm: spy()
   }
 
+  const setUpMounts = (props = initialProps) => {
+    instance = mount(<MemoryRouter><RegisterForm {...props} /></MemoryRouter>)
+    wrapper = instance.find(RegisterForm)
+  }
+
   beforeEach(() => {
-    wrapper = shallow(<RegisterForm {...initialProps} />)
+    setUpMounts()
   })
 
   it('should exist', () => {
@@ -116,15 +98,43 @@ describe('Components - forms - Register', () => {
     expect(wrapper.find(Submit)).to.have.length(1)
   })
 
-  it('should not submit if canProgress prop is false', () => {
-    expect(wrapper.instance().props.canProgress).to.equal(false)
+  it('should not be able to click submit if canProgress is false', () => {
     wrapper.find(Submit).simulate('click')
     expect(initialProps.submitForm.calledOnce).to.be.false
   })
 
-  it('should update firstname if firstname field changes', () => {
-    console.log(wrapper.find('input').length)
-    wrapper.find('input[name="firstname"]').first().simulate('change', { target: { value: 'Nick' } })
+  it('updating a field should call the update prop', () => {
+    wrapper.find(Field).find({name: 'email'}).find('input').simulate('change', { target: { value: 'test' } })
     expect(initialProps.update.calledOnce).to.be.true
+  })
+
+  it('updating a field with an invalid value should call updateErrors after a timeout', (done) => {
+    wrapper.find(Field).find({name: 'email'}).find('input').simulate('change', { target: { value: 'test' } })
+    setTimeout(() => {
+      expect(initialProps.updateErrors.called).to.be.true
+      done()
+    }, 0)
+  })
+
+  it('should be able to click submit if canProgress is true and all values are correct', () => {
+    const props = {
+      ...initialProps,
+      canProgress: true,
+      values: {
+        firstname: 'nick',
+        surname: 'nick',
+        email: 'n@n.com',
+        password: 'V1tam1nL0nd0n',
+        username: 'nick',
+        overEighteen: true,
+        termsAndConditions: true
+      }
+    }
+
+    setUpMounts(props)
+
+    wrapper.find(Submit).find('button').simulate('click')
+
+    expect(props.submitForm.calledOnce).to.be.true
   })
 })
