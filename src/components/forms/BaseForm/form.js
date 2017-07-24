@@ -37,7 +37,6 @@ export class Form extends Component {
     // Bind private functions
     this.registerValidation = this.registerValidation.bind(this)
     this.removeValidation = this.removeValidation.bind(this)
-    this.updateErrors = this.updateErrors.bind(this)
     this.isFormValid = this.isFormValid.bind(this)
     this.submit = this.submit.bind(this)
   }
@@ -77,18 +76,6 @@ export class Form extends Component {
     }, true)
   }
 
-  updateErrors (errors, name) {
-    if (!this.props.errors) {
-      this.props.updateErrors(errors, name)
-    }
-
-    if (!this.props.errors[name].length && !errors.length) {
-      return false
-    }
-
-    this.props.updateErrors(errors, name)
-  }
-
   /**
    * @param evt
    */
@@ -116,7 +103,7 @@ export class Form extends Component {
       validators: this.props.validators,
       registerValidation: this.registerValidation,
       isFormValid: this.isFormValid,
-      updateErrors: this.updateErrors,
+      updateErrors: this.props.updateErrors,
       errors: this.props.errors
     }
   }
@@ -153,7 +140,6 @@ Form.propTypes = {
   children: PropTypes.node,
   values: PropTypes.object,
   update: PropTypes.func,
-  errors: PropTypes.object,
   handleSubmit: PropTypes.func,
   className: PropTypes.oneOfType([
     PropTypes.string,
