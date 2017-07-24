@@ -127,14 +127,12 @@ class RegisterForm extends PureComponent {
                 name='termsAndConditions' />
             </div>
           </div>
-          <Link to='/browse-horses'>
-            <Submit component={(props) => TextButton({
-              ...props,
-              text: 'Create my account',
-              className: 'register-form__submit',
-              isDisabled: !canProgress
-            })} />
-          </Link>
+          <Submit component={(props) => TextButton({
+            ...props,
+            text: 'Create my account',
+            className: 'register-form__submit',
+            isDisabled: !canProgress
+          })} />
         </Form>
       </div>
     )

@@ -13,6 +13,11 @@ export const FIRST_NAME = 'Please enter a valid name; It can contain capital let
 export const SURNAME = FIRST_NAME
 
 /**
+ *  @type {String}
+ */
+export const USERNAME = 'Please enter a valid username'
+
+/**
 *  @type { string }
 */
 export const EMAIL = 'Please enter a valid email address, for example: bob@example.co.uk'

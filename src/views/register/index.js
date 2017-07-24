@@ -1,7 +1,7 @@
 /**
  *  @module react
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  * @module react-redux
@@ -42,12 +42,14 @@ import {
   LINKEDIN_REGISTER
 } from 'texts/forms'
 
+import isDev from 'isdev'
+
 /**
  * @name Register
  * @class
- * @extends Component
+ * @extends PureComponent
  */
-export class Register extends Component {
+export class Register extends PureComponent {
   /**
    * @constructor
    * @param { Object } props
@@ -65,7 +67,7 @@ export class Register extends Component {
    *  @return {Void}
    */
   submitFormDataSuccess () {
-    this.props.history.push('/')
+    this.props.history.push('/registration-successful', { email: this.props.email })
   }
 
   /**
@@ -74,7 +76,9 @@ export class Register extends Component {
    *  @return {Void}
    */
   submitFormDataFail () {
-    console && console.error('FAILED to submit data on register')
+    if (isDev) {
+      console && console.error('FAILED to submit data on register')
+    }
   }
 
   componentWillUnmount () {
@@ -146,7 +150,9 @@ export class Register extends Component {
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    email: state.register.email
+  }
 }
 
 /**

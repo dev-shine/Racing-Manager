@@ -59,13 +59,15 @@ class Option extends Component {
       value
     } = this.props
 
+    const active = (selectedValue === value)
+
     const modifiedClassNames = classNames('option', className, {
       disabled,
-      'active': selectedValue === value
+      active
     })
 
     return (
-      <li className={modifiedClassNames} onClick={this.onOptionClick}>
+      <li className={modifiedClassNames} onClick={this.onOptionClick} aria-selected={active}>
         <h6 className='uppercase'>{children}</h6>
       </li>
     )
