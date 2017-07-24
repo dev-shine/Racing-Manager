@@ -8,6 +8,13 @@ import React, { Component } from 'react'
 
 import { withRouter } from 'react-router-dom'
 
+import {
+  submitFormData,
+  updateLoginForm,
+  updateLoginFormError,
+  toggleKeepLoggedInForm
+} from 'actions/login'
+
 class LoginFormContainer extends Component {
   constructor (props) {
     super(props)
@@ -29,20 +36,36 @@ class LoginFormContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    values: {},
-    errors: {},
-    validators: () => []
+    values: state.login,
+    errors: state.login.errors,
+    validators: () => {}
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    submitForm: (values) => {
-      ownProps.closeLogin()
-      ownProps.history.push('/dashboard')
+    update: (name, value) => {
+      dispatch(updateLoginForm(name, value))
     },
-    update: () => {},
-    updateErrors: () => {}
+    updateErrors: (errors, name) => {
+      dispatch(updateLoginFormError(errors, name))
+    },
+    submitForm: (values) => {
+      const {
+        onSubmitSuccess,
+        onSubmitFail
+        } = ownProps
+
+      dispatch(submitFormData({
+        email: values.email,
+        password: values.password
+      }))
+      .then(onSubmitSuccess)
+      .catch(onSubmitFail)
+    },
+    toggleLoggedIn: () => {
+      dispatch(toggleKeepLoggedInForm())
+    }
   }
 }
 

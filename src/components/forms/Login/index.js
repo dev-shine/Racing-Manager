@@ -33,7 +33,8 @@ const LoginForm = (props) => {
     submitForm,
     values,
     className,
-    modifier
+    modifier,
+    toggleLoggedIn
   } = props
 
   const modifiedClassNames = classNames('login-form', className, modifier)
@@ -52,7 +53,7 @@ const LoginForm = (props) => {
             component={Input}
             type='email'
             placeholder='EMAIL ADDRESS'
-            validate={['email']}
+            validate={[]}
             name='email' />
         </div>
         <div className='form__group'>
@@ -60,7 +61,7 @@ const LoginForm = (props) => {
             component={Input}
             type='password'
             placeholder='PASSWORD'
-            validate={['password']}
+            validate={[]}
             name='password' />
         </div>
         <div className='row-sm'>
@@ -79,6 +80,8 @@ const LoginForm = (props) => {
         </div>
         <div className='form__group'>
           <Checkbox
+            value={values.keepLoggedIn}
+            handleChange={toggleLoggedIn}
             label='Keep me logged in'
             name='keepLoggedIn' />
         </div>

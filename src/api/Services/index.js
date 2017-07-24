@@ -55,6 +55,13 @@ export const performRegistration = (data) => {
   })
 }
 
+export const performLogin = (data) => {
+  return post({
+    url: SERVICE_TYPES.LOGIN,
+    data: JSON.stringify(data)
+  })
+}
+
 export const getSyndicateInfo = (data) => {
   return get({
     url: SERVICE_TYPES.SYNDICATE,
