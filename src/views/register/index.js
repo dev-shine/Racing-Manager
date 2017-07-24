@@ -42,6 +42,8 @@ import {
   LINKEDIN_REGISTER
 } from 'texts/forms'
 
+import isDev from 'isdev'
+
 /**
  * @name Register
  * @class
@@ -74,7 +76,9 @@ export class Register extends PureComponent {
    *  @return {Void}
    */
   submitFormDataFail () {
-    console && console.error('FAILED to submit data on register')
+    if (isDev) {
+      console && console.error('FAILED to submit data on register')
+    }
   }
 
   componentWillUnmount () {
