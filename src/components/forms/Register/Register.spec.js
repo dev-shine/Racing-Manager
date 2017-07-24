@@ -8,7 +8,7 @@ import { MemoryRouter } from 'react-router-dom'
 /**
  *  @module RegisterForm
  */
-import { RegisterForm } from 'components/forms/Register'
+import RegisterForm from 'components/forms/Register'
 
 /**
  *  @module Form, Field
@@ -109,7 +109,7 @@ describe('Components - forms - Register', () => {
   })
 
   it('updating a field with an invalid value should call updateErrors after a timeout', (done) => {
-    wrapper.find(Field).find({name: 'email'}).find('input').simulate('change', { target: { value: 'test' } })
+    wrapper.find(Field).find({name: 'email'}).find('input').simulate('blur', { target: { value: 'test' } })
     setTimeout(() => {
       expect(initialProps.updateErrors.called).to.be.true
       done()
