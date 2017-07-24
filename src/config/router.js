@@ -13,7 +13,6 @@ import ScrollTop from 'components/routing/ScrollTop'
 import PageNotFound from 'views/PageNotFound'
 
 import Home from 'views/home'
-import Login from 'views/Login'
 import Register from 'views/register'
 import RegistrationSuccessful from 'views/RegistrationSuccessful'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
@@ -31,7 +30,6 @@ const router = (
         <ScrollTop>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
