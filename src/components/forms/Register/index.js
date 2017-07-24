@@ -50,7 +50,7 @@ import {
  * @property {Function} [validators]
  * @return { React.Component }
  */
-class RegisterForm extends PureComponent {
+export class RegisterForm extends PureComponent {
   constructor (props) {
     super(props)
   }

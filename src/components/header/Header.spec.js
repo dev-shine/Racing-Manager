@@ -16,7 +16,12 @@ import { shallow } from 'enzyme'
 
 describe('Components - Header', () => {
   let wrapper
-  beforeEach(() => { wrapper = shallow(<Header />) })
+
+  const initialProps = {
+    to: '/'
+  }
+
+  beforeEach(() => { wrapper = shallow(<Header {...initialProps} />) })
 
   it('should exist', () => {
     expect(wrapper).to.exist
