@@ -16,7 +16,7 @@ class PrivateRoute extends Component {
     // FIXME: Temporary setting both to TRUE before integration with authentication endpoint
     this.state = {
       isLoaded: true,
-      isAuthenticated: true,
+      isAuthenticated: false,
     }
   }
 

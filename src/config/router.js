@@ -15,6 +15,7 @@ import PageNotFound from 'views/PageNotFound'
 import Home from 'views/home'
 import Register from 'views/register'
 import RegistrationSuccessful from 'views/RegistrationSuccessful'
+import RegistrationVerification from 'views/RegistrationVerification'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
 import PrivateHorse from 'views/horse/PrivateHorse'
@@ -33,10 +34,11 @@ const router = (
             <Route path='/register' component={Register} />
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
-            <PrivateRoute path='/dashboard' component={MemberDashboard} redirect={Home} />
+            <PrivateRoute path='/dashboard' component={MemberDashboard} />
             <Route path='/horse/:name' component={PublicHorse} />
             <Route path='/private-horse/:name' component={PrivateHorse} />
             <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
+            <Route path='/registration-verification' component={RegistrationVerification} />
             <Route component={PageNotFound} />
           </Switch>
         </ScrollTop>
