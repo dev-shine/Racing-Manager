@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         } = ownProps
 
       dispatch(submitFormData({
-        name: values.firstname,
+        firstname: values.firstname,
         surname: values.surname,
         password: values.password,
         email: values.email,
