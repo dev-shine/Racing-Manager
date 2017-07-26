@@ -1,10 +1,10 @@
 /**
- *  saveItem
+ *  setItem
  *  @param  {String} id
  *  @param  {Any} value
  *  @return {Void | Undefined}
  */
-export const saveItem = (id, value) => {
+export const setItem = (id, value) => {
   try {
     localStorage.setItem(id, value)
   } catch (e) {

@@ -68,3 +68,10 @@ export const getSyndicateInfo = (data) => {
     data
   })
 }
+
+export const confirmRegistration = (data) => {
+  return get({
+    url: SERVICE_TYPES.REGISTRATION_CONFIRMATION,
+    data
+  })
+}

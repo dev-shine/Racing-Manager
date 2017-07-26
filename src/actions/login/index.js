@@ -1,5 +1,7 @@
 import { performLogin } from 'api/Services'
 
+import { storeUserCredentials } from 'actions/user'
+
 export const LOGIN_UPDATE = 'LOGIN_UPDATE'
 
 export const LOGIN_RESET = 'LOGIN_RESET'
@@ -52,6 +54,7 @@ export const submitFormData = data => {
     dispatch(submitLoginForm())
 
     return performLogin(data)
+    .then(({user, token}) => dispatch(storeUserCredentials(user, token)))
     .then((data) => {
       dispatch(submittedLoginForm(data))
       return Promise.resolve(data)

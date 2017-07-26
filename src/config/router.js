@@ -15,7 +15,7 @@ import PageNotFound from 'views/PageNotFound'
 import Home from 'views/home'
 import Register from 'views/register'
 import RegistrationSuccessful from 'views/RegistrationSuccessful'
-import RegistrationVerification from 'views/RegistrationVerification'
+import RegistrationConfirmation from 'views/RegistrationConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
 import PrivateHorse from 'views/horse/PrivateHorse'
@@ -38,7 +38,7 @@ const router = (
             <Route path='/horse/:name' component={PublicHorse} />
             <Route path='/private-horse/:name' component={PrivateHorse} />
             <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
-            <Route path='/registration-verification' component={RegistrationVerification} />
+            <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />
           </Switch>
         </ScrollTop>
