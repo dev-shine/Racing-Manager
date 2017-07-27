@@ -1,4 +1,12 @@
-const verifyServerFormat = (response = {}) => {
+export const isParseable = (response = {}) => {
+  if (response.status !== 401) {
+    return response.json()
+  } else {
+    return response.text()
+  }
+}
+
+export const verifyServerFormat = (response = {}) => {
   if (response && response.status === 'success') {
     return Promise.resolve(response.data)
   } else {
@@ -6,5 +14,3 @@ const verifyServerFormat = (response = {}) => {
     return Promise.reject(error)
   }
 }
-
-export default verifyServerFormat

@@ -20,9 +20,7 @@ const initialState = {
   isSubmitting: false,
   submitError: false,
   errorMessage: '',
-  errors: {
-    
-  }
+  errors: {}
 }
 
 /**

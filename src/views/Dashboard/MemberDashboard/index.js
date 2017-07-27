@@ -42,8 +42,6 @@ import View from 'components/routing/View'
 
 import { MEMBER_DASHBOARD as title } from 'data/titles'
 
-import { logOut } from 'actions/auth'
-
 /**
  *  @class
  *  @name MemberDashboard
@@ -56,11 +54,6 @@ export class MemberDashboard extends Component {
 
   componentDidMount () {
     this.props.getDashBoardData()
-    .then(() => {})
-    .catch(error => {
-      console && console.error(error)
-      this.props.logOut()
-    })
   }
 
   render () {
@@ -137,9 +130,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getDashBoardData: () => {
       return dispatch(getDashboard())
-    },
-    logOut: () => {
-      dispatch(logOut())
     }
   }
 }

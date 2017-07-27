@@ -7,7 +7,7 @@ import {
 
 import AuthRoute from 'components/routing/AuthRoute'
 
-import Authentication from 'containers/Authentication'
+import Startup from 'containers/Startup'
 
 import Layout from 'layouts/Layout'
 import ScrollTop from 'components/routing/ScrollTop'
@@ -27,7 +27,7 @@ import PublicSyndicate from 'views/syndicate/PublicSyndicate'
 
 const router = (
   <Routes>
-    <Authentication>
+    <Startup>
       <Layout>
         <ScrollTop>
           <Switch>
@@ -43,7 +43,7 @@ const router = (
           </Switch>
         </ScrollTop>
       </Layout>
-    </Authentication>
+    </Startup>
   </Routes>
 )
 

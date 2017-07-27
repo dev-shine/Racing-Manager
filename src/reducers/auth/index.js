@@ -1,7 +1,7 @@
 import {
   LOG_OUT,
   STORE_USER_CREDENTIALS,
-  PERFORMING_AUTHENTICATION
+  NO_AUTHENTICATION
 } from 'actions/auth'
 
 /**
@@ -13,7 +13,8 @@ const initialState = {
   token: '',
   details: {},
   isLoggedIn: false,
-  loading: true,
+  isReady: false,
+  error: {}
 }
 
 /**
@@ -29,18 +30,11 @@ const reducer = (state = initialState, action) => {
   *  @return { object }
   */
   switch (action.type) {
-    case PERFORMING_AUTHENTICATION:
-      return {
-        ...state,
-        loading: true
-      }
-
     case LOG_OUT:
       return {
         ...state,
         token: '',
         isLoggedIn: false,
-        loading: false,
         details: {}
       }
 
@@ -48,9 +42,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         details: action.user,
-        loading: false,
+        isReady: true,
         isLoggedIn: true,
         token: action.token
+      }
+
+    case NO_AUTHENTICATION:
+      return {
+        ...state,
+        isReady: true
       }
 
     default:

@@ -2,6 +2,8 @@ import { getItem } from 'utils/storageutils'
 
 import { USER_TOKEN } from 'data/consts'
 
+import { logOut } from 'actions/auth'
+
 export const CALL_ACTION_TYPE = '@@AUTHENTICATED_REQUEST'
 
 const authenticatedRequest = (store) => (next) => (action) => {
@@ -41,10 +43,14 @@ const authenticatedRequest = (store) => (next) => (action) => {
     return Promise.resolve(data)
   })
   .catch((error) => {
-    next({
-      error: error,
-      type: errorType
-    })
+    if (error === 'Unauthorized') { // Maybe change this to status codes!
+      next(logOut())
+    } else {
+      next({
+        error: error,
+        type: errorType
+      })
+    }
     return Promise.reject(error)
   })
 }

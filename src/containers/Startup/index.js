@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react' // eslint-disable-line no-unused-vars
 
 import { withRouter } from 'react-router'
 
@@ -8,11 +8,11 @@ import { getItem } from 'utils/storageutils'
 
 import { USER_TOKEN } from 'data/consts'
 
-import { authenticateUserFromToken, logOut, performAuthentication } from 'actions/auth'
+import { authenticateUserFromToken, noAuthentication } from 'actions/auth'
 
 import { isJwtValid } from 'utils/validation/JwtValidation'
 
-class Authentication extends Component {
+class Startup extends Component {
   constructor (props) {
     super(props)
   }
@@ -21,39 +21,35 @@ class Authentication extends Component {
     const token = getItem(USER_TOKEN)
 
     if (token && isJwtValid(token)) {
-      this.props.flagAuthenticationWillStart()
       this.props.authenticateUser(token)
       return true
     }
 
-    this.props.logUserOut()
+    this.props.noAuthentication()
   }
 
   render () {
     const {
-      isLoading
+      isReady
     } = this.props
 
-    return !isLoading ? this.props.children : null
+    return isReady ? this.props.children : null
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoading: state.auth.loading
+    isReady: state.auth.isReady
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    flagAuthenticationWillStart: () => {
-      dispatch(performAuthentication())
-    },
     authenticateUser: (token) => {
       dispatch(authenticateUserFromToken(token))
     },
-    logUserOut: () => {
-      dispatch(logOut())
+    noAuthentication: () => {
+      dispatch(noAuthentication())
     }
   }
 }
@@ -61,4 +57,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Authentication))
+  )(Startup))

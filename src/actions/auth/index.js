@@ -8,11 +8,7 @@ export const LOG_OUT = 'USER_LOG_OUT'
 
 export const STORE_USER_CREDENTIALS = 'STORE_USER_CREDENTIALS'
 
-export const PERFORMING_AUTHENTICATION = 'PERFORMING_AUTHENTICATION'
-
-export const performAuthentication = () => ({
-  type: PERFORMING_AUTHENTICATION
-})
+export const NO_AUTHENTICATION = 'NO_AUTHENTICATION'
 
 export const logOut = () => {
   removeItem(USER_TOKEN)
@@ -32,6 +28,10 @@ export const storeUserCredentials = (user, token) => {
     token
   }
 }
+
+export const noAuthentication = () => ({
+  type: NO_AUTHENTICATION
+})
 
 export const authenticateUserFromToken = (token) => {
   return (dispatch, getState) => {
