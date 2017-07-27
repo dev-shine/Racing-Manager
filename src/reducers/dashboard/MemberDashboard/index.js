@@ -1,11 +1,8 @@
 import {
-  FETCH_HORSE_INFO,
-  RECEIVED_HORSE_INFO,
-  FAILED_TO_FETCH_HORSE_INFO,
-  POSTING_HORSE_UPDATE,
-  POSTED_HORSE_UPDATE,
-  FAILED_TO_POST_HORSE_UPDATE
-} from 'actions/horse'
+  FETCH_MEMBER_DASHBOARD_DATA,
+  RECEIVED_MEMBER_DASHBOARD_DATA,
+  FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA
+} from 'actions/dashboard'
 
 import {
   LOG_OUT
@@ -18,10 +15,8 @@ import {
 */
 const initialState = {
   fetching: false,
-  data: [],
-  error: false,
-  posting: false,
-  posted: false
+  data: {},
+  error: false
 }
 
 /**
@@ -40,13 +35,13 @@ const reducer = (state = initialState, action) => {
     case LOG_OUT:
       return initialState
 
-    case FETCH_HORSE_INFO:
+    case FETCH_MEMBER_DASHBOARD_DATA:
       return {
         ...state,
         fetching: true
       }
 
-    case RECEIVED_HORSE_INFO:
+    case RECEIVED_MEMBER_DASHBOARD_DATA:
       return {
         ...state,
         fetching: false,
@@ -54,34 +49,11 @@ const reducer = (state = initialState, action) => {
         data: action.data
       }
 
-    case FAILED_TO_FETCH_HORSE_INFO:
+    case FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA:
       return {
         ...state,
         fetching: false,
         error: true
-      }
-
-    case POSTING_HORSE_UPDATE:
-      return {
-        ...state,
-        posting: true,
-        posted: false
-      }
-
-    case POSTED_HORSE_UPDATE:
-      return {
-        ...state,
-        posting: false,
-        error: false,
-        posted: true
-      }
-
-    case FAILED_TO_POST_HORSE_UPDATE:
-      return {
-        ...state,
-        error: true,
-        posting: false,
-        posted: false
       }
 
     default:

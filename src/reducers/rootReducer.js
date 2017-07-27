@@ -7,6 +7,7 @@ import browseHorses from './browsehorses'
 import login from './login'
 import auth from './auth'
 import registrationConfirmation from './registrationconfirmation'
+import dashboard from './dashboard'
 
 const rootReducer = combineReducers({
   register,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   browseHorses,
   login,
   auth,
-  registrationConfirmation
+  registrationConfirmation,
+  dashboard
 })
 
 export default rootReducer

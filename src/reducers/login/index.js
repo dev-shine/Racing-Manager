@@ -72,11 +72,7 @@ const reducer = (state = initialState, action) => {
       }
 
     case LOGIN_SUBMITTED:
-      return {
-        ...state,
-        isSubmitting: false,
-        submitError: false
-      }
+      return initialState
 
     case LOGIN_SUBMITTING_FAILED:
       return {

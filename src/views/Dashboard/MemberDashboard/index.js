@@ -42,6 +42,8 @@ import View from 'components/routing/View'
 
 import { MEMBER_DASHBOARD as title } from 'data/titles'
 
+import { logOut } from 'actions/auth'
+
 /**
  *  @class
  *  @name MemberDashboard
@@ -50,49 +52,27 @@ import { MEMBER_DASHBOARD as title } from 'data/titles'
 export class MemberDashboard extends Component {
   constructor (props) {
     super(props)
-
-    // Initial state
-    this.state = {
-      syndicates: []
-    }
-
-    // Bind custom fns
-    this.fetchDashboardData = this.fetchDashboardData.bind(this)
   }
 
   componentDidMount () {
-    // Fetch the data.
-    this.fetchDashboardData()
-  }
-
-  /**
-   *  fetchDashboardData
-   *  @description Will make an ajax call to get the dashboard data.
-   *  @return {Void}
-   */
-  fetchDashboardData () {
     this.props.getDashBoardData()
-    .then(({ownership}) => {
-      this.setState({
-        syndicates: ownership
-      })
-    })
+    .then(() => {})
     .catch(error => {
       console && console.error(error)
+      this.props.logOut()
     })
   }
 
   render () {
-    const { data } = this.props
-    const { tiles } = data
-    const { syndicates } = this.state
+    const { tiles, dashboardData } = this.props
+    const { ownership } = dashboardData
 
     return (
       <View title={title}>
         <div className='member-dashboard'>
           <div className='member-dashboard__slider'>
             <HeaderSection
-              data={syndicates}/>
+              data={ownership} />
           </div>
           <div className='member-dashboard__feed-section container'>
             <h1 className='member-dashboard__title uppercase'>
@@ -133,9 +113,16 @@ export class MemberDashboard extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  // TODO: Use state.dashboardOverview
-  data: {
+const mapStateToProps = (state, ownProps) => {
+  const {
+    dashboard
+  } = state
+
+  const {
+    member
+  } = dashboard
+  return {
+    dashboardData: member.data,
     tiles: new Array(12).fill({
       text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
       rootPath: '',
@@ -144,12 +131,15 @@ const mapStateToProps = (state, ownProps) => ({
       date: '2017-06-06T14:11:42.820Z'
     })
   }
-})
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getDashBoardData: () => {
       return dispatch(getDashboard())
+    },
+    logOut: () => {
+      dispatch(logOut())
     }
   }
 }

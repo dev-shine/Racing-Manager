@@ -2,8 +2,6 @@ import { getItem } from 'utils/storageutils'
 
 import { USER_TOKEN } from 'data/consts'
 
-import { logOut } from 'actions/auth'
-
 export const CALL_ACTION_TYPE = '@@AUTHENTICATED_REQUEST'
 
 const authenticatedRequest = (store) => (next) => (action) => {
@@ -20,37 +18,35 @@ const authenticatedRequest = (store) => (next) => (action) => {
 
   let config = {}
 
-  if (token) {
-    config.headers = {
-      'Authorization': `JWT ${token}`
-    }
-
-    if (data.payload) {
-      config.data = {
-        ...data.payload
-      }
-    }
-
-    store.dispatch({
-      type: requestType
-    })
-
-    return endpoint(config)
-    .then((response) => {
-      return next({
-        response,
-        type: successType
-      })
-    })
-    .catch((error) => {
-      return next({
-        error: error,
-        type: errorType
-      })
-    })
-  } else {
-    next(logOut())
+  config.headers = {
+    'Authorization': `JWT ${token}`
   }
+
+  if (data.payload) {
+    config.data = {
+      ...data.payload
+    }
+  }
+
+  store.dispatch({
+    type: requestType
+  })
+
+  return endpoint(config)
+  .then((data) => {
+    next({
+      data,
+      type: successType
+    })
+    return Promise.resolve(data)
+  })
+  .catch((error) => {
+    next({
+      error: error,
+      type: errorType
+    })
+    return Promise.reject(error)
+  })
 }
 
 export default authenticatedRequest
