@@ -14,11 +14,6 @@ import { connect } from 'react-redux'
 import RegisterFormContainer from 'containers/RegisterForm'
 
 /**
- *  @module withRouter
- */
-import { withRouter } from 'react-router-dom'
-
-/**
  *  @module ViewHeader
  */
 import ViewHeader from 'components/common/ViewHeader'
@@ -42,8 +37,6 @@ import {
   LINKEDIN_REGISTER
 } from 'texts/forms'
 
-import isDev from 'isdev'
-
 /**
  * @name Register
  * @class
@@ -56,29 +49,6 @@ export class Register extends PureComponent {
    */
   constructor (props) {
     super(props)
-
-    this.submitFormDataSuccess = this.submitFormDataSuccess.bind(this)
-    this.submitFormDataFail = this.submitFormDataFail.bind(this)
-  }
-
-  /**
-   *  submitFormDataSuccess
-   *  @description If the form is successfull
-   *  @return {Void}
-   */
-  submitFormDataSuccess () {
-    this.props.history.push('/registration-successful', { email: this.props.email })
-  }
-
-  /**
-   *  submitFormDataFail
-   *  @description If the form fails
-   *  @return {Void}
-   */
-  submitFormDataFail () {
-    if (isDev) {
-      console && console.error('FAILED to submit data on register')
-    }
   }
 
   componentWillUnmount () {
@@ -172,7 +142,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 /**
  *  @module connect
  */
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Register))
+)(Register)

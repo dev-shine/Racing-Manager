@@ -1,6 +1,6 @@
 import { confirmRegistration } from 'api/Services'
 
-import { storeUserCredentials } from 'actions/user'
+import { storeUserCredentials } from 'actions/auth'
 
 export const REQUEST_CONFIRMATION = 'CONFIRM_REGISTRATION_REQUEST'
 

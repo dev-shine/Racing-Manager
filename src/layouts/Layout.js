@@ -3,7 +3,6 @@ import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
 import Default from './Default'
-import Test from './Test'
 import BodyStyle from 'components/common/BodyStyle'
 
 import { isTouchDevice } from 'utils/domutils'
@@ -13,8 +12,6 @@ import { isTouchDevice } from 'utils/domutils'
  */
 const getLayoutPerRoute = (props) => {
   switch (props.location.pathname) {
-    case '/test':
-      return <Test testVar={props.testVar} />
     default:
       return <Default children={props.children} />
   }
@@ -22,13 +19,13 @@ const getLayoutPerRoute = (props) => {
 
 class Layout extends Component {
   render () {
-    const { children, history, testVar } = this.props
+    const { children, history } = this.props
     const { location } = history
 
     return (
       <BodyStyle className={!isTouchDevice() ? 'no-touch' : ''}>
       {
-        getLayoutPerRoute({children, location, testVar})
+        getLayoutPerRoute({children, location})
       }
       </BodyStyle>
     )
@@ -36,11 +33,9 @@ class Layout extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  testVar: 'Hello world!'
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-
 })
 
 export default withRouter(

@@ -5,7 +5,7 @@ import horse from './horse'
 import syndicate from './syndicate'
 import browseHorses from './browsehorses'
 import login from './login'
-import user from './user'
+import auth from './auth'
 import registrationConfirmation from './registrationconfirmation'
 
 const rootReducer = combineReducers({
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   syndicate,
   browseHorses,
   login,
-  user,
+  auth,
   registrationConfirmation
 })
 

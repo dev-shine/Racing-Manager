@@ -119,7 +119,7 @@ RegistrationConfirmation.propTypes = {
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
-  const firstname = state.user.details.firstname
+  const firstname = state.auth.details.firstname
   const requesting = state.registrationConfirmation.requesting
 
   return {

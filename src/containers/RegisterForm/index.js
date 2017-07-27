@@ -23,6 +23,11 @@ import {
 import { registerValidators } from 'utils/validation/Register'
 
 /**
+ *  @module withRouter
+ */
+import { withRouter } from 'react-router-dom'
+
+/**
  *  mapStateToProps
  *  @param  {Object} state
  *  @param  {Object} ownProps
@@ -91,6 +96,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         email: values.email,
         username: values.username
       }))
+      .then(() => {
+        ownProps.history.replace('/registration-successful', { email: values.email })
+      })
       .then(onSubmitSuccess)
       .catch(onSubmitFail)
     }
@@ -100,7 +108,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 /**
  *  @module connect
  */
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterForm)
+)(RegisterForm))

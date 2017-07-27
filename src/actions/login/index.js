@@ -1,6 +1,6 @@
 import { performLogin } from 'api/Services'
 
-import { storeUserCredentials } from 'actions/user'
+import { storeUserCredentials } from 'actions/auth'
 
 export const LOGIN_UPDATE = 'LOGIN_UPDATE'
 

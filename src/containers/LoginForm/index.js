@@ -60,6 +60,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         email: values.email,
         password: values.password
       }))
+      .then(() => {
+        ownProps.history.replace('/dashboard')
+        return Promise.resolve()
+      })
       .then(onSubmitSuccess)
       .catch(onSubmitFail)
     },

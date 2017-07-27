@@ -5,8 +5,9 @@ import {
   BrowserRouter as Routes,
 } from 'react-router-dom'
 
-import { CookiesProvider } from 'react-cookie'
 import PrivateRoute from 'components/routing/PrivateRoute'
+
+import Authentication from 'containers/Authentication'
 
 import Layout from 'layouts/Layout'
 import ScrollTop from 'components/routing/ScrollTop'
@@ -26,7 +27,7 @@ import PublicSyndicate from 'views/syndicate/PublicSyndicate'
 
 const router = (
   <Routes>
-    <CookiesProvider>
+    <Authentication>
       <Layout>
         <ScrollTop>
           <Switch>
@@ -34,21 +35,16 @@ const router = (
             <Route path='/register' component={Register} />
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
-            <PrivateRoute path='/dashboard' component={MemberDashboard} />
-            <Route path='/horse/:name' component={PublicHorse} />
-            <Route path='/private-horse/:name' component={PrivateHorse} />
+            <PrivateRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
+            <Route path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
             <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />
           </Switch>
         </ScrollTop>
       </Layout>
-    </CookiesProvider>
+    </Authentication>
   </Routes>
 )
 
 export default router
-
-/*
-<Route path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
-*/
