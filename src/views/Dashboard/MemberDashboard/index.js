@@ -71,7 +71,7 @@ export class MemberDashboard extends Component {
    *  @return {Void}
    */
   fetchDashboardData () {
-    getDashboard()
+    this.props.getDashBoardData()
     .then(({ownership}) => {
       this.setState({
         syndicates: ownership
@@ -148,6 +148,9 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    getDashBoardData: () => {
+      return dispatch(getDashboard())
+    }
   }
 }
 

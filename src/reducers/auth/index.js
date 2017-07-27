@@ -13,7 +13,7 @@ const initialState = {
   token: '',
   details: {},
   isLoggedIn: false,
-  loading: false,
+  loading: true,
 }
 
 /**

@@ -10,7 +10,7 @@ import { USER_TOKEN } from 'data/consts'
 
 import { authenticateUserFromToken, logOut, performAuthentication } from 'actions/auth'
 
-import { checkJwtExpiry } from 'utils/validation/JwtValidation'
+import { isJwtValid } from 'utils/validation/JwtValidation'
 
 class Authentication extends Component {
   constructor (props) {
@@ -20,14 +20,13 @@ class Authentication extends Component {
   componentWillMount () {
     const token = getItem(USER_TOKEN)
 
-    if (token) {
-      if (!checkJwtExpiry(token)) {
-        this.props.flagAuthenticationWillStart()
-        this.props.authenticateUser(token)
-      } else {
-        this.props.logUserOut()
-      }
+    if (token && isJwtValid(token)) {
+      this.props.flagAuthenticationWillStart()
+      this.props.authenticateUser(token)
+      return true
     }
+
+    this.props.logUserOut()
   }
 
   render () {

@@ -15,9 +15,10 @@ export const getSearchAttributesForHorses = () => {
   })
 }
 
-export const getMemberDashboard = () => {
+export const getMemberDashboard = (data) => {
   return get({
-    url: SERVICE_TYPES.DASHBOARD
+    url: SERVICE_TYPES.DASHBOARD,
+    ...data
   })
 }
 

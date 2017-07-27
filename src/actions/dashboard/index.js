@@ -1,5 +1,6 @@
 import { getMemberDashboard } from 'api/Services'
 
+import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
 
 /**
  *  @name  getDashboard
@@ -8,8 +9,9 @@ import { getMemberDashboard } from 'api/Services'
  */
 export const getDashboard = () => {
   return {
-   types: ['GET_MEMBER_DASHBOARD', 'RECEIVED_MEMBER_DASHBOARD', 'FAILED_TO_GET_MEMEBER_DASHBOARD'],
-   
+    type: CALL_ACTION_TYPE,
+    types: ['FETCH_DASHBOARD', 'FETCHED_DASHBOARD_SUCCESS', 'FETCHED_DASHBOARD_FAIL'],
+    endpoint: getMemberDashboard
   }
 }
 

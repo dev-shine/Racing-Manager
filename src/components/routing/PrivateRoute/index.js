@@ -6,8 +6,6 @@ import { Route, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
-import authenticate from 'actions/auth'
-
 class PrivateRoute extends Component {
   constructor (props) {
     super(props)
@@ -73,9 +71,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  authenticate: (token) => {
-    return dispatch(authenticate(token))
-  }
 })
 
 export default connect(
