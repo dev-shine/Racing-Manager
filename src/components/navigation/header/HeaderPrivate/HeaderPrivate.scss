@@ -1,9 +1,10 @@
 .header-private {
-  position: relative;
-
   &__link {
     display: inline-block;
-    color: $davys-gray;
     margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

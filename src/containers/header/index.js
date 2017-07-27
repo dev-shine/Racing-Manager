@@ -21,6 +21,11 @@ import HeaderPrivate from 'components/navigation/header/HeaderPrivate'
 import { connect } from 'react-redux'
 
 /**
+ *  @module logOut
+ */
+import { logOut } from 'actions/auth'
+
+/**
  *  @module withRouter
  */
 import {
@@ -32,11 +37,12 @@ class HeaderContainer extends PureComponent {
     super(props)
 
     this.state = {
-      burgerMenuActive: true,
-      showLogin: false
+      showLogin: false,
+      showAccount: false
     }
 
     this.toggleLogin = this.toggleLogin.bind(this)
+    this.toggleAccount = this.toggleAccount.bind(this)
   }
 
   toggleLogin () {
@@ -45,9 +51,25 @@ class HeaderContainer extends PureComponent {
     }))
   }
 
+  toggleAccount () {
+    this.setState((state) => ({
+      showAccount: !state.showAccount
+    }))
+  }
+
+  componentWillReceiveProps ({ isLoggedIn }) {
+    if (isLoggedIn !== this.props.isLoggedIn) {
+      this.setState({
+        showLogin: false,
+        showAccount: false
+      })
+    }
+  }
+
   render () {
     const {
-      isLoggedIn
+      isLoggedIn,
+      performLogOut
     } = this.props
 
     return (
@@ -55,12 +77,13 @@ class HeaderContainer extends PureComponent {
         logohref='/'>
         {
           isLoggedIn
-          ? <HeaderPrivate />
+          ? <HeaderPrivate
+              onLogout={performLogOut}
+              onAccountClick={this.toggleAccount}
+              showAccount={this.state.showAccount} />
           : <HeaderPublic
               onLoginButtonClick={this.toggleLogin}
-              showLogin={this.state.showLogin}
-              burgerMenuActive={this.state.burgerMenuActive}
-              onClick={() => { this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }} />
+              showLogin={this.state.showLogin} />
         }
       </Header>
     )
@@ -75,7 +98,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-
+    performLogOut: () => {
+      dispatch(logOut())
+    }
   }
 }
 

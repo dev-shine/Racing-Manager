@@ -59,9 +59,10 @@ const HeaderPublic = (props) => {
         }
       </Link>
 
-      <div className='header__login'>
+      <div>
         <CSSTransitionGroup
           transitionName="fade-in"
+          transitionAppearTimeout={400}
           transitionEnterTimeout={400}
           transitionLeaveTimeout={400}>
           {
