@@ -3,30 +3,29 @@ import React, { PureComponent } from 'react'
 /**
  *  @module Header
  */
-import Header from 'components/header'
+import Header from 'components/navigation/header'
 
 /**
  *  @module HeaderHome
  */
-import HeaderHome from 'components/header/HeaderHome'
+import HeaderPublic from 'components/navigation/header/HeaderPublic'
 
 /**
- *  @module HeaderHome
+ *  @module HeaderPrivate
  */
-import HeaderDashboard from 'components/header/HeaderDashboard'
+import HeaderPrivate from 'components/navigation/header/HeaderPrivate'
+
+/**
+ *  @module connect
+ */
+import { connect } from 'react-redux'
 
 /**
  *  @module withRouter
  */
 import {
-  withRouter,
-  Switch
+  withRouter
 } from 'react-router-dom'
-
-/**
- *  @module RouteWithProps
- */
-import RouteWithProps from 'components/routing/RouteWithProps'
 
 class HeaderContainer extends PureComponent {
   constructor (props) {
@@ -47,24 +46,40 @@ class HeaderContainer extends PureComponent {
   }
 
   render () {
+    const {
+      isLoggedIn
+    } = this.props
+
     return (
       <Header
         logohref='/'>
-          <Switch>
-            <RouteWithProps
-              exact
-              path='/'
+        {
+          isLoggedIn
+          ? <HeaderPrivate />
+          : <HeaderPublic
               onLoginButtonClick={this.toggleLogin}
               showLogin={this.state.showLogin}
               burgerMenuActive={this.state.burgerMenuActive}
-              onClick={() => { this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }}
-              component={HeaderHome} />
-            <RouteWithProps
-              component={HeaderDashboard} />
-          </Switch>
+              onClick={() => { this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }} />
+        }
       </Header>
     )
   }
 }
 
-export default withRouter(HeaderContainer)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+
+  }
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeaderContainer))

@@ -27,7 +27,11 @@ import { shallow } from 'enzyme'
 
 describe('Views - Register', () => {
   const mockStore = configureMockStore([thunk])
-  const store = mockStore({})
+  const store = mockStore({
+    register: {
+      email: ''
+    }
+  })
   const options = { context: { store } }
 
   let wrapper

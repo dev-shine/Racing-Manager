@@ -21,7 +21,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 
 import Icon from 'components/icon'
 
-const HeaderHome = (props) => {
+const HeaderPublic = (props) => {
   const {
     onLoginButtonClick,
     showLogin
@@ -77,4 +77,4 @@ const HeaderHome = (props) => {
   )
 }
 
-export default HeaderHome
+export default HeaderPublic

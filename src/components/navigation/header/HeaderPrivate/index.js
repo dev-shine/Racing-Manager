@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 
 import Icon from 'components/icon'
 
-const HeaderHome = (props) => {
+const HeaderPrivate = (props) => {
   return (
-    <div className='header__content header-dashboard'>
+    <div className='header__content header-private'>
       <div className='header__search'>
         <Link to='/browse-horses'>
           <Icon
@@ -18,16 +18,16 @@ const HeaderHome = (props) => {
       </div>
 
       <Link to='/dashboard'>
-        <h6 className='uppercase header-dashboard__link semi-bold'>
+        <h6 className='uppercase header-private__link semi-bold'>
           my horses
         </h6>
       </Link>
 
-      <h6 className='uppercase header-dashboard__link semi-bold'>
+      <h6 className='uppercase header-private__link semi-bold'>
         account
       </h6>
     </div>
   )
 }
 
-export default HeaderHome
+export default HeaderPrivate

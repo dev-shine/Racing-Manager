@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module Footer
  */
-import Footer from 'components/footer'
+import Footer from 'components/navigation/footer'
 
 /**
  * Testing utilities
