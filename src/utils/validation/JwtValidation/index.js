@@ -11,7 +11,11 @@ export const isJwtValid = (token) => {
     return false
   }
 
-  const decoded = jwtDecode(token)
+  try {
+    const { exp } = jwtDecode(token)
 
-  return (decoded.exp > Date.now() / 1000)
+    return exp > (new Date().getTime() / 1000)
+  } catch (e) {
+    return false
+  }
 }
