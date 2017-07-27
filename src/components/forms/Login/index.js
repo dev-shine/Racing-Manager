@@ -34,7 +34,8 @@ const LoginForm = (props) => {
     values,
     className,
     modifier,
-    toggleLoggedIn
+    toggleLoggedIn,
+    errorMessage
   } = props
 
   const modifiedClassNames = classNames('login-form', className, modifier)
@@ -48,6 +49,17 @@ const LoginForm = (props) => {
         handleSubmit={() => { submitForm(values) }}
         {...formProps}>
 
+        {
+          errorMessage
+          ? (
+              <div className='form__group'>
+                <p>
+                  {errorMessage}
+                </p>
+              </div>
+            )
+          : null
+        }
         <div className='form__group'>
           <Field
             component={Input}

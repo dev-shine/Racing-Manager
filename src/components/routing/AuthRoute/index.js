@@ -6,7 +6,7 @@ import { Route, Redirect } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
-class PrivateRoute extends Component {
+class AuthRoute extends Component {
   constructor (props) {
     super(props)
   }
@@ -50,13 +50,13 @@ const instancePropTypes = PropTypes.oneOfType([
   PropTypes.instanceOf(Component)
 ])
 
-PrivateRoute.propTypes = {
+AuthRoute.propTypes = {
   component: instancePropTypes,
   redirect: instancePropTypes,
   redirectPath: PropTypes.string
 }
 
-PrivateRoute.defaultProps = {
+AuthRoute.defaultProps = {
   redirectPath: '/'
 }
 
@@ -76,4 +76,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrivateRoute)
+)(AuthRoute)

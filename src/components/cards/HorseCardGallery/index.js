@@ -95,6 +95,7 @@ class HorseCardGallery extends PureComponent {
         <CSSTransitionGroup
           transitionName="fade-shift"
           transitionEnterTimeout={400}
+          transitionAppearTimeout={400}
           transitionLeaveTimeout={400}
         >
         {

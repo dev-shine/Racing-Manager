@@ -19,9 +19,9 @@ const initialState = {
   keepLoggedIn: false,
   isSubmitting: false,
   submitError: false,
+  errorMessage: '',
   errors: {
-    email: [],
-    password: []
+    
   }
 }
 
@@ -79,10 +79,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isSubmitting: false,
         submitError: true,
-        errors: {
-          ...state.errors,
-          ...action.error.errors
-        }
+        errorMessage: action.error.message
       }
 
     default:

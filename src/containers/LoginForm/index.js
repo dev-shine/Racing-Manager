@@ -38,6 +38,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     values: state.login,
     errors: state.login.errors,
+    errorMessage: state.login.errorMessage,
     validators: () => {}
   }
 }
