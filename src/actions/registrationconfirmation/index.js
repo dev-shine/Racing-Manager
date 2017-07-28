@@ -26,7 +26,7 @@ export const performRequestToConfirmRegistration = (token) => {
     dispatch(isRequestingConfirmation())
 
     return confirmRegistration({token})
-    .then(({user, token}) => dispatch(storeUserCredentials(user, token)))
+    .then((response) => dispatch(storeUserCredentials(response)))
     .then((response) => {
       dispatch(successfullyRequestedConfirmation())
       return Promise.resolve(response)

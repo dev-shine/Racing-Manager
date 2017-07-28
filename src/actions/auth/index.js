@@ -18,7 +18,7 @@ export const logOut = () => {
   }
 }
 
-export const storeUserCredentials = (user, token) => {
+export const storeUserCredentials = ({user, token}) => {
   // Store the user token
   setItem(USER_TOKEN, token)
 
@@ -37,7 +37,7 @@ export const authenticateUserFromToken = (token) => {
   return (dispatch, getState) => {
     return getInitialAppData(token)
     .then(({user}) => {
-      dispatch(storeUserCredentials(user, token))
+      dispatch(storeUserCredentials({user, token}))
       return Promise.resolve(user, token)
     })
     .catch((error) => {

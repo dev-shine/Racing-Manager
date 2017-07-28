@@ -48,17 +48,14 @@ const LoginForm = (props) => {
         className='login-form__form'
         handleSubmit={() => { submitForm(values) }}
         {...formProps}>
-
         {
-          errorMessage
-          ? (
-              <div className='form__group'>
-                <p>
-                  {errorMessage}
-                </p>
-              </div>
-            )
-          : null
+          errorMessage && (
+            <div className='form__group'>
+              <p>
+                {errorMessage}
+              </p>
+            </div>
+          )
         }
         <div className='form__group'>
           <Field

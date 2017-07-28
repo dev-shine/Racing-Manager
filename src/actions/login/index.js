@@ -54,7 +54,7 @@ export const submitFormData = data => {
     dispatch(submitLoginForm())
 
     return performLogin(data)
-    .then(({user, token}) => dispatch(storeUserCredentials(user, token)))
+    .then((response) => dispatch(storeUserCredentials(response)))
     .then((data) => {
       dispatch(submittedLoginForm(data))
       return Promise.resolve(data)

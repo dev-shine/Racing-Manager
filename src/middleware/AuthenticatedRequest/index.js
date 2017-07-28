@@ -43,7 +43,7 @@ const authenticatedRequest = (store) => (next) => (action) => {
     return Promise.resolve(data)
   })
   .catch((error) => {
-    if (error === 'Unauthorized') { // Maybe change this to status codes!
+    if (error.status && error.status === 'not_authorized') { // Maybe change this to status codes!
       next(logOut())
     } else {
       next({
