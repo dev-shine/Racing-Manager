@@ -36,7 +36,7 @@ const cleanWebpackBuild = new CleanWebpackPlugin(['dist'], {
 
 module.exports = {
   entry: [
-    './src/App.js'
+    './src/index.js'
   ],
   output: {
     path: path.join(__dirname, '/dist'),

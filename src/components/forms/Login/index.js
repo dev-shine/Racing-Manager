@@ -33,7 +33,9 @@ const LoginForm = (props) => {
     submitForm,
     values,
     className,
-    modifier
+    modifier,
+    toggleLoggedIn,
+    errorMessage
   } = props
 
   const modifiedClassNames = classNames('login-form', className, modifier)
@@ -46,13 +48,21 @@ const LoginForm = (props) => {
         className='login-form__form'
         handleSubmit={() => { submitForm(values) }}
         {...formProps}>
-
+        {
+          errorMessage && (
+            <div className='form__group'>
+              <p>
+                {errorMessage}
+              </p>
+            </div>
+          )
+        }
         <div className='form__group'>
           <Field
             component={Input}
             type='email'
             placeholder='EMAIL ADDRESS'
-            validate={['email']}
+            validate={[]}
             name='email' />
         </div>
         <div className='form__group'>
@@ -60,7 +70,7 @@ const LoginForm = (props) => {
             component={Input}
             type='password'
             placeholder='PASSWORD'
-            validate={['password']}
+            validate={[]}
             name='password' />
         </div>
         <div className='row-sm'>
@@ -69,7 +79,7 @@ const LoginForm = (props) => {
               component={TextButton}
               modifier={['fluid']}
               className='login-form__submit'
-              text='login' />
+              text='log in' />
           </div>
           <div className='col-xs-12 col-sm-6 align-middle form__group text-center'>
             <CtaLink
@@ -79,6 +89,8 @@ const LoginForm = (props) => {
         </div>
         <div className='form__group'>
           <Checkbox
+            value={values.keepLoggedIn}
+            handleChange={toggleLoggedIn}
             label='Keep me logged in'
             name='keepLoggedIn' />
         </div>

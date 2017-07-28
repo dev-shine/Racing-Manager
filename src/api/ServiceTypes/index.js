@@ -20,3 +20,7 @@ export const SYNDICATE = `${BASE_URL}/syndicate`
 export const SEARCH = `${BASE_URL}/search`
 
 export const SEARCH_ATTRIBUTES = `${BASE_URL}/search/attributes`
+
+export const REGISTRATION_CONFIRMATION = `${USER}/verify`
+
+export const SETUP = `${BASE_URL}/setup`

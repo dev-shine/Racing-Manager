@@ -4,6 +4,10 @@ import {
   FAILED_TO_FETCH_SYNDICATE_INFO
 } from 'actions/syndicate'
 
+import {
+  LOG_OUT
+} from 'actions/auth'
+
 const initialState = {
   data: [],
   fetching: false,
@@ -15,6 +19,9 @@ const reducer = (state = initialState, action) => {
   const payload = action.payload
 
   switch (type) {
+    case LOG_OUT:
+      return initialState
+
     case FETCH_SYNDICATE_INFO:
       return {
         ...state,

@@ -2,16 +2,6 @@ import { post, get } from 'api/Request'
 
 import * as SERVICE_TYPES from 'api/ServiceTypes'
 
-/**
- *  @todo Add in the authenticate api
- */
-export const requestAuth = (data) => {
-  return post({
-    data,
-    url: ''
-  })
-}
-
 export const searchForHorses = (data) => {
   return post({
     url: SERVICE_TYPES.SEARCH,
@@ -25,9 +15,10 @@ export const getSearchAttributesForHorses = () => {
   })
 }
 
-export const getMemberDashboard = () => {
+export const getMemberDashboard = (data) => {
   return get({
-    url: SERVICE_TYPES.DASHBOARD
+    url: SERVICE_TYPES.DASHBOARD,
+    ...data
   })
 }
 
@@ -55,9 +46,32 @@ export const performRegistration = (data) => {
   })
 }
 
+export const performLogin = (data) => {
+  return post({
+    url: SERVICE_TYPES.LOGIN,
+    data: JSON.stringify(data)
+  })
+}
+
 export const getSyndicateInfo = (data) => {
   return get({
     url: SERVICE_TYPES.SYNDICATE,
     data
+  })
+}
+
+export const confirmRegistration = (data) => {
+  return get({
+    url: SERVICE_TYPES.REGISTRATION_CONFIRMATION,
+    data
+  })
+}
+
+export const getInitialAppData = (token) => {
+  return get({
+    url: SERVICE_TYPES.SETUP,
+    headers: {
+      'Authorization': `JWT ${token}`
+    }
   })
 }

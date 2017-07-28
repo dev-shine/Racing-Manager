@@ -3,41 +3,46 @@ import React, { PureComponent } from 'react'
 /**
  *  @module Header
  */
-import Header from 'components/header'
+import Header from 'components/navigation/header'
 
 /**
  *  @module HeaderHome
  */
-import HeaderHome from 'components/header/HeaderHome'
+import HeaderPublic from 'components/navigation/header/HeaderPublic'
 
 /**
- *  @module HeaderHome
+ *  @module HeaderPrivate
  */
-import HeaderDashboard from 'components/header/HeaderDashboard'
+import HeaderPrivate from 'components/navigation/header/HeaderPrivate'
+
+/**
+ *  @module connect
+ */
+import { connect } from 'react-redux'
+
+/**
+ *  @module logOut
+ */
+import { logOut } from 'actions/auth'
 
 /**
  *  @module withRouter
  */
 import {
-  withRouter,
-  Switch
+  withRouter
 } from 'react-router-dom'
-
-/**
- *  @module RouteWithProps
- */
-import RouteWithProps from 'components/routing/RouteWithProps'
 
 class HeaderContainer extends PureComponent {
   constructor (props) {
     super(props)
 
     this.state = {
-      burgerMenuActive: true,
-      showLogin: false
+      showLogin: false,
+      showAccount: false
     }
 
     this.toggleLogin = this.toggleLogin.bind(this)
+    this.toggleAccount = this.toggleAccount.bind(this)
   }
 
   toggleLogin () {
@@ -46,25 +51,60 @@ class HeaderContainer extends PureComponent {
     }))
   }
 
+  toggleAccount () {
+    this.setState((state) => ({
+      showAccount: !state.showAccount
+    }))
+  }
+
+  componentWillReceiveProps ({ isLoggedIn }) {
+    if (isLoggedIn !== this.props.isLoggedIn) {
+      this.setState({
+        showLogin: false,
+        showAccount: false
+      })
+    }
+  }
+
   render () {
+    const {
+      isLoggedIn,
+      performLogOut
+    } = this.props
+
     return (
       <Header
         logohref='/'>
-          <Switch>
-            <RouteWithProps
-              exact
-              path='/'
+        {
+          isLoggedIn
+          ? <HeaderPrivate
+              onLogout={performLogOut}
+              onAccountClick={this.toggleAccount}
+              showAccount={this.state.showAccount} />
+          : <HeaderPublic
               onLoginButtonClick={this.toggleLogin}
-              showLogin={this.state.showLogin}
-              burgerMenuActive={this.state.burgerMenuActive}
-              onClick={() => { this.setState({burgerMenuActive: !this.state.burgerMenuActive}) }}
-              component={HeaderHome} />
-            <RouteWithProps
-              component={HeaderDashboard} />
-          </Switch>
+              showLogin={this.state.showLogin} />
+        }
       </Header>
     )
   }
 }
 
-export default withRouter(HeaderContainer)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    performLogOut: () => {
+      dispatch(logOut())
+    }
+  }
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HeaderContainer))

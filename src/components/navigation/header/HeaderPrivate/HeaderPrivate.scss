@@ -1,9 +1,10 @@
-.header-dashboard {
-  position: relative;
-
+.header-private {
   &__link {
     display: inline-block;
-    color: $davys-gray;
     margin-right: 40px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
