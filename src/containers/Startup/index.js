@@ -12,7 +12,7 @@ import { authenticateUserFromToken, noAuthentication } from 'actions/auth'
 
 import { isJwtValid } from 'utils/validation/JwtValidation'
 
-class Startup extends Component {
+export class Startup extends Component {
   constructor (props) {
     super(props)
   }
