@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--horse:before {
+  content: "\e90e";
+  color: #595a5c;
+}
+.icon--account:before {
+  content: "\e90f";
+  color: #595a5c;
+}
 .icon--linked-in:before {
   content: "\e90d";
   color: #e8808f;
@@ -25,7 +33,6 @@
   content: "\e90c";
   color: #595a5c;
 }
-
 .icon--magnifying-glass:before {
   content: "\e909";
   color: #595a5c;

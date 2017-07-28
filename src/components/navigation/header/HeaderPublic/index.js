@@ -29,35 +29,70 @@ const HeaderPublic = (props) => {
 
   return (
     <div className='header__content'>
-      <div className='header__search'>
-        <Link to='/browse-horses'>
-          <Icon
-            modifier='magnifying-glass' />
+      <div className='visible-sm-up'>
+        <div className='header__search'>
+          <Link to='/browse-horses'>
+            <Icon
+              modifier='magnifying-glass' />
+          </Link>
+        </div>
+
+        <TextCtaButton
+          onClick={onLoginButtonClick}
+          className='header__login-button uppercase semi-bold'
+          text={'log in'}
+          active={!showLogin} />
+
+        <Link to='/register'>
+          {
+          !showLogin
+          ? (
+              <TextButton
+                className='header__register-button'
+                modifier='sm'
+                text='register free' />
+            )
+          : (
+              <TextCtaButton
+                className='header__register-button uppercase semi-bold'
+                text={'register free'} />
+            )
+          }
         </Link>
       </div>
+      <div className='hidden-sm-up'>
+        <div className='header__search'>
+          <Link to='/browse-horses'>
+            <Icon
+              modifier='magnifying-glass' />
+          </Link>
+        </div>
+        <div className='header__search' onClick={onLoginButtonClick}>
+          <Icon
+            modifier='account' />
+        </div>
+      </div>
 
-      <TextCtaButton
-        onClick={onLoginButtonClick}
-        className='header__login-button uppercase semi-bold'
-        text={'log in'}
-        active={!showLogin} />
-
-      <Link to='/register'>
-        {
-        !showLogin
-        ? (
-            <TextButton
-              className='header__register-button'
-              modifier='sm'
-              text='register free' />
-          )
-        : (
-            <TextCtaButton
-              className='header__register-button uppercase semi-bold'
-              text={'register free'} />
-          )
-        }
-      </Link>
+      <div className='hidden-sm-up'>
+        <CSSTransitionGroup
+          transitionName="fade-in"
+          transitionAppearTimeout={400}
+          transitionEnterTimeout={400}
+          transitionLeaveTimeout={400}>
+          {
+            showLogin && (
+              <div className='header__mobile-register section-shadow'>
+                <Link to='/register'>
+                  <TextButton
+                    className='header__register-button'
+                    modifier='sm'
+                    text='register free' />
+                </Link>
+              </div>
+            )
+          }
+        </CSSTransitionGroup>
+      </div>
 
       <div>
         <CSSTransitionGroup
