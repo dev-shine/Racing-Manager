@@ -22,31 +22,58 @@ const HeaderPrivate = (props) => {
 
   return (
     <div className='header__content'>
-      <div className='header__links'>
-        <div className='header__search'>
-          <Link to='/browse-horses'>
-            <Icon
-              modifier='magnifying-glass' />
-          </Link>
-        </div>
+      <div className='visible-sm-up'>
+        <div className='header__links'>
+          <div className='header__search'>
+            <Link to='/browse-horses'>
+              <Icon
+                modifier='magnifying-glass' />
+            </Link>
+          </div>
 
-        <div className='header-private__link'>
-          <Link to='/dashboard'>
+          <div className='header-private__link'>
+            <Link to='/dashboard'>
+              <TextCtaButton
+                modifier='gray'
+                className='uppercase semi-bold header-private__link'
+                text={'my horses'} />
+            </Link>
+          </div>
+
+          <div className='header-private__link'>
             <TextCtaButton
+              onClick={onAccountClick}
               modifier='gray'
               className='uppercase semi-bold header-private__link'
-              text={'my horses'} />
-          </Link>
-        </div>
-
-        <div className='header-private__link'>
-          <TextCtaButton
-            onClick={onAccountClick}
-            modifier='gray'
-            className='uppercase semi-bold header-private__link'
-            text={'account'} />
+              text={'account'} />
+          </div>
         </div>
       </div>
+
+      <div className='hidden-sm-up'>
+        <div className='header__links'>
+          <div className='header__search'>
+            <Link to='/browse-horses'>
+              <Icon
+                modifier='magnifying-glass' />
+            </Link>
+          </div>
+
+          <div className='header-private__link'>
+            <Link to='/dashboard'>
+              <Icon
+                modifier='horse' />
+            </Link>
+          </div>
+
+          <div className='header-private__link'>
+            <Icon
+              onClick={onAccountClick}
+              modifier='account' />
+          </div>
+        </div>
+      </div>
+
       <div>
         <CSSTransitionGroup
           transitionName="fade-in"
