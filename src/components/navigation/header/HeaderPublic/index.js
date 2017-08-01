@@ -85,7 +85,7 @@ const HeaderPublic = (props) => {
                 <Link to='/register'>
                   <TextButton
                     className='header__register-button'
-                    modifier='sm'
+                    modifier='md'
                     text='register free' />
                 </Link>
               </div>

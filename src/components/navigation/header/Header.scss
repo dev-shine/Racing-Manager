@@ -72,7 +72,7 @@
     top: 100%;
     right: 0;
     width: 100%;
-    height: 45px;
+    height: 50px;
     background-color: $color-bg-secondary;
     padding: 10px;
     text-align: center;
@@ -80,7 +80,7 @@
 
   .login-form {
     @media all and (max-width: $screen-sm) {
-      margin-top: 45px;
+      margin-top: 50px;
     }
   }
 }
