@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: white;
+  background: $color-bg-secondary;
   box-shadow: 0 0 40px rgba(black, 0.1);
   z-index: $zindex-header;
   
@@ -46,7 +46,7 @@
     display: inline-block;
 
     @media all and (max-width: $screen-sm) {
-      width: 100%;
+      width: 294px;
     }
   }
 
@@ -72,7 +72,7 @@
     top: 100%;
     right: 0;
     width: 100%;
-    height: 45px;
+    height: 50px;
     background-color: $color-bg-secondary;
     padding: 10px;
     text-align: center;
@@ -80,7 +80,7 @@
 
   .login-form {
     @media all and (max-width: $screen-sm) {
-      margin-top: 45px;
+      margin-top: 50px;
     }
   }
 }

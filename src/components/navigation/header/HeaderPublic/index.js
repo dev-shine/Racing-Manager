@@ -79,21 +79,28 @@ const HeaderPublic = (props) => {
           transitionAppearTimeout={400}
           transitionEnterTimeout={400}
           transitionLeaveTimeout={400}>
-          {
-            showLogin && (
-              <div className='header__mobile-register section-shadow'>
-                <Link to='/register'>
-                  <TextButton
-                    className='header__register-button'
-                    modifier='sm'
-                    text='register free' />
-                </Link>
-              </div>
-            )
-          }
+            <div className='header__mobile-register section-shadow'>
+              {
+               !showLogin
+               ? (
+                  <Link to='/register'>
+                    <TextButton
+                      className='header__register-button'
+                      modifier='md'
+                      text='register free' />
+                  </Link>
+                )
+               : (
+                  <Link to='/register'>
+                    <TextCtaButton
+                      className='header__register-button uppercase semi-bold align-middle'
+                      text={'register free'} />
+                  </Link>
+                )
+              }
+            </div>
         </CSSTransitionGroup>
       </div>
-
       <div>
         <CSSTransitionGroup
           transitionName="fade-in"

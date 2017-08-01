@@ -15,7 +15,11 @@ class AccountDropdown extends PureComponent {
     super(props)
   }
 
-  handleClickOutside () {
+  handleClickOutside (e) {
+    if (e) {
+      e.stopPropagation()
+    }
+
     this.props.closeAccount()
   }
 

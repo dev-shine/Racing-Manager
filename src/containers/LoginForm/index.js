@@ -20,8 +20,12 @@ class LoginFormContainer extends Component {
     super(props)
   }
 
-  handleClickOutside () {
+  handleClickOutside (e) {
     if (this.props.closeLogin) {
+      if (e) {
+        e.stopPropagation()
+      }
+
       this.props.closeLogin()
     }
   }
@@ -58,7 +62,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         } = ownProps
 
       dispatch(submitFormData({
-        email: values.email,
+        email: values.email.toLowerCase(),
         password: values.password
       }))
       .then(() => {
