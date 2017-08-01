@@ -61,7 +61,7 @@ const PHONE_REG = /^\(?(?:(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?\(?(?:0\)?[\s-]
 *  @type { REGEX }
 *  @private
 */
-const PASSWORD_REG = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+const PASSWORD_REG = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
 
 /*
 *  @name DOB_REG

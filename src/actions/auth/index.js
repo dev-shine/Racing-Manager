@@ -29,9 +29,12 @@ export const storeUserCredentials = ({user, token}) => {
   }
 }
 
-export const noAuthentication = () => ({
-  type: NO_AUTHENTICATION
-})
+export const noAuthentication = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: NO_AUTHENTICATION })
+    dispatch(logOut())
+  }
+}
 
 export const authenticateUserFromToken = (token) => {
   return (dispatch, getState) => {
@@ -41,7 +44,7 @@ export const authenticateUserFromToken = (token) => {
       return Promise.resolve(user, token)
     })
     .catch((error) => {
-      dispatch(logOut())
+      dispatch(noAuthentication())
       return Promise.reject(error)
     })
   }

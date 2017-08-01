@@ -85,7 +85,7 @@ const HeaderPrivate = (props) => {
               <AccountDowndown
                 className='section-shadow'
                 closeAccount={onAccountClick}
-                onLogout={onLogout}/>
+                onLogout={onLogout} />
             )
           }
         </CSSTransitionGroup>
