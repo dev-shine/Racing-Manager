@@ -74,7 +74,7 @@ const LoginForm = (props) => {
             name='password' />
         </div>
         <div className='row-sm'>
-          <div className='col-xs-12 col-sm-6 align-middle form__group'>
+          <div className='col-xs-12 col-sm-6 align-middle form__group text-center'>
             <Submit
               component={TextButton}
               modifier={['fluid']}
