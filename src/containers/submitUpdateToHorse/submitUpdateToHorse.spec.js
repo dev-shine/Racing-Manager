@@ -2,6 +2,8 @@ import React from 'react'
 
 import ConnectedContainer from './index'
 
+import renderedComponent from 'components/tiles/FeedSubmitTile'
+
 import thunk from 'redux-thunk'
 
 import configureMockStore from 'redux-mock-store'
@@ -16,6 +18,7 @@ chai.use(chaiEnzyme())
 
 describe('Containers - submitUpdateToHorse', () => {
   let wrapper
+  let renderedComp
 
   const initialState = {
     horse: {
@@ -37,10 +40,34 @@ describe('Containers - submitUpdateToHorse', () => {
 
   beforeEach(() => {
     store.clearActions()
-    wrapper = mount(<ConnectedContainer store={store} />, options)
+    wrapper = mount(<ConnectedContainer store={store} reducerName='testReducer' />, options)
+    renderedComp = wrapper.find(renderedComponent)
   })
 
   it('should exist', () => {
     expect(wrapper).to.exist
+  })
+
+  it('sets the updateFeedText from the rendered component', () => {
+    const action = {
+      type: 'UPDATE_FEED_TEXT',
+      text: 'nick',
+      reducerName: 'testReducer'
+    }
+
+    renderedComp.props().updateFeedText('nick')
+
+    expect(store.getActions()[0]).to.deep.equal(action)
+  })
+
+  it('should clear feed data', () => {
+    const action = {
+      type: 'CLEAR_FEED_DATA',
+      reducerName: 'testReducer'
+    }
+
+    renderedComp.props().clearFeedData('nick')
+
+    expect(store.getActions()[0]).to.deep.equal(action)
   })
 })
