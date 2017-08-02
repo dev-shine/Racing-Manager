@@ -1,7 +1,7 @@
 /**
  *  @module react
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  * @module react-redux
@@ -9,19 +9,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 /**
- *  @module RegisterContainer
+ *  @module RegisterFormContainer
  */
-import RegisterContainer from 'containers/register'
+import RegisterFormContainer from 'containers/RegisterForm'
 
 /**
- *  @module withRouter
+ *  @module ViewHeader
  */
-import { withRouter } from 'react-router-dom'
-
-/**
- *  @module TitleHero
- */
-import TitleHero from 'components/common/TitleHero'
+import ViewHeader from 'components/common/ViewHeader'
 
 /**
  *  @module resetRegisterForm
@@ -30,42 +25,30 @@ import {
   resetRegisterForm
 } from 'actions/register'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
+
 import { REGISTER as title } from 'data/titles'
+
+import SocialButton from 'components/socialmedia/SocialButton'
+
+import {
+  FACEBOOK_REGISTER,
+  TWITTER_REGISTER,
+  LINKEDIN_REGISTER
+} from 'texts/forms'
 
 /**
  * @name Register
  * @class
- * @extends Component
+ * @extends PureComponent
  */
-export class Register extends Component {
+export class Register extends PureComponent {
   /**
    * @constructor
    * @param { Object } props
    */
   constructor (props) {
     super(props)
-
-    this.submitFormDataSuccess = this.submitFormDataSuccess.bind(this)
-    this.submitFormDataFail = this.submitFormDataFail.bind(this)
-  }
-
-  /**
-   *  submitFormDataSuccess
-   *  @description If the form is successfull
-   *  @return {Void}
-   */
-  submitFormDataSuccess () {
-    this.props.history.push('/')
-  }
-
-  /**
-   *  submitFormDataFail
-   *  @description If the form fails
-   *  @return {Void}
-   */
-  submitFormDataFail () {
-    console && console.error('FAILED to submit data on register')
   }
 
   componentWillUnmount () {
@@ -80,18 +63,48 @@ export class Register extends Component {
     return (
       <View title={title}>
         <div className='register'>
-          <TitleHero
-            title='Join the action!'/>
+          <ViewHeader
+            title='Join the action!' />
           <div className='container'>
             <div className='row register__content'>
-              <div className='col-sm-8 col-md-7 register__form-container'>
-                <p>We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop
-                  your account.</p>
-                <RegisterContainer
-                  onSubmitSuccess={this.submitFormDataSuccess}
-                  onSubmitFail={this.submitFormDataFail} />
+              <div className='col-xs-12 no-padding'>
+                <div className='col-sm-7 col-md-7 register__form-container register__form-container--heading'>
+                  <p className='small extra-light register__form-opening-text'>
+                    We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop your account.
+                  </p>
+                </div>
               </div>
-              <div className='col-sm-4 col-md-5 register__quick-register' />
+              <div className='col-sm-5 col-md-5 col-sm-push-7 col-md-push-7 register__quick-register'>
+                <div className='register__quick-register-container col-sm-10 col-sm-push-1 col-md-8 col-md-push-2'>
+                  <div className='form__group'>
+                    <h2 className='extra-light secondary-font text-center'>
+                      Quick sign up with
+                    </h2>
+                  </div>
+                  <div className='form__group'>
+                    <SocialButton
+                      text={FACEBOOK_REGISTER}
+                      modifier='facebook' />
+                  </div>
+                  <div className='form__group'>
+                    <SocialButton
+                      text={TWITTER_REGISTER}
+                      modifier='twitter' />
+                  </div>
+                  <div className='form__group'>
+                    <SocialButton
+                      text={LINKEDIN_REGISTER}
+                      modifier='linked-in' />
+                  </div>
+                </div>
+              </div>
+              <div className='col-sm-7 col-md-7 col-sm-pull-5 col-md-pull-5 no-padding'>
+                <div className='register__form-container'>
+                  <RegisterFormContainer
+                    onSubmitSuccess={this.submitFormDataSuccess}
+                    onSubmitFail={this.submitFormDataFail} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -107,7 +120,9 @@ export class Register extends Component {
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    email: state.register.email
+  }
 }
 
 /**
@@ -127,7 +142,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 /**
  *  @module connect
  */
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Register))
+)(Register)

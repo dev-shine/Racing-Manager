@@ -41,7 +41,7 @@ import {
   m4
 } from 'assets/home/manager'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import { HOMEPAGE as title } from 'data/titles'
 
 /**
@@ -85,7 +85,7 @@ export class Home extends Component {
             <div className='home__section home__cta-section'>
               <div className="row">
                 <div className="col-md-12">
-                  <h2 className="secondary-font home__cta-headline">The definitive platform for listing, managing and enjoying horse syndication</h2>
+                  <h2 className="secondary-font home__cta-headline uppercase">The definitive platform for listing, managing and enjoying horse syndication</h2>
                   <p>Our new technology allows horse trainers, syndicate managers and memebers to keep in touch more easily, manage their brands more effectively, and be more thoroughly involved in the excitement of horse racing at any time in any place than ever before.</p>
                 </div>
               </div>

@@ -13,6 +13,11 @@ export const FIRST_NAME = 'Please enter a valid name; It can contain capital let
 export const SURNAME = FIRST_NAME
 
 /**
+ *  @type {String}
+ */
+export const USERNAME = 'Please enter a valid username'
+
+/**
 *  @type { string }
 */
 export const EMAIL = 'Please enter a valid email address, for example: bob@example.co.uk'
@@ -30,7 +35,7 @@ export const DATE_OF_BIRTH = 'Enter your date of birth in DD/MM/YYYY format. You
 /**
 *  @type { string }
 */
-export const PASSWORD = 'Passwords must have at least one capital letter, one lower case letter, one number and be a minimum of eight characters in length'
+export const PASSWORD = 'Passwords must have at least one capital letter, one lower case letter, one number and be a minimum of six characters in length'
 
 /**
 *  @type { string }

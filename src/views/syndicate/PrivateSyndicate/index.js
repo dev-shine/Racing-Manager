@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import titleize from 'titleize'
 
 import FeedGallery from 'components/tiles/FeedGallery'
@@ -64,7 +64,7 @@ export class PrivateSyndicate extends Component {
 
     const aboutSection = (
       <div>
-        <h1 className='horse-header__medium-title'>
+        <h1 className='horse-header__medium-title uppercase'>
           About the syndicate
         </h1>
         <Separator modifier='white' />
@@ -76,7 +76,7 @@ export class PrivateSyndicate extends Component {
 
     const involvementSection = (
       <div>
-        <h1 className='horse-header__medium-title'>
+        <h1 className='horse-header__medium-title uppercase'>
           Benefits
         </h1>
         <Separator modifier='white' />
@@ -154,7 +154,7 @@ export class PrivateSyndicate extends Component {
           <div className='private-syndicate'>
             <div className='private-syndicate__paragraph-section container'>
               <div className='col-xs-12 col-md-6'>
-                <h1>
+                <h1 className='uppercase'>
                   Benefits
                 </h1>
                 <Separator modifier='blue' />
@@ -174,7 +174,7 @@ export class PrivateSyndicate extends Component {
             </div>
           </div>
           <div className='syndicate__grid__title container'>
-            <h1 className='horse-overview__main-title horse-overview__update-title'>
+            <h1 className='horse-overview__main-title horse-overview__update-title uppercase'>
               Updates
             </h1>
           </div>

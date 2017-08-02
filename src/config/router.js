@@ -5,16 +5,18 @@ import {
   BrowserRouter as Routes,
 } from 'react-router-dom'
 
-import { CookiesProvider } from 'react-cookie'
-import PrivateRoute from 'components/common/PrivateRoute'
+import AuthRoute from 'components/routing/AuthRoute'
+
+import Startup from 'containers/Startup'
 
 import Layout from 'layouts/Layout'
-import ScrollTop from 'components/common/ScrollTop'
+import ScrollTop from 'components/routing/ScrollTop'
 import PageNotFound from 'views/PageNotFound'
 
 import Home from 'views/home'
-import Login from 'views/Login'
 import Register from 'views/register'
+import RegistrationSuccessful from 'views/RegistrationSuccessful'
+import RegistrationConfirmation from 'views/RegistrationConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
 import PrivateHorse from 'views/horse/PrivateHorse'
@@ -25,28 +27,24 @@ import PublicSyndicate from 'views/syndicate/PublicSyndicate'
 
 const router = (
   <Routes>
-    <CookiesProvider>
+    <Startup>
       <Layout>
         <ScrollTop>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route path='/login' component={Login} />
             <Route path='/register' component={Register} />
+            <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
-            <PrivateRoute path='/dashboard' component={MemberDashboard} />
-            <Route path='/horse/:name' component={PublicHorse} />
-            <Route path='/private-horse/:name' component={PrivateHorse} />
-            <PrivateRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
+            <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
+            <AuthRoute path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
+            <AuthRoute path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
+            <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />
           </Switch>
         </ScrollTop>
       </Layout>
-    </CookiesProvider>
+    </Startup>
   </Routes>
 )
 
 export default router
-
-/*
-<Route path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
-*/

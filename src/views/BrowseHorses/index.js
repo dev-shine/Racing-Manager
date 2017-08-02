@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 /**
  *  @module View
  */
-import View from 'components/common/View'
+import View from 'components/routing/View'
 
 /**
  *  @module title
@@ -19,9 +19,9 @@ import View from 'components/common/View'
 import { BROWSE_HORSES as title } from 'data/titles'
 
 /**
- *  @module TitleHero
+ *  @module ViewHeader
  */
-import TitleHero from 'components/common/TitleHero'
+import ViewHeader from 'components/common/ViewHeader'
 
 /**
  *  @module HorseCardGallery
@@ -63,7 +63,7 @@ export class BrowseHorses extends Component {
     this.debouncedSubmit = debounce(this.submitSearch, 300)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.requestSearchFiltersIfNeeded()
   }
 
@@ -85,7 +85,7 @@ export class BrowseHorses extends Component {
     return (
       <View title={title}>
         <div className='browse-horses'>
-          <TitleHero />
+          <ViewHeader />
           <HorseSearchAndFilterBar
             onUpdate={this.handleSearch}
             placeholder='Search horses, trainer or syndicates' />

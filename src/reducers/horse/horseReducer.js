@@ -7,6 +7,10 @@ import {
   FAILED_TO_POST_HORSE_UPDATE
 } from 'actions/horse'
 
+import {
+  LOG_OUT
+} from 'actions/auth'
+
 /**
  * @name initialState
 *  @type { object }
@@ -33,6 +37,9 @@ const reducer = (state = initialState, action) => {
   *  @return { object }
   */
   switch (action.type) {
+    case LOG_OUT:
+      return initialState
+
     case FETCH_HORSE_INFO:
       return {
         ...state,

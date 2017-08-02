@@ -3,7 +3,7 @@
  */
 import 'whatwg-fetch'
 
-import verifyServerFormat from 'utils/request'
+import { verifyServerFormat, isParseable } from 'utils/request'
 
 /**
  *  getQueryString
@@ -48,7 +48,7 @@ const request = params => {
   }
 
   return fetch(url, opts)
-  .then(response => Promise.resolve(response.json()))
+  .then(isParseable)
   .then(verifyServerFormat)
   .catch(error => Promise.reject(error))
 }

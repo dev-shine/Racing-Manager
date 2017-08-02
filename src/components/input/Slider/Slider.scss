@@ -19,6 +19,13 @@
       background: $space-cadet;
       outline: none;
       box-shadow: none;
+
+      &:active,
+      &:hover {
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
     }
   }
 

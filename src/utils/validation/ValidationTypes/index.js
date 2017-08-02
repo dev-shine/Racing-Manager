@@ -34,7 +34,7 @@ const MIN_AGE = 18
 *  @type { REGEX }
 *  @private
 */
-const EMAIL_REG = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]{2,})*$/
+const EMAIL_REG = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]{2,})+$/
 
 /*
 *  @name NAME_REG
@@ -42,6 +42,12 @@ const EMAIL_REG = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z
 *  @private
 */
 const NAME_REG = /^(?=[a-zA-Z-\s]{2,}$)^[a-zA-Z\s]+(-[a-zA-Z\s]+)*$/
+
+/**
+ *  @name USERNAME_REG
+ *  @type {RegExp}
+ */
+const USERNAME_REG = /^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/
 
 /*
 *  @name PHONE_REG
@@ -55,7 +61,7 @@ const PHONE_REG = /^\(?(?:(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?\(?(?:0\)?[\s-]
 *  @type { REGEX }
 *  @private
 */
-const PASSWORD_REG = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/
+const PASSWORD_REG = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
 
 /*
 *  @name DOB_REG
@@ -293,6 +299,13 @@ export const EMAIL = email => EMAIL_REG.test(email)
 *  @return { boolean }
 */
 export const NAME = name => REQUIRED(name) && NAME_REG.test(name) && DOUBLE_SPACES(name) && TRAILING_SPACES(name)
+
+/**
+ *  @name USERNAME
+ *  @param  {String} name
+ *  @return {Boolean}
+ */
+export const USERNAME = name => USERNAME_REG.test(name)
 
 /*
 *  @name DATE_OF_BIRTH

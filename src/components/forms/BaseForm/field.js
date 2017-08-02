@@ -1,7 +1,7 @@
 /**
 *  @module react
 */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  * @module PropTypes
@@ -23,9 +23,9 @@ const disAllowedPropTypes = ['component', 'validate']
 
 /**
  *  @class
- *  @extends {Component}
+ *  @extends {PureComponent}
  */
-class Field extends Component {
+class Field extends PureComponent {
   /**
    *  @constructor
    *  @param  {Object} props

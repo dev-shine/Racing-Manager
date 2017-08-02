@@ -10,11 +10,15 @@
   cursor: pointer;
 
   &--facebook {
-    background-color: $facebook;
+    background-color: $color-facebook;
   }
 
   &--twitter {
-    background-color: $twitter;
+    background-color: $color-twitter;
+  }
+
+  &--linked-in {
+    background-color: $color-linked-in;
   }
 
   &__icon {

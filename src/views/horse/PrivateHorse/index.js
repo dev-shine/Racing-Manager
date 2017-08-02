@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import capitalize from 'utils/capitalize'
 
 import AjaxLoader from 'components/ajaxloader'
@@ -19,7 +19,7 @@ import HorseTeamMember from 'components/horse/HorseTeamMember'
 
 import FeedGallery from 'components/tiles/FeedGallery'
 
-import SubmitPost from 'containers/submitUpdateToHorse'
+import SubmitPost from 'containers/SubmitUpdateToHorse'
 
 import { timestampToDate } from 'utils/dateutils'
 import { calcPercent } from 'utils/horseutils'
@@ -77,7 +77,7 @@ export class PrivateHorse extends Component {
 
     const aboutSection = (
       <div>
-        <h1>
+        <h1 className='uppercase'>
           About the horse
         </h1>
         <Separator modifier='white' />
@@ -116,7 +116,7 @@ export class PrivateHorse extends Component {
 
     const involvementSection = (
       <div>
-        <h2>
+        <h2 className='uppercase'>
           Your Involvement
         </h2>
         <Separator modifier='white' />
@@ -166,17 +166,17 @@ export class PrivateHorse extends Component {
             </HorseAccordion>
             <HorseAccordion title='Racing History'>
               <div className='horse-accordions__content container'>
-                <h1>
+                <h1 className='uppercase'>
                   Statistics
                 </h1>
                 <Separator modifier='blue' />
                 <Table {...tableStatistics} />
-                <h1 className='horse-accordions__middle-title'>
+                <h1 className='horse-accordions__middle-title uppercase'>
                   Future entries
                 </h1>
                 <Separator modifier='blue' />
                 <Table {...tableEntries} />
-                <h1 className='horse-accordions__middle-title'>
+                <h1 className='horse-accordions__middle-title uppercase'>
                   Results
                 </h1>
                 <Separator modifier='blue' />
@@ -187,7 +187,7 @@ export class PrivateHorse extends Component {
               <div className='horse-accordions__content container'>
                 <div className='col-xs-12 col-md-7'>
                   <div className='horse-header__text-section'>
-                    <h1>
+                    <h1 className='uppercase'>
                       {racePlans.title}
                     </h1>
                     <Separator modifier='blue' />
@@ -196,7 +196,7 @@ export class PrivateHorse extends Component {
                     </div>
                   </div>
                   <div className='horse-header__text-section'>
-                    <h1>
+                    <h1 className='uppercase'>
                       {horseValue.title}
                     </h1>
                     <Separator modifier='blue' />
@@ -210,7 +210,7 @@ export class PrivateHorse extends Component {
           </div>
           <div className='container horse-overview__message-post'>
             <div className='row'>
-              <h1 className='horse-overview__main-title horse-overview__update-title'>
+              <h1 className='horse-overview__main-title horse-overview__update-title uppercase'>
                 Updates
               </h1>
               <div className='col-xs-12 col-sm-10 col-sm-push-1'>

@@ -4,6 +4,10 @@
   opacity: 0.5;
   cursor: pointer;
   
+  &--gray {
+    color: $davys-gray;
+  }
+
   &--active {
     opacity: 1;
   }

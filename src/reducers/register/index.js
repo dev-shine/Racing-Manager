@@ -17,6 +17,7 @@ const initialState = {
   surname: '',
   email: '',
   password: '',
+  username: '',
   overEighteen: false,
   termsAndConditions: false,
   isSubmitting: false,
@@ -24,6 +25,7 @@ const initialState = {
   errors: {
     firstname: [],
     surname: [],
+    username: [],
     email: [],
     password: [],
     overEighteen: [],
@@ -82,7 +84,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isSubmitting: false,
-        submitError: true
+        submitError: true,
+        errors: {
+          ...state.errors,
+          ...action.error.errors
+        }
       }
 
     default:

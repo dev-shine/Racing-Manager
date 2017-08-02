@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 
-import View from 'components/common/View'
+import View from 'components/routing/View'
 import capitalize from 'utils/capitalize'
 
 import AjaxLoader from 'components/ajaxloader'
@@ -76,7 +76,7 @@ class PublicHorse extends Component {
 
     const aboutSection = (
       <div>
-        <h1>
+        <h1 className='uppercase'>
           About the horse
         </h1>
         <Separator modifier='white' />
@@ -95,7 +95,7 @@ class PublicHorse extends Component {
 
     const availabilitySection = (
       <div>
-        <h2>
+        <h2 className='uppercase'>
           Availability
         </h2>
         <Separator modifier='white' />
@@ -180,7 +180,7 @@ class PublicHorse extends Component {
             </Carousel>
           </div>
           <div className='public-horse__section container'>
-            <h1>
+            <h1 className='uppercase'>
               Statistics
             </h1>
             <Separator modifier='blue' />
@@ -188,7 +188,7 @@ class PublicHorse extends Component {
           </div>
           <div className='public-horse__section container'>
             <div className='col-xs-12 col-md-7 no-padding'>
-              <h1>
+              <h1 className='uppercase'>
                 {racePlans.title}
               </h1>
               <Separator modifier='blue' />
@@ -203,7 +203,7 @@ class PublicHorse extends Component {
           />
           <div className='public-horse__section container'>
             <div className='col-xs-12 col-md-7 no-padding'>
-              <h1>
+              <h1 className='uppercase'>
                 {horseValue.title}
               </h1>
               <Separator modifier='blue' />
@@ -215,7 +215,7 @@ class PublicHorse extends Component {
           <div id="benefits-section" className='public-horse__footer-section wave-bg section-shadow'>
             <div className='container pos-relative'>
               <div className='public-horse__involvement-section col-xs-12 col-sm-6'>
-                <h1>
+                <h1 className='uppercase'>
                   Involvement
                 </h1>
                 <Separator modifier='grey' />

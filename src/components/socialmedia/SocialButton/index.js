@@ -36,7 +36,7 @@ const SocialButton = (props) => {
           modifier={modifier} />
       </div>
       <div className='social-button__text'>
-        <h6 className='uppercase'>
+        <h6 className='uppercase regular'>
           {text}
         </h6>
       </div>

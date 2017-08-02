@@ -47,7 +47,7 @@ class HorseCardGallery extends PureComponent {
         isActive={true}
         src={constructStaticUrl(entry.thumbnailImage)}
         title={entry.name}
-        color={entry.syndColor}
+        color={entry.owner.color}
         subtitle={`${entry.age}yo ${entry.gender}, ${entry.racingType}`} // Needs to have the STYLE too!
         stats={[{
           name: 'runs',
@@ -95,6 +95,7 @@ class HorseCardGallery extends PureComponent {
         <CSSTransitionGroup
           transitionName="fade-shift"
           transitionEnterTimeout={400}
+          transitionAppearTimeout={400}
           transitionLeaveTimeout={400}
         >
         {

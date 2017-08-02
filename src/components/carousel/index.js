@@ -24,6 +24,11 @@ import CarouselArrow from 'components/buttons/CarouselArrow'
 import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
 
 /**
+ *  @module CSSTransitionGroup
+ */
+import { CSSTransitionGroup } from 'react-transition-group'
+
+/**
  *  dummy function
  */
 const noop = () => {}
@@ -1124,7 +1129,13 @@ class Carousel extends Component {
           {...this.getMouseEvents()}
           onClick={this.handleClick}>
           <ul className={listClassNames} style={this.getListStyles()} ref='list'>
-            {slideChildren}
+            <CSSTransitionGroup
+                transitionName="fade-in"
+                transitionEnterTimeout={400}
+                transitionAppearTimeout={400}
+                transitionLeaveTimeout={400}>
+              {slideChildren}
+            </CSSTransitionGroup>
           </ul>
         </div>
         {this.renderPrevArrow()}

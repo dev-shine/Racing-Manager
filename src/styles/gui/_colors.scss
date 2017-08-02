@@ -28,9 +28,16 @@ $raisin-black: #231f20;
 $maastricht-blue: #00273a;
 $silver-chalice: #ababab;
 $outer-space: #494949;
-
+$dark-imperial-blue: #004370;
 $blue-yonder: #5170A7;
 $sky-blue: #88d0ed;
+$queen-blue: #476591;
+
+// Bg
+$color-bg: $snow;
+$color-bg-secondary: $white;
+$color-popup-bg: $white;
+$color-faded-popup-bg: rgba($white, 0.4);
 
 // Inputs
 $form-input-color: $nickel;
@@ -41,5 +48,20 @@ $placeholder-color: $taupe-gray;
 $cta-link-color: $vanilla-ice;
 
 // Social
-$twitter: $sky-blue;
-$facebook: $blue-yonder;
+$color-twitter: $sky-blue;
+$color-facebook: $blue-yonder;
+$color-linked-in: $queen-blue;
+
+// loader
+$color-loader: $vanilla-ice;
+
+// texts
+$color-text-strong: $yankees-blue;
+$color-text-heading: $maastricht-blue;
+
+// Seperators
+$color-seperator-primary: $vanilla-ice;
+$color-seperator-light: $white;
+$color-seperator-dark: $black;
+$color-seperator-strong: $dark-imperial-blue;
+$color-seperator-weak: $taupe-gray;
