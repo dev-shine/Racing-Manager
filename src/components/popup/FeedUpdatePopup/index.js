@@ -72,7 +72,8 @@ export class FeedUpdatePopup extends Component {
         createdAt,
         timeStamp,
         text,
-        attachment
+        attachment,
+        author
       } = tile
 
       switch (postType) {
@@ -83,7 +84,7 @@ export class FeedUpdatePopup extends Component {
               className='feed-popup__tile'
               key={`fptext-${createdAt}`}
               id={createdAt}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text} />
           )
@@ -95,7 +96,7 @@ export class FeedUpdatePopup extends Component {
               className='feed-popup__tile'
               key={`fpiv-${createdAt}`}
               id={createdAt}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text}
               attachments={attachment} />
@@ -109,7 +110,7 @@ export class FeedUpdatePopup extends Component {
               key={`fpimage-${createdAt}`}
               id={createdAt}
               src={attachment[0].path}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text} />
           )
@@ -123,7 +124,7 @@ export class FeedUpdatePopup extends Component {
               id={createdAt}
               src={attachment[0].path}
               poster={attachment[0].thumbnail}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text} />
           )
