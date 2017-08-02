@@ -34,8 +34,7 @@ export const getHorseInfo = (name) => {
 export const performHorseUpdate = (data) => {
   return post({
     url: SERVICE_TYPES.MESSAGE,
-    data,
-    headers: {} // Let fetch set the headers for multipart form data
+    ...data
   })
 }
 
