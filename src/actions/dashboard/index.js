@@ -31,21 +31,7 @@ export const failedToFetchMemberDashboardData = (error) => ({
 export const getDashboard = () => {
   return {
     type: CALL_ACTION_TYPE,
-    types: [FETCH_MEMBER_DASHBOARD_DATA, RECEIVED_MEMBER_DASHBOARD_DATA, FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA],
+    types: [fetchMemberDashboardData, receivedMemberDashboardData, failedToFetchMemberDashboardData],
     endpoint: getMemberDashboard
   }
 }
-
-/*
-export const getDashboard = () => {
-  return new Promise((resolve, reject) => {
-    return getMemberDashboard()
-    .then((data) => {
-      return resolve(data)
-    })
-    .catch((error) => {
-      return reject(error)
-    })
-  })
-}
-*/

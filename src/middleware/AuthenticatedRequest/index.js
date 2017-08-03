@@ -6,7 +6,38 @@ import { logOut } from 'actions/auth'
 
 export const CALL_ACTION_TYPE = '@@AUTHENTICATED_REQUEST'
 
-const authenticatedRequest = (store) => (next) => (action) => {
+/**
+ *  dispatchAction
+ *  @param  {Function} dispatch
+ *  @param  {Function | String} requestAction
+ *  @param  {Object} data
+ *  @return {Function | Boolean}
+ */
+export const dispatchAction = (dispatch, requestAction, data) => {
+  if (!requestAction) {
+    return false
+  }
+
+  if (typeof requestAction === 'function') {
+    return dispatch(requestAction(data))
+  }
+
+  return dispatch({
+    requestAction,
+    data: data || {}
+  })
+}
+
+/**
+ *  authenticatedRequest
+ *  @description Will dispatch an api call and return an promise from the passed in endpoint
+ *               It will add in the authorization header with the token if it exists
+ *               and will handle the success of failure by going to the next action
+ *               or performing a logout.
+ *  @param  {Function} {dispatch})
+ *  @return {Promise}
+ */
+const authenticatedRequest = ({dispatch}) => (next) => (action) => {
   // So the middleware doesn't get applied to every single action
   if (action.type !== CALL_ACTION_TYPE) {
     return next(action)
@@ -16,40 +47,35 @@ const authenticatedRequest = (store) => (next) => (action) => {
 
   const [requestType, successType, errorType] = types
 
+  // Request the token from the localStorage
   const token = getItem(USER_TOKEN)
 
   let config = {}
 
+  // Set the authorization header
   config.headers = {
     'Authorization': `JWT ${token}`
   }
 
   if (data.payload) {
-    config.data = {
-      ...data.payload
-    }
+    config.data = data.payload
   }
 
-  store.dispatch({
-    type: requestType
-  })
+  if (requestType) {
+    dispatchAction(dispatch, requestType)
+  }
 
   return endpoint(config)
   .then((data) => {
-    next({
-      data,
-      type: successType
-    })
+    dispatchAction(next, successType, data)
+
     return Promise.resolve(data)
   })
   .catch((error) => {
-    if (error.status && error.status === 'not_authorized') { // Maybe change this to status codes!
-      next(logOut())
+    if (error.status && error.status === 'not_authorized') {
+      dispatchAction(next, logOut)
     } else {
-      next({
-        error: error,
-        type: errorType
-      })
+      dispatchAction(next, errorType, error)
     }
     return Promise.reject(error)
   })

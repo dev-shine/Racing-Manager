@@ -4,7 +4,8 @@ import {
   FAILED_TO_FETCH_HORSE_INFO,
   POSTING_HORSE_UPDATE,
   POSTED_HORSE_UPDATE,
-  FAILED_TO_POST_HORSE_UPDATE
+  FAILED_TO_POST_HORSE_UPDATE,
+  CLEAR_HORSE_DATA
 } from 'actions/horse'
 
 import {
@@ -38,6 +39,7 @@ const reducer = (state = initialState, action) => {
   */
   switch (action.type) {
     case LOG_OUT:
+    case CLEAR_HORSE_DATA:
       return initialState
 
     case FETCH_HORSE_INFO:

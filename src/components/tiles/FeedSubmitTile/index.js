@@ -88,6 +88,10 @@ class FeedSubmitTile extends Component {
     }
   }
 
+  componentWillUnmount () {
+    this.clearData()
+  }
+
   /**
    *  clearFileInputValue
    *  @description Clears the input value, so new files can be added.
