@@ -17,6 +17,7 @@ class AuthRoute extends Component {
       redirect: RedirectComponent,
       redirectPath,
       isLoggedIn,
+      componentPath,
       ...rest
     } = this.props
 
@@ -24,7 +25,18 @@ class AuthRoute extends Component {
       <Route {...rest} render={props => {
         if (isLoggedIn) {
           return (
-            <Component {...props} />
+            componentPath
+            ? (
+              <Redirect to={{
+                pathname: componentPath,
+                state: {
+                  from: props.location
+                }
+              }} />
+            )
+            : (
+              <Component {...props} />
+            )
           )
         } else {
           return (
