@@ -32,7 +32,7 @@ const router = (
         <ScrollTop>
           <Switch>
             <Route exact path='/' component={Home} />
-            <AuthRoute path='/register' componentPath='/' redirect={Register} />
+            <AuthRoute path='/register' authenticatedPath='/' redirect={Register} />
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
