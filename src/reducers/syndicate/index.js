@@ -1,7 +1,8 @@
 import {
   FETCH_SYNDICATE_INFO,
   RECEIVED_SYNDICATE_INFO,
-  FAILED_TO_FETCH_SYNDICATE_INFO
+  FAILED_TO_FETCH_SYNDICATE_INFO,
+  CLEAR_SYNDICATE_DATA
 } from 'actions/syndicate'
 
 import {
@@ -19,6 +20,7 @@ const reducer = (state = initialState, action) => {
   const payload = action.payload
 
   switch (type) {
+    case CLEAR_SYNDICATE_DATA:
     case LOG_OUT:
       return initialState
 

@@ -5,6 +5,7 @@ import { formatHorseData } from 'utils/horseutils'
 export const FETCH_SYNDICATE_INFO = 'FETCH_SYNDICATE_INFO'
 export const RECEIVED_SYNDICATE_INFO = 'RECEIVED_SYNDICATE_INFO'
 export const FAILED_TO_FETCH_SYNDICATE_INFO = 'FAILED_TO_FETCH_SYNDICATE_INFO'
+export const CLEAR_SYNDICATE_DATA = 'CLEAR_SYNDICATE_DATA'
 
 export const gettingSyndicateInfo = () => ({
   type: FETCH_SYNDICATE_INFO
@@ -19,6 +20,10 @@ export const receivedSyndicateInfo = (data) => ({
 
 export const failedToGetSyndicateInfo = () => ({
   type: FAILED_TO_FETCH_SYNDICATE_INFO
+})
+
+export const clearSyndicateData = () => ({
+  type: CLEAR_SYNDICATE_DATA
 })
 
 export const fetchSyndicateInfo = data => {

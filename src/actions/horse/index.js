@@ -50,6 +50,12 @@ export const POSTED_HORSE_UPDATE = 'POSTED_HORSE_UPDATE'
 export const FAILED_TO_POST_HORSE_UPDATE = 'FAILED_TO_POST_HORSE_UPDATE'
 
 /**
+ *  CLEAR_HORSE_DATA
+ *  @type {String}
+ */
+export const CLEAR_HORSE_DATA = 'CLEAR_HORSE_DATA'
+
+/**
  *  gettingHorseInfo
  *  @return {Object}
  */
@@ -96,6 +102,14 @@ export const postedHorseUpdate = () => ({
  */
 export const failedToPostHorseUpdate = () => ({
   type: FAILED_TO_POST_HORSE_UPDATE
+})
+
+/**
+ *  clearHorseData
+ *  @return {Object}
+ */
+export const clearHorseData = () => ({
+  type: CLEAR_HORSE_DATA
 })
 
 /**
