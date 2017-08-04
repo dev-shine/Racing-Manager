@@ -115,9 +115,25 @@ class Field extends PureComponent {
   /**
    * @param errors
    */
-  updateErrors (errors) {
+  /*updateErrors (errors) {
     const { name } = this.props
     this.context.updateErrors(errors, name)
+  }*/
+  updateErrors (newErrors = []) {
+    const { name } = this.props
+    const { errors = [] } = this.context
+    // Prevent code from running if the component hasn't receieved correct props
+
+    if (!errors[name]) return
+    // Check to see if we actually need to update the errors in the field or not.
+    if (
+      // If there are new errors, update the field to show them.
+      newErrors.length > 0 ||
+      // If the field already has errors, but the function receives an empty array, clear the errors. Otherwise do nothing.
+      (errors[name].length > 0 && newErrors.length === 0)
+    ) {
+      this.context.updateErrors(newErrors, name)
+    }
   }
 
   /**
@@ -169,9 +185,27 @@ class Field extends PureComponent {
    *  @param  {String} name
    *  @return {Any}      [description]
    */
+  /*
   getValue (name) {
     const { values } = this.context
     return values && values[name]
+  }
+  */
+
+  /**
+   *  getValue
+   *  @param  {String} name
+   *  @return {Any}      [description]
+   */
+  getValue (name) {
+    const { values } = this.context
+    const { format } = this.props
+
+    if (format) {
+      return values && format(values[name])
+    } else {
+      return values && values[name]
+    }
   }
 
   /**
