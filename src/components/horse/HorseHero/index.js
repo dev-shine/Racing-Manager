@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+
 import PropTypes from 'prop-types'
+
 import classNames from 'utils/classnames'
 
 import Image from 'components/image'
+
+import HeroParallax from 'components/parallax/Hero'
 
 class HorseHero extends Component {
   render () {
@@ -12,7 +16,16 @@ class HorseHero extends Component {
 
     return (
       <div className={modifiedClassNames}>
-        <div className='horse-hero__overlay'>
+        <HeroParallax
+          className='horse-hero__image'
+          featuredImage={image}>
+
+          <h1 className='horse-hero__title absolute-center uppercase'>
+            {title}
+          </h1>
+          
+        </HeroParallax>
+        {/*<div className='horse-hero__overlay'>
           <h1 className='horse-hero__title absolute-center uppercase'>
             {title}
           </h1>
@@ -21,7 +34,7 @@ class HorseHero extends Component {
           imageSrc={image}
           setRef={() => {}}
           className='horse-hero__image'
-        />
+        />*/}
       </div>
     )
   }
