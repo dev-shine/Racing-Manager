@@ -36,7 +36,7 @@ import { Block, Grid } from 'components/masonry'
 /**
  *  @module FeedUpdatePopup
  */
-import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
+import FeedUpdatePopupContainer from 'containers/FeedUpdatePopupContainer'
 
 /**
  *  @class
@@ -208,7 +208,7 @@ class FeedGallery extends Component {
             })
           }
         </Grid>
-        <FeedUpdatePopup
+        <FeedUpdatePopupContainer
           submitTitle={popupTitle}
           isOpen={showPopup}
           onClick={this.closePopup}

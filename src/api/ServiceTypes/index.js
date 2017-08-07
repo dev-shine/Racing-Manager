@@ -24,3 +24,5 @@ export const SEARCH_ATTRIBUTES = `${BASE_URL}/search/attributes`
 export const REGISTRATION_CONFIRMATION = `${USER}/verify`
 
 export const SETUP = `${BASE_URL}/setup`
+
+export const COMMENT = `${MESSAGE}/comment`
