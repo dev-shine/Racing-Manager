@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 import classNames from 'utils/classnames'
 
-// import Image from 'components/image'
+import Image from 'components/image'
 
-import HeroParallax from 'components/parallax/Hero'
+import Parallax from 'components/parallax/BaseParallax'
 
 class HorseHero extends Component {
   render () {
@@ -16,27 +16,21 @@ class HorseHero extends Component {
 
     return (
       <div className={modifiedClassNames}>
-        <HeroParallax
-          className='horse-hero__image'
-          featuredImage={image}>
-
-          <h1 className='horse-hero__title absolute-center uppercase'>
-            {title}
-          </h1>
-
-        </HeroParallax>
-        {/*
+        <Parallax
+          speed={0.75}
+          scope={400}>
+            <div className='horse-hero__parallax-container'>
+              <Image
+                imageSrc={image}
+                setRef={() => {}}
+                className='horse-hero__image' />
+            </div>
+        </Parallax>
         <div className='horse-hero__overlay'>
           <h1 className='horse-hero__title absolute-center uppercase'>
             {title}
           </h1>
         </div>
-        <Image
-          imageSrc={image}
-          setRef={() => {}}
-          className='horse-hero__image'
-        />
-      */}
       </div>
     )
   }

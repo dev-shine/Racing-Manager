@@ -35,6 +35,8 @@ const getTop = (elem) => {
   return { top: Math.round(top), left: Math.round(left) }
 }
 
+let clamp = (x, low, high) => Math.min(Math.max(x, low), high)
+
 /**
  *  @class Parallax
  *  @extends {Component}
@@ -54,7 +56,6 @@ class Parallax extends Component {
     // Bind custom functions
     this.getPosition = this.getPosition.bind(this)
     this.scrollHandler = this.scrollHandler.bind(this)
-    this.getStartOffset = this.getStartOffset.bind(this)
     this.bindScroll = this.bindScroll.bind(this)
     this.unBindScroll = this.unBindScroll.bind(this)
     this.getOffsetTop = this.getOffsetTop.bind(this)
@@ -65,17 +66,12 @@ class Parallax extends Component {
   }
 
   componentDidMount () {
-    this.getStartOffset()
     this.bindScroll()
     this.throttledScroll()
   }
 
-  getStartOffset () {
-    this.startOffset = this.getOffsetTop().top
-  }
-
   getOffsetTop () {
-    return getTop(this.refs.node)
+    return getTop(this.getElement()).top
   }
 
   getElement () {
@@ -84,32 +80,31 @@ class Parallax extends Component {
 
   bindScroll () {
     window.addEventListener('scroll', this.throttledScroll)
+    window.addEventListener('resize', this.throttledScroll)
   }
 
   unBindScroll () {
     window.removeEventListener('scroll', this.throttledScroll)
+    window.removeEventListener('resize', this.throttledScroll)
   }
 
   getPosition () {
     const {
-      speed
+      speed,
+      scope
     } = this.props
 
-    const pageTop = window.pageYOffset
-    const firstTop = this.getOffsetTop().top
+    const { parentElement } = this.getElement()
 
-    const moveTop = (pageTop - firstTop) / speed
-    return moveTop
+    const scrollY = window.pageYOffset
 
-    /*
-    const { scope, offset, speed } = this.props
-    const position = ((window.pageYOffset - this.startOffset) * speed)
-    return Math.min(-Math.min(scope - offset, position), scope + offset)
-    */
+    const d = (scrollY - parentElement.offsetTop) * speed / scope
+
+    return (d * 100)
   }
 
   scrollHandler () {
-    if (!isInViewport(this.refs.node)) {
+    if (!isInViewport(this.getElement())) {
       return false
     }
 
@@ -141,8 +136,7 @@ Parallax.propTypes = {
   children: PropTypes.node.isRequired,
   scope: PropTypes.number,
   speed: PropTypes.number,
-  offset: PropTypes.number,
-  slowerScrollRate: PropTypes.bool
+  offset: PropTypes.number
 }
 
 /**
@@ -150,10 +144,8 @@ Parallax.propTypes = {
  * @type { Object }
  */
 Parallax.defaultProps = {
-  speed: 0.4,
-  scope: 100,
-  offset: 0,
-  slowerScrollRate: true
+  speed: 0.75,
+  scope: 400
 }
 
 /**
