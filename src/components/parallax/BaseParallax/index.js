@@ -9,6 +9,35 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 /**
+ *  @module isInViewport
+ */
+import { isInViewport } from 'utils/imageutils'
+
+/**
+ *  @module throttle
+ */
+import throttle from 'utils/throttle'
+
+const getTop = (elem) => {
+  var box = elem.getBoundingClientRect()
+  var body = document.body
+  var docEl = document.documentElement
+
+  var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop
+  var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft
+
+  var clientTop = docEl.clientTop || body.clientTop || 0
+  var clientLeft = docEl.clientLeft || body.clientLeft || 0
+
+  var top = box.top + scrollTop - clientTop
+  var left = box.left + scrollLeft - clientLeft
+
+  return { top: Math.round(top), left: Math.round(left) }
+}
+
+let clamp = (x, low, high) => Math.min(Math.max(x, low), high)
+
+/**
  *  @class Parallax
  *  @extends {Component}
  */
@@ -20,36 +49,73 @@ class Parallax extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      position: 0
+    }
+
     // Bind custom functions
     this.getPosition = this.getPosition.bind(this)
     this.scrollHandler = this.scrollHandler.bind(this)
-  }
+    this.bindScroll = this.bindScroll.bind(this)
+    this.unBindScroll = this.unBindScroll.bind(this)
+    this.getOffsetTop = this.getOffsetTop.bind(this)
+    this.getElement = this.getElement.bind(this)
 
-  componentWillMount () {
-    this.setState({
-      position: this.getPosition()
-    })
+    // Bind throttle
+    this.throttledScroll = throttle(this.scrollHandler, 0)
   }
 
   componentDidMount () {
-    this.startOffset = this.refs.node.offsetTop
-    window.addEventListener('scroll', this.scrollHandler)
+    this.bindScroll()
+    this.throttledScroll()
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('scroll', this.scrollHandler)
+  getOffsetTop () {
+    return getTop(this.getElement()).top
+  }
+
+  getElement () {
+    return this.refs.node
+  }
+
+  bindScroll () {
+    window.addEventListener('scroll', this.throttledScroll)
+    window.addEventListener('resize', this.throttledScroll)
+  }
+
+  unBindScroll () {
+    window.removeEventListener('scroll', this.throttledScroll)
+    window.removeEventListener('resize', this.throttledScroll)
   }
 
   getPosition () {
-    const { scope, offset, speed } = this.props
-    const position = ((window.pageYOffset - this.startOffset) * speed)
-    return Math.min(-Math.min(scope - offset, position), scope + offset)
+    const {
+      speed,
+      scope
+    } = this.props
+
+    const { parentElement } = this.getElement()
+
+    const scrollY = window.pageYOffset
+
+    const d = (scrollY - parentElement.offsetTop) * speed / scope
+
+    return (d * 100)
   }
 
   scrollHandler () {
+    if (!isInViewport(this.getElement())) {
+      return false
+    }
+
     this.setState({
       position: this.getPosition()
     })
+  }
+
+  componentWillUnmount () {
+    this.unBindScroll()
+    this.throttledScroll = null
   }
 
   render () {
@@ -78,9 +144,8 @@ Parallax.propTypes = {
  * @type { Object }
  */
 Parallax.defaultProps = {
-  speed: 1,
-  scope: 100,
-  offset: 0
+  speed: 0.75,
+  scope: 400
 }
 
 /**
