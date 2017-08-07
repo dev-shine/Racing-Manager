@@ -174,10 +174,10 @@ export class PrivateSyndicate extends Component {
                 image here
               </div>
             </div>
-            <div className=''>
+            <div className='private-syndicate__parallax-section'>
               <HorseHero {...syndicateUpperHero} />
             </div>
-            <div className=''>
+            <div className='private-syndicate__parallax-section'>
               <HorseHero {...syndicateLowerHero} />
             </div>
           </div>

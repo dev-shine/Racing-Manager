@@ -17,7 +17,7 @@ class HorseHero extends Component {
     return (
       <div className={modifiedClassNames}>
         <Parallax
-          speed={0.75}
+          speed={0.25}
           scope={400}>
             <div className='horse-hero__parallax-container'>
               <Image
