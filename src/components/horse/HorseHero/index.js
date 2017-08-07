@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import classNames from 'utils/classnames'
 
-import Image from 'components/image'
+// import Image from 'components/image'
 
 import HeroParallax from 'components/parallax/Hero'
 
@@ -23,9 +23,10 @@ class HorseHero extends Component {
           <h1 className='horse-hero__title absolute-center uppercase'>
             {title}
           </h1>
-          
+
         </HeroParallax>
-        {/*<div className='horse-hero__overlay'>
+        {/*
+        <div className='horse-hero__overlay'>
           <h1 className='horse-hero__title absolute-center uppercase'>
             {title}
           </h1>
@@ -34,7 +35,8 @@ class HorseHero extends Component {
           imageSrc={image}
           setRef={() => {}}
           className='horse-hero__image'
-        />*/}
+        />
+      */}
       </div>
     )
   }

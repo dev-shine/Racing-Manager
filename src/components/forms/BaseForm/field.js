@@ -115,10 +115,12 @@ class Field extends PureComponent {
   /**
    * @param errors
    */
-  /*updateErrors (errors) {
+  /*
+  updateErrors (errors) {
     const { name } = this.props
     this.context.updateErrors(errors, name)
-  }*/
+  }
+  */
   updateErrors (newErrors = []) {
     const { name } = this.props
     const { errors = [] } = this.context
