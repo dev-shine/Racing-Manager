@@ -74,3 +74,17 @@ export const getInitialAppData = (token) => {
     }
   })
 }
+
+export const getUpdateFeedComments = (data) => {
+  return get({
+    url: SERVICE_TYPES.COMMENT,
+    ...data
+  })
+}
+
+export const postFeedComment = (data) => {
+  return post({
+    url: SERVICE_TYPES.COMMENT,
+    ...data
+  })
+}

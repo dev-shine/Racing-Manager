@@ -43,7 +43,7 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
     return next(action)
   }
 
-  const { endpoint, types, data = {} } = action
+  const { endpoint, types, data = {}, headers = {} } = action
 
   const [requestType, successType, errorType] = types
 
@@ -54,7 +54,8 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
 
   // Set the authorization header
   config.headers = {
-    'Authorization': `JWT ${token}`
+    'Authorization': `JWT ${token}`,
+    ...headers
   }
 
   if (data.payload) {

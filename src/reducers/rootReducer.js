@@ -8,6 +8,7 @@ import login from './login'
 import auth from './auth'
 import registrationConfirmation from './registrationconfirmation'
 import dashboard from './dashboard'
+import feedupdatepopup from './feedupdatepopup'
 
 const rootReducer = combineReducers({
   register,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   login,
   auth,
   registrationConfirmation,
-  dashboard
+  dashboard,
+  feedupdatepopup
 })
 
 export default rootReducer
