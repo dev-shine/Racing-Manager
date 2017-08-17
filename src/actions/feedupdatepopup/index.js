@@ -58,10 +58,8 @@ export const fetchComments = (messageId) => {
     type: CALL_ACTION_TYPE,
     types: [fetchingComments, fetchedComments, failedToFetchComments],
     endpoint: getUpdateFeedComments,
-    data: {
-      payload: {
-        messageId
-      }
+    payload: {
+      messageId
     }
   }
 }
@@ -84,12 +82,10 @@ export const postComment = (messageId) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      data: {
-        payload: JSON.stringify({
-          messageId,
-          text
-        })
-      }
+      payload: JSON.stringify({
+        messageId,
+        text
+      })
     })
     .then(() => {
       dispatch(fetchComments(messageId))

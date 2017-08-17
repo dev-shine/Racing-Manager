@@ -24,11 +24,6 @@ import basePopupTile from 'components/tiles/common/BasePopupTile'
 import TileHeader from 'components/tiles/common/TileHeader'
 
 /**
- *  @module TileFooter
- */
-import TileFooter from 'components/tiles/common/TileFooter'
-
-/**
  *  @module TileContent
  */
 import TileContent from 'components/tiles/common/TileContent'
@@ -67,7 +62,6 @@ const ImagePopupTile = props => {
           date={date} />
         <TileContent
           text={text}/>
-        <TileFooter/>
       </div>
     </div>
   )

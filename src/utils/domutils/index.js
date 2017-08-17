@@ -126,3 +126,15 @@ export const getTop = (elem) => {
 
   return { top: Math.round(top), left: Math.round(left) }
 }
+
+/**
+ *  stopPropagation
+ *  @description Will stop the propagation of events going to the parent
+ *  @param  {Event} e
+ *  @return {Void}
+ */
+export const stopPropagation = (e) => {
+  if (e && e.stopPropagation) {
+    e.stopPropagation()
+  }
+}

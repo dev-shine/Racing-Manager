@@ -141,13 +141,14 @@ export const fetchHorseInfo = (name) => {
  *  @param  {Object} data
  *  @return {Promise}
  */
-export const submitHorseUpdate = (data) => {
+export const submitHorseUpdate = (horseId, data) => {
   return {
     type: CALL_ACTION_TYPE,
     types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
     endpoint: performHorseUpdate,
-    data: {
-      payload: data
-    }
+    query: {
+      horseId
+    },
+    payload: data
   }
 }

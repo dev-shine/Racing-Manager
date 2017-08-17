@@ -72,12 +72,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       // Construct data
       const data = processMediaPayload({
-        horseId,
         attachment,
         text
       })
 
-      dispatch(submitHorseUpdate(data))
+      dispatch(submitHorseUpdate(horseId, data))
     },
     updateFeedText: text => {
       dispatch(updateFeedText(text, reducerName))

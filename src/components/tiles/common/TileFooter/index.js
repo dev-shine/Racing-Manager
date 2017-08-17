@@ -1,7 +1,7 @@
 /**
  * @module react
  */
-import React from 'react' // eslint-disable-line no-unused-vars
+import React from 'react'
 
 /**
  * @module PropTypes
@@ -11,47 +11,43 @@ import PropTypes from 'prop-types'
 /**
  *  @module Icon
  */
-// import Icon from 'components/icon'
+import Icon from 'components/icon'
 
 /**
  * @module classNames
  */
-// import classNames from 'utils/classnames'
+import classNames from 'utils/classnames'
 
 const TileFooter = props => {
-  /*
   const {
     className,
-    modifier
+    modifier,
+    onSocialShare
   } = props
-  */
 
-  // const modifiedClassNames = classNames('tile-footer', className, modifier)
+  const modifiedClassNames = classNames('tile-footer', className, modifier)
 
   return (
-    null
-  )
-
- // Uncomment this when we need them!!!
-
- /*
- return (
     <div className={modifiedClassNames}>
       <div className='tile-footer__item'>
         <Icon
           className='tile-footer__icon micro'
           modifier='heart' />
-        <p className='tile-footer__text micro'>0</p>
+        <p className='tile-footer__text micro'></p>
       </div>
       <div className='tile-footer__item'>
         <Icon
           className='tile-footer__icon micro'
           modifier='comment' />
-        <p className='tile-footer__text micro'>0</p>
+        <p className='tile-footer__text micro'></p>
+      </div>
+      <div className='tile-footer__item' onClick={onSocialShare}>
+        <Icon
+          className='tile-footer__icon micro'
+          modifier='share' />
       </div>
     </div>
   )
-  */
 }
 
 /**
@@ -66,7 +62,8 @@ TileFooter.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  onSocialShare: PropTypes.func
 }
 
 /**
