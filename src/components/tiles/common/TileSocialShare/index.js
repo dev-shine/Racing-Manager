@@ -6,44 +6,55 @@ import Icon from 'components/icon'
 
 import classNames from 'utils/classnames'
 
+import { CSSTransitionGroup } from 'react-transition-group'
+
+import { stopPropagation } from 'utils/domutils'
+
 const TileSocialShare = (props) => {
   const {
     className,
     modifier,
     shareText,
-    onClose
+    onClose,
+    show
   } = props
 
   const modifiedClassNames = classNames('tile-social-share', ['section-shadow--top', className], modifier)
 
-  const stopPropagation = (e) => {
-    if (e && e.stopPropagation) {
-      e.stopPropagation()
-    }
-  }
-
   return (
-    <div className={modifiedClassNames}>
-      <div className='tile-social-share__container'>
-        <div className='tile-social-share__social-icons'>
-          <a href={`whatsapp://send?text=${encodeURIComponent(shareText)}`} onClick={stopPropagation}>
+    <CSSTransitionGroup
+      transitionName="fade-in"
+      transitionEnterTimeout={400}
+      transitionLeaveTimeout={400}>
+      {
+      show ? (
+        <div className={modifiedClassNames}>
+          <div className='tile-social-share__container'>
+            <div className='tile-social-share__social-icons'>
+              <a href={`whatsapp://send?text=${encodeURIComponent(shareText)}`} onClick={stopPropagation}>
+                <Icon
+                  className='tile-social-share__icon'
+                  modifier='whatsapp' />
+              </a>
+            </div>
+          </div>
+          <div className='tile-social-share__close' onClick={onClose}>
             <Icon
-              className='tile-social-share__icon'
-              modifier='whatsapp' />
-          </a>
+              className='tile-social-share__close-icon'
+              modifier='close'/>
+          </div>
         </div>
-      </div>
-      <div className='tile-social-share__close' onClick={(e) => { stopPropagation(e); onClose && onClose() }}>
-        <Icon
-          className='tile-social-share__close-icon'
-          modifier='close'/>
-      </div>
-    </div>
+
+      )
+      : null
+    }
+    </CSSTransitionGroup>
   )
 }
 
 TileSocialShare.defaultProps = {
-  shareText: ''
+  shareText: '',
+  show: false
 }
 
 TileSocialShare.propTypes = {
@@ -54,7 +65,8 @@ TileSocialShare.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  show: PropTypes.bool
 }
 
 export default TileSocialShare

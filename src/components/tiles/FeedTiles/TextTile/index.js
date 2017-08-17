@@ -49,7 +49,10 @@ const TextTile = props => {
     modifier,
     name,
     date,
-    text
+    text,
+    showSocial,
+    hideSocialSharing,
+    showSocialSharing
   } = props
 
   const modifiedClassNames = classNames('text-tile', className, modifier)
@@ -61,8 +64,11 @@ const TextTile = props => {
         date={date} />
       <TileContent
         text={text}/>
-      <TileFooter />
+      <TileFooter
+        onSocialShare={showSocialSharing} />
       <TileSocialShare
+        show={showSocial}
+        onClose={hideSocialSharing}
         shareText={text} />
     </div>
   )

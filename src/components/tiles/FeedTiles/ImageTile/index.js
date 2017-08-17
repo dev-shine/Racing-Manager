@@ -56,7 +56,10 @@ const ImageTile = props => {
     date,
     text,
     src,
-    rootPath
+    rootPath,
+    showSocial,
+    hideSocialSharing,
+    showSocialSharing
   } = props
 
   const modifiedClassNames = classNames('image-tile', className, modifier)
@@ -71,8 +74,11 @@ const ImageTile = props => {
         date={date} />
       <TileContent
         text={text}/>
-      <TileFooter/>
+      <TileFooter
+        onSocialShare={showSocialSharing} />
       <TileSocialShare
+        show={showSocial}
+        onClose={hideSocialSharing}
         shareText={text} />
     </div>
   )

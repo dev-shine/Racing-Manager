@@ -21,7 +21,8 @@ import classNames from 'utils/classnames'
 const TileFooter = props => {
   const {
     className,
-    modifier
+    modifier,
+    onSocialShare
   } = props
 
   const modifiedClassNames = classNames('tile-footer', className, modifier)
@@ -40,7 +41,7 @@ const TileFooter = props => {
           modifier='comment' />
         <p className='tile-footer__text micro'></p>
       </div>
-      <div className='tile-footer__item'>
+      <div className='tile-footer__item' onClick={onSocialShare}>
         <Icon
           className='tile-footer__icon micro'
           modifier='share' />
@@ -61,7 +62,8 @@ TileFooter.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  onSocialShare: PropTypes.func
 }
 
 /**

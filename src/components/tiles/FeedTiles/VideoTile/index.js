@@ -57,7 +57,10 @@ const VideoTile = props => {
     text,
     poster,
     src,
-    rootPath
+    rootPath,
+    showSocial,
+    hideSocialSharing,
+    showSocialSharing
   } = props
 
   const modifiedClassNames = classNames('video-tile', className, modifier)
@@ -73,8 +76,11 @@ const VideoTile = props => {
         date={date} />
       <TileContent
         text={text}/>
-      <TileFooter/>
+      <TileFooter
+        onSocialShare={showSocialSharing} />
       <TileSocialShare
+        onClose={hideSocialSharing}
+        show={showSocial}
         shareText={text} />
     </div>
   )

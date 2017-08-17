@@ -108,7 +108,10 @@ class MultipleTile extends Component {
       date,
       text,
       attachments,
-      rootPath
+      rootPath,
+      showSocial,
+      hideSocialSharing,
+      showSocialSharing
     } = this.props
 
     const modifiedClassNames = classNames('multiple-tile', className, modifier)
@@ -123,8 +126,11 @@ class MultipleTile extends Component {
           date={date} />
         <TileContent
           text={text}/>
-        <TileFooter/>
+        <TileFooter
+          onSocialShare={showSocialSharing} />
         <TileSocialShare
+          show={showSocial}
+          onClose={hideSocialSharing}
           shareText={text} />
       </div>
     )
