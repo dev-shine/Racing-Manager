@@ -420,13 +420,14 @@ class Carousel extends Component {
    *  @description Prevent default / propagations.
    */
   handleClick (e) {
+    e.stopPropagation()
+
+    if (e.nativeEvent) {
+      e.nativeEvent.stopPropagation()
+    }
+
     if (this.clickSafe === true) {
       e.preventDefault()
-      e.stopPropagation()
-
-      if (e.nativeEvent) {
-        e.nativeEvent.stopPropagation()
-      }
     }
   }
 
