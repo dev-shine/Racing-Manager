@@ -39,6 +39,11 @@ import baseTile from 'components/tiles/common/BaseTile'
 import TileVideoContent from 'components/tiles/common/TileVideoContent'
 
 /**
+ *  @module TileSocialShare
+ */
+import TileSocialShare from 'components/tiles/common/TileSocialShare'
+
+/**
  *  @name VideoTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -69,6 +74,8 @@ const VideoTile = props => {
       <TileContent
         text={text}/>
       <TileFooter/>
+      <TileSocialShare
+        shareText={text} />
     </div>
   )
 }

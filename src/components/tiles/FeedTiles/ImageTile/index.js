@@ -39,6 +39,11 @@ import baseTile from 'components/tiles/common/BaseTile'
 import TileImageContent from 'components/tiles/common/TileImageContent'
 
 /**
+ *  @module TileSocialShare
+ */
+import TileSocialShare from 'components/tiles/common/TileSocialShare'
+
+/**
  *  @name ImageTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -67,6 +72,8 @@ const ImageTile = props => {
       <TileContent
         text={text}/>
       <TileFooter/>
+      <TileSocialShare
+        shareText={text} />
     </div>
   )
 }

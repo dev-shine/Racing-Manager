@@ -49,6 +49,11 @@ import TileVideoContent from 'components/tiles/common/TileVideoContent'
 import TileMediaContent from 'components/tiles/common/TileMediaContent'
 
 /**
+ *  @module TileSocialShare
+ */
+import TileSocialShare from 'components/tiles/common/TileSocialShare'
+
+/**
  *  createSlides
  *  @param  {Array} images
  *  @param  {Array} videos
@@ -119,6 +124,8 @@ class MultipleTile extends Component {
         <TileContent
           text={text}/>
         <TileFooter/>
+        <TileSocialShare
+          shareText={text} />
       </div>
     )
   }

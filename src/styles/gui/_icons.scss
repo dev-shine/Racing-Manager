@@ -13,6 +13,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--email:before {
+  content: "\e911";
+  color: #233654;
+}
+.icon--whatsapp:before {
+  content: "\e912";
+  color: #233654;
+}
+.icon--share:before {
+  content: "\e910";
+  color: #818181;
+}
 .icon--horse:before {
   content: "\e90e";
   color: #595a5c;

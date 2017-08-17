@@ -34,6 +34,11 @@ import TileContent from 'components/tiles/common/TileContent'
 import baseTile from 'components/tiles/common/BaseTile'
 
 /**
+ *  @module TileSocialShare
+ */
+import TileSocialShare from 'components/tiles/common/TileSocialShare'
+
+/**
  *  @name TextTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -56,7 +61,9 @@ const TextTile = props => {
         date={date} />
       <TileContent
         text={text}/>
-      <TileFooter/>
+      <TileFooter />
+      <TileSocialShare
+        shareText={text} />
     </div>
   )
 }
