@@ -18,6 +18,11 @@ import Icon from 'components/icon'
  */
 import classNames from 'utils/classnames'
 
+/**
+ *  @module stopPropagation
+ */
+import { stopPropagation } from 'utils/domutils'
+
 const TileFooter = props => {
   const {
     className,
@@ -28,7 +33,7 @@ const TileFooter = props => {
   const modifiedClassNames = classNames('tile-footer', className, modifier)
 
   return (
-    <div className={modifiedClassNames}>
+    <div className={modifiedClassNames} onClick={stopPropagation}>
       <div className='tile-footer__item'>
         <Icon
           className='tile-footer__icon micro'

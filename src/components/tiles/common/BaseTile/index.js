@@ -21,7 +21,7 @@ import omit from 'utils/objectutils/omit'
 /**
  *  @module hasTextSelection
  */
-import { hasTextSelection, stopPropagation } from 'utils/domutils'
+import { hasTextSelection } from 'utils/domutils'
 
 /**
  *  @name BaseTileHoc
@@ -51,17 +51,13 @@ const BaseTileHoc = WrappedComponent => {
       this.showSocialSharing = this.showSocialSharing.bind(this)
     }
 
-    hideSocialSharing (e) {
-      stopPropagation(e)
-
+    hideSocialSharing () {
       this.setState({
         showSocial: false
       })
     }
 
-    showSocialSharing (e) {
-      stopPropagation(e)
-
+    showSocialSharing () {
       this.setState({
         showSocial: true
       })
