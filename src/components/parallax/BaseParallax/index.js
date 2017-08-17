@@ -39,6 +39,8 @@ class Parallax extends Component {
       position: 0
     }
 
+    this.mounted = false
+
     // Bind custom functions
     this.getPosition = this.getPosition.bind(this)
     this.scrollHandler = this.scrollHandler.bind(this)
@@ -52,6 +54,8 @@ class Parallax extends Component {
   }
 
   componentDidMount () {
+    this.mounted = true
+
     this.bindScroll()
     this.throttledScroll()
   }
@@ -90,6 +94,10 @@ class Parallax extends Component {
   }
 
   scrollHandler () {
+    if (!this.mounted) {
+      return false
+    }
+
     if (!isInViewport(this.getElement())) {
       return false
     }
@@ -100,6 +108,7 @@ class Parallax extends Component {
   }
 
   componentWillUnmount () {
+    this.mounted = false
     this.unBindScroll()
     this.throttledScroll = null
   }

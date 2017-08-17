@@ -53,8 +53,21 @@ chai.use(chaiEnzyme())
 describe('Components - FeedUpdatePopup', () => {
   let wrapper
 
+  let props = {
+    className: '',
+    modifier: '',
+    submitTitle: '',
+    comments: [],
+    updateFeedText: '',
+    clearFeedData: () => {},
+    commentText: '',
+    charCount: 10,
+    commentPosted: false,
+    maxCharCount: 400
+  }
+
   beforeEach(() => {
-    wrapper = mount(<FeedUpdatePopup />)
+    wrapper = mount(<FeedUpdatePopup {...props} />)
   })
 
   it('should exist', () => {
