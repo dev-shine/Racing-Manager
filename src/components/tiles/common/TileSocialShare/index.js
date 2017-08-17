@@ -28,10 +28,10 @@ const TileSocialShare = (props) => {
       transitionLeaveTimeout={400}>
       {
       show ? (
-        <div className={modifiedClassNames}>
+        <div className={modifiedClassNames} onClick={stopPropagation}>
           <div className='tile-social-share__container'>
             <div className='tile-social-share__social-icons'>
-              <a href={`whatsapp://send?text=${encodeURIComponent(shareText)}`} onClick={stopPropagation}>
+              <a href={`whatsapp://send?text=${encodeURIComponent(shareText)}`}>
                 <Icon
                   className='tile-social-share__icon'
                   modifier='whatsapp' />
