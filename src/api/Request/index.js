@@ -17,6 +17,10 @@ const getQueryString = params => {
   .join('&')
 }
 
+const constructQuery = (query) => {
+  return `?${getQueryString(query)}`
+}
+
 /**
  *  request
  *  @param  {Object} params
@@ -33,10 +37,14 @@ const request = params => {
 
   if (['GET', 'DELETE'].indexOf(method) > -1) {
     if (params.data) {
-      qs = '?' + getQueryString(params.data)
+      qs = constructQuery(params.data)
     }
   } else { // POST or PUT
     body = params.data
+
+    if (params.query) {
+      qs = constructQuery(params.query)
+    }
   }
 
   let url = params.url + qs

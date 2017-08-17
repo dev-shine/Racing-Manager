@@ -43,7 +43,7 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
     return next(action)
   }
 
-  const { endpoint, types, data = {}, headers = {} } = action
+  const { endpoint, types, payload = {}, query = {}, headers = {} } = action
 
   const [requestType, successType, errorType] = types
 
@@ -58,8 +58,12 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
     ...headers
   }
 
-  if (data.payload) {
-    config.data = data.payload
+  if (payload) {
+    config.data = payload
+  }
+
+  if (query) {
+    config.query = query
   }
 
   if (requestType) {
