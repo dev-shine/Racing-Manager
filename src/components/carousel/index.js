@@ -1105,7 +1105,7 @@ class Carousel extends Component {
     } = this.state
 
     // Format the children for the slides.
-    const slideChildren = React.Children.count(children) > 1
+    const slideChildren = React.Children.count(children) >= 1
           ? this.formatChildren(children)
           : children
 
