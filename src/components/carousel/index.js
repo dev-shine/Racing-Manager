@@ -16,12 +16,12 @@ import classNames from 'classnames'
 /**
  *  @module CarouselArrow
  */
-import CarouselArrow from 'components/buttons/CarouselArrow'
+import CarouselArrow from './CarouselArrow'
 
 /**
  *  @module CarouselPaginationButton
  */
-import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
+import CarouselPaginationButton from './CarouselPaginationButton'
 
 /**
  *  @module CSSTransitionGroup
