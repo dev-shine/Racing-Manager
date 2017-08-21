@@ -88,6 +88,10 @@ class FeedSubmitTile extends Component {
     }
   }
 
+  componentWillUnmount () {
+    this.clearData()
+  }
+
   /**
    *  clearFileInputValue
    *  @description Clears the input value, so new files can be added.
@@ -214,7 +218,8 @@ class FeedSubmitTile extends Component {
       maxCharCount,
       submitFeedUpdate,
       feedFiles,
-      title
+      title,
+      allowAttachments
     } = this.props
 
     const {
@@ -265,19 +270,25 @@ class FeedSubmitTile extends Component {
             </div>
             <div className='col-xs-6 col-sm-4 align-middle'>
               <div className='row feed-submit__flex'>
-                <div className='no-padding col-xs-5 feed-submit__flex feed-submit__flex--align'>
-                  <div className='align-middle feed-submit__text-container feed-submit__attachment'>
-                    <Icon
-                      modifier='paperclip' />
-                    <input
-                      onChange={this.addAttachment}
-                      className='feed-submit__attachmentinput'
-                      type='file'
-                      multiple
-                      ref={ref => { this.attachmentRef = ref }}/>
-                  </div>
-                </div>
-                <div className='no-padding col-xs-6 col-xs-push-1'>
+                {
+                  allowAttachments
+                  ? (
+                      <div className='no-padding col-xs-5 feed-submit__flex feed-submit__flex--align'>
+                        <div className='align-middle feed-submit__text-container feed-submit__attachment'>
+                          <Icon
+                            modifier='paperclip' />
+                          <input
+                            onChange={this.addAttachment}
+                            className='feed-submit__attachmentinput'
+                            type='file'
+                            multiple
+                            ref={ref => { this.attachmentRef = ref }}/>
+                        </div>
+                      </div>
+                    )
+                  : null
+                }
+                <div className={`no-padding col-xs-6 col-xs-push-${allowAttachments ? 1 : 6}`}>
                   <TextButton
                     className='feed-submit__button'
                     text='send'
@@ -298,6 +309,7 @@ class FeedSubmitTile extends Component {
  *  @type {Object}
  */
 FeedSubmitTile.defaultProps = {
+  allowAttachments: true,
   className: '',
   maxCharCount: 400,
   title: 'Post an update',
@@ -321,12 +333,13 @@ FeedSubmitTile.propTypes = {
   ]),
   feedText: PropTypes.string,
   submitFeedUpdate: PropTypes.func.isRequired,
-  addFeedMediaFiles: PropTypes.func.isRequired,
+  addFeedMediaFiles: PropTypes.func,
   updateFeedText: PropTypes.func.isRequired,
   charCount: PropTypes.number,
   maxCharCount: PropTypes.number,
   allowedFileTypes: PropTypes.array,
-  clearFeedData: PropTypes.func.isRequired
+  clearFeedData: PropTypes.func.isRequired,
+  allowAttachments: PropTypes.bool
 }
 
 /**

@@ -39,6 +39,9 @@ $color-bg-secondary: $white;
 $color-popup-bg: $white;
 $color-faded-popup-bg: rgba($white, 0.4);
 
+// Overlay
+$color-parallax-image: rgba($white, 0.4);
+
 // Inputs
 $form-input-color: $nickel;
 $form-input-color-active: $vanilla-ice;
@@ -46,6 +49,9 @@ $placeholder-color: $taupe-gray;
 
 // Cta
 $cta-link-color: $vanilla-ice;
+
+// Icon CTA
+$icon-cta-close: $vanilla-ice;
 
 // Social
 $color-twitter: $sky-blue;

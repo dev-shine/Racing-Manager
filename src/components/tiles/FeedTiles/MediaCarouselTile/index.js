@@ -49,6 +49,11 @@ import TileVideoContent from 'components/tiles/common/TileVideoContent'
 import TileMediaContent from 'components/tiles/common/TileMediaContent'
 
 /**
+ *  @module TileSocialShare
+ */
+import TileSocialShare from 'components/tiles/common/TileSocialShare'
+
+/**
  *  createSlides
  *  @param  {Array} images
  *  @param  {Array} videos
@@ -103,7 +108,10 @@ class MultipleTile extends Component {
       date,
       text,
       attachments,
-      rootPath
+      rootPath,
+      showSocial,
+      hideSocialSharing,
+      showSocialSharing
     } = this.props
 
     const modifiedClassNames = classNames('multiple-tile', className, modifier)
@@ -118,7 +126,12 @@ class MultipleTile extends Component {
           date={date} />
         <TileContent
           text={text}/>
-        <TileFooter/>
+        <TileFooter
+          onSocialShare={showSocialSharing} />
+        <TileSocialShare
+          show={showSocial}
+          onClose={hideSocialSharing}
+          shareText={text} />
       </div>
     )
   }

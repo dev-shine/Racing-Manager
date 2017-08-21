@@ -6,7 +6,7 @@ import View from 'components/routing/View'
 import capitalize from 'utils/capitalize'
 
 import AjaxLoader from 'components/ajaxloader'
-import { fetchHorseInfo } from 'actions/horse'
+import { fetchHorseInfo, clearHorseData } from 'actions/horse'
 
 import Table from 'components/gui/Table'
 import List from 'components/gui/List'
@@ -45,6 +45,10 @@ export class PrivateHorse extends Component {
     if (this.props.posted !== nextProps.posted && nextProps.posted) {
       this.props.getHorseInfo()
     }
+  }
+
+  componentWillUnmount () {
+    this.props.clearHorseData()
   }
 
   render () {
@@ -245,6 +249,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getHorseInfo: () => {
     const name = ownProps.match.params.name
     return dispatch(fetchHorseInfo(name))
+  },
+  clearHorseData: () => {
+    return dispatch(clearHorseData())
   }
 })
 

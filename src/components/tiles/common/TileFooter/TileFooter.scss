@@ -1,7 +1,12 @@
 .tile-footer {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  width: 100%;
+  bottom: 0px;
+  left: 0;
+  padding: 0 10px;
+  height: 40px;
+  display: flex;
+  align-content: center;
   @include clearfix();
 
   &__item {
@@ -21,7 +26,7 @@
   &__icon {
     position: relative;
     display: inline-block;
-    font-size: 12px;
+    font-size: 14px;
     margin-right: 5px;
   }
 

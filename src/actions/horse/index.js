@@ -4,6 +4,11 @@ import {
 } from 'api/Services'
 
 /**
+ *  @module CALL_ACTION_TYPE
+ */
+import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+
+/**
  *  @module formatHorseData
  */
 import { formatHorseData } from 'utils/horseutils'
@@ -43,6 +48,12 @@ export const POSTED_HORSE_UPDATE = 'POSTED_HORSE_UPDATE'
  *  @type {String}
  */
 export const FAILED_TO_POST_HORSE_UPDATE = 'FAILED_TO_POST_HORSE_UPDATE'
+
+/**
+ *  CLEAR_HORSE_DATA
+ *  @type {String}
+ */
+export const CLEAR_HORSE_DATA = 'CLEAR_HORSE_DATA'
 
 /**
  *  gettingHorseInfo
@@ -94,6 +105,14 @@ export const failedToPostHorseUpdate = () => ({
 })
 
 /**
+ *  clearHorseData
+ *  @return {Object}
+ */
+export const clearHorseData = () => ({
+  type: CLEAR_HORSE_DATA
+})
+
+/**
  *  fetchHorseInfo [async]
  *  @param {String} name
  *  @return {Function}
@@ -117,23 +136,19 @@ export const fetchHorseInfo = (name) => {
 }
 
 /**
- *  submitHorseUpdate [async]
- *  @param {Object} data
+ *  @name  submitHorseUpdate
+ *  @description This will filter down to the AuthenticatedRequest middleware.
+ *  @param  {Object} data
  *  @return {Promise}
  */
-export const submitHorseUpdate = (data) => {
-  return (dispatch, getState) => {
-    // Dispatch an action for starting the posting.
-    dispatch(postingHorseUpdate())
-
-    return performHorseUpdate(data)
-    .then((data) => {
-      dispatch(postedHorseUpdate(data))
-      return Promise.resolve(data)
-    })
-    .catch((error) => {
-      dispatch(failedToPostHorseUpdate(error))
-      return Promise.reject(error)
-    })
+export const submitHorseUpdate = (horseId, data) => {
+  return {
+    type: CALL_ACTION_TYPE,
+    types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
+    endpoint: performHorseUpdate,
+    query: {
+      horseId
+    },
+    payload: data
   }
 }

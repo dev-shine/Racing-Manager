@@ -41,6 +41,26 @@ const BaseTileHoc = WrappedComponent => {
      */
     constructor (props) {
       super(props)
+
+      this.state = {
+        showSocial: false
+      }
+
+      // Custom fn
+      this.hideSocialSharing = this.hideSocialSharing.bind(this)
+      this.showSocialSharing = this.showSocialSharing.bind(this)
+    }
+
+    hideSocialSharing () {
+      this.setState({
+        showSocial: false
+      })
+    }
+
+    showSocialSharing () {
+      this.setState({
+        showSocial: true
+      })
     }
 
     render () {
@@ -50,6 +70,10 @@ const BaseTileHoc = WrappedComponent => {
         id,
         rootPath
       } = this.props
+
+      const {
+        showSocial
+      } = this.state
 
       // Remove props not needed for wrapped component
       const modifiedProps = omit(this.props, ['rootPath', 'onClick', 'className'])
@@ -72,7 +96,13 @@ const BaseTileHoc = WrappedComponent => {
 
       return (
         <div className='base-tile' style={{...this.props.style}} onClick={addIdToOnClick}>
-          <WrappedComponent {...modifiedProps} rootPath={ checkedRootPath } className={`section-shadow--tile ${modifiedClassNames}`} />
+          <WrappedComponent
+            {...modifiedProps}
+            showSocial={showSocial}
+            rootPath={ checkedRootPath }
+            className={`section-shadow--tile ${modifiedClassNames}`}
+            hideSocialSharing={this.hideSocialSharing}
+            showSocialSharing={this.showSocialSharing} />
         </div>
       )
     }

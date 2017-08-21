@@ -36,7 +36,7 @@ import { Block, Grid } from 'components/masonry'
 /**
  *  @module FeedUpdatePopup
  */
-import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
+import FeedUpdatePopupContainer from 'containers/FeedUpdatePopupContainer'
 
 /**
  *  @class
@@ -122,7 +122,8 @@ class FeedGallery extends Component {
       createdAt,
       timeStamp,
       text,
-      attachment
+      attachment,
+      author
     } = tile
 
     // Switch between the post type.
@@ -132,7 +133,7 @@ class FeedGallery extends Component {
           <TextTile
             key={`text-${createdAt}`}
             id={_id}
-            name='Andy Jones'
+            name={author}
             date={timeStamp}
             text={text}
             onClick={this.handleTileClick} />
@@ -143,7 +144,7 @@ class FeedGallery extends Component {
           <MediaCarouselTile
             key={`iv-${createdAt}`}
             id={_id}
-            name='Andy Jones'
+            name={author}
             date={timeStamp}
             text={text}
             attachments={attachment}
@@ -156,7 +157,7 @@ class FeedGallery extends Component {
             key={`image-${createdAt}`}
             id={_id}
             src={attachment[0].path}
-            name='Andy Jones'
+            name={author}
             date={timeStamp}
             text={text}
             onClick={this.handleTileClick} />
@@ -169,7 +170,7 @@ class FeedGallery extends Component {
             id={_id}
             src={attachment[0].path}
             poster={attachment[0].thumbnail}
-            name='Andy Jones'
+            name={author}
             date={timeStamp}
             text={text}
             onClick={this.handleTileClick} />
@@ -207,7 +208,7 @@ class FeedGallery extends Component {
             })
           }
         </Grid>
-        <FeedUpdatePopup
+        <FeedUpdatePopupContainer
           submitTitle={popupTitle}
           isOpen={showPopup}
           onClick={this.closePopup}

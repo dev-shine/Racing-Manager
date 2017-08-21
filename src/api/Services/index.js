@@ -34,8 +34,7 @@ export const getHorseInfo = (name) => {
 export const performHorseUpdate = (data) => {
   return post({
     url: SERVICE_TYPES.MESSAGE,
-    data,
-    headers: {} // Let fetch set the headers for multipart form data
+    ...data
   })
 }
 
@@ -73,5 +72,19 @@ export const getInitialAppData = (token) => {
     headers: {
       'Authorization': `JWT ${token}`
     }
+  })
+}
+
+export const getUpdateFeedComments = (data) => {
+  return get({
+    url: SERVICE_TYPES.COMMENT,
+    ...data
+  })
+}
+
+export const postFeedComment = (data) => {
+  return post({
+    url: SERVICE_TYPES.COMMENT,
+    ...data
   })
 }

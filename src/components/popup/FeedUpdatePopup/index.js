@@ -44,6 +44,11 @@ import SubmitPost from 'components/tiles/FeedSubmitTile'
 import { ROOT_PATH } from 'api/ServiceTypes'
 
 /**
+ *  @module FeedCommentList
+ */
+import FeedCommentList from 'components/tiles/FeedCommentList'
+
+/**
  *  @class
  *  @name FeedUpdatePopup
  *  @extends {Component}
@@ -54,6 +59,53 @@ export class FeedUpdatePopup extends Component {
    */
   constructor (props) {
     super(props)
+
+    this.getTileId = this.getTileId.bind(this)
+    this.postComment = this.postComment.bind(this)
+  }
+
+  componentDidMount () {
+    const messageId = this.getTileId()
+
+    if (messageId) {
+      this.props.fetchComments(messageId)
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    // Handle different popup id.
+  }
+
+  componentWillUnmount () {
+    this.props.clearComments()
+  }
+
+  getTileId () {
+    const {
+      tile
+    } = this.props
+
+    if (tile) {
+      const {
+        _id
+      } = tile
+
+      return _id
+    }
+
+    return false
+  }
+
+  postComment () {
+    const messageId = this.getTileId()
+
+    if (messageId) {
+      const {
+        postComment
+      } = this.props
+
+      postComment(messageId)
+    }
   }
 
   /**
@@ -72,7 +124,8 @@ export class FeedUpdatePopup extends Component {
         createdAt,
         timeStamp,
         text,
-        attachment
+        attachment,
+        author
       } = tile
 
       switch (postType) {
@@ -83,7 +136,7 @@ export class FeedUpdatePopup extends Component {
               className='feed-popup__tile'
               key={`fptext-${createdAt}`}
               id={createdAt}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text} />
           )
@@ -95,7 +148,7 @@ export class FeedUpdatePopup extends Component {
               className='feed-popup__tile'
               key={`fpiv-${createdAt}`}
               id={createdAt}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text}
               attachments={attachment} />
@@ -109,7 +162,7 @@ export class FeedUpdatePopup extends Component {
               key={`fpimage-${createdAt}`}
               id={createdAt}
               src={attachment[0].path}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text} />
           )
@@ -123,7 +176,7 @@ export class FeedUpdatePopup extends Component {
               id={createdAt}
               src={attachment[0].path}
               poster={attachment[0].thumbnail}
-              name='Andy Jones'
+              name={author}
               date={timeStamp}
               text={text} />
           )
@@ -137,7 +190,14 @@ export class FeedUpdatePopup extends Component {
     const {
       className,
       modifier,
-      submitTitle
+      submitTitle,
+      comments,
+      updateFeedText,
+      clearFeedData,
+      commentText,
+      charCount,
+      commentPosted,
+      maxCharCount
     } = this.props
 
     // Modified class names for container
@@ -149,15 +209,23 @@ export class FeedUpdatePopup extends Component {
         <div className='feed-popup__bottom section-shadow'>
           <div className='col-xs-12 feed-popup__bottomcontent'>
             <SubmitPost
+              allowAttachments={false}
               title={submitTitle}
-              feedText={''}
-              submitFeedUpdate={() => {}}
-              addFeedMediaFiles={() => {}}
-              updateFeedText={() => {}}
-              clearFeedData={() => {}}
-              charCount={400}
-              maxCharCount={400}
-              horseId={20} />
+              feedText={commentText}
+              feedPosted={commentPosted}
+              submitFeedUpdate={this.postComment}
+              updateFeedText={updateFeedText}
+              clearFeedData={clearFeedData}
+              charCount={charCount}
+              maxCharCount={maxCharCount} />
+          </div>
+
+          <div className='col-xs-12 feed-popup__comment-list'>
+            {
+              comments.length
+              ? <FeedCommentList comments={comments} />
+              : null
+            }
           </div>
         </div>
       </div>

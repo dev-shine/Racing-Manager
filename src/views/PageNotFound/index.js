@@ -25,7 +25,7 @@ class PageNotFound extends Component {
                 404 error
               </h1>
               <h2 className='page-not-found__title uppercase'>
-                ah, thats why the long face
+                ah, that's why the long face
               </h2>
               <p className='page-not-found__paragraph'>
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut

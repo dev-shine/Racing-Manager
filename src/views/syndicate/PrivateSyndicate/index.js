@@ -18,7 +18,7 @@ import HorseSmallSection from 'components/horse/HorseSmallSection'
 import HorseHero from 'components/horse/HorseHero'
 
 import { constructStaticUrl } from 'utils/horseutils'
-import { fetchSyndicateInfo } from 'actions/syndicate'
+import { fetchSyndicateInfo, clearSyndicateData } from 'actions/syndicate'
 
 // mockup data
 import {
@@ -32,8 +32,16 @@ import {
 } from 'data/horse'
 
 export class PrivateSyndicate extends Component {
+  constructor (props) {
+    super(props)
+  }
+
   componentDidMount () {
     this.props.getSyndicateInfo()
+  }
+
+  componentWillUnmount () {
+    this.props.clearSyndicateData()
   }
 
   render () {
@@ -166,10 +174,10 @@ export class PrivateSyndicate extends Component {
                 image here
               </div>
             </div>
-            <div className=''>
+            <div className='private-syndicate__parallax-section'>
               <HorseHero {...syndicateUpperHero} />
             </div>
-            <div className=''>
+            <div className='private-syndicate__parallax-section'>
               <HorseHero {...syndicateLowerHero} />
             </div>
           </div>
@@ -196,6 +204,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getSyndicateInfo: () => {
     const name = ownProps.match.params.name
     dispatch(fetchSyndicateInfo({ name }))
+  },
+  clearSyndicateData: () => {
+    return dispatch(clearSyndicateData())
   }
 })
 

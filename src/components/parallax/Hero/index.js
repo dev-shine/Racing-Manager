@@ -39,7 +39,7 @@ const Hero = props => {
     <div className={modifiedClassNames}>
       <div className='parallax-hero__parallax'>
         <Parallax
-          speed={-0.5}
+          speed={0.75}
           scope={400}>
           <div>
             <Image
