@@ -5,7 +5,6 @@
  *  @description Removes keys from an object based on props array
  *  @return {Object}
  */
-// TODO: Change it to more descriptive name
 export default function omit (object, props) {
   if (object == null) {
     return {}

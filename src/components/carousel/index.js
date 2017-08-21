@@ -16,12 +16,12 @@ import classNames from 'classnames'
 /**
  *  @module CarouselArrow
  */
-import CarouselArrow from 'components/buttons/CarouselArrow'
+import CarouselArrow from './CarouselArrow'
 
 /**
  *  @module CarouselPaginationButton
  */
-import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
+import CarouselPaginationButton from './CarouselPaginationButton'
 
 /**
  *  @module CSSTransitionGroup
@@ -168,6 +168,7 @@ class Carousel extends Component {
       margin: vertical ? (cellSpacing / 2) * -1 + 'px 0px'
                                   : '0px ' + (cellSpacing / 2) * -1 + 'px',
       width: vertical ? 'auto' : listWidth + spacingOffset,
+      touchAction: vertical ? 'pan-x' : 'pan-y'
     }
   }
 
@@ -1105,7 +1106,7 @@ class Carousel extends Component {
     } = this.state
 
     // Format the children for the slides.
-    const slideChildren = React.Children.count(children) > 1
+    const slideChildren = React.Children.count(children) >= 1
           ? this.formatChildren(children)
           : children
 

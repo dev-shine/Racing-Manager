@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module CarouselPaginationButton
  */
-import CarouselPaginationButton from 'components/buttons/CarouselPaginationButton'
+import CarouselPaginationButton from './index'
 
 /**
  *  @module expect
