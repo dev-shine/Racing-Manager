@@ -167,7 +167,8 @@ class Carousel extends Component {
       msTransform,
       margin: vertical ? (cellSpacing / 2) * -1 + 'px 0px'
                                   : '0px ' + (cellSpacing / 2) * -1 + 'px',
-      width: vertical ? 'auto' : listWidth + spacingOffset
+      width: vertical ? 'auto' : listWidth + spacingOffset,
+      touchAction: vertical ? 'pan-x' : 'pan-y'
     }
   }
 
