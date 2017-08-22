@@ -14,6 +14,12 @@ import { CSSTransitionGroup } from 'react-transition-group'
 
 import SocialShare from 'components/socialmedia/SocialShare'
 
+import {
+  whatsapp,
+  twitter,
+  email
+} from 'texts/socialmedia'
+
 class HorseCtaBox extends PureComponent {
   constructor (props) {
     super(props)
@@ -36,6 +42,10 @@ class HorseCtaBox extends PureComponent {
     const {
       showLinks
     } = this.state
+
+    const {
+      url
+    } = this.props
 
     return (
       <div className='horse-cta-box section-shadow section-shadow--tile section-shadow--bottom'>
@@ -70,7 +80,7 @@ class HorseCtaBox extends PureComponent {
                     modifier='whatsapp'
                     className='horse-cta-box__social-icon'
                     shareData={{
-                      text: ''
+                      text: whatsapp({url})
                     }} />
                 </div>
 
@@ -79,9 +89,7 @@ class HorseCtaBox extends PureComponent {
                     target='_blank'
                     modifier='facebook'
                     className='horse-cta-box__social-icon'
-                    shareData={{
-                      quote: ''
-                    }} />
+                    shareData={{}} />
                 </div>
 
                 <div className='horse-cta-box__social-link'>
@@ -90,7 +98,8 @@ class HorseCtaBox extends PureComponent {
                     modifier='twitter'
                     className='horse-cta-box__social-icon'
                     shareData={{
-                      title: ''
+                      title: twitter({url}),
+                      url
                     }} />
                 </div>
 
@@ -99,10 +108,7 @@ class HorseCtaBox extends PureComponent {
                     target='_blank'
                     modifier='email'
                     className='horse-cta-box__social-icon'
-                    shareData={{
-                      body: '',
-                      subject: ''
-                    }} />
+                    shareData={{...email({url})}} />
                 </div>
               </div>
             )

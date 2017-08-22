@@ -48,7 +48,8 @@ class PublicHorse extends Component {
     const {
       posting,
       fetching,
-      data = {}
+      data = {},
+      match
     } = this.props
 
     const {
@@ -136,7 +137,8 @@ class PublicHorse extends Component {
               rightSection={(
                 <div>
                   {availabilitySection}
-                  <HorseCtaBox />
+                  <HorseCtaBox
+                    url={`${window.location.origin}${match.url}`} />
                 </div>
               )}
               slideSection={[
