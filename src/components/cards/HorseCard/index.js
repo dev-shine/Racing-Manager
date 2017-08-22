@@ -239,39 +239,39 @@ HorseCard.propTypes = {
  */
 HorseCard.defaultProps = {
   className: '',
-  title: 'contrabrand horse',
-  subtitle: '2yo Filly, National Hunt (Jump)',
+  title: '',
+  subtitle: '',
   color: '#000',
   stats: [{
-    name: 'runs',
-    value: 6
+    name: '',
+    value: 0
   }, {
-    name: 'wins',
-    value: 1
+    name: '',
+    value: 0
   }, {
-    name: 'places',
-    value: 2
+    name: '',
+    value: 0
   }, {
-    name: 'OR',
-    value: 93
+    name: '',
+    value: 0
   }],
   info: [{
     name: 'Trainer name',
-    value: 'Jacob William Beckett'
+    value: ''
   }, {
     name: 'Syndicate name',
-    value: 'Vitamin London'
+    value: ''
   }, {
     name: 'Initial cost/share',
-    value: '£15,750 + VAT'
+    value: ''
   }, {
     name: 'Monthly cost/share',
-    value: '£4,995 + VAT'
+    value: ''
   }],
   extra: {
-    title: '5 of 20 shares available',
-    text: '*each share is equivalent to 5%',
-    updateAmount: 99,
+    title: '',
+    text: '',
+    updateAmount: 0,
     url: 'null'
   },
   bottomUrl: 'null',
