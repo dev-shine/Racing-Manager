@@ -46,6 +46,7 @@
 
   &__social-icon {
     &:before {
+      font-size: $tiny-title;
       color: $cta-link-color;
     }
   } 

@@ -3,23 +3,7 @@
  */
 import 'whatwg-fetch'
 
-import { verifyServerFormat, isParseable } from 'utils/request'
-
-/**
- *  getQueryString
- *  @param  {Object} params
- *  @return {String}
- */
-const getQueryString = params => {
-  let esc = encodeURIComponent
-  return Object.keys(params)
-  .map(k => esc(k) + '=' + esc(params[k]))
-  .join('&')
-}
-
-const constructQuery = (query) => {
-  return `?${getQueryString(query)}`
-}
+import { verifyServerFormat, isParseable, constructQuery } from 'utils/request'
 
 /**
  *  request

@@ -6,13 +6,13 @@ import TextCtaButton from 'components/buttons/TextCtaButton'
 
 import CtaLink from 'components/links/CtaLink'
 
-import Icon from 'components/icon'
-
 import {
   requestToJoin
 } from 'data/horse'
 
 import { CSSTransitionGroup } from 'react-transition-group'
+
+import SocialShare from 'components/socialmedia/SocialShare'
 
 class HorseCtaBox extends PureComponent {
   constructor (props) {
@@ -64,30 +64,45 @@ class HorseCtaBox extends PureComponent {
             showLinks
             ? (
               <div className='horse-cta-box__social-links'>
-                <div className='hidden-sm-up'>
-                  <div className='horse-cta-box__social-link'>
-                    <Icon
-                      className='horse-cta-box__social-icon'
-                      modifier='whatsapp' />
-                  </div>
+                <div className='horse-cta-box__social-link'>
+                  <SocialShare
+                    target='_blank'
+                    modifier='whatsapp'
+                    className='horse-cta-box__social-icon'
+                    shareData={{
+                      text: ''
+                    }} />
                 </div>
 
                 <div className='horse-cta-box__social-link'>
-                  <Icon
+                  <SocialShare
+                    target='_blank'
+                    modifier='facebook'
                     className='horse-cta-box__social-icon'
-                    modifier='facebook' />
+                    shareData={{
+                      quote: ''
+                    }} />
                 </div>
 
                 <div className='horse-cta-box__social-link'>
-                  <Icon
+                  <SocialShare
+                    target='_blank'
+                    modifier='twitter'
                     className='horse-cta-box__social-icon'
-                    modifier='twitter' />
+                    shareData={{
+                      title: ''
+                    }} />
                 </div>
 
                 <div className='horse-cta-box__social-link'>
-                  <Icon
+                  <SocialShare
+                    target='_blank'
+                    modifier='email'
                     className='horse-cta-box__social-icon'
-                    modifier='email' />
+                    shareData={{
+                      body: '',
+                      subject: ''
+                    }} />
                 </div>
               </div>
             )
