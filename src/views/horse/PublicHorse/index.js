@@ -13,13 +13,12 @@ import Separator from 'components/gui/Separator'
 import Table from 'components/gui/Table'
 import List from 'components/gui/List'
 import TextButton from 'components/buttons/TextButton'
-import Carousel from 'components/carousel'
 
 import HorseHeader from 'components/horse/HorseHeader'
-import HorseTeamMember from 'components/horse/HorseTeamMember'
 import HorseCard from 'components/cards/HorseCard'
 import HorseHero from 'components/horse/HorseHero'
 import HorseCtaBox from 'components/horse/HorseCtaBox'
+import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
 import { roundNumberWithoutZeros } from 'utils/number'
@@ -109,17 +108,6 @@ class PublicHorse extends Component {
       </div>
     )
 
-    const members = syndicateMembers.map((member, index) => (
-      <HorseTeamMember
-        key={index}
-        image={member.image}
-        name={member.name}
-        role={member.role}
-        description={member.description}
-        className='public-horse__member-tile'
-      />
-    ))
-
     return (
       <View title={capitalize(name)} notPrefixed>
         <div className='public-horse'>
@@ -147,26 +135,14 @@ class PublicHorse extends Component {
               ]}
             />
           </div>
-          <div className='public-horse__section container hidden-md-up'>
-            <Carousel
-              containerClassName='public-horse__mobile-carousel'
-              ref='carousel'
-              slideWidth={0.33}
-              cellAlign='left'
-              breakPoints={{
-                400: {
-                  slideWidth: 1,
-                  cellAlign: 'center'
-                },
-                480: {
-                  slideWidth: 0.5
-                }
-              }}
-              showArrows
-            >
-              {members}
-            </Carousel>
+
+          <div className='container public-horse__members-section no-padding'>
+            <div className='col-md-8 col-sm-12'>
+              <HorseMemberCarousel
+                syndicateMembers={syndicateMembers} />
+            </div>
           </div>
+
           <div className='public-horse__section container'>
             <h1 className='uppercase'>
               Statistics

@@ -1,5 +1,7 @@
 import React from 'react'
+
 import PropTypes from 'prop-types'
+
 import classNames from 'utils/classnames'
 
 import Image from 'components/image'
@@ -15,18 +17,19 @@ const HorseTeamMember = props => {
         <Image
           className='team-member__image'
           imageSrc={image}
+          forceShow
           setRef={() => {}}
         />
       </div>
-      <div className='team-member__name'>
+      <h5 className='team-member__name uppercase'>
         {name}
-      </div>
-      <div className='team-member__role'>
+      </h5>
+      <h5 className='team-member__role uppercase'>
         {role}
-      </div>
-      <div className='team-member__description'>
+      </h5>
+      <p className='team-member__description tiny'>
         {description}
-      </div>
+      </p>
     </div>
   )
 }
