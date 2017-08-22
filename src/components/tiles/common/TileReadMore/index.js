@@ -14,7 +14,9 @@ const TileReadMore = props => {
       href={href}
       className='tile-read-more'
       modifier='italic'
-      text='read the full story' />
+    >
+      read the full story
+    </CtaLink>
   )
 }
 

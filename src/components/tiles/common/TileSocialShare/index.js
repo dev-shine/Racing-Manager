@@ -10,6 +10,8 @@ import { CSSTransitionGroup } from 'react-transition-group'
 
 import { stopPropagation } from 'utils/domutils'
 
+import SocialShare from 'components/socialmedia/SocialShare'
+
 const TileSocialShare = (props) => {
   const {
     className,
@@ -31,11 +33,12 @@ const TileSocialShare = (props) => {
         <div className={modifiedClassNames} onClick={stopPropagation}>
           <div className='tile-social-share__container'>
             <div className='tile-social-share__social-icons'>
-              <a href={`whatsapp://send?text=${encodeURIComponent(shareText)}`}>
-                <Icon
-                  className='tile-social-share__icon'
-                  modifier='whatsapp' />
-              </a>
+              <SocialShare
+                target='_blank'
+                modifier='whatsapp'
+                shareData={{
+                  text: shareText
+                }} />
             </div>
           </div>
           <div className='tile-social-share__close' onClick={onClose}>

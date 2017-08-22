@@ -4,31 +4,7 @@
     padding-top: 35px;
     padding-bottom: 45px;
   }
-
-// Buttons --------------------------------------
-  &__buttons {
-    position: absolute;
-    left: 25px;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: -60px;
-    background: white;
-    padding: 10px;
-
-    a {
-      display: block;
-
-      ~ a {
-        margin-top: 8px;
-      }
-    }
-  }
-
-  &__button {
-    width: 100%;
-  }
-
+  
 // Carousel
   &__mobile-carousel {
     .carousel-arrow--white .icon--leftarrow,

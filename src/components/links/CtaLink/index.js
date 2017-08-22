@@ -11,16 +11,26 @@ const CtaLink = props => {
     className,
     modifier,
     href,
-    text
+    children,
+    nativeLink,
+    ...rest
   } = props
 
   const modifiedClassNames = classNames('link', className, modifier)
 
-  return (
-     <Link to={href} className={modifiedClassNames}>
-       {text}
-     </Link>
-  )
+  if (nativeLink) {
+    return (
+      <a href={href} className={modifiedClassNames} {...rest}>
+        {children}
+      </a>
+    )
+  } else {
+    return (
+      <Link to={href} className={modifiedClassNames} {...rest}>
+        {children}
+      </Link>
+    )
+  }
 }
 
 CtaLink.propTypes = {
@@ -32,13 +42,15 @@ CtaLink.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  href: PropTypes.string
+  href: PropTypes.string,
+  nativeLink: PropTypes.bool
 }
 
 CtaLink.defaultProps = {
   className: '',
   modifier: '',
-  href: '/'
+  href: '/',
+  nativeLink: false
 }
 
 export default CtaLink

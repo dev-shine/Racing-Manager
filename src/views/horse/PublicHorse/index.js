@@ -19,6 +19,7 @@ import HorseHeader from 'components/horse/HorseHeader'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
 import HorseCard from 'components/cards/HorseCard'
 import HorseHero from 'components/horse/HorseHero'
+import HorseCtaBox from 'components/horse/HorseCtaBox'
 
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
 import { roundNumberWithoutZeros } from 'utils/number'
@@ -47,7 +48,8 @@ class PublicHorse extends Component {
     const {
       posting,
       fetching,
-      data = {}
+      data = {},
+      match
     } = this.props
 
     const {
@@ -135,22 +137,8 @@ class PublicHorse extends Component {
               rightSection={(
                 <div>
                   {availabilitySection}
-                  <div className='public-horse__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                    <a href={requestToJoin} target='_blank'>
-                      <TextButton
-                        text='Request to join'
-                        className='public-horse__button'
-                        modifier='md'
-                      />
-                    </a>
-                    <Link to='/'>
-                      <TextButton
-                        text='Get in touch'
-                        className='public-horse__button'
-                        modifier={['md', 'secondary']}
-                      />
-                    </Link>
-                  </div>
+                  <HorseCtaBox
+                    url={`${window.location.origin}${match.url}`} />
                 </div>
               )}
               slideSection={[
