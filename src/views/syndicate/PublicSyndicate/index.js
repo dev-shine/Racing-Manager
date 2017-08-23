@@ -70,7 +70,9 @@ export class PublicSyndicate extends Component {
                   <SyndicateInvolvement
                     benefits={syndicateBenefits}
                     description={syndicateBenefitsDescription(name)} />
-                  <SyndicateCtaCard />
+                  <div className='visible-md-up'>
+                    <SyndicateCtaCard />
+                  </div>
                 </div>
               } />
           </div>
