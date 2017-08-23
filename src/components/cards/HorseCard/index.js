@@ -274,7 +274,7 @@ HorseCard.defaultProps = {
     updateAmount: 0,
     url: 'null'
   },
-  bottomUrl: 'null',
+  bottomUrl: '',
   isMember: true,
   src: horseOverview,
   isPending: false,

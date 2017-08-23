@@ -9,6 +9,7 @@
   max-width: 300px;
   max-height: 464px;
   text-align: left;
+  padding-bottom: 5px; // For the shadow
   
   @media all and (min-width: $screen-sm-min) {
     width: 266px;

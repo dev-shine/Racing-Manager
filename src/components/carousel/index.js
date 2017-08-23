@@ -232,7 +232,8 @@ class Carousel extends Component {
    */
   getSliderStyles () {
     const {
-      width
+      width,
+      showArrows
     } = this.props
 
     const {
@@ -241,7 +242,8 @@ class Carousel extends Component {
 
     return {
       width: width,
-      visibility: slideWidth ? 'visible' : 'hidden'
+      visibility: slideWidth ? 'visible' : 'hidden',
+      padding: showArrows ? '0 50px' : '0'
     }
   }
 

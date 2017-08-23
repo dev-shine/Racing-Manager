@@ -1,9 +1,11 @@
 .horse-hero {
   $h: 500px;
+  $hDouble: ($h * 2);
+
   overflow: hidden;
   position: relative;
-  background: white;
-  margin: 40px 0;
+  background: $color-bg-secondary;
+  /* margin: 40px 0; */
 
   &__overlay {
     position: relative;
@@ -12,7 +14,7 @@
   }
 
   &__title {
-    color: #00273A;
+    color: $color-text-strong;
   }
 
   &__parallax-container {
@@ -24,7 +26,8 @@
   }
 
   &__image {
-    height: $h;
+    position: relative;
+    height: $hDouble;
     background-size: cover;
     background-position: center top;
 
