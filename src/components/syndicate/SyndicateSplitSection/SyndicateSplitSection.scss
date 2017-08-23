@@ -1,0 +1,46 @@
+.syndicate-split-section {
+  position: relative;
+  width: 100%;
+
+  &__wrapper{
+    position: relative;
+    width: 100%;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: $color-bg-strong;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: $color-bg-dark;
+    }
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__left {
+    position: relative;
+    background: $color-bg-strong;
+    flex: 2;
+    z-index: 1;
+  }
+
+  &__right {
+    position: relative;
+    background: $color-bg-dark;
+    flex: 1;
+    z-index: 1;
+  }
+}
