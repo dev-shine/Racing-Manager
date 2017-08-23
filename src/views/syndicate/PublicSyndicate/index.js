@@ -14,6 +14,8 @@ import SyndicateAbout from 'components/syndicate/SyndicateAbout'
 import SyndicateInvolvement from 'components/syndicate/SyndicateInvolvement'
 import SyndicateCtaCard from 'components/syndicate/SyndicateCtaCard'
 import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
+import SyndicateIntroSection from 'components/syndicate/SyndicateIntroSection'
+import SyndicateHorseCarousel from 'components/syndicate/SyndicateHorseCarousel'
 
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 import HorseHero from 'components/horse/HorseHero'
@@ -26,7 +28,8 @@ import {
 } from 'data/syndicate'
 
 import {
-  syndicateMembers
+  syndicateMembers,
+  fakeHorses
 } from 'data/horse'
 
 export class PublicSyndicate extends Component {
@@ -48,7 +51,7 @@ export class PublicSyndicate extends Component {
     } = this.props
 
     const {
-      name,
+      name = '',
       owner = { name: '-' },
       featuredImage = '',
       logo = '',
@@ -95,10 +98,18 @@ export class PublicSyndicate extends Component {
             </div>
           </div>
 
-          <div className='public-syndicate__section'>
+          <div className='public-syndicate__section-top'>
               <HorseHero {...syndicateUpperHero} />
           </div>
 
+          <div className='public-syndicate__overlay-section'>
+              <SyndicateIntroSection
+                title={`${name} horses`}
+                description='We have a fantastic yard of horses, all of which have run competitively and placed with great confidence. Having managed race horses for many years now, we know where quality can be found and how to thoroughly enjoy the iniafull extent of the racing experience.'>
+                  <SyndicateHorseCarousel
+                    horses={fakeHorses} />
+              </SyndicateIntroSection>
+          </div>
         </div>
       </View>
     )

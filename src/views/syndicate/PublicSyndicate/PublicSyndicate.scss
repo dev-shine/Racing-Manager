@@ -18,6 +18,17 @@
   }
 
   &__section {
-    margin: 40px 0;
+    position: relative;
+    padding: 40px 0;
+  }
+
+  &__section-top {
+    padding-top: 40px;
+  }
+
+  &__overlay-section {
+    position: relative;
+    margin-top: -50px;
+    margin-bottom: 40px;
   }
 }
