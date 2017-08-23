@@ -3,6 +3,8 @@ import {
   syndicateLowerImage
 } from 'assets/dummyassets'
 
+import capitalize from 'utils/capitalize'
+
 export const syndicateUpperHero = {
   title: `Europe's leading racehorse ownership company`,
   image: syndicateUpperImage
@@ -22,3 +24,7 @@ export const benefits = [
   'Personalised messages and clips from the team',
   'Live content from the races',
 ]
+
+export const benefitsDescription = (name = '') => {
+  return `${capitalize(name)} aims to offer a unique taste of racehorse ownership. Regular communication ensures that you are kept fully up-to-date with all the latest news.`
+}

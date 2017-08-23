@@ -6,6 +6,8 @@ import TextCtaButton from 'components/buttons/TextCtaButton'
 
 import CtaLink from 'components/links/CtaLink'
 
+import CtaPanelCard from 'components/cards/CtaPanelCard'
+
 import {
   requestToJoin
 } from 'data/horse'
@@ -20,7 +22,7 @@ import {
   email
 } from 'texts/socialmedia'
 
-class HorseCtaBox extends PureComponent {
+class HorseCtaCard extends PureComponent {
   constructor (props) {
     super(props)
 
@@ -48,11 +50,11 @@ class HorseCtaBox extends PureComponent {
     } = this.props
 
     return (
-      <div className='horse-cta-box section-shadow section-shadow--tile section-shadow--bottom'>
+      <CtaPanelCard className='horse-cta-card'>
         <CtaLink href={requestToJoin} target={'_blank'} nativeLink>
           <TextButton
             text='Request to join'
-            className='horse-cta-box__button'
+            className='horse-cta-card__button'
             modifier='md'
           />
         </CtaLink>
@@ -60,7 +62,7 @@ class HorseCtaBox extends PureComponent {
         <CtaLink href='/'>
           <TextButton
             text='Get in touch'
-            className='horse-cta-box__button'
+            className='horse-cta-card__button'
             modifier={['md', 'secondary']}
           />
         </CtaLink>
@@ -73,41 +75,41 @@ class HorseCtaBox extends PureComponent {
           {
             showLinks
             ? (
-              <div className='horse-cta-box__social-links'>
-                <div className='horse-cta-box__social-link'>
+              <div className='horse-cta-card__social-links'>
+                <div className='horse-cta-card__social-link'>
                   <SocialShare
                     target='_blank'
                     modifier='whatsapp'
-                    className='horse-cta-box__social-icon'
+                    className='horse-cta-card__social-icon'
                     shareData={{
                       text: whatsapp({url})
                     }} />
                 </div>
 
-                <div className='horse-cta-box__social-link'>
+                <div className='horse-cta-card__social-link'>
                   <SocialShare
                     target='_blank'
                     modifier='facebook'
-                    className='horse-cta-box__social-icon'
+                    className='horse-cta-card__social-icon'
                     shareData={{}} />
                 </div>
 
-                <div className='horse-cta-box__social-link'>
+                <div className='horse-cta-card__social-link'>
                   <SocialShare
                     target='_blank'
                     modifier='twitter'
-                    className='horse-cta-box__social-icon'
+                    className='horse-cta-card__social-icon'
                     shareData={{
                       title: twitter({url}),
                       url
                     }} />
                 </div>
 
-                <div className='horse-cta-box__social-link'>
+                <div className='horse-cta-card__social-link'>
                   <SocialShare
                     target='_blank'
                     modifier='email'
-                    className='horse-cta-box__social-icon'
+                    className='horse-cta-card__social-icon'
                     shareData={{...email({url})}} />
                 </div>
               </div>
@@ -115,16 +117,16 @@ class HorseCtaBox extends PureComponent {
             : (
               <TextCtaButton
                 text={'share page'}
-                className='horse-cta-box__share-text text-center uppercase'
+                className='horse-cta-card__share-text text-center uppercase'
                 modifier={['italic']}
                 onClick={this.showSocialLinks}
               />
             )
           }
         </CSSTransitionGroup>
-      </div>
+      </CtaPanelCard>
     )
   }
 }
 
-export default HorseCtaBox
+export default HorseCtaCard

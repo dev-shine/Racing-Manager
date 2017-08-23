@@ -12,7 +12,8 @@ const SyndicateInvolvement = (props) => {
   const {
     className,
     title,
-    benefits
+    benefits,
+    description
   } = props
 
   const modifiedClassNames = classNames('syndicate-involvement', className)
@@ -23,6 +24,9 @@ const SyndicateInvolvement = (props) => {
         {title}
       </h2>
       <Separator modifier='white' />
+      <p className='horse-header__paragraph syndicate-involvement__desc'>
+        {description}
+      </p>
       <List items={benefits} />
     </div>
   )
@@ -30,11 +34,15 @@ const SyndicateInvolvement = (props) => {
 
 SyndicateInvolvement.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
+  description: PropTypes.string,
+  benefits: PropTypes.arrayOf(PropTypes.string)
 }
 
 SyndicateInvolvement.defaultProps = {
-  title: 'Availability'
+  title: 'Availability',
+  description: '',
+  benefits: []
 }
 
 export default SyndicateInvolvement

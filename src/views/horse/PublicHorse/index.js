@@ -17,7 +17,7 @@ import TextButton from 'components/buttons/TextButton'
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseCard from 'components/cards/HorseCard'
 import HorseHero from 'components/horse/HorseHero'
-import HorseCtaBox from 'components/horse/HorseCtaBox'
+import HorseCtaCard from 'components/horse/HorseCtaCard'
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
@@ -125,7 +125,7 @@ class PublicHorse extends Component {
               rightSection={(
                 <div>
                   {availabilitySection}
-                  <HorseCtaBox
+                  <HorseCtaCard
                     url={`${window.location.origin}${match.url}`} />
                 </div>
               )}

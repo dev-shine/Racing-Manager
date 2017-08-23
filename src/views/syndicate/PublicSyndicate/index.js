@@ -12,11 +12,19 @@ import SyndicateHero from 'components/syndicate/SyndicateHero'
 import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
 import SyndicateAbout from 'components/syndicate/SyndicateAbout'
 import SyndicateInvolvement from 'components/syndicate/SyndicateInvolvement'
+import SyndicateCtaCard from 'components/syndicate/SyndicateCtaCard'
+
+import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 
 import {
   description as syndicateDesc,
-  benefits as syndicateBenefits
+  benefits as syndicateBenefits,
+  benefitsDescription as syndicateBenefitsDescription
 } from 'data/syndicate'
+
+import {
+  syndicateMembers
+} from 'data/horse'
 
 export class PublicSyndicate extends Component {
   constructor (props) {
@@ -58,9 +66,20 @@ export class PublicSyndicate extends Component {
                 <SyndicateAbout description={description} />
               }
               rightComponent={
-                <SyndicateInvolvement
-                  benefits={syndicateBenefits} />
+                <div>
+                  <SyndicateInvolvement
+                    benefits={syndicateBenefits}
+                    description={syndicateBenefitsDescription(name)} />
+                  <SyndicateCtaCard />
+                </div>
               } />
+          </div>
+
+          <div className='public-syndicate__team-members container no-padding'>
+            <div className='col-md-8 col-sm-12'>
+              <HorseMemberCarousel
+                syndicateMembers={syndicateMembers} />
+            </div>
           </div>
         </div>
       </View>
