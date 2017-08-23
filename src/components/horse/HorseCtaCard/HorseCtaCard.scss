@@ -1,15 +1,8 @@
-.horse-cta-box {
+.horse-cta-card {
   $margin-top: 8px;
   $bottom-offset: -93px;
 
-  position: absolute;
-  left: 25px;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
   bottom: $bottom-offset;
-  background: white;
-  padding: 10px;
 
   a {
     display: block;

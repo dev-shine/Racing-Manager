@@ -95,6 +95,7 @@ export class PrivateSyndicate extends Component {
     return (
       <View title={titleize(name || '')} isPrefixed={false}>
         <div className='syndicate'>
+          {/* REPLACE SYNDICATE_IMAGE WITH SyndicateHero Component */}
           <div className='syndicate__image'>
             <Hero featuredImage={constructStaticUrl(featuredImage)} />
             <div className='syndicate__logo absolute-center'>
