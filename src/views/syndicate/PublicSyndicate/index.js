@@ -75,8 +75,8 @@ export class PublicSyndicate extends Component {
               } />
           </div>
 
-          <div className='public-syndicate__team-members container no-padding'>
-            <div className='col-md-8 col-sm-12'>
+          <div className='container no-padding'>
+            <div className='col-md-8 col-sm-12 public-syndicate__team-members'>
               <HorseMemberCarousel
                 syndicateMembers={syndicateMembers} />
             </div>

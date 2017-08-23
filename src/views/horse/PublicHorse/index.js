@@ -136,8 +136,8 @@ class PublicHorse extends Component {
             />
           </div>
 
-          <div className='container public-horse__members-section no-padding'>
-            <div className='col-md-8 col-sm-12'>
+          <div className='container no-padding'>
+            <div className='col-md-8 col-sm-12 public-horse__members-section'>
               <HorseMemberCarousel
                 syndicateMembers={syndicateMembers} />
             </div>
