@@ -1,7 +1,11 @@
 .syndicate-intro-section {
   position: relative;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 10px;
+
+  @media all and (min-width: $screen-md-min) {
+    padding: 0 20px;
+  }
 
   &__bg {
     position: absolute;

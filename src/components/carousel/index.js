@@ -243,7 +243,7 @@ class Carousel extends Component {
     return {
       width: width,
       visibility: slideWidth ? 'visible' : 'hidden',
-      padding: showArrows ? '0 50px' : '0'
+      padding: showArrows ? '0 32px' : '0'
     }
   }
 

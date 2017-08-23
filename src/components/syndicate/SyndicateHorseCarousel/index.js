@@ -30,7 +30,6 @@ const SyndicateHorseCarousel = (props) => {
       }}>
       {
         horses.map((horse, index) => {
-          console.log(horse)
           return (
             <HorseCard
               isActive

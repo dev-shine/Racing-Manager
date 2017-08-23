@@ -51,7 +51,7 @@ export class PublicSyndicate extends Component {
     } = this.props
 
     const {
-      name,
+      name = '',
       owner = { name: '-' },
       featuredImage = '',
       logo = '',
@@ -104,8 +104,8 @@ export class PublicSyndicate extends Component {
 
           <div className='public-syndicate__overlay-section'>
               <SyndicateIntroSection
-                title='highclere horses'
-                description='sdf'>
+                title={`${name} horses`}
+                description='We have a fantastic yard of horses, all of which have run competitively and placed with great confidence. Having managed race horses for many years now, we know where quality can be found and how to thoroughly enjoy the iniafull extent of the racing experience.'>
                   <SyndicateHorseCarousel
                     horses={fakeHorses} />
               </SyndicateIntroSection>
