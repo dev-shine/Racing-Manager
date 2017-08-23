@@ -19,7 +19,7 @@ const SyndicateIntroSection = (props) => {
   return (
     <div className={modifiedClassNames}>
       <div className='syndicate-intro-section__bg wave-bg-blue'></div>
-      <div className='container'>
+      <div className='container no-padding'>
         <SyndicateTitleDescriptionCard
           title={title}
           description={description} />
