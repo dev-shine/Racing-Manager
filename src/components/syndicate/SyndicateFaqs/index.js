@@ -16,6 +16,7 @@ const SyndicateFaqs = (props) => {
         faqs.map(({question, answer}, index) => {
           return (
             <FaqItem
+              key={index}
               question={question}
               answer={answer}
             />
