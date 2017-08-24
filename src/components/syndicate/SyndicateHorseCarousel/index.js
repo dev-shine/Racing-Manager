@@ -15,17 +15,21 @@ const SyndicateHorseCarousel = (props) => {
     horses
   } = props
 
+  const showArrows = (horses.length >= 4)
+
   return (
     <Carousel
+      containerClassName='syndicate-horse-carousel'
       cellAlign='left'
       cellSpacing={30}
       slideWidth={'266px'}
-      showArrows
+      showArrows={showArrows}
       nextArrowModifier={['right', 'nobg', 'red', 'bottom']}
       prevArrowModifier={['left', 'nobg', 'red', 'bottom']}
       breakPoints={{
         480: {
-          slideWidth: 1
+          slideWidth: 1,
+          cellAlign: 'center'
         }
       }}>
       {
@@ -67,7 +71,7 @@ const SyndicateHorseCarousel = (props) => {
               extra={{
                 url: `/horse/${horse.slug}`
               }}
-              className='' />
+              className='syndicate-horse-carousel__slide' />
           )
         })
       }

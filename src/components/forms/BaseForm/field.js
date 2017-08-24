@@ -187,18 +187,6 @@ class Field extends PureComponent {
    *  @param  {String} name
    *  @return {Any}      [description]
    */
-  /*
-  getValue (name) {
-    const { values } = this.context
-    return values && values[name]
-  }
-  */
-
-  /**
-   *  getValue
-   *  @param  {String} name
-   *  @return {Any}      [description]
-   */
   getValue (name) {
     const { values } = this.context
     const { format } = this.props

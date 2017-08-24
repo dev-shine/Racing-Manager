@@ -4,7 +4,7 @@ import classNames from 'utils/classnames'
 
 import PropTypes from 'prop-types'
 
-import Separator from 'components/gui/Separator'
+import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 const SyndicateBenefits = (props) => {
   const {
@@ -17,13 +17,10 @@ const SyndicateBenefits = (props) => {
 
   return (
     <div className={modifiedClassNames}>
-      <h1 className='uppercase'>
-        {title}
-      </h1>
-      <Separator modifier='blue' />
-      <p>
-        {description}
-      </p>
+      <TitleDescriptionSection
+        title={title}
+        description={description}
+        colorModifier='blue' />
     </div>
   )
 }

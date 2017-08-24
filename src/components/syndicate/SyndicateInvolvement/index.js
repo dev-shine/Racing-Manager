@@ -4,7 +4,7 @@ import classNames from 'utils/classnames'
 
 import PropTypes from 'prop-types'
 
-import Separator from 'components/gui/Separator'
+import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 import List from 'components/gui/List'
 
@@ -20,14 +20,14 @@ const SyndicateInvolvement = (props) => {
 
   return (
     <div className={modifiedClassNames}>
-      <h2 className='uppercase'>
-        {title}
-      </h2>
-      <Separator modifier='white' />
-      <p className='horse-header__paragraph syndicate-involvement__desc'>
-        {description}
-      </p>
-      <List items={benefits} />
+      <TitleDescriptionSection
+        title={title}
+        description={description}
+        colorModifier='white'
+        titleModifier='h2'
+      >
+        <List items={benefits} />
+      </TitleDescriptionSection>
     </div>
   )
 }
