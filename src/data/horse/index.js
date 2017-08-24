@@ -233,6 +233,46 @@ export const syndicateMembers = [
   }
 ]
 
+export const trainerMembers = [
+  {
+    image: harryImage,
+    name: 'roger charlton',
+    role: 'wiltshire',
+    description: 'Roger is no stranger to success having trained nine individual Group 1 winners.'
+  },
+
+  {
+    image: harryImage,
+    name: 'freddy head',
+    role: 'chantilly',
+    description: 'Freddy is the only man to have won Breeder’s Cups both as a jockey, on Miesque and as a '
+  },
+  {
+    image: harryImage,
+    name: 'luca camani',
+    role: 'newmarket',
+    description: 'Luca Cumani was born and raised in Italy and comes from a family steeped in racing.'
+  },
+  {
+    image: harryImage,
+    name: 'john gosden',
+    role: 'wiltshire',
+    description: 'John is no stranger to success having trained nine individual Group 1 winners.'
+  },
+  {
+    image: harryImage,
+    name: 'nigel twiston-davies',
+    role: 'watford',
+    description: 'Nigel is having his best season to date and looks certain of recording his first century. '
+  },
+  {
+    image: harryImage,
+    name: 'kevin ryan',
+    role: 'hemel-hempstead',
+    description: 'Kevin Ryan rode 47 winners as a conditional jockey before assisting Jack Berry.'
+  }
+]
+
 export const horse = {
   '_id': '594a734c371c882d01addd24',
   'name': 'CONTENTMENT',

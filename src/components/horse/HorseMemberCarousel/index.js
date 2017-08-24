@@ -4,10 +4,15 @@ import Carousel from 'components/carousel'
 
 import HorseTeamMember from 'components/horse/HorseTeamMember'
 
+import PropTypes from 'prop-types'
+
 const HorseMemberCarousel = (props) => {
   const {
-    syndicateMembers
+    syndicateMembers,
+    type
   } = props
+
+  const isTrainer = (type === 'trainer')
 
   const members = syndicateMembers.map((member, index) => (
     <HorseTeamMember
@@ -16,6 +21,9 @@ const HorseMemberCarousel = (props) => {
       name={member.name}
       role={member.role}
       description={member.description}
+      hasLink={isTrainer}
+      href={isTrainer ? member.link : ''}
+      linkText={isTrainer ? 'more details' : ''}
       className='horse-member-carousel__member-tile'
     />
   ))
@@ -45,6 +53,14 @@ const HorseMemberCarousel = (props) => {
       </Carousel>
     </div>
   )
+}
+
+HorseMemberCarousel.propTypes = {
+  type: PropTypes.string
+}
+
+HorseMemberCarousel.defaultProps = {
+  type: 'member'
 }
 
 export default HorseMemberCarousel

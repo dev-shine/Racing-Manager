@@ -6,8 +6,20 @@ import classNames from 'utils/classnames'
 
 import Image from 'components/image'
 
+import CtaLink from 'components/links/CtaLink'
+
 const HorseTeamMember = props => {
-  const { image, name, role, description, className, modifier } = props
+  const {
+    image,
+    name,
+    role,
+    description,
+    className,
+    modifier,
+    hasLink,
+    href,
+    linkText
+  } = props
 
   const modifiedClassNames = classNames('team-member', className, modifier)
 
@@ -30,6 +42,21 @@ const HorseTeamMember = props => {
       <p className='team-member__description tiny'>
         {description}
       </p>
+      {
+        hasLink
+        ? (
+            <div className='team-member__link'>
+              <CtaLink
+                target='_blank'
+                href={href}
+                className='micro'
+                modifier='italic'>
+                {linkText}
+              </CtaLink>
+            </div>
+          )
+        : null
+      }
     </div>
   )
 }
@@ -46,7 +73,14 @@ HorseTeamMember.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  hasLink: PropTypes.bool,
+  href: PropTypes.string,
+  linkText: PropTypes.string
+}
+
+HorseTeamMember.defaultProps = {
+  hasLink: false
 }
 
 export default HorseTeamMember
