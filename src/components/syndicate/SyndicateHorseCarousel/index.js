@@ -15,12 +15,14 @@ const SyndicateHorseCarousel = (props) => {
     horses
   } = props
 
+  const showArrows = (horses.length >= 4)
+
   return (
     <Carousel
       cellAlign='left'
       cellSpacing={30}
       slideWidth={'266px'}
-      showArrows
+      showArrows={showArrows}
       nextArrowModifier={['right', 'nobg', 'red', 'bottom']}
       prevArrowModifier={['left', 'nobg', 'red', 'bottom']}
       breakPoints={{
