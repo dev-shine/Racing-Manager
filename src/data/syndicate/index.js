@@ -28,3 +28,26 @@ export const benefits = [
 export const benefitsDescription = (name = '') => {
   return `${capitalize(name)} aims to offer a unique taste of racehorse ownership. Regular communication ensures that you are kept fully up-to-date with all the latest news.`
 }
+
+export const faqs = [
+  {
+    question: 'Are shares sold with VAT?',
+    answer: 'Horses up to the end of their racing season, including all vets bills, entry fees'
+  },
+  {
+    question: 'What does the price of a share include?',
+    answer: `The share price covers all expenses including the purchase & training of the horses up to the end of their racing season, including all vets bills, entry fees, transport, owners badge for race days & stable visits. A smaller additional sum, which is clearly stated on the Terms & Conditions is due for the second & consecutive year after that for training fees & racing costs etc.`
+  },
+  {
+    question: 'What happens on raceday?',
+    answer: 'A smaller additional sum, which is clearly stated on the Terms & Conditions is'
+  },
+  {
+    question: 'What are the types of payment you accept?',
+    answer: 'Due for the second & consecutive year after that for training fees & costs '
+  },
+  {
+    question: `I'm a part of a rival syndicate, can I still join?`,
+    answer: 'Including all vets bills, entry fees, transport, owners badge for race days & visits.'
+  }
+]

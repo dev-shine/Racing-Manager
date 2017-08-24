@@ -39,17 +39,17 @@ export const animate = (node, show, offset, transitionName, done, initial = fals
         node.style.height = `${node.scrollHeight}px`
       } else {
         height = node.scrollHeight
-        node.style.height = `${offset}px`
+        node.style.height = `${Math.min(node.scrollHeight, offset)}px`
       }
     },
     active () {
-      node.style.height = `${show ? height : offset}px`
+      node.style.height = `${show ? height : Math.min(node.scrollHeight, offset)}px`
     },
     end () {
       if (show) {
         node.style.height = 'auto'
       } else {
-        node.style.height = `${offset}px`
+        node.style.height = `${Math.min(node.scrollHeight, offset)}px`
       }
       done()
     }

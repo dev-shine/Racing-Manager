@@ -17,18 +17,18 @@ import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
 import SyndicateIntroSection from 'components/syndicate/SyndicateIntroSection'
 import SyndicateHorseCarousel from 'components/syndicate/SyndicateHorseCarousel'
 import SyndicateHeritageSection from 'components/syndicate/SyndicateHeritageSection'
+import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 import HorseHero from 'components/horse/HorseHero'
-
-import Faqs, { FaqItem } from 'components/common/Faqs'
 
 import {
   description as syndicateDesc,
   benefits as syndicateBenefits,
   benefitsDescription as syndicateBenefitsDescription,
   syndicateUpperHero,
-  syndicateLowerHero
+  syndicateLowerHero,
+  faqs
 } from 'data/syndicate'
 
 import {
@@ -139,17 +139,8 @@ export class PublicSyndicate extends Component {
 
           <div className='public-syndicate__section'>
             <div className='container'>
-              <Faqs
-                title='syndicate faqs'>
-                <FaqItem
-                  question='Are shares sold with VAT?'
-                  answer='The share price covers all expenses including the purchase & training of the horses up to the end of their racing season, including all vets bills, entry fees, transport, owners badge for race days & stable visits. A smaller additional sum, which is clearly stated on the Terms & Conditions is due for the second & consecutive year after that for training fees & racing costs etc.'
-                  />
-                  <FaqItem
-                  question='Are shares sold with VAT?'
-                  answer='The share price covers all expenses including the purchase & training of the horses up to the end of their racing season, including all vets bills, entry fees, transport, owners badge for race days & stable visits. A smaller additional sum, which is clearly stated on the Terms & Conditions is due for the second & consecutive year after that for training fees & racing costs etc.'
-                  />
-              </Faqs>
+              <SyndicateFaqs
+                faqs={faqs}/>
             </div>
           </div>
 
