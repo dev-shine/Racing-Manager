@@ -1,5 +1,6 @@
 .faq-item {
   $fade-transition: opacity .4s ease-out;
+  $height-transition: height .4s ease-out;
 
   position: relative;
   width: 100%;
@@ -29,6 +30,20 @@
 
     &--open {
       opacity: 1;
+    }
+  }
+
+  &__line {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 2px;
+    height: 0;
+    background: $color-seperator-secondary;
+    transition: $height-transition;
+    
+    &--open {
+      height: calc(100% - 10px);
     }
   }
 }

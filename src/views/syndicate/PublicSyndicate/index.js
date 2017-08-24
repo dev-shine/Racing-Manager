@@ -145,6 +145,10 @@ export class PublicSyndicate extends Component {
                   question='Are shares sold with VAT?'
                   answer='The share price covers all expenses including the purchase & training of the horses up to the end of their racing season, including all vets bills, entry fees, transport, owners badge for race days & stable visits. A smaller additional sum, which is clearly stated on the Terms & Conditions is due for the second & consecutive year after that for training fees & racing costs etc.'
                   />
+                  <FaqItem
+                  question='Are shares sold with VAT?'
+                  answer='The share price covers all expenses including the purchase & training of the horses up to the end of their racing season, including all vets bills, entry fees, transport, owners badge for race days & stable visits. A smaller additional sum, which is clearly stated on the Terms & Conditions is due for the second & consecutive year after that for training fees & racing costs etc.'
+                  />
               </Faqs>
             </div>
           </div>

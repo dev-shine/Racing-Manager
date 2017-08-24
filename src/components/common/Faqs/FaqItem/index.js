@@ -29,7 +29,8 @@ class FaqItem extends PureComponent {
     const {
       className,
       question,
-      answer
+      answer,
+      offset
     } = this.props
 
     const {
@@ -46,13 +47,19 @@ class FaqItem extends PureComponent {
       open
     })
 
+    const modifiedLineClassNames = classNames('faq-item__line', '', {
+      open
+    })
+
     return (
       <li className={modifiedClassNames}>
+        <div className={modifiedLineClassNames} />
+
         <h4 className={modifiedQuestionClassNames} onClick={this.toggleFaq}>
           {question}
         </h4>
 
-        <Accordion isOpen={open} offset={30}>
+        <Accordion isOpen={open} offset={offset}>
           <p className={modifiedSnippetClassNames}>
             {answer}
           </p>
@@ -65,7 +72,12 @@ class FaqItem extends PureComponent {
 FaqItem.propTypes = {
   className: PropTypes.string,
   question: PropTypes.string,
-  answer: PropTypes.string
+  answer: PropTypes.string,
+  offset: PropTypes.number
+}
+
+FaqItem.defaultProps = {
+  offset: 30
 }
 
 export default FaqItem

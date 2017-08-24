@@ -35,6 +35,25 @@ ul {
   &.no-list-style {
     list-style: none;
   }
+
+  &.square {
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding-left: 18px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 2px;
+        height: 2px;
+        background: url('../assets/images/square.svg') no-repeat left top;
+      }
+    }
+  }
 }
 
 sup {

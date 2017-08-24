@@ -26,7 +26,7 @@ class FaqFrame extends PureComponent {
           title={title}
           colorModifier='blue'
         >
-          <ul className='faq-frame__list no-list-style'>
+          <ul className='faq-frame__list square'>
             {children}
           </ul>
         </TitleDescriptionSection>
