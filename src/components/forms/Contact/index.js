@@ -93,7 +93,7 @@ class ContactForm extends PureComponent {
 
           <Submit component={(props) => TextButton({
             ...props,
-            modifier: 'secondary',
+            modifier: ['secondary', 'fluid'],
             text: 'Send message',
             className: 'contact-form__submit',
             isDisabled: false

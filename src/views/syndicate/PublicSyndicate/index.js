@@ -139,6 +139,9 @@ export class PublicSyndicate extends Component {
             </SyndicateIntroSection>
           </div>
 
+        {/*
+        ADD IN THE FULLWIDTHSPLITSECTION COMP!
+        */}
           <div className='public-syndicate__section'>
             <div className='container'>
               <div className='row'>
@@ -146,7 +149,7 @@ export class PublicSyndicate extends Component {
                   <SyndicateFaqs
                     faqs={faqs}/>
                 </div>
-                <div className='col-md-4 col-md-push-3'>
+                <div className='col-md-4 col-md-push-3 public-syndicate__contact-form'>
                   <ContactForm
                     description='Any queries? Leave your message and somebody from the syndicate will get back to you as soon as possible.' />
                 </div>

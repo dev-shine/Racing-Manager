@@ -1,8 +1,4 @@
-.syndicate-split-section {
-  position: relative;
-}
-
-/* .syndicate-split-section {
+.full-width-split-section {
   position: relative;
   width: 100%;
 
@@ -47,7 +43,7 @@
 
   // Themes
   &--blue {
-    .syndicate-split-section__wrapper {
+    .full-width-split-section__wrapper {
       &:before {
         background: $color-bg-strong;
       }
@@ -57,17 +53,17 @@
       }
     }
 
-    .syndicate-split-section__left {
+    .full-width-split-section__left {
       background: $color-bg-strong;
     }
 
-    .syndicate-split-section__right {
+    .full-width-split-section__right {
       background: $color-bg-dark;
     }
   }
 
   &--white {
-    .syndicate-split-section__wrapper {
+    .full-width-split-section__wrapper {
       &:before {
         background: $color-bg-secondary;
       }
@@ -77,13 +73,12 @@
       }
     }
 
-    .syndicate-split-section__left {
+    .full-width-split-section__left {
       background: $color-bg-secondary;
     }
 
-    .syndicate-split-section__right {
+    .full-width-split-section__right {
       background: $color-bg-faded-dark;
     }
   }
 }
- */

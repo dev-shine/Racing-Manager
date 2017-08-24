@@ -4,6 +4,8 @@ import classNames from 'utils/classnames'
 
 import PropTypes from 'prop-types'
 
+import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
+
 import HorseBigSection from 'components/horse/HorseBigSection'
 import HorseSmallSection from 'components/horse/HorseSmallSection'
 
@@ -19,11 +21,45 @@ class SyndicateSplitSection extends PureComponent {
       className,
       leftComponent,
       rightComponent,
-      modifier
+      modifier,
+      ...rest
     } = this.props
 
-    const modifiedClassNames = classNames('syndicate-split-section', className, modifier)
+    const modifiedClassNames = classNames('syndicate-split-section')
 
+    return (
+      <div className={modifiedClassNames}>
+        <div className='visible-md-up'>
+          <FullWidthSplitSection
+            leftComponent={(
+              <HorseBigSection>
+                {leftComponent}
+              </HorseBigSection>
+            )}
+            rightComponent={(
+              <HorseSmallSection>
+                {rightComponent}
+              </HorseSmallSection>
+            )}
+            {...rest} />
+        </div>
+
+        <div className='hidden-md-up'>
+          <HorseBigSection>
+            <Carousel showPagination>
+              <div className='container'>
+                {leftComponent}
+              </div>
+              <div className='container'>
+                {rightComponent}
+              </div>
+            </Carousel>
+          </HorseBigSection>
+        </div>
+      </div>
+    )
+
+    /*
     return (
       <div className={modifiedClassNames}>
         <div className='syndicate-split-section__wrapper'>
@@ -58,6 +94,7 @@ class SyndicateSplitSection extends PureComponent {
         </div>
       </div>
     )
+    */
   }
 }
 
