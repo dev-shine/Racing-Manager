@@ -1,11 +1,19 @@
 .faq-item {
+  $fade-transition: opacity .4s ease-out;
+
   position: relative;
   width: 100%;
+  margin-bottom: 20px;
 
-  &__title {
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__question {
     opacity: 0.75;
     color: $color-text-heading-dark;
-    
+    transition: $fade-transition;
+
     &--open {
       opacity: 1;
       color: $color-text-heading-bold;
@@ -17,6 +25,10 @@
     width: 100%;
     opacity: 0.15;
     color: $color-text-heading-dark;
-    @include truncate();
+    transition: $fade-transition;
+
+    &--open {
+      opacity: 1;
+    }
   }
 }

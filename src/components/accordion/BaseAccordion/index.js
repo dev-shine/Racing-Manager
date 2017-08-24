@@ -26,7 +26,7 @@ import cssAnimation from 'css-animation'
  *  @param  {Function} done
  *  @return {Function}
  */
-export const animate = (node, show, transitionName, done, initial = false) => {
+export const animate = (node, show, offset, transitionName, done, initial = false) => {
   /**
    *  @private
    *  @type {Number | NULL}
@@ -39,17 +39,17 @@ export const animate = (node, show, transitionName, done, initial = false) => {
         node.style.height = `${node.scrollHeight}px`
       } else {
         height = node.scrollHeight
-        node.style.height = 0
+        node.style.height = `${offset}px`
       }
     },
     active () {
-      node.style.height = `${show ? height : 0}px`
+      node.style.height = `${show ? height : offset}px`
     },
     end () {
       if (show) {
         node.style.height = 'auto'
       } else {
-        node.style.height = 0
+        node.style.height = `${offset}px`
       }
       done()
     }
@@ -64,14 +64,14 @@ export const animate = (node, show, transitionName, done, initial = false) => {
  */
 export const animation = prefixCls => {
   return {
-    start (node, initialShow, done) {
-      return animate(node, initialShow, `${prefixCls}--noanim`, done, true)
+    start (node, { initialShow, offset }, done) {
+      return animate(node, initialShow, offset, `${prefixCls}--noanim`, done, true)
     },
-    enter (node, done) {
-      return animate(node, true, `${prefixCls}--anim`, done)
+    enter (node, { offset }, done) {
+      return animate(node, true, offset, `${prefixCls}--anim`, done)
     },
-    leave (node, done) {
-      return animate(node, false, `${prefixCls}--anim`, done)
+    leave (node, { offset }, done) {
+      return animate(node, false, offset, `${prefixCls}--anim`, done)
     }
   }
 }
@@ -118,7 +118,14 @@ class Accordion extends Component {
    *  @return {Void}
    */
   _initialShow () {
-    this.animation.start(this.root, this.props.isOpen, () => {})
+    const {
+      isOpen,
+      offset
+    } = this.props
+
+    const initialShow = isOpen
+
+    this.animation.start(this.root, { initialShow, offset }, () => {})
   }
 
   /**
@@ -128,7 +135,11 @@ class Accordion extends Component {
    *  @return {Void}
    */
   _showContent () {
-    this.animation.enter(this.root, () => {})
+    const {
+      offset
+    } = this.props
+
+    this.animation.enter(this.root, { offset }, () => {})
   }
 
   /**
@@ -138,7 +149,11 @@ class Accordion extends Component {
    *  @return {Void}
    */
   _hideContent () {
-    this.animation.leave(this.root, () => {})
+    const {
+      offset
+    } = this.props
+
+    this.animation.leave(this.root, { offset }, () => {})
   }
 
   render () {
@@ -173,7 +188,8 @@ Accordion.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  offset: PropTypes.number
 }
 
 /**
@@ -181,7 +197,8 @@ Accordion.propTypes = {
  */
 Accordion.defaultProps = {
   className: '',
-  isOpen: false
+  isOpen: false,
+  offset: 0
 }
 
 export default Accordion

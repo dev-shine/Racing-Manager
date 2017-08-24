@@ -52,7 +52,7 @@ class FaqItem extends PureComponent {
           {question}
         </h4>
 
-        <Accordion isOpen={open} offset={'50px'}>
+        <Accordion isOpen={open} offset={30}>
           <p className={modifiedSnippetClassNames}>
             {answer}
           </p>
