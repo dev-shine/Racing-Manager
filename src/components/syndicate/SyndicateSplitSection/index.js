@@ -18,10 +18,11 @@ class SyndicateSplitSection extends PureComponent {
     const {
       className,
       leftComponent,
-      rightComponent
+      rightComponent,
+      modifier
     } = this.props
 
-    const modifiedClassNames = classNames('syndicate-split-section', className)
+    const modifiedClassNames = classNames('syndicate-split-section', className, modifier)
 
     return (
       <div className={modifiedClassNames}>
@@ -69,7 +70,12 @@ SyndicateSplitSection.propTypes = {
   rightComponent: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.element
-  ])
+  ]),
+  modifier: PropTypes.string
+}
+
+SyndicateSplitSection.defaultProps = {
+  modifier: 'blue'
 }
 
 export default SyndicateSplitSection

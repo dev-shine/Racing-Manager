@@ -22,6 +22,8 @@ import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 import HorseHero from 'components/horse/HorseHero'
 
+import ContactForm from 'components/forms/Contact'
+
 import {
   description as syndicateDesc,
   benefits as syndicateBenefits,
@@ -139,11 +141,18 @@ export class PublicSyndicate extends Component {
 
           <div className='public-syndicate__section'>
             <div className='container'>
-              <SyndicateFaqs
-                faqs={faqs}/>
+              <div className='row'>
+                <div className='col-md-5'>
+                  <SyndicateFaqs
+                    faqs={faqs}/>
+                </div>
+                <div className='col-md-4 col-md-push-3'>
+                  <ContactForm
+                    description='Any queries? Leave your message and somebody from the syndicate will get back to you as soon as possible.' />
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
       </View>
     )

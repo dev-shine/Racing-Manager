@@ -14,7 +14,8 @@
     opacity: 0.75;
     color: $color-text-heading-dark;
     transition: $fade-transition;
-
+    cursor: pointer;
+    
     &--open {
       opacity: 1;
       color: $color-text-heading-bold;
