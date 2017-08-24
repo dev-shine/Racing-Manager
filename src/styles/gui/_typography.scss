@@ -112,7 +112,7 @@ p, body, ul {
   }
 }
 
-p {
+p, a {
   &.small {
     font-size: $small-title;
     line-height: $small-title-lead;
