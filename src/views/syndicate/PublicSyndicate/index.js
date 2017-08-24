@@ -16,6 +16,7 @@ import SyndicateCtaCard from 'components/syndicate/SyndicateCtaCard'
 import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
 import SyndicateIntroSection from 'components/syndicate/SyndicateIntroSection'
 import SyndicateHorseCarousel from 'components/syndicate/SyndicateHorseCarousel'
+import SyndicateHeritageSection from 'components/syndicate/SyndicateHeritageSection'
 
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 import HorseHero from 'components/horse/HorseHero'
@@ -92,8 +93,7 @@ export class PublicSyndicate extends Component {
           <div className='public-syndicate__section'>
             <div className='container'>
               <div className='col-md-5 col-sm-12'>
-                <SyndicateBenefits
-                  />
+                <SyndicateBenefits />
               </div>
             </div>
           </div>
@@ -109,6 +109,14 @@ export class PublicSyndicate extends Component {
                   <SyndicateHorseCarousel
                     horses={fakeHorses} />
               </SyndicateIntroSection>
+          </div>
+
+          <div className='public-syndicate__section'>
+            <div className='container'>
+              <div className='col-md-5 col-sm-12'>
+                <SyndicateHeritageSection />
+              </div>
+            </div>
           </div>
         </div>
       </View>

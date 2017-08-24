@@ -4,7 +4,7 @@ import classNames from 'utils/classnames'
 
 import PropTypes from 'prop-types'
 
-import Separator from 'components/gui/Separator'
+import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 const SyndicateAbout = (props) => {
   const {
@@ -18,16 +18,13 @@ const SyndicateAbout = (props) => {
 
   return (
     <div className={modifiedClassNames}>
-      <h1 className='uppercase'>
-        {title}
-      </h1>
-      <Separator modifier='white' />
-      <p className='horse-header__paragraph'>
-        {description}
-      </p>
-      <p className='horse-header__paragraph'>
-        Want to know more? See our <span className='italic inherit' onClick={onFaqClick}>FAQs</span>
-      </p>
+      <TitleDescriptionSection
+        title={title}
+        description={description}>
+        <p>
+          Want to know more? See our <span className='italic inherit' onClick={onFaqClick}>FAQs</span>
+        </p>
+      </TitleDescriptionSection>
     </div>
   )
 }

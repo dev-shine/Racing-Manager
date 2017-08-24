@@ -6,6 +6,8 @@ import PropTypes from 'prop-types'
 
 import SyndicateTitleDescriptionCard from 'components/syndicate/SyndicateTitleDescriptionCard'
 
+import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
+
 const SyndicateIntroSection = (props) => {
   const {
     className,
@@ -20,9 +22,12 @@ const SyndicateIntroSection = (props) => {
     <div className={modifiedClassNames}>
       <div className='syndicate-intro-section__bg wave-bg-blue'></div>
       <div className='container no-padding'>
-        <SyndicateTitleDescriptionCard
-          title={title}
-          description={description} />
+        <SyndicateTitleDescriptionCard>
+          <TitleDescriptionSection
+            title={title}
+            description={description}
+            colorModifier='blue' />
+        </SyndicateTitleDescriptionCard>
         <div className='syndicate-intro-section__content'>
           {children}
         </div>
