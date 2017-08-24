@@ -24,9 +24,15 @@ const TitleDescriptionSection = (props) => {
         React.createElement(titleModifier, {className: 'title-description__title uppercase'}, [title])
       }
       <Separator modifier={colorModifier} />
-      <p className='title-description__paragraph'>
-        {description}
-      </p>
+      {
+        description
+        ? (
+            <p className='title-description__paragraph'>
+              {description}
+            </p>
+          )
+        : null
+      }
       {
         React.Children.count(children)
         ? (

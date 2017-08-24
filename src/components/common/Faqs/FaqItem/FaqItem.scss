@@ -1,0 +1,22 @@
+.faq-item {
+  position: relative;
+  width: 100%;
+
+  &__title {
+    opacity: 0.75;
+    color: $color-text-heading-dark;
+    
+    &--open {
+      opacity: 1;
+      color: $color-text-heading-bold;
+    }
+  }
+
+  &__snippet {
+    position: relative;
+    width: 100%;
+    opacity: 0.15;
+    color: $color-text-heading-dark;
+    @include truncate();
+  }
+}
