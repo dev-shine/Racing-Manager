@@ -19,6 +19,7 @@ const SyndicateHorseCarousel = (props) => {
 
   return (
     <Carousel
+      containerClassName='syndicate-horse-carousel'
       cellAlign='left'
       cellSpacing={30}
       slideWidth={'266px'}
@@ -27,7 +28,8 @@ const SyndicateHorseCarousel = (props) => {
       prevArrowModifier={['left', 'nobg', 'red', 'bottom']}
       breakPoints={{
         480: {
-          slideWidth: 1
+          slideWidth: 1,
+          cellAlign: 'center'
         }
       }}>
       {
@@ -69,7 +71,7 @@ const SyndicateHorseCarousel = (props) => {
               extra={{
                 url: `/horse/${horse.slug}`
               }}
-              className='' />
+              className='syndicate-horse-carousel__slide' />
           )
         })
       }
