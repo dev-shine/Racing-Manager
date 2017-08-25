@@ -6,50 +6,53 @@
     position: relative;
     width: 100%;
 
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 50%;
-      height: 100%;
-    }
+    @media all and (min-width: $screen-md-min) {
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+      }
 
-    &:after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 50%;
-      height: 100%;
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+      }
     }
   }
 
   &__content {
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__left {
     position: relative;
-    flex: 2;
     z-index: 1;
   }
 
   &__right {
     position: relative;
-    flex: 1;
     z-index: 1;
   }
 
   // Themes
   &--blue {
     .full-width-split-section__wrapper {
-      &:before {
-        background: $color-bg-strong;
-      }
+      @media all and (min-width: $screen-md-min) {
+        &:before {
+          background: $color-bg-strong;
+        }
 
-      &:after {
-        background: $color-bg-dark;
+        &:after {
+          background: $color-bg-dark;
+        }
       }
     }
 
@@ -58,18 +61,22 @@
     }
 
     .full-width-split-section__right {
-      // background: $color-bg-dark;
+      @media all and (max-width: $screen-md) {
+        background: $color-bg-dark;
+      }
     }
   }
 
   &--white {
     .full-width-split-section__wrapper {
-      &:before {
-        background: $color-bg-secondary;
-      }
+      @media all and (min-width: $screen-md-min) {
+        &:before {
+          background: $color-bg-secondary;
+        }
 
-      &:after {
-        background: $color-bg-faded-dark;
+        &:after {
+          background: $color-bg-faded-dark;
+        }
       }
     }
 
@@ -78,7 +85,9 @@
     }
 
     .full-width-split-section__right {
-      // background: $color-bg-faded-dark;
+      @media all and (max-width: $screen-md) {
+        background: $color-bg-faded-dark;
+      }
     }
   }
 }

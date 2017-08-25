@@ -151,7 +151,14 @@ export class PublicSyndicate extends Component {
               )}
               rightComponent={(
                 <div className='public-syndicate__contact-form'>
+                  {/* Add in the contact form container */}
                   <ContactForm
+                    values={{}}
+                    errors={{}}
+                    validators={() => {}}
+                    update={() => {}}
+                    updateErrors={() => {}}
+                    submitForm={() => {}}
                     description='Any queries? Leave your message and somebody from the syndicate will get back to you as soon as possible.' />
                 </div>
               )}/>

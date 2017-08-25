@@ -17,9 +17,9 @@ const FullWidthSplitSection = (props) => {
 
   const modifiedClassNames = classNames('full-width-split-section', className, modifier)
 
-  const modifiedLeftClassNames = classNames('full-width-split-section__left col-md-8', leftClassName)
+  const modifiedLeftClassNames = classNames('full-width-split-section__left col-md-8 col-xs-12', leftClassName)
 
-  const modifiedRightClassNames = classNames('full-width-split-section__right col-md-4', rightClassName)
+  const modifiedRightClassNames = classNames('full-width-split-section__right col-md-4 col-xs-12', rightClassName)
 
   return (
     <div className={modifiedClassNames}>

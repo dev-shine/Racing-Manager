@@ -33,10 +33,18 @@
   }
 
   &__faqs {
-    padding: 80px 35px 20px 35px;
+    padding: 0px 10px 40px 10px;
+
+    @media all and (min-width: $screen-md-min) {
+      padding: 80px 35px 20px 35px;
+    }
   }
 
   &__contact-form {
-    padding: 80px 35px 20px 35px;
+    padding: 40px 10px 40px 10px;
+
+    @media all and (min-width: $screen-md-min) {
+      padding: 80px 35px 20px 35px;
+    }
   }
 }
