@@ -32,7 +32,11 @@
     margin-bottom: 40px;
   }
 
+  &__faqs {
+    padding: 80px 35px 20px 35px;
+  }
+
   &__contact-form {
-    background: $color-bg-faded-dark;
+    padding: 80px 35px 20px 35px;
   }
 }

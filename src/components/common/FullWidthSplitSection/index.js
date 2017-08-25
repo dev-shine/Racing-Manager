@@ -10,20 +10,26 @@ const FullWidthSplitSection = (props) => {
     leftComponent,
     rightComponent,
     modifier,
-    children
+    children,
+    leftClassName,
+    rightClassName
   } = props
 
   const modifiedClassNames = classNames('full-width-split-section', className, modifier)
+
+  const modifiedLeftClassNames = classNames('full-width-split-section__left col-md-8', leftClassName)
+
+  const modifiedRightClassNames = classNames('full-width-split-section__right col-md-4', rightClassName)
 
   return (
     <div className={modifiedClassNames}>
       <div className='full-width-split-section__wrapper'>
         <div className='full-width-split-section__content container no-padding'>
-          <div className='full-width-split-section__left col-md-8'>
+          <div className={modifiedLeftClassNames}>
             {leftComponent}
           </div>
 
-          <div className='full-width-split-section__right col-md-4'>
+          <div className={modifiedRightClassNames}>
             {rightComponent}
           </div>
         </div>
@@ -43,7 +49,9 @@ FullWidthSplitSection.propTypes = {
     PropTypes.node,
     PropTypes.element
   ]),
-  modifier: PropTypes.string
+  modifier: PropTypes.string,
+  leftClassName: PropTypes.string,
+  rightClassName: PropTypes.string
 }
 
 FullWidthSplitSection.defaultProps = {

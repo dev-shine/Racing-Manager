@@ -24,6 +24,8 @@ import HorseHero from 'components/horse/HorseHero'
 
 import ContactForm from 'components/forms/Contact'
 
+import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
+
 import {
   description as syndicateDesc,
   benefits as syndicateBenefits,
@@ -139,22 +141,20 @@ export class PublicSyndicate extends Component {
             </SyndicateIntroSection>
           </div>
 
-        {/*
-        ADD IN THE FULLWIDTHSPLITSECTION COMP!
-        */}
           <div className='public-syndicate__section'>
-            <div className='container'>
-              <div className='row'>
-                <div className='col-md-5'>
-                  <SyndicateFaqs
-                    faqs={faqs}/>
+            <FullWidthSplitSection
+              modifier='white'
+              leftComponent={(
+                <div className='col-xs-12 col-md-8 public-syndicate__faqs'>
+                  <SyndicateFaqs faqs={faqs} />
                 </div>
-                <div className='col-md-4 col-md-push-3 public-syndicate__contact-form'>
+              )}
+              rightComponent={(
+                <div className='public-syndicate__contact-form'>
                   <ContactForm
                     description='Any queries? Leave your message and somebody from the syndicate will get back to you as soon as possible.' />
                 </div>
-              </div>
-            </div>
+              )}/>
           </div>
         </div>
       </View>
