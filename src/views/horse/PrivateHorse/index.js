@@ -15,9 +15,10 @@ import Separator from 'components/gui/Separator'
 
 import SecondaryNavBar, { NavLink } from 'components/navigation/SecondaryNavBar'
 
-import HorseHeader from 'components/horse/HorseHeader'
+// import HorseHeader from 'components/horse/HorseHeader'
 import HorseAccordion from 'components/horse/HorseAccordion'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
+import HorseHero from 'components/horse/HorseHero'
 
 import FeedGallery from 'components/tiles/FeedGallery'
 
@@ -147,7 +148,7 @@ export class PrivateHorse extends Component {
     return (
       <View title={capitalize(data.name)} notPrefixed>
         <div className='horse-overview'>
-          <HorseHeader
+          {/*<HorseHeader
             data={data}
             leftSection={aboutSection}
             rightSection={involvementSection}
@@ -155,7 +156,10 @@ export class PrivateHorse extends Component {
               aboutSection,
               involvementSection
             ]}
-          />
+          />*/}
+
+          <HorseHero
+            data={data} />
 
           <SecondaryNavBar>
             <NavLink href={`/horse/${match.params.name}`}>

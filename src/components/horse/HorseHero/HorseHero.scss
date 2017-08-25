@@ -1,44 +1,36 @@
 .horse-hero {
-  $h: 500px;
-  $hDouble: ($h * 2);
-
-  overflow: hidden;
   position: relative;
-  background: $color-bg-secondary;
-  /* margin: 40px 0; */
+  width: 100%;
+  min-height: 200px;
+  overflow: hidden;
 
-  &__overlay {
-    position: relative;
-    height: $h;
-    text-align: center;
+  @media (min-width: $screen-sm) {
+    height: 350px;
   }
 
-  &__title {
-    color: $color-text-strong;
+  @media (min-width: $screen-md) {
+    height: 550px;
   }
 
-  &__parallax-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
+  &__parallax-image {
+    height: 200px;
+    background-repeat: no-repeat;
+    background-position: top center;
 
-  &__image {
-    position: relative;
-    height: $hDouble;
-    background-size: cover;
-    background-position: center top;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: $color-parallax-image;
+    @media (min-width: $screen-sm) {
+      height: 350px;
     }
+
+    @media (min-width: $screen-md) {
+      height: 550px;
+    }
+  }
+
+  &__card {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 2;
+    transform: translateY(-50%);
   }
 }
