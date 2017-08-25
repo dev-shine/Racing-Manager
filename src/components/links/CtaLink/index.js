@@ -6,6 +6,8 @@ import classNames from 'utils/classnames'
 
 import { Link } from 'react-router-dom'
 
+import { HashLink } from 'react-router-hash-link'
+
 const CtaLink = props => {
   const {
     className,
@@ -13,6 +15,7 @@ const CtaLink = props => {
     href,
     children,
     nativeLink,
+    hashLink,
     ...rest
   } = props
 
@@ -23,6 +26,13 @@ const CtaLink = props => {
       <a href={href} className={modifiedClassNames} {...rest}>
         {children}
       </a>
+    )
+  } else
+  if (hashLink) {
+    return (
+      <HashLink to={href} className={modifiedClassNames} {...rest}>
+        {children}
+      </HashLink>
     )
   } else {
     return (
@@ -43,14 +53,16 @@ CtaLink.propTypes = {
     PropTypes.arrayOf(PropTypes.string)
   ]),
   href: PropTypes.string,
-  nativeLink: PropTypes.bool
+  nativeLink: PropTypes.bool,
+  hashLink: PropTypes.bool
 }
 
 CtaLink.defaultProps = {
   className: '',
   modifier: '',
   href: '/',
-  nativeLink: false
+  nativeLink: false,
+  hashLink: false
 }
 
 export default CtaLink

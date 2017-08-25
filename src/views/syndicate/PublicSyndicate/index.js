@@ -20,7 +20,7 @@ import SyndicateHeritageSection from 'components/syndicate/SyndicateHeritageSect
 import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
-import HorseHero from 'components/horse/HorseHero'
+import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 import ContactForm from 'components/forms/Contact'
 
@@ -109,7 +109,7 @@ export class PublicSyndicate extends Component {
           </div>
 
           <div className='public-syndicate__section-top'>
-              <HorseHero {...syndicateUpperHero} />
+              <HorseParallaxContent {...syndicateUpperHero} />
           </div>
 
           <div className='public-syndicate__overlay-section'>
@@ -130,7 +130,7 @@ export class PublicSyndicate extends Component {
           </div>
 
           <div className='public-syndicate__section-top'>
-              <HorseHero {...syndicateLowerHero} />
+              <HorseParallaxContent {...syndicateLowerHero} />
           </div>
 
           <div className='public-syndicate__overlay-section'>

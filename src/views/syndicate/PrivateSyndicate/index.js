@@ -15,7 +15,7 @@ import Image from 'components/image'
 
 import HorseBigSection from 'components/horse/HorseBigSection'
 import HorseSmallSection from 'components/horse/HorseSmallSection'
-import HorseHero from 'components/horse/HorseHero'
+import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 import { constructStaticUrl } from 'utils/horseutils'
 import { fetchSyndicateInfo, clearSyndicateData } from 'actions/syndicate'
@@ -176,10 +176,10 @@ export class PrivateSyndicate extends Component {
               </div>
             </div>
             <div className='private-syndicate__parallax-section'>
-              <HorseHero {...syndicateUpperHero} />
+              <HorseParallaxContent {...syndicateUpperHero} />
             </div>
             <div className='private-syndicate__parallax-section'>
-              <HorseHero {...syndicateLowerHero} />
+              <HorseParallaxContent {...syndicateLowerHero} />
             </div>
           </div>
           <div className='syndicate__grid__title container'>

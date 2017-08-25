@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { HashLink } from 'react-router-hash-link'
 
 import View from 'components/routing/View'
 import capitalize from 'utils/capitalize'
@@ -13,10 +12,11 @@ import Separator from 'components/gui/Separator'
 import Table from 'components/gui/Table'
 import List from 'components/gui/List'
 import TextButton from 'components/buttons/TextButton'
+import CtaLink from 'components/links/CtaLink'
 
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseCard from 'components/cards/HorseCard'
-import HorseHero from 'components/horse/HorseHero'
+import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 import HorseCtaCard from 'components/horse/HorseCtaCard'
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 
@@ -102,9 +102,12 @@ class PublicHorse extends Component {
         <Separator modifier='white' />
         <List items={availabilityList} />
         {updatesInfo}
-        <HashLink to='#benefits-section' className='link link--italic public-horse__see-benefits'>
+        <CtaLink
+          hashLink
+          href='#benefits-section'
+          className='link link--italic public-horse__see-benefits'>
           See benefits
-        </HashLink>
+        </CtaLink>
       </div>
     )
 
@@ -161,7 +164,7 @@ class PublicHorse extends Component {
               </div>
             </div>
           </div>
-          <HorseHero
+          <HorseParallaxContent
             title={horseHero.title(ownerName)}
             image={horseHero.image}
           />

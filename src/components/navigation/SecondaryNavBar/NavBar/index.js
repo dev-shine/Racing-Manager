@@ -1,0 +1,36 @@
+import React, { PureComponent } from 'react'
+
+import classNames from 'utils/classnames'
+
+import PropTypes from 'prop-types'
+
+class NavBar extends PureComponent {
+  constructor (props) {
+    super(props)
+  }
+
+  render () {
+    const {
+      className,
+      children
+    } = this.props
+
+    const modifiedClassNames = classNames('secondary-nav-bar', className)
+
+    return (
+      <div className={modifiedClassNames}>
+        <div className='container'>
+          <ul className='secondary-nav-bar__list no-list-style'>
+            {children}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+}
+
+NavBar.propTypes = {
+  className: PropTypes.string
+}
+
+export default NavBar
