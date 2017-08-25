@@ -14,6 +14,7 @@ $cinnamon-satin: #c3617b;
 $raspberry-glace: #906279;
 $raspberry-glace-2: #885872;
 $twilight-lavender: #8d4772;
+$lavender-gray: #C6C8C9;
 
 $space-cadet: #233654;
 $yankees-blue: #142339;
@@ -40,6 +41,7 @@ $color-popup-bg: $white;
 $color-faded-popup-bg: rgba($white, 0.4);
 $color-bg-strong: $maastricht-blue;
 $color-bg-dark: darken($maastricht-blue, 2%);
+$color-bg-faded-dark: rgba($black, 0.05);
 
 // Overlay
 $color-parallax-image: rgba($white, 0.4);
@@ -72,6 +74,8 @@ $color-loader: $vanilla-ice;
 $color-text-strong: $yankees-blue;
 $color-text-heading: $maastricht-blue;
 $color-text-heading-strong: $davys-gray;
+$color-text-heading-dark: $yankees-blue;
+$color-text-heading-bold: $raisin-black;
 
 // Seperators
 $color-seperator-primary: $vanilla-ice;
@@ -79,3 +83,4 @@ $color-seperator-light: $white;
 $color-seperator-dark: $black;
 $color-seperator-strong: $dark-imperial-blue;
 $color-seperator-weak: $taupe-gray;
+$color-seperator-secondary: $lavender-gray;

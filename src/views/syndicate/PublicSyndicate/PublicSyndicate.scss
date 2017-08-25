@@ -31,4 +31,28 @@
     margin-top: -50px;
     margin-bottom: 40px;
   }
+
+  &__faqs {
+    padding: 0px 10px 40px 10px;
+
+    @media all and (min-width: $screen-sm-min) {
+      padding: 0px 30px 40px 30px;
+    }
+
+    @media all and (min-width: $screen-md-min) {
+      padding: 80px 35px 20px 35px;
+    }
+  }
+
+  &__contact-form {
+    padding: 40px 10px 40px 10px;
+
+    @media all and (min-width: $screen-sm-min) {
+      padding: 40px 30px 40px 30px;
+    }
+
+    @media all and (min-width: $screen-md-min) {
+      padding: 80px 35px 20px 35px;
+    }
+  }
 }

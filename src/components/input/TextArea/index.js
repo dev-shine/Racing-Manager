@@ -29,6 +29,11 @@ import InputError from 'components/input/InputError'
 import debounce from 'utils/debounce'
 
 /**
+*  @module InputLine
+*/
+import InputLine from 'components/input/InputLine'
+
+/**
  *  @class
  *  @extends {Component}
  */
@@ -105,7 +110,8 @@ class TextArea extends Component {
       handleBlur,
       handleFocus,
       handleChange,
-      maxLength
+      maxLength,
+      showBar
     } = this.props
 
     /**
@@ -120,7 +126,9 @@ class TextArea extends Component {
      *  @const
      *  @type {String}
      */
-    const modifiedClassNames = classNames('textarea', className, modifier)
+    const modifiedClassNames = classNames('textarea', className, modifier, {
+      border: showBar
+    })
 
     return (
       <div className={modifiedClassNames}>
@@ -136,6 +144,13 @@ class TextArea extends Component {
           onFocus={handleFocus}
           maxLength={maxLength}
           onChange={handleChange} />
+        {
+          showBar
+          ? (
+              <InputLine error={hasError} className='textarea__line'/>
+            )
+          : null
+        }
         <Accordion
           className='input__accordion'
           isOpen={hasError}>
@@ -156,7 +171,8 @@ TextArea.defaultProps = {
   type: 'text',
   minHeight: 40,
   autoGrow: true,
-  maxLength: Infinity
+  maxLength: Infinity,
+  showBar: false
 }
 
 /**
@@ -183,7 +199,8 @@ TextArea.propTypes = {
     PropTypes.arrayOf(PropTypes.string)
   ]),
   minHeight: PropTypes.number,
-  autoGrow: PropTypes.bool
+  autoGrow: PropTypes.bool,
+  showBar: PropTypes.bool
 }
 
 /**

@@ -17,16 +17,24 @@ import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
 import SyndicateIntroSection from 'components/syndicate/SyndicateIntroSection'
 import SyndicateHorseCarousel from 'components/syndicate/SyndicateHorseCarousel'
 import SyndicateHeritageSection from 'components/syndicate/SyndicateHeritageSection'
+import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 import HorseHero from 'components/horse/HorseHero'
+
+import ContactForm from 'components/forms/Contact'
+
+import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
+
+import TextButton from 'components/buttons/TextButton'
 
 import {
   description as syndicateDesc,
   benefits as syndicateBenefits,
   benefitsDescription as syndicateBenefitsDescription,
   syndicateUpperHero,
-  syndicateLowerHero
+  syndicateLowerHero,
+  faqs
 } from 'data/syndicate'
 
 import {
@@ -135,6 +143,34 @@ export class PublicSyndicate extends Component {
             </SyndicateIntroSection>
           </div>
 
+          <div className='public-syndicate__section'>
+            <FullWidthSplitSection
+              modifier='white'
+              leftComponent={(
+                <div className='col-xs-12 col-md-8 public-syndicate__faqs'>
+                  <SyndicateFaqs faqs={faqs} />
+
+                  <div className='col-md-8 col-xs-12 public-syndicate__section-top'>
+                    <TextButton
+                      modifier='fluid'
+                      text='request to join a horse' />
+                  </div>
+                </div>
+              )}
+              rightComponent={(
+                <div className='public-syndicate__contact-form'>
+                  {/* Add in the contact form container */}
+                  <ContactForm
+                    values={{}}
+                    errors={{}}
+                    validators={() => {}}
+                    update={() => {}}
+                    updateErrors={() => {}}
+                    submitForm={() => {}}
+                    description='Any queries? Leave your message and somebody from the syndicate will get back to you as soon as possible.' />
+                </div>
+              )}/>
+          </div>
         </div>
       </View>
     )

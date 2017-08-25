@@ -5,7 +5,13 @@ import {
   johnImage,
   alexImage,
   alisonImage,
-  horseHeroImage
+  horseHeroImage,
+  trainerRoger,
+  trainerFreddy,
+  trainerLuca,
+  trainerJohn,
+  trainerNigel,
+  trainerKevin
 } from 'assets/dummyassets'
 
 export const tableStatistics = {
@@ -235,38 +241,38 @@ export const syndicateMembers = [
 
 export const trainerMembers = [
   {
-    image: harryImage,
+    image: trainerRoger,
     name: 'roger charlton',
     role: 'wiltshire',
     description: 'Roger is no stranger to success having trained nine individual Group 1 winners.'
   },
 
   {
-    image: harryImage,
+    image: trainerFreddy,
     name: 'freddy head',
     role: 'chantilly',
     description: 'Freddy is the only man to have won Breeder’s Cups both as a jockey, on Miesque and as a '
   },
   {
-    image: harryImage,
+    image: trainerLuca,
     name: 'luca camani',
     role: 'newmarket',
     description: 'Luca Cumani was born and raised in Italy and comes from a family steeped in racing.'
   },
   {
-    image: harryImage,
+    image: trainerJohn,
     name: 'john gosden',
     role: 'wiltshire',
     description: 'John is no stranger to success having trained nine individual Group 1 winners.'
   },
   {
-    image: harryImage,
+    image: trainerNigel,
     name: 'nigel twiston-davies',
     role: 'watford',
     description: 'Nigel is having his best season to date and looks certain of recording his first century. '
   },
   {
-    image: harryImage,
+    image: trainerKevin,
     name: 'kevin ryan',
     role: 'hemel-hempstead',
     description: 'Kevin Ryan rode 47 winners as a conditional jockey before assisting Jack Berry.'
