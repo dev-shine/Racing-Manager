@@ -7,6 +7,7 @@ import Hero from 'components/parallax/Hero'
 import { constructStaticUrl } from 'utils/horseutils'
 
 import HorseDetailsCard from 'components/horse/HorseDetailsCard'
+import HorseMobileDetailsCard from 'components/horse/HorseMobileDetailsCard'
 
 import { timestampToDate } from 'utils/dateutils'
 
@@ -95,8 +96,16 @@ const HorseHero = (props) => {
       <Hero
         className='horse-hero__parallax-image'
         featuredImage={constructStaticUrl(featuredImage)} />
-      <div className='horse-hero__card'>
-        <HorseDetailsCard
+      <div className='horse-hero__card-container'>
+        <div className='horse-hero__card visible-md-up'>
+          <HorseDetailsCard
+            briefData={briefData}
+            numericData={numericData}
+            detailsData={detailsData} />
+        </div>
+      </div>
+      <div className='horse-hero__mobile-card hidden-md-up'>
+        <HorseMobileDetailsCard
           briefData={briefData}
           numericData={numericData}
           detailsData={detailsData} />
