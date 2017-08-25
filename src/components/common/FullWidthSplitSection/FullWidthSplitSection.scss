@@ -6,7 +6,7 @@
     position: relative;
     width: 100%;
 
-    @media all and (min-width: $screen-md-min) {
+    @media all and (min-width: $screen-sm-min) {
       &:before {
         content: '';
         position: absolute;
@@ -29,7 +29,10 @@
 
   &__content {
     display: flex;
-    flex-wrap: wrap;
+
+    @media all and (max-width: $screen-sm) {
+      flex-wrap: wrap;
+    }
   }
 
   &__left {
@@ -45,7 +48,7 @@
   // Themes
   &--blue {
     .full-width-split-section__wrapper {
-      @media all and (min-width: $screen-md-min) {
+      @media all and (min-width: $screen-sm-min) {
         &:before {
           background: $color-bg-strong;
         }
@@ -61,7 +64,7 @@
     }
 
     .full-width-split-section__right {
-      @media all and (max-width: $screen-md) {
+      @media all and (max-width: $screen-sm) {
         background: $color-bg-dark;
       }
     }
@@ -69,7 +72,7 @@
 
   &--white {
     .full-width-split-section__wrapper {
-      @media all and (min-width: $screen-md-min) {
+      @media all and (min-width: $screen-sm-min) {
         &:before {
           background: $color-bg-secondary;
         }
@@ -85,7 +88,7 @@
     }
 
     .full-width-split-section__right {
-      @media all and (max-width: $screen-md) {
+      @media all and (max-width: $screen-sm) {
         background: $color-bg-faded-dark;
       }
     }

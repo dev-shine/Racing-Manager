@@ -26,6 +26,8 @@ import ContactForm from 'components/forms/Contact'
 
 import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
 
+import TextButton from 'components/buttons/TextButton'
+
 import {
   description as syndicateDesc,
   benefits as syndicateBenefits,
@@ -147,6 +149,12 @@ export class PublicSyndicate extends Component {
               leftComponent={(
                 <div className='col-xs-12 col-md-8 public-syndicate__faqs'>
                   <SyndicateFaqs faqs={faqs} />
+
+                  <div className='col-md-8 col-xs-12 public-syndicate__section-top'>
+                    <TextButton
+                      modifier='fluid'
+                      text='request to join a horse' />
+                  </div>
                 </div>
               )}
               rightComponent={(
