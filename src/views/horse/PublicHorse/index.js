@@ -13,6 +13,7 @@ import Separator from 'components/gui/Separator'
 import Table from 'components/gui/Table'
 import List from 'components/gui/List'
 import TextButton from 'components/buttons/TextButton'
+import CtaLink from 'components/links/CtaLink'
 
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseCard from 'components/cards/HorseCard'
@@ -102,9 +103,12 @@ class PublicHorse extends Component {
         <Separator modifier='white' />
         <List items={availabilityList} />
         {updatesInfo}
-        <HashLink to='#benefits-section' className='link link--italic public-horse__see-benefits'>
+        <CtaLink
+          hashLink
+          href='#benefits-section'
+          className='link link--italic public-horse__see-benefits'>
           See benefits
-        </HashLink>
+        </CtaLink>
       </div>
     )
 

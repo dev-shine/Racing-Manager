@@ -13,6 +13,8 @@ import List from 'components/gui/List'
 import TextButton from 'components/buttons/TextButton'
 import Separator from 'components/gui/Separator'
 
+import SecondaryNavBar, { NavLink } from 'components/navigation/SecondaryNavBar'
+
 import HorseHeader from 'components/horse/HorseHeader'
 import HorseAccordion from 'components/horse/HorseAccordion'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
@@ -55,7 +57,8 @@ export class PrivateHorse extends Component {
     const {
       posting,
       fetching,
-      data = {}
+      data = {},
+      match
     } = this.props
 
     const {
@@ -153,6 +156,19 @@ export class PrivateHorse extends Component {
               involvementSection
             ]}
           />
+
+          <SecondaryNavBar>
+            <NavLink href={`/horse/${match.params.name}`}>
+              updates
+            </NavLink>
+            <NavLink href={`/horse/${match.params.name}/statistics`}>
+              statistics
+            </NavLink>
+            <NavLink href={`/horse/${match.params.name}/information`}>
+              information
+            </NavLink>
+          </SecondaryNavBar>
+
           <div className='horse-accordions'>
             <HorseAccordion title='The Team'>
               <div className='horse-accordions__content container'>
