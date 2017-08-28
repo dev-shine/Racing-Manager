@@ -4,11 +4,13 @@ import SecondaryNavBar, { NavLink } from 'components/navigation/SecondaryNavBar'
 
 const HorseNavBar = (props) => {
   const {
-    name
+    name,
+    modifier,
+    className
   } = props
 
   return (
-    <SecondaryNavBar>
+    <SecondaryNavBar modifier={modifier} className={className}>
       <NavLink href={`/horse/${name}`}>
         updates
       </NavLink>

@@ -155,7 +155,7 @@ export const racePlans = {
 }
 
 export const horseValue = {
-  title: 'Expectations',
+  title: 'Horse value',
   text: (
     <div>
       <p className='horse-paragraphs'>

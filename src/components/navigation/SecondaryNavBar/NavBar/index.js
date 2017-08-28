@@ -12,10 +12,11 @@ class NavBar extends PureComponent {
   render () {
     const {
       className,
-      children
+      children,
+      modifier
     } = this.props
 
-    const modifiedClassNames = classNames('secondary-nav-bar', className)
+    const modifiedClassNames = classNames('secondary-nav-bar', className, modifier)
 
     return (
       <div className={modifiedClassNames}>
