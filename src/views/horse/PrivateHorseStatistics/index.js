@@ -12,7 +12,7 @@ import View from 'components/routing/View'
 
 import capitalize from 'utils/capitalize'
 
-import scrollToElement from 'scroll-to-element'
+import scrollToElement from 'scrollto-element'
 
 import {
   tableStatistics,
@@ -23,15 +23,25 @@ import {
 class PrivateHorseStatistics extends Component {
   constructor (props) {
     super(props)
+
+    this.scrollElementToView = this.scrollElementToView.bind(this)
   }
 
   componentDidMount () {
     this.props.getHorseInfo()
 
-    scrollToElement('#ranking', {
-      offset: -60,
-      duration: 300
-    })
+    // Scroll to ranking table
+    this.scrollElementToView()
+  }
+
+  scrollElementToView () {
+    setTimeout(() => {
+      scrollToElement({
+        element: document.querySelector('#ranking'),
+        offset: -60,
+        duration: 500
+      })
+    }, 0)
   }
 
   componentWillUnmount () {
