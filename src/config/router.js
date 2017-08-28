@@ -19,8 +19,10 @@ import RegistrationSuccessful from 'views/RegistrationSuccessful'
 import RegistrationConfirmation from 'views/RegistrationConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
+
 import PrivateHorse from 'views/horse/PrivateHorse'
 import PublicHorse from 'views/horse/PublicHorse'
+import PrivateHorseStatistics from 'views/horse/PrivateHorseStatistics'
 
 import PrivateSyndicate from 'views/syndicate/PrivateSyndicate'
 import PublicSyndicate from 'views/syndicate/PublicSyndicate'
@@ -36,7 +38,10 @@ const router = (
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
+
             <AuthRoute exact path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
+            <AuthRoute exact path='/horse/:name/statistics' component={PrivateHorseStatistics} redirectPath='/404' />
+
             <AuthRoute exact path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />
