@@ -3,10 +3,6 @@
   width: 100%;
   min-height: 200px;
 
-  @media (min-width: $screen-sm-min) {
-    height: 350px;
-  }
-
   @media (min-width: $screen-md-min) {
     height: 550px;
   }
