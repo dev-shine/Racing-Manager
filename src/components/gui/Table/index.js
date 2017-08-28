@@ -50,6 +50,8 @@ Table.propTypes = {
 Table.defaultProps = {
   className: '',
   modifier: '',
+  data: [],
+  titles: []
 }
 
 export default Table
