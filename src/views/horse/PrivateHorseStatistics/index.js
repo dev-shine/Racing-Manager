@@ -20,6 +20,10 @@ import {
   tableResults
 } from 'data/horse'
 
+import {
+  queryBySelector
+} from 'utils/domutils'
+
 class PrivateHorseStatistics extends Component {
   constructor (props) {
     super(props)
@@ -37,7 +41,7 @@ class PrivateHorseStatistics extends Component {
   scrollElementToView () {
     setTimeout(() => {
       scrollToElement({
-        element: document.querySelector('#ranking'),
+        element: queryBySelector('#ranking'),
         offset: -60,
         duration: 500
       })

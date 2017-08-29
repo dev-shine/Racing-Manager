@@ -181,7 +181,8 @@ class FeedGallery extends Component {
   render () {
     const {
       tiles,
-      popupTitle
+      popupTitle,
+      allowCommenting
     } = this.props
 
     const {
@@ -209,6 +210,7 @@ class FeedGallery extends Component {
           }
         </Grid>
         <FeedUpdatePopupContainer
+          allowCommenting={allowCommenting}
           submitTitle={popupTitle}
           isOpen={showPopup}
           onClick={this.closePopup}

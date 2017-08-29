@@ -27,25 +27,27 @@ const HorseAbout = (props) => {
         title={title}
         description={description}>
 
-        <h4 className='horse-header__timeford-title uppercase'>
-          Timeform comment
-        </h4>
-        {(!timeformComments.flat && !timeformComments.jump) && (
-          <p className='horse-header__paragraph'>
-            No timeform comments..
-          </p>
-        )}
-        {timeformComments.flat && (
-          <p className='horse-header__paragraph'>
-            Flat: {timeformComments.flat}
-          </p>
-        )}
-        {timeformComments.jump && (
-          <p className='horse-header__paragraph'>
-            Jump: {timeformComments.jump}
-          </p>
-        )}
-
+        {
+          (!timeformComments.flat && !timeformComments.jump)
+          ? null
+          : (
+            <div>
+              <h4 className='horse-header__timeford-title uppercase'>
+                Timeform comment
+              </h4>
+              {timeformComments.flat && (
+                <p className='horse-header__paragraph'>
+                  Flat: {timeformComments.flat}
+                </p>
+              )}
+              {timeformComments.jump && (
+                <p className='horse-header__paragraph'>
+                  Jump: {timeformComments.jump}
+                </p>
+              )}
+            </div>
+          )
+        }
         <CtaLink to={syndicateLink}>
           <TextButton
             text='Syndicate page'
@@ -67,7 +69,7 @@ HorseAbout.propTypes = {
 }
 
 HorseAbout.defaultProps = {
-  title: 'About the syndicate',
+  title: 'About the horse',
   description: '',
   timeformComments: {},
   syndicateLink: ''

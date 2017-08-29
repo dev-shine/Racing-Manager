@@ -24,5 +24,11 @@
     @media all and (min-width: $screen-md-min) {
       margin-top: 100px;
     }
+
+    &--small {
+      @media all and (min-width: $screen-md-min) {
+        margin-top: 40px;
+      }
+    }
   }
 }

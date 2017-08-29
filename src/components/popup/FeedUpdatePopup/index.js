@@ -197,7 +197,8 @@ export class FeedUpdatePopup extends Component {
       commentText,
       charCount,
       commentPosted,
-      maxCharCount
+      maxCharCount,
+      allowCommenting
     } = this.props
 
     // Modified class names for container
@@ -207,19 +208,24 @@ export class FeedUpdatePopup extends Component {
       <div className={modifiedClassNames}>
         { this.renderTile() }
         <div className='feed-popup__bottom section-shadow'>
-          <div className='col-xs-12 feed-popup__bottomcontent'>
-            <SubmitPost
-              allowAttachments={false}
-              title={submitTitle}
-              feedText={commentText}
-              feedPosted={commentPosted}
-              submitFeedUpdate={this.postComment}
-              updateFeedText={updateFeedText}
-              clearFeedData={clearFeedData}
-              charCount={charCount}
-              maxCharCount={maxCharCount} />
-          </div>
-
+          {
+            allowCommenting
+            ? (
+                <div className='col-xs-12 feed-popup__bottomcontent'>
+                  <SubmitPost
+                    allowAttachments={false}
+                    title={submitTitle}
+                    feedText={commentText}
+                    feedPosted={commentPosted}
+                    submitFeedUpdate={this.postComment}
+                    updateFeedText={updateFeedText}
+                    clearFeedData={clearFeedData}
+                    charCount={charCount}
+                    maxCharCount={maxCharCount} />
+              </div>
+            )
+            : null
+          }
           <div className='col-xs-12 feed-popup__comment-list'>
             {
               comments.length
@@ -231,6 +237,10 @@ export class FeedUpdatePopup extends Component {
       </div>
     )
   }
+}
+
+FeedUpdatePopup.defaultProps = {
+  allowCommenting: true
 }
 
 /**

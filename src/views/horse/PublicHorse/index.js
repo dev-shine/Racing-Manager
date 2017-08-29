@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import View from 'components/routing/View'
 import capitalize from 'utils/capitalize'
@@ -8,17 +7,22 @@ import capitalize from 'utils/capitalize'
 import AjaxLoader from 'components/ajaxloader'
 import { fetchHorseInfo } from 'actions/horse'
 
-import Separator from 'components/gui/Separator'
-import Table from 'components/gui/Table'
 import List from 'components/gui/List'
 import TextButton from 'components/buttons/TextButton'
-import CtaLink from 'components/links/CtaLink'
 
-import HorseHeader from 'components/horse/HorseHeader'
+import HorseHero from 'components/horse/HorseHero'
+import HorseAbout from 'components/horse/HorseAbout'
+import HorseAvailability from 'components/horse/HorseAvailability'
+import HorseTable from 'components/horse/HorseTable'
+
 import HorseCard from 'components/cards/HorseCard'
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 import HorseCtaCard from 'components/horse/HorseCtaCard'
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
+
+import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
+
+import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 import { calcPercent, constructStaticUrl } from 'utils/horseutils'
 import { roundNumberWithoutZeros } from 'utils/number'
@@ -75,69 +79,31 @@ class PublicHorse extends Component {
       </p>
     )
 
-    const aboutSection = (
-      <div>
-        <h1 className='uppercase'>
-          About the horse
-        </h1>
-        <Separator modifier='white' />
-        <p>
-          {description || 'No description ...'}
-        </p>
-        <Link to={syndicateLink}>
-          <TextButton
-            text='Syndicate page'
-            modifier='md'
-            className='horse-syndicate-btn'
-          />
-        </Link>
-      </div>
-    )
-
-    const availabilitySection = (
-      <div>
-        <h2 className='uppercase'>
-          Availability
-        </h2>
-        <Separator modifier='white' />
-        <List items={availabilityList} />
-        {updatesInfo}
-        <CtaLink
-          hashLink
-          href='#benefits-section'
-          className='link link--italic public-horse__see-benefits'>
-          See benefits
-        </CtaLink>
-      </div>
-    )
-
     return (
       <View title={capitalize(name)} notPrefixed>
         <div className='public-horse'>
-          <div className='public-horse__header'>
-            <HorseHeader
-              data={data}
-              leftSection={(
-                <div>
-                  {aboutSection}
-                  <div>
-                    {/* members */}
-                  </div>
-                </div>
-              )}
-              rightSection={(
-                <div>
-                  {availabilitySection}
+          <HorseHero
+            data={data} />
+
+          <SyndicateSplitSection
+            leftComponent={(
+              <HorseAbout
+                description={description}
+                syndicateLink={syndicateLink} />
+            )}
+            rightComponent={(
+              <div>
+                <HorseAvailability
+                  title='Availability'
+                  availabilityList={availabilityList}>
+                  {updatesInfo}
+                </HorseAvailability>
+                <div className='visible-md-up'>
                   <HorseCtaCard
                     url={`${window.location.origin}${match.url}`} />
                 </div>
-              )}
-              slideSection={[
-                aboutSection,
-                availabilitySection
-              ]}
-            />
-          </div>
+              </div>
+            )} />
 
           <div className='container no-padding'>
             <div className='col-md-8 col-sm-12 public-horse__members-section'>
@@ -147,69 +113,66 @@ class PublicHorse extends Component {
           </div>
 
           <div className='public-horse__section container'>
-            <h1 className='uppercase'>
-              Statistics
-            </h1>
-            <Separator modifier='blue' />
-            <Table {...tableStatistics} />
+            <HorseTable
+              title='ranking'
+              data={tableStatistics} />
           </div>
+
           <div className='public-horse__section container'>
-            <div className='col-xs-12 col-md-7 no-padding'>
-              <h1 className='uppercase'>
-                {racePlans.title}
-              </h1>
-              <Separator modifier='blue' />
-              <div>
+            <div className='col-xs-12 col-md-7'>
+              <TitleDescriptionSection
+                title={racePlans.title}
+                colorModifier='blue'>
                 {racePlans.text}
-              </div>
+              </TitleDescriptionSection>
             </div>
           </div>
+
           <HorseParallaxContent
             title={horseHero.title(ownerName)}
             image={horseHero.image}
           />
+
           <div className='public-horse__section container'>
-            <div className='col-xs-12 col-md-7 no-padding'>
-              <h1 className='uppercase'>
-                {horseValue.title}
-              </h1>
-              <Separator modifier='blue' />
-              <div>
+            <div className='col-xs-12 col-md-7'>
+              <TitleDescriptionSection
+                title={horseValue.title}
+                colorModifier='blue'>
                 {horseValue.text}
-              </div>
+              </TitleDescriptionSection>
             </div>
           </div>
+
           <div id="benefits-section" className='public-horse__footer-section wave-bg section-shadow'>
             <div className='container pos-relative'>
               <div className='public-horse__involvement-section col-xs-12 col-sm-6'>
-                <h1 className='uppercase'>
-                  Involvement
-                </h1>
-                <Separator modifier='grey' />
-                <h4 className='uppercase'>
-                  Benefits
-                </h4>
-                <p className='public-horse__benefits-description'>
-                  For this filly we offer the following guarantee:  If due to injury or retirement, this filly's season is cut short and will not race again, and she has not raced at least twice, we will replace her with a similar horse for the remainder of the 2017 turf season. Please note that we are unable to pay prizemoney on any replacements and the replacement will be a horse of our own choosing.
-                </p>
-                <List items={benefitsList} className='public-horse__benefits-list' />
-                {updatesInfo}
-                <div className='public-horse__availability-section'>
+                <TitleDescriptionSection
+                title='Involvement'
+                colorModifier='grey'>
                   <h4 className='uppercase'>
-                    Availability
+                    Benefits
                   </h4>
-                  <List items={availabilityList} />
-                </div>
-                <a href={requestToJoin} target='_blank'>
-                  <TextButton
-                    text='Request to join'
-                    modifier='md'
-                    className='public-horse__join-button'
-                  />
-                </a>
+                  <p className='public-horse__benefits-description'>
+                    For this filly we offer the following guarantee:  If due to injury or retirement, this filly's season is cut short and will not race again, and she has not raced at least twice, we will replace her with a similar horse for the remainder of the 2017 turf season. Please note that we are unable to pay prizemoney on any replacements and the replacement will be a horse of our own choosing.
+                  </p>
+                  <List items={benefitsList} className='public-horse__benefits-list' />
+                  {updatesInfo}
+                  <div className='public-horse__availability-section'>
+                    <h4 className='uppercase'>
+                      Availability
+                    </h4>
+                    <List items={availabilityList} />
+                  </div>
+                  <a href={requestToJoin} target='_blank'>
+                    <TextButton
+                      text='Request to join'
+                      modifier='md'
+                      className='public-horse__join-button'
+                    />
+                  </a>
+                </TitleDescriptionSection>
               </div>
               <div className='public-horse__horse-section col-xs-12 col-sm-6'>
-                {/* TODO: Update horse card */}
                 <div className='public-horse__horse-card absolute-center'>
                   <HorseCard
                     isActive={true}

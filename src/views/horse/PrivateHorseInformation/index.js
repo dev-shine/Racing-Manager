@@ -119,22 +119,25 @@ class PrivateHorseInformation extends Component {
                 </TitleDescriptionSection>
             </div>
 
-            <div className='horse-information__section'>
-              <TitleDescriptionSection
-                title={racePlans.title}
-                colorModifier='blue'>
-                {racePlans.text}
-              </TitleDescriptionSection>
-            </div>
-
-            <div className='horse-information__section'>
-              <TitleDescriptionSection
-                title={horseValue.title}
-                colorModifier='blue'>
-                {horseValue.text}
+            <div className='horse-information__section row'>
+              <div className='col-xs-12 col-md-7'>
+                <TitleDescriptionSection
+                  title={racePlans.title}
+                  colorModifier='blue'>
+                  {racePlans.text}
                 </TitleDescriptionSection>
+              </div>
             </div>
 
+            <div className='horse-information__section row'>
+              <div className='col-xs-12 col-md-7'>
+                <TitleDescriptionSection
+                  title={horseValue.title}
+                  colorModifier='blue'>
+                  {horseValue.text}
+                  </TitleDescriptionSection>
+                </div>
+            </div>
           </div>
         </div>
       </View>
