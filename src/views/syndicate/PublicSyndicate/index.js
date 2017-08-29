@@ -28,6 +28,12 @@ import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
 
 import TextButton from 'components/buttons/TextButton'
 
+import scrollToElement from 'scrollto-element'
+
+import {
+  queryBySelector
+} from 'utils/domutils'
+
 import {
   description as syndicateDesc,
   benefits as syndicateBenefits,
@@ -46,6 +52,8 @@ import {
 export class PublicSyndicate extends Component {
   constructor (props) {
     super(props)
+
+    this.scrollToFaq = this.scrollToFaq.bind(this)
   }
 
   componentDidMount () {
@@ -54,6 +62,14 @@ export class PublicSyndicate extends Component {
 
   componentWillUnmount () {
     this.props.clearSyndicateData()
+  }
+
+  scrollToFaq () {
+    scrollToElement({
+      element: queryBySelector('#faqs'),
+      offset: -60,
+      duration: 1000
+    })
   }
 
   render () {
@@ -80,7 +96,9 @@ export class PublicSyndicate extends Component {
           <div className='public-syndicate__header'>
             <SyndicateSplitSection
               leftComponent={
-                <SyndicateAbout description={description} />
+                <SyndicateAbout
+                  onFaqClick={this.scrollToFaq}
+                  description={description} />
               }
               rightComponent={
                 <div>
@@ -144,7 +162,7 @@ export class PublicSyndicate extends Component {
             </SyndicateIntroSection>
           </div>
 
-          <div className='public-syndicate__section'>
+          <div className='public-syndicate__section' id='faqs'>
             <FullWidthSplitSection
               modifier='white'
               leftComponent={(

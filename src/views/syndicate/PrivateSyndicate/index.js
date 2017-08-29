@@ -98,7 +98,7 @@ export class PrivateSyndicate extends Component {
               leftComponent={
                 <SyndicateAbout
                   description={description}
-                  onFaqClick={() => {}} />
+                  onFaqClick={this.toggleFaq} />
               }
               rightComponent={
                 <div>
@@ -173,7 +173,8 @@ export class PrivateSyndicate extends Component {
           </div>
 
           <SyndicateFaqPopup
-            isFluid
+            breadcrumbText={'Back to syndicate page'}
+            onClick={this.toggleFaq}
             isOpen={openFaq}
             faqs={faqs} />
         </div>
