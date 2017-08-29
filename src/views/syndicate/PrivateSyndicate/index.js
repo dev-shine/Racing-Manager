@@ -15,6 +15,7 @@ import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
 import SyndicateIntroSection from 'components/syndicate/SyndicateIntroSection'
 import SyndicateHorseCarousel from 'components/syndicate/SyndicateHorseCarousel'
 import SyndicateHeritageSection from 'components/syndicate/SyndicateHeritageSection'
+import SyndicateFaqPopup from 'components/syndicate/SyndicateFaqPopup'
 
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
@@ -28,7 +29,8 @@ import {
   benefits as syndicateBenefits,
   benefitsDescription as syndicateBenefitsDescription,
   syndicateUpperHero,
-  syndicateLowerHero
+  syndicateLowerHero,
+  faqs
 } from 'data/syndicate'
 
 // mockup data
@@ -41,6 +43,12 @@ import {
 export class PrivateSyndicate extends Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      openFaq: false
+    }
+
+    this.toggleFaq = this.toggleFaq.bind(this)
   }
 
   componentDidMount () {
@@ -51,10 +59,20 @@ export class PrivateSyndicate extends Component {
     this.props.clearSyndicateData()
   }
 
+  toggleFaq () {
+    this.setState(({openFaq}) => ({
+      openFaq: !openFaq
+    }))
+  }
+
   render () {
     const {
       data = {}
     } = this.props
+
+    const {
+      openFaq
+    } = this.state
 
     const {
       name,
@@ -78,7 +96,9 @@ export class PrivateSyndicate extends Component {
           <div className='private-syndicate__header'>
             <SyndicateSplitSection
               leftComponent={
-                <SyndicateAbout description={description} />
+                <SyndicateAbout
+                  description={description}
+                  onFaqClick={() => {}} />
               }
               rightComponent={
                 <div>
@@ -134,6 +154,7 @@ export class PrivateSyndicate extends Component {
 
           <div className='private-syndicate__overlay-section'>
             <SyndicateIntroSection
+              modifier='small'
               title='our trainers'
               description='HTR employs a selection of top racehorse trainers in each syndicate based in different areas of the country. This reduces the risk of an equine virus being a threat to any one syndicate and gives owners the chance of being involved with different leading stables.'>
                 <HorseMemberCarousel
@@ -150,6 +171,11 @@ export class PrivateSyndicate extends Component {
                 tiles={messages} />
             </TitleDescriptionSection>
           </div>
+
+          <SyndicateFaqPopup
+            isFluid
+            isOpen={openFaq}
+            faqs={faqs} />
         </div>
       </View>
     )

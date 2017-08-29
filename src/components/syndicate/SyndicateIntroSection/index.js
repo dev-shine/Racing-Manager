@@ -13,10 +13,14 @@ const SyndicateIntroSection = (props) => {
     className,
     title,
     description,
-    children
+    children,
+    contentClassName,
+    modifier
   } = props
 
   const modifiedClassNames = classNames('syndicate-intro-section', className)
+
+  const modifiedContentClassNames = classNames('syndicate-intro-section__content', contentClassName, modifier)
 
   return (
     <div className={modifiedClassNames}>
@@ -28,7 +32,7 @@ const SyndicateIntroSection = (props) => {
             description={description}
             colorModifier='blue' />
         </SyndicateTitleDescriptionCard>
-        <div className='syndicate-intro-section__content'>
+        <div className={modifiedContentClassNames}>
           {children}
         </div>
       </div>
@@ -39,7 +43,9 @@ const SyndicateIntroSection = (props) => {
 SyndicateIntroSection.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  contentClassName: PropTypes.string,
+  modifier: PropTypes.string
 }
 
 export default SyndicateIntroSection

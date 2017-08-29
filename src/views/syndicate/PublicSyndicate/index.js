@@ -135,6 +135,7 @@ export class PublicSyndicate extends Component {
 
           <div className='public-syndicate__overlay-section'>
             <SyndicateIntroSection
+              modifier='small'
               title='our trainers'
               description='HTR employs a selection of top racehorse trainers in each syndicate based in different areas of the country. This reduces the risk of an equine virus being a threat to any one syndicate and gives owners the chance of being involved with different leading stables.'>
                 <HorseMemberCarousel

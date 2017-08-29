@@ -22,7 +22,7 @@ const SyndicateAbout = (props) => {
         title={title}
         description={description}>
         <p>
-          Want to know more? See our <span className='italic inherit' onClick={onFaqClick}>FAQs</span>
+          Want to know more? See our <span className='italic inherit cursor--pointer' onClick={onFaqClick}>FAQs</span>
         </p>
       </TitleDescriptionSection>
     </div>
