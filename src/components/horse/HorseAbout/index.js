@@ -46,7 +46,7 @@ const HorseAbout = (props) => {
           </p>
         )}
 
-        <CtaLink to={syndicateLink} target='_blank'>
+        <CtaLink to={syndicateLink}>
           <TextButton
             text='Syndicate page'
             modifier='md'
