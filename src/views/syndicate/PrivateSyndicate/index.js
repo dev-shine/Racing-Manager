@@ -163,13 +163,15 @@ export class PrivateSyndicate extends Component {
             </SyndicateIntroSection>
           </div>
 
-          <div className='private-syndicate__section container'>
-            <TitleDescriptionSection
-              colorModifier='blue'
-              title='syndicate updates'>
-              <FeedGallery
-                tiles={messages} />
-            </TitleDescriptionSection>
+          <div className='private-syndicate__section'>
+            <div className='container'>
+              <TitleDescriptionSection
+                colorModifier='blue'
+                title='syndicate updates'>
+                <FeedGallery
+                  tiles={messages} />
+              </TitleDescriptionSection>
+            </div>
           </div>
 
           <SyndicateFaqPopup

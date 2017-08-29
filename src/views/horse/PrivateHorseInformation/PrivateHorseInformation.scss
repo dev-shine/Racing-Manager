@@ -20,8 +20,12 @@
 
   &__grid-item {
     position: relative;
-    margin: 15px;
+    margin: 15px 0;
     text-align: center;
+
+    @media all and (min-width: $screen-sm-min) {
+      margin: 15px;
+    }
   }
 
   &__member {
