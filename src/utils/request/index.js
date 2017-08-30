@@ -18,3 +18,24 @@ export const verifyServerFormat = (response = {}) => {
     return Promise.reject(error)
   }
 }
+
+/**
+ *  getQueryString
+ *  @param  {Object} params
+ *  @return {String}
+ */
+export const getQueryString = params => {
+  let esc = encodeURIComponent
+  return Object.keys(params)
+  .map(k => esc(k) + '=' + esc(params[k]))
+  .join('&')
+}
+
+/**
+ *  constructQuery
+ *  @param  {Object} query
+ *  @return {String}
+ */
+export const constructQuery = (query) => {
+  return `?${getQueryString(query)}`
+}

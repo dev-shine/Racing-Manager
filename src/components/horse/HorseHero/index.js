@@ -1,57 +1,117 @@
-import React, { Component } from 'react'
-
-import PropTypes from 'prop-types'
+import React from 'react'
 
 import classNames from 'utils/classnames'
 
-import Image from 'components/image'
+import Hero from 'components/parallax/Hero'
 
-import Parallax from 'components/parallax/BaseParallax'
+import { constructStaticUrl } from 'utils/horseutils'
 
-class HorseHero extends Component {
-  render () {
-    const { title, image, className, modifier } = this.props
+import HorseDetailsCard from 'components/horse/HorseDetailsCard'
+import HorseMobileDetailsCard from 'components/horse/HorseMobileDetailsCard'
 
-    const modifiedClassNames = classNames('horse-hero', className, modifier)
+import { timestampToDate } from 'utils/dateutils'
 
-    return (
-      <div className={modifiedClassNames}>
-        <Parallax
-          speed={0.25}
-          scope={400}>
-            <div className='horse-hero__parallax-container'>
-              <Image
-                imageSrc={image}
-                setRef={() => {}}
-                className='horse-hero__image' />
-            </div>
-        </Parallax>
-        <div className='horse-hero__overlay'>
-          <h1 className='horse-hero__title absolute-center uppercase'>
-            {title}
-          </h1>
+const HorseHero = (props) => {
+  const {
+    className,
+    data = {}
+  } = props
+
+  const {
+  name,
+  age,
+  color,
+  gender,
+  owner = {},
+  runs,
+  wins,
+  places,
+  trainer = {},
+  style,
+  foalingDate,
+  sire = {},
+  dam = {},
+  featuredImage
+  } = data
+
+  const { slug } = owner
+
+  const briefData = {
+    name,
+    age,
+    color,
+    gender,
+    owner,
+    slug,
+  }
+
+  const numericData = [{
+    title: 'Runs',
+    value: runs
+  }, {
+    title: 'Wins',
+    value: wins
+  }, {
+    title: 'Places',
+    value: places
+  }, {
+    title: 'OR',
+    value: null
+  }]
+
+  const detailsData = [{
+    title: 'Trainer',
+    value: trainer.name
+  }, {
+    title: 'Prev Trainers',
+    value: null
+  }, {
+    title: 'Breeder',
+    value: null
+  }, {
+    title: 'Style',
+    value: style
+  }, {
+    title: 'Foaling Date',
+    value: timestampToDate(foalingDate, 'D MMMM YYYY'),
+    isHidden: age >= 3
+  }, {
+    title: 'Sire',
+    value: sire.name
+  }, {
+    title: 'Dam',
+    value: dam.name
+  }, {
+    title: 'Dam Sire',
+    value: dam.sireName
+  }, {
+    title: 'Prize Money',
+    value: null
+  }]
+
+  const modifiedClassNames = classNames('horse-hero', className)
+
+  return (
+    <div className={modifiedClassNames}>
+      <Hero
+        className='horse-hero__parallax-image'
+        featuredImage={constructStaticUrl(featuredImage)} />
+      <div className='horse-hero__card-container'>
+        <div className='horse-hero__card visible-md-up'>
+          <HorseDetailsCard
+            briefData={briefData}
+            numericData={numericData}
+            detailsData={detailsData} />
         </div>
       </div>
-    )
-  }
-}
-
-HorseHero.propTypes = {
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  className: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]),
-  modifier: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ])
-}
-
-HorseHero.defaultProps = {
-  className: '',
-  modifier: ''
+      <div className='horse-hero__mobile-card hidden-md-up'>
+        <HorseMobileDetailsCard
+          briefData={briefData}
+          numericData={numericData}
+          detailsData={detailsData} />
+      </div>
+    </div>
+  )
 }
 
 export default HorseHero

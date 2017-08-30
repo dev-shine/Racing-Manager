@@ -5,7 +5,13 @@ import {
   johnImage,
   alexImage,
   alisonImage,
-  horseHeroImage
+  horseHeroImage,
+  trainerRoger,
+  trainerFreddy,
+  trainerLuca,
+  trainerJohn,
+  trainerNigel,
+  trainerKevin
 } from 'assets/dummyassets'
 
 export const tableStatistics = {
@@ -149,7 +155,7 @@ export const racePlans = {
 }
 
 export const horseValue = {
-  title: 'Expectations',
+  title: 'Horse value',
   text: (
     <div>
       <p className='horse-paragraphs'>
@@ -230,6 +236,46 @@ export const syndicateMembers = [
     name: 'Alison Begley',
     role: 'Director',
     description: 'I have managed syndicates for 30 years, as have my family for 3 generations.'
+  }
+]
+
+export const trainerMembers = [
+  {
+    image: trainerRoger,
+    name: 'roger charlton',
+    role: 'wiltshire',
+    description: 'Roger is no stranger to success having trained nine individual Group 1 winners.'
+  },
+
+  {
+    image: trainerFreddy,
+    name: 'freddy head',
+    role: 'chantilly',
+    description: 'Freddy is the only man to have won Breeder’s Cups both as a jockey, on Miesque and as a '
+  },
+  {
+    image: trainerLuca,
+    name: 'luca camani',
+    role: 'newmarket',
+    description: 'Luca Cumani was born and raised in Italy and comes from a family steeped in racing.'
+  },
+  {
+    image: trainerJohn,
+    name: 'john gosden',
+    role: 'wiltshire',
+    description: 'John is no stranger to success having trained nine individual Group 1 winners.'
+  },
+  {
+    image: trainerNigel,
+    name: 'nigel twiston-davies',
+    role: 'watford',
+    description: 'Nigel is having his best season to date and looks certain of recording his first century. '
+  },
+  {
+    image: trainerKevin,
+    name: 'kevin ryan',
+    role: 'hemel-hempstead',
+    description: 'Kevin Ryan rode 47 winners as a conditional jockey before assisting Jack Berry.'
   }
 ]
 
@@ -356,3 +402,75 @@ export const horseHero = {
 }
 
 export const requestToJoin = 'https://projects.invisionapp.com/share/PRCFNZTC8#/screens/242040942_Request-To-Join-Syndicate-P1'
+
+export const fakeHorses = [{
+  _id: '599702453285d91940f28b35',
+  name: 'DARTMOUTH',
+  age: 5,
+  gender: 'horse',
+  style: 'flat',
+  racingType: 'National Hunt',
+  trainer: {
+    name: 'Sir Michael Stoute'
+  },
+  owner: {
+    name: 'THE QUEEN',
+    color: '#b30337',
+    slug: 'the-queen'
+  },
+  ownership: {
+    type: 'Open Ended Period',
+    years: 2
+  },
+  cost: {
+    monthly: 5795,
+    initial: 19430
+  },
+  shares: {
+    owned: 3,
+    total: 19
+  },
+  manager: {
+    name: 'John Warren'
+  },
+  thumbnailImage: '/uploads/horses/1503068741730/CARD_dartmouth.jpg',
+  featuredImage: '/uploads/horses/1503068741730/HERO_dartmouth.jpg',
+  slug: 'dartmouth',
+  runs: 17,
+  wins: 8,
+  places: 4,
+  syndName: 'highclere'
+},
+{
+  _id: '599702453285d91940f28b40',
+  name: 'NEPTUNE STAR',
+  age: 3,
+  gender: 'filly',
+  racingType: 'Flat Racing',
+  trainer: {
+    name: 'Michael Easterby'
+  },
+  owner: {
+    name: 'SHEEP AS A LAMB',
+    color: '#12242f',
+    slug: 'sheep-as-a-lamb'
+  },
+  ownership: {
+    type: 'Fixed Period'
+  },
+  cost: {
+    monthly: 3590,
+    initial: 18415
+  },
+  shares: {
+    owned: 3,
+    total: 23
+  },
+  thumbnailImage: '/uploads/horses/1503068741813/CARD_neptunestar1.jpg',
+  featuredImage: '/uploads/horses/1503068741813/HERO_neptunestar1.jpg',
+  slug: 'neptune-star',
+  runs: 9,
+  wins: 0,
+  places: 0,
+  syndName: 'highclere'
+}]

@@ -16,7 +16,8 @@ import authenticatedRequestMiddleware from 'middleware/AuthenticatedRequest'
 /**
  * @module redux-logger
  */
-import { createLogger } from 'redux-logger'
+// NOT WORKING IN <= IE11
+// import { createLogger } from 'redux-logger'
 
 /**
  * @module rootReducer
@@ -36,7 +37,7 @@ if (isDev) {
       rootReducer,
       initialState,
       composeEnhancers(
-        applyMiddleware(thunkMiddleware, authenticatedRequestMiddleware, createLogger())
+        applyMiddleware(thunkMiddleware, authenticatedRequestMiddleware)
       )
     )
   }

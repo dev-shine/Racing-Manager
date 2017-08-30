@@ -94,21 +94,38 @@
     text-align: center;
     margin-top: 10px;
   }
-
-  &__grid {
-    position: relative;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  &__grid__title {
-    position: relative;
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
 }
 
 .private-syndicate {
+  &__header {
+    position: relative;
+    width: 100%;
+  }
+
+  &__team-members {
+    position: relative;
+    z-index: 2;
+
+    @media all and (max-width: $screen-md) {
+      margin-top: 80px;
+      margin-bottom: 40px;
+    }
+
+    @media all and (min-width: $screen-md-min) {
+      margin-top: -75px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__section {
+    position: relative;
+    padding: 40px 0;
+  }
+
+  &__section-top {
+    padding-top: 40px;
+  }
+
   &__paragraph-section {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -118,4 +135,17 @@
     position: relative;
     margin-bottom: 100px;
   }
+
+  &__grid__title {
+    position: relative;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  &__overlay-section {
+    position: relative;
+    margin-top: -50px;
+    margin-bottom: 40px;
+  }
+  
 }

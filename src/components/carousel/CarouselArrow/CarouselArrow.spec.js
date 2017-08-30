@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module CarouselArrow
  */
-import CarouselArrow from 'components/buttons/CarouselArrow'
+import CarouselArrow from './index'
 
 /**
  *  @module Icon

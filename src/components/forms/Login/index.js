@@ -82,9 +82,9 @@ const LoginForm = (props) => {
               text='log in' />
           </div>
           <div className='col-xs-12 col-sm-6 align-middle form__group text-center'>
-            <CtaLink
-              modifier={['italic']}
-              text={<h6>Forgotten details</h6>} />
+            <CtaLink modifier={['italic']}>
+              <h6>Forgotten details</h6>
+            </CtaLink>
           </div>
         </div>
         <div className='form__group'>

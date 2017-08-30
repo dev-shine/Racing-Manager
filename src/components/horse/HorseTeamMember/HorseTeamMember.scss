@@ -9,7 +9,7 @@
     width: $image-size-s;
     height: $image-size-s;
     border-radius: 100%;
-    background: #eee;
+    background: $color-bg;
     margin: 0 auto;
     overflow: hidden;
 
@@ -32,17 +32,15 @@
   &__name,
   &__role,
   &__description {
-    color: #00273A;
-  }
-
-  &__name,
-  &__role {
-    font-weight: 600;
-    text-transform: uppercase;
+    color: $color-text-heading;
   }
 
   &__description {
-    font-size: 14px;
-    margin-top: 5px;
+    margin-top: 10px;
+  }
+
+  &__link {
+    position: relative;
+    margin-top: 10px;
   }
 }

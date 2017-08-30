@@ -1,44 +1,23 @@
 .public-horse {
 
   &__section {
-    padding-top: 35px;
-    padding-bottom: 45px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
+  
+  &__members-section {
+    position: relative;
+    z-index: 2;
 
-// Buttons --------------------------------------
-  &__buttons {
-    position: absolute;
-    left: 25px;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    bottom: -60px;
-    background: white;
-    padding: 10px;
-
-    a {
-      display: block;
-
-      ~ a {
-        margin-top: 8px;
-      }
+    @media all and (max-width: $screen-md) {
+      margin-top: 80px;
+      margin-bottom: 40px;
     }
-  }
 
-  &__button {
-    width: 100%;
-  }
-
-// Carousel
-  &__mobile-carousel {
-    .carousel-arrow--white .icon--leftarrow,
-    .carousel-arrow--white .icon--rightarrow {
-      color: black;
+    @media all and (min-width: $screen-md-min) {
+      margin-top: -75px;
+      margin-bottom: 40px;
     }
-  }
-
-  &__member-tile {
-    margin: 0 auto;
   }
 
 // Footer ---------------------------------------
@@ -67,7 +46,7 @@
   }
 
   &__involvement-section {
-    padding: 30px 0 50px;
+    padding: 40px 0 50px;
 
     p, ul {
       color: #00273A;
@@ -107,13 +86,6 @@
 
   &__horse-card {
     position: absolute;
-  }
-
-// ----------------------------------------------
-
-  &__see-benefits {
-    display: block;
-    color: white;
-    margin: 15px 0;
+    min-width: 300px;
   }
 }

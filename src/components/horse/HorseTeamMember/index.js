@@ -1,11 +1,25 @@
 import React from 'react'
+
 import PropTypes from 'prop-types'
+
 import classNames from 'utils/classnames'
 
 import Image from 'components/image'
 
+import CtaLink from 'components/links/CtaLink'
+
 const HorseTeamMember = props => {
-  const { image, name, role, description, className, modifier } = props
+  const {
+    image,
+    name,
+    role,
+    description,
+    className,
+    modifier,
+    hasLink,
+    href,
+    linkText
+  } = props
 
   const modifiedClassNames = classNames('team-member', className, modifier)
 
@@ -15,18 +29,34 @@ const HorseTeamMember = props => {
         <Image
           className='team-member__image'
           imageSrc={image}
+          forceShow
           setRef={() => {}}
         />
       </div>
-      <div className='team-member__name'>
+      <h5 className='team-member__name uppercase'>
         {name}
-      </div>
-      <div className='team-member__role'>
+      </h5>
+      <h5 className='team-member__role uppercase'>
         {role}
-      </div>
-      <div className='team-member__description'>
+      </h5>
+      <p className='team-member__description tiny'>
         {description}
-      </div>
+      </p>
+      {
+        hasLink
+        ? (
+            <div className='team-member__link'>
+              <CtaLink
+                target='_blank'
+                href={href}
+                className='micro'
+                modifier='italic'>
+                {linkText}
+              </CtaLink>
+            </div>
+          )
+        : null
+      }
     </div>
   )
 }
@@ -43,7 +73,14 @@ HorseTeamMember.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  hasLink: PropTypes.bool,
+  href: PropTypes.string,
+  linkText: PropTypes.string
+}
+
+HorseTeamMember.defaultProps = {
+  hasLink: false
 }
 
 export default HorseTeamMember

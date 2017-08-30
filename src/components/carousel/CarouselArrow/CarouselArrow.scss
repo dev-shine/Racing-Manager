@@ -4,8 +4,8 @@
   height: 83px;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba($white, 0.65);
-  color: $raisin-black;
+  background: rgba($color-bg-secondary, 0.65);
+  color: $button-cta-strong;
   cursor: pointer;
   
   &--left {
@@ -42,7 +42,13 @@
 
   &--white {
     .icon--leftarrow, .icon--rightarrow {
-      color: $white;
+      color: $button-secondary-cta;
+    }
+  }
+
+  &--red {
+    .icon--leftarrow, .icon--rightarrow {
+      color: $button-cta;
     }
   }
 }

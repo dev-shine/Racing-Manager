@@ -1,39 +1,54 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import View from 'components/routing/View'
 import titleize from 'titleize'
 
 import FeedGallery from 'components/tiles/FeedGallery'
-import TextButton from 'components/buttons/TextButton'
-import Separator from 'components/gui/Separator'
-import List from 'components/gui/List'
-import Carousel from 'components/carousel'
-import Hero from 'components/parallax/Hero'
-import Image from 'components/image'
 
-import HorseBigSection from 'components/horse/HorseBigSection'
-import HorseSmallSection from 'components/horse/HorseSmallSection'
-import HorseHero from 'components/horse/HorseHero'
+import SyndicateHero from 'components/syndicate/SyndicateHero'
+import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
+import SyndicateAbout from 'components/syndicate/SyndicateAbout'
+import SyndicateInvolvement from 'components/syndicate/SyndicateInvolvement'
+import SyndicateCtaCard from 'components/syndicate/SyndicateCtaCard'
+import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
+import SyndicateIntroSection from 'components/syndicate/SyndicateIntroSection'
+import SyndicateHorseCarousel from 'components/syndicate/SyndicateHorseCarousel'
+import SyndicateHeritageSection from 'components/syndicate/SyndicateHeritageSection'
+import SyndicateFaqPopup from 'components/syndicate/SyndicateFaqPopup'
 
-import { constructStaticUrl } from 'utils/horseutils'
+import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
+import HorseParallaxContent from 'components/horse/HorseParallaxContent'
+
+import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
+
 import { fetchSyndicateInfo, clearSyndicateData } from 'actions/syndicate'
 
-// mockup data
 import {
+  description as syndicateDesc,
+  benefits as syndicateBenefits,
+  benefitsDescription as syndicateBenefitsDescription,
   syndicateUpperHero,
-  syndicateLowerHero
+  syndicateLowerHero,
+  faqs
 } from 'data/syndicate'
 
 // mockup data
 import {
-  requestToJoin
+  syndicateMembers,
+  trainerMembers,
+  fakeHorses
 } from 'data/horse'
 
 export class PrivateSyndicate extends Component {
   constructor (props) {
     super(props)
+
+    this.state = {
+      openFaq: false
+    }
+
+    this.toggleFaq = this.toggleFaq.bind(this)
   }
 
   componentDidMount () {
@@ -44,12 +59,20 @@ export class PrivateSyndicate extends Component {
     this.props.clearSyndicateData()
   }
 
+  toggleFaq () {
+    this.setState(({openFaq}) => ({
+      openFaq: !openFaq
+    }))
+  }
+
   render () {
     const {
       data = {}
     } = this.props
 
-    const defaultDescription = 'We put together small groups of people to share in a number of top quality racehorses in order to experience racing at the highest level in the UK and around the world. Highclere Thoroughbred Racing takes its name from Highclere Castle, Harry Herbert’s ancestral home and the location of Highclere Stud where we hold our annual Yearling Parade. We treat each owner as if he or she own their horses outright. We keep our owners fully up to date with every aspect of their bloodstock’s progress from training yard to racetrack. The number of shares available per syndicate varies between ten and twenty...'
+    const {
+      openFaq
+    } = this.state
 
     const {
       name,
@@ -58,138 +81,104 @@ export class PrivateSyndicate extends Component {
       },
       featuredImage = '',
       logo = '',
-      description = defaultDescription,
+      description = syndicateDesc,
       messages = []
     } = data
 
-    const benefits = [
-      'Pro rata prize money share',
-      'Pro rata share of resale proceeds',
-      'Regular yard visits',
-      'Personalised messages and clips from the team',
-      'Live content from the races',
-    ]
-
-    const aboutSection = (
-      <div>
-        <h1 className='horse-header__medium-title uppercase'>
-          About the syndicate
-        </h1>
-        <Separator modifier='white' />
-        <p className='horse-header__paragraph'>
-          {description}
-        </p>
-      </div>
-    )
-
-    const involvementSection = (
-      <div>
-        <h1 className='horse-header__medium-title uppercase'>
-          Benefits
-        </h1>
-        <Separator modifier='white' />
-        <List items={benefits} />
-      </div>
-    )
-
     return (
       <View title={titleize(name || '')} isPrefixed={false}>
-        <div className='syndicate'>
-          <div className='syndicate__image'>
-            <Hero featuredImage={constructStaticUrl(featuredImage)} />
-            <div className='syndicate__logo absolute-center'>
-              <div className='syndicate__logo-img'>
-                {
-                  logo ? (
-                    <Image
-                      className='syndicate__logo-element absolute-center'
-                      imageSrc={constructStaticUrl(logo)}
-                    />
-                  ) : (
-                    <h1 className='horse-header__medium-title syndicate__logo-title absolute-center'>
-                      {name}
-                    </h1>
-                  )
-                }
-              </div>
-              <div className='syndicate__logo-desc section-shadow'>
-                <div>Racing Club</div>
-                <div>Managed by {owner.name}</div>
-              </div>
-            </div>
-          </div>
-          <div className='row visible-md-up'>
-            <div className='syndicate__content'>
-              <div className='horse-header__content section-holder'>
-                <div className='container  no-padding'>
-                  <HorseBigSection className='col-md-8'>
-                    {aboutSection}
-                  </HorseBigSection>
-                  <HorseSmallSection className='col-md-4 syndicate__benefits'>
-                    {involvementSection}
-                    <div className='syndicate__buttons section-shadow section-shadow--tile section-shadow--bottom'>
-                      <a href={requestToJoin} target='_blank'>
-                        <TextButton
-                          text='Request to join'
-                          modifier={['md', 'fluid', 'blue']}
-                        />
-                      </a>
-                      <Link to='/'>
-                        <TextButton
-                          text='Talk to the manager'
-                          modifier={['md', 'fluid', 'secondary-blue']}
-                        />
-                      </Link>
-                      <Link to='/' className='link--italic syndicate__link'>
-                        Save it for later
-                      </Link>
-                    </div>
-                  </HorseSmallSection>
+        <div className='private-syndicate'>
+          <SyndicateHero
+            featuredImage={featuredImage}
+            owner={owner}
+            logo={logo}
+            name={name} />
+          <div className='private-syndicate__header'>
+            <SyndicateSplitSection
+              leftComponent={
+                <SyndicateAbout
+                  description={description}
+                  onFaqClick={this.toggleFaq} />
+              }
+              rightComponent={
+                <div>
+                  <SyndicateInvolvement
+                    benefits={syndicateBenefits}
+                    description={syndicateBenefitsDescription(name)} />
+                  <div className='visible-md-up'>
+                    <SyndicateCtaCard />
+                  </div>
                 </div>
+              } />
+          </div>
+
+          <div className='container no-padding'>
+            <div className='col-md-8 col-sm-12 private-syndicate__team-members'>
+              <HorseMemberCarousel
+                syndicateMembers={syndicateMembers} />
+            </div>
+          </div>
+
+          <div className='private-syndicate__section'>
+            <div className='container'>
+              <div className='col-md-5 col-sm-12'>
+                <SyndicateBenefits />
               </div>
             </div>
           </div>
-          <HorseBigSection className='hidden-md-up'>
-            <Carousel ref='carousel' showPagination>
-              <div className='container'>
-                {aboutSection}
-              </div>
-              <div className='container'>
-                {involvementSection}
-              </div>
-            </Carousel>
-          </HorseBigSection>
-          <div className='private-syndicate'>
-            <div className='private-syndicate__paragraph-section container'>
-              <div className='col-xs-12 col-md-6'>
-                <h1 className='uppercase'>
-                  Benefits
-                </h1>
-                <Separator modifier='blue' />
-                <p>
-                  For this filly we offer the following guarantee:  If due to injury or retirement, this filly's season is cut short and will not race again, and she has not raced at least twice, we will replace her with a similar horse for the remainder of the 2017 turf season. Please note that we are unable to pay prizemoney on any replacements and the replacement will be a horse of our own choosing.
-                </p>
-              </div>
-              <div className='col-xs-12 col-md-6 hidden'>
-                image here
+
+          <div className='private-syndicate__section-top'>
+            <HorseParallaxContent {...syndicateUpperHero} />
+          </div>
+
+          <div className='private-syndicate__overlay-section'>
+            <SyndicateIntroSection
+              title={`${name} horses`}
+              description='We have a fantastic yard of horses, all of which have run competitively and placed with great confidence. Having managed race horses for many years now, we know where quality can be found and how to thoroughly enjoy the iniafull extent of the racing experience.'>
+                <SyndicateHorseCarousel
+                  horses={fakeHorses} />
+            </SyndicateIntroSection>
+          </div>
+
+          <div className='private-syndicate__section'>
+            <div className='container'>
+              <div className='col-md-5 col-sm-12'>
+                <SyndicateHeritageSection />
               </div>
             </div>
-            <div className='private-syndicate__parallax-section'>
-              <HorseHero {...syndicateUpperHero} />
+          </div>
+
+          <div className='private-syndicate__section-top'>
+            <HorseParallaxContent {...syndicateLowerHero} />
+          </div>
+
+          <div className='private-syndicate__overlay-section'>
+            <SyndicateIntroSection
+              modifier='small'
+              title='our trainers'
+              description='HTR employs a selection of top racehorse trainers in each syndicate based in different areas of the country. This reduces the risk of an equine virus being a threat to any one syndicate and gives owners the chance of being involved with different leading stables.'>
+                <HorseMemberCarousel
+                  syndicateMembers={trainerMembers}
+                  type='trainer' />
+            </SyndicateIntroSection>
+          </div>
+
+          <div className='private-syndicate__section'>
+            <div className='container'>
+              <TitleDescriptionSection
+                colorModifier='blue'
+                title='syndicate updates'>
+                <FeedGallery
+                  tiles={messages} />
+              </TitleDescriptionSection>
             </div>
-            <div className='private-syndicate__parallax-section'>
-              <HorseHero {...syndicateLowerHero} />
-            </div>
           </div>
-          <div className='syndicate__grid__title container'>
-            <h1 className='horse-overview__main-title horse-overview__update-title uppercase'>
-              Updates
-            </h1>
-          </div>
-          <div className='syndicate__grid container'>
-            <FeedGallery
-              tiles={messages} />
-          </div>
+
+          <SyndicateFaqPopup
+            breadcrumbText={'Back to syndicate page'}
+            onClick={this.toggleFaq}
+            isOpen={openFaq}
+            faqs={faqs} />
         </div>
       </View>
     )
