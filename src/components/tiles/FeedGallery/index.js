@@ -31,7 +31,7 @@ import MediaCarouselTile from 'components/tiles/FeedTiles/MediaCarouselTile'
 /**
  *  @module Block, Grid
  */
-import { Block, Grid } from 'components/masonry'
+import { Block, Grid } from 'components/layouts/masonry'
 
 /**
  *  @module FeedUpdatePopup

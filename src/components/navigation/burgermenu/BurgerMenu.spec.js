@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module BurgerMenu
  */
-import BurgerMenu from 'components/BurgerMenu'
+import BurgerMenu from 'components/navigation/BurgerMenu'
 
 /**
  * Testing utilities
