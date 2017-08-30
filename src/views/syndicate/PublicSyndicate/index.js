@@ -28,8 +28,6 @@ import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
 
 import TextButton from 'components/buttons/TextButton'
 
-import scrollToElement from 'scrollto-element'
-
 import {
   queryBySelector
 } from 'utils/domutils'
@@ -65,11 +63,7 @@ export class PublicSyndicate extends Component {
   }
 
   scrollToFaq () {
-    scrollToElement({
-      element: queryBySelector('#faqs'),
-      offset: -60,
-      duration: 1000
-    })
+    queryBySelector('#faqs').scrollIntoView({ behavior: 'smooth' })
   }
 
   render () {
