@@ -26,9 +26,9 @@ class NavLink extends PureComponent {
     return (
       <li className={modifiedClassNames}>
         <DefaultNavLink className={modifiedLinkClassNames} activeClassName='side-panel-nav-link__link--active' {...rest}>
-          <h6 className='secondary-nav-link__link-text uppercase'>
+          <h4 className='side-panel-nav-link__link-text capitalize'>
             {children}
-          </h6>
+          </h4>
         </DefaultNavLink>
       </li>
     )

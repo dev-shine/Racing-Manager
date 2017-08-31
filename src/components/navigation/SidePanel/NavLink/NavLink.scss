@@ -1,6 +1,11 @@
 .side-panel-nav-link {
   position: relative;
   width: 100%;
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__link {
     &--active,

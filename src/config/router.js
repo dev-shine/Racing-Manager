@@ -20,6 +20,8 @@ import RegistrationConfirmation from 'views/RegistrationConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
 
+import Account from 'views/Account/AccountLayout'
+
 import PrivateHorse from 'views/horse/PrivateHorse'
 import PublicHorse from 'views/horse/PublicHorse'
 import PrivateHorseStatistics from 'views/horse/PrivateHorseStatistics'
@@ -43,6 +45,8 @@ const router = (
             <AuthRoute exact path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
             <AuthRoute exact path='/horse/:name/statistics' component={PrivateHorseStatistics} redirectPath='/404' />
             <AuthRoute exact path='/horse/:name/information' component={PrivateHorseInformation} redirectPath='/404' />
+
+            <AuthRoute exact path='/account' component={Account} redirectPath='/' />
 
             <AuthRoute exact path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
