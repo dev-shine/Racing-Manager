@@ -26,7 +26,7 @@ import HeaderSection from 'components/dashboard/HeaderSection'
 /**
  *  @module Block, Grid
  */
-import { Block, Grid } from 'components/masonry'
+import { Block, Grid } from 'components/layouts/masonry'
 
 /**
  *  @module newsImage

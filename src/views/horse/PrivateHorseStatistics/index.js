@@ -12,8 +12,6 @@ import View from 'components/routing/View'
 
 import capitalize from 'utils/capitalize'
 
-import scrollToElement from 'scrollto-element'
-
 import {
   tableStatistics,
   tableEntries,
@@ -39,13 +37,7 @@ class PrivateHorseStatistics extends Component {
   }
 
   scrollElementToView () {
-    setTimeout(() => {
-      scrollToElement({
-        element: queryBySelector('#ranking'),
-        offset: -60,
-        duration: 500
-      })
-    }, 0)
+    queryBySelector('#ranking').scrollIntoView({ behavior: 'smooth' })
   }
 
   componentWillUnmount () {

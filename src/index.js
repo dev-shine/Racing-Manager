@@ -43,6 +43,8 @@ import { queryBySelector } from 'utils/domutils'
  */
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
+require('smoothscroll-polyfill').polyfill()
+
 if (isDev) {
   // Explicitly set Perf to be in the global scope.
   window.Perf = require('react-addons-perf')

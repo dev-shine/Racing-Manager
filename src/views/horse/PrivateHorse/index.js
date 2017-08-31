@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import View from 'components/routing/View'
 import capitalize from 'utils/capitalize'
 
-import AjaxLoader from 'components/ajaxloader'
+import AjaxLoader from 'components/loaders/ajaxloader'
 import { fetchHorseInfo, clearHorseData } from 'actions/horse'
 
 import HorseHero from 'components/horse/HorseHero'
