@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import TextCtaButton from 'components/buttons/TextCtaButton'
 
-import { Link } from 'react-router-dom'
+import CtaLink from 'components/links/CtaLink'
 
 import enhanceWithClickOutside from 'react-click-outside'
 
@@ -26,7 +26,8 @@ class AccountDropdown extends PureComponent {
   render () {
     const {
       onLogout,
-      className
+      className,
+      closeAccount
     } = this.props
 
     const modifiedClassNames = classNames('account-dropdown', className)
@@ -35,30 +36,48 @@ class AccountDropdown extends PureComponent {
       <div className={modifiedClassNames}>
         <ul className='account-dropdown__list no-list-style'>
           <li className='account-dropdown__list-item'>
-            <Link to='/user/personal'>
+            <CtaLink href='/account' onClick={closeAccount}>
               <TextCtaButton
                 modifier='gray'
                 className='uppercase semi-bold'
                 text={'personal'} />
-            </Link>
+            </CtaLink>
           </li>
 
           <li className='account-dropdown__list-item'>
-            <Link to='/user/payment'>
+            <CtaLink href='/account/payment' onClick={closeAccount}>
               <TextCtaButton
                 modifier='gray'
                 className='uppercase semi-bold'
                 text={'payment'} />
-            </Link>
+            </CtaLink>
           </li>
 
           <li className='account-dropdown__list-item'>
-            <Link to='/user/security'>
+            <CtaLink href='/account/contact' onClick={closeAccount}>
+              <TextCtaButton
+                modifier='gray'
+                className='uppercase semi-bold'
+                text={'contact details'} />
+            </CtaLink>
+          </li>
+
+          <li className='account-dropdown__list-item'>
+            <CtaLink href='/account/security' onClick={closeAccount}>
               <TextCtaButton
                 modifier='gray'
                 className='uppercase semi-bold'
                 text={'security'} />
-            </Link>
+            </CtaLink>
+          </li>
+
+          <li className='account-dropdown__list-item'>
+            <CtaLink href='/account/notifications' onClick={closeAccount}>
+              <TextCtaButton
+                modifier='gray'
+                className='uppercase semi-bold'
+                text={'notifications'} />
+            </CtaLink>
           </li>
 
           <li className='account-dropdown__list-item'>

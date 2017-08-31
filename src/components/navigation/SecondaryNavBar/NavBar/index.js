@@ -19,13 +19,13 @@ class NavBar extends PureComponent {
     const modifiedClassNames = classNames('secondary-nav-bar', className, modifier)
 
     return (
-      <div className={modifiedClassNames}>
+      <nav role='navigation' className={modifiedClassNames}>
         <div className='container'>
           <ul className='secondary-nav-bar__list no-list-style'>
             {children}
           </ul>
         </div>
-      </div>
+      </nav>
     )
   }
 }
