@@ -19,6 +19,11 @@ import { heroBg } from 'assets/images'
 import Hero from 'components/parallax/Hero'
 
 /**
+ *  @module ViewHeaderBar
+ */
+import ViewHeaderBar from 'components/common/ViewHeaderBar'
+
+/**
  *  ViewHeader
  *  @return {React.Component}
  */
@@ -28,11 +33,8 @@ const ViewHeader = ({title}) => {
       <Hero
         className='view-header__bg'
         featuredImage={heroBg} />
-      <div className='view-header__title'>
-        <div className='container'>
-          <h1 className='uppercase'>{title}</h1>
-        </div>
-      </div>
+      <ViewHeaderBar
+        title={title} />
     </div>
   )
 }

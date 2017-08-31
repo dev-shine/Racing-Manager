@@ -1,11 +1,35 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 
-const PersonalInformation = (props) => {
-  return (
-    <div>
-      HELLO PI!
-    </div>
-  )
+import { connect } from 'react-redux'
+
+class PersonalInformation extends PureComponent {
+  constructor (props) {
+    super(props)
+  }
+
+  render () {
+    return (
+      <div className='account-personal-information'>
+      </div>
+    )
+  }
 }
 
-export default PersonalInformation
+const mapStateToProps = (state, ownProps) => {
+  const {
+    auth
+  } = state
+
+  const {
+    details
+  } = auth
+
+  return {
+    name: details.firstname
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(PersonalInformation)
