@@ -4,9 +4,11 @@ import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 import List from 'components/gui/List'
 
-import CtaLink from 'components/links/CtaLink'
-
 import classNames from 'utils/classnames'
+
+import {
+  queryBySelector
+} from 'utils/domutils'
 
 const HorseAvailability = (props) => {
   const {
@@ -19,6 +21,10 @@ const HorseAvailability = (props) => {
 
   const modifiedClassNames = classNames('horse-availability', className)
 
+  const scrollToBenefits = () => {
+    queryBySelector('#benefits-section').scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <div className={modifiedClassNames}>
       <TitleDescriptionSection
@@ -28,12 +34,12 @@ const HorseAvailability = (props) => {
         <div>
           <List items={availabilityList} />
           {children}
-          <CtaLink
-            hashLink
-            href='#benefits-section'
-            className='link link--italic horse-availability__see-benefits'>
+          <span
+            className='link link--italic horse-availability__see-benefits cursor--pointer'
+            onClick={scrollToBenefits}
+          >
             See benefits
-          </CtaLink>
+          </span>
         </div>
       </TitleDescriptionSection>
     </div>
