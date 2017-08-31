@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 import Icon from 'components/icon'
 
-import AccountDowndown from 'components/navigation/accountdropdown'
+import AccountDropdown from 'components/account/AccountDropdown'
 
 import { CSSTransitionGroup } from 'react-transition-group'
 
@@ -82,7 +82,7 @@ const HeaderPrivate = (props) => {
           transitionLeaveTimeout={400}>
           {
             showAccount && (
-              <AccountDowndown
+              <AccountDropdown
                 className='section-shadow'
                 closeAccount={onAccountClick}
                 onLogout={onLogout} />
