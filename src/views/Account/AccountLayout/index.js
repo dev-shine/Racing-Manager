@@ -12,7 +12,7 @@ import AccountSidePanel from 'components/account/AccountSidePanel'
 
 import PersonalInformation from 'views/Account/PersonalInformation'
 
-import ViewHeaderBar from 'components/common/ViewHeaderBar'
+import ViewHeader from 'components/common/ViewHeader'
 
 const AccountLayout = (props) => {
   const {
@@ -21,16 +21,18 @@ const AccountLayout = (props) => {
 
   return (
     <div className='account-layout'>
-      <ViewHeaderBar
+      <ViewHeader
         title={`hello, ${name}`} />
       <div className='container account-layout__container'>
-        <div className='col-lg-3 col-md-4 col-xs-12'>
+        <div className='col-lg-3 col-md-4 col-sm-4 col-xs-12'>
           <AccountSidePanel />
         </div>
-        <div className='col-lg-9 col-md-8 col-xs-12'>
-          <Switch>
-            <AuthRoute exact path='/account' component={PersonalInformation} redirectPath='/' />
-          </Switch>
+        <div className='col-lg-9 col-md-8 col-sm-8 col-xs-12'>
+          <div className='account-layout__content'>
+            <Switch>
+              <AuthRoute exact path='/account' component={PersonalInformation} redirectPath='/' />
+            </Switch>
+          </div>
         </div>
       </div>
     </div>
