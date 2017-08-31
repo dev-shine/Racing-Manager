@@ -19,13 +19,13 @@ class NavLink extends PureComponent {
       ...rest
     } = this.props
 
-    const modifiedClassNames = classNames('secondary-nav-link', className)
+    const modifiedClassNames = classNames('side-panel-nav-link', className)
 
-    const modifiedLinkClassNames = classNames('secondary-nav-link__link', linkClassName)
+    const modifiedLinkClassNames = classNames('side-panel-nav-link__link', linkClassName)
 
     return (
       <li className={modifiedClassNames}>
-        <DefaultNavLink className={modifiedLinkClassNames} activeClassName='secondary-nav-link__link--active' {...rest}>
+        <DefaultNavLink className={modifiedLinkClassNames} activeClassName='side-panel-nav-link__link--active' {...rest}>
           <h6 className='secondary-nav-link__link-text uppercase'>
             {children}
           </h6>

@@ -1,0 +1,18 @@
+.side-panel-nav-link {
+  position: relative;
+  width: 100%;
+
+  &__link {
+    &--active,
+    &:hover {
+      .side-panel-nav-link__link-text {
+        color: $cta-link-color;
+      }
+    }
+  }
+
+  &__link-text {
+    color: $cta-link-strong;
+    transition: color .2s ease-out;
+  }
+}
