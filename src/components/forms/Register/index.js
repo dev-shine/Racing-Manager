@@ -66,7 +66,7 @@ class RegisterForm extends PureComponent {
           className='register-form__form'>
 
           <div className='form__group'>
-            <h4 className='register-form__section-label semi-bold'>Name</h4>
+            <h4 className='form__section-label semi-bold'>Name</h4>
           </div>
 
           <div className='form__group'>
@@ -91,7 +91,7 @@ class RegisterForm extends PureComponent {
               name='username' />
           </div>
           <div className='form__group'>
-            <h4 className='register-form__section-label register-form__section-label--title-margin'>Email</h4>
+            <h4 className='form__section-label form__section-label--title-margin'>Email</h4>
           </div>
 
           <div className='form__group'>
@@ -103,7 +103,7 @@ class RegisterForm extends PureComponent {
           </div>
 
           <div className='form__group'>
-            <h4 className='register-form__section-label register-form__section-label--title-margin'>Password</h4>
+            <h4 className='form__section-label form__section-label--title-margin'>Password</h4>
           </div>
           <div className='form__group'>
             <Field

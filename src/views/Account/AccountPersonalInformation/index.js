@@ -2,7 +2,9 @@ import React, { PureComponent } from 'react'
 
 import { connect } from 'react-redux'
 
-class PersonalInformation extends PureComponent {
+import PersonalInformationFormContainer from 'containers/Account/PersonalInformationFormContainer'
+
+class AccountPersonalInformation extends PureComponent {
   constructor (props) {
     super(props)
   }
@@ -19,6 +21,9 @@ class PersonalInformation extends PureComponent {
               <p className='small'>
                 Here you are able to check, update and add your TRM personal information for a more tailored experience.
               </p>
+            </div>
+            <div className='account-personal-information__section'>
+              <PersonalInformationFormContainer />
             </div>
           </div>
         </div>
@@ -44,4 +49,4 @@ const mapStateToProps = (state, ownProps) => {
 export default connect(
   mapStateToProps,
   null
-)(PersonalInformation)
+)(AccountPersonalInformation)

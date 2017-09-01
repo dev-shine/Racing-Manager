@@ -10,7 +10,7 @@ import { Switch } from 'react-router-dom'
 
 import AccountSidePanel from 'components/account/AccountSidePanel'
 
-import PersonalInformation from 'views/Account/PersonalInformation'
+import AccountPersonalInformation from 'views/Account/AccountPersonalInformation'
 
 import ViewHeader from 'components/common/ViewHeader'
 
@@ -30,7 +30,7 @@ const AccountLayout = (props) => {
         <div className='col-lg-9 col-md-8 col-sm-8 col-xs-12'>
           <div className='account-layout__content'>
             <Switch>
-              <AuthRoute exact path='/account' component={PersonalInformation} redirectPath='/' />
+              <AuthRoute exact path='/account' component={AccountPersonalInformation} redirectPath='/' />
             </Switch>
           </div>
         </div>

@@ -34,6 +34,8 @@ $blue-yonder: #5170A7;
 $sky-blue: #88d0ed;
 $queen-blue: #476591;
 
+$light-gray: #D0D2D3;
+
 // Bg
 $color-bg: $snow;
 $color-bg-secondary: $white;
@@ -44,6 +46,7 @@ $color-bg-strong: $maastricht-blue;
 $color-bg-dark: darken($maastricht-blue, 2%);
 $color-bg-faded-dark: rgba($black, 0.05);
 $color-bg-primary-dark: rgba($black, 0.82);
+$color-bg-placeholder: $light-gray;
 
 // Overlay
 $color-parallax-image: rgba($white, 0.4);
