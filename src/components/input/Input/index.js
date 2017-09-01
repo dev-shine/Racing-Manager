@@ -47,7 +47,8 @@ const Input = props => {
     handleFocus,
     handleChange,
     inputClassName,
-    inputLineClassName
+    inputLineClassName,
+    disabled
   } = props
 
   /**
@@ -69,6 +70,7 @@ const Input = props => {
   return (
     <div className={modifiedClassName}>
       <input
+        disabled={disabled}
         className={inputClassNames}
         type={type}
         name={name}
@@ -78,7 +80,13 @@ const Input = props => {
         onBlur={handleBlur}
         onFocus={handleFocus}
         onChange={handleChange} />
-      <InputLine error={hasError} className={inputLineClassNames} />
+      {
+        !disabled
+        ? (
+            <InputLine error={hasError} className={inputLineClassNames} />
+          )
+        : null
+      }
       <Accordion
         className='input__accordion'
         isOpen={hasError}>
@@ -95,7 +103,8 @@ const Input = props => {
  *  @type {Object}
  */
 Input.defaultProps = {
-  type: 'text'
+  type: 'text',
+  disabled: false
 }
 
 /**
@@ -116,7 +125,8 @@ Input.propTypes = {
   handleBlur: PropTypes.func,
   handleFocus: PropTypes.func,
   handleChange: PropTypes.func,
-  inputLineClassName: PropTypes.string
+  inputLineClassName: PropTypes.string,
+  disabled: PropTypes.bool
 }
 
 /**
