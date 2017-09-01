@@ -13,23 +13,23 @@ const AccountSidePanel = (props) => {
 
   return (
     <Panel className={modifiedClassNames}>
-      <NavLink href={'/account'}>
+      <NavLink href={'/account'} exact>
         Personal Information
       </NavLink>
 
-      <NavLink href={'/account/contact'}>
+      <NavLink href={'/account/contact'} exact>
         Contact Details
       </NavLink>
 
-      <NavLink href={'/account/notifications'}>
+      <NavLink href={'/account/notifications'} exact>
         Notifications
       </NavLink>
 
-      <NavLink href={'/account/payment'}>
+      <NavLink href={'/account/payment'} exact>
         Payment Information
       </NavLink>
 
-      <NavLink href={'/account/security'}>
+      <NavLink href={'/account/security'} exact>
         Security Settings
       </NavLink>
     </Panel>

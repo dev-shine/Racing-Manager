@@ -4,17 +4,23 @@ import classNames from 'utils/classnames'
 
 import { NavLink as DefaultNavLink } from 'react-router-dom'
 
-const BASE_PATH = '/'
-
 class NavLink extends Component {
-  handleIsActive (match, location) {
-    if (
-      match &&
-      match.path === BASE_PATH &&
-      location.pathname !== BASE_PATH
-    ) return false
+  constructor (props) {
+    super(props)
 
-    return !!match
+    this.handleIsActive = this.handleIsActive.bind(this)
+  }
+
+  handleIsActive (match, location) {
+    const {
+      pathname = ''
+    } = location
+
+    const {
+      href = ''
+    } = this.props
+
+    return (pathname && pathname === href)
   }
 
   render () {

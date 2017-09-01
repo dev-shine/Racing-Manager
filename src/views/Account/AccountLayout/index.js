@@ -6,11 +6,13 @@ import { connect } from 'react-redux'
 
 import AuthRoute from 'components/routing/AuthRoute'
 
-import { Switch } from 'react-router-dom'
+import { Switch, Redirect } from 'react-router-dom'
 
 import AccountSidePanel from 'components/account/AccountSidePanel'
 
 import AccountPersonalInformation from 'views/Account/AccountPersonalInformation'
+
+import AccountContactDetails from 'views/Account/AccountContactDetails'
 
 import ViewHeader from 'components/common/ViewHeader'
 
@@ -31,6 +33,8 @@ const AccountLayout = (props) => {
           <div className='account-layout__content'>
             <Switch>
               <AuthRoute exact path='/account' component={AccountPersonalInformation} redirectPath='/' />
+              <AuthRoute exact path='/account/contact' component={AccountContactDetails} redirectPath='/' />
+              <Redirect to='/404' />
             </Switch>
           </div>
         </div>
