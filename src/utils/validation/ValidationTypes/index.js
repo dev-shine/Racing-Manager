@@ -123,6 +123,24 @@ const CARD_CVV_REG = /^[0-9]{3}$/
 const LUHN_ARR = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
 
 /**
+ *  CREDIT_CARD_FORMAT_REG
+ *  @type {RegExp}
+ */
+const CREDIT_CARD_FORMAT_REG = /.{1,4}/g
+
+/**
+ *  CREDIT_CARD_DATE_FORMAT_REG
+ *  @type {RegExp}
+ */
+const CREDIT_CARD_DATE_FORMAT_REG = /.{1,2}/g
+
+/**
+ *  DATE_OF_BIRTH_FORMAT_REG
+ *  @type {RegExp}
+ */
+const DATE_OF_BIRTH_FORMAT_REG = /^(.{1,2})(.{1,2})(.{1,4})$/g
+
+/**
  *  VISA_REG
  *  @type {RegExp}
  */
@@ -484,4 +502,58 @@ export const CARD_CVV = (cardNum, value) => {
  */
 export const IS_NUMBER = (num) => {
   return NUMBER_REG.test(num)
+}
+
+/**
+ *  FORMAT_CREDIT_CARD
+ *  @param  {String} number
+ *  @return {String}
+ */
+export const FORMAT_CREDIT_CARD = (number = '') => {
+  if (number.length > 0) {
+    let matches = number.match(CREDIT_CARD_FORMAT_REG)
+
+    if (matches) {
+      return matches.join(' ')
+    } else {
+      return number
+    }
+  }
+  return number
+}
+
+/**
+ *  FORMAT_CREDIT_CARD_DATE
+ *  @param  {String} date
+ *  @return {String}
+ */
+export const FORMAT_CREDIT_CARD_DATE = (date = '') => {
+  if (date.length > 0) {
+    let matches = date.match(CREDIT_CARD_DATE_FORMAT_REG)
+
+    if (matches) {
+      return matches.join('/')
+    } else {
+      return date
+    }
+  }
+  return date
+}
+
+/**
+ *  FORMAT_DATE_OF_BIRTH
+ *  @param  {String} date
+ *  @return {String}
+ */
+export const FORMAT_DATE_OF_BIRTH = (date = '') => {
+  if (date.length > 0) {
+    let matches = date.match(DATE_OF_BIRTH_FORMAT_REG)
+
+    if (matches) {
+      return matches.join('/')
+    } else {
+      return date
+    }
+  }
+  return date
 }
