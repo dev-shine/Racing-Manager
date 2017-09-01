@@ -70,12 +70,24 @@ const PASSWORD_REG = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
 */
 const DOB_REG = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/
 
+/**
+ *  DOB_FORMAT_REG
+ *  @type {RegExp}
+ */
+const DOB_FORMAT_REG = /\d{2,8}/g
+
 /*
 *  @name SPACES_REG
 *  @type { REGEX }
 *  @private
 */
 const SPACES_REG = /^\S*$/
+
+/**
+ *  ONE_OR_MORE_NUMBER_REG
+ *  @type {RegExp}
+ */
+const ONE_OR_MORE_NUMBER_REG = /[^\d]+/g
 
 /*
 *  @name DOUBLE_SPACES_REG
@@ -133,12 +145,6 @@ const CREDIT_CARD_FORMAT_REG = /.{1,4}/g
  *  @type {RegExp}
  */
 const CREDIT_CARD_DATE_FORMAT_REG = /.{1,2}/g
-
-/**
- *  DATE_OF_BIRTH_FORMAT_REG
- *  @type {RegExp}
- */
-const DATE_OF_BIRTH_FORMAT_REG = /^(.{1,2})(.{1,2})(.{1,4})$/g
 
 /**
  *  VISA_REG
@@ -509,12 +515,12 @@ export const IS_NUMBER = (num) => {
  *  @param  {String} number
  *  @return {String}
  */
-export const FORMAT_CREDIT_CARD = (number = '') => {
+export const FORMAT_CREDIT_CARD = (number = '', joinChar = ' ') => {
   if (number.length > 0) {
     let matches = number.match(CREDIT_CARD_FORMAT_REG)
 
     if (matches) {
-      return matches.join(' ')
+      return matches.join(joinChar)
     } else {
       return number
     }
@@ -527,12 +533,12 @@ export const FORMAT_CREDIT_CARD = (number = '') => {
  *  @param  {String} date
  *  @return {String}
  */
-export const FORMAT_CREDIT_CARD_DATE = (date = '') => {
+export const FORMAT_CREDIT_CARD_DATE = (date = '', joinChar = '/') => {
   if (date.length > 0) {
     let matches = date.match(CREDIT_CARD_DATE_FORMAT_REG)
 
     if (matches) {
-      return matches.join('/')
+      return matches.join(joinChar)
     } else {
       return date
     }
@@ -545,15 +551,29 @@ export const FORMAT_CREDIT_CARD_DATE = (date = '') => {
  *  @param  {String} date
  *  @return {String}
  */
-export const FORMAT_DATE_OF_BIRTH = (date = '') => {
-  if (date.length > 0) {
-    let matches = date.match(DATE_OF_BIRTH_FORMAT_REG)
-
-    if (matches) {
-      return matches.join('/')
-    } else {
-      return date
-    }
+export const FORMAT_DATE_OF_BIRTH = (value = '', joinChar = '/') => {
+  if (!value.length) {
+    return value
   }
-  return date
+
+  let v = value.replace(REMOVE_SPACES, '').replace(ONE_OR_MORE_NUMBER_REG, '')
+  let matches = v.match(DOB_FORMAT_REG)
+  let match = (matches && matches[0]) || ''
+  let parts = []
+  let iterateCount = 2
+
+  for (let i = 0, len = match.length; i < len; i += iterateCount) {
+    if (parts.length >= 2) {
+      parts.push(match.substring(i, i + (match.length - i)))
+      break
+    }
+
+    parts.push(match.substring(i, i + iterateCount))
+  }
+
+  if (parts.length) {
+    return parts.join(joinChar)
+  } else {
+    return value
+  }
 }

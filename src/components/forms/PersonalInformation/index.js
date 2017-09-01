@@ -10,6 +10,8 @@ import { Form, Field, Submit } from 'components/forms/BaseForm'
 
 import TextButton from 'components/buttons/TextButton'
 
+import { FORMAT_DATE_OF_BIRTH } from 'utils/validation/ValidationTypes'
+
 import {
   FIRSTNAME_PLACEHOLDER,
   SURNAME_PLACEHOLDER,
@@ -24,7 +26,7 @@ class PersonalInformationForm extends PureComponent {
   }
 
   render () {
-    const { submitForm, values, canProgress } = this.props
+    const { submitForm, values } = this.props
 
     return (
       <div className='personal-information-form'>
@@ -56,7 +58,6 @@ class PersonalInformationForm extends PureComponent {
           </div>
           <div className='form__group'>
             <Field
-              disabled
               component={Input}
               placeholder={USERNAME_PLACEHOLDER}
               validate={['username']}
@@ -72,6 +73,7 @@ class PersonalInformationForm extends PureComponent {
               component={Input}
               placeholder={BIRTHDAY_PLACEHOLDER}
               validate={['birthday']}
+              format={FORMAT_DATE_OF_BIRTH}
               name='birthday' />
           </div>
 
@@ -90,7 +92,7 @@ class PersonalInformationForm extends PureComponent {
           <Submit component={(props) => TextButton({
             ...props,
             text: 'save changes',
-            isDisabled: !canProgress
+            isDisabled: false
           })} />
         </Form>
       </div>
