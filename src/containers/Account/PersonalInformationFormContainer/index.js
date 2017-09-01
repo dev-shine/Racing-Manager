@@ -1,13 +1,30 @@
+import React, { PureComponent } from 'react'
+
 import { connect } from 'react-redux'
 
 import PersonalInformationForm from 'components/forms/PersonalInformation'
 
 import {
   updateForm,
-  updateFormError
+  updateFormError,
+  resetForm
 } from 'actions/account/PersonalInformation'
 
 import { personalInformationValidators } from 'utils/validation/PersonalInformation'
+
+class PersonalInformationFormContainer extends PureComponent {
+  constructor (props) {
+    super(props)
+  }
+
+  componentWillUnmount () {
+    this.props.clearForm()
+  }
+
+  render () {
+    return <PersonalInformationForm {...this.props} />
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -45,6 +62,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateFormError(errors, name))
     },
     submitForm: (values) => {
+    },
+    clearForm: () => {
+      dispatch(resetForm())
     }
   }
 }
@@ -52,4 +72,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PersonalInformationForm)
+)(PersonalInformationFormContainer)
