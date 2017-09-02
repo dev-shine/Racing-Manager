@@ -6,3 +6,4 @@ export const REGISTER = 'Register'
 export const REGISTRATION_SUCCESSFUL = 'Registration successful'
 export const BROWSE_HORSES = 'Browse horses'
 export const MEMBER_DASHBOARD = "Member's dashboard"
+export const ACCOUNT = 'Account'
