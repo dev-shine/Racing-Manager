@@ -16,30 +16,36 @@ import AccountContactDetails from 'views/Account/AccountContactDetails'
 
 import ViewHeader from 'components/common/ViewHeader'
 
+import View from 'components/routing/View'
+
+import { ACCOUNT as title } from 'data/titles'
+
 const AccountLayout = (props) => {
   const {
     name
   } = props
 
   return (
-    <div className='account-layout'>
-      <ViewHeader
-        title={`hello, ${name}`} />
-      <div className='container account-layout__container'>
-        <div className='col-lg-3 col-md-4 col-sm-4 col-xs-12'>
-          <AccountSidePanel />
-        </div>
-        <div className='col-lg-9 col-md-8 col-sm-8 col-xs-12'>
-          <div className='account-layout__content'>
-            <Switch>
-              <AuthRoute exact path='/account' component={AccountPersonalInformation} redirectPath='/' />
-              <AuthRoute exact path='/account/contact' component={AccountContactDetails} redirectPath='/' />
-              <Redirect to='/404' />
-            </Switch>
+    <View title={title}>
+      <div className='account-layout'>
+        <ViewHeader
+          title={`hello, ${name}`} />
+        <div className='container account-layout__container'>
+          <div className='col-lg-3 col-md-4 col-sm-4 col-xs-12'>
+            <AccountSidePanel />
+          </div>
+          <div className='col-lg-9 col-md-8 col-sm-8 col-xs-12'>
+            <div className='account-layout__content'>
+              <Switch>
+                <AuthRoute exact path='/account' component={AccountPersonalInformation} redirectPath='/' />
+                <AuthRoute exact path='/account/contact' component={AccountContactDetails} redirectPath='/' />
+                <Redirect to='/404' />
+              </Switch>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </View>
   )
 }
 
