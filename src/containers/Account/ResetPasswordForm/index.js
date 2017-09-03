@@ -8,9 +8,9 @@ import {
   updateForm,
   updateFormError,
   resetForm
-} from 'actions/account/PersonalInformation'
+} from 'actions/account/ResetPassword'
 
-import { personalInformationValidators } from 'utils/validation/PersonalInformation'
+import { resetPasswordValidators } from 'utils/validation/ResetPassword'
 
 class ResetPasswordFormContainer extends PureComponent {
   constructor (props) {
@@ -32,24 +32,20 @@ const mapStateToProps = (state, ownProps) => {
   } = state
 
   const {
-    firstname,
-    surname,
-    username,
-    birthday,
-    location,
+    currentPassword,
+    newPassword,
+    confirmPassword,
     errors
-  } = account.personalInformation
+  } = account.resetPassword
 
   return {
     values: {
-      firstname: firstname,
-      surname: surname,
-      username,
-      birthday,
-      location
+      currentPassword,
+      newPassword,
+      confirmPassword
     },
     errors,
-    validators: personalInformationValidators
+    validators: resetPasswordValidators
   }
 }
 
@@ -65,6 +61,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     clearForm: () => {
       dispatch(resetForm())
+    },
+    onCancel: () => {
+      dispatch(resetForm())
+      ownProps.onFormCancel && ownProps.onFormCancel()
     }
   }
 }

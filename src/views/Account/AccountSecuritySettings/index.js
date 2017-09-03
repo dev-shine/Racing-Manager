@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 
 import TextButton from 'components/buttons/TextButton'
 
-import ResetPasswordForm from 'components/forms/ResetPassword'
+import ResetPasswordForm from 'containers/Account/ResetPasswordForm'
 
 import FadeIn from 'components/animation/FadeIn'
 
@@ -68,7 +68,7 @@ class AccountSecuritySettings extends PureComponent {
                 : (
                   <div className='account-security-settings__section'>
                     <ResetPasswordForm
-                      onCancel={this.hideResetPassword} />
+                      onFormCancel={this.hideResetPassword} />
                   </div>
                 )
               }

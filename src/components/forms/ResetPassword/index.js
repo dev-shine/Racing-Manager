@@ -32,27 +32,27 @@ class ResetPasswordForm extends PureComponent {
             <Field
               component={Input}
               placeholder={CURRENT_PASSWORD}
-              validate={['password']}
+              validate={['currentPassword']}
               type='password'
-              name='password' />
+              name='currentPassword' />
           </div>
 
           <div className='form__group'>
             <Field
               component={Input}
               placeholder={NEW_PASSWORD}
-              validate={['password']}
+              validate={['newPassword']}
               type='password'
-              name='new-password' />
+              name='newPassword' />
           </div>
 
           <div className='form__group'>
             <Field
               component={Input}
               placeholder={NEW_PASSWORD_CONFIRM}
-              validate={['password']}
+              validate={['confirmPassword']}
               type='password'
-              name='new-password-confirm' />
+              name='confirmPassword' />
           </div>
 
           <div className='form__group'>

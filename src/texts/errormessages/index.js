@@ -37,6 +37,8 @@ export const DATE_OF_BIRTH = 'Enter your date of birth in DD/MM/YYYY format. You
 */
 export const PASSWORD = 'Passwords must have at least one capital letter, one lower case letter, one number and be a minimum of six characters in length'
 
+export const WRONG_CONFIRM_PASSWORD = 'Passwords must match.'
+
 /**
 *  @type { string }
 */
