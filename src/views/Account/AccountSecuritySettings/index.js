@@ -26,7 +26,7 @@ class AccountSecuritySettings extends PureComponent {
             </div>
 
             <div className='account-security-settings__section'>
-              <h6 className='italic uppercase link'>
+              <h6 className='italic uppercase link account-security-settings__cta-text cursor--pointer'>
                 deactivate account
               </h6>
             </div>
