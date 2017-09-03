@@ -35,7 +35,11 @@ class PersonalInformationForm extends PureComponent {
           {...this.props}>
 
           <div className='form__group'>
-            <PictureUpload />
+            <Field
+              component={PictureUpload}
+              validate={['']}
+              name='picture'
+            />
           </div>
 
           <div className='form__group'>

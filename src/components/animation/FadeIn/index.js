@@ -9,14 +9,12 @@ const FadeIn = (props) => {
 
   return (
     <CSSTransitionGroup
-      transitionName="fade-shift"
+      transitionName="fade-in"
       transitionEnterTimeout={400}
       transitionAppearTimeout={400}
       transitionLeaveTimeout={400}
     >
-       <div>
-        {children}
-      </div>
+      {children}
     </CSSTransitionGroup>
   )
 }

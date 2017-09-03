@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 
+import ContactDetailsFormContainer from 'containers/Account/ContactDetailsForm'
+
 class AccountContactDetails extends PureComponent {
   constructor (props) {
     super(props)
@@ -19,6 +21,7 @@ class AccountContactDetails extends PureComponent {
               </p>
             </div>
             <div className='account-contact-details__section'>
+              <ContactDetailsFormContainer />
             </div>
           </div>
         </div>
