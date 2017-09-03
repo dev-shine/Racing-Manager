@@ -24,9 +24,9 @@ import classNames from 'utils/classnames'
 import enhanceWithClickOutside from 'react-click-outside'
 
 /**
- *  @module CSSTransitionGroup
+ *  @module FadeIn
  */
-import { CSSTransitionGroup } from 'react-transition-group'
+import { FadeIn } from 'components/animation'
 
 class Option extends Component {
   constructor (props) {
@@ -215,11 +215,7 @@ class Select extends Component {
           showLine && <InputLine className='visible-sm-up' error={hasError} modifier={{active: open, 'left': true}} />
         }
         <div className='select__results section-shadow--bottom'>
-          <CSSTransitionGroup
-            transitionName="fade-in"
-            transitionEnterTimeout={400}
-            transitionLeaveTimeout={400}
-          >
+          <FadeIn>
             {
               open && (
                 <ul aria-label='main menu' >
@@ -227,7 +223,7 @@ class Select extends Component {
                 </ul>
               )
             }
-          </CSSTransitionGroup>
+          </FadeIn>
         </div>
       </div>
     )

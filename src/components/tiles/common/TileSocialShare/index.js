@@ -6,7 +6,7 @@ import Icon from 'components/icon'
 
 import classNames from 'utils/classnames'
 
-import { CSSTransitionGroup } from 'react-transition-group'
+import { FadeIn } from 'components/animation'
 
 import { stopPropagation } from 'utils/domutils'
 
@@ -24,10 +24,7 @@ const TileSocialShare = (props) => {
   const modifiedClassNames = classNames('tile-social-share', ['section-shadow--top', className], modifier)
 
   return (
-    <CSSTransitionGroup
-      transitionName="fade-in"
-      transitionEnterTimeout={400}
-      transitionLeaveTimeout={400}>
+    <FadeIn>
       {
       show ? (
         <div className={modifiedClassNames} onClick={stopPropagation}>
@@ -51,7 +48,7 @@ const TileSocialShare = (props) => {
       )
       : null
     }
-    </CSSTransitionGroup>
+    </FadeIn>
   )
 }
 

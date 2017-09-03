@@ -9,9 +9,9 @@ import Icon from 'components/icon'
 
 import AccountDropdown from 'components/account/AccountDropdown'
 
-import { CSSTransitionGroup } from 'react-transition-group'
-
 import TextCtaButton from 'components/buttons/TextCtaButton'
+
+import FadeIn from 'components/animation/FadeIn'
 
 const HeaderPrivate = (props) => {
   const {
@@ -75,11 +75,7 @@ const HeaderPrivate = (props) => {
       </div>
 
       <div>
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionAppearTimeout={400}
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}>
+        <FadeIn>
           {
             showAccount && (
               <AccountDropdown
@@ -88,7 +84,7 @@ const HeaderPrivate = (props) => {
                 onLogout={onLogout} />
             )
           }
-        </CSSTransitionGroup>
+        </FadeIn>
       </div>
     </div>
   )

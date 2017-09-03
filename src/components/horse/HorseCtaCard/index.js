@@ -12,8 +12,6 @@ import {
   requestToJoin
 } from 'data/horse'
 
-import { CSSTransitionGroup } from 'react-transition-group'
-
 import SocialShare from 'components/socialmedia/SocialShare'
 
 import {
@@ -21,6 +19,8 @@ import {
   twitter,
   email
 } from 'texts/socialmedia'
+
+import { FadeIn } from 'components/animation'
 
 class HorseCtaCard extends PureComponent {
   constructor (props) {
@@ -67,11 +67,7 @@ class HorseCtaCard extends PureComponent {
           />
         </CtaLink>
 
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionAppearTimeout={400}
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}>
+        <FadeIn>
           {
             showLinks
             ? (
@@ -123,7 +119,7 @@ class HorseCtaCard extends PureComponent {
               />
             )
           }
-        </CSSTransitionGroup>
+        </FadeIn>
       </CtaPanelCard>
     )
   }

@@ -17,7 +17,7 @@ import LoginFormContainer from 'containers/LoginForm'
 
 import TextCtaButton from 'components/buttons/TextCtaButton'
 
-import { CSSTransitionGroup } from 'react-transition-group'
+import { FadeIn } from 'components/animation'
 
 import Icon from 'components/icon'
 
@@ -74,11 +74,7 @@ const HeaderPublic = (props) => {
       </div>
 
       <div className='hidden-sm-up'>
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionAppearTimeout={400}
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}>
+        <FadeIn>
             <div className='header__mobile-register section-shadow'>
               {
                !showLogin
@@ -99,14 +95,10 @@ const HeaderPublic = (props) => {
                 )
               }
             </div>
-        </CSSTransitionGroup>
+        </FadeIn>
       </div>
       <div>
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionAppearTimeout={400}
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}>
+        <FadeIn>
           {
             showLogin && (
               <LoginFormContainer
@@ -114,7 +106,7 @@ const HeaderPublic = (props) => {
                 closeLogin={onLoginButtonClick} />
             )
           }
-        </CSSTransitionGroup>
+        </FadeIn>
       </div>
     </div>
   )

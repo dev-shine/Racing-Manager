@@ -2,12 +2,39 @@ import React, { PureComponent } from 'react'
 
 import TextButton from 'components/buttons/TextButton'
 
+import ResetPasswordForm from 'components/forms/ResetPassword'
+
+import FadeIn from 'components/animation/FadeIn'
+
 class AccountSecuritySettings extends PureComponent {
   constructor (props) {
     super(props)
+
+    this.state = {
+      showForm: false
+    }
+
+    this.showResetPassword = this.showResetPassword.bind(this)
+    this.hideResetPassword = this.hideResetPassword.bind(this)
+  }
+
+  showResetPassword () {
+    this.setState({
+      showForm: true
+    })
+  }
+
+  hideResetPassword () {
+    this.setState({
+      showForm: false
+    })
   }
 
   render () {
+    const {
+      showForm
+    } = this.state
+
     return (
       <div className='account-security-settings'>
         <div className='account-security-settings__container'>
@@ -20,17 +47,32 @@ class AccountSecuritySettings extends PureComponent {
                 Here you are able to check, update and add your TRM personal information for a more tailored experience.
               </p>
             </div>
-            <div className='account-security-settings__section'>
-              <TextButton
-                text={'change password'} />
-            </div>
+            <FadeIn loc={showForm}>
+              {
+                !showForm
+                ? (
+                    <div className='account-security-settings__section'>
+                      <div>
+                        <TextButton
+                          onClick={this.showResetPassword}
+                          text={'change password'} />
+                      </div>
 
-            <div className='account-security-settings__section'>
-              <h6 className='italic uppercase link account-security-settings__cta-text cursor--pointer'>
-                deactivate account
-              </h6>
-            </div>
-
+                      <div className='account-security-settings__section'>
+                        <h6 className='italic uppercase link account-security-settings__cta-text cursor--pointer'>
+                          deactivate account
+                        </h6>
+                      </div>
+                    </div>
+                )
+                : (
+                  <div className='account-security-settings__section'>
+                    <ResetPasswordForm
+                      onCancel={this.hideResetPassword} />
+                  </div>
+                )
+              }
+            </FadeIn>
           </div>
         </div>
       </div>
