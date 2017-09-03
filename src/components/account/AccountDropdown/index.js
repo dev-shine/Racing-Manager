@@ -34,7 +34,7 @@ class AccountDropdown extends PureComponent {
 
     return (
       <div className={modifiedClassNames}>
-        <ul className='account-dropdown__list no-list-style'>
+        <ul className='account-dropdown__list no-list-style section-shadow--tile'>
           <li className='account-dropdown__list-item'>
             <CtaLink href='/account' onClick={closeAccount}>
               <TextCtaButton
