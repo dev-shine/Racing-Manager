@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 
+import TextButton from 'components/buttons/TextButton'
+
 class AccountSecuritySettings extends PureComponent {
   constructor (props) {
     super(props)
@@ -19,7 +21,16 @@ class AccountSecuritySettings extends PureComponent {
               </p>
             </div>
             <div className='account-security-settings__section'>
+              <TextButton
+                text={'change password'} />
             </div>
+
+            <div className='account-security-settings__section'>
+              <h6 className='italic uppercase link'>
+                deactivate account
+              </h6>
+            </div>
+
           </div>
         </div>
       </div>

@@ -80,7 +80,7 @@ class PictureUpload extends PureComponent {
 
         <div className='picture-upload__section'>
           <div className='picture-upload__upload cursor--pointer'>
-            <h6 className='italic uppercase'>
+            <h6 className='italic uppercase link'>
               update
             </h6>
             <input
@@ -89,8 +89,8 @@ class PictureUpload extends PureComponent {
               type='file'
               ref={ref => { this.attachmentRef = ref }} />
           </div>
-          <span className='picture-upload__upload-text picture-upload__upload-text--center'>|</span>
-          <h6 className='italic uppercase picture-upload__upload-text cursor--pointer' onClick={this.removePhoto}>
+          <span className='picture-upload__upload-text picture-upload__upload-text--center link'>|</span>
+          <h6 className='italic uppercase link picture-upload__upload-text cursor--pointer' onClick={this.removePhoto}>
             remove
           </h6>
         </div>
