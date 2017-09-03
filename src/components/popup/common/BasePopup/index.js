@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import BodyStyle from 'components/common/BodyStyle'
 
 import CloseButton from 'components/buttons/CloseButton'
-import { CSSTransitionGroup } from 'react-transition-group'
+
+import { FadeIn } from 'components/animation'
 
 const BasePopupHoc = WrappedComponent => {
   const BasePopup = props => {
@@ -11,10 +12,7 @@ const BasePopupHoc = WrappedComponent => {
 
     return (
       <BodyStyle className={isOpen ? 'model-open' : ''}>
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}
+        <FadeIn
         >
           {
             isOpen && (
@@ -29,7 +27,7 @@ const BasePopupHoc = WrappedComponent => {
               </div>
             )
           }
-        </CSSTransitionGroup>
+        </FadeIn>
       </BodyStyle>
     )
   }

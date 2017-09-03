@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BodyStyle from 'components/common/BodyStyle'
 
-import { CSSTransitionGroup } from 'react-transition-group'
+import { FadeIn } from 'components/animation'
 
 import Icon from 'components/icon'
 
@@ -16,11 +16,7 @@ const BaseFluidPopupHoc = WrappedComponent => {
 
     return (
       <BodyStyle className={isOpen ? 'model-open' : ''}>
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}
-        >
+        <FadeIn>
           {
             isOpen && (
               <div className='fluid-popup'>
@@ -41,7 +37,7 @@ const BaseFluidPopupHoc = WrappedComponent => {
               </div>
             )
           }
-        </CSSTransitionGroup>
+        </FadeIn>
       </BodyStyle>
     )
   }

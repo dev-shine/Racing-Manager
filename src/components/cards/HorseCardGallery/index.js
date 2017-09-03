@@ -19,9 +19,9 @@ import HorseCard from 'components/cards/HorseCard'
 import { constructStaticUrl, calcSharesAvailable } from 'utils/horseutils'
 
 /**
- *  @module CSSTransitionGroup
+ *  @module FadeShift
  */
-import { CSSTransitionGroup } from 'react-transition-group'
+import { FadeShift } from 'components/animation'
 
 /**
  *  HorseCardGallery
@@ -92,12 +92,7 @@ class HorseCardGallery extends PureComponent {
 
     return (
       <div className='horse-card-gallery'>
-        <CSSTransitionGroup
-          transitionName="fade-shift"
-          transitionEnterTimeout={400}
-          transitionAppearTimeout={400}
-          transitionLeaveTimeout={400}
-        >
+        <FadeShift>
         {
           data.map((entry, index) => {
             return (
@@ -107,7 +102,7 @@ class HorseCardGallery extends PureComponent {
             )
           })
         }
-        </CSSTransitionGroup>
+        </FadeShift>
       </div>
     )
   }
