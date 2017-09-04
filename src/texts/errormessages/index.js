@@ -69,6 +69,8 @@ export const DATE = 'Please enter a date in format DD/MM/YYYY'
  */
 export const CARD_NUMBER = 'Please enter a valid card number'
 
+export const CARD_TYPE = 'Please enter a valid card type e.g. Visa'
+
 /**
  *  @type {String}
  */
@@ -98,3 +100,11 @@ export const UNDER_AGE_18 = 'You must be over 18 to register'
  *  @type {String}
  */
 export const MUST_ACCEPT_T_AND_C = 'You must accept terms and conditions'
+
+export const ADDRESS = 'Please enter your address'
+
+export const TOWN_CITY = 'Please enter your town / city'
+
+export const COUNTRY = 'Please enter your country'
+
+export const POST_CODE = 'Please enter a valid post code'

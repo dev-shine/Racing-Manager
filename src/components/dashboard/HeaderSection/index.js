@@ -21,7 +21,7 @@ import TextButton from 'components/buttons/TextButton'
 /**
  *  @module HorseCard
  */
-import HorseCard from 'components/cards/HorseCard'
+import HorseCard from 'components/horse/HorseCard'
 
 /**
  *  @module Carousel

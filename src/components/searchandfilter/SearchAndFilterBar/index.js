@@ -59,7 +59,8 @@ class SearchAndFilterBar extends PureComponent {
       defaultSortValue,
       onSearchUpdate,
       onSelectUpdate,
-      searchValue
+      searchValue,
+      sortValue
     } = this.props
 
     const mobileFilterClassNames = classNames('search-filter-bar__filter-text', 'uppercase search-filter-bar__click-text', {
@@ -87,6 +88,7 @@ class SearchAndFilterBar extends PureComponent {
                 <SortSelect
                   onChange={onSelectUpdate}
                   defaultValue={defaultSortValue}
+                  value={sortValue}
                   title={sortTitle}>
                   {
                     selectOptions.map((obj) => {
@@ -132,6 +134,7 @@ class SearchAndFilterBar extends PureComponent {
                 <div className='search-filter-bar__mobile__sort-select'>
                   <SortSelect
                     mobileText='Sort by'
+                    value={sortValue}
                     onChange={onSelectUpdate}
                     defaultValue={defaultSortValue}
                     title={sortTitle}>

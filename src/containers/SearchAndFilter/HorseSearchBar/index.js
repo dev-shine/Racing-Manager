@@ -39,6 +39,7 @@ class HorseSearchFilterBar extends Component {
         placeholder={placeholder}
         selectOptions={attributes.sort}
         defaultSortValue={sort.displayName || 'relevance'}
+        sortValue={sort.displayName}
         onSearchUpdate={updateSearchQuery}
         onSelectUpdate={updateSort}
         searchValue={query}
