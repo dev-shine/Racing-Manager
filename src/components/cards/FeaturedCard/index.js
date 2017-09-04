@@ -1,34 +1,13 @@
-import React, { PureComponent } from 'react'
+import CardView from './View'
+import CardFrame from './Frame'
+import CardHeading from './Heading'
+import CardContent from './Content'
+import CardFooter from './Footer'
 
-import PropTypes from 'prop-types'
-
-import classNames from 'utils/classnames'
-
-class FeaturedCard extends PureComponent {
-  constructor (props) {
-    super(props)
-  }
-
-  render () {
-    const {
-      className
-    } = this.props
-
-    const modifiedClassNames = classNames('featured-card', className)
-
-    return (
-      <div className={modifiedClassNames}>
-      </div>
-    )
-  }
+export {
+  CardView,
+  CardHeading,
+  CardFrame,
+  CardContent,
+  CardFooter
 }
-
-FeaturedCard.propTypes = {
-  className: PropTypes.string
-}
-
-FeaturedCard.defaultProps = {
-
-}
-
-export default FeaturedCard

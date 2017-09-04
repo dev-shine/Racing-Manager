@@ -1,5 +1,13 @@
 import React, { PureComponent } from 'react'
 
+import {
+  CardView,
+  CardFrame,
+  CardHeading,
+  CardContent,
+  CardFooter
+} from 'components/cards/FeaturedCard'
+
 class AccountPaymentMethods extends PureComponent {
   constructor (props) {
     super(props)
@@ -37,6 +45,21 @@ class AccountPaymentMethods extends PureComponent {
               </p>
             </div>
 
+            <div className='account-payment-methods__section'>
+              <CardView>
+                <CardFrame>
+                  <CardHeading>
+                    <p>dfs</p>
+                  </CardHeading>
+                  <CardContent>
+                    <p>sdfsdfs</p>
+                  </CardContent>
+                </CardFrame>
+                <CardFooter>
+                  <p>FOOTER</p>
+                </CardFooter>
+              </CardView>
+            </div>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module HorseCard
  */
-import HorseCard, { Overlay } from 'components/cards/HorseCard'
+import HorseCard from 'components/cards/HorseCard'
 
 /**
  *  @module expect
@@ -29,19 +29,10 @@ describe('Components - cards - HorseCard', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(<HorseCard src='' />)
+    wrapper = shallow(<HorseCard src='' isPending={false} />)
   })
 
   it('should exist', () => {
     expect(wrapper).to.exist
-  })
-
-  it('should render a banner and overlay if pending', () => {
-    wrapper.setProps({
-      isPending: true
-    })
-
-    expect(wrapper.find('.horse-card__banner')).to.have.length(1)
-    expect(wrapper.find(Overlay)).to.have.length(1)
   })
 })
