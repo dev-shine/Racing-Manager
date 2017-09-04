@@ -251,6 +251,7 @@ class Field extends PureComponent {
         handleFocus={this.handleFocus}
         handleBlur={this.handleBlur}
         handleChange={this.handleChange}
+        onBlur={this.handleBlur}
         onChange={this.handleChange} >
         {this.mapChildren(children)}
       </Presentation>
