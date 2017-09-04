@@ -68,9 +68,13 @@ const SyndicateHorseCarousel = (props) => {
                 name: 'Ownership',
                 value: `${roundNumberWithoutZeros(calcPercent(horse.shares.owned, horse.shares.total))}%`
               }]}
+              /*
               extra={{
                 url: `/horse/${horse.slug}`
               }}
+              */
+              isMember={false}
+              bottomUrl={`/horse/${horse.slug}`}
               className='syndicate-horse-carousel__slide' />
           )
         })
