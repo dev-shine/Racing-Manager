@@ -26,7 +26,7 @@ import ViewHeader from 'components/common/ViewHeader'
 /**
  *  @module HorseCardGallery
  */
-import HorseCardGallery from 'components/cards/HorseCardGallery'
+import HorseCardGallery from 'components/horse/HorseCardGallery'
 
 /**
  *  @module HorseSearchAndFilterBar

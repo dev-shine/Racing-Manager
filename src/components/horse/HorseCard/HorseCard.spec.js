@@ -6,7 +6,7 @@ import React from 'react'
 /**
  *  @module HorseCard
  */
-import HorseCard from 'components/cards/HorseCard'
+import HorseCard from 'components/horse/HorseCard'
 
 /**
  *  @module expect

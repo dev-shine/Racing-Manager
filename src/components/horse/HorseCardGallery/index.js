@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  *  @module HorseCard
  */
-import HorseCard from 'components/cards/HorseCard'
+import HorseCard from 'components/horse/HorseCard'
 
 /**
  *  @module constructStaticUrl, calcSharesAvailable

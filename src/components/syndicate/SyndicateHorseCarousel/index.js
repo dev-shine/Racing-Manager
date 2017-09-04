@@ -2,7 +2,7 @@ import React from 'react'
 
 import Carousel from 'components/carousel'
 
-import HorseCard from 'components/cards/HorseCard'
+import HorseCard from 'components/horse/HorseCard'
 
 import PropTypes from 'prop-types'
 
