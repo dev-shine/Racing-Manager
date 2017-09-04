@@ -24,6 +24,16 @@ import classNames from 'utils/classnames'
 import enhanceWithClickOutside from 'react-click-outside'
 
 /**
+ *  @module InputError
+ */
+import InputError from 'components/input/InputError'
+
+/**
+ *  @module BaseAccordion
+ */
+import Accordion from 'components/accordion/BaseAccordion'
+
+/**
  *  @module FadeIn
  */
 import { FadeIn } from 'components/animation'
@@ -225,6 +235,13 @@ class Select extends Component {
             }
           </FadeIn>
         </div>
+        <Accordion
+          className='input__accordion'
+          isOpen={hasError}>
+          <InputError
+            className='micro'
+            errors={error} />
+        </Accordion>
       </div>
     )
   }

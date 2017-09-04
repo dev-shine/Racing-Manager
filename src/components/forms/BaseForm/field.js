@@ -95,10 +95,16 @@ class Field extends PureComponent {
     /**
      *  @const
      */
-    const { target } = event
+    const { target = {} } = event
     const { handleChange } = this.props
 
-    let value = target.value
+    let value
+
+    if (typeof event === 'string') {
+      value = event
+    } else {
+      value = target.value
+    }
 
     /*
     If the type is a checkbox, get the checked value instead.
@@ -244,7 +250,8 @@ class Field extends PureComponent {
         error={error}
         handleFocus={this.handleFocus}
         handleBlur={this.handleBlur}
-        handleChange={this.handleChange} >
+        handleChange={this.handleChange}
+        onChange={this.handleChange} >
         {this.mapChildren(children)}
       </Presentation>
     )

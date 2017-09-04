@@ -1,12 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import {
-  CardView,
-  CardFrame,
-  CardHeading,
-  CardContent,
-  CardFooter
-} from 'components/cards/FeaturedCard'
+import AccountAddCardForm from 'components/account/AccountAddCardForm'
 
 class AccountPaymentMethods extends PureComponent {
   constructor (props) {
@@ -46,19 +40,7 @@ class AccountPaymentMethods extends PureComponent {
             </div>
 
             <div className='account-payment-methods__section'>
-              <CardView>
-                <CardFrame>
-                  <CardHeading>
-                    <p>dfs</p>
-                  </CardHeading>
-                  <CardContent>
-                    <p>sdfsdfs</p>
-                  </CardContent>
-                </CardFrame>
-                <CardFooter>
-                  <p>FOOTER</p>
-                </CardFooter>
-              </CardView>
+              <AccountAddCardForm />
             </div>
           </div>
         </div>
