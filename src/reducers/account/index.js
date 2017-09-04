@@ -4,9 +4,7 @@ import contactDetails from './ContactDetails'
 
 import resetPassword from './ResetPassword'
 
-import billingAddress from './BillingAddress'
-
-import creditCard from './CreditCard'
+import addCreditCard from './AddCreditCard'
 
 import { combineReducers } from 'redux'
 
@@ -14,8 +12,7 @@ const reducers = combineReducers({
   personalInformation,
   contactDetails,
   resetPassword,
-  billingAddress,
-  creditCard
+  addCreditCard
 })
 
 export default reducers

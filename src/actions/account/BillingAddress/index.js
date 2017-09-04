@@ -10,36 +10,42 @@ export const FORM_SUBMITTING_FAILED = '@BILLING_ADDRESS/FORM_SUBMITTING_FAILED'
 
 export const FORM_SUBMITTED = '@BILLING_ADDRESS/FORM_SUBMITTED'
 
-export const updateForm = (name, value) => ({
+export const updateForm = (name, value, reducerName) => ({
   type: FORM_UPDATE,
   name,
-  value
+  value,
+  reducerName
 })
 
-export const resetForm = () => ({
-  type: FORM_RESET
+export const resetForm = (reducerName) => ({
+  type: FORM_RESET,
+  reducerName
 })
 
-export const submitForm = () => ({
-  type: FORM_SUBMITTING
+export const submitForm = (reducerName) => ({
+  type: FORM_SUBMITTING,
+  reducerName
 })
 
-export const submittedForm = () => ({
-  type: FORM_SUBMITTED
+export const submittedForm = (reducerName) => ({
+  type: FORM_SUBMITTED,
+  reducerName
 })
 
-export const failedToSubmitForm = (error) => ({
+export const failedToSubmitForm = (error, reducerName) => ({
   type: FORM_SUBMITTING_FAILED,
-  error
+  error,
+  reducerName
 })
 
-export const updateFormError = (errors, name) => ({
+export const updateFormError = (errors, name, reducerName) => ({
   type: FORM_ERROR,
   errors,
-  name
+  name,
+  reducerName
 })
 
-export const submitFormData = data => {
+export const submitFormData = (data, reducerName) => {
   return (dispatch, getState) => {
     return dispatch(submitForm())
   }

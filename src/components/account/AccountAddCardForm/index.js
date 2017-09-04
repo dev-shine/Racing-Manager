@@ -25,6 +25,7 @@ class AccountAddCardForm extends PureComponent {
 
     this.showBillingForm = this.showBillingForm.bind(this)
     this.hideBillingForm = this.hideBillingForm.bind(this)
+    this.clearForms = this.clearForms.bind(this)
   }
 
   showBillingForm () {
@@ -39,19 +40,22 @@ class AccountAddCardForm extends PureComponent {
     })
   }
 
+  clearForms () {
+    this.props.clearForm()
+    this.hideBillingForm()
+  }
+
   render () {
     const {
       showBilling
     } = this.state
 
-    const mockedFormProps = {
-      update: () => {},
-      updateErrors: () => {},
-      submitForm: () => {},
-      values: {},
-      errors: {},
-      validators: () => {}
-    }
+    const {
+      billingAddressInfo,
+      billingAddressActions,
+      creditCardInfo,
+      creditCardActions
+    } = this.props
 
     return (
       <CardView className='account-card-form'>
@@ -66,17 +70,17 @@ class AccountAddCardForm extends PureComponent {
                 }
               </h4>
               <Icon
-                onClick={this.hideBillingForm}
+                onClick={showBilling ? this.hideBillingForm : this.clearForms}
                 className='account-card-form__close tiny cursor--pointer'
                 modifier='close' />
             </div>
             {
               !showBilling
               ? (
-                  <CreditCardForm {...mockedFormProps} />
+                  <CreditCardForm {...creditCardInfo} {...creditCardActions} />
                 )
               : (
-                  <BillingAddressForm {...mockedFormProps} />
+                  <BillingAddressForm {...billingAddressInfo} {...billingAddressActions} />
                 )
             }
           </CardHeading>

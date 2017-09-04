@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import AccountAddCardForm from 'components/account/AccountAddCardForm'
+import AccountAddCreditCardForm from 'containers/Account/AddCreditCard'
 
 class AccountPaymentMethods extends PureComponent {
   constructor (props) {
@@ -40,7 +40,7 @@ class AccountPaymentMethods extends PureComponent {
             </div>
 
             <div className='account-payment-methods__section'>
-              <AccountAddCardForm />
+              <AccountAddCreditCardForm />
             </div>
           </div>
         </div>
