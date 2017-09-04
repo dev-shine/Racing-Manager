@@ -24,7 +24,8 @@ import {
 } from 'actions/account/AddCreditCard'
 */
 
-import { contactDetailsValidators } from 'utils/validation/ContactDetails'
+import { billingAddressValidators } from 'utils/validation/BillingAddress'
+import { creditCardValidators } from 'utils/validation/CreditCard'
 
 class AddCreditCardContainer extends PureComponent {
   constructor (props) {
@@ -62,7 +63,7 @@ const mapStateToProps = (state, ownProps) => {
         postCode: billingAddress.postCode
       },
       errors: billingAddress.errors,
-      validators: contactDetailsValidators
+      validators: billingAddressValidators
     },
     creditCardInfo: {
       values: {
@@ -72,7 +73,7 @@ const mapStateToProps = (state, ownProps) => {
         cardExpiry: creditCard.cardExpiry
       },
       errors: creditCard.errors,
-      validators: contactDetailsValidators
+      validators: creditCardValidators
     }
   }
 }

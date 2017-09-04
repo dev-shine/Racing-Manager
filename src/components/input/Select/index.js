@@ -96,7 +96,7 @@ class Select extends Component {
     // Initial state
     this.state = {
       open: false,
-      value: ''
+      value: props.value || props.defaultValue
     }
 
     // Bind custom fn
@@ -106,13 +106,6 @@ class Select extends Component {
     this.openDropDown = this.openDropDown.bind(this)
     this.hideDropDown = this.hideDropDown.bind(this)
     this.toggleDropDown = this.toggleDropDown.bind(this)
-  }
-
-  componentWillMount () {
-    // Set the default value from the props
-    this.setState({
-      value: this.props.defaultValue
-    })
   }
 
   onOptionClick (value) {
