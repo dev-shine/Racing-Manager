@@ -138,13 +138,13 @@ const LUHN_ARR = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
  *  CREDIT_CARD_FORMAT_REG
  *  @type {RegExp}
  */
-const CREDIT_CARD_FORMAT_REG = /.{1,4}/g
+const CREDIT_CARD_FORMAT_REG = /\d{4,16}/g
 
 /**
  *  CREDIT_CARD_DATE_FORMAT_REG
  *  @type {RegExp}
  */
-const CREDIT_CARD_DATE_FORMAT_REG = /.{1,2}/g
+const CREDIT_CARD_DATE_FORMAT_REG = /\d{2,4}/g
 
 /**
  *  VISA_REG
@@ -511,21 +511,46 @@ export const IS_NUMBER = (num) => {
 }
 
 /**
+ *  baseFormatter
+ *  @description Reuseable function to format as the user types
+ *               will add in a character depending on the iterateCount
+ *               there is also a custom fn option to add more complexity to the fn
+ *               For example; if the value is 46585804 and the iterateCount is 4 and the join char is /
+ *                            then the value will be 4658/5804
+ */
+const baseFormatter = (value, matchPattern, iterateCount = 2, joinChar, customFn) => {
+  let v = value.replace(REMOVE_SPACES, '').replace(ONE_OR_MORE_NUMBER_REG, '')
+  let matches = v.match(matchPattern)
+  let match = (matches && matches[0]) || ''
+  let parts = []
+
+  for (let i = 0, len = match.length; i < len; i += iterateCount) {
+    if (typeof customFn === 'function') {
+      const result = customFn(parts, match, i)
+      if (result === false) {
+        break
+      }
+    }
+    parts.push(match.substring(i, (i + iterateCount)))
+  }
+
+  if (parts.length) {
+    return parts.join(joinChar)
+  } else {
+    return value
+  }
+}
+
+/**
  *  FORMAT_CREDIT_CARD
  *  @param  {String} number
  *  @return {String}
  */
-export const FORMAT_CREDIT_CARD = (number = '', joinChar = ' ') => {
-  if (number.length > 0) {
-    let matches = number.match(CREDIT_CARD_FORMAT_REG)
-
-    if (matches) {
-      return matches.join(joinChar)
-    } else {
-      return number
-    }
+export const FORMAT_CREDIT_CARD = (value = '', joinChar = ' ') => {
+  if (!value.length) {
+    return value
   }
-  return number
+  return baseFormatter(value, CREDIT_CARD_FORMAT_REG, 4, joinChar)
 }
 
 /**
@@ -533,17 +558,11 @@ export const FORMAT_CREDIT_CARD = (number = '', joinChar = ' ') => {
  *  @param  {String} date
  *  @return {String}
  */
-export const FORMAT_CREDIT_CARD_DATE = (date = '', joinChar = '/') => {
-  if (date.length > 0) {
-    let matches = date.match(CREDIT_CARD_DATE_FORMAT_REG)
-
-    if (matches) {
-      return matches.join(joinChar)
-    } else {
-      return date
-    }
+export const FORMAT_CREDIT_CARD_DATE = (value = '', joinChar = '/') => {
+  if (!value.length) {
+    return value
   }
-  return date
+  return baseFormatter(value, CREDIT_CARD_DATE_FORMAT_REG, 2, joinChar)
 }
 
 /**
@@ -555,25 +574,10 @@ export const FORMAT_DATE_OF_BIRTH = (value = '', joinChar = '/') => {
   if (!value.length) {
     return value
   }
-
-  let v = value.replace(REMOVE_SPACES, '').replace(ONE_OR_MORE_NUMBER_REG, '')
-  let matches = v.match(DOB_FORMAT_REG)
-  let match = (matches && matches[0]) || ''
-  let parts = []
-  let iterateCount = 2
-
-  for (let i = 0, len = match.length; i < len; i += iterateCount) {
+  return baseFormatter(value, DOB_FORMAT_REG, 2, joinChar, (parts, match, index) => {
     if (parts.length >= 2) {
-      parts.push(match.substring(i, i + (match.length - i)))
-      break
+      parts.push(match.substring(index, index + (match.length - index)))
+      return false
     }
-
-    parts.push(match.substring(i, i + iterateCount))
-  }
-
-  if (parts.length) {
-    return parts.join(joinChar)
-  } else {
-    return value
-  }
+  })
 }
