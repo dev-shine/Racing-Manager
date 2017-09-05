@@ -34,22 +34,25 @@ const AccountLayout = (props) => {
       <div className='account-layout'>
         <ViewHeader
           title={`hello, ${name}`} />
-        <div className='container account-layout__container'>
-          <div className='col-lg-3 col-md-4 col-sm-4 col-xs-12'>
-            <AccountSidePanel />
-          </div>
-          <div className='col-lg-9 col-md-8 col-sm-8 col-xs-12'>
-            <div className='account-layout__content'>
-              <Switch>
-                <AuthRoute exact path='/account' component={AccountPersonalInformation} redirectPath='/' />
-                <AuthRoute exact path='/account/contact' component={AccountContactDetails} redirectPath='/' />
-                <AuthRoute exact path='/account/security' component={AccountSecuritySettings} redirectPath='/' />
-                <AuthRoute exact path='/account/payment' component={AccountPaymentMethods} redirectPath='/' />
-                <Redirect to='/404' />
-              </Switch>
+        <div className='container'>
+          <div className='account-layout__container'>
+            <div className='col-lg-3 col-md-4 col-sm-4 col-xs-12 account-layout__flex-item'>
+              <AccountSidePanel />
+            </div>
+            <div className='col-lg-9 col-md-8 col-sm-8 col-xs-12'>
+              <div className='account-layout__content'>
+                <Switch>
+                  <AuthRoute exact path='/account' component={AccountPersonalInformation} redirectPath='/' />
+                  <AuthRoute exact path='/account/contact' component={AccountContactDetails} redirectPath='/' />
+                  <AuthRoute exact path='/account/security' component={AccountSecuritySettings} redirectPath='/' />
+                  <AuthRoute exact path='/account/payment' component={AccountPaymentMethods} redirectPath='/' />
+                  <Redirect to='/404' />
+                </Switch>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </View>
   )
