@@ -18,6 +18,8 @@ import AccountSecuritySettings from 'views/Account/AccountSecuritySettings'
 
 import AccountPaymentMethods from 'views/Account/AccountPaymentMethods'
 
+import AccountNotifications from 'views/Account/AccountNotifications'
+
 import ViewHeader from 'components/common/ViewHeader'
 
 import View from 'components/routing/View'
@@ -46,6 +48,7 @@ const AccountLayout = (props) => {
                   <AuthRoute exact path='/account/contact' component={AccountContactDetails} redirectPath='/' />
                   <AuthRoute exact path='/account/security' component={AccountSecuritySettings} redirectPath='/' />
                   <AuthRoute exact path='/account/payment' component={AccountPaymentMethods} redirectPath='/' />
+                  <AuthRoute exact path='/account/notifications' component={AccountNotifications} redirectPath='/' />
                   <Redirect to='/404' />
                 </Switch>
               </div>
