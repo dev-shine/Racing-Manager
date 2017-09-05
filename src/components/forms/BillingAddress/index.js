@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Input from 'components/input/Input'
 
-import Select, { Option } from 'components/input/Select'
+import Select from 'components/input/FormSelect'
 
 import { Form, Field } from 'components/forms/BaseForm'
 
@@ -60,9 +60,10 @@ class BillingAddressForm extends PureComponent {
               component={Select}
               validate={['country']}
               name='country'>
-                <Option value={'United Kingdom'}>United Kingdom</Option>
-                <Option value={'France'}>France</Option>
-                <Option value={'United States Of America'}>United States Of America</Option>
+                <option value={COUNTRY} disabled hidden>{COUNTRY}</option>
+                <option value={'United Kingdom'}>United Kingdom</option>
+                <option value={'France'}>France</option>
+                <option value={'United States Of America'}>United States Of America</option>
             </Field>
           </div>
 
