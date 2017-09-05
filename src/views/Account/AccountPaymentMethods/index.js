@@ -54,7 +54,7 @@ class AccountPaymentMethods extends PureComponent {
 
           <div className='account-payment-methods__section'>
             <div className='row'>
-              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12'>
+              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
                 <AccountCreditCard
                   cardType='visa debit'
                   holderName='N DE ROZARIEUX'
@@ -64,7 +64,7 @@ class AccountPaymentMethods extends PureComponent {
                   postCode='BN21 2PP' />
               </div>
 
-              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12'>
+              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
                 <AccountCreditCard
                   cardType='visa credit'
                   holderName='N DE ROZARIEUX'
@@ -74,7 +74,7 @@ class AccountPaymentMethods extends PureComponent {
                   postCode='SE13 3SS' />
               </div>
 
-              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12'>
+              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
                 <AccountCreditCard
                   cardType='visa debit'
                   holderName='TRM Manager'
