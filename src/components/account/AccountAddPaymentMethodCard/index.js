@@ -9,8 +9,16 @@ import PropTypes from 'prop-types'
 import {
   CardView,
   CardFrame,
-  CardContent
+  CardContent,
+  CardFooter
 } from 'components/cards/FeaturedCard'
+
+import MediaQuery from 'react-responsive'
+
+import {
+  SM,
+  SM_MAX
+} from 'data/breakpoints'
 
 const AccountAddPaymentMethodCard = (props) => {
   const {
@@ -23,18 +31,28 @@ const AccountAddPaymentMethodCard = (props) => {
   return (
     <div className={modifiedClassNames}>
       <CardView>
-        <CardFrame borderColor={'transparent'}>
-          <CardContent>
-            <div className='account-add-payment-method-card__container'>
-              <div className='absolute-center'>
-                <TextIconButton
-                  disabled={false}
-                  title={title}
-                  iconModifier='plus' />
+        <MediaQuery minWidth={SM}>
+          <CardFrame borderColor={'transparent'}>
+            <CardContent>
+              <div className='account-add-payment-method-card__container'>
+                <div className='absolute-center'>
+                  <TextIconButton
+                    disabled={false}
+                    title={title}
+                    iconModifier='plus' />
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </CardFrame>
+            </CardContent>
+          </CardFrame>
+        </MediaQuery>
+        <MediaQuery maxWidth={SM_MAX}>
+          <CardFooter>
+            <TextIconButton
+              disabled={false}
+              title={title}
+              iconModifier='plus' />
+          </CardFooter>
+        </MediaQuery>
       </CardView>
     </div>
   )

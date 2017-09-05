@@ -39,6 +39,14 @@ import MediaQuery from 'react-responsive'
 import classNames from 'utils/classnames'
 
 /**
+ *  @module SM, SM_MAX
+ */
+import {
+  SM,
+  SM_MAX
+} from 'data/breakpoints'
+
+/**
  *  @name SearchAndFilterBar
  *  @class
  *  @extends {PureComponent}
@@ -74,7 +82,7 @@ class SearchAndFilterBar extends PureComponent {
     return (
       <div className='search-filter-bar section-shadow--bottom'>
         <div className='container'>
-          <MediaQuery minWidth={768}>
+          <MediaQuery minWidth={SM}>
             <div className='row relative'>
               <div className='col-md-5 col-sm-3 align-middle'>
                 <DesktopSearchInput
@@ -113,7 +121,7 @@ class SearchAndFilterBar extends PureComponent {
           </MediaQuery>
 
           {/* Mobile */}
-          <MediaQuery maxWidth={767}>
+          <MediaQuery maxWidth={SM_MAX}>
             <div className='row relative'>
               <div className='search-filter-bar__mobile'>
                 <div className='search-filter-bar__mobile-search'>
