@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react'
 
 import Checkbox from 'components/input/Checkbox'
 
+import TextButton from 'components/buttons/TextButton'
+
 class AccountNotifications extends PureComponent {
   constructor (props) {
     super(props)
@@ -69,6 +71,11 @@ class AccountNotifications extends PureComponent {
                       name='text' />
                   </div>
                 </div>
+              </div>
+
+              <div className='account-notifications__section'>
+                <TextButton
+                  text='save changes' />
               </div>
             </div>
           </div>
