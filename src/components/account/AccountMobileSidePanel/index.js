@@ -17,12 +17,19 @@ class AccountMobileSidePanel extends Component {
     }
 
     this.toggleBurgerMenu = this.toggleBurgerMenu.bind(this)
+    this.hideBurgerMenu = this.hideBurgerMenu.bind(this)
   }
 
   toggleBurgerMenu () {
     this.setState(({ open }) => ({
       open: !open
     }))
+  }
+
+  hideBurgerMenu () {
+    this.setState({
+      open: false
+    })
   }
 
   render () {
@@ -46,6 +53,7 @@ class AccountMobileSidePanel extends Component {
         </div>
         <Accordion isOpen={open} className='account-mobile-side-panel__container' >
           <AccountSidePanel
+            onClick={this.hideBurgerMenu}
             className='account-mobile-side-panel__panel' />
         </Accordion>
       </div>
