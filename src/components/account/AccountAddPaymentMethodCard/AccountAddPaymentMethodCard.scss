@@ -4,10 +4,8 @@
   &__container {
     position: relative;
     text-align: center;
-  }
-
-  &__button {
-    position: relative;
-    display: inline-block;
+    width: 100%;
+    max-width: 295px;
+    height: 200px;
   }
 }

@@ -23,7 +23,7 @@ const TextIconButton = props => {
       textClassName={textClassName}
       text={(
         <span
-          className='inherit'
+          className='inherit extra-light'
         >
           {title}
           <Icon

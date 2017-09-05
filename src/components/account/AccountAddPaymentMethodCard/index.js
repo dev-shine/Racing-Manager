@@ -26,7 +26,7 @@ const AccountAddPaymentMethodCard = (props) => {
         <CardFrame borderColor={'transparent'}>
           <CardContent>
             <div className='account-add-payment-method-card__container'>
-              <div className='account-add-payment-method-card__button section-shadow--tile'>
+              <div className='absolute-center'>
                 <TextIconButton
                   disabled={false}
                   title={title}
