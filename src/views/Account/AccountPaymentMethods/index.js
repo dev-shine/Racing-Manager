@@ -43,7 +43,6 @@ class AccountPaymentMethods extends PureComponent {
                 <AccountAddPaymentMethodCard />
               </div>
             </div>
-              
           </div>
 
           <div className='row'>
