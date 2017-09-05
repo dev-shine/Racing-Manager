@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import Input from 'components/input/Input'
 
-import Select, { Option } from 'components/input/Select'
+import Select from 'components/input/FormSelect'
 
 import { Form, Field } from 'components/forms/BaseForm'
 
@@ -40,9 +40,10 @@ class CreditCardForm extends PureComponent {
               component={Select}
               validate={['cardType']}
               name='cardType'>
-                <Option value={'visa'}>Visa</Option>
-                <Option value={'mastercard'}>MasterCard</Option>
-                <Option value={'delta'}>Delta</Option>
+                <option value={CARD_TYPE} disabled hidden>{CARD_TYPE}</option>
+                <option value={'visa'}>Visa</option>
+                <option value={'mastercard'}>MasterCard</option>
+                <option value={'delta'}>Delta</option>
             </Field>
           </div>
 
