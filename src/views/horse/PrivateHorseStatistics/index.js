@@ -37,7 +37,9 @@ class PrivateHorseStatistics extends Component {
   }
 
   scrollElementToView () {
-    queryBySelector('#ranking').scrollIntoView({ behavior: 'smooth' })
+    setTimeout(() => {
+      queryBySelector('#ranking').scrollIntoView({ behavior: 'smooth' })
+    }, 0)
   }
 
   componentWillUnmount () {
