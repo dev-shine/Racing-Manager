@@ -10,6 +10,8 @@ import { Switch, Redirect } from 'react-router-dom'
 
 import AccountSidePanel from 'components/account/AccountSidePanel'
 
+import AccountMobileSidePanel from 'components/account/AccountMobileSidePanel'
+
 import AccountPersonalInformation from 'views/Account/AccountPersonalInformation'
 
 import AccountContactDetails from 'views/Account/AccountContactDetails'
@@ -26,6 +28,13 @@ import View from 'components/routing/View'
 
 import { ACCOUNT as title } from 'data/titles'
 
+import MediaQuery from 'react-responsive'
+
+import {
+  SM,
+  SM_MAX
+} from 'data/breakpoints'
+
 const AccountLayout = (props) => {
   const {
     name
@@ -36,11 +45,16 @@ const AccountLayout = (props) => {
       <div className='account-layout'>
         <ViewHeader
           title={`hello, ${name}`} />
+        <MediaQuery maxWidth={SM_MAX}>
+          <AccountMobileSidePanel />
+        </MediaQuery>
         <div className='container'>
           <div className='account-layout__container'>
-            <div className='col-lg-3 col-md-4 col-sm-4 col-xs-12 account-layout__flex-item'>
-              <AccountSidePanel />
-            </div>
+            <MediaQuery minWidth={SM}>
+              <div className='col-lg-3 col-md-4 col-sm-4 col-xs-12 account-layout__flex-item'>
+                <AccountSidePanel />
+              </div>
+            </MediaQuery>
             <div className='col-lg-9 col-md-8 col-sm-8 col-xs-12'>
               <div className='account-layout__content'>
                 <Switch>
@@ -55,7 +69,6 @@ const AccountLayout = (props) => {
             </div>
           </div>
         </div>
-
       </div>
     </View>
   )

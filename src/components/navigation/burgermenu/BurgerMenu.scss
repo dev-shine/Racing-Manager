@@ -4,8 +4,8 @@
   $transition-easing: ease-out;
 
   position: relative;
-  width: 32px;
-  height: 16px;
+  width: 24px;
+  height: 12px;
   cursor: pointer;
 
   &:before,
@@ -15,7 +15,7 @@
     left: 0;
     width: 100%;
     height: $bar-height;
-    background: $davys-gray;
+    background: $color-menu-primary;
     transform-origin: center;
     transition: transform $transition-duration $transition-easing, top $transition-duration $transition-easing;
     backface-visibility: hidden;
@@ -37,7 +37,7 @@
     margin-top: -($bar-height/2);
     width: 100%;
     height: $bar-height;
-    background: $davys-gray;
+    background: $color-menu-primary;
     transition: opacity $transition-duration $transition-easing;
     will-change: transform;
   }
@@ -57,5 +57,14 @@
 
   &--active &__middle {
     opacity: 0;
+  }
+
+  // themeing
+  &--secondary {
+    &:before,
+    &:after,
+    .burger-menu__middle {
+      background: $color-menu-secondary;
+    }
   }
 }
