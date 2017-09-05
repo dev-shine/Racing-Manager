@@ -1,0 +1,21 @@
+.account-add-payment-method-card {
+  position: relative;
+
+  &__container {
+    position: relative;
+    text-align: center;
+  }
+
+  &__button {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__icon {
+    position: relative;
+    margin-left: 8px;
+    &:before {
+      color: $icon-cta-light;
+    }
+  }
+}

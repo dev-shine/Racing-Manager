@@ -4,6 +4,8 @@ import AccountAddCreditCardForm from 'containers/Account/AddCreditCard'
 
 import AccountCreditCard from 'components/account/AccountCreditCard'
 
+import AccountAddPaymentMethodCard from 'components/account/AccountAddPaymentMethodCard'
+
 class AccountPaymentMethods extends PureComponent {
   constructor (props) {
     super(props)
@@ -34,6 +36,7 @@ class AccountPaymentMethods extends PureComponent {
 
           <div className='account-payment-methods__section'>
             <AccountAddCreditCardForm />
+            <AccountAddPaymentMethodCard />
           </div>
 
           <div className='row'>
