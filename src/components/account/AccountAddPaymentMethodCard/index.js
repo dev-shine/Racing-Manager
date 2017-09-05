@@ -2,11 +2,9 @@ import React from 'react'
 
 import classNames from 'utils/classnames'
 
-import TextButton from 'components/buttons/TextButton'
+import TextIconButton from 'components/buttons/TextIconButton'
 
 import PropTypes from 'prop-types'
-
-import Icon from 'components/icon'
 
 import {
   CardView,
@@ -29,20 +27,10 @@ const AccountAddPaymentMethodCard = (props) => {
           <CardContent>
             <div className='account-add-payment-method-card__container'>
               <div className='account-add-payment-method-card__button section-shadow--tile'>
-                <TextButton
-                  modifier='xs'
-                  textClassName='lowercase'
+                <TextIconButton
                   disabled={false}
-                  text={(
-                    <span
-                      className='inherit'
-                    >
-                      {title}
-                      <Icon
-                      className='align-middle account-add-payment-method-card__icon nano'
-                      modifier='plus' />
-                    </span>
-                  )} />
+                  title={title}
+                  iconModifier='plus' />
               </div>
             </div>
           </CardContent>

@@ -10,12 +10,4 @@
     position: relative;
     display: inline-block;
   }
-
-  &__icon {
-    position: relative;
-    margin-left: 8px;
-    &:before {
-      color: $icon-cta-light;
-    }
-  }
 }
