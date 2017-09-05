@@ -64,10 +64,10 @@ const FormSelect = props => {
   const inputLineClassNames = classNames('select__line', inputLineClassName)
 
   // Class names for the input
-  const inputClassNames = classNames('select__select', inputClassName)
+  const inputClassNames = classNames('select__select', inputClassName, {
+    'default': !value
+  })
 
-  console.log('VALUE:', value, 'DEFAULT VALUE: ', defaultValue)
-  
   return (
     <div className={modifiedClassName}>
       <select
