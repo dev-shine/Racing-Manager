@@ -14,9 +14,9 @@ import ScrollTop from 'components/routing/ScrollTop'
 import PageNotFound from 'views/PageNotFound'
 
 import Home from 'views/Home'
-import Register from 'views/Register'
-import RegistrationSuccessful from 'views/RegistrationSuccessful'
-import RegistrationConfirmation from 'views/RegistrationConfirmation'
+import Register from 'views/Registration/Register'
+import RegistrationSuccessful from 'views/Registration/RegisterSuccessful'
+import RegistrationConfirmation from 'views/Registration/RegisterConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
 
