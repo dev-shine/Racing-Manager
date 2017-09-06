@@ -10,6 +10,8 @@ import enhanceWithClickOutside from 'react-click-outside'
 
 import classNames from 'utils/classnames'
 
+import { navigation } from 'data/account'
+
 class AccountDropdown extends PureComponent {
   constructor (props) {
     super(props)
@@ -35,50 +37,20 @@ class AccountDropdown extends PureComponent {
     return (
       <div className={modifiedClassNames}>
         <ul className='account-dropdown__list no-list-style section-shadow--tile'>
-          <li className='account-dropdown__list-item'>
-            <CtaLink href='/account' onClick={closeAccount}>
-              <TextCtaButton
-                modifier='gray'
-                className='uppercase semi-bold'
-                text={'personal'} />
-            </CtaLink>
-          </li>
-
-          <li className='account-dropdown__list-item'>
-            <CtaLink href='/account/payment' onClick={closeAccount}>
-              <TextCtaButton
-                modifier='gray'
-                className='uppercase semi-bold'
-                text={'payment'} />
-            </CtaLink>
-          </li>
-
-          <li className='account-dropdown__list-item'>
-            <CtaLink href='/account/contact' onClick={closeAccount}>
-              <TextCtaButton
-                modifier='gray'
-                className='uppercase semi-bold'
-                text={'contact details'} />
-            </CtaLink>
-          </li>
-
-          <li className='account-dropdown__list-item'>
-            <CtaLink href='/account/security' onClick={closeAccount}>
-              <TextCtaButton
-                modifier='gray'
-                className='uppercase semi-bold'
-                text={'security'} />
-            </CtaLink>
-          </li>
-
-          <li className='account-dropdown__list-item'>
-            <CtaLink href='/account/notifications' onClick={closeAccount}>
-              <TextCtaButton
-                modifier='gray'
-                className='uppercase semi-bold'
-                text={'notifications'} />
-            </CtaLink>
-          </li>
+          {
+            navigation.map(({name, link}, index) => {
+              return (
+                <li className='account-dropdown__list-item' key={index}>
+                  <CtaLink href={link} onClick={closeAccount}>
+                    <TextCtaButton
+                      modifier='gray'
+                      className='uppercase semi-bold'
+                      text={name} />
+                  </CtaLink>
+                </li>
+              )
+            })
+          }
 
           <li className='account-dropdown__list-item'>
             <TextCtaButton
