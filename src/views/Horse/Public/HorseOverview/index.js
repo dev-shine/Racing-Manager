@@ -42,7 +42,9 @@ import {
   availabilityList
 } from 'data/horse/publicHorse'
 
-class PublicHorse extends Component {
+import { FadeIn } from 'components/animation'
+
+class HorseOverview extends Component {
   componentDidMount () {
     this.props.getHorseInfo()
   }
@@ -218,7 +220,9 @@ class PublicHorse extends Component {
               </div>
             </div>
           </div>
-          {(posting || fetching) && <AjaxLoader />}
+          <FadeIn>
+            {(posting || fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )
@@ -240,4 +244,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PublicHorse)
+)(HorseOverview)

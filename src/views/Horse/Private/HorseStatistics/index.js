@@ -22,7 +22,11 @@ import {
   queryBySelector
 } from 'utils/domutils'
 
-class PrivateHorseStatistics extends Component {
+import AjaxLoader from 'components/loaders/ajaxloader'
+
+import { FadeIn } from 'components/animation'
+
+class HorseStatistics extends Component {
   constructor (props) {
     super(props)
 
@@ -49,7 +53,8 @@ class PrivateHorseStatistics extends Component {
   render () {
     const {
       data,
-      match
+      match,
+      fetching
     } = this.props
 
     return (
@@ -81,6 +86,9 @@ class PrivateHorseStatistics extends Component {
             </div>
 
           </div>
+          <FadeIn>
+            {(fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )
@@ -104,4 +112,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrivateHorseStatistics)
+)(HorseStatistics)

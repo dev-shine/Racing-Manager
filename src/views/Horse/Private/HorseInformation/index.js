@@ -29,7 +29,11 @@ import {
   syndicateMembers
 } from 'data/horse'
 
-class PrivateHorseInformation extends Component {
+import AjaxLoader from 'components/loaders/ajaxloader'
+
+import { FadeIn } from 'components/animation'
+
+class HorseInformation extends Component {
   constructor (props) {
     super(props)
   }
@@ -45,7 +49,8 @@ class PrivateHorseInformation extends Component {
   render () {
     const {
       data,
-      match
+      match,
+      fetching
     } = this.props
 
     const {
@@ -139,6 +144,9 @@ class PrivateHorseInformation extends Component {
                 </div>
             </div>
           </div>
+          <FadeIn>
+            {(fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )
@@ -162,4 +170,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrivateHorseInformation)
+)(HorseInformation)

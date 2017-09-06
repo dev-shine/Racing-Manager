@@ -4,12 +4,14 @@ import Animate from 'components/animation/Animate'
 
 const FadeIn = (props) => {
   const {
-    children
+    children,
+    ...rest
   } = props
 
   return (
     <Animate
-      name='fade-in' >
+      name='fade-in'
+      {...rest}>
       {children}
     </Animate>
   )

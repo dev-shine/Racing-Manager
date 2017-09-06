@@ -6,6 +6,8 @@ import classNames from 'utils/classnames'
 
 import { withRouter } from 'react-router-dom'
 
+import { navigation } from 'data/account'
+
 const AccountSidePanel = (props) => {
   const {
     className,
@@ -17,25 +19,15 @@ const AccountSidePanel = (props) => {
 
   return (
     <Panel className={modifiedClassNames}>
-      <NavLink href={'/account'} exact location={location} onClick={onClick}>
-        Personal Information
-      </NavLink>
-
-      <NavLink href={'/account/contact'} exact location={location} onClick={onClick}>
-        Contact Details
-      </NavLink>
-
-      <NavLink href={'/account/notifications'} exact location={location} onClick={onClick}>
-        Notifications
-      </NavLink>
-
-      <NavLink href={'/account/payment'} exact location={location} onClick={onClick}>
-        Payment Information
-      </NavLink>
-
-      <NavLink href={'/account/security'} exact location={location} onClick={onClick}>
-        Security Settings
-      </NavLink>
+      {
+        navigation.map(({name, link}, index) => {
+          return (
+            <NavLink href={link} exact location={location} onClick={onClick} key={index}>
+              {name}
+            </NavLink>
+          )
+        })
+      }
     </Panel>
   )
 }

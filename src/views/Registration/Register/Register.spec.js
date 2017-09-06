@@ -17,7 +17,7 @@ import configureMockStore from 'redux-mock-store'
 /**
  * @module Register
  */
-import Register from 'views/register'
+import Register from 'views/Registration/Register'
 
 /**
  * Testing utilities

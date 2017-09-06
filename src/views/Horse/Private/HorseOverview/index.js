@@ -14,7 +14,9 @@ import FeedGallery from 'components/tiles/FeedGallery'
 
 import SubmitPost from 'containers/SubmitUpdateToHorse'
 
-export class PrivateHorse extends Component {
+import { FadeIn } from 'components/animation'
+
+export class HorseOverview extends Component {
   componentDidMount () {
     this.props.getHorseInfo()
   }
@@ -70,7 +72,9 @@ export class PrivateHorse extends Component {
               tiles={messages}
             />
           </div>
-          {(posting || fetching) && <AjaxLoader />}
+          <FadeIn>
+            {(posting || fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )
@@ -97,4 +101,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrivateHorse))
+)(HorseOverview))
