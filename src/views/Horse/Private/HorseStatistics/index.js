@@ -22,6 +22,10 @@ import {
   queryBySelector
 } from 'utils/domutils'
 
+import AjaxLoader from 'components/loaders/ajaxloader'
+
+import { FadeIn } from 'components/animation'
+
 class HorseStatistics extends Component {
   constructor (props) {
     super(props)
@@ -49,7 +53,8 @@ class HorseStatistics extends Component {
   render () {
     const {
       data,
-      match
+      match,
+      fetching
     } = this.props
 
     return (
@@ -81,6 +86,9 @@ class HorseStatistics extends Component {
             </div>
 
           </div>
+          <FadeIn>
+            {(fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )

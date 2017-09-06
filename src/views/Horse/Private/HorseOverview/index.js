@@ -14,6 +14,8 @@ import FeedGallery from 'components/tiles/FeedGallery'
 
 import SubmitPost from 'containers/SubmitUpdateToHorse'
 
+import { FadeIn } from 'components/animation'
+
 export class HorseOverview extends Component {
   componentDidMount () {
     this.props.getHorseInfo()
@@ -70,7 +72,9 @@ export class HorseOverview extends Component {
               tiles={messages}
             />
           </div>
-          {(posting || fetching) && <AjaxLoader />}
+          <FadeIn>
+            {(posting || fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )

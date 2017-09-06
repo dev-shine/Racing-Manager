@@ -42,6 +42,8 @@ import {
   availabilityList
 } from 'data/horse/publicHorse'
 
+import { FadeIn } from 'components/animation'
+
 class HorseOverview extends Component {
   componentDidMount () {
     this.props.getHorseInfo()
@@ -218,7 +220,9 @@ class HorseOverview extends Component {
               </div>
             </div>
           </div>
-          {(posting || fetching) && <AjaxLoader />}
+          <FadeIn>
+            {(posting || fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )

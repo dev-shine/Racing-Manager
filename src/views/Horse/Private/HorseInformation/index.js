@@ -29,6 +29,10 @@ import {
   syndicateMembers
 } from 'data/horse'
 
+import AjaxLoader from 'components/loaders/ajaxloader'
+
+import { FadeIn } from 'components/animation'
+
 class HorseInformation extends Component {
   constructor (props) {
     super(props)
@@ -45,7 +49,8 @@ class HorseInformation extends Component {
   render () {
     const {
       data,
-      match
+      match,
+      fetching
     } = this.props
 
     const {
@@ -139,6 +144,9 @@ class HorseInformation extends Component {
                 </div>
             </div>
           </div>
+          <FadeIn>
+            {(fetching) && <AjaxLoader />}
+          </FadeIn>
         </div>
       </View>
     )
