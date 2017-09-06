@@ -13,8 +13,8 @@ import Layout from 'layouts/Layout'
 import ScrollTop from 'components/routing/ScrollTop'
 import PageNotFound from 'views/PageNotFound'
 
-import Home from 'views/home'
-import Register from 'views/register'
+import Home from 'views/Home'
+import Register from 'views/Register'
 import RegistrationSuccessful from 'views/RegistrationSuccessful'
 import RegistrationConfirmation from 'views/RegistrationConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
@@ -22,13 +22,13 @@ import BrowseHorses from 'views/BrowseHorses'
 
 import Account from 'views/Account/AccountLayout'
 
-import PrivateHorse from 'views/horse/PrivateHorse'
-import PublicHorse from 'views/horse/PublicHorse'
-import PrivateHorseStatistics from 'views/horse/PrivateHorseStatistics'
-import PrivateHorseInformation from 'views/horse/PrivateHorseInformation'
+import PrivateHorse from 'views/Horse/PrivateHorse'
+import PublicHorse from 'views/Horse/PublicHorse'
+import PrivateHorseStatistics from 'views/Horse/PrivateHorseStatistics'
+import PrivateHorseInformation from 'views/Horse/PrivateHorseInformation'
 
-import PrivateSyndicate from 'views/syndicate/PrivateSyndicate'
-import PublicSyndicate from 'views/syndicate/PublicSyndicate'
+import PrivateSyndicate from 'views/Syndicate/PrivateSyndicate'
+import PublicSyndicate from 'views/Syndicate/PublicSyndicate'
 
 const router = (
   <Routes>

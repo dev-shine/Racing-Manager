@@ -17,7 +17,7 @@ import configureMockStore from 'redux-mock-store'
 /**
  * @module Home
  */
-import Home from 'views/home'
+import Home from 'views/Home'
 
 /**
  * Testing utilities
