@@ -28,8 +28,9 @@ import PrivateHorseInformation from 'views/Horse/Private/HorseInformation'
 
 import PublicHorse from 'views/Horse/Public/HorseOverview'
 
-import PrivateSyndicate from 'views/Syndicate/PrivateSyndicate'
-import PublicSyndicate from 'views/Syndicate/PublicSyndicate'
+import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
+
+import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
 const router = (
   <Routes>

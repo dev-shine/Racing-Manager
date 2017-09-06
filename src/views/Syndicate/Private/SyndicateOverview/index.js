@@ -40,7 +40,7 @@ import {
   fakeHorses
 } from 'data/horse'
 
-export class PrivateSyndicate extends Component {
+export class SyndicateOverview extends Component {
   constructor (props) {
     super(props)
 
@@ -202,4 +202,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrivateSyndicate))
+)(SyndicateOverview))
