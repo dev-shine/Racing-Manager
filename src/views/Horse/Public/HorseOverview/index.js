@@ -42,7 +42,7 @@ import {
   availabilityList
 } from 'data/horse/publicHorse'
 
-class PublicHorse extends Component {
+class HorseOverview extends Component {
   componentDidMount () {
     this.props.getHorseInfo()
   }
@@ -240,4 +240,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PublicHorse)
+)(HorseOverview)

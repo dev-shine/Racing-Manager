@@ -22,10 +22,11 @@ import BrowseHorses from 'views/BrowseHorses'
 
 import Account from 'views/Account/AccountLayout'
 
-import PrivateHorse from 'views/Horse/PrivateHorse'
-import PublicHorse from 'views/Horse/PublicHorse'
-import PrivateHorseStatistics from 'views/Horse/PrivateHorseStatistics'
-import PrivateHorseInformation from 'views/Horse/PrivateHorseInformation'
+import PrivateHorse from 'views/Horse/Private/HorseOverview'
+import PrivateHorseStatistics from 'views/Horse/Private/HorseStatistics'
+import PrivateHorseInformation from 'views/Horse/Private/HorseInformation'
+
+import PublicHorse from 'views/Horse/Public/HorseOverview'
 
 import PrivateSyndicate from 'views/Syndicate/PrivateSyndicate'
 import PublicSyndicate from 'views/Syndicate/PublicSyndicate'

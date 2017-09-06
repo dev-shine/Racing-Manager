@@ -14,7 +14,7 @@ import FeedGallery from 'components/tiles/FeedGallery'
 
 import SubmitPost from 'containers/SubmitUpdateToHorse'
 
-export class PrivateHorse extends Component {
+export class HorseOverview extends Component {
   componentDidMount () {
     this.props.getHorseInfo()
   }
@@ -97,4 +97,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default (connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrivateHorse))
+)(HorseOverview))

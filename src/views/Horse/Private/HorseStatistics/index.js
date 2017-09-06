@@ -22,7 +22,7 @@ import {
   queryBySelector
 } from 'utils/domutils'
 
-class PrivateHorseStatistics extends Component {
+class HorseStatistics extends Component {
   constructor (props) {
     super(props)
 
@@ -104,4 +104,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PrivateHorseStatistics)
+)(HorseStatistics)
