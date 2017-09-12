@@ -21,7 +21,7 @@ const EditOverlay = (props) => {
             </div>
             <div className='edit-overlay__button-group'>
               <TextIconButton
-                iconModifier='plus' />
+                iconModifier='check' />
               <TextIconButton
                 modifier={['secondary', 'xs']}
                 iconModifier='close' />
