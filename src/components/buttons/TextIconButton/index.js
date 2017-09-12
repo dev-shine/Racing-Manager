@@ -7,6 +7,8 @@ import TextButton from 'components/buttons/TextButton'
 
 import Icon from 'components/icon'
 
+import classNames from 'utils/classnames'
+
 const TextIconButton = props => {
   const {
     title,
@@ -15,6 +17,8 @@ const TextIconButton = props => {
     textClassName,
     ...rest
   } = props
+
+  const iconClassNames = classNames('text-icon-button__icon', 'align-middle nano', modifier)
 
   return (
     <TextButton
@@ -25,9 +29,18 @@ const TextIconButton = props => {
         <span
           className='inherit extra-light'
         >
-          {title}
+          {
+            title
+            ? (
+                <span className='text-icon-button__text inherit'>
+                  {title}
+                </span>
+              )
+            : null
+          }
+
           <Icon
-          className='align-middle text-icon-button__icon nano'
+          className={iconClassNames}
           modifier={iconModifier} />
         </span>
       )} />

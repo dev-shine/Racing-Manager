@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import BaseFluidPopup from 'components/popup/BaseFluidPopup'
+import PopupWithBreadcrumb from 'components/popup/PopupWithBreadcrumb'
 
 import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 
@@ -45,4 +45,4 @@ class SyndicateFaqPopup extends Component {
   }
 }
 
-export default BaseFluidPopup(SyndicateFaqPopup)
+export default PopupWithBreadcrumb(SyndicateFaqPopup)

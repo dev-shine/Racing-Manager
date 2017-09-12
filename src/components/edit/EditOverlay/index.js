@@ -6,7 +6,9 @@ import {
   CardContent
 } from 'components/cards/FeaturedCard'
 
-import BaseFluidPopup from 'components/popup/BasePopup'
+import BaseFluidPopup from 'components/popup/BaseFluidPopup'
+
+import TextIconButton from 'components/buttons/TextIconButton'
 
 const EditOverlay = (props) => {
   return (
@@ -15,7 +17,14 @@ const EditOverlay = (props) => {
         <CardContent>
           <div className='edit-overlay__container'>
             <div className='edit-overlay__dashed-border'>
-              dsdf
+             djf
+            </div>
+            <div className='edit-overlay__button-group'>
+              <TextIconButton
+                iconModifier='plus' />
+              <TextIconButton
+                modifier={['secondary', 'xs']}
+                iconModifier='close' />
             </div>
           </div>
         </CardContent>
