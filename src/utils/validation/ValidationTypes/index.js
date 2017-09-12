@@ -101,7 +101,7 @@ const DOUBLE_SPACES_REG = /^((?!\s{2}).)*$/
 *  @type { REGEX }
 *  @private
 */
-const TRAILING_SPACES_REG = /^[ \s]+|[ \s]+$/
+export const TRAILING_SPACES_REG = /^[ \s]+|[ \s]+$/g
 
 /**
  * @type { RegExp }

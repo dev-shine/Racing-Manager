@@ -43,6 +43,7 @@ class Field extends PureComponent {
     this.mapChildren = this.mapChildren.bind(this)
     this.getValue = this.getValue.bind(this)
     this.getError = this.getError.bind(this)
+    this.formatValue = this.formatValue.bind(this)
   }
 
   componentWillMount () {
@@ -66,7 +67,9 @@ class Field extends PureComponent {
    *  @return {Void}
    */
   updateValue (value, removeErrors = false) {
-    this.context.update(this.props.name, value)
+    const formattedValue = this.formatValue(value)
+
+    this.context.update(this.props.name, formattedValue)
 
     /*
       After updating the value, check if it's valid
@@ -189,19 +192,28 @@ class Field extends PureComponent {
   }
 
   /**
+   *  formatValue
+   *  @param  {Any} value
+   *  @return {Any}
+   */
+  formatValue (value) {
+    const { format } = this.props
+
+    if (format) {
+      return format(value)
+    } else {
+      return value
+    }
+  }
+
+  /**
    *  getValue
    *  @param  {String} name
    *  @return {Any}      [description]
    */
   getValue (name) {
     const { values } = this.context
-    const { format } = this.props
-
-    if (format) {
-      return values && format(values[name])
-    } else {
-      return values && values[name]
-    }
+    return this.formatValue(values[name])
   }
 
   /**
