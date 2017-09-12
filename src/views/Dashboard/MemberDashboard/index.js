@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 /**
  *  @module NewsTile
  */
-import NewsTile from 'components/tiles/NewsTile'
+import NewsTile from 'components/news/NewsTile'
 
 /**
  *  @module TextButton

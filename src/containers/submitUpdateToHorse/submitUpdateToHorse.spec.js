@@ -2,7 +2,7 @@ import React from 'react'
 
 import ConnectedContainer from './index'
 
-import renderedComponent from 'components/tiles/FeedSubmitTile'
+import renderedComponent from 'components/feed/FeedSubmitTile'
 
 import thunk from 'redux-thunk'
 

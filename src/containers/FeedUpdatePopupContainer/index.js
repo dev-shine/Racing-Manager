@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 /**
  *  @module FeedUpdatePopup
  */
-import FeedUpdatePopup from 'components/popup/FeedUpdatePopup'
+import FeedUpdatePopup from 'components/feed/FeedUpdatePopup'
 
 import {
   clearComments,

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 /**
  *  @module FeedSubmitTile
  */
-import FeedSubmitTile from 'components/tiles/FeedSubmitTile'
+import FeedSubmitTile from 'components/feed/FeedSubmitTile'
 
 /**
  *  @module processMediaPayload

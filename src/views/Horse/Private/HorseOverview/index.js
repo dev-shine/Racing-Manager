@@ -10,7 +10,7 @@ import { fetchHorseInfo, clearHorseData } from 'actions/horse'
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
 
-import FeedGallery from 'components/tiles/FeedGallery'
+import FeedGallery from 'components/feed/FeedGallery'
 
 import SubmitPost from 'containers/SubmitUpdateToHorse'
 

@@ -33,6 +33,8 @@ import TextButton from 'components/buttons/TextButton'
  */
 import { Link } from 'react-router-dom'
 
+import { trim } from 'utils/stringutils'
+
 import {
   FIRSTNAME_PLACEHOLDER,
   SURNAME_PLACEHOLDER,
@@ -99,6 +101,7 @@ class RegisterForm extends PureComponent {
               component={Input}
               placeholder={EMAIL_PLACEHOLDER}
               validate={['email']}
+              format={trim}
               name='email' />
           </div>
 

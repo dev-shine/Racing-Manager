@@ -13,14 +13,17 @@ class FeaturedCardFrame extends PureComponent {
     const {
       className,
       borderColor,
+      modifier,
       children
     } = this.props
 
     const modifiedClassNames = classNames('featured-card-frame', className)
 
+    const modifiedWrapperClassNames = classNames('featured-card-frame__wrapper', 'section-shadow--tile', modifier)
+
     return (
       <div className={modifiedClassNames}>
-        <div className='featured-card-frame__wrapper section-shadow--tile' style={{ borderColor }}>
+        <div className={modifiedWrapperClassNames} style={{ borderColor }}>
           {children}
         </div>
       </div>
