@@ -47,6 +47,7 @@ const router = (
             <AuthRoute exact path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
             <AuthRoute exact path='/horse/:name/statistics' component={PrivateHorseStatistics} redirectPath='/404' />
             <AuthRoute exact path='/horse/:name/information' component={PrivateHorseInformation} redirectPath='/404' />
+            <AuthRoute exact path='/horse/:name/information/edit' component={PrivateHorseInformation} redirectPath='/404' />
 
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 

@@ -26,12 +26,23 @@ import {
   benefitsList,
   racePlans,
   horseValue,
-  syndicateMembers
+  syndicateMembers,
+  horseHero
 } from 'data/horse'
 
 import AjaxLoader from 'components/loaders/ajaxloader'
 
 import { FadeIn } from 'components/animation'
+
+/**
+ *  Edit
+ */
+import {
+  Route
+} from 'react-router-dom'
+
+import QuoteEdit from 'containers/edit/QuoteEdit'
+import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 class HorseInformation extends Component {
   constructor (props) {
@@ -133,6 +144,20 @@ class HorseInformation extends Component {
                 </TitleDescriptionSection>
               </div>
             </div>
+
+            {/* Edit section */}
+            <Route exact path='/horse/:name/information/edit' match={match} render={() => {
+              return (
+                <div className='horse-information__section row'>
+                  <QuoteEdit>
+                    <HorseParallaxContent
+                      title={horseHero.title(owner.name)}
+                      image={horseHero.image}
+                    />
+                  </QuoteEdit>
+                </div>
+              )
+            }} />
 
             <div className='horse-information__section row'>
               <div className='col-xs-12 col-md-7'>
