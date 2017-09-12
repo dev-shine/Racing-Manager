@@ -44,5 +44,10 @@
 
   &__button {
     margin-top: 0 !important;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

@@ -8,9 +8,9 @@ import omit from 'utils/objectutils/omit'
 
 const BaseFluidPopupHoc = WrappedComponent => {
   const BasePopup = props => {
-    const { isOpen } = props
+    const { isOpen, onClose } = props
 
-    const presentationProps = omit(props, ['isOpen'])
+    const presentationProps = omit(props, ['isOpen', 'onClose'])
 
     return (
       <BodyStyle className={isOpen ? 'model-open' : ''}>
@@ -18,7 +18,7 @@ const BaseFluidPopupHoc = WrappedComponent => {
           {
             isOpen && (
               <div className='fluid-popup'>
-                <div className='fluid-popup__bg' />
+                <div className='fluid-popup__bg' onClick={onClose}/>
                 <div className='fluid-popup__wrapper'>
                   <WrappedComponent {...presentationProps} />
                 </div>
@@ -31,7 +31,8 @@ const BaseFluidPopupHoc = WrappedComponent => {
   }
 
   BasePopup.propTypes = {
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    onClose: PropTypes.func
   }
 
   BasePopup.defaultProps = {

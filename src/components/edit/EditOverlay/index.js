@@ -10,7 +10,9 @@ import PropTypes from 'prop-types'
 
 const EditOverlay = (props) => {
   const {
-    modifier
+    modifier,
+    onSave,
+    onCancel
   } = props
 
   const modifiedWrapperClassNames = classNames('edit-overlay__wrapper', '', modifier)
@@ -26,11 +28,13 @@ const EditOverlay = (props) => {
               </div>
               <div className='edit-overlay__button-group'>
                 <TextIconButton
+                  onClick={onSave}
                   className='edit-overlay__button'
                   iconModifier='check' />
                 <TextIconButton
+                  onClick={onCancel}
                   className='edit-overlay__button'
-                  modifier={['secondary', 'xs', 'bg']}
+                  modifier={['secondary', 'xs', 'static-bg']}
                   iconModifier='close' />
               </div>
             </div>
