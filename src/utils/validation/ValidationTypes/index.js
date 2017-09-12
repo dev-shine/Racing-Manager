@@ -34,7 +34,7 @@ const MIN_AGE = 18
 *  @type { REGEX }
 *  @private
 */
-const EMAIL_REG = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]{2,})+$/
+const EMAIL_REG = /^[_a-zA-Z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]{2,})+$/
 
 /*
 *  @name NAME_REG
