@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import BaseFluidPopup from 'components/popup/common/BaseFluidPopup'
+import BaseFluidPopup from 'components/popup/BaseFluidPopup'
 
 import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 

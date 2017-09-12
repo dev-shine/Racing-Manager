@@ -6,7 +6,7 @@ import {
   CardContent
 } from 'components/cards/FeaturedCard'
 
-import BaseFluidPopup from 'components/popup/common/BasePopup'
+import BaseFluidPopup from 'components/popup/BasePopup'
 
 const EditOverlay = (props) => {
   return (

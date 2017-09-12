@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 /**
  *  @module BasePopup
  */
-import BasePopup from 'components/popup/common/BasePopup'
+import BasePopup from 'components/popup/BasePopup'
 
 /**
  *  @module classNames

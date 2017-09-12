@@ -6,7 +6,7 @@ import React from 'react'
 /**
  * @module Footer
  */
-import BasePopup from 'components/popup/common/BasePopup'
+import BasePopup from 'components/popup/BasePopup'
 
 /**
  *  @module CloseButton
