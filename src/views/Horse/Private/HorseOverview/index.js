@@ -16,8 +16,6 @@ import SubmitPost from 'containers/SubmitUpdateToHorse'
 
 import { FadeIn } from 'components/animation'
 
-import EditOverlay from 'components/edit/EditOverlay'
-
 export class HorseOverview extends Component {
   componentDidMount () {
     this.props.getHorseInfo()
@@ -56,8 +54,6 @@ export class HorseOverview extends Component {
             name={match.params.name} />
 
           <div className='container horse-overview__message-post'>
-            <EditOverlay
-              isOpen/>
             <div className='row'>
               <h1 className='horse-overview__main-title horse-overview__update-title uppercase'>
                 Updates

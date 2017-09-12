@@ -20,6 +20,10 @@
     &--secondary {
       background: $color-bg-strong;
     }
+
+    &--no-bg {
+      background: transparent;
+    }
   }
 
   &__container {

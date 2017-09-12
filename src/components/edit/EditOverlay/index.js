@@ -12,7 +12,8 @@ const EditOverlay = (props) => {
   const {
     modifier,
     onSave,
-    onCancel
+    onCancel,
+    children
   } = props
 
   const modifiedWrapperClassNames = classNames('edit-overlay__wrapper', '', modifier)
@@ -24,7 +25,7 @@ const EditOverlay = (props) => {
           <div className={modifiedWrapperClassNames}>
             <div className='edit-overlay__container section-shadow--tile'>
               <div className='edit-overlay__dashed-border'>
-               djf
+               {children}
               </div>
               <div className='edit-overlay__button-group'>
                 <TextIconButton
@@ -49,7 +50,9 @@ EditOverlay.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ])
+  ]),
+  onSave: PropTypes.func,
+  onCancel: PropTypes.func
 }
 
 export default BaseFluidPopup(EditOverlay)
