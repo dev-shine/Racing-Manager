@@ -80,6 +80,10 @@ $cta-active-bg: darken($cta-button-bg, 20);
     }
   }
 
+  &--bg {
+    background: $color-bg-secondary;
+  }
+
   &--blue {
     background: $blue;
     border: 1px solid $blue;

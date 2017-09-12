@@ -1,36 +1,51 @@
 import React from 'react'
 
-import {
-  CardView,
-  CardFrame,
-  CardContent
-} from 'components/cards/FeaturedCard'
+import classNames from 'utils/classnames'
 
 import BaseFluidPopup from 'components/popup/BaseFluidPopup'
 
 import TextIconButton from 'components/buttons/TextIconButton'
 
+import PropTypes from 'prop-types'
+
 const EditOverlay = (props) => {
+  const {
+    modifier
+  } = props
+
+  const modifiedWrapperClassNames = classNames('edit-overlay__wrapper', '', modifier)
+
   return (
-    <CardView className='edit-overlay'>
-      <CardFrame modifier='no-border'>
-        <CardContent>
-          <div className='edit-overlay__container'>
-            <div className='edit-overlay__dashed-border'>
-             djf
-            </div>
-            <div className='edit-overlay__button-group'>
-              <TextIconButton
-                iconModifier='check' />
-              <TextIconButton
-                modifier={['secondary', 'xs']}
-                iconModifier='close' />
+    <div className='edit-overlay'>
+      <div className='row'>
+        <div className='col-md-8 col-md-push-2 col-xs-12'>
+          <div className={modifiedWrapperClassNames}>
+            <div className='edit-overlay__container section-shadow--tile'>
+              <div className='edit-overlay__dashed-border'>
+               djf
+              </div>
+              <div className='edit-overlay__button-group'>
+                <TextIconButton
+                  className='edit-overlay__button'
+                  iconModifier='check' />
+                <TextIconButton
+                  className='edit-overlay__button'
+                  modifier={['secondary', 'xs', 'bg']}
+                  iconModifier='close' />
+              </div>
             </div>
           </div>
-        </CardContent>
-      </CardFrame>
-    </CardView>
+        </div>
+      </div>
+    </div>
   )
+}
+
+EditOverlay.propTypes = {
+  modifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 export default BaseFluidPopup(EditOverlay)
