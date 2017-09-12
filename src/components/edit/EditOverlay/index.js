@@ -6,14 +6,18 @@ import {
   CardContent
 } from 'components/cards/FeaturedCard'
 
-import BaseFluidPopup from 'components/popup/common/BaseFluidPopup'
+import BaseFluidPopup from 'components/popup/common/BasePopup'
 
 const EditOverlay = (props) => {
   return (
-    <CardView>
-      <CardFrame>
+    <CardView className='edit-overlay'>
+      <CardFrame modifier='no-border'>
         <CardContent>
-          dsdf
+          <div className='edit-overlay__container'>
+            <div className='edit-overlay__dashed-border'>
+              dsdf
+            </div>
+          </div>
         </CardContent>
       </CardFrame>
     </CardView>

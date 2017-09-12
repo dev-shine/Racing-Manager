@@ -1,0 +1,13 @@
+.edit-overlay {
+  &__container {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+  }
+
+  &__dashed-border {
+    position: relative;
+    width: 100%;
+    border: 1px dashed $vanilla-ice;
+  }
+}

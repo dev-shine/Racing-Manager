@@ -10,11 +10,13 @@ import { fetchHorseInfo, clearHorseData } from 'actions/horse'
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
 
-import FeedGallery from 'components/tiles/FeedGallery'
+import FeedGallery from 'components/feed/FeedGallery'
 
 import SubmitPost from 'containers/SubmitUpdateToHorse'
 
 import { FadeIn } from 'components/animation'
+
+import EditOverlay from 'components/edit/EditOverlay'
 
 export class HorseOverview extends Component {
   componentDidMount () {
@@ -54,6 +56,8 @@ export class HorseOverview extends Component {
             name={match.params.name} />
 
           <div className='container horse-overview__message-post'>
+            <EditOverlay
+              isOpen/>
             <div className='row'>
               <h1 className='horse-overview__main-title horse-overview__update-title uppercase'>
                 Updates

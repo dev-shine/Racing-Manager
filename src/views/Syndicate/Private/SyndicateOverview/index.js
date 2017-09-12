@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import View from 'components/routing/View'
 import titleize from 'titleize'
 
-import FeedGallery from 'components/tiles/FeedGallery'
+import FeedGallery from 'components/feed/FeedGallery'
 
 import SyndicateHero from 'components/syndicate/SyndicateHero'
 import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
