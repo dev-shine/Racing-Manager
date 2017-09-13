@@ -38,11 +38,11 @@ import { FadeIn } from 'components/animation'
  *  Edit
  */
 import {
-  Route,
-  withRouter
+  Route
 } from 'react-router-dom'
 
-import QuoteEdit from 'containers/edit/QuoteEdit'
+import QuoteEditContainer from 'containers/edit/QuoteEditContainer'
+
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 class HorseInformation extends Component {
@@ -150,12 +150,18 @@ class HorseInformation extends Component {
           {/* Edit section */}
           <Route exact path='/horse/:name/information/edit' render={() => {
             return (
-              <QuoteEdit placeholder={horseHero.title(owner.name)}>
-                <HorseParallaxContent
-                  title={horseHero.title(owner.name)}
-                  image={horseHero.image}
-                />
-              </QuoteEdit>
+              <QuoteEditContainer placeholder={horseHero.title(owner.name)}>
+              {
+                ({ value }) => {
+                  return (
+                    <HorseParallaxContent
+                      title={value || horseHero.title(owner.name)}
+                      image={horseHero.image}
+                    />
+                  )
+                }
+              }
+              </QuoteEditContainer>
             )
           }} />
 
@@ -193,7 +199,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HorseInformation))
+)(HorseInformation)

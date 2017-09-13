@@ -6,6 +6,8 @@ import QuoteEdit from 'components/edit/QuoteEdit'
 
 import EditButton from 'components/edit/EditButton'
 
+import PropTypes from 'prop-types'
+
 class QuoteEditContainer extends Component {
   constructor (props) {
     super(props)
@@ -15,6 +17,8 @@ class QuoteEditContainer extends Component {
       value: ''
     }
 
+    this.saveQuote = this.saveQuote.bind(this)
+    this.cancelQuote = this.cancelQuote.bind(this)
     this.showEditPopup = this.showEditPopup.bind(this)
     this.hideEditPopup = this.hideEditPopup.bind(this)
     this.updateValue = this.updateValue.bind(this)
@@ -32,9 +36,22 @@ class QuoteEditContainer extends Component {
     })
   }
 
+  saveQuote () {
+    // Save quote!
+    this.hideEditPopup()
+  }
+
+  cancelQuote () {
+    // Cancel quote!
+    this.setState({
+      value: ''
+    })
+
+    this.hideEditPopup()
+  }
+
   updateValue (e) {
-    console.log('hi!')
-    if (e && e.target && e.target.value) {
+    if (e && e.target) {
       this.setState({
         value: e.target.value
       })
@@ -48,9 +65,13 @@ class QuoteEditContainer extends Component {
     } = this.state
 
     const {
-      children,
-      placeholder
+      placeholder,
+      children
     } = this.props
+
+    const newProps = {
+      value
+    }
 
     return (
       <div>
@@ -58,17 +79,25 @@ class QuoteEditContainer extends Component {
           onClick={this.showEditPopup}
           title='update quote'
           iconModifier='update' />
+        <EditButton
+          onClick={this.showEditPopup}
+          title='update image'
+          iconModifier='update' />
         <QuoteEdit
           handleChange={this.updateValue}
           text={value}
           placeholder={placeholder}
-          onSave={this.hideEditPopup}
-          onCancel={this.hideEditPopup}
+          onSave={this.saveQuote}
+          onCancel={this.cancelQuote}
           isOpen={showEdit} />
-        {children}
+        {children(showEdit ? {} : newProps)}
       </div>
     )
   }
+}
+
+QuoteEditContainer.propTypes = {
+  children: PropTypes.func
 }
 
 const mapStateToProps = (state, ownProps) => {
