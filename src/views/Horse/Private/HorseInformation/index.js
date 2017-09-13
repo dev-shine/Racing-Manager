@@ -144,29 +144,31 @@ class HorseInformation extends Component {
                 </TitleDescriptionSection>
               </div>
             </div>
+          </div>
 
-            {/* Edit section */}
-            <Route exact path='/horse/:name/information/edit' match={match} render={() => {
-              return (
-                <div className='horse-information__section row'>
-                  <QuoteEdit>
-                    <HorseParallaxContent
-                      title={horseHero.title(owner.name)}
-                      image={horseHero.image}
-                    />
-                  </QuoteEdit>
-                </div>
-              )
-            }} />
+          {/* Edit section */}
+          <Route exact path='/horse/:name/information/edit' match={match} render={() => {
+            return (
+              <div>
+                <QuoteEdit>
+                  <HorseParallaxContent
+                    title={horseHero.title(owner.name)}
+                    image={horseHero.image}
+                  />
+                </QuoteEdit>
+              </div>
+            )
+          }} />
 
+          <div className='container'>
             <div className='horse-information__section row'>
               <div className='col-xs-12 col-md-7'>
                 <TitleDescriptionSection
                   title={horseValue.title}
                   colorModifier='blue'>
                   {horseValue.text}
-                  </TitleDescriptionSection>
-                </div>
+                </TitleDescriptionSection>
+              </div>
             </div>
           </div>
           <FadeIn>
