@@ -52,6 +52,8 @@ const router = (
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 
             <AuthRoute exact path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
+            <AuthRoute exact path='/syndicate/:name/edit' component={PrivateSyndicate} redirectPath='/404' />
+
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />
           </Switch>

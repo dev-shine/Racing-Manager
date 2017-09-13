@@ -40,6 +40,19 @@ import {
   fakeHorses
 } from 'data/horse'
 
+/**
+ *  Edit
+ */
+import {
+  Route
+} from 'react-router-dom'
+
+import FormSubmissionEditContainer from 'containers/ManagerEdit/FormSubmissionEditContainer'
+
+import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
+import ContactForm from 'components/forms/Contact'
+import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
+
 export class SyndicateOverview extends Component {
   constructor (props) {
     super(props)
@@ -173,6 +186,41 @@ export class SyndicateOverview extends Component {
               </TitleDescriptionSection>
             </div>
           </div>
+
+          {/* Edit section */}
+          <Route exact path='/syndicate/:name/edit' render={() => {
+            return (
+              <div className='public-syndicate__section' id='faqs'>
+                <FullWidthSplitSection
+                  modifier='white'
+                  leftComponent={(
+                    <div className='col-xs-12 col-md-8 public-syndicate__faqs'>
+                      <SyndicateFaqs faqs={faqs} />
+                    </div>
+                  )}
+                  rightComponent={(
+                    <FormSubmissionEditContainer>
+                      {
+                        (formSubmissionProps) => {
+                          return (
+                            <div className='public-syndicate__contact-form'>
+                              <ContactForm
+                                values={{}}
+                                errors={{}}
+                                validators={() => {}}
+                                update={() => {}}
+                                updateErrors={() => {}}
+                                submitForm={() => {}}
+                                description='Any queries? Leave your message and somebody from the syndicate will get back to you as soon as possible.' />
+                            </div>
+                          )
+                        }
+                      }
+                    </FormSubmissionEditContainer>
+                  )}/>
+              </div>
+            )
+          }} />
 
           <SyndicateFaqPopup
             breadcrumbText={'Back to syndicate page'}
