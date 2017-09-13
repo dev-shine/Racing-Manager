@@ -6,7 +6,7 @@ import classNames from 'utils/classnames'
 
 import TextArea from 'components/input/TextArea'
 
-import EditOverlay from 'components/edit/EditOverlay'
+import EditOverlay from 'components/manageredit/EditOverlay'
 
 const QuoteEdit = (props) => {
   const {

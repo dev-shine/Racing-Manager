@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import QuoteEdit from 'components/edit/QuoteEdit'
+import QuoteEdit from 'components/manageredit/QuoteEdit'
 
-import EditButton from 'components/edit/EditButton'
+import EditButton from 'components/manageredit/EditButton'
 
 import PropTypes from 'prop-types'
 
@@ -45,9 +45,9 @@ class QuoteEditContainer extends Component {
     // Cancel quote!
     this.setState({
       value: ''
+    }, () => {
+      this.hideEditPopup()
     })
-
-    this.hideEditPopup()
   }
 
   updateValue (e) {
@@ -79,10 +79,6 @@ class QuoteEditContainer extends Component {
           onClick={this.showEditPopup}
           title='update quote'
           iconModifier='update' />
-        <EditButton
-          onClick={this.showEditPopup}
-          title='update image'
-          iconModifier='update' />
         <QuoteEdit
           handleChange={this.updateValue}
           text={value}
@@ -97,17 +93,24 @@ class QuoteEditContainer extends Component {
 }
 
 QuoteEditContainer.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    placeholder: ownProps.placeholder
+    placeholder: ownProps.placeholder,
+    junk: {
+      ...state
+    }
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {
+    dispatch: {
+      ...ownProps
+    }
+  }
 }
 
 export default connect(

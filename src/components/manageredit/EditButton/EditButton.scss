@@ -1,0 +1,11 @@
+.edit-button {
+  position: relative;
+  width: 100%;
+  @include clearfix();
+
+  &__button {
+    position: relative;
+    float: right;
+    width: 150px;
+  }
+}

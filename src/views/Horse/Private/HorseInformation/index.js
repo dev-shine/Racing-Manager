@@ -41,7 +41,7 @@ import {
   Route
 } from 'react-router-dom'
 
-import QuoteEditContainer from 'containers/edit/QuoteEditContainer'
+import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
 
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
