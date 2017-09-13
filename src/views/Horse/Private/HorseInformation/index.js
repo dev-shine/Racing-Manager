@@ -26,12 +26,24 @@ import {
   benefitsList,
   racePlans,
   horseValue,
-  syndicateMembers
+  syndicateMembers,
+  horseHero
 } from 'data/horse'
 
 import AjaxLoader from 'components/loaders/ajaxloader'
 
 import { FadeIn } from 'components/animation'
+
+/**
+ *  Edit
+ */
+import {
+  Route
+} from 'react-router-dom'
+
+import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
+
+import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 class HorseInformation extends Component {
   constructor (props) {
@@ -133,15 +145,35 @@ class HorseInformation extends Component {
                 </TitleDescriptionSection>
               </div>
             </div>
+          </div>
 
+          {/* Edit section */}
+          <Route exact path='/horse/:name/information/edit' render={() => {
+            return (
+              <QuoteEditContainer placeholder={horseHero.title(owner.name)}>
+              {
+                ({ value }) => {
+                  return (
+                    <HorseParallaxContent
+                      title={value || horseHero.title(owner.name)}
+                      image={horseHero.image}
+                    />
+                  )
+                }
+              }
+              </QuoteEditContainer>
+            )
+          }} />
+
+          <div className='container'>
             <div className='horse-information__section row'>
               <div className='col-xs-12 col-md-7'>
                 <TitleDescriptionSection
                   title={horseValue.title}
                   colorModifier='blue'>
                   {horseValue.text}
-                  </TitleDescriptionSection>
-                </div>
+                </TitleDescriptionSection>
+              </div>
             </div>
           </div>
           <FadeIn>
