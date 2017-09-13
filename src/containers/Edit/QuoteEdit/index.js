@@ -11,11 +11,13 @@ class QuoteEditContainer extends Component {
     super(props)
 
     this.state = {
-      showEdit: false
+      showEdit: false,
+      value: ''
     }
 
     this.showEditPopup = this.showEditPopup.bind(this)
     this.hideEditPopup = this.hideEditPopup.bind(this)
+    this.updateValue = this.updateValue.bind(this)
   }
 
   showEditPopup () {
@@ -30,13 +32,24 @@ class QuoteEditContainer extends Component {
     })
   }
 
+  updateValue (e) {
+    console.log('hi!')
+    if (e && e.target && e.target.value) {
+      this.setState({
+        value: e.target.value
+      })
+    }
+  }
+
   render () {
     const {
-      showEdit
+      showEdit,
+      value
     } = this.state
 
     const {
-      children
+      children,
+      placeholder
     } = this.props
 
     return (
@@ -46,6 +59,9 @@ class QuoteEditContainer extends Component {
           title='update quote'
           iconModifier='update' />
         <QuoteEdit
+          handleChange={this.updateValue}
+          text={value}
+          placeholder={placeholder}
           onSave={this.hideEditPopup}
           onCancel={this.hideEditPopup}
           isOpen={showEdit} />
@@ -56,7 +72,9 @@ class QuoteEditContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    placeholder: ownProps.placeholder
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {

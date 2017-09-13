@@ -13,9 +13,11 @@ const EditButton = (props) => {
   const modifiedClassNames = classNames('edit-button', className)
 
   return (
-    <TextIconButton
-      className={modifiedClassNames}
-      {...rest} />
+    <div className={modifiedClassNames}>
+      <TextIconButton
+        className='edit-button__button'
+        {...rest} />
+    </div>
   )
 }
 

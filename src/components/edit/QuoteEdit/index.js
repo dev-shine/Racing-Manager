@@ -13,7 +13,8 @@ const QuoteEdit = (props) => {
     className,
     text,
     placeholder,
-    maxLength
+    maxLength,
+    handleChange
   } = props
 
   const modifiedClassNames = classNames('quote-edit', className)
@@ -21,6 +22,7 @@ const QuoteEdit = (props) => {
   return (
     <div className={modifiedClassNames}>
       <TextArea
+        handleChange={handleChange}
         maxLength={maxLength}
         showBar
         placeholder={placeholder}
@@ -39,7 +41,8 @@ const QuoteEdit = (props) => {
 QuoteEdit.propTypes = {
   text: PropTypes.string,
   placeholder: PropTypes.string,
-  maxLength: PropTypes.number
+  maxLength: PropTypes.number,
+  handleChange: PropTypes.func
 }
 
 QuoteEdit.defaultProps = {
