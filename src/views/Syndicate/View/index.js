@@ -8,6 +8,10 @@ import titleize from 'titleize'
 
 import { fetchSyndicateInfo, clearSyndicateData } from 'actions/syndicate'
 
+import {
+  description as syndicateDesc
+} from 'data/syndicate'
+
 const mapStateToProps = ({ syndicate }, ownProps) => ({
   ...syndicate
 })
@@ -22,8 +26,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   }
 })
 
-const SyndicateStartUpHoc = (WrapperComponent) => {
-  class SyndicateStartUp extends Component {
+const SyndicateViewHoc = (WrapperComponent) => {
+  class SyndicateView extends Component {
     constructor (props) {
       super(props)
     }
@@ -38,12 +42,33 @@ const SyndicateStartUpHoc = (WrapperComponent) => {
 
     render () {
       const {
-        name
+        data = {},
+        ...restOfProps
       } = this.props
+
+      const {
+        owner = {
+          name: '-'
+        },
+        featuredImage = '',
+        logo = '',
+        description = syndicateDesc,
+        ...rest
+      } = data
+
+      const syndicateProps = {
+        owner,
+        featuredImage,
+        logo,
+        description,
+        ...rest
+      }
 
       return (
         <View title={titleize(name || '')} isPrefixed={false}>
-          <WrapperComponent {...this.props} />
+          <WrapperComponent
+            data={syndicateProps}
+            {...restOfProps} />
         </View>
       )
     }
@@ -52,7 +77,7 @@ const SyndicateStartUpHoc = (WrapperComponent) => {
   return connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SyndicateStartUp)
+  )(SyndicateView)
 }
 
-export default SyndicateStartUpHoc
+export default SyndicateViewHoc

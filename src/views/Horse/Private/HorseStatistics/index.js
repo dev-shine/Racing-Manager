@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
 
-import { connect } from 'react-redux'
-
-import { fetchHorseInfo, clearHorseData } from 'actions/horse'
+import horseView from 'views/Horse/View'
 
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
 import HorseTable from 'components/horse/HorseTable'
-
-import View from 'components/routing/View'
-
-import capitalize from 'utils/capitalize'
 
 import {
   tableStatistics,
@@ -22,10 +16,6 @@ import {
   queryBySelector
 } from 'utils/domutils'
 
-import AjaxLoader from 'components/loaders/ajaxloader'
-
-import { FadeIn } from 'components/animation'
-
 class HorseStatistics extends Component {
   constructor (props) {
     super(props)
@@ -34,8 +24,6 @@ class HorseStatistics extends Component {
   }
 
   componentDidMount () {
-    this.props.getHorseInfo()
-
     // Scroll to ranking table
     this.scrollElementToView()
   }
@@ -46,70 +34,43 @@ class HorseStatistics extends Component {
     }, 0)
   }
 
-  componentWillUnmount () {
-    this.props.clearHorseData()
-  }
-
   render () {
     const {
       data,
-      match,
-      fetching
+      match
     } = this.props
 
     return (
-      <View title={capitalize(data.name)} notPrefixed>
-        <div className='horse-statistics'>
-          <HorseHero
-            data={data} />
+      <div className='horse-statistics'>
+        <HorseHero
+          data={data} />
 
-          <HorseNavBar
-            name={match.params.name} />
+        <HorseNavBar
+          name={match.params.name} />
 
-          <div className='container'>
-            <div className='horse-statistics__section' id='ranking'>
-              <HorseTable
-                title='Ranking'
-                data={tableStatistics} />
-            </div>
-
-            <div className='horse-statistics__section'>
-              <HorseTable
-                title='Future Entries'
-                data={tableEntries} />
-            </div>
-
-            <div className='horse-statistics__section'>
-              <HorseTable
-                title='Results'
-                data={tableResults} />
-            </div>
-
+        <div className='container'>
+          <div className='horse-statistics__section' id='ranking'>
+            <HorseTable
+              title='Ranking'
+              data={tableStatistics} />
           </div>
-          <FadeIn>
-            {(fetching) && <AjaxLoader />}
-          </FadeIn>
+
+          <div className='horse-statistics__section'>
+            <HorseTable
+              title='Future Entries'
+              data={tableEntries} />
+          </div>
+
+          <div className='horse-statistics__section'>
+            <HorseTable
+              title='Results'
+              data={tableResults} />
+          </div>
+
         </div>
-      </View>
+      </div>
     )
   }
 }
 
-const mapStateToProps = ({ horse }) => ({
-  ...horse.horseInfo
-})
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  getHorseInfo: () => {
-    const name = ownProps.match.params.name
-    return dispatch(fetchHorseInfo(name))
-  },
-  clearHorseData: () => {
-    return dispatch(clearHorseData())
-  }
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HorseStatistics)
+export default horseView(HorseStatistics)
