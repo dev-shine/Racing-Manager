@@ -21,7 +21,7 @@ import throttle from 'utils/throttle'
 /**
  *  @module getTop
  */
-import { getTop } from 'utils/domutils'
+import { getTop, testForPassiveScroll } from 'utils/domutils'
 
 /**
  *  @class Parallax
@@ -40,6 +40,7 @@ class Parallax extends Component {
     }
 
     this.mounted = false
+    this.hasPassiveEvents = testForPassiveScroll()
 
     // Bind custom functions
     this.getPosition = this.getPosition.bind(this)
@@ -48,6 +49,8 @@ class Parallax extends Component {
     this.unBindScroll = this.unBindScroll.bind(this)
     this.getOffsetTop = this.getOffsetTop.bind(this)
     this.getElement = this.getElement.bind(this)
+    this.getParentOffsetTop = this.getParentOffsetTop.bind(this)
+    this.getParentElement = this.getParentElement.bind(this)
 
     // Bind throttle
     this.throttledScroll = throttle(this.scrollHandler, 0)
@@ -64,17 +67,25 @@ class Parallax extends Component {
     return getTop(this.getElement()).top
   }
 
+  getParentOffsetTop () {
+    return getTop(this.getParentElement()).top
+  }
+
   getElement () {
     return this.refs.node
   }
 
+  getParentElement () {
+    return this.getElement().parentElement
+  }
+
   bindScroll () {
-    window.addEventListener('scroll', this.throttledScroll)
+    window.addEventListener('scroll', this.throttledScroll, this.hasPassiveEvents ? { passive: true } : false)
     window.addEventListener('resize', this.throttledScroll)
   }
 
   unBindScroll () {
-    window.removeEventListener('scroll', this.throttledScroll)
+    window.removeEventListener('scroll', this.throttledScroll, this.hasPassiveEvents ? { passive: true } : false)
     window.removeEventListener('resize', this.throttledScroll)
   }
 
@@ -84,9 +95,9 @@ class Parallax extends Component {
       scope
     } = this.props
 
-    const { parentElement } = this.getElement()
-
     const scrollY = window.pageYOffset
+
+    const parentElement = this.getParentElement()
 
     const d = (scrollY - parentElement.offsetTop) * speed / scope
 
@@ -98,7 +109,7 @@ class Parallax extends Component {
       return false
     }
 
-    if (!isInViewport(this.getElement())) {
+    if (!isInViewport(this.getParentElement())) {
       return false
     }
 

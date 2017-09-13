@@ -26,11 +26,15 @@ class HorseParallaxContent extends Component {
                 className='horse-parallax-content__image' />
             </div>
         </Parallax>
-        <div className='horse-parallax-content__overlay'>
-          <h1 className='horse-parallax-content__title absolute-center uppercase'>
-            {title}
-          </h1>
-        </div>
+        <Parallax
+          speed={-0.4}
+          scope={400}>
+          <div className='horse-parallax-content__overlay'>
+            <h1 className='horse-parallax-content__title absolute-center uppercase'>
+              {title}
+            </h1>
+          </div>
+        </Parallax>
       </div>
     )
   }

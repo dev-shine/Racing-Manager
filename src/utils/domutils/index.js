@@ -138,3 +138,22 @@ export const stopPropagation = (e) => {
     e.stopPropagation()
   }
 }
+
+/**
+ *  testForPassiveScroll
+ *  @description Will check to see if passive options is available with dom events
+ *  @return {Boolean}
+ */
+export const testForPassiveScroll = () => {
+  let supportsPassiveOption = false
+  try {
+    const opts = Object.defineProperty({}, 'passive', {
+      get: function () {
+        supportsPassiveOption = true
+      }
+    })
+    window.addEventListener('test', null, opts)
+    window.removeEventListener('test', null, opts)
+  } catch (e) {}
+  return supportsPassiveOption
+}
