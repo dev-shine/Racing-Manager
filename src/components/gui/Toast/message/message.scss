@@ -4,7 +4,7 @@
   $neon-fuchsia: #F24662;
 
   $red-patone: #EE2942;
-  $red-pigment: #ED102E;
+  $rusty-red: #D32643;
 
   $space-cadet: #233654;
   $space-cadet-dark: #172E54;
@@ -18,8 +18,8 @@
   $toast-color-success: $vanilla-ice;
   $toast-color-success-border: $neon-fuchsia;
   
-  $toast-color-error: $red-patone; // $wild-watermelon;
-  $toast-color-error-border: $red-pigment; // $carmine-red;
+  $toast-color-error: $red-patone;
+  $toast-color-error-border: $rusty-red;
   
   $toast-color-warning: $orange-yellow;
   $toast-color-warning-border: $ucla-gold;
@@ -42,9 +42,12 @@
   border-style: solid;
   cursor: pointer;
   transition: transform .2s ease-out, opacity .2s ease-out;
+  will-change: transform;
 
   &:hover {
-    transform: scale3d(1.02, 1.02, 1.02);
+    transform: translate3d(0, -2px, 0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
   }
 
   &__container {
