@@ -4,7 +4,7 @@ import horseView from 'views/Horse/View'
 
 import { connect } from 'react-redux'
 
-import AjaxLoader from 'components/loaders/ajaxloader'
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
@@ -12,8 +12,6 @@ import HorseNavBar from 'components/horse/HorseNavBar'
 import FeedGallery from 'components/feed/FeedGallery'
 
 import SubmitPost from 'containers/SubmitUpdateToHorse'
-
-import { FadeIn } from 'components/animation'
 
 export class HorseOverview extends Component {
   constructor (props) {
@@ -69,9 +67,7 @@ export class HorseOverview extends Component {
             tiles={messages}
           />
         </div>
-        <FadeIn>
-          {posting && <AjaxLoader />}
-        </FadeIn>
+        <AjaxLoader isVisible={posting} />
       </div>
     )
   }

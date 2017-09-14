@@ -19,9 +19,9 @@ import { Message } from 'components/gui/Toast'
 import classNames from 'utils/classnames'
 
 /**
- *  @module CSSTransitionGroup
+ *  @module FadeShift
  */
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import { FadeShift } from 'components/animation'
 
 /**
  *  @name Factory
@@ -58,15 +58,13 @@ class Factory extends PureComponent {
 
     return (
       <div className={modifiedClassNames}>
-        <CSSTransitionGroup transitionName="toast-anim"
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}>
-            {
-              toasts.map(({ toastType, text, id }) => {
-                return <Message key={id} modifier={toastType} text={text} id={id} removeToast={removeToast}/>
-              })
-            }
-        </CSSTransitionGroup>
+        <FadeShift>
+          {
+            toasts.map(({ toastType, text, id }) => {
+              return <Message key={id} modifier={toastType} text={text} id={id} removeToast={removeToast}/>
+            })
+          }
+        </FadeShift>
       </div>
     )
   }

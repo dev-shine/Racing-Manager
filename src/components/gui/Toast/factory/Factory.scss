@@ -19,22 +19,3 @@
     margin-bottom: 0;
   }
 }
-
-.toast-anim-enter {
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
-.toast-anim-enter.toast-anim-enter-active {
-  opacity: 1;
-  transition: opacity 0.4s;
-}
-
-.toast-anim-leave {
-  opacity: 1;
-}
-
-.toast-anim-leave.toast-anim-leave-active {
-  opacity: 0;
-  transition: opacity 0.4s;
-}

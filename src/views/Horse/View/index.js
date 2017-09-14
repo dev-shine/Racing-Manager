@@ -12,9 +12,7 @@ import { roundNumberWithoutZeros } from 'utils/number'
 
 import { fetchHorseInfo, clearHorseData } from 'actions/horse'
 
-import AjaxLoader from 'components/loaders/ajaxloader'
-
-import { FadeIn } from 'components/animation'
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 
 const mapStateToProps = ({ horse }) => ({
   horseInfo: {
@@ -101,10 +99,9 @@ const HorseViewHoc = (WrapperComponent) => {
           <div>
             <WrapperComponent
               data={horseProps}
-              {...restOfProps} />
-            <FadeIn>
-              { horseInfo.fetching && <AjaxLoader />}
-            </FadeIn>
+              {...restOfProps}
+            />
+            <AjaxLoader isVisible={horseInfo.fetching} />
           </div>
         </View>
       )
