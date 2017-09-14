@@ -11,4 +11,11 @@
     position: relative;
     margin-top: 20px;
   }
+
+  &--edit {
+    .title-description__title,
+    .title-description__seperator {
+      opacity: 0.1;
+    }
+  }
 }

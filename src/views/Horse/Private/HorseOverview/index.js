@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
+
+import horseView from 'views/Horse/View'
+
 import { connect } from 'react-redux'
 
-import View from 'components/routing/View'
-import capitalize from 'utils/capitalize'
-
 import AjaxLoader from 'components/loaders/ajaxloader'
-import { fetchHorseInfo, clearHorseData } from 'actions/horse'
 
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
@@ -17,88 +16,76 @@ import SubmitPost from 'containers/SubmitUpdateToHorse'
 import { FadeIn } from 'components/animation'
 
 export class HorseOverview extends Component {
-  componentDidMount () {
-    this.props.getHorseInfo()
+  constructor (props) {
+    super(props)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (this.props.posted !== nextProps.posted && nextProps.posted) {
+  componentWillReceiveProps ({data}) {
+    if (this.props.data.posted !== data.posted && data.posted) {
       this.props.getHorseInfo()
     }
   }
 
-  componentWillUnmount () {
-    this.props.clearHorseData()
-  }
-
   render () {
     const {
-      posting,
-      fetching,
-      data = {},
+      submitFeedData,
+      data,
       match
     } = this.props
 
     const {
+      posting
+    } = submitFeedData
+
+    const {
       _id,
-      messages = []
+      messages
     } = data
 
     return (
-      <View title={capitalize(data.name)} notPrefixed>
-        <div className='horse-overview'>
-          <HorseHero
-            data={data} />
+      <div className='horse-overview'>
+        <HorseHero
+          data={data} />
 
-          <HorseNavBar
-            name={match.params.name} />
+        <HorseNavBar
+          name={match.params.name} />
 
-          <div className='container horse-overview__message-post'>
-            <div className='row'>
-              <h1 className='horse-overview__main-title horse-overview__update-title uppercase'>
-                Updates
-              </h1>
-              <div className='col-xs-12 col-sm-10 col-sm-push-1'>
-                <SubmitPost
-                  title='post an update to the horse'
-                  horseId={_id}
-                  reducerName='horseFeedData'
-                />
-              </div>
+        <div className='container horse-overview__message-post'>
+          <div className='row'>
+            <h1 className='horse-overview__main-title horse-overview__update-title uppercase'>
+              Updates
+            </h1>
+            <div className='col-xs-12 col-sm-10 col-sm-push-1'>
+              <SubmitPost
+                title='post an update to the horse'
+                horseId={_id}
+                reducerName='horseFeedData'
+              />
             </div>
           </div>
-          <div className='horse-overview__grid container'>
-            <FeedGallery
-              tiles={messages}
-            />
-          </div>
-          <FadeIn>
-            {(posting || fetching) && <AjaxLoader />}
-          </FadeIn>
         </div>
-      </View>
+        <div className='horse-overview__grid container'>
+          <FeedGallery
+            tiles={messages}
+          />
+        </div>
+        <FadeIn>
+          {posting && <AjaxLoader />}
+        </FadeIn>
+      </div>
     )
   }
 }
 
 const mapStateToProps = ({ horse }) => {
   return {
-    ...horse.horseInfo,
-    ...horse.submitFeedData
+    submitFeedData: {
+      ...horse.submitFeedData
+    }
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  getHorseInfo: () => {
-    const name = ownProps.match.params.name
-    return dispatch(fetchHorseInfo(name))
-  },
-  clearHorseData: () => {
-    return dispatch(clearHorseData())
-  }
-})
-
-export default (connect(
+export default horseView(connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(HorseOverview))

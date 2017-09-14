@@ -8,4 +8,20 @@
     float: right;
     width: 150px;
   }
+
+  &--absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &--right {
+    right: 0;
+    left: initial;
+  }
+
+  &--left {
+    left: 0;
+    right: initial;
+  }
 }
