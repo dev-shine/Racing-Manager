@@ -69,9 +69,8 @@ class Message extends PureComponent {
 
     return (
       <div className={modifiedClassNames} onClick={this.removeSelf}>
-        {/* <div className='toast-message__icon'></div> */}
         <div className='toast-message__container'>
-          <p className='toast-message__text'>
+          <p className='toast-message__text text-center tiny'>
             {text}
           </p>
         </div>
