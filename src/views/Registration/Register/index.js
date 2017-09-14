@@ -37,6 +37,8 @@ import {
   LINKEDIN_REGISTER
 } from 'texts/forms'
 
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
+
 /**
  * @name Register
  * @class
@@ -60,6 +62,10 @@ export class Register extends PureComponent {
    * @returns { React.Component }
    */
   render () {
+    const {
+      isSubmitting
+    } = this.props
+
     return (
       <View title={title}>
         <div className='register'>
@@ -107,6 +113,7 @@ export class Register extends PureComponent {
               </div>
             </div>
           </div>
+          <AjaxLoader isVisible={isSubmitting} />
         </div>
       </View>
     )
@@ -121,7 +128,8 @@ export class Register extends PureComponent {
  */
 const mapStateToProps = (state, ownProps) => {
   return {
-    email: state.register.email
+    email: state.register.email,
+    isSubmitting: state.register.isSubmitting
   }
 }
 

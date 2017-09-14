@@ -2,6 +2,10 @@ import { performLogin } from 'api/Services'
 
 import { storeUserCredentials } from 'actions/auth'
 
+import { addToastSuccess, addToastError } from 'actions/toast'
+
+import { userLoggedInMessage } from 'texts/successmessages'
+
 export const LOGIN_UPDATE = 'LOGIN_UPDATE'
 
 export const LOGIN_RESET = 'LOGIN_RESET'
@@ -54,12 +58,24 @@ export const submitFormData = data => {
     dispatch(submitLoginForm())
 
     return performLogin(data)
-    .then((response) => dispatch(storeUserCredentials(response)))
+    .then((response) => {
+      // Dispatch a notification saying hello!
+      if (response && response.user && response.user.firstname) {
+        dispatch(addToastSuccess(userLoggedInMessage(response.user.firstname)))
+      }
+
+      return dispatch(storeUserCredentials(response))
+    })
     .then((data) => {
       dispatch(submittedLoginForm(data))
       return Promise.resolve(data)
     })
     .catch((error) => {
+      // Dispathc an notification for login error.
+      if (error && error.message) {
+        dispatch(addToastError(error.message))
+      }
+
       dispatch(failedToSubmitLoginForm(error))
       return Promise.reject(error)
     })

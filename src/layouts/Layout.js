@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
+
 import { withRouter } from 'react-router'
-import { connect } from 'react-redux'
 
 import Default from './Default'
+
 import BodyStyle from 'components/common/BodyStyle'
 
 import { isTouchDevice } from 'utils/domutils'
 
-/**
- *  Gets the correct layout depending on the pathname
- */
+import ToastContainer from 'containers/Toast'
+
 const getLayoutPerRoute = (props) => {
   switch (props.location.pathname) {
     default:
@@ -17,30 +17,20 @@ const getLayoutPerRoute = (props) => {
   }
 }
 
-class Layout extends Component {
-  render () {
-    const { children, history } = this.props
-    const { location } = history
+const Layout = (props) => {
+  const { children, history } = props
+  const { location } = history
 
-    return (
-      <BodyStyle className={!isTouchDevice() ? 'no-touch' : ''}>
-      {
-        getLayoutPerRoute({children, location})
-      }
-      </BodyStyle>
-    )
-  }
+  return (
+    <BodyStyle className={!isTouchDevice() ? 'no-touch' : ''}>
+      <div>
+        {
+          getLayoutPerRoute({children, location})
+        }
+        <ToastContainer />
+      </div>
+    </BodyStyle>
+  )
 }
 
-const mapStateToProps = (state, ownProps) => ({
-})
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-})
-
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Layout)
-)
+export default withRouter(Layout)

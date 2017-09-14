@@ -9,6 +9,53 @@ import { connect } from 'react-redux'
 class AuthRoute extends Component {
   constructor (props) {
     super(props)
+
+    this.renderRedirect = this.renderRedirect.bind(this)
+    this.renderRoute = this.renderRoute.bind(this)
+  }
+
+  renderRoute (props) {
+    const {
+      authenticatedPath,
+      Component,
+      ...rest
+    } = props
+
+    return (
+      authenticatedPath
+      ? (
+        <Redirect to={{
+          pathname: authenticatedPath,
+          state: {
+            from: props.location
+          }
+        }} />
+      )
+      : (
+        <Component {...rest} />
+      )
+    )
+  }
+
+  renderRedirect (props) {
+    const {
+      RedirectComponent,
+      redirectPath,
+      ...rest
+    } = props
+
+    return (
+      RedirectComponent ? (
+        <RedirectComponent {...rest} />
+      ) : (
+        <Redirect to={{
+          pathname: redirectPath,
+          state: {
+            from: props.location
+          }
+        }} />
+      )
+    )
   }
 
   render () {
@@ -24,33 +71,17 @@ class AuthRoute extends Component {
     return (
       <Route {...rest} render={props => {
         if (isLoggedIn) {
-          return (
-            authenticatedPath
-            ? (
-              <Redirect to={{
-                pathname: authenticatedPath,
-                state: {
-                  from: props.location
-                }
-              }} />
-            )
-            : (
-              <Component {...props} />
-            )
-          )
+          return this.renderRoute({
+            Component,
+            authenticatedPath,
+            ...props
+          })
         } else {
-          return (
-            RedirectComponent ? (
-              <RedirectComponent {...props} />
-            ) : (
-              <Redirect to={{
-                pathname: redirectPath,
-                state: {
-                  from: props.location
-                }
-              }} />
-            )
-          )
+          return this.renderRedirect({
+            RedirectComponent,
+            redirectPath,
+            ...props
+          })
         }
       }} />
     )
@@ -72,11 +103,7 @@ AuthRoute.defaultProps = {
   redirectPath: '/'
 }
 
-const mapStateToProps = (state) => {
-  const {
-    auth
-  } = state
-
+const mapStateToProps = ({ auth }) => {
   return {
     isLoggedIn: auth.isLoggedIn
   }

@@ -35,7 +35,7 @@ const LoginForm = (props) => {
     className,
     modifier,
     toggleLoggedIn,
-    errorMessage
+    isSubmitting
   } = props
 
   const modifiedClassNames = classNames('login-form', className, modifier)
@@ -48,15 +48,7 @@ const LoginForm = (props) => {
         className='login-form__form'
         handleSubmit={() => { submitForm(values) }}
         {...formProps}>
-        {
-          errorMessage && (
-            <div className='form__group'>
-              <p>
-                {errorMessage}
-              </p>
-            </div>
-          )
-        }
+
         <div className='form__group'>
           <Field
             component={Input}
@@ -76,10 +68,11 @@ const LoginForm = (props) => {
         <div className='row-sm'>
           <div className='col-xs-12 col-sm-6 align-middle form__group text-center'>
             <Submit
+              disabled={isSubmitting}
               component={TextButton}
               modifier={['fluid']}
               className='login-form__submit'
-              text='log in' />
+              text={'log in'} />
           </div>
           <div className='col-xs-12 col-sm-6 align-middle form__group text-center'>
             <CtaLink modifier={['italic']}>

@@ -43,10 +43,15 @@ import {
 } from 'react-router-dom'
 
 import FormSubmissionEditContainer from 'containers/ManagerEdit/FormSubmissionEditContainer'
+import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
 
 import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 import ContactForm from 'components/forms/Contact'
 import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
+
+// Mock
+const EMPTY_OBJ = {}
+const NOOP = () => {}
 
 export class SyndicateOverview extends Component {
   constructor (props) {
@@ -124,9 +129,34 @@ export class SyndicateOverview extends Component {
           </div>
         </div>
 
-        <div className='private-syndicate__section-top'>
-          <HorseParallaxContent {...syndicateUpperHero} />
-        </div>
+        {/* Edit route */}
+        <Route exact path='/syndicate/:name/edit' render={() => {
+          return (
+            <div className='private-syndicate__section-top'>
+              <QuoteEditContainer placeholder={syndicateUpperHero.title}>
+              {
+                ({ value }) => {
+                  return (
+                    <HorseParallaxContent
+                      title={value || syndicateUpperHero.title}
+                      image={syndicateUpperHero.image}
+                    />
+                  )
+                }
+              }
+              </QuoteEditContainer>
+            </div>
+          )
+        }} />
+
+        {/* Non edit route */}
+        <Route exact path='/syndicate/:name' render={() => {
+          return (
+            <div className='private-syndicate__section-top'>
+              <HorseParallaxContent {...syndicateUpperHero} />
+            </div>
+          )
+        }} />
 
         <div className='private-syndicate__overlay-section'>
           <SyndicateIntroSection
@@ -145,9 +175,34 @@ export class SyndicateOverview extends Component {
           </div>
         </div>
 
-        <div className='private-syndicate__section-top'>
-          <HorseParallaxContent {...syndicateLowerHero} />
-        </div>
+        {/* Edit route */}
+        <Route exact path='/syndicate/:name/edit' render={() => {
+          return (
+            <div className='private-syndicate__section-top'>
+              <QuoteEditContainer placeholder={syndicateLowerHero.title}>
+              {
+                ({ value }) => {
+                  return (
+                    <HorseParallaxContent
+                      title={value || syndicateLowerHero.title}
+                      image={syndicateLowerHero.image}
+                    />
+                  )
+                }
+              }
+              </QuoteEditContainer>
+            </div>
+          )
+        }} />
+
+        {/* Non edit route */}
+        <Route exact path='/syndicate/:name' render={() => {
+          return (
+            <div className='private-syndicate__section-top'>
+              <HorseParallaxContent {...syndicateLowerHero} />
+            </div>
+          )
+        }} />
 
         <div className='private-syndicate__overlay-section'>
           <SyndicateIntroSection
@@ -189,12 +244,12 @@ export class SyndicateOverview extends Component {
                         return (
                           <div className='public-syndicate__contact-form'>
                             <ContactForm
-                              values={{}}
-                              errors={{}}
-                              validators={() => {}}
-                              update={() => {}}
-                              updateErrors={() => {}}
-                              submitForm={() => {}}
+                              values={EMPTY_OBJ} // Prevent re-render
+                              errors={EMPTY_OBJ}
+                              validators={NOOP}
+                              update={NOOP}
+                              updateErrors={NOOP}
+                              submitForm={NOOP}
                               description='Any queries? Leave your message and somebody from the syndicate will get back to you as soon as possible.' />
                           </div>
                         )

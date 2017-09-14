@@ -108,3 +108,5 @@ export const TOWN_CITY = 'Please enter your town / city'
 export const COUNTRY = 'Please enter your country'
 
 export const POST_CODE = 'Please enter a valid post code'
+
+export const UNAUTHORISED = 'Unauthorised'

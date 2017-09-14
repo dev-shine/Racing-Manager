@@ -58,7 +58,12 @@ class HeaderSection extends PureComponent {
     // Initial state
     this.state = {
       horseActiveIndex: 0,
-      currentSyndIndex: 0
+      currentSyndIndex: 0,
+      carouselData: {
+        syndNames: [],
+        syndHorses: [],
+        length: 0
+      }
     }
 
     // bind custom fns
@@ -67,20 +72,32 @@ class HeaderSection extends PureComponent {
     this.formatHorseData = this.formatHorseData.bind(this)
   }
 
+  componentDidMount () {
+    this.formatHorseData(this.props.data)
+  }
+
+  componentWillReceiveProps ({ data }) {
+    this.formatHorseData(data)
+  }
+
   /**
    *  updateHorseActiveIndex
    *  @description Will update the horse pagination to the correct slide.
    *  @param  {Number} index
    */
   updateHorseActiveIndex (index) {
+    const {
+      carouselData
+    } = this.state
+
     // Get the horse syndicate name from the horses array with the given index.
     const {
       syndName
-    } = this.carouselData.syndHorses[index]
+    } = carouselData.syndHorses[index]
 
     // Get the index of the syndicate name in the syndNames array
     // This will map to the correct carousel index.
-    const nameActiveIndex = this.carouselData.syndNames.map(({name}) => name).indexOf(syndName)
+    const nameActiveIndex = carouselData.syndNames.map(({name}) => name).indexOf(syndName)
 
     // Tell the name carousel to go to the correct index.
     if (this.refs.carousel) {
@@ -100,11 +117,15 @@ class HeaderSection extends PureComponent {
    */
   updateNameActiveIndex (index) {
     const {
+      carouselData
+    } = this.state
+
+    const {
       name
-    } = this.carouselData.syndNames[index]
+    } = carouselData.syndNames[index]
 
     // Get the first index of the horse depending on the name of the syndicate.
-    const horseActiveIndex = this.carouselData.syndHorses.map(({syndName}) => syndName).indexOf(name)
+    const horseActiveIndex = carouselData.syndHorses.map(({syndName}) => syndName).indexOf(name)
 
     if (this.refs.horseCarousel) {
       this.refs.horseCarousel.goToSlide(horseActiveIndex, false)
@@ -121,12 +142,8 @@ class HeaderSection extends PureComponent {
    *  @description Will create formatted data for use on the carousels.
    *  @return {Object}
    */
-  formatHorseData () {
-    const {
-      data
-    } = this.props
-
-    return data.reduce((obj, syndicate, index) => {
+  formatHorseData (data) {
+    const carouselData = data.reduce((obj, syndicate, index) => {
       const { horses } = syndicate
 
       // Push data for the syndicate names carousel
@@ -153,6 +170,10 @@ class HeaderSection extends PureComponent {
       syndHorses: [],
       length: 0
     })
+
+    this.setState({
+      carouselData
+    })
   }
 
   render () {
@@ -164,11 +185,9 @@ class HeaderSection extends PureComponent {
     } = this.props
 
     const {
-      currentSyndIndex
+      currentSyndIndex,
+      carouselData
     } = this.state
-
-    // Get the data needed for the carousels
-    this.carouselData = this.formatHorseData()
 
     /**
      *  Class names for the container
@@ -213,7 +232,7 @@ class HeaderSection extends PureComponent {
             cellAlign='left'
             cellSpacing={30}>
             {
-              this.carouselData.syndNames.map(({name, length}, index) => {
+              carouselData.syndNames.map(({name, length}, index) => {
                 return (
                   <h2
                     key={index}>
@@ -245,7 +264,7 @@ class HeaderSection extends PureComponent {
               }
             }}>
             {
-              this.carouselData.syndHorses.map((horse, index) => {
+              carouselData.syndHorses.map((horse, index) => {
                 return (
                   <HorseCard
                     isActive={horse.syndIndex === currentSyndIndex}
