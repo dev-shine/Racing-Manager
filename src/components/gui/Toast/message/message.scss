@@ -1,0 +1,109 @@
+.toast-message {
+ 
+  $dodger-blue: #1DA1F2;
+  $maya-blue-beta: #6ec3f7;
+  $carmine-red: #FF0033;
+  $wild-watermelon: #ff6685;
+  $ucla-gold: #FFB400;
+  $orange-yellow: #FFD266;
+  $medium-sea-green: #3fb34f;
+  $light-green: #8ed798;
+
+  $toast-color-info: $maya-blue-beta;
+  $toast-color-info-border: $dodger-blue;
+  $toast-color-success: $light-green;
+  $toast-color-success-border: $medium-sea-green;
+  $toast-color-error: $wild-watermelon;
+  $toast-color-error-border: $carmine-red;
+  $toast-color-warning: $orange-yellow;
+  $toast-color-warning-border: $ucla-gold;
+
+  $button-color-shadow: rgba($black, 0.1);
+
+  $box-shadow-top: 2px;
+  $box-shadow-left: 2px;
+  $box-shadow-blur: 5px;
+  $box-shadow-spread: 0;
+  $box-shadow-color: $button-color-shadow;
+ 
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  box-shadow: $box-shadow-top $box-shadow-left $box-shadow-blur $box-shadow-spread $box-shadow-color;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  transition: transform .2s ease-out, opacity .2s ease-out;
+    
+  &:hover {
+    transform: scale3d(1.02, 1.02, 1.02);
+  }
+
+  &__container {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    height: auto;
+  }
+
+  &__text {
+    position: relative;
+    width: 100%;
+    color: $color-text-light;
+    font-weight: 400;
+  }
+
+  &__icon {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border-radius: 50%;
+  }
+
+  &--info {
+    background-color: $toast-color-info;
+    border-color:  $toast-color-info-border;
+
+    /*.toast-message__icon {
+      background-image: url($info-icon);
+      background-color: $toast-color-info;
+    }*/
+  }
+
+  &--success {
+    background-color: $toast-color-success;
+    border-color:  $toast-color-success-border;
+
+    /*.toast-message__icon {
+      background-image: url($success-icon);
+      background-color: $toast-color-success;
+    }*/
+  }
+
+  &--error {
+    background-color: $toast-color-error;
+    border-color:  $toast-color-error-border;
+
+    /*.toast-message__icon {
+      background-image: url($error-icon);
+      background-color: $toast-color-error;
+    }*/
+  }
+
+  &--warning {
+    background-color: $toast-color-warning;
+    border-color:  $toast-color-warning-border;
+
+    /*.toast-message__icon {
+      background-image: url($warning-icon);
+      background-color: $toast-color-warning;
+    }*/
+  }
+}

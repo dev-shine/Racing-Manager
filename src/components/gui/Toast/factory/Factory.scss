@@ -1,0 +1,36 @@
+.toast-factory {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  max-height: 100%;
+  overflow: auto;
+  z-index: 9999;
+  
+  &--has-no-toasts {
+    pointer-events: none;
+  }
+
+  .toast-message:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.toast-anim-enter {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.toast-anim-enter.toast-anim-enter-active {
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+
+.toast-anim-leave {
+  opacity: 1;
+}
+
+.toast-anim-leave.toast-anim-leave-active {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
