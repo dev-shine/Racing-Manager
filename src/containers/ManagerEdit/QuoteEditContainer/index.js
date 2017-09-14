@@ -66,12 +66,10 @@ class QuoteEditContainer extends Component {
 
     const {
       placeholder,
-      children
+      children: Component
     } = this.props
 
-    const newProps = {
-      value
-    }
+    let newProps = !showEdit ? { value } : {}
 
     return (
       <div>
@@ -86,7 +84,7 @@ class QuoteEditContainer extends Component {
           onSave={this.saveQuote}
           onCancel={this.cancelQuote}
           isOpen={showEdit} />
-        {children(showEdit ? {} : newProps)}
+        <Component {...newProps} />
       </div>
     )
   }
@@ -98,19 +96,12 @@ QuoteEditContainer.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    placeholder: ownProps.placeholder,
-    junk: {
-      ...state
-    }
+    placeholder: ownProps.placeholder
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    dispatch: {
-      ...ownProps
-    }
-  }
+  return {}
 }
 
 export default connect(

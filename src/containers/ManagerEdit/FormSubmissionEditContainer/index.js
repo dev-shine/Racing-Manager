@@ -65,12 +65,10 @@ class FormSubmissionEditContainer extends Component {
     } = this.state
 
     const {
-      children
+      children: Component
     } = this.props
 
-    const newProps = {
-      value
-    }
+    let newProps = !showEdit ? { value } : {}
 
     return (
       <div>
@@ -85,7 +83,7 @@ class FormSubmissionEditContainer extends Component {
           onSave={this.saveQuote}
           onCancel={this.cancelQuote}
           isOpen={showEdit} />
-        {children(showEdit ? {} : newProps)}
+        <Component {...newProps} />
       </div>
     )
   }
@@ -96,19 +94,11 @@ FormSubmissionEditContainer.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    junk: {
-      ...state
-    }
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    dispatch: {
-      ...ownProps
-    }
-  }
+  return {}
 }
 
 export default connect(
