@@ -24,9 +24,9 @@ import VideoPopupTile from 'components/feed/FeedPopupTiles/VideoPopupTile'
 import MediaCarouselPopupTile from 'components/feed/FeedPopupTiles/MediaCarouselPopupTile'
 
 /**
- *  @module SubmitPost
+ *  @module SubmitFeedPost
  */
-import SubmitPost from 'components/feed/FeedSubmitTile'
+import SubmitFeedPost from 'containers/Feed/SubmitFeedPost'
 
 /**
  *  @module FeedUpdatePopup
@@ -41,7 +41,7 @@ import chai, { expect } from 'chai'
 /**
  *  @module shallow
  */
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 
 /**
  *  @module ChaiEnzyme
@@ -67,7 +67,7 @@ describe('Components - FeedUpdatePopup', () => {
   }
 
   beforeEach(() => {
-    wrapper = mount(<FeedUpdatePopup {...props} />)
+    wrapper = shallow(<FeedUpdatePopup {...props} />)
   })
 
   it('should exist', () => {
@@ -78,8 +78,8 @@ describe('Components - FeedUpdatePopup', () => {
     expect(wrapper.find('.feed-popup')).to.have.length(1)
   })
 
-  it('should have a <SubmitPost /> Component', () => {
-    expect(wrapper.find(SubmitPost)).to.have.length(1)
+  it('should have a <SubmitFeedPost /> Component', () => {
+    expect(wrapper.find(SubmitFeedPost)).to.have.length(1)
   })
 
   it('should not render any tiles', () => {

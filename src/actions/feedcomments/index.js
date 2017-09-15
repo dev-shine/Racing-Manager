@@ -64,15 +64,11 @@ export const fetchComments = (messageId) => {
   }
 }
 
-export const postComment = (messageId) => {
+export const postComment = (messageId, data) => {
   return (dispatch, getState) => {
     const {
-      feedupdatepopup
-    } = getState()
-
-    const {
       text
-    } = feedupdatepopup.submitComment
+    } = data
 
     return dispatch({
       type: CALL_ACTION_TYPE,

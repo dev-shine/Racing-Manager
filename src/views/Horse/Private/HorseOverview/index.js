@@ -11,33 +11,47 @@ import HorseNavBar from 'components/horse/HorseNavBar'
 
 import FeedGallery from 'components/feed/FeedGallery'
 
-import SubmitPost from 'containers/SubmitUpdateToHorse'
+import SubmitFeedPost from 'containers/Feed/SubmitFeedPost'
+
+import {
+  submitHorseUpdate
+} from 'actions/horse'
 
 export class HorseOverview extends Component {
   constructor (props) {
     super(props)
+
+    this.postHorseFeed = this.postHorseFeed.bind(this)
   }
 
-  componentWillReceiveProps ({data}) {
+  componentWillReceiveProps ({ data }) {
     if (this.props.data.posted !== data.posted && data.posted) {
       this.props.getHorseInfo()
     }
   }
 
+  postHorseFeed (data) {
+    const {
+      submitHorseUpdate
+    } = this.props
+
+    const {
+      _id
+    } = this.props.data
+
+    submitHorseUpdate(_id, data)
+  }
+
   render () {
     const {
-      submitFeedData,
       data,
       match
     } = this.props
 
     const {
+      messages,
+      posted,
       posting
-    } = submitFeedData
-
-    const {
-      _id,
-      messages
     } = data
 
     return (
@@ -54,10 +68,11 @@ export class HorseOverview extends Component {
               Updates
             </h1>
             <div className='col-xs-12 col-sm-10 col-sm-push-1'>
-              <SubmitPost
+              <SubmitFeedPost
                 title='post an update to the horse'
-                horseId={_id}
-                reducerName='horseFeedData'
+                posted={posted}
+                submitFeedUpdate={this.postHorseFeed}
+                reducerName='horseFeedPost'
               />
             </div>
           </div>
@@ -75,13 +90,18 @@ export class HorseOverview extends Component {
 
 const mapStateToProps = ({ horse }) => {
   return {
-    submitFeedData: {
-      ...horse.submitFeedData
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    submitHorseUpdate: (id, data) => {
+      dispatch(submitHorseUpdate(id, data))
     }
   }
 }
 
 export default horseView(connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(HorseOverview))

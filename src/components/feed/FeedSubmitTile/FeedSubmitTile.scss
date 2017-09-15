@@ -97,11 +97,11 @@ $thumbnail-size: 122px;
   }
 
   &__thumbnail {
-    position: absolute;
+    position: absolute !important;
     top: 10px;
     right: 10px;
-    width: $thumbnail-size;
-    height: $thumbnail-size;
+    width: $thumbnail-size !important;
+    height: $thumbnail-size !important;
     background-size: cover;
   }
 }

@@ -65,7 +65,7 @@ const SyndicateViewHoc = (WrapperComponent) => {
       }
 
       return (
-        <View title={titleize(name || '')} isPrefixed={false}>
+        <View title={titleize(owner.name || '')} isPrefixed={false}>
           <WrapperComponent
             data={syndicateProps}
             {...restOfProps} />

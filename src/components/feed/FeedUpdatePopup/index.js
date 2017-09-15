@@ -34,19 +34,19 @@ import VideoPopupTile from 'components/feed/FeedPopupTiles/VideoPopupTile'
 import MediaCarouselPopupTile from 'components/feed/FeedPopupTiles/MediaCarouselPopupTile'
 
 /**
- *  @module SubmitPost
- */
-import SubmitPost from 'components/feed/FeedSubmitTile'
-
-/**
  *  @module BASE_URL
  */
 import { ROOT_PATH } from 'api/ServiceTypes'
 
 /**
- *  @module FeedCommentList
+ *  @module FeedComments
  */
-import FeedCommentList from 'components/feed/FeedCommentList'
+import FeedComments from 'containers/Feed/FeedComments'
+
+/**
+ *  @module SubmitFeedComment
+ */
+import SubmitFeedComment from 'containers/Feed/SubmitFeedPost'
 
 /**
  *  @class
@@ -60,40 +60,35 @@ export class FeedUpdatePopup extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      id: null
+    }
+
     this.getTileId = this.getTileId.bind(this)
     this.postComment = this.postComment.bind(this)
+    this.postFeedComment = this.postFeedComment.bind(this)
   }
 
   componentDidMount () {
-    const messageId = this.getTileId()
+    this.getTileId(this.props.tile)
+  }
 
-    if (messageId) {
-      this.props.fetchComments(messageId)
+  componentWillReceiveProps ({ tile }) {
+    if (tile !== this.props.tile) {
+      this.getTileId(tile)
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    // Handle different popup id.
-  }
-
-  componentWillUnmount () {
-    this.props.clearComments()
-  }
-
-  getTileId () {
-    const {
-      tile
-    } = this.props
-
+  getTileId (tile) {
     if (tile) {
       const {
-        _id
+        _id: id
       } = tile
 
-      return _id
+      this.setState({
+        id
+      })
     }
-
-    return false
   }
 
   postComment () {
@@ -186,20 +181,26 @@ export class FeedUpdatePopup extends Component {
     return null
   }
 
+  postFeedComment (data) {
+    const {
+      id
+    } = this.state
+
+    this.props.postComment(id, data)
+  }
+
   render () {
     const {
       className,
       modifier,
       submitTitle,
-      comments,
-      updateFeedText,
-      clearFeedData,
-      commentText,
-      charCount,
       commentPosted,
-      maxCharCount,
       allowCommenting
     } = this.props
+
+    const {
+      id
+    } = this.state
 
     // Modified class names for container
     const modifiedClassNames = classNames('feed-popup', className, modifier)
@@ -212,26 +213,19 @@ export class FeedUpdatePopup extends Component {
             allowCommenting
             ? (
                 <div className='col-xs-12 feed-popup__bottomcontent'>
-                  <SubmitPost
+                  <SubmitFeedComment
+                    posted={commentPosted}
                     allowAttachments={false}
                     title={submitTitle}
-                    feedText={commentText}
-                    feedPosted={commentPosted}
-                    submitFeedUpdate={this.postComment}
-                    updateFeedText={updateFeedText}
-                    clearFeedData={clearFeedData}
-                    charCount={charCount}
-                    maxCharCount={maxCharCount} />
+                    submitFeedUpdate={this.postFeedComment}
+                    reducerName='submitFeedComments'
+                    />
               </div>
             )
             : null
           }
           <div className='col-xs-12 feed-popup__comment-list'>
-            {
-              comments.length
-              ? <FeedCommentList comments={comments} />
-              : null
-            }
+            <FeedComments id={id} />
           </div>
         </div>
       </div>

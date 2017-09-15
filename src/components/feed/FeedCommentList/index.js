@@ -6,6 +6,8 @@ import FeedComment from 'components/feed/FeedComment'
 
 import PropTypes from 'prop-types'
 
+import { FadeShift } from 'components/animation'
+
 const FeedCommentList = (props) => {
   const {
     className,
@@ -17,18 +19,20 @@ const FeedCommentList = (props) => {
 
   return (
     <ul className={modifiedClassNames}>
-      {
-        comments.map(({author, text, timeStamp}, index) => {
-          return (
-            <li key={index}>
-              <FeedComment
-                name={author}
-                date={timeStamp}
-                text={text} />
-            </li>
-          )
-        })
-      }
+      <FadeShift>
+        {
+          comments.map(({author, text, timeStamp}, index) => {
+            return (
+              <li key={index}>
+                <FeedComment
+                  name={author}
+                  date={timeStamp}
+                  text={text} />
+              </li>
+            )
+          })
+        }
+      </FadeShift>
     </ul>
   )
 }
