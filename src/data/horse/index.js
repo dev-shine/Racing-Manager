@@ -433,8 +433,8 @@ export const fakeHorses = [{
   manager: {
     name: 'John Warren'
   },
-  thumbnailImage: '/uploads/horses/1504106860816/CARD_dartmouth.jpg',
-  featuredImage: '/uploads/horses/1504106860816/CARD_dartmouth.jpg',
+  thumbnailImage: '/uploads/horses/1505127817008/CARD_dartmouth.jpg',
+  featuredImage: '/uploads/horses/1505127817008/CARD_dartmouth.jpg',
   slug: 'dartmouth',
   runs: 17,
   wins: 8,
@@ -466,8 +466,8 @@ export const fakeHorses = [{
     owned: 3,
     total: 23
   },
-  thumbnailImage: '/uploads/horses/1504106860823/CARD_neptunestar1.jpg',
-  featuredImage: '/uploads/horses/1504106860823/CARD_neptunestar1.jpg',
+  thumbnailImage: '/uploads/horses/1505127817251/CARD_neptunestar1.jpg',
+  featuredImage: '/uploads/horses/1505127817251/CARD_neptunestar1.jpg',
   slug: 'neptune-star',
   runs: 9,
   wins: 0,

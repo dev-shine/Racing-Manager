@@ -1,16 +1,7 @@
-/**
- *  @module connect
- */
 import { connect } from 'react-redux'
 
-/**
- *  @module FeedSubmitTile
- */
 import FeedSubmitTile from 'components/feed/FeedSubmitTile'
 
-/**
- *  @module processMediaPayload
- */
 import processMediaPayload from 'utils/mediapayload'
 
 import {
@@ -20,63 +11,60 @@ import {
   deleteFeedMedia
 } from 'actions/submitfeedpost'
 
-import {
-  submitHorseUpdate
-} from 'actions/horse'
-
-/**
- *  mapStateToProps
- *  @param  {Object} state
- *  @param  {Object} ownProps
- *  @return {Object}
- */
 const mapStateToProps = (state, ownProps) => {
+  const {
+    reducerName,
+    posted,
+    title
+  } = ownProps
+
   const {
     text,
     maxCharCount,
     files,
     charCount
-  } = state.horse.submitFeedData
-
-  const {
-    posted,
-  } = state.horse.horseInfo
+  } = state[reducerName]
 
   return {
     feedText: text,
     charCount,
     maxCharCount,
     feedFiles: files,
-    feedPosted: posted
+    feedPosted: posted,
+    title
   }
 }
 
-/**
- *  mapDispatchToProps
- *  @param  {Function} dispatch
- *  @param  {Object} ownProps
- *  @return {Object}
- */
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {
-    reducerName // reducerName which will correspond to the correct reducer
+    reducerName, // reducerName which will correspond to the correct reducer
+    allowAttachments = true
   } = ownProps
 
   return {
     submitFeedUpdate: (text, files) => {
       const {
-        horseId
+        submitFeedUpdate
       } = ownProps
 
       const attachment = files
 
       // Construct data
-      const data = processMediaPayload({
-        attachment,
-        text
-      })
+      let data
 
-      dispatch(submitHorseUpdate(horseId, data))
+      // If allow attachments is true, then process the payload to use FormData
+      if (allowAttachments) {
+        data = processMediaPayload({
+          attachment,
+          text
+        })
+      } else {
+        data = {
+          text
+        }
+      }
+
+      submitFeedUpdate && submitFeedUpdate(data)
     },
     updateFeedText: text => {
       dispatch(updateFeedText(text, reducerName))
@@ -93,9 +81,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-/**
- *  @module connect
- */
 export default connect(
   mapStateToProps,
   mapDispatchToProps

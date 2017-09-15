@@ -16,21 +16,16 @@ import chaiEnzyme from 'chai-enzyme'
 
 chai.use(chaiEnzyme())
 
-describe('Containers - submitUpdateToHorse', () => {
+describe('Containers - submitFeedPost', () => {
   let wrapper
   let renderedComp
 
   const initialState = {
-    horse: {
-      submitFeedData: {
-        text: '',
-        maxCharCount: 400,
-        files: {},
-        charCount: 400
-      },
-      horseInfo: {
-        posted: false
-      }
+    testReducer: {
+      text: '',
+      maxCharCount: 400,
+      files: {},
+      charCount: 400
     }
   }
 

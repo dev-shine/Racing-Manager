@@ -36,7 +36,7 @@ import { Block, Grid } from 'components/layouts/masonry'
 /**
  *  @module FeedUpdatePopup
  */
-import FeedUpdatePopupContainer from 'containers/FeedUpdatePopupContainer'
+import FeedUpdatePopupContainer from 'containers/Feed/FeedUpdatePopupContainer'
 
 /**
  *  @class

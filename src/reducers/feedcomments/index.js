@@ -6,7 +6,7 @@ import {
   POSTING_COMMENT,
   POSTED_COMMENT,
   FAILED_TO_POST_COMMENT
-} from 'actions/feedupdatepopup'
+} from 'actions/feedcomments'
 
 import { LOG_OUT } from 'actions/auth'
 
