@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
@@ -12,7 +12,7 @@ import {
 
 import { personalInformationValidators } from 'utils/validation/PersonalInformation'
 
-class PersonalInformationFormContainer extends PureComponent {
+class PersonalInformationFormContainer extends Component {
   constructor (props) {
     super(props)
   }
