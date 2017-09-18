@@ -38,7 +38,7 @@ class PersonalInformationForm extends PureComponent {
             <Field
               component={PictureUpload}
               validate={['']}
-              name='picture'
+              name='avatarImage'
             />
           </div>
 
@@ -78,7 +78,7 @@ class PersonalInformationForm extends PureComponent {
               placeholder={BIRTHDAY_PLACEHOLDER}
               validate={['birthday']}
               format={FORMAT_DATE_OF_BIRTH}
-              name='birthday' />
+              name='birthDate' />
           </div>
 
           <div className='form__group'>

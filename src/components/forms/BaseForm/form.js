@@ -100,6 +100,7 @@ export class Form extends Component {
       update: this.props.update,
       submit: this.submit,
       values: this.props.values,
+      initialValues: this.props.initialValues,
       validators: this.props.validators,
       registerValidation: this.registerValidation,
       isFormValid: this.isFormValid,
@@ -129,7 +130,8 @@ export class Form extends Component {
  */
 Form.defaultProps = {
   onSubmit: () => {},
-  autocomplete: true
+  autocomplete: true,
+  initialValues: {}
 }
 
 /**
@@ -139,6 +141,7 @@ Form.defaultProps = {
 Form.propTypes = {
   children: PropTypes.node,
   values: PropTypes.object,
+  initialValues: PropTypes.object,
   update: PropTypes.func,
   handleSubmit: PropTypes.func,
   className: PropTypes.oneOfType([
@@ -156,6 +159,7 @@ Form.childContextTypes = {
   update: PropTypes.func,
   submit: PropTypes.func,
   values: PropTypes.object,
+  initialValues: PropTypes.object,
   registerValidation: PropTypes.func,
   isFormValid: PropTypes.func,
   validators: PropTypes.func,

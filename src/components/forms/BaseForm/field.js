@@ -33,6 +33,10 @@ class Field extends PureComponent {
   constructor (props) {
     super(props)
 
+    this.state = {
+      touched: false
+    }
+
     // Bind local functions
     this.updateValue = this.updateValue.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -44,6 +48,8 @@ class Field extends PureComponent {
     this.getValue = this.getValue.bind(this)
     this.getError = this.getError.bind(this)
     this.formatValue = this.formatValue.bind(this)
+    this.updateValueFromInitialIfNeeded = this.updateValueFromInitialIfNeeded.bind(this)
+    this.setTouchedTrue = this.setTouchedTrue.bind(this)
   }
 
   componentWillMount () {
@@ -54,9 +60,42 @@ class Field extends PureComponent {
     this.removeValidationFromContext = this.context.registerValidation(show => this.isValid(show))
   }
 
+  componentDidMount () {
+    this.updateValueFromInitialIfNeeded(this.context.initialValues)
+  }
+
   componentWillUnmount () {
     // Removes the validation in the parent
     this.removeValidationFromContext()
+  }
+
+  /**
+   *  updateValueFromInitialIfNeeded
+   *  @description Will set the value to the initial value if applicable.
+   *  @return {Void}
+   */
+  updateValueFromInitialIfNeeded (initialValues) {
+    const {
+      name
+    } = this.props
+
+    const {
+      touched
+    } = this.state
+
+    if (initialValues[name] && !touched) {
+      this.updateValue(initialValues[name])
+    }
+  }
+
+  /**
+   *  setTouchedTrue
+   *  @description If the input has been changed then flag this as true
+   */
+  setTouchedTrue () {
+    this.setState({
+      touched: true
+    })
   }
 
   /**
@@ -103,10 +142,10 @@ class Field extends PureComponent {
 
     let value
 
-    if (typeof event === 'string') {
-      value = event
-    } else {
+    if (typeof target.value !== 'undefined') {
       value = target.value
+    } else {
+      value = event
     }
 
     /*
@@ -119,17 +158,11 @@ class Field extends PureComponent {
     this.updateValue(value, true)
 
     handleChange && handleChange(value)
+
+    // Flag the field has been modified
+    this.setTouchedTrue()
   }
 
-  /**
-   * @param errors
-   */
-  /*
-  updateErrors (errors) {
-    const { name } = this.props
-    this.context.updateErrors(errors, name)
-  }
-  */
   updateErrors (newErrors = []) {
     const { name } = this.props
     const { errors = [] } = this.context
@@ -230,7 +263,7 @@ class Field extends PureComponent {
     /**
      *  @const
      */
-    const { component, children, name } = this.props
+    const { component: Presentation, children, name } = this.props
 
     /**
      *  @const
@@ -242,12 +275,6 @@ class Field extends PureComponent {
      *  @type {Array}
      */
     const error = this.getError(name)
-
-    /**
-     *  @const
-     *  @type {Component}
-     */
-    const Presentation = component
 
     /**
      *  allowedProps
@@ -294,6 +321,7 @@ Field.defaultProps = {
 Field.contextTypes = {
   update: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
+  initialValues: PropTypes.object,
   errors: PropTypes.object.isRequired,
   submit: PropTypes.func.isRequired,
   registerValidation: PropTypes.func.isRequired,

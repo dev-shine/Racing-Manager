@@ -28,28 +28,48 @@ class PersonalInformationFormContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    account
+    account,
+    auth
   } = state
 
   const {
     firstname,
     surname,
     username,
-    birthday,
+    birthDate,
     location,
+    avatarImage,
     errors
   } = account.personalInformation
 
+  const {
+    firstname: initialFirstname,
+    surname: initialSurname,
+    username: initialUsername,
+    birthDate: initialBirthday,
+    location: initialLocation,
+    avatarImage: initialAvatarImage
+  } = auth.details
+
   return {
     values: {
-      firstname: firstname,
-      surname: surname,
+      firstname,
+      surname,
       username,
-      birthday,
-      location
+      birthDate,
+      location,
+      avatarImage
     },
     errors,
-    validators: personalInformationValidators
+    validators: personalInformationValidators,
+    initialValues: {
+      firstname: initialFirstname,
+      surname: initialSurname,
+      username: initialUsername,
+      birthDate: initialBirthday,
+      location: initialLocation,
+      avatarImage: initialAvatarImage
+    }
   }
 }
 

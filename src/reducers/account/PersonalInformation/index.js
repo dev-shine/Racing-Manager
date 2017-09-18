@@ -16,16 +16,18 @@ const initialState = {
   firstname: '',
   surname: '',
   username: '',
-  birthday: '',
+  birthDate: '',
   location: '',
+  avatarImage: '',
   isSubmitting: false,
   submitError: false,
   errors: {
     firstname: [],
     surname: [],
     username: [],
-    birthday: [],
-    location: []
+    birthDate: [],
+    location: [],
+    avatarImage: []
   }
 }
 

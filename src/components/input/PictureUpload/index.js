@@ -27,9 +27,14 @@ class PictureUpload extends PureComponent {
   }
 
   addPhoto (e) {
+    const {
+      handleChange
+    } = this.props
+
     processFileUpload(e, this.props.allowedFileTypes)
     .then(files => {
       // Add to redux or something
+      handleChange && handleChange(files[0])
 
       return generatethumbnailFromFiles(files)
     })
@@ -47,6 +52,11 @@ class PictureUpload extends PureComponent {
 
   removePhoto () {
     // Call on redux to clear the thumbnail
+    const {
+      handleChange
+    } = this.props
+
+    handleChange && handleChange('')
 
     this.clearFileInputValue()
 
@@ -101,7 +111,8 @@ class PictureUpload extends PureComponent {
 
 PictureUpload.propTypes = {
   allowedFileTypes: PropTypes.array,
-  className: PropTypes.string
+  className: PropTypes.string,
+  handleChange: PropTypes.func
 }
 
 PictureUpload.defaultProps = {
