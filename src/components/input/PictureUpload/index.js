@@ -21,9 +21,19 @@ class PictureUpload extends PureComponent {
       thumbnailSrc: props.src || ''
     }
 
+    this.mounted = false
+
     this.addPhoto = this.addPhoto.bind(this)
     this.removePhoto = this.removePhoto.bind(this)
     this.clearFileInputValue = this.clearFileInputValue.bind(this)
+  }
+
+  componentDidMount () {
+    this.mounted = true
+  }
+
+  componentWillUnmount () {
+    this.mounted = false
   }
 
   addPhoto (e) {
@@ -39,9 +49,11 @@ class PictureUpload extends PureComponent {
       return generatethumbnailFromFiles(files)
     })
     .then(thumbnails => {
-      this.setState({
-        thumbnailSrc: thumbnails[0]
-      })
+      if (this.mounted) {
+        this.setState({
+          thumbnailSrc: thumbnails[0]
+        })
+      }
     })
     .catch(error => {
       if (isDev) {
@@ -61,9 +73,11 @@ class PictureUpload extends PureComponent {
     this.clearFileInputValue()
 
     // Set the previous src to the new src
-    this.setState(({previousSrc}) => ({
-      thumbnailSrc: previousSrc
-    }))
+    if (this.mounted) {
+      this.setState(({previousSrc}) => ({
+        thumbnailSrc: previousSrc
+      }))
+    }
   }
 
   clearFileInputValue () {

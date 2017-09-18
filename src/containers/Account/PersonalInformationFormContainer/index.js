@@ -7,10 +7,13 @@ import PersonalInformationForm from 'components/forms/PersonalInformation'
 import {
   updateForm,
   updateFormError,
-  resetForm
+  resetForm,
+  submitFormData
 } from 'actions/account/PersonalInformation'
 
 import { personalInformationValidators } from 'utils/validation/PersonalInformation'
+
+import processMediaPayload from 'utils/mediapayload'
 
 class PersonalInformationFormContainer extends Component {
   constructor (props) {
@@ -82,6 +85,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateFormError(errors, name))
     },
     submitForm: (values) => {
+      // Constructs to FormData
+      const data = processMediaPayload({
+        ...values
+      })
+
+      return dispatch(submitFormData(data))
     },
     clearForm: () => {
       dispatch(resetForm())

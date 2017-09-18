@@ -22,7 +22,7 @@ export const personalInformationValidators = (type, formValues = {}) => {
     firstname,
     surname,
     username,
-    birthday,
+    birthDate,
     location
   } = formValues
 
@@ -37,7 +37,7 @@ export const personalInformationValidators = (type, formValues = {}) => {
       return !VALIDATE.REQUIRED(username) || VALIDATE.USERNAME(username) ? [] : [ERROR.USERNAME]
 
     case 'birthday':
-      return VALIDATE.DATE_OF_BIRTH(birthday) ? [] : [ERROR.DATE_OF_BIRTH]
+      return VALIDATE.DATE_OF_BIRTH(birthDate) ? [] : [ERROR.DATE_OF_BIRTH]
 
     case 'location':
       return VALIDATE.REQUIRED(location) ? [] : [ERROR.LOCATION]
