@@ -12,6 +12,8 @@ import PropTypes from 'prop-types'
 
 import isDev from 'isdev'
 
+const ALLOWED_FILE_TYPES = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg']
+
 class PictureUpload extends PureComponent {
   constructor (props) {
     super(props)
@@ -26,6 +28,7 @@ class PictureUpload extends PureComponent {
     this.addPhoto = this.addPhoto.bind(this)
     this.removePhoto = this.removePhoto.bind(this)
     this.clearFileInputValue = this.clearFileInputValue.bind(this)
+    this.setThumbnail = this.setThumbnail.bind(this)
   }
 
   componentDidMount () {
@@ -34,6 +37,20 @@ class PictureUpload extends PureComponent {
 
   componentWillUnmount () {
     this.mounted = false
+  }
+
+  componentWillReceiveProps ({ src }) {
+    if (typeof src !== 'string' || src === this.props.src) {
+      return false
+    }
+
+    this.setThumbnail(src)
+  }
+
+  setThumbnail (src) {
+    this.setState({
+      thumbnailSrc: src
+    })
   }
 
   addPhoto (e) {
@@ -50,9 +67,7 @@ class PictureUpload extends PureComponent {
     })
     .then(thumbnails => {
       if (this.mounted) {
-        this.setState({
-          thumbnailSrc: thumbnails[0]
-        })
+        this.setThumbnail(thumbnails[0])
       }
     })
     .catch(error => {
@@ -74,9 +89,7 @@ class PictureUpload extends PureComponent {
 
     // Set the previous src to the new src
     if (this.mounted) {
-      this.setState(({previousSrc}) => ({
-        thumbnailSrc: previousSrc
-      }))
+      this.setThumbnail(this.state.previousSrc)
     }
   }
 
@@ -130,7 +143,7 @@ PictureUpload.propTypes = {
 }
 
 PictureUpload.defaultProps = {
-  allowedFileTypes: ['image/png', 'image/gif', 'image/jpg', 'image/jpeg']
+  allowedFileTypes: ALLOWED_FILE_TYPES
 }
 
 export default PictureUpload
