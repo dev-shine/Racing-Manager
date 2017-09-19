@@ -1,4 +1,4 @@
-import { post, get } from 'api/Request'
+import { post, get, put } from 'api/Request'
 
 import * as SERVICE_TYPES from 'api/ServiceTypes'
 
@@ -85,6 +85,13 @@ export const getUpdateFeedComments = (data) => {
 export const postFeedComment = (data) => {
   return post({
     url: SERVICE_TYPES.COMMENT,
+    ...data
+  })
+}
+
+export const updateUserInformation = (data) => {
+  return put({
+    url: SERVICE_TYPES.USER,
     ...data
   })
 }

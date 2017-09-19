@@ -20,6 +20,14 @@ import {
   BIRTHDAY_PLACEHOLDER
 } from 'texts/forms'
 
+const pictureUploadField = ({ value, ...rest }) => {
+  return (
+    <PictureUpload
+      src={value}
+      {...rest} />
+  )
+}
+
 class PersonalInformationForm extends PureComponent {
   constructor (props) {
     super(props)
@@ -36,9 +44,9 @@ class PersonalInformationForm extends PureComponent {
 
           <div className='form__group'>
             <Field
-              component={PictureUpload}
+              component={pictureUploadField}
               validate={['']}
-              name='picture'
+              name='avatarImage'
             />
           </div>
 
@@ -78,7 +86,7 @@ class PersonalInformationForm extends PureComponent {
               placeholder={BIRTHDAY_PLACEHOLDER}
               validate={['birthday']}
               format={FORMAT_DATE_OF_BIRTH}
-              name='birthday' />
+              name='birthDate' />
           </div>
 
           <div className='form__group'>

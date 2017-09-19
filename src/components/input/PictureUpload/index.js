@@ -12,6 +12,8 @@ import PropTypes from 'prop-types'
 
 import isDev from 'isdev'
 
+const ALLOWED_FILE_TYPES = ['image/png', 'image/gif', 'image/jpg', 'image/jpeg']
+
 class PictureUpload extends PureComponent {
   constructor (props) {
     super(props)
@@ -21,22 +23,52 @@ class PictureUpload extends PureComponent {
       thumbnailSrc: props.src || ''
     }
 
+    this.mounted = false
+
     this.addPhoto = this.addPhoto.bind(this)
     this.removePhoto = this.removePhoto.bind(this)
     this.clearFileInputValue = this.clearFileInputValue.bind(this)
+    this.setThumbnail = this.setThumbnail.bind(this)
+  }
+
+  componentDidMount () {
+    this.mounted = true
+  }
+
+  componentWillUnmount () {
+    this.mounted = false
+  }
+
+  componentWillReceiveProps ({ src }) {
+    if (typeof src !== 'string' || src === this.props.src) {
+      return false
+    }
+
+    this.setThumbnail(src)
+  }
+
+  setThumbnail (src) {
+    this.setState({
+      thumbnailSrc: src
+    })
   }
 
   addPhoto (e) {
+    const {
+      handleChange
+    } = this.props
+
     processFileUpload(e, this.props.allowedFileTypes)
     .then(files => {
       // Add to redux or something
+      handleChange && handleChange(files[0])
 
       return generatethumbnailFromFiles(files)
     })
     .then(thumbnails => {
-      this.setState({
-        thumbnailSrc: thumbnails[0]
-      })
+      if (this.mounted) {
+        this.setThumbnail(thumbnails[0])
+      }
     })
     .catch(error => {
       if (isDev) {
@@ -47,13 +79,18 @@ class PictureUpload extends PureComponent {
 
   removePhoto () {
     // Call on redux to clear the thumbnail
+    const {
+      handleChange
+    } = this.props
+
+    handleChange && handleChange('')
 
     this.clearFileInputValue()
 
     // Set the previous src to the new src
-    this.setState(({previousSrc}) => ({
-      thumbnailSrc: previousSrc
-    }))
+    if (this.mounted) {
+      this.setThumbnail(this.state.previousSrc)
+    }
   }
 
   clearFileInputValue () {
@@ -101,11 +138,12 @@ class PictureUpload extends PureComponent {
 
 PictureUpload.propTypes = {
   allowedFileTypes: PropTypes.array,
-  className: PropTypes.string
+  className: PropTypes.string,
+  handleChange: PropTypes.func
 }
 
 PictureUpload.defaultProps = {
-  allowedFileTypes: ['image/png', 'image/gif', 'image/jpg', 'image/jpeg']
+  allowedFileTypes: ALLOWED_FILE_TYPES
 }
 
 export default PictureUpload

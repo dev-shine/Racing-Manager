@@ -1,3 +1,13 @@
+import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+
+import { updateUserInformation } from 'api/Services'
+
+import { authenticateUserFromToken } from 'actions/auth'
+
+import { addToastSuccess, addToastError } from 'actions/toast'
+
+import { UPDATED_USER_DETAILS } from 'texts/successmessages'
+
 export const FORM_UPDATE = '@PERSONAL_INFORMATION/FORM_UPDATE'
 
 export const FORM_RESET = '@PERSONAL_INFORMATION/FORM_RESET'
@@ -39,20 +49,29 @@ export const updateFormError = (errors, name) => ({
   name
 })
 
-export const submitFormData = data => {
+export const submitFormData = (data) => {
   return (dispatch, getState) => {
-    return dispatch(submitForm())
+    const {
+      token
+    } = getState().auth
 
-    /*
-    return performRegistration(data)
-    .then((data) => {
-      dispatch(submittedForm(data))
-      return Promise.resolve(data)
+    return dispatch({
+      type: CALL_ACTION_TYPE,
+      types: [submitForm, submittedForm, failedToSubmitForm],
+      endpoint: updateUserInformation,
+      payload: data
+    })
+    .then(() => {
+      dispatch(addToastSuccess(UPDATED_USER_DETAILS))
+    })
+    .then(() => {
+      dispatch(authenticateUserFromToken(token))
+      return Promise.resolve()
     })
     .catch((error) => {
-      dispatch(failedToSubmitForm(error))
-      return Promise.reject(error)
+      if (error && error.message) {
+        dispatch(addToastError(error.message))
+      }
     })
-    */
   }
 }

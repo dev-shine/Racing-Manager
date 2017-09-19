@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
@@ -7,12 +7,15 @@ import PersonalInformationForm from 'components/forms/PersonalInformation'
 import {
   updateForm,
   updateFormError,
-  resetForm
+  resetForm,
+  submitFormData
 } from 'actions/account/PersonalInformation'
 
 import { personalInformationValidators } from 'utils/validation/PersonalInformation'
 
-class PersonalInformationFormContainer extends PureComponent {
+import processMediaPayload from 'utils/mediapayload'
+
+class PersonalInformationFormContainer extends Component {
   constructor (props) {
     super(props)
   }
@@ -28,28 +31,48 @@ class PersonalInformationFormContainer extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    account
+    account,
+    auth
   } = state
 
   const {
     firstname,
     surname,
     username,
-    birthday,
+    birthDate,
     location,
+    avatarImage,
     errors
   } = account.personalInformation
 
+  const {
+    firstname: initialFirstname,
+    surname: initialSurname,
+    username: initialUsername,
+    birthDate: initialBirthday,
+    location: initialLocation,
+    avatarImage: initialAvatarImage
+  } = auth.details
+
   return {
     values: {
-      firstname: firstname,
-      surname: surname,
+      firstname,
+      surname,
       username,
-      birthday,
-      location
+      birthDate,
+      location,
+      avatarImage
     },
     errors,
-    validators: personalInformationValidators
+    validators: personalInformationValidators,
+    initialValues: {
+      firstname: initialFirstname,
+      surname: initialSurname,
+      username: initialUsername,
+      birthDate: initialBirthday,
+      location: initialLocation,
+      avatarImage: initialAvatarImage
+    }
   }
 }
 
@@ -62,6 +85,26 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateFormError(errors, name))
     },
     submitForm: (values) => {
+      // Constructs to FormData
+      const {
+        avatarImage,
+        ...rest
+      } = values
+
+      let payload = {
+        ...rest
+      }
+
+      // Only send avatarImage if it's an input file format and not a string
+      if (typeof avatarImage !== 'string') {
+        payload['avatarImage'] = avatarImage
+      }
+
+      const data = processMediaPayload({
+        ...payload
+      })
+
+      return dispatch(submitFormData(data))
     },
     clearForm: () => {
       dispatch(resetForm())

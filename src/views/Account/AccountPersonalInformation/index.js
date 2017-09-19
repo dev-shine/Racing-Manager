@@ -4,12 +4,18 @@ import { connect } from 'react-redux'
 
 import PersonalInformationFormContainer from 'containers/Account/PersonalInformationFormContainer'
 
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
+
 class AccountPersonalInformation extends PureComponent {
   constructor (props) {
     super(props)
   }
 
   render () {
+    const {
+      isSubmittingForm
+    } = this.props
+
     return (
       <div className='account-personal-information'>
         <div className='account-personal-information__container'>
@@ -27,6 +33,7 @@ class AccountPersonalInformation extends PureComponent {
             </div>
           </div>
         </div>
+        <AjaxLoader isVisible={isSubmittingForm} />
       </div>
     )
   }
@@ -34,15 +41,21 @@ class AccountPersonalInformation extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    auth
+    auth,
+    account
   } = state
+
+  const {
+    personalInformation
+  } = account
 
   const {
     details
   } = auth
 
   return {
-    name: details.firstname
+    name: details.firstname,
+    isSubmittingForm: personalInformation.isSubmitting
   }
 }
 
