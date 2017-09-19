@@ -86,8 +86,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     submitForm: (values) => {
       // Constructs to FormData
+      const {
+        avatarImage,
+        ...rest
+      } = values
+
+      let payload = {
+        ...rest
+      }
+
+      // Only send avatarImage if it's an input file format and not a string
+      if (typeof avatarImage !== 'string') {
+        payload['avatarImage'] = avatarImage
+      }
+
       const data = processMediaPayload({
-        ...values
+        ...payload
       })
 
       return dispatch(submitFormData(data))
