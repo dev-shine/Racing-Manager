@@ -14,11 +14,6 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module Imageloader
- */
-import Imageloader from 'components/gui/Loaders/Imageloader'
-
-/**
  *  Image
  *  @param  {String} options.source
  *  @param  {String} options.className
@@ -37,7 +32,6 @@ const Image = ({source, className, alt, isLoaded, setRef}) => {
   return (
     <span className={modifiedClassNamesContainer}>
       <img src={source} alt={alt} className={modifiedClassNames} ref={ref => { setRef(ref) }} />
-      <Imageloader isVisible={!isLoaded} />
     </span>
   )
 }

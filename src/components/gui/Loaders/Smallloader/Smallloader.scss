@@ -1,11 +1,18 @@
-.image-loader {
+.small-loader {
+  position: relative;
+  margin: 0 auto;
   width: 40px;
   height: 40px;
 
+  &--sm {
+    width: 20px;
+    height: 20px;
+  }
+
   .sk-fading-circle {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 100%;
+    height: 100%;
 
     .sk-circle {
       width: 100%;
@@ -20,7 +27,7 @@
         margin: 0 auto;
         width: 15%;
         height: 15%;
-        background-color: #333;
+        background-color: $color-small-loader;
         border-radius: 100%;
         animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
       }

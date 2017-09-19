@@ -14,11 +14,6 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 /**
- *  @module Imageloader
- */
-import Imageloader from 'components/gui/Loaders/Imageloader'
-
-/**
  *  BackgroundImage
  *  @param  {String} options.source
  *  @param  {String} options.className
@@ -35,7 +30,6 @@ const BackgroundImage = ({source, className, children, isLoaded, setRef}) => {
   return (
     <div style={{backgroundImage: `url(${source})`}} className={modifiedClassNames} ref={ref => { setRef(ref) }}>
       {children}
-      <Imageloader isVisible={!isLoaded} />
     </div>
   )
 }

@@ -17,6 +17,8 @@ import classNames from 'utils/classnames'
 
 import omit from 'utils/objectutils/omit'
 
+import Smallloader from 'components/gui/Loaders/Smallloader'
+
 import {
   FACEBOOK_LOGIN,
   TWITTER_LOGIN,
@@ -72,7 +74,7 @@ const LoginForm = (props) => {
               component={TextButton}
               modifier={['fluid']}
               className='login-form__submit'
-              text={'log in'} />
+              text={isSubmitting ? (<Smallloader isVisible modifier='sm' />) : 'log in'} />
           </div>
           <div className='col-xs-12 col-sm-6 align-middle form__group text-center'>
             <CtaLink modifier={['italic']}>

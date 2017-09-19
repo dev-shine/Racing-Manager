@@ -2,17 +2,25 @@ import React from 'react'
 
 import { FadeIn } from 'components/animation'
 
-const Imageloader = (props) => {
+import classNames from 'utils/classnames'
+
+import PropTypes from 'prop-types'
+
+const Smallloader = (props) => {
   const {
-    isVisible
+    isVisible,
+    modifier,
+    className
   } = props
+
+  const modifierClassNames = classNames('small-loader', className, modifier)
 
   return (
     <FadeIn>
       {
         isVisible
         ? (
-            <div className='image-loader absolute-center'>
+            <div className={modifierClassNames}>
               <div className='sk-fading-circle'>
                 <div className='sk-circle1 sk-circle'></div>
                 <div className='sk-circle2 sk-circle'></div>
@@ -35,4 +43,17 @@ const Imageloader = (props) => {
   )
 }
 
-export default Imageloader
+Smallloader.propTypes = {
+  className: PropTypes.string,
+  modifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
+  isVisible: PropTypes.bool
+}
+
+Smallloader.defaultProps = {
+  isVisible: false
+}
+
+export default Smallloader
