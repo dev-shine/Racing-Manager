@@ -4,6 +4,8 @@ import {
   FAILED_TO_CONFIRM_REGISTRATION
 } from 'actions/registrationconfirmation'
 
+import update from 'immutability-helper'
+
 /**
  * @name initialState
 *  @type { object }
@@ -29,26 +31,37 @@ const reducer = (state = initialState, action) => {
   */
   switch (action.type) {
     case REQUEST_CONFIRMATION:
-      return {
-        ...state,
-        requesting: true,
-        error: false,
-        errorPayload: {}
-      }
+      return update(state, {
+        requesting: {
+          $set: true
+        },
+        error: {
+          $set: false
+        },
+        errorPayload: {
+          $set: {}
+        }
+      })
 
     case SUCCESSFULLY_CONFIRMED_REGISTRATION:
-      return {
-        ...state,
-        requesting: false
-      }
+      return update(state, {
+        requesting: {
+          $set: false
+        }
+      })
 
     case FAILED_TO_CONFIRM_REGISTRATION:
-      return {
-        ...state,
-        requesting: false,
-        errorPayload: action.error,
-        error: true
-      }
+      return update(state, {
+        requesting: {
+          $set: false
+        },
+        errorPayload: {
+          $set: action.error
+        },
+        error: {
+          $set: true
+        }
+      })
 
     default:
       return state

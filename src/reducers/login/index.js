@@ -8,6 +8,8 @@ import {
   TOGGLE_KEEP_LOGGED_IN
 } from 'actions/login'
 
+import update from 'immutability-helper'
+
 /**
  * @name initialState
 *  @type { object }
@@ -37,48 +39,54 @@ const reducer = (state = initialState, action) => {
   */
   switch (action.type) {
     case LOGIN_UPDATE:
-      return {
-        ...state,
-        [action.name]: action.value
-      }
+      return update(state, {
+        [action.name]: {
+          $set: action.value
+        }
+      })
 
     case LOGIN_ERROR:
-      return {
-        ...state,
+      return update(state, {
         errors: {
-          ...state.errors,
-          [action.name]: action.errors
+          $merge: {
+            [action.name]: action.errors
+          }
         }
-      }
+      })
 
     case TOGGLE_KEEP_LOGGED_IN:
-      return {
-        ...state,
-        keepLoggedIn: !state.keepLoggedIn
-      }
-
-    case LOGIN_RESET:
-      return {
-        ...initialState
-      }
+      return update(state, {
+        keepLoggedIn: {
+          $set: !state.keepLoggedIn
+        }
+      })
 
     case LOGIN_SUBMITTING:
-      return {
-        ...state,
-        isSubmitting: true,
-        submitError: false
-      }
+      return update(state, {
+        isSubmitting: {
+          $set: true
+        },
+        submitError: {
+          $set: false
+        }
+      })
 
+    case LOGIN_RESET:
     case LOGIN_SUBMITTED:
       return initialState
 
     case LOGIN_SUBMITTING_FAILED:
-      return {
-        ...state,
-        isSubmitting: false,
-        submitError: true,
-        errorMessage: action.error.message
-      }
+      return update(state, {
+        isSubmitting: {
+          $set: false
+        },
+        submitError: {
+          $set: true
+        },
+        errorMessage: {
+          $set: action.error.message
+        }
+      })
 
     default:
       return state

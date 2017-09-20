@@ -10,6 +10,8 @@ import {
 
 import { LOG_OUT } from 'actions/auth'
 
+import update from 'immutability-helper'
+
 const initialState = {
   fetchingComments: false,
   comments: [],
@@ -22,46 +24,64 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCHING_COMMENTS:
-      return {
-        ...state,
-        fetchingComments: true
-      }
+      return update(state, {
+        fetchingComments: {
+          $set: true
+        }
+      })
 
     case FETCHED_COMMENTS:
-      return {
-        ...state,
-        fetchingComments: false,
-        comments: action.comments
-      }
+      return update(state, {
+        fetchingComments: {
+          $set: false
+        },
+        comments: {
+          $set: action.comments
+        }
+      })
 
     case FAILED_TO_FETCH_COMMENTS:
-      return {
-        ...state,
-        fetchingComments: false,
-        commentsError: action.error
-      }
+      return update(state, {
+        fetchingComments: {
+          $set: false
+        },
+        commentsError: {
+          $set: action.error
+        }
+      })
 
     case POSTING_COMMENT:
-      return {
-        ...state,
-        postingComment: true,
-        commentPosted: false
-      }
+      return update(state, {
+        postingComment: {
+          $set: true
+        },
+        commentPosted: {
+          $set: false
+        }
+      })
 
     case POSTED_COMMENT:
-      return {
-        ...state,
-        postingComment: false,
-        commentPosted: true
-      }
+      return update(state, {
+        postingComment: {
+          $set: false
+        },
+        commentPosted: {
+          $set: true
+        }
+      })
 
     case FAILED_TO_POST_COMMENT:
-      return {
-        ...state,
-        postingComment: false,
-        commentPostingError: action.error,
-        commentPosted: false
-      }
+      return update(state, {
+        postingComment: {
+          $set: false
+        },
+        commentPostingError: {
+          $set: action.error
+        },
+        commentPosted: {
+          $set: false
+        }
+      })
 
     case CLEAR_COMMENTS:
     case LOG_OUT:
