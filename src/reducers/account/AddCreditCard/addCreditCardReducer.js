@@ -4,6 +4,8 @@ import {
   FORM_SUBMITTING_FAILED
 } from 'actions/account/AddCreditCard'
 
+import update from 'immutability-helper'
+
 const {
   LOG_OUT
 } = 'actions/auth'
@@ -35,23 +37,28 @@ const reducer = (state = initialState, action) => {
       return initialState
 
     case FORM_SUBMITTING:
-      return {
-        ...state,
-        submitting: true
-      }
+      return update(state, {
+        submitting: {
+          $set: true
+        }
+      })
 
     case FORM_SUBMITTED:
-      return {
-        ...state,
-        submitting: false
-      }
+      return update(state, {
+        submitting: {
+          $set: false
+        }
+      })
 
     case FORM_SUBMITTING_FAILED:
-      return {
-        ...state,
-        submitting: false,
-        error: action.error
-      }
+      return update(state, {
+        submitting: {
+          $set: false
+        },
+        error: {
+          $set: action.error
+        }
+      })
 
     default:
       return state
