@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
       return update(state, {
         errors: {
           $merge: {
-            [action.name]: action.errors
+            [action.name]: action.errors || []
           }
         }
       })
@@ -90,7 +90,7 @@ const reducer = (state = initialState, action) => {
           $set: true
         },
         errors: {
-          $merge: action.error.errors
+          $merge: action.error.errors || []
         }
       })
 
