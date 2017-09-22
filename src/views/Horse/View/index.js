@@ -67,8 +67,6 @@ const HorseViewHoc = (WrapperComponent) => {
         ...restOfHorseData
       } = data
 
-      // const { name: ownerName, slug } = owner
-
       const { slug } = owner
 
       const syndicateLink = `/syndicate/${slug}`

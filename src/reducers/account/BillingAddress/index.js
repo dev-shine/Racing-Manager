@@ -7,6 +7,8 @@ import {
   FORM_SUBMITTED
 } from 'actions/account/BillingAddress'
 
+import update from 'immutability-helper'
+
 /**
  * @name initialState
 *  @type { object }
@@ -43,49 +45,56 @@ const reducer = (state = initialState, action) => {
   */
   switch (action.type) {
     case FORM_UPDATE:
-      return {
-        ...state,
-        [action.name]: action.value
-      }
+      return update(state, {
+        [action.name]: {
+          $set: action.value
+        }
+      })
 
     case FORM_ERROR:
-      return {
-        ...state,
+      return update(state, {
         errors: {
-          ...state.errors,
-          [action.name]: action.errors
+          $merge: {
+            [action.name]: action.errors || []
+          }
         }
-      }
-
-    case FORM_RESET:
-      return {
-        ...initialState
-      }
+      })
 
     case FORM_SUBMITTING:
-      return {
-        ...state,
-        isSubmitting: true,
-        submitError: false
-      }
+      return update(state, {
+        isSubmitting: {
+          $set: true
+        },
+        submitError: {
+          $set: false
+        }
+      })
 
     case FORM_SUBMITTED:
-      return {
-        ...state,
-        isSubmitting: false,
-        submitError: false
-      }
+      return update(state, {
+        isSubmitting: {
+          $set: false
+        },
+        submitError: {
+          $set: false
+        }
+      })
 
     case FORM_SUBMITTING_FAILED:
-      return {
-        ...state,
-        isSubmitting: false,
-        submitError: true,
+      return update(state, {
+        isSubmitting: {
+          $set: false
+        },
+        submitError: {
+          $set: true
+        },
         errors: {
-          ...state.errors,
-          ...action.error.errors
+          $merge: action.error.errors || []
         }
-      }
+      })
+
+    case FORM_RESET:
+      return initialState
 
     default:
       return state

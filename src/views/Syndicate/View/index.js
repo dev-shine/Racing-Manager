@@ -12,6 +12,8 @@ import {
   description as syndicateDesc
 } from 'data/syndicate'
 
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
+
 const mapStateToProps = ({ syndicate }, ownProps) => ({
   ...syndicate
 })
@@ -66,9 +68,12 @@ const SyndicateViewHoc = (WrapperComponent) => {
 
       return (
         <View title={titleize(owner.name || '')} isPrefixed={false}>
-          <WrapperComponent
-            data={syndicateProps}
-            {...restOfProps} />
+          <div>
+            <WrapperComponent
+              data={syndicateProps}
+              {...restOfProps} />
+            <AjaxLoader isVisible={this.props.fetching} />
+          </div>
         </View>
       )
     }

@@ -13,6 +13,7 @@
     height: $header-height;
     width: 100px;
     display: inline-block;
+    position: relative;
     float: left;
     margin-left: -40px;
     @media (min-width: $screen-sm) {

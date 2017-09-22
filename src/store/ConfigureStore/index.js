@@ -14,12 +14,6 @@ import thunkMiddleware from 'redux-thunk'
 import authenticatedRequestMiddleware from 'middleware/AuthenticatedRequest'
 
 /**
- * @module redux-logger
- */
-// NOT WORKING IN <= IE11
-// import { createLogger } from 'redux-logger'
-
-/**
  * @module rootReducer
  */
 import rootReducer from 'reducers/rootReducer'
@@ -28,7 +22,7 @@ import isDev from 'isdev'
 
 let configureStore
 
-// If the app is running in debug, add in redux dev tools.
+// If the app is running in dev, add in redux dev tools.
 if (isDev) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

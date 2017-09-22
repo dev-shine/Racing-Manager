@@ -12,6 +12,8 @@ import {
   LOG_OUT
 } from 'actions/auth'
 
+import update from 'immutability-helper'
+
 /**
  * @name initialState
 *  @type { object }
@@ -19,7 +21,7 @@ import {
 */
 const initialState = {
   fetching: false,
-  data: [],
+  data: {},
   error: false,
   posting: false,
   posted: false
@@ -43,48 +45,70 @@ const reducer = (state = initialState, action) => {
       return initialState
 
     case FETCH_HORSE_INFO:
-      return {
-        ...state,
-        fetching: true
-      }
+      return update(state, {
+        fetching: {
+          $set: true
+        }
+      })
 
     case RECEIVED_HORSE_INFO:
-      return {
-        ...state,
-        fetching: false,
-        error: false,
-        data: action.data
-      }
+      return update(state, {
+        fetching: {
+          $set: false
+        },
+        error: {
+          $set: false
+        },
+        data: {
+          $set: action.data
+        }
+      })
 
     case FAILED_TO_FETCH_HORSE_INFO:
-      return {
-        ...state,
-        fetching: false,
-        error: true
-      }
+      return update(state, {
+        fetching: {
+          $set: false
+        },
+        error: {
+          $set: true
+        }
+      })
 
     case POSTING_HORSE_UPDATE:
-      return {
-        ...state,
-        posting: true,
-        posted: false
-      }
+      return update(state, {
+        posting: {
+          $set: true
+        },
+        posted: {
+          $set: false
+        }
+      })
 
     case POSTED_HORSE_UPDATE:
-      return {
-        ...state,
-        posting: false,
-        error: false,
-        posted: true
-      }
+      return update(state, {
+        posting: {
+          $set: false
+        },
+        error: {
+          $set: false
+        },
+        posted: {
+          $set: true
+        }
+      })
 
     case FAILED_TO_POST_HORSE_UPDATE:
-      return {
-        ...state,
-        error: true,
-        posting: false,
-        posted: false
-      }
+      return update(state, {
+        posting: {
+          $set: false
+        },
+        error: {
+          $set: true
+        },
+        posted: {
+          $set: false
+        }
+      })
 
     default:
       return state

@@ -39,6 +39,11 @@ import { constructStaticUrl, calcPercent } from 'utils/horseutils'
 import { roundNumberWithoutZeros } from 'utils/number'
 
 /**
+ *  @module Smallloader
+ */
+import Smallloader from 'components/gui/Loaders/Smallloader'
+
+/**
  * dummy fn
  */
 const noop = () => {}
@@ -181,7 +186,8 @@ class HeaderSection extends PureComponent {
       className,
       modifier,
       title,
-      headerButtonText
+      headerButtonText,
+      isFetching
     } = this.props
 
     const {
@@ -308,6 +314,9 @@ class HeaderSection extends PureComponent {
               })
             }
           </Carousel>
+          <div className='absolute-center'>
+            <Smallloader isVisible={isFetching} />
+          </div>
         </div>
       </div>
     )
@@ -321,7 +330,8 @@ class HeaderSection extends PureComponent {
 HeaderSection.propTypes = {
   title: PropTypes.string,
   headerButtonText: PropTypes.string,
-  data: PropTypes.array
+  data: PropTypes.array,
+  isFetching: PropTypes.bool
 }
 
 /**
@@ -331,7 +341,8 @@ HeaderSection.propTypes = {
 HeaderSection.defaultProps = {
   title: 'your horses',
   headerButtonText: '+ add another horse',
-  data: []
+  data: [],
+  isFetching: false
 }
 
 /**
