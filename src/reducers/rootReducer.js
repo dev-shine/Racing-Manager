@@ -13,6 +13,7 @@ import dashboard from './dashboard'
 import account from './account'
 import toast from './toast'
 import feedComments from './feedcomments'
+import news from './news'
 
 import submitFeedPost from './submitfeedpost'
 
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   account,
   toast,
   feedComments,
+  news,
 
   /* submitting data for feed posts & feed commenting */
   horseFeedPost: reducerFactory(submitFeedPost, 'horseFeedPost'),

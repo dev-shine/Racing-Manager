@@ -29,14 +29,13 @@ import HeaderSection from 'components/dashboard/HeaderSection'
 import { Block, Grid } from 'components/layouts/masonry'
 
 /**
- *  @module newsImage
- */
-import { newsImage } from 'assets/dummyassets'
-
-/**
  *  @module getDashboard
  */
 import { getDashboard } from 'actions/dashboard'
+
+import {
+  fetchNews
+} from 'actions/news'
 
 import View from 'components/routing/View'
 
@@ -54,6 +53,7 @@ export class MemberDashboard extends Component {
 
   componentDidMount () {
     this.props.getDashBoardData()
+    this.props.fetchNews()
   }
 
   render () {
@@ -82,10 +82,10 @@ export class MemberDashboard extends Component {
                     <Block width={1} key={index}>
                       <NewsTile
                         id={index}
-                        rootPath={tile.rootPath}
-                        text={tile.text}
-                        src={tile.src}
-                        providerSrc={tile.providerSrc}
+                        rootPath={''}
+                        text={tile.headline}
+                        src={tile.thumbnailImage}
+                        providerSrc={tile.thumbnailImage}
                         date={tile.date}
                         className='member-dashboard__tile'
                       />
@@ -109,22 +109,22 @@ export class MemberDashboard extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    dashboard
+    dashboard,
+    news
   } = state
 
   const {
     member
   } = dashboard
+
+  const {
+    data
+  } = news
+
   return {
     dashboardData: member.data,
     fetching: member.fetching,
-    tiles: new Array(12).fill({
-      text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
-      rootPath: '',
-      src: newsImage,
-      providerSrc: newsImage,
-      date: '2017-06-06T14:11:42.820Z'
-    })
+    tiles: data
   }
 }
 
@@ -132,6 +132,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getDashBoardData: () => {
       return dispatch(getDashboard())
+    },
+    fetchNews: () => {
+      return dispatch(fetchNews())
     }
   }
 }

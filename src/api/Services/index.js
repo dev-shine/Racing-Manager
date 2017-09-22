@@ -95,3 +95,9 @@ export const updateUserInformation = (data) => {
     ...data
   })
 }
+
+export const getNews = () => {
+  return get({
+    url: SERVICE_TYPES.NEWS
+  })
+}
