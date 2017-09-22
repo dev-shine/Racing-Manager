@@ -57,7 +57,7 @@ export class MemberDashboard extends Component {
   }
 
   render () {
-    const { tiles, dashboardData } = this.props
+    const { tiles, dashboardData, fetching } = this.props
     const { ownership } = dashboardData
 
     return (
@@ -65,6 +65,7 @@ export class MemberDashboard extends Component {
         <div className='member-dashboard'>
           <div className='member-dashboard__slider'>
             <HeaderSection
+              isFetching={fetching}
               data={ownership} />
           </div>
           <div className='member-dashboard__feed-section container'>
@@ -116,6 +117,7 @@ const mapStateToProps = (state, ownProps) => {
   } = dashboard
   return {
     dashboardData: member.data,
+    fetching: member.fetching,
     tiles: new Array(12).fill({
       text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
       rootPath: '',
