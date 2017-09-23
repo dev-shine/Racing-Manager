@@ -8,8 +8,6 @@ import TileHeaderProvider from 'components/tiles/TileHeaderProvider'
 import TileContent from 'components/tiles/TileContent'
 import TileReadMore from 'components/tiles/TileReadMore'
 
-import { timestampToFeedTimestamp } from 'utils/dateutils'
-
 const NewsTile = props => {
   const {
     className,
@@ -33,7 +31,7 @@ const NewsTile = props => {
       <TileHeaderProvider
         name={name}
         src={providerSrc}
-        date={timestampToFeedTimestamp(date)}
+        date={date}
       />
       <TileContent
         text={text}

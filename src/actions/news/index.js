@@ -24,6 +24,22 @@ export const failedToFetchNews = (error) => ({
   error
 })
 
+export const fetchNewsIfNeeded = () => {
+  return (dispatch, getState) => {
+    if (shouldFetchNews(getState())) {
+      return dispatch(fetchNews())
+    }
+  }
+}
+
+const shouldFetchNews = (state) => {
+  if (state.news.data.length || state.news.fetching) {
+    return false
+  }
+
+  return true
+}
+
 export const fetchNews = () => {
   return (dispatch, getState) => {
     dispatch(fetchingNews())

@@ -34,7 +34,7 @@ import { Block, Grid } from 'components/layouts/masonry'
 import { getDashboard } from 'actions/dashboard'
 
 import {
-  fetchNews
+  fetchNewsIfNeeded
 } from 'actions/news'
 
 import View from 'components/routing/View'
@@ -53,7 +53,7 @@ export class MemberDashboard extends Component {
 
   componentDidMount () {
     this.props.getDashBoardData()
-    this.props.fetchNews()
+    this.props.fetchNewsIfNeeded()
   }
 
   render () {
@@ -86,7 +86,7 @@ export class MemberDashboard extends Component {
                         text={tile.headline}
                         src={tile.thumbnailImage}
                         providerSrc={tile.thumbnailImage}
-                        date={tile.date}
+                        date={tile.timeStamp}
                         className='member-dashboard__tile'
                       />
                     </Block>
@@ -133,8 +133,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getDashBoardData: () => {
       return dispatch(getDashboard())
     },
-    fetchNews: () => {
-      return dispatch(fetchNews())
+    fetchNewsIfNeeded: () => {
+      return dispatch(fetchNewsIfNeeded())
     }
   }
 }

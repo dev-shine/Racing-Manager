@@ -8,6 +8,8 @@ import { timestampToFeedTimestamp } from 'utils/dateutils'
  */
 import isNumber from 'is-number'
 
+import update from 'immutability-helper'
+
 import { ROOT_PATH } from 'api/ServiceTypes'
 
 /**
@@ -50,11 +52,16 @@ export const formatHorseData = (data = {}) => {
   return Promise.resolve({
     ...data,
     messages: messages.map(obj => {
-      const message = Object.assign({}, obj)
-      const { createdAt, attachment } = message
+      const { createdAt, attachment } = obj
 
-      message.timeStamp = timestampToFeedTimestamp(createdAt)
-      message.postType = horsePostType(attachment)
+      const message = update(obj, {
+        timeStamp: {
+          $set: timestampToFeedTimestamp(createdAt)
+        },
+        postType: {
+          $set: horsePostType(attachment)
+        }
+      })
 
       return message
     })
