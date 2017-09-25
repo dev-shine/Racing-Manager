@@ -4,12 +4,14 @@ import { timestampToDate } from 'utils/dateutils'
 
 import isObject from 'utils/objectutils/isObject'
 
+import update from 'immutability-helper'
+
 export const formatUser = (user = {}) => {
   if (!isObject(user)) {
     return user
   }
 
-  const clonedUser = { ...user }
+  const clonedUser = update(user, {})
 
   const {
     avatarImage,

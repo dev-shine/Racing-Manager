@@ -3,11 +3,20 @@
  */
 import { timestampToFeedTimestamp } from 'utils/dateutils'
 
+/**
+ *  @module update
+ */
+import update from 'immutability-helper'
+
 export const formatFeedComments = (comments) => {
   return comments.map((obj) => {
-    const comment = Object.assign({}, obj)
-    const { createdAt } = comment
-    comment.timeStamp = timestampToFeedTimestamp(createdAt)
+    const { createdAt } = obj
+
+    const comment = update(obj, {
+      timeStamp: {
+        $set: timestampToFeedTimestamp(createdAt)
+      }
+    })
 
     return comment
   })
