@@ -29,6 +29,11 @@ import TileHeader from 'components/tiles/TileHeader'
 import TileContent from 'components/tiles/TileContent'
 
 /**
+ *  @module TileFooter
+ */
+import TileFooter from 'components/tiles/TileFooter'
+
+/**
  *  @name TextPopupTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -46,12 +51,14 @@ const TextPopupTile = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <div className='col-sm-10 col-sm-push-1 text-popup-tile__container'>
+      <div className='col-sm-12 text-popup-tile__container'>
         <TileHeader
           name={name}
           date={date} />
         <TileContent
-          text={text}/>
+          text={text} />
+        <TileFooter
+          shareText={text} />
       </div>
     </div>
   )

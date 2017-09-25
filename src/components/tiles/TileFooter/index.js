@@ -1,7 +1,7 @@
 /**
  * @module react
  */
-import React from 'react'
+import React, { Component } from 'react'
 
 /**
  * @module PropTypes
@@ -23,36 +23,104 @@ import classNames from 'utils/classnames'
  */
 import { stopPropagation } from 'utils/domutils'
 
-const TileFooter = props => {
-  const {
-    className,
-    modifier,
-    onSocialShare
-  } = props
+/**
+ *  @module TileSocialShare
+ */
+import TileSocialShare from 'components/tiles/TileSocialShare'
 
-  const modifiedClassNames = classNames('tile-footer', className, modifier)
+class TileFooter extends Component {
+  constructor (props) {
+    super(props)
 
-  return (
-    <div className={modifiedClassNames} onClick={stopPropagation}>
-      <div className='tile-footer__item'>
-        <Icon
-          className='tile-footer__icon micro'
-          modifier='heart' />
-        <p className='tile-footer__text micro'></p>
+    this.state = {
+      showSocial: props.showSocial
+    }
+
+    this.showSocial = this.showSocial.bind(this)
+    this.hideSocial = this.hideSocial.bind(this)
+    this.onSocialShare = this.onSocialShare.bind(this)
+  }
+
+  componentWillReceiveProps ({ showSocial }, nextState) {
+    if (showSocial !== this.props.showSocial && showSocial !== nextState.showSocial) {
+      if (showSocial) {
+        this.hideSocial()
+      } else {
+        this.showSocial()
+      }
+    }
+  }
+
+  showSocial () {
+    this.setState({
+      showSocial: true
+    })
+  }
+
+  hideSocial () {
+    this.setState({
+      showSocial: false
+    })
+  }
+
+  onSocialShare () {
+    if (!this.props.allowSocialShare) {
+      return false
+    }
+
+    if (this.state.showSocial) {
+      return this.hideSocial()
+    }
+
+    return this.showSocial()
+  }
+
+  render () {
+    const {
+      className,
+      modifier,
+      shareText,
+      allowSocialShare
+    } = this.props
+
+    const {
+      showSocial
+    } = this.state
+
+    const modifiedClassNames = classNames('tile-footer', className, modifier)
+
+    return (
+      <div className={modifiedClassNames} onClick={stopPropagation}>
+        <div className='tile-footer__item'>
+          <Icon
+            className='tile-footer__icon micro'
+            modifier='heart' />
+          <p className='tile-footer__text micro'></p>
+        </div>
+        <div className='tile-footer__item'>
+          <Icon
+            className='tile-footer__icon micro'
+            modifier='comment' />
+          <p className='tile-footer__text micro'></p>
+        </div>
+        <div className='tile-footer__item' onClick={this.onSocialShare}>
+          <Icon
+            className='tile-footer__icon micro'
+            modifier='share' />
+        </div>
+        {
+          allowSocialShare
+          ? (
+              <TileSocialShare
+                show={showSocial}
+                onClose={this.hideSocial}
+                shareText={shareText} />
+            )
+          : null
+        }
       </div>
-      <div className='tile-footer__item'>
-        <Icon
-          className='tile-footer__icon micro'
-          modifier='comment' />
-        <p className='tile-footer__text micro'></p>
-      </div>
-      <div className='tile-footer__item' onClick={onSocialShare}>
-        <Icon
-          className='tile-footer__icon micro'
-          modifier='share' />
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 /**
@@ -68,7 +136,9 @@ TileFooter.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  onSocialShare: PropTypes.func
+  showSocial: PropTypes.bool,
+  shareText: PropTypes.string,
+  allowSocialShare: PropTypes.bool
 }
 
 /**
@@ -77,7 +147,10 @@ TileFooter.propTypes = {
  */
 TileFooter.defaultProps = {
   className: '',
-  modifier: ''
+  modifier: '',
+  showSocial: false,
+  shareText: '',
+  allowSocialShare: true
 }
 
 /**

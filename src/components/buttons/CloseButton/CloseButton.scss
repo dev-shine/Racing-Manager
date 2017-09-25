@@ -1,11 +1,14 @@
 .close-button {
   width: 40px;
   height: 40px;
-  background-color: $white;
+  background-color: $button-secondary-cta;
   transition: transform .4s ease-out;
-  // box-shadow: $tile-box-shadow;
 
   &:hover {
     transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  &__icon:before {
+    color: $button-cta;
   }
 }

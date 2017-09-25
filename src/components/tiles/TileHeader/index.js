@@ -26,12 +26,12 @@ const TileHeader = props => {
   return (
     <div className={modifiedClassNames}>
       <div className='tile-header__name'>
-        <p className='micro'>
+        <p className='micro regular'>
           {name}
         </p>
       </div>
       <div className='tile-header__date'>
-        <p className='micro'>
+        <p className='micro regular'>
           {date}
         </p>
       </div>

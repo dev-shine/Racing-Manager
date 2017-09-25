@@ -34,11 +34,6 @@ import TileContent from 'components/tiles/TileContent'
 import baseTile from 'components/tiles/BaseTile'
 
 /**
- *  @module TileSocialShare
- */
-import TileSocialShare from 'components/tiles/TileSocialShare'
-
-/**
  *  @name TextTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -49,10 +44,7 @@ const TextTile = props => {
     modifier,
     name,
     date,
-    text,
-    showSocial,
-    hideSocialSharing,
-    showSocialSharing
+    text
   } = props
 
   const modifiedClassNames = classNames('text-tile', className, modifier)
@@ -65,10 +57,6 @@ const TextTile = props => {
       <TileContent
         text={text}/>
       <TileFooter
-        onSocialShare={showSocialSharing} />
-      <TileSocialShare
-        show={showSocial}
-        onClose={hideSocialSharing}
         shareText={text} />
     </div>
   )

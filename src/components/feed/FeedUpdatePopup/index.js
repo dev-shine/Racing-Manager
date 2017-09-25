@@ -209,23 +209,27 @@ export class FeedUpdatePopup extends Component {
       <div className={modifiedClassNames}>
         { this.renderTile() }
         <div className='feed-popup__bottom section-shadow'>
-          {
-            allowCommenting
-            ? (
-                <div className='col-xs-12 feed-popup__bottomcontent'>
-                  <SubmitFeedComment
-                    posted={commentPosted}
-                    allowAttachments={false}
-                    title={submitTitle}
-                    submitFeedUpdate={this.postFeedComment}
-                    reducerName='submitFeedComments'
-                    />
+          <div className='row'>
+            <div className='col-xs-12 col-sm-10 col-sm-push-1 col-md-10'>
+              {
+                allowCommenting
+                ? (
+                    <div className='col-xs-12 feed-popup__bottomcontent'>
+                      <SubmitFeedComment
+                        posted={commentPosted}
+                        allowAttachments={false}
+                        title={submitTitle}
+                        submitFeedUpdate={this.postFeedComment}
+                        reducerName='submitFeedComments'
+                        />
+                  </div>
+                )
+                : null
+              }
+              <div className='col-xs-12 feed-popup__comment-list'>
+                <FeedComments id={id} />
               </div>
-            )
-            : null
-          }
-          <div className='col-xs-12 feed-popup__comment-list'>
-            <FeedComments id={id} />
+            </div>
           </div>
         </div>
       </div>

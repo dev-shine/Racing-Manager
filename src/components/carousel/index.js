@@ -29,6 +29,11 @@ import CarouselPaginationButton from './CarouselPaginationButton'
 import { CSSTransitionGroup } from 'react-transition-group'
 
 /**
+ *  @module stopPropagation
+ */
+import { stopPropagation } from 'utils/domutils'
+
+/**
  *  dummy function
  */
 const noop = () => {}
@@ -232,8 +237,7 @@ class Carousel extends Component {
    */
   getSliderStyles () {
     const {
-      width,
-      showArrows
+      width
     } = this.props
 
     const {
@@ -242,8 +246,7 @@ class Carousel extends Component {
 
     return {
       width: width,
-      visibility: slideWidth ? 'visible' : 'hidden',
-      padding: showArrows ? '0 32px' : '0'
+      visibility: slideWidth ? 'visible' : 'hidden'
     }
   }
 
@@ -423,10 +426,8 @@ class Carousel extends Component {
    *  @description Prevent default / propagations.
    */
   handleClick (e) {
-    e.stopPropagation()
-
-    if (e.nativeEvent) {
-      e.nativeEvent.stopPropagation()
+    if (this.state.dragging || this.clickSafe) {
+      stopPropagation(e)
     }
 
     if (this.clickSafe === true) {
@@ -1131,7 +1132,7 @@ class Carousel extends Component {
           style={this.getFrameStyles()}
           {...this.getTouchEvents()}
           {...this.getMouseEvents()}
-          onClick={this.handleClick}>
+          onClickCapture={this.handleClick}>
           <ul className={listClassNames} style={this.getListStyles()} ref='list'>
             <CSSTransitionGroup
                 transitionName="fade-in"
