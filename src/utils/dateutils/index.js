@@ -17,7 +17,7 @@ export const timestampToFeedTimestamp = (ts) => {
 
   const mm = moment(ts)
 
-  return mm.fromNow(ts)
+  return `${mm.fromNow(ts)} ago`
 }
 
 export const timestampToDate = (ts, format = 'DD/MM/YYYY') => {
