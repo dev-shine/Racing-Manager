@@ -27,13 +27,23 @@ if (isDev) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
   configureStore = initialState => {
-    return createStore(
+    const store = createStore(
       rootReducer,
       initialState,
       composeEnhancers(
         applyMiddleware(thunkMiddleware, authenticatedRequestMiddleware)
       )
     )
+
+    if (module.hot) {
+      // Enable Webpack hot module replacement for reducers
+      module.hot.accept('reducers/rootReducer', () => {
+        const nextRootReducer = require('reducers/rootReducer')
+        store.replaceReducer(nextRootReducer)
+      })
+    }
+
+    return store
   }
 } else {
   configureStore = initialState => {
