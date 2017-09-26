@@ -46,8 +46,9 @@ class MediaTileContent extends Component {
       <div className={modifiedClassNames}>
         <Carousel
           showArrows
-          nextArrowModifier={['bg', 'right']}
-          prevArrowModifier={['bg']}>
+          arrowModifier={['show-bar']}
+          nextArrowModifier={['right', 'white']}
+          prevArrowModifier={['white']}>
           {
             children.map((child, index) => {
               return (

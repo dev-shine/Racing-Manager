@@ -228,6 +228,7 @@ class HeaderSection extends PureComponent {
             containerClassName='dashboard-header__section'
             ref='carousel'
             showArrows
+            arrowModifier={['middle']}
             slideWidth={'266px'}
             breakPoints={{
               480: {
