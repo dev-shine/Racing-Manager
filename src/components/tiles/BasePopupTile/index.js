@@ -4,11 +4,6 @@
 import React, { Component } from 'react'
 
 /**
- *  @module BASE_URL
- */
-import { ROOT_PATH } from 'api/ServiceTypes'
-
-/**
  *  @name BasePopupTileHOC
  *  @description Higher order component to wrap an extra class for base popup tiles.
  *  @param  {Component} WrappedComponent
@@ -31,7 +26,7 @@ const BasePopupTileHOC = WrappedComponent => {
     render () {
       return (
         <div className='base-popup-tile'>
-          <WrappedComponent {...this.props} rootPath={ ROOT_PATH } className='base-popup-tile__content' />
+          <WrappedComponent {...this.props} className='base-popup-tile__content' />
         </div>
       )
     }

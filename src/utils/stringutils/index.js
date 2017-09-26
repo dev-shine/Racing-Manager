@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { TRAILING_SPACES_REG } from 'utils/validation/ValidationTypes'
 
 export const trim = (str = '') => {
@@ -10,4 +12,10 @@ export const toUpperCase = (str = '') => {
   }
 
   return str.toUpperCase()
+}
+
+export const textToNewLineReactComponent = (text = '') => {
+  return text.split('\n').map((item, key) => {
+    return <span key={key}>{item}<br/></span>
+  })
 }

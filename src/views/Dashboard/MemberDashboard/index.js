@@ -8,15 +8,11 @@ import HeaderSection from 'components/dashboard/HeaderSection'
 
 import { getDashboard } from 'actions/dashboard'
 
-import {
-  fetchNewsIfNeeded
-} from 'actions/news'
-
 import View from 'components/routing/View'
 
 import { MEMBER_DASHBOARD as title } from 'data/titles'
 
-import NewsGallery from 'components/news/NewsGallery'
+import NewsGallery from 'containers/News/NewsGallery'
 
 /**
  *  @class
@@ -30,11 +26,10 @@ export class MemberDashboard extends Component {
 
   componentDidMount () {
     this.props.getDashBoardData()
-    this.props.fetchNewsIfNeeded()
   }
 
   render () {
-    const { tiles, dashboardData, fetching } = this.props
+    const { dashboardData, fetching } = this.props
     const { ownership } = dashboardData
 
     return (
@@ -50,8 +45,7 @@ export class MemberDashboard extends Component {
               Racing News
             </h1>
             <div className='member-dashboard__feed'>
-              <NewsGallery
-                tiles={tiles} />
+              <NewsGallery />
             </div>
             <TextButton
               text='Load more'
@@ -68,22 +62,16 @@ export class MemberDashboard extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    dashboard,
-    news
+    dashboard
   } = state
 
   const {
     member
   } = dashboard
 
-  const {
-    data
-  } = news
-
   return {
     dashboardData: member.data,
-    fetching: member.fetching,
-    tiles: data
+    fetching: member.fetching
   }
 }
 
@@ -91,9 +79,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getDashBoardData: () => {
       return dispatch(getDashboard())
-    },
-    fetchNewsIfNeeded: () => {
-      return dispatch(fetchNewsIfNeeded())
     }
   }
 }
