@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 /**
  *  @module classNames
  */
-import classNames from 'classnames'
+import classNames from 'utils/classnames'
 
 /**
  *  @module CarouselArrow
@@ -27,6 +27,11 @@ import CarouselPaginationButton from './CarouselPaginationButton'
  *  @module CSSTransitionGroup
  */
 import { CSSTransitionGroup } from 'react-transition-group'
+
+/**
+ *  @module stopPropagation
+ */
+import { stopPropagation } from 'utils/domutils'
 
 /**
  *  dummy function
@@ -59,6 +64,7 @@ class Carousel extends Component {
     }
 
     // Bind custom fns
+    this.renderArrows = this.renderArrows.bind(this)
     this.getListStyles = this.getListStyles.bind(this)
     this.getFrameStyles = this.getFrameStyles.bind(this)
     this.getSlideStyles = this.getSlideStyles.bind(this)
@@ -232,8 +238,7 @@ class Carousel extends Component {
    */
   getSliderStyles () {
     const {
-      width,
-      showArrows
+      width
     } = this.props
 
     const {
@@ -242,8 +247,7 @@ class Carousel extends Component {
 
     return {
       width: width,
-      visibility: slideWidth ? 'visible' : 'hidden',
-      padding: showArrows ? '0 32px' : '0'
+      visibility: slideWidth ? 'visible' : 'hidden'
     }
   }
 
@@ -423,10 +427,8 @@ class Carousel extends Component {
    *  @description Prevent default / propagations.
    */
   handleClick (e) {
-    e.stopPropagation()
-
-    if (e.nativeEvent) {
-      e.nativeEvent.stopPropagation()
+    if (this.state.dragging || this.clickSafe) {
+      stopPropagation(e)
     }
 
     if (this.clickSafe === true) {
@@ -800,8 +802,8 @@ class Carousel extends Component {
     const positionValue = vertical ? top : left
 
     return React.Children.map(children, (child, index) => {
-      const className = classNames('nica-carousel__slide', {
-        'nica-carousel__slide--active': index === currentSlide
+      const className = classNames('nica-carousel__slide', '', {
+        'active': index === currentSlide
       })
       return (
         <li
@@ -981,13 +983,32 @@ class Carousel extends Component {
     return targetPosition
   }
 
+  renderArrows () {
+    const {
+      showArrows,
+      arrowModifier
+    } = this.props
+
+    if (!showArrows) {
+      return null
+    }
+
+    const modifiedClassNames = classNames('nica-carousel__arrows', '', arrowModifier)
+
+    return (
+      <div className={modifiedClassNames}>
+        {this.renderPrevArrow()}
+        {this.renderNextArrow()}
+      </div>
+    )
+  }
+
   /**
    *  renderPrevArrow
    *  @return {React.Component}
    */
   renderPrevArrow () {
     const {
-      showArrows,
       prevArrow,
       prevArrowClassName,
       prevArrowModifier
@@ -997,7 +1018,7 @@ class Carousel extends Component {
       currentSlide
     } = this.state
 
-    if (!showArrows || currentSlide <= 0) {
+    if (currentSlide <= 0) {
       return null
     }
 
@@ -1008,16 +1029,14 @@ class Carousel extends Component {
     const className = classNames('nica-carousel__prev-arrow', prevArrowClassName)
 
     return (
-      <div className='nica-carousel__prev-arrow-container'>
-        <CarouselArrow
-          className={className}
-          modifier={prevArrowModifier}
-          iconModifier={['leftarrow']}
-          onClick={ e => {
-            this.handleClick(e)
-            this.prevSlide()
-          }}/>
-      </div>
+      <CarouselArrow
+        className={className}
+        modifier={prevArrowModifier}
+        iconModifier={['leftarrow']}
+        onClick={ e => {
+          this.handleClick(e)
+          this.prevSlide()
+        }} />
     )
   }
 
@@ -1027,7 +1046,6 @@ class Carousel extends Component {
    */
   renderNextArrow () {
     const {
-      showArrows,
       nextArrow,
       nextArrowClassName,
       nextArrowModifier
@@ -1038,7 +1056,7 @@ class Carousel extends Component {
       slideCount
     } = this.state
 
-    if (!showArrows || currentSlide >= (slideCount - 1)) {
+    if (currentSlide >= (slideCount - 1)) {
       return null
     }
 
@@ -1049,16 +1067,14 @@ class Carousel extends Component {
     const className = classNames('nica-carousel__next-arrow', nextArrowClassName)
 
     return (
-      <div className='nica-carousel__next-arrow-container'>
-        <CarouselArrow
-          className={className}
-          modifier={nextArrowModifier}
-          iconModifier={['rightarrow']}
-          onClick={ e => {
-            this.handleClick(e)
-            this.nextSlide()
-          }}/>
-      </div>
+      <CarouselArrow
+        className={className}
+        modifier={nextArrowModifier}
+        iconModifier={['rightarrow']}
+        onClick={ e => {
+          this.handleClick(e)
+          this.nextSlide()
+        }}/>
     )
   }
 
@@ -1119,8 +1135,8 @@ class Carousel extends Component {
     const frameClassNames = classNames('nica-carousel__frame', frameClassName)
 
     // Classnames for the list.
-    const listClassNames = classNames('nica-carousel__list', {
-      'nica-carousel__list--animate': animate
+    const listClassNames = classNames('nica-carousel__list', '', {
+      animate
     })
 
     return (
@@ -1131,7 +1147,7 @@ class Carousel extends Component {
           style={this.getFrameStyles()}
           {...this.getTouchEvents()}
           {...this.getMouseEvents()}
-          onClick={this.handleClick}>
+          onClickCapture={this.handleClick}>
           <ul className={listClassNames} style={this.getListStyles()} ref='list'>
             <CSSTransitionGroup
                 transitionName="fade-in"
@@ -1142,8 +1158,7 @@ class Carousel extends Component {
             </CSSTransitionGroup>
           </ul>
         </div>
-        {this.renderPrevArrow()}
-        {this.renderNextArrow()}
+        {this.renderArrows()}
         {this.renderPagination()}
       </div>
     )

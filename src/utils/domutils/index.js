@@ -136,6 +136,9 @@ export const getTop = (elem) => {
 export const stopPropagation = (e) => {
   if (e && e.stopPropagation) {
     e.stopPropagation()
+  } else
+  if (e && e.nativeEvent) {
+    e.nativeEvent.stopPropagation()
   }
 }
 

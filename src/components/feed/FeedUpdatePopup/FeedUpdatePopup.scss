@@ -6,12 +6,16 @@
   &__bottom {
     position: relative;
     background-color: $white;
-    padding-top: 30px;
+    padding-top: 50px;
     @include clearfix();
   }
 
   &__bottomcontent {
     position: relative;
     padding: 0 10px 40px 10px;
+  }
+
+  &__comment-list {
+    margin-bottom: 30px;
   }
 }

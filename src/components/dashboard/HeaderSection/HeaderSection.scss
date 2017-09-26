@@ -69,14 +69,6 @@
     }
   }
 
-/*   &__slide {
-    width: 100%;
-
-    @media all and (min-width: $screen-sm-min) {
-      width: 266px;
-    }
-  } */
-
   &__slide-item {
     display: inline-block;
   }
@@ -94,7 +86,6 @@
     }
   }
 
-  // .swiper-slide
   .nica-carousel__slide {
     text-align: center;
     vertical-align: middle;
@@ -104,6 +95,7 @@
       color: $white;
       opacity: 0.5;
       transition: opacity .2s ease-out;
+      padding: 0 20px;
 
       >sup {
         margin-left: 6px;
@@ -120,9 +112,4 @@
   &__pagination {
     margin-top: 20px;
   }
-
-  // .swiper-container {
-  //   width: 100%;
-  //   height: 100%;
-  // }
 }

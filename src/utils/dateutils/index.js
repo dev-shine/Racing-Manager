@@ -10,12 +10,14 @@ import moment from 'moment'
  *  @param  {String} ts
  *  @return {String}
  */
-export const timestampToFeedTimestamp = ts => {
-  let now = moment().startOf('day')
-  let earliest = moment(ts).startOf('day')
-  const diff = now.diff(earliest, 'days')
+export const timestampToFeedTimestamp = (ts) => {
+  if (Math.abs(moment().diff(ts)) < 25000) { // 25 seconds before or after now
+    return 'Just now'
+  }
 
-  return diff <= 0 ? 'Today' : diff === 1 ? `${diff} day ago` : `${diff} days ago`
+  const mm = moment(ts)
+
+  return `${mm.fromNow(ts)} ago`
 }
 
 export const timestampToDate = (ts, format = 'DD/MM/YYYY') => {

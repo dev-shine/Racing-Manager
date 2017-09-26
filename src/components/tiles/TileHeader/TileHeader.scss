@@ -1,28 +1,36 @@
 .tile-header {
   position: relative;
   width: 100%;
-  /* margin-bottom: 15px; */
-  padding: 0 10px 0 10px;
+  padding: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: row;
   @include clearfix();
 
-  // Only include padding for the top if the author is on the top of the tile
-  &:first-child {
-    padding-top: 10px;
-  }
-
   p {
-    color: $ash-grey;
+    color: $color-text-bold;
   }
 
-  &__name {
+  &__section {
     position: relative;
-    float: left;
-    padding-right: 5px;
+
+    &--middle {
+      flex: 3;
+      margin-right: 10px;
+    }
+
+    &--avatar {
+      width: 12px;
+      height: 12px;
+      margin-right: 10px;
+    }
+
+    &--hidden {
+      display: none;
+    }
   }
 
-  &__date {
-    position: relative;
-    float: right;
-    padding-left: 5px;
+  &__icon:before {
+    vertical-align: top;
+    color: $color-text-bold;
   }
 }

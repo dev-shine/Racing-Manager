@@ -49,11 +49,6 @@ import TileVideoContent from 'components/tiles/TileVideoContent'
 import TileMediaContent from 'components/tiles/TileMediaContent'
 
 /**
- *  @module TileSocialShare
- */
-import TileSocialShare from 'components/tiles/TileSocialShare'
-
-/**
  *  createSlides
  *  @param  {Array} images
  *  @param  {Array} videos
@@ -76,7 +71,7 @@ export const createSlides = (attachments = [], rootPath) => {
       return (
         <div key={`mimg-${index}`}>
           <TileImageContent
-            modifier={['no-margin-bottom', 'video-aspect']}
+            modifier={['no-margin-bottom']}
             rootPath={rootPath}
             src={attachment.path}
             alt={'Horse racing'} />
@@ -108,10 +103,7 @@ class MultipleTile extends Component {
       date,
       text,
       attachments,
-      rootPath,
-      showSocial,
-      hideSocialSharing,
-      showSocialSharing
+      rootPath
     } = this.props
 
     const modifiedClassNames = classNames('multiple-tile', className, modifier)
@@ -127,10 +119,6 @@ class MultipleTile extends Component {
         <TileContent
           text={text}/>
         <TileFooter
-          onSocialShare={showSocialSharing} />
-        <TileSocialShare
-          show={showSocial}
-          onClose={hideSocialSharing}
           shareText={text} />
       </div>
     )

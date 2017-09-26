@@ -1,5 +1,6 @@
 .feed-comment {
-  $mBottom: 15px;
+  $mBottom: 12px;
+  $mBottomLast: 18px;
 
   position: relative;
   width: 100%;
@@ -13,13 +14,14 @@
   &__body {
     position: relative;
     width: 100%;
-    margin-bottom: $mBottom;
+    margin-bottom: $mBottomLast;
     padding-right: 40px;
     padding-left: 10px;
   }
 
   &__text {
     position: relative;
+    color: $color-text-strong;
   }
 
   &__footer {

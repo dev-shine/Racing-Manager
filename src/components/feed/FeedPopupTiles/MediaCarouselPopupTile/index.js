@@ -44,6 +44,11 @@ import TileVideoContent from 'components/tiles/TileVideoContent'
 import TileMediaContent from 'components/tiles/TileMediaContent'
 
 /**
+ *  @module TileFooter
+ */
+import TileFooter from 'components/tiles/TileFooter'
+
+/**
  *  createSlides
  *  @param  {Array} images
  *  @param  {Array} videos
@@ -67,6 +72,7 @@ export const createSlides = (attachments = [], rootPath) => {
       return (
         <div key={`mimg-${index}`}>
           <TileImageContent
+            useImageTag={false}
             modifier={['no-margin-bottom', 'video-aspect']}
             rootPath={rootPath}
             className='multiple-popup-tile__slide'
@@ -110,12 +116,14 @@ class MediaCarouselPopupTile extends Component {
         <TileMediaContent>
           {createSlides(attachments, rootPath)}
         </TileMediaContent>
-        <div className='col-sm-10 col-sm-push-1 multiple-popup-tile__container'>
+        <div className='col-sm-12 multiple-popup-tile__container'>
           <TileHeader
             name={name}
             date={date} />
           <TileContent
-            text={text}/>
+            text={text} />
+          <TileFooter
+            shareText={text} />
         </div>
       </div>
     )

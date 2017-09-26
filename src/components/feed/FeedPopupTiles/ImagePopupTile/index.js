@@ -34,6 +34,11 @@ import TileContent from 'components/tiles/TileContent'
 import TileImageContent from 'components/tiles/TileImageContent'
 
 /**
+ *  @module TileFooter
+ */
+import TileFooter from 'components/tiles/TileFooter'
+
+/**
  *  @name ImagePopupTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -55,13 +60,16 @@ const ImagePopupTile = props => {
     <div className={modifiedClassNames}>
       <TileImageContent
         rootPath={rootPath}
+        useImageTag={false}
         src={src}/>
-      <div className='col-xs-12 col-sm-10 col-sm-push-1 image-popup-tile__container'>
+      <div className='col-xs-12 image-popup-tile__container'>
         <TileHeader
           name={name}
           date={date} />
         <TileContent
-          text={text}/>
+          text={text} />
+        <TileFooter
+          shareText={text} />
       </div>
     </div>
   )
@@ -82,7 +90,10 @@ ImagePopupTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array
+  ]),
   src: PropTypes.string
 }
 

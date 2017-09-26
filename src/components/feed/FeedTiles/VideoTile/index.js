@@ -39,11 +39,6 @@ import baseTile from 'components/tiles/BaseTile'
 import TileVideoContent from 'components/tiles/TileVideoContent'
 
 /**
- *  @module TileSocialShare
- */
-import TileSocialShare from 'components/tiles/TileSocialShare'
-
-/**
  *  @name VideoTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -57,10 +52,7 @@ const VideoTile = props => {
     text,
     poster,
     src,
-    rootPath,
-    showSocial,
-    hideSocialSharing,
-    showSocialSharing
+    rootPath
   } = props
 
   const modifiedClassNames = classNames('video-tile', className, modifier)
@@ -77,10 +69,6 @@ const VideoTile = props => {
       <TileContent
         text={text}/>
       <TileFooter
-        onSocialShare={showSocialSharing} />
-      <TileSocialShare
-        onClose={hideSocialSharing}
-        show={showSocial}
         shareText={text} />
     </div>
   )

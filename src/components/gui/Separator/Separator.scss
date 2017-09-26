@@ -19,7 +19,12 @@
   &--grey {
     background: $color-seperator-weak;
   }
+  
   &--fluid {
     width: 100%;
+  }
+
+  &--thin {
+    height: 1px;
   }
 }

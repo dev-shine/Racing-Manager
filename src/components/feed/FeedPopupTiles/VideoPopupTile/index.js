@@ -34,6 +34,11 @@ import TileContent from 'components/tiles/TileContent'
 import TileVideoContent from 'components/tiles/TileVideoContent'
 
 /**
+ *  @module TileFooter
+ */
+import TileFooter from 'components/tiles/TileFooter'
+
+/**
  *  @name VideoPopupTile
  *  @param  {Object} props
  *  @return {React.Component}
@@ -58,12 +63,14 @@ const VideoPopupTile = props => {
         poster={poster}
         src={src}
         rootPath={rootPath} />
-      <div className='col-sm-10 col-sm-push-1 video-popup-tile__container'>
+      <div className='col-sm-12 video-popup-tile__container'>
         <TileHeader
           name={name}
           date={date} />
         <TileContent
-          text={text}/>
+          text={text} />
+        <TileFooter
+          shareText={text} />
       </div>
     </div>
   )

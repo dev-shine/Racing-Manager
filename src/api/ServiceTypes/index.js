@@ -26,3 +26,5 @@ export const REGISTRATION_CONFIRMATION = `${USER}/verify`
 export const SETUP = `${BASE_URL}/setup`
 
 export const COMMENT = `${MESSAGE}/comment`
+
+export const NEWS = `${BASE_URL}/news`

@@ -1,46 +1,18 @@
-/**
- *  @module React, Component
- */
 import React, { Component } from 'react'
 
-/**
- *  @module Connect
- */
 import { connect } from 'react-redux'
 
-/**
- *  @module NewsTile
- */
-import NewsTile from 'components/news/NewsTile'
-
-/**
- *  @module TextButton
- */
 import TextButton from 'components/buttons/TextButton'
 
-/**
- *  @module HeaderSection
- */
 import HeaderSection from 'components/dashboard/HeaderSection'
 
-/**
- *  @module Block, Grid
- */
-import { Block, Grid } from 'components/layouts/masonry'
-
-/**
- *  @module newsImage
- */
-import { newsImage } from 'assets/dummyassets'
-
-/**
- *  @module getDashboard
- */
 import { getDashboard } from 'actions/dashboard'
 
 import View from 'components/routing/View'
 
 import { MEMBER_DASHBOARD as title } from 'data/titles'
+
+import NewsGallery from 'containers/News/NewsGallery'
 
 /**
  *  @class
@@ -57,7 +29,7 @@ export class MemberDashboard extends Component {
   }
 
   render () {
-    const { tiles, dashboardData, fetching } = this.props
+    const { dashboardData, fetching } = this.props
     const { ownership } = dashboardData
 
     return (
@@ -73,26 +45,7 @@ export class MemberDashboard extends Component {
               Racing News
             </h1>
             <div className='member-dashboard__feed'>
-              <Grid
-                targetBlockWidth={265}
-                center={false}
-                maxColumns={4}>
-                {
-                  tiles.map((tile, index) => (
-                    <Block width={1} key={index}>
-                      <NewsTile
-                        id={index}
-                        rootPath={tile.rootPath}
-                        text={tile.text}
-                        src={tile.src}
-                        providerSrc={tile.providerSrc}
-                        date={tile.date}
-                        className='member-dashboard__tile'
-                      />
-                    </Block>
-                  ))
-                }
-              </Grid>
+              <NewsGallery />
             </div>
             <TextButton
               text='Load more'
@@ -115,16 +68,10 @@ const mapStateToProps = (state, ownProps) => {
   const {
     member
   } = dashboard
+
   return {
     dashboardData: member.data,
-    fetching: member.fetching,
-    tiles: new Array(12).fill({
-      text: 'Tobefair: the Cheltenham favourite owned by 17 regulars of a Pembroke pub',
-      rootPath: '',
-      src: newsImage,
-      providerSrc: newsImage,
-      date: '2017-06-06T14:11:42.820Z'
-    })
+    fetching: member.fetching
   }
 }
 
