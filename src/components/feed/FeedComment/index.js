@@ -17,6 +17,8 @@ const FeedComment = (props) => {
     <div className='feed-comment'>
       <div className='feed-comment__header'>
         <TileHeader
+          isIcon
+          iconModifier={'account'}
           name={name}
           date={date} />
       </div>
@@ -26,7 +28,7 @@ const FeedComment = (props) => {
         </p>
       </div>
       <div className='feed-comment__footer'>
-        <Separator modifier='grey' />
+        <Separator modifier={['grey', 'thin']} />
       </div>
     </div>
   )

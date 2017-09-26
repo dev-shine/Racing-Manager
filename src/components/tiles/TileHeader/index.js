@@ -31,7 +31,7 @@ const TileHeader = props => {
         {
           isIcon
           ? (
-              <Icon modifier={iconModifier} />
+              <Icon className='tile-header__icon' modifier={iconModifier} />
             )
           : (
               <Image isImage imageSrc={src} />

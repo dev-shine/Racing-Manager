@@ -15,15 +15,22 @@
 
     &--middle {
       flex: 3;
+      margin-right: 10px;
     }
 
     &--avatar {
       width: 12px;
       height: 12px;
+      margin-right: 10px;
     }
 
     &--hidden {
       display: none;
     }
+  }
+
+  &__icon:before {
+    vertical-align: top;
+    color: $color-text-bold;
   }
 }
