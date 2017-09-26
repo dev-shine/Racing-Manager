@@ -1,36 +1,49 @@
-/**
- * @module react
- */
 import React from 'react'
 
-/**
- * @module PropTypes
- */
 import PropTypes from 'prop-types'
 
-/**
- * @module classNames
- */
 import classNames from 'utils/classnames'
+
+import Image from 'components/image'
+
+import Icon from 'components/icon'
 
 const TileHeader = props => {
   const {
     className,
     modifier,
     name,
-    date
+    date,
+    src,
+    isIcon,
+    iconModifier
   } = props
 
   const modifiedClassNames = classNames('tile-header', className, modifier)
 
+  const modifiedAvatarClassNames = classNames('tile-header__section', '', {
+    hidden: (!src && !isIcon),
+    avatar: true
+  })
   return (
     <div className={modifiedClassNames}>
-      <div className='tile-header__name'>
+      <div className={modifiedAvatarClassNames}>
+        {
+          isIcon
+          ? (
+              <Icon modifier={iconModifier} />
+            )
+          : (
+              <Image isImage imageSrc={src} />
+            )
+        }
+      </div>
+      <div className='tile-header__section tile-header__section--middle'>
         <p className='micro regular'>
           {name}
         </p>
       </div>
-      <div className='tile-header__date'>
+      <div className='tile-header__section'>
         <p className='micro regular'>
           {date}
         </p>
@@ -53,7 +66,13 @@ TileHeader.propTypes = {
     PropTypes.arrayOf(PropTypes.string)
   ]),
   name: PropTypes.string,
-  date: PropTypes.string
+  date: PropTypes.string,
+  src: PropTypes.string,
+  isIcon: PropTypes.bool,
+  iconModifier: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ])
 }
 
 /**
@@ -62,7 +81,8 @@ TileHeader.propTypes = {
  */
 TileHeader.defaultProps = {
   className: '',
-  modifier: ''
+  modifier: '',
+  isIcon: false
 }
 
 /**

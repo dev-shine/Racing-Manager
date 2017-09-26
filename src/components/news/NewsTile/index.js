@@ -4,7 +4,7 @@ import classNames from 'utils/classnames'
 
 import baseTile from 'components/tiles/BaseTile'
 import TileImageContent from 'components/tiles/TileImageContent'
-import TileHeaderProvider from 'components/tiles/TileHeaderProvider'
+import TileHeader from 'components/tiles/TileHeader'
 import TileContent from 'components/tiles/TileContent'
 import TileReadMore from 'components/tiles/TileReadMore'
 
@@ -25,10 +25,11 @@ const NewsTile = props => {
   return (
     <div className={modifiedClassNames}>
       <TileImageContent
+        useImageTag={false}
         rootPath={rootPath}
         src={src}
       />
-      <TileHeaderProvider
+      <TileHeader
         name={name}
         src={providerSrc}
         date={date}

@@ -2,21 +2,28 @@
   position: relative;
   width: 100%;
   padding: 10px 10px 0 10px;
+  display: flex;
+  flex-direction: row;
   @include clearfix();
 
   p {
-    color: $ash-grey;
+    color: $color-text-bold;
   }
 
-  &__name {
+  &__section {
     position: relative;
-    float: left;
-    padding-right: 5px;
-  }
 
-  &__date {
-    position: relative;
-    float: right;
-    padding-left: 5px;
+    &--middle {
+      flex: 3;
+    }
+
+    &--avatar {
+      width: 12px;
+      height: 12px;
+    }
+
+    &--hidden {
+      display: none;
+    }
   }
 }

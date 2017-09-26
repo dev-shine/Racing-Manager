@@ -24,7 +24,6 @@ const NewsGallery = (props) => {
               rootPath={''}
               text={tile.headline}
               src={tile.thumbnailImage}
-              providerSrc={tile.thumbnailImage}
               date={tile.timeStamp}
             />
           </Block>
