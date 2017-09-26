@@ -92,38 +92,38 @@ describe('Components - FeedUpdatePopup', () => {
   })
 
   it('should render a <TextPopupTile/> component if props with text entry and postType equal to text is defined', () => {
-    const tile = {
+    const feedTile = {
       postType: 'text',
       text: 'hello'
     }
-    wrapper.setProps({ tile })
+    wrapper.setProps({ feedTile })
     expect(wrapper.find(TextPopupTile)).to.have.length(1)
   })
 
   it('should render an <ImagePopupTile/> component if props with attachment entry and postType equal to image is defined', () => {
-    const tile = {
+    const feedTile = {
       postType: 'image',
       attachment: [{
         path: 'test.png'
       }]
     }
-    wrapper.setProps({ tile })
+    wrapper.setProps({ feedTile })
     expect(wrapper.find(ImagePopupTile)).to.have.length(1)
   })
 
   it('should render an <VideoPopupTile/> component if props with attachment entry and postType equal to video is defined', () => {
-    const tile = {
+    const feedTile = {
       postType: 'video',
       attachment: [{
         path: 'test.mp4'
       }]
     }
-    wrapper.setProps({ tile })
+    wrapper.setProps({ feedTile })
     expect(wrapper.find(VideoPopupTile)).to.have.length(1)
   })
 
   it('should render an <MediaCarouselPopupTile/> component if props with attachment entry and postType equal to multiplemedia is defined', () => {
-    const tile = {
+    const feedTile = {
       postType: 'multiplemedia',
       attachment: [{
         path: 'test.mp4',
@@ -134,7 +134,7 @@ describe('Components - FeedUpdatePopup', () => {
         type: 'image'
       }]
     }
-    wrapper.setProps({ tile })
+    wrapper.setProps({ feedTile })
     expect(wrapper.find(MediaCarouselPopupTile)).to.have.length(1)
   })
 })
