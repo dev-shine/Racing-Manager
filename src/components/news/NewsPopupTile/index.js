@@ -39,11 +39,16 @@ import TileImageContent from 'components/tiles/TileImageContent'
 import TileFooter from 'components/tiles/TileFooter'
 
 /**
- *  @name ImagePopupTile
+ *  @module TileTitle
+ */
+import TileTitle from 'components/tiles/TileTitle'
+
+/**
+ *  @name NewsPopupTile
  *  @param  {Object} props
  *  @return {React.Component}
  */
-const ImagePopupTile = props => {
+const NewsPopupTile = props => {
   const {
     className,
     modifier,
@@ -51,10 +56,12 @@ const ImagePopupTile = props => {
     date,
     text,
     src,
-    rootPath
+    title,
+    rootPath,
+    shareText
   } = props
 
-  const modifiedClassNames = classNames('image-popup-tile', className, modifier)
+  const modifiedClassNames = classNames('news-popup-tile', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
@@ -62,14 +69,22 @@ const ImagePopupTile = props => {
         rootPath={rootPath}
         useImageTag={false}
         src={src}/>
-      <div className='col-xs-12 image-popup-tile__container'>
+      <div className='news-popup-tile__container'>
         <TileHeader
           name={name}
           date={date} />
-        <TileContent
-          text={text} />
+
+        <div className='row'>
+          <div className='col-xs-12 col-sm-10 col-sm-push-1 col-md-10'>
+            <TileTitle
+              title={title} />
+            <TileContent
+              text={text} />
+          </div>
+        </div>
+
         <TileFooter
-          shareText={text} />
+          shareText={shareText} />
       </div>
     </div>
   )
@@ -79,7 +94,7 @@ const ImagePopupTile = props => {
  *  propTypes
  *  @type {Object}
  */
-ImagePopupTile.propTypes = {
+NewsPopupTile.propTypes = {
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -94,6 +109,10 @@ ImagePopupTile.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array
+  ]),
   src: PropTypes.string
 }
 
@@ -101,7 +120,7 @@ ImagePopupTile.propTypes = {
  *  defaultProps
  *  @type {Object}
  */
-ImagePopupTile.defaultProps = {
+NewsPopupTile.defaultProps = {
   className: '',
   modifier: '',
   name: '',
@@ -111,6 +130,6 @@ ImagePopupTile.defaultProps = {
 }
 
 /**
- *  @module ImagePopupTile
+ *  @module NewsPopupTile
  */
-export default basePopupTile(ImagePopupTile)
+export default basePopupTile(NewsPopupTile)

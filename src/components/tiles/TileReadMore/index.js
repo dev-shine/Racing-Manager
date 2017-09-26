@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 // import CtaLink from 'components/links/CtaLink'
 
-const TileReadMore = props => {
+const TileReadMore = (props) => {
 /*
   const {
     href

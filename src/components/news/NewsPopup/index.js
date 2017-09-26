@@ -4,7 +4,7 @@ import BasePopup from 'components/popup/BasePopup'
 
 import classNames from 'utils/classnames'
 
-import ImagePopupTile from 'components/feed/FeedPopupTiles/ImagePopupTile'
+import NewsPopupTile from 'components/news/NewsPopupTile'
 
 import { textToNewLineReactComponent } from 'utils/stringutils'
 
@@ -63,8 +63,9 @@ class NewsPopup extends Component {
         {
           newsTile
           ? (
-              <ImagePopupTile
+              <NewsPopupTile
                 name=''
+                title={newsTile.slugline}
                 date={newsTile.timeStamp}
                 shareText={newsTile.content}
                 text={textToNewLineReactComponent(newsTile.content)}
