@@ -11,50 +11,13 @@ import { textToNewLineReactComponent } from 'utils/stringutils'
 class NewsPopup extends Component {
   constructor (props) {
     super(props)
-
-    this.state = {
-      newsTile: null
-    }
-  }
-
-  componentDidMount () {
-    this.checkNewsTile(this.props.id)
-  }
-
-  componentWillReceiveProps ({ id }) {
-    if (id !== this.props.id) {
-      this.checkNewsTile(id)
-    }
-  }
-
-  checkNewsTile (id) {
-    const {
-      newsTiles
-    } = this.props
-
-    if (!id || !newsTiles || !newsTiles.length) {
-      return this.setState({
-        newsTile: null
-      })
-    }
-
-    const newsTile = newsTiles.filter(({ _id }) => _id === id)
-
-    if (newsTile.length) {
-      this.setState({
-        newsTile: newsTile[0]
-      })
-    }
   }
 
   render () {
     const {
-      className
-    } = this.props
-
-    const {
+      className,
       newsTile
-    } = this.state
+    } = this.props
 
     const modifiedClassNames = classNames('news-popup', className)
 
