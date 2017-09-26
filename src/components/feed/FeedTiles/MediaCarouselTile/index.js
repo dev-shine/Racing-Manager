@@ -71,7 +71,7 @@ export const createSlides = (attachments = [], rootPath) => {
       return (
         <div key={`mimg-${index}`}>
           <TileImageContent
-            modifier={['no-margin-bottom', 'video-aspect']}
+            modifier={['no-margin-bottom']}
             rootPath={rootPath}
             src={attachment.path}
             alt={'Horse racing'} />

@@ -1,36 +1,11 @@
-/**
- *  @module React, Component
- */
 import React, { Component } from 'react'
 
-/**
- *  @module Connect
- */
 import { connect } from 'react-redux'
 
-/**
- *  @module NewsTile
- */
-import NewsTile from 'components/news/NewsTile'
-
-/**
- *  @module TextButton
- */
 import TextButton from 'components/buttons/TextButton'
 
-/**
- *  @module HeaderSection
- */
 import HeaderSection from 'components/dashboard/HeaderSection'
 
-/**
- *  @module Block, Grid
- */
-import { Block, Grid } from 'components/layouts/masonry'
-
-/**
- *  @module getDashboard
- */
 import { getDashboard } from 'actions/dashboard'
 
 import {
@@ -40,6 +15,8 @@ import {
 import View from 'components/routing/View'
 
 import { MEMBER_DASHBOARD as title } from 'data/titles'
+
+import NewsGallery from 'components/news/NewsGallery'
 
 /**
  *  @class
@@ -73,26 +50,8 @@ export class MemberDashboard extends Component {
               Racing News
             </h1>
             <div className='member-dashboard__feed'>
-              <Grid
-                targetBlockWidth={265}
-                center={false}
-                maxColumns={4}>
-                {
-                  tiles.map((tile, index) => (
-                    <Block width={1} key={index}>
-                      <NewsTile
-                        id={index}
-                        rootPath={''}
-                        text={tile.headline}
-                        src={tile.thumbnailImage}
-                        providerSrc={tile.thumbnailImage}
-                        date={tile.timeStamp}
-                        className='member-dashboard__tile'
-                      />
-                    </Block>
-                  ))
-                }
-              </Grid>
+              <NewsGallery
+                tiles={tiles} />
             </div>
             <TextButton
               text='Load more'

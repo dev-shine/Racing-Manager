@@ -72,6 +72,7 @@ export const createSlides = (attachments = [], rootPath) => {
       return (
         <div key={`mimg-${index}`}>
           <TileImageContent
+            useImageTag={false}
             modifier={['no-margin-bottom', 'video-aspect']}
             rootPath={rootPath}
             className='multiple-popup-tile__slide'

@@ -196,9 +196,9 @@ class FeedGallery extends Component {
     return (
       <span>
         <Grid
-          targetBlockWidth={265}
+          targetBlockWidth={390}
           center={false}
-          maxColumns={4}>
+          maxColumns={3}>
           {
             tiles.map(tile => {
               return (

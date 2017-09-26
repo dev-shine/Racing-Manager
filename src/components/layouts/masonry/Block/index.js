@@ -1,11 +1,5 @@
-/**
- *  @module React, Component
- */
 import React, { Component } from 'react'
 
-/**
- *  @module classNames
- */
 import classNames from 'classnames'
 
 /**
@@ -45,6 +39,33 @@ class Block extends Component {
 
     // Flag that the Block has been placed
     this.placed = true
+
+    this.handleImageUpdate()
+  }
+
+  handleImageUpdate () {
+    const {
+      parent
+    } = this.props
+
+    requestAnimationFrame(() => {
+      if (!this.divElement) {
+        return
+      }
+
+      const images = Array.prototype.slice.call(this.divElement.querySelectorAll(`img`))
+      const handleImages = (images.length > 0) && parent.props.updateOnImagesLoad
+
+      if (handleImages) {
+        images.forEach(
+            (img) => img.addEventListener(`load`, parent.update, false)
+        )
+      }
+
+      if (this.props.height !== this.divElement.clientHeight) {
+        parent.update()
+      }
+    })
   }
 
   render () {

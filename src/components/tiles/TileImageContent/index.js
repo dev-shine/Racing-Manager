@@ -29,14 +29,18 @@ const TileImageContent = props => {
     src,
     className,
     modifier,
-    alt
+    alt,
+    useImageTag
   } = props
 
-  const modifiedClassNames = classNames('tile-image-content', className, modifier)
+  const modifiedClassNames = classNames('tile-image-content', className, modifier, {
+    'use-bg': !useImageTag
+  })
 
   return (
     <div className={modifiedClassNames}>
       <Image
+        isImage={useImageTag}
         className='tile-image-content__image'
         imageSrc={`${rootPath}${src}`}
         alt={alt} />
@@ -59,7 +63,8 @@ TileImageContent.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  alt: PropTypes.string
+  alt: PropTypes.string,
+  useBg: PropTypes.bool
 }
 
 /**
@@ -68,7 +73,8 @@ TileImageContent.propTypes = {
  */
 TileImageContent.defaultProps = {
   alt: 'Horse racing',
-  className: ''
+  className: '',
+  useImageTag: true
 }
 
 /**

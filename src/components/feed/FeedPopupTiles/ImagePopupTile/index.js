@@ -60,6 +60,7 @@ const ImagePopupTile = props => {
     <div className={modifiedClassNames}>
       <TileImageContent
         rootPath={rootPath}
+        useImageTag={false}
         src={src}/>
       <div className='col-xs-12 image-popup-tile__container'>
         <TileHeader
