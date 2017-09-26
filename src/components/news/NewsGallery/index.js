@@ -6,7 +6,7 @@ import NewsTile from 'components/news/NewsTile'
 
 import { Block, Grid } from 'components/layouts/masonry'
 
-import NewsPopup from 'components/news/NewsPopup'
+import NewsPopupContainer from 'containers/News/NewsPopup'
 
 class NewsGallery extends Component {
   constructor (props) {
@@ -75,11 +75,10 @@ class NewsGallery extends Component {
             ))
           }
         </Grid>
-        <NewsPopup
-          newsTiles={tiles}
+        <NewsPopupContainer
           isOpen={showPopup}
           onClick={this.closePopup}
-          id={id} />
+          newsId={id} />
       </span>
     )
   }

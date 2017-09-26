@@ -60,46 +60,21 @@ export class FeedUpdatePopup extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      id: null
-    }
-
-    this.getTileId = this.getTileId.bind(this)
     this.postComment = this.postComment.bind(this)
     this.postFeedComment = this.postFeedComment.bind(this)
   }
 
-  componentDidMount () {
-    this.getTileId(this.props.tile)
-  }
-
-  componentWillReceiveProps ({ tile }) {
-    if (tile !== this.props.tile) {
-      this.getTileId(tile)
-    }
-  }
-
-  getTileId (tile) {
-    if (tile) {
-      const {
-        _id: id
-      } = tile
-
-      this.setState({
-        id
-      })
-    }
-  }
-
   postComment () {
-    const messageId = this.getTileId()
+    const {
+      tileId
+    } = this.props
 
-    if (messageId) {
+    if (tileId) {
       const {
         postComment
       } = this.props
 
-      postComment(messageId)
+      postComment(tileId)
     }
   }
 
@@ -110,10 +85,10 @@ export class FeedUpdatePopup extends Component {
    */
   renderTile () {
     const {
-      tile
+      feedTile
     } = this.props
 
-    if (tile) {
+    if (feedTile) {
       const {
         postType,
         createdAt,
@@ -121,7 +96,7 @@ export class FeedUpdatePopup extends Component {
         text,
         attachment,
         author
-      } = tile
+      } = feedTile
 
       switch (postType) {
         case 'text':
@@ -183,10 +158,10 @@ export class FeedUpdatePopup extends Component {
 
   postFeedComment (data) {
     const {
-      id
-    } = this.state
+      tileId
+    } = this.props
 
-    this.props.postComment(id, data)
+    this.props.postComment(tileId, data)
   }
 
   render () {
@@ -195,12 +170,9 @@ export class FeedUpdatePopup extends Component {
       modifier,
       submitTitle,
       commentPosted,
-      allowCommenting
+      allowCommenting,
+      tileId
     } = this.props
-
-    const {
-      id
-    } = this.state
 
     // Modified class names for container
     const modifiedClassNames = classNames('feed-popup', className, modifier)
@@ -227,7 +199,7 @@ export class FeedUpdatePopup extends Component {
                 : null
               }
               <div className='col-xs-12 feed-popup__comment-list'>
-                <FeedComments id={id} />
+                <FeedComments id={tileId} />
               </div>
             </div>
           </div>

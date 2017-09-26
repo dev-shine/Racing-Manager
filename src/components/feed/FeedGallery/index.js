@@ -53,7 +53,7 @@ class FeedGallery extends Component {
 
     // Initial state
     this.state = {
-      tileIndex: null,
+      id: null,
       showPopup: false,
     }
 
@@ -75,9 +75,9 @@ class FeedGallery extends Component {
       return false
     }
 
-    // Set the new tile's index
+    // Set the new tile's id
     this.setState({
-      tileIndex: this.props.tiles.map(tile => tile._id).indexOf(id),
+      id,
       showPopup: true
     })
   }
@@ -88,7 +88,8 @@ class FeedGallery extends Component {
    */
   closePopup () {
     this.setState({
-      showPopup: false
+      showPopup: false,
+      id: null
     })
   }
 
@@ -187,11 +188,8 @@ class FeedGallery extends Component {
 
     const {
       showPopup,
-      tileIndex
+      id
     } = this.state
-
-    // Get the tile according to the passed in index.
-    const popupTile = tileIndex >= 0 ? tiles[tileIndex] : null
 
     return (
       <span>
@@ -214,7 +212,8 @@ class FeedGallery extends Component {
           submitTitle={popupTitle}
           isOpen={showPopup}
           onClick={this.closePopup}
-          tile={popupTile} />
+          tileId={id}
+          tiles={tiles} />
       </span>
     )
   }

@@ -6,13 +6,23 @@ import {
   postComment
 } from 'actions/feedcomments'
 
+import {
+  getFeedTileById
+} from 'selectors/feed'
+
 const mapStateToProps = (state, ownProps) => {
   const {
     commentPosted
   } = state.feedComments
 
+  const {
+    tiles,
+    tileId
+  } = ownProps
+
   return {
-    commentPosted
+    commentPosted,
+    feedTile: getFeedTileById(state, { tiles, id: tileId })
   }
 }
 
