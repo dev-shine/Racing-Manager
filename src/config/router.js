@@ -13,20 +13,24 @@ import Layout from 'layouts/Layout'
 import ScrollTop from 'components/routing/ScrollTop'
 import PageNotFound from 'views/PageNotFound'
 
-import Home from 'views/home'
-import Register from 'views/register'
-import RegistrationSuccessful from 'views/RegistrationSuccessful'
-import RegistrationConfirmation from 'views/RegistrationConfirmation'
+import Home from 'views/Home'
+import Register from 'views/Registration/Register'
+import RegistrationSuccessful from 'views/Registration/RegisterSuccessful'
+import RegistrationConfirmation from 'views/Registration/RegisterConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
 
-import PrivateHorse from 'views/horse/PrivateHorse'
-import PublicHorse from 'views/horse/PublicHorse'
-import PrivateHorseStatistics from 'views/horse/PrivateHorseStatistics'
-import PrivateHorseInformation from 'views/horse/PrivateHorseInformation'
+import Account from 'views/Account/AccountLayout'
 
-import PrivateSyndicate from 'views/syndicate/PrivateSyndicate'
-import PublicSyndicate from 'views/syndicate/PublicSyndicate'
+import PrivateHorse from 'views/Horse/Private/HorseOverview'
+import PrivateHorseStatistics from 'views/Horse/Private/HorseStatistics'
+import PrivateHorseInformation from 'views/Horse/Private/HorseInformation'
+
+import PublicHorse from 'views/Horse/Public/HorseOverview'
+
+import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
+
+import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
 const router = (
   <Routes>
@@ -43,8 +47,13 @@ const router = (
             <AuthRoute exact path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
             <AuthRoute exact path='/horse/:name/statistics' component={PrivateHorseStatistics} redirectPath='/404' />
             <AuthRoute exact path='/horse/:name/information' component={PrivateHorseInformation} redirectPath='/404' />
+            <AuthRoute exact path='/horse/:name/information/edit' component={PrivateHorseInformation} redirectPath='/404' />
+
+            <AuthRoute path='/account' component={Account} redirectPath='/' />
 
             <AuthRoute exact path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
+            <AuthRoute exact path='/syndicate/:name/edit' component={PrivateSyndicate} redirectPath='/404' />
+
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />
           </Switch>

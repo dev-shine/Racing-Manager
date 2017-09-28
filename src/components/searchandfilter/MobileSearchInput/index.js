@@ -28,10 +28,7 @@ import classNames from 'utils/classnames'
  */
 import omit from 'utils/objectutils/omit'
 
-/**
- *  @module CSSTransitionGroup
- */
-import { CSSTransitionGroup } from 'react-transition-group'
+import { FadeIn } from 'components/animation'
 
 /**
  *  @class
@@ -129,17 +126,14 @@ class MobileSearchInput extends PureComponent {
           handleChange={this.handleSearchResult}
           {...inputProps} />
         <div className='mobile-search-input__close-container'>
-          <CSSTransitionGroup
-            transitionName="fade-in"
-            transitionEnterTimeout={400}
-            transitionLeaveTimeout={400}>
+          <FadeIn>
             {
               open && <Icon
               onClick={this.closeSearch}
               className='mobile-search-input__close'
               modifier='close'/>
             }
-          </CSSTransitionGroup>
+          </FadeIn>
         </div>
       </div>
     )

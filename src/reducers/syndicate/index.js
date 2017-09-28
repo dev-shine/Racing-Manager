@@ -5,6 +5,8 @@ import {
   CLEAR_SYNDICATE_DATA
 } from 'actions/syndicate'
 
+import update from 'immutability-helper'
+
 import {
   LOG_OUT
 } from 'actions/auth'
@@ -25,25 +27,34 @@ const reducer = (state = initialState, action) => {
       return initialState
 
     case FETCH_SYNDICATE_INFO:
-      return {
-        ...state,
-        fetching: true
-      }
+      return update(state, {
+        fetching: {
+          $set: true
+        }
+      })
 
     case RECEIVED_SYNDICATE_INFO:
-      return {
-        ...state,
-        fetching: false,
-        error: false,
-        data: payload.data
-      }
+      return update(state, {
+        fetching: {
+          $set: false
+        },
+        error: {
+          $set: false
+        },
+        data: {
+          $set: payload.data
+        }
+      })
 
     case FAILED_TO_FETCH_SYNDICATE_INFO:
-      return {
-        ...state,
-        fetching: false,
-        error: true
-      }
+      return update(state, {
+        fetching: {
+          $set: false
+        },
+        error: {
+          $set: true
+        }
+      })
 
     default:
       return state

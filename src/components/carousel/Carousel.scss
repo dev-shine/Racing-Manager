@@ -19,6 +19,7 @@
     box-sizing: border-box;
     height: auto;
     cursor: grab;
+    line-height: 0;
 
     &:active {
       cursor: grabbing;
@@ -36,5 +37,34 @@
     height: auto;
     box-sizing: border-box;
     z-index: 2;
+    line-height: 0;
+  }
+
+  &__arrows {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    pointer-events: none;
+
+    >* {
+      pointer-events: auto;
+    }
+
+    &--show-bar {
+      background: $color-bg-holo-dark;
+    }
+
+    &--top {
+      bottom: initial;
+      top: 0;
+    }
+
+    &--middle {
+      bottom: initial;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }

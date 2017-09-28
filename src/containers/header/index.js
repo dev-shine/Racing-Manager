@@ -32,6 +32,12 @@ import {
   withRouter
 } from 'react-router-dom'
 
+import {
+  addToastSuccess
+} from 'actions/toast'
+
+import { LOGGED_OUT } from 'texts/successmessages'
+
 class HeaderContainer extends PureComponent {
   constructor (props) {
     super(props)
@@ -100,6 +106,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     performLogOut: () => {
       dispatch(logOut())
+      dispatch(addToastSuccess(LOGGED_OUT))
     }
   }
 }

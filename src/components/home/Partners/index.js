@@ -62,9 +62,10 @@ const Partners = props => {
     <div className={modifiedClassNames}>
       <div className='partners__carousel-wrapper hidden-md-up'>
         <Carousel
-          cellAlign="center"
+          cellAlign='center'
           containerClassName='partners__carousel'
           slideWidth={0.4}
+          arrowModifier={['middle']}
           showArrows>
           {slides()}
         </Carousel>

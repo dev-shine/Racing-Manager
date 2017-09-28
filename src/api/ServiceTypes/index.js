@@ -1,5 +1,5 @@
 
-export const ROOT_PATH = 'http://52.209.171.180:3000'
+export const ROOT_PATH = 'http://52.51.111.248:3000'
 
 export const BASE_URL = `${ROOT_PATH}/api/v1`
 
@@ -26,3 +26,5 @@ export const REGISTRATION_CONFIRMATION = `${USER}/verify`
 export const SETUP = `${BASE_URL}/setup`
 
 export const COMMENT = `${MESSAGE}/comment`
+
+export const NEWS = `${BASE_URL}/news`

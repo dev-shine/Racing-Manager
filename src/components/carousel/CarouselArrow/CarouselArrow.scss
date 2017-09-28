@@ -1,10 +1,8 @@
 .carousel-arrow {
   position: absolute;
   width: 20px;
-  height: 83px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba($color-bg-secondary, 0.65);
+  height: 100%;
+  top: 0;
   color: $button-cta-strong;
   cursor: pointer;
   
@@ -14,23 +12,6 @@
 
   &--right {
     right: 0px;
-  }
-
-  &--bottom {
-    top: initial;
-    bottom: 0;
-    transform: translateY(0)
-  }
-
-  &--top {
-    top: 0;
-    transform: translateY(0);
-    bottom: initial;
-  }
-
-  &--nobg {
-    background-color: transparent;
-    width: 30px;
   }
 
   .icon--leftarrow, .icon--rightarrow {

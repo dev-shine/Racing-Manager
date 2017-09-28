@@ -29,7 +29,8 @@ const TextButton = props => {
     text,
     className,
     modifier,
-    active
+    active,
+    textClassName
   } = props
 
   /**
@@ -39,11 +40,13 @@ const TextButton = props => {
     active
   })
 
+  const modifiedTextClassNames = classNames('text-button__text', textClassName)
+
   return (
     Button({
       ...props,
       className: modifiedClassNames,
-      children: <h6 className='text-button__text'>{text}</h6>
+      children: <h6 className={modifiedTextClassNames}>{text}</h6>
     })
   )
 }
@@ -53,7 +56,10 @@ const TextButton = props => {
  * @type { Object }
  */
 TextButton.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node
+  ]),
   className: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
@@ -63,7 +69,8 @@ TextButton.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.object
   ]),
-  active: PropTypes.bool
+  active: PropTypes.bool,
+  textClassName: PropTypes.string
 }
 
 /**
@@ -73,6 +80,7 @@ TextButton.propTypes = {
 TextButton.defaultProps = {
   text: '',
   className: '',
+  textClassName: '',
   modifiers: '',
   active: false
 }

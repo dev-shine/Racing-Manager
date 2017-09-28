@@ -10,7 +10,13 @@
 }
 
 @mixin truncate() {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin unTruncate () {
+  white-space: initial !important;
+  overflow: initial !important;
+  text-overflow: initial !important;
 }

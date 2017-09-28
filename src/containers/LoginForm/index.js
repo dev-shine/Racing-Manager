@@ -15,6 +15,8 @@ import {
   toggleKeepLoggedInForm
 } from 'actions/login'
 
+import { trim } from 'utils/stringutils'
+
 class LoginFormContainer extends Component {
   constructor (props) {
     super(props)
@@ -42,8 +44,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     values: state.login,
     errors: state.login.errors,
-    errorMessage: state.login.errorMessage,
-    validators: () => {}
+    validators: () => {},
+    isSubmitting: state.login.isSubmitting
   }
 }
 
@@ -62,7 +64,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         } = ownProps
 
       dispatch(submitFormData({
-        email: values.email.toLowerCase(),
+        email: trim(values.email.toLowerCase()),
         password: values.password
       }))
       .then(() => {

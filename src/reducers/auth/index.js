@@ -4,6 +4,8 @@ import {
   NO_AUTHENTICATION
 } from 'actions/auth'
 
+import update from 'immutability-helper'
+
 /**
  * @name initialState
 *  @type { object }
@@ -31,32 +33,43 @@ const reducer = (state = initialState, action) => {
   */
   switch (action.type) {
     case LOG_OUT:
-      return {
-        ...state,
-        token: '',
-        isLoggedIn: false,
-        details: {}
-      }
+      return update(state, {
+        token: {
+          $set: ''
+        },
+        isLoggedIn: {
+          $set: false
+        },
+        details: {
+          $set: {}
+        }
+      })
 
     case STORE_USER_CREDENTIALS:
-      return {
-        ...state,
-        details: action.user,
-        isReady: true,
-        isLoggedIn: true,
-        token: action.token
-      }
+      return update(state, {
+        details: {
+          $set: action.user
+        },
+        isReady: {
+          $set: true
+        },
+        isLoggedIn: {
+          $set: true
+        },
+        token: {
+          $set: action.token
+        }
+      })
 
     case NO_AUTHENTICATION:
-      return {
-        ...state,
-        isReady: true
-      }
+      return update(state, {
+        isReady: {
+          $set: true
+        }
+      })
 
     default:
-      return {
-        ...state
-      }
+      return state
   }
 }
 

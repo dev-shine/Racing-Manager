@@ -13,17 +13,18 @@ const TitleDescriptionSection = (props) => {
     description,
     titleModifier,
     colorModifier,
+    modifier,
     children
   } = props
 
-  const modifiedClassNames = classNames('title-description', className)
+  const modifiedClassNames = classNames('title-description', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
       {
         React.createElement(titleModifier, {className: 'title-description__title uppercase'}, [title])
       }
-      <Separator modifier={colorModifier} />
+      <Separator modifier={colorModifier} className='title-description__seperator'/>
       {
         description
         ? (

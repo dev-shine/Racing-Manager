@@ -33,6 +33,7 @@ $dark-imperial-blue: #004370;
 $blue-yonder: #5170A7;
 $sky-blue: #88d0ed;
 $queen-blue: #476591;
+$light-gray: #D0D2D3;
 
 // Bg
 $color-bg: $snow;
@@ -44,6 +45,8 @@ $color-bg-strong: $maastricht-blue;
 $color-bg-dark: darken($maastricht-blue, 2%);
 $color-bg-faded-dark: rgba($black, 0.05);
 $color-bg-primary-dark: rgba($black, 0.82);
+$color-bg-placeholder: $light-gray;
+$color-bg-holo-dark: rgba($raisin-black, 0.5);
 
 // Overlay
 $color-parallax-image: rgba($white, 0.4);
@@ -61,9 +64,11 @@ $placeholder-color: $taupe-gray;
 // Cta
 $cta-link-color: $vanilla-ice;
 $cta-link-color-light: $white;
+$cta-link-strong: $maastricht-blue;
 
 // Icon CTA
 $icon-cta-close: $vanilla-ice;
+$icon-cta-light: $white;
 
 // Social
 $color-twitter: $sky-blue;
@@ -72,6 +77,11 @@ $color-linked-in: $queen-blue;
 
 // loader
 $color-loader: $vanilla-ice;
+$color-small-loader: $white;
+
+// Burger menu
+$color-menu-primary: $davys-gray;
+$color-menu-secondary: $vanilla-ice;
 
 // texts
 $color-text-strong: $yankees-blue;
@@ -79,6 +89,10 @@ $color-text-heading: $maastricht-blue;
 $color-text-heading-strong: $davys-gray;
 $color-text-heading-dark: $yankees-blue;
 $color-text-heading-bold: $raisin-black;
+$color-text-faded: $x11-gray;
+$color-text-faded-dark: $taupe-gray;
+$color-text-light: $white;
+$color-text-bold: $ash-grey;
 
 // Seperators
 $color-seperator-primary: $vanilla-ice;

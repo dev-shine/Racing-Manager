@@ -18,6 +18,11 @@ import {
 } from 'actions/register'
 
 /**
+ *  @module trim
+ */
+import { trim } from 'utils/stringutils'
+
+/**
  *  @module signUpFormValidators
  */
 import { registerValidators } from 'utils/validation/Register'
@@ -93,7 +98,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         firstname: values.firstname,
         surname: values.surname,
         password: values.password,
-        email: values.email,
+        email: trim(values.email),
         username: values.username
       }))
       .then(() => {

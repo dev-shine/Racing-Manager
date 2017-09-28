@@ -8,6 +8,8 @@ import {
   LOG_OUT
 } from 'actions/auth'
 
+import update from 'immutability-helper'
+
 /**
  * @name initialState
 *  @type { object }
@@ -36,25 +38,34 @@ const reducer = (state = initialState, action) => {
       return initialState
 
     case FETCH_MEMBER_DASHBOARD_DATA:
-      return {
-        ...state,
-        fetching: true
-      }
+      return update(state, {
+        fetching: {
+          $set: true
+        }
+      })
 
     case RECEIVED_MEMBER_DASHBOARD_DATA:
-      return {
-        ...state,
-        fetching: false,
-        error: false,
-        data: action.data
-      }
+      return update(state, {
+        fetching: {
+          $set: false
+        },
+        error: {
+          $set: false
+        },
+        data: {
+          $set: action.data
+        }
+      })
 
     case FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA:
-      return {
-        ...state,
-        fetching: false,
-        error: true
-      }
+      return update(state, {
+        fetching: {
+          $set: false
+        },
+        error: {
+          $set: true
+        }
+      })
 
     default:
       return state

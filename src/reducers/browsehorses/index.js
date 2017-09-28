@@ -11,6 +11,8 @@ import {
   UPDATE_HORSE_FILTERS
 } from 'actions/browsehorses'
 
+import update from 'immutability-helper'
+
 /**
  *  initialState
  *  @type {Object}
@@ -57,58 +59,81 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SEARCH_FILTER_ATTRIBUTES:
-      return {
-        ...state,
-        fetchingAttributes: true
-      }
+      return update(state, {
+        fetchingAttributes: {
+          $set: true
+        }
+      })
 
     case FETCHED_SEARCH_FILTER_ATTRIBUTES:
-      return {
-        ...state,
-        fetchingAttributes: false,
-        hasAttributes: true,
-        attributes: action.data
-      }
+      return update(state, {
+        fetchingAttributes: {
+          $set: false
+        },
+        hasAttributes: {
+          $set: true
+        },
+        attributes: {
+          $set: action.data
+        }
+      })
 
     case FAILED_TO_FETCH_SEARCH_FILTER_ATTRIBUTES:
-      return {
-        ...state,
-        fetchingAttributes: false,
-        hasAttributes: false,
-        attributes: {}
-      }
+      return update(state, {
+        fetchingAttributes: {
+          $set: false
+        },
+        hasAttributes: {
+          $set: false
+        },
+        attributes: {
+          $set: {}
+        }
+      })
 
     case FETCH_FILTERED_HORSES:
-      return {
-        ...state,
-        fetchingHorses: true
-      }
+      return update(state, {
+        fetchingHorses: {
+          $set: true
+        }
+      })
+
     case FETCHED_FILTERED_HORSES:
-      return {
-        ...state,
-        fetchingHorses: false,
-        results: action.data.results,
-        resultsAmount: action.data.resultsAmount
-      }
+      return update(state, {
+        fetchingHorses: {
+          $set: false
+        },
+        results: {
+          $set: action.data.results
+        },
+        resultsAmount: {
+          $set: action.data.resultsAmount
+        }
+      })
 
     case FAILED_TO_FETCH_FILTERED_HORSES:
-      return {
-        ...state,
-        fetchingHorses: false,
-        error: action.error
-      }
+      return update(state, {
+        fetchingHorses: {
+          $set: false
+        },
+        error: {
+          $set: action.error
+        }
+      })
 
     case TOGGLE_HORSE_FILTER_PANEL:
-      return {
-        ...state,
-        filterOpen: !state.filterOpen
-      }
+      return update(state, {
+        filterOpen: {
+          $set: !state.filterOpen
+        }
+      })
 
     case UPDATE_HORSE_SEARCH_QUERY:
-      return {
-        ...state,
-        query: action.query
-      }
+      return update(state, {
+        query: {
+          $set: action.query
+        }
+      })
 
     case UPDATE_HORSE_SORT:
       const sort = state.attributes.sort.reduce((obj, {field, values}) => {
@@ -124,10 +149,11 @@ const reducer = (state = initialState, action) => {
         return obj
       }, {})
 
-      return {
-        ...state,
-        sort
-      }
+      return update(state, {
+        sort: {
+          $set: sort
+        }
+      })
 
     case UPDATE_HORSE_FILTERS:
       const {
@@ -136,16 +162,16 @@ const reducer = (state = initialState, action) => {
         ...rest
       } = action.payload
 
-      return {
-        ...state,
+      return update(state, {
         filters: {
-          ...state.filters,
-          [name]: {
-            value,
-            ...rest
+          $merge: {
+            [name]: {
+              value,
+              ...rest
+            }
           }
         }
-      }
+      })
 
     default:
       return state

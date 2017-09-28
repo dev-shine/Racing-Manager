@@ -34,7 +34,7 @@ const MIN_AGE = 18
 *  @type { REGEX }
 *  @private
 */
-const EMAIL_REG = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]{2,})+$/
+const EMAIL_REG = /^[_a-zA-Z0-9-]+(\.[_a-z0-9-]+)*(\+[a-z0-9-]+)?@[a-z0-9-]+(\.[a-z0-9-]{2,})+$/
 
 /*
 *  @name NAME_REG
@@ -70,12 +70,24 @@ const PASSWORD_REG = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/
 */
 const DOB_REG = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/
 
+/**
+ *  DOB_FORMAT_REG
+ *  @type {RegExp}
+ */
+const DOB_FORMAT_REG = /\d{2,8}/g
+
 /*
 *  @name SPACES_REG
 *  @type { REGEX }
 *  @private
 */
 const SPACES_REG = /^\S*$/
+
+/**
+ *  ONE_OR_MORE_NUMBER_REG
+ *  @type {RegExp}
+ */
+const ONE_OR_MORE_NUMBER_REG = /[^\d]+/g
 
 /*
 *  @name DOUBLE_SPACES_REG
@@ -89,7 +101,7 @@ const DOUBLE_SPACES_REG = /^((?!\s{2}).)*$/
 *  @type { REGEX }
 *  @private
 */
-const TRAILING_SPACES_REG = /^[ \s]+|[ \s]+$/
+export const TRAILING_SPACES_REG = /^[ \s]+|[ \s]+$/g
 
 /**
  * @type { RegExp }
@@ -121,6 +133,18 @@ const CARD_CVV_REG = /^[0-9]{3}$/
  *  @type {Array}
  */
 const LUHN_ARR = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
+
+/**
+ *  CREDIT_CARD_FORMAT_REG
+ *  @type {RegExp}
+ */
+const CREDIT_CARD_FORMAT_REG = /\d{4,16}/g
+
+/**
+ *  CREDIT_CARD_DATE_FORMAT_REG
+ *  @type {RegExp}
+ */
+const CREDIT_CARD_DATE_FORMAT_REG = /\d{2,4}/g
 
 /**
  *  VISA_REG
@@ -484,4 +508,76 @@ export const CARD_CVV = (cardNum, value) => {
  */
 export const IS_NUMBER = (num) => {
   return NUMBER_REG.test(num)
+}
+
+/**
+ *  baseFormatter
+ *  @description Reuseable function to format as the user types
+ *               will add in a character depending on the iterateCount
+ *               there is also a custom fn option to add more complexity to the fn
+ *               For example; if the value is 46585804 and the iterateCount is 4 and the join char is /
+ *                            then the value will be 4658/5804
+ */
+const baseFormatter = (value, matchPattern, iterateCount = 2, joinChar, customFn) => {
+  let v = value.replace(REMOVE_SPACES, '').replace(ONE_OR_MORE_NUMBER_REG, '')
+  let matches = v.match(matchPattern)
+  let match = (matches && matches[0]) || ''
+  let parts = []
+
+  for (let i = 0, len = match.length; i < len; i += iterateCount) {
+    if (typeof customFn === 'function') {
+      const result = customFn(parts, match, i)
+      if (result === false) {
+        break
+      }
+    }
+    parts.push(match.substring(i, (i + iterateCount)))
+  }
+
+  if (parts.length) {
+    return parts.join(joinChar)
+  } else {
+    return value
+  }
+}
+
+/**
+ *  FORMAT_CREDIT_CARD
+ *  @param  {String} number
+ *  @return {String}
+ */
+export const FORMAT_CREDIT_CARD = (value = '', joinChar = ' ') => {
+  if (!value.length) {
+    return value
+  }
+  return baseFormatter(value, CREDIT_CARD_FORMAT_REG, 4, joinChar)
+}
+
+/**
+ *  FORMAT_CREDIT_CARD_DATE
+ *  @param  {String} date
+ *  @return {String}
+ */
+export const FORMAT_CREDIT_CARD_DATE = (value = '', joinChar = '/') => {
+  if (!value.length) {
+    return value
+  }
+  return baseFormatter(value, CREDIT_CARD_DATE_FORMAT_REG, 2, joinChar)
+}
+
+/**
+ *  FORMAT_DATE_OF_BIRTH
+ *  @param  {String} date
+ *  @return {String}
+ */
+export const FORMAT_DATE_OF_BIRTH = (value = '', joinChar = '/') => {
+  if (!value.length) {
+    return value
+  }
+  return baseFormatter(value, DOB_FORMAT_REG, 2, joinChar, (parts, match, index) => {
+    if (parts.length >= 2) {
+      parts.push(match.substring(index, index + (match.length - index)))
+      return false
+    }
+  })
 }

@@ -26,7 +26,7 @@ import ViewHeader from 'components/common/ViewHeader'
 /**
  *  @module HorseCardGallery
  */
-import HorseCardGallery from 'components/cards/HorseCardGallery'
+import HorseCardGallery from 'components/horse/HorseCardGallery'
 
 /**
  *  @module HorseSearchAndFilterBar
@@ -53,6 +53,8 @@ import {
   requestSearchFiltersIfNeeded
 } from 'actions/browsehorses'
 
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
+
 export class BrowseHorses extends Component {
   constructor (props) {
     super(props)
@@ -77,7 +79,8 @@ export class BrowseHorses extends Component {
 
   render () {
     const {
-      results
+      results,
+      fetchingHorses
     } = this.props
 
     const modifiedClassGalleryCols = classNames('browse-horses__grid', 'col-xs-12')
@@ -97,6 +100,7 @@ export class BrowseHorses extends Component {
               />
             </div>
           </div>
+          <AjaxLoader isVisible={fetchingHorses} />
         </div>
       </View>
     )

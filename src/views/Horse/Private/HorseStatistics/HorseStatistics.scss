@@ -1,0 +1,13 @@
+.horse-statistics {
+  position: relative;
+
+  &__section {
+    position: relative;
+    width: 100%;
+    padding-top: 60px;
+
+    &:last-child {
+      margin-bottom: 60px;
+    }
+  }
+}

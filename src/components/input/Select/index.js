@@ -1,7 +1,7 @@
 /**
  *  @module React
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
 /**
  *  @module PropTypes
@@ -24,11 +24,21 @@ import classNames from 'utils/classnames'
 import enhanceWithClickOutside from 'react-click-outside'
 
 /**
- *  @module CSSTransitionGroup
+ *  @module InputError
  */
-import { CSSTransitionGroup } from 'react-transition-group'
+import InputError from 'components/input/InputError'
 
-class Option extends Component {
+/**
+ *  @module BaseAccordion
+ */
+import Accordion from 'components/accordion/BaseAccordion'
+
+/**
+ *  @module FadeIn
+ */
+import { FadeIn } from 'components/animation'
+
+class Option extends PureComponent {
   constructor (props) {
     super(props)
 
@@ -79,14 +89,14 @@ class Option extends Component {
  *  @name Select
  *  @extends { Component }
  */
-class Select extends Component {
+class Select extends PureComponent {
   constructor (props) {
     super(props)
 
     // Initial state
     this.state = {
       open: false,
-      value: ''
+      value: props.value || props.defaultValue
     }
 
     // Bind custom fn
@@ -96,12 +106,18 @@ class Select extends Component {
     this.openDropDown = this.openDropDown.bind(this)
     this.hideDropDown = this.hideDropDown.bind(this)
     this.toggleDropDown = this.toggleDropDown.bind(this)
+    this.setValue = this.setValue.bind(this)
   }
 
-  componentWillMount () {
-    // Set the default value from the props
+  componentWillReceiveProps (nextProps, nextState) {
+    if (nextProps.value !== nextState.value) {
+      this.setValue(nextProps.value)
+    }
+  }
+
+  setValue (value) {
     this.setState({
-      value: this.props.defaultValue
+      value: value || this.props.defaultValue
     })
   }
 
@@ -111,9 +127,7 @@ class Select extends Component {
     } = this.props
 
     // Set the updated value to the state to render the new value.
-    this.setState({
-      value
-    })
+    this.setValue(value)
 
     // Hide the dropdown
     this.hideDropDown()
@@ -129,13 +143,21 @@ class Select extends Component {
    *  @description If the user clicks outside of the select then hide.
    */
   handleClickOutside () {
-    this.hideDropDown()
+    if (this.state.open) {
+      this.hideDropDown()
+    }
   }
 
   hideDropDown () {
+    const {
+      onBlur
+    } = this.props
+
     this.setState({
       open: false
     })
+
+    onBlur && onBlur()
   }
 
   openDropDown () {
@@ -215,11 +237,7 @@ class Select extends Component {
           showLine && <InputLine className='visible-sm-up' error={hasError} modifier={{active: open, 'left': true}} />
         }
         <div className='select__results section-shadow--bottom'>
-          <CSSTransitionGroup
-            transitionName="fade-in"
-            transitionEnterTimeout={400}
-            transitionLeaveTimeout={400}
-          >
+          <FadeIn>
             {
               open && (
                 <ul aria-label='main menu' >
@@ -227,8 +245,15 @@ class Select extends Component {
                 </ul>
               )
             }
-          </CSSTransitionGroup>
+          </FadeIn>
         </div>
+        <Accordion
+          className='input__accordion'
+          isOpen={hasError}>
+          <InputError
+            className='micro'
+            errors={error} />
+        </Accordion>
       </div>
     )
   }

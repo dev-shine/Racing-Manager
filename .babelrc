@@ -1,11 +1,17 @@
 {
 	"presets": [
-		"es2015",
+		["es2015", {"loose": true, "modules": false}],
 		"react"
 	],
-  	"plugins": [
+  "plugins": [
 		"transform-es2015-destructuring",
 		"transform-object-rest-spread",
-    "transform-object-assign"
-	]
+    "transform-object-assign",
+    "react-hot-loader/babel"
+	],
+  "env": {
+    "test": {
+      "presets": ["es2015", "react"]
+    }
+  }
 }

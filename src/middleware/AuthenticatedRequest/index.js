@@ -4,6 +4,12 @@ import { USER_TOKEN } from 'data/consts'
 
 import { logOut } from 'actions/auth'
 
+import {
+  addToastError
+} from 'actions/toast'
+
+import { UNAUTHORISED } from 'texts/errormessages'
+
 export const CALL_ACTION_TYPE = '@@AUTHENTICATED_REQUEST'
 
 /**
@@ -78,6 +84,9 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
   })
   .catch((error) => {
     if (error.status && error.status === 'not_authorized') {
+      // Dispatch a toast error
+      dispatchAction(next, addToastError, error.message || UNAUTHORISED)
+
       dispatchAction(next, logOut)
     } else {
       dispatchAction(next, errorType, error)

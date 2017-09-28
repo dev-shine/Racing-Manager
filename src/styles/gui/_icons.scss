@@ -13,6 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon--update:before {
+  content: "\e914";
+}
+
+.icon--check:before {
+  content: "\e913";
+  color: #e78090;
+}
+
 .icon--email:before {
   content: "\e911";
   color: #233654;

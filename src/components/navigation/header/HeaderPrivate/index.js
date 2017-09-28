@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 
 import Icon from 'components/icon'
 
-import AccountDowndown from 'components/navigation/accountdropdown'
-
-import { CSSTransitionGroup } from 'react-transition-group'
+import AccountDropdown from 'components/account/AccountDropdown'
 
 import TextCtaButton from 'components/buttons/TextCtaButton'
+
+import FadeIn from 'components/animation/FadeIn'
 
 const HeaderPrivate = (props) => {
   const {
@@ -75,20 +75,16 @@ const HeaderPrivate = (props) => {
       </div>
 
       <div>
-        <CSSTransitionGroup
-          transitionName="fade-in"
-          transitionAppearTimeout={400}
-          transitionEnterTimeout={400}
-          transitionLeaveTimeout={400}>
+        <FadeIn>
           {
             showAccount && (
-              <AccountDowndown
+              <AccountDropdown
                 className='section-shadow'
                 closeAccount={onAccountClick}
                 onLogout={onLogout} />
             )
           }
-        </CSSTransitionGroup>
+        </FadeIn>
       </div>
     </div>
   )

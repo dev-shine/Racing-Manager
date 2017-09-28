@@ -5,6 +5,8 @@ import {
   DELETE_FEED_MEDIA
 } from 'actions/submitfeedpost'
 
+import update from 'immutability-helper'
+
 const initialState = {
   text: '',
   maxCharCount: 400,
@@ -18,31 +20,41 @@ const reducer = (state = initialState, action) => {
       const text = action.text
       const charCount = (state.maxCharCount - text.length)
 
-      return {
-        ...state,
-        text,
-        charCount
-      }
+      return update(state, {
+        text: {
+          $set: text
+        },
+        charCount: {
+          $set: charCount
+        }
+      })
 
     case ADD_FEED_MEDIA_FILES:
-      return {
-        ...state,
-        files: action.files
-      }
+      return update(state, {
+        files: {
+          $set: action.files
+        }
+      })
 
     case CLEAR_FEED_DATA:
-      return {
-        ...state,
-        text: '',
-        files: [],
-        charCount: state.maxCharCount
-      }
+      return update(state, {
+        text: {
+          $set: ''
+        },
+        files: {
+          $set: []
+        },
+        charCount: {
+          $set: state.maxCharCount
+        }
+      })
 
     case DELETE_FEED_MEDIA:
-      return {
-        ...state,
-        files: []
-      }
+      return update(state, {
+        files: {
+          $set: []
+        }
+      })
 
     default:
       return state
