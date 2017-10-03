@@ -5,39 +5,69 @@ import 'whatwg-fetch'
 
 import { verifyServerFormat, isParseable, constructQuery } from 'utils/request'
 
+import { getItem } from 'utils/storageutils'
+
+import { USER_TOKEN } from 'data/consts'
+
+import { logOut } from 'actions/auth'
+
+import processMediaPayload from 'utils/mediapayload'
+
+const defaultHeaders = {
+  'Accept': 'application/json',
+  // 'Content-Type': 'application/json'
+}
+
 /**
  *  request
  *  @param  {Object} params
  *  @return {Promise}
  */
-const request = params => {
-  let method = params.method || 'GET'
+const request = ({
+  method = 'GET',
+  headers = defaultHeaders,
+  json = null,
+  authenticated = false,
+  data,
+  query,
+  url
+}) => {
   let qs = ''
   let body
-  let headers = params.headers || {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+
+  if (authenticated) { // Using auth token
+    const token = getItem(USER_TOKEN)
+    if (!token) {
+      throw new Error('No Authorization token found') // Optional, fail before even sent. Please check
+    }
+    headers['Authorization'] = `JWT ${token}`
   }
 
   if (['GET', 'DELETE'].indexOf(method) > -1) {
-    if (params.data) {
-      qs = constructQuery(params.data)
+    if (data) {
+      qs = constructQuery(data)
     }
   } else { // POST or PUT
-    body = params.data
-
-    if (params.query) {
-      qs = constructQuery(params.query)
+    if (json) {
+      //headers['Content-Type'] = 'application/form-data' // WIP
+      body = processMediaPayload(json)
+    } else {
+      body = data
+    }
+    if (query) {
+      qs = constructQuery(query)
     }
   }
 
-  let url = params.url + qs
+  url = url + qs
 
   let opts = {
     headers,
     method,
     body
   }
+
+  console.log(opts);
 
   return fetch(url, opts)
   .then(isParseable)

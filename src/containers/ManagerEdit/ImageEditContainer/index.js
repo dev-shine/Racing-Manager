@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import QuoteEdit from 'components/manageredit/QuoteEdit'
+import TextEdit from 'components/manageredit/TextEdit'
 
 import EditButton from 'components/manageredit/EditButton'
 
@@ -10,25 +10,27 @@ import {performHorseEdit} from 'api/Services'
 
 import PropTypes from 'prop-types'
 
-class QuoteEditContainer extends Component {
+class ImageEditContainer extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
       showEdit: false,
-      value: ''
+      value: props.initialValue
     }
 
-    this.saveQuote = this.saveQuote.bind(this)
-    this.cancelQuote = this.cancelQuote.bind(this)
     this.showEditPopup = this.showEditPopup.bind(this)
-    this.hideEditPopup = this.hideEditPopup.bind(this)
+    this.cancelQuote = this.cancelQuote.bind(this)
     this.updateValue = this.updateValue.bind(this)
+    this.saveQuote = this.saveQuote.bind(this)
+    this.hideEditPopup = this.hideEditPopup.bind(this)
   }
 
   showEditPopup () {
+    console.log(this.props.data)
     this.setState({
-      showEdit: true
+      showEdit: true,
+      value: this.props.initialValue
     })
   }
 
@@ -38,19 +40,22 @@ class QuoteEditContainer extends Component {
     })
   }
 
-  saveQuote () {
-    // Save quote!
-    performHorseEdit({json: {quote: this.state.value}, query: {horseName: this.props.data.slug}})
-      .then(this.hideEditPopup)
-  }
-
   cancelQuote () {
     // Cancel quote!
     this.setState({
-      value: ''
+      value: this.props.initialValue
     }, () => {
       this.hideEditPopup()
     })
+  }
+
+  saveQuote () {
+    // Save quote!
+    performHorseEdit({json: {[this.props.updateValue]: this.state.value}, query: {horseName: this.props.data.slug}})
+      .then(() => {
+        this.props.onSave()
+        this.hideEditPopup()
+      })
   }
 
   updateValue (e) {
@@ -68,33 +73,43 @@ class QuoteEditContainer extends Component {
     } = this.state
 
     const {
+      canEdit,
+      title = null,
+      editLabel = 'update description',
+      children: Component,
       placeholder,
-      children: Component
+      maxLength = 2000
     } = this.props
 
-    let newProps = !showEdit ? { value } : {}
+    if (!canEdit) { // Child passes stright through
+      return <Component />
+    }
 
     return (
       <div>
         <EditButton
           onClick={this.showEditPopup}
-          title='update quote'
+          title={editLabel}
+          position='absolute'
           iconModifier='update' />
-        <QuoteEdit
+        <TextEdit
+          title={title}
           handleChange={this.updateValue}
           text={value}
           placeholder={placeholder}
           onSave={this.saveQuote}
           onCancel={this.cancelQuote}
-          isOpen={showEdit} />
-        <Component {...newProps} />
+          isOpen={showEdit}
+          maxLength={maxLength}/>
+        <Component />
       </div>
     )
   }
 }
 
-QuoteEditContainer.propTypes = {
-  children: PropTypes.func.isRequired
+ImageEditContainer.propTypes = {
+  children: PropTypes.func.isRequired,
+  canEdit: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -111,4 +126,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(QuoteEditContainer)
+)(ImageEditContainer)

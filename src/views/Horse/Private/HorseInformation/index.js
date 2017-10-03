@@ -14,6 +14,8 @@ import { timestampToDate } from 'utils/dateutils'
 
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
+import {showEditOptions} from 'utils/managerutils'
+
 import {
   benefitsList,
   racePlans,
@@ -29,6 +31,8 @@ import {
   Route
 } from 'react-router-dom'
 
+import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
+
 import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
 
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
@@ -37,6 +41,7 @@ const HorseInformation = (props) => {
   const {
     data,
     match,
+    getHorseInfo
   } = props
 
   const {
@@ -66,10 +71,26 @@ const HorseInformation = (props) => {
 
       <SyndicateSplitSection
         leftComponent={(
-          <HorseAbout
-            description={description}
-            timeformComments={timeformComments}
-            syndicateLink={syndicateLink} />
+          <TextEditContainer
+            title='About the horse'
+            data={data}
+            canEdit={showEditOptions()}
+            placeholder={horseHero.title(owner.name)}
+            initialValue={description}
+            maxLength={2000}
+            updateValue='description'
+            onSave={getHorseInfo}>
+            {
+              ({ value }) => {
+                return (
+                  <HorseAbout
+                    description={value || description}
+                    timeformComments={timeformComments}
+                    syndicateLink={syndicateLink} />
+                )
+              }
+            }
+          </TextEditContainer>
         )}
         rightComponent={(
           <HorseInvolvement
@@ -118,7 +139,7 @@ const HorseInformation = (props) => {
       {/* Edit section */}
       <Route exact path='/horse/:name/information/edit' render={() => {
         return (
-          <QuoteEditContainer placeholder={horseHero.title(owner.name)}>
+          <QuoteEditContainer placeholder={horseHero.title(owner.name)} data={data}>
           {
             ({ value }) => {
               return (

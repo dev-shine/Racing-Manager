@@ -38,6 +38,14 @@ export const performHorseUpdate = (data) => {
   })
 }
 
+export const performHorseEdit = (data) => {
+  return put({
+    authenticated: true,
+    url: SERVICE_TYPES.HORSE,
+    ...data
+  })
+}
+
 export const performRegistration = (data) => {
   return post({
     data: JSON.stringify(data),
