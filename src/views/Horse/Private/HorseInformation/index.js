@@ -65,7 +65,8 @@ const HorseInformation = (props) => {
         title='Image requirements'
         description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
         data={data}
-        editLabel='update image'>
+        editLabel='update image'
+        dataKey='featuredImage'>
         {
           ({ value }) => {
             return (
@@ -87,7 +88,7 @@ const HorseInformation = (props) => {
             title='About the horse'
             data={data}
             placeholder={horseHero.title(owner.name)}
-            dataKey={'description'}
+            dataKey='description'
             maxLength={2000}>
             {
               ({ value }) => {
