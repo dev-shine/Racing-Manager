@@ -164,17 +164,18 @@ class Carousel extends Component {
 
     const listWidth = slideWidth * React.Children.count(children)
     const spacingOffset = cellSpacing * React.Children.count(children)
-    const transform = `translate3d(${left}px, ${top}px, 0)`
-    const msTransform = `translate(${left}px, ${top}px)`
+    //const transform = `translate3d(${left}px, ${top}px, 0)`
+    //const msTransform = `translate(${left}px, ${top}px)`
 
     return {
-      transform,
-      WebkitTransform: transform,
-      msTransform,
+      //transform,
+      //WebkitTransform: transform,
+      //msTransform,
       margin: vertical ? (cellSpacing / 2) * -1 + 'px 0px'
                                   : '0px ' + (cellSpacing / 2) * -1 + 'px',
       width: vertical ? 'auto' : listWidth + spacingOffset,
-      touchAction: vertical ? 'pan-x' : 'pan-y'
+      touchAction: vertical ? 'pan-x' : 'pan-y',
+      marginLeft: `${left}px`
     }
   }
 

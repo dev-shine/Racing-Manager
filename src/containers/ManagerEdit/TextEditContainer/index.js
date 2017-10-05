@@ -6,7 +6,11 @@ import TextEdit from 'components/manageredit/TextEdit'
 
 import EditButton from 'components/manageredit/EditButton'
 
-import {performHorseEdit} from 'api/Services'
+import processMediaPayload from 'utils/mediapayload'
+
+import {submitHorseData} from 'actions/horse'
+
+import {showEditOptions} from 'utils/managerutils'
 
 import PropTypes from 'prop-types'
 
@@ -16,7 +20,7 @@ class TextEditContainer extends Component {
 
     this.state = {
       showEdit: false,
-      value: props.initialValue
+      value: ''
     }
 
     this.showEditPopup = this.showEditPopup.bind(this)
@@ -27,10 +31,10 @@ class TextEditContainer extends Component {
   }
 
   showEditPopup () {
-    console.log(this.props.data)
+    const {data, dataKey} = this.props
     this.setState({
       showEdit: true,
-      value: this.props.initialValue
+      value: data[dataKey]
     })
   }
 
@@ -41,21 +45,19 @@ class TextEditContainer extends Component {
   }
 
   cancelQuote () {
-    // Cancel quote!
+    const {data, dataKey} = this.props
     this.setState({
-      value: this.props.initialValue
+      value: data[dataKey]
     }, () => {
       this.hideEditPopup()
     })
   }
 
   saveQuote () {
-    // Save quote!
-    performHorseEdit({json: {[this.props.updateValue]: this.state.value}, query: {horseName: this.props.data.slug}})
-      .then(() => {
-        this.props.onSave()
-        this.hideEditPopup()
-      })
+    const {submitUpdate, dataKey} = this.props
+    const {value} = this.state
+    submitUpdate({[dataKey]: value})
+      .then(this.hideEditPopup)
   }
 
   updateValue (e) {
@@ -73,7 +75,6 @@ class TextEditContainer extends Component {
     } = this.state
 
     const {
-      canEdit,
       title = null,
       editLabel = 'update description',
       children: Component,
@@ -81,7 +82,7 @@ class TextEditContainer extends Component {
       maxLength = 2000
     } = this.props
 
-    if (!canEdit) { // Child passes stright through
+    if (!showEditOptions()) { // Child passes stright through
       return <Component />
     }
 
@@ -120,6 +121,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    submitUpdate: (values) => {
+      return dispatch(submitHorseData(ownProps.data.slug, processMediaPayload(values)))
+    }
   }
 }
 

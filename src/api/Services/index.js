@@ -31,17 +31,17 @@ export const getHorseInfo = (name) => {
   })
 }
 
-export const performHorseUpdate = (data) => {
-  return post({
-    url: SERVICE_TYPES.MESSAGE,
+export const updateHorseData = (data) => {
+  return put({
+    url: SERVICE_TYPES.HORSE,
     ...data
   })
 }
 
-export const performHorseEdit = (data) => {
-  return put({
-    authenticated: true,
-    url: SERVICE_TYPES.HORSE,
+
+export const performHorseUpdate = (data) => {
+  return post({
+    url: SERVICE_TYPES.MESSAGE,
     ...data
   })
 }

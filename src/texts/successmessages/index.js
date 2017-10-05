@@ -5,3 +5,5 @@ export const userLoggedInMessage = (name = '') => {
 }
 
 export const UPDATED_USER_DETAILS = 'Successfully updated details'
+
+export const UPDATED_HORSE_DATA = 'Successfully updated details'

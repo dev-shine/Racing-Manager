@@ -14,9 +14,11 @@ class QuoteEditContainer extends Component {
   constructor (props) {
     super(props)
 
+    const {data, dataKey} = props
+
     this.state = {
       showEdit: false,
-      value: ''
+      value: data[dataKey]
     }
 
     this.saveQuote = this.saveQuote.bind(this)
@@ -39,9 +41,11 @@ class QuoteEditContainer extends Component {
   }
 
   saveQuote () {
+    const {submitUpdate} = this.props
+    submitUpdate('test')
     // Save quote!
-    performHorseEdit({json: {quote: this.state.value}, query: {horseName: this.props.data.slug}})
-      .then(this.hideEditPopup)
+    // performHorseEdit({json: {quote: this.state.value}, query: {horseName: this.props.data.slug}})
+    //   .then(this.hideEditPopup)
   }
 
   cancelQuote () {
@@ -105,6 +109,21 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    submitUpdate: (values) => {
+
+      console.log(values);
+
+      // Only send avatarImage if it's an input file format and not a string
+      // if (typeof avatarImage !== 'string') {
+      //   payload['avatarImage'] = avatarImage
+      // }
+      //
+      // const data = processMediaPayload({
+      //   ...payload
+      // })
+      //
+      // return dispatch(submitFormData(data))
+    }
   }
 }
 
