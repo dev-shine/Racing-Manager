@@ -165,7 +165,7 @@ export const submitHorseData = (horseName, payload) => {
       types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
       endpoint: updateHorseData,
       payload,
-      query: {horseName}
+      urlParams: {slug: horseName}
     })
       .then(() => {
         dispatch(addToastSuccess(UPDATED_HORSE_DATA))

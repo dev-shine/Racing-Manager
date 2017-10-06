@@ -49,14 +49,14 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
     return next(action)
   }
 
-  const { endpoint, types, payload = {}, query = {}, headers = {} } = action
+  const { endpoint, types, payload = {}, query = {}, headers = {}, urlParams } = action
 
   const [requestType, successType, errorType] = types
 
   // Request the token from the localStorage
   const token = getItem(USER_TOKEN)
 
-  let config = {}
+  let config = {urlParams}
 
   // Set the authorization header
   config.headers = {

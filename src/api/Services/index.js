@@ -1,4 +1,4 @@
-import { post, get, put } from 'api/Request'
+import { post, get, put, patch } from 'api/Request'
 
 import * as SERVICE_TYPES from 'api/ServiceTypes'
 
@@ -32,12 +32,11 @@ export const getHorseInfo = (name) => {
 }
 
 export const updateHorseData = (data) => {
-  return put({
-    url: SERVICE_TYPES.HORSE,
+  return patch({
+    url: SERVICE_TYPES.UPDATE_HORSE,
     ...data
   })
 }
-
 
 export const performHorseUpdate = (data) => {
   return post({
