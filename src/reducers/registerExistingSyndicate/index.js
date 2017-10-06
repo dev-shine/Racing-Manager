@@ -23,7 +23,6 @@ const initialState = {
   address2: '',
   city: '',
   confirm: false,
-  canProgress: false,
   isSubmitting: false,
   submitError: false,
   errors: {

@@ -26,7 +26,7 @@ class RegisterExistingSyndicateForm extends PureComponent {
   }
 
   render () {
-    const { submitForm, values } = this.props
+    const { submitForm, values, canProgress } = this.props
     return (
       <div className="register-existing-syndicate-form">
         <Form
@@ -124,7 +124,7 @@ class RegisterExistingSyndicateForm extends PureComponent {
           <Submit component={(props) => TextButton({
             ...props,
             text: 'REGISTER SYNDICATE',
-            isDisabled: !(values.confirm)
+            isDisabled: !canProgress
           })} />
         </Form>
       </div>

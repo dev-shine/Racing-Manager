@@ -34,6 +34,29 @@ class RegisterExistingSyndicateFormContainer extends PureComponent {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  /**
+   *  canProgress
+   *  @const
+   *  @description If all fields are met, allow user to progress
+   *  @type {Boolean}
+   */
+
+  let canProgress = true
+
+  // Items to ommit from form checking.
+  const ommittedItems = ['isSubmitting', 'submitError', 'errors', 'firstname', 'surname', 'email', 'syndicatename', 'address1', 'address2', 'city']
+
+  for (let key in state.registerExistingSyndicate) {
+    if (!state.registerExistingSyndicate[key] && !~ommittedItems.indexOf(key)) {
+      canProgress = false
+    }
+  }
+
+  for (let errorKey in state.registerExistingSyndicate.errors) {
+    if (state.registerExistingSyndicate.errors[errorKey].length > 0) {
+      canProgress = false
+    }
+  }
   const {
     registerExistingSyndicate
   } = state
@@ -62,7 +85,8 @@ const mapStateToProps = (state, ownProps) => {
       confirm
     },
     errors,
-    validators: registerExistingSyndicateValidators
+    validators: registerExistingSyndicateValidators,
+    canProgress
   }
 }
 
