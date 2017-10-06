@@ -66,6 +66,13 @@ export const confirmRegistration = (data) => {
   })
 }
 
+export const performRegisterExistingSyndicate = (data) => {
+  // The API is not ready yet. This is a placeholder code.
+  return Promise.resolve({
+    token: 'abc123'
+  })
+}
+
 export const getInitialAppData = (token) => {
   return get({
     url: SERVICE_TYPES.SETUP,

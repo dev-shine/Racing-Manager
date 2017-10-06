@@ -99,6 +99,11 @@ export const UNDER_AGE_18 = 'You must be over 18 to register'
 /**
  *  @type {String}
  */
+export const REQUIRED = 'This field is required'
+
+/**
+ *  @type {String}
+ */
 export const MUST_ACCEPT_T_AND_C = 'You must accept terms and conditions'
 
 export const ADDRESS = 'Please enter your address'

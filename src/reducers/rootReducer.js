@@ -9,6 +9,7 @@ import browseHorses from './browsehorses'
 import login from './login'
 import auth from './auth'
 import registrationConfirmation from './registrationconfirmation'
+import registerExistingSyndicate from './registerExistingSyndicate'
 import dashboard from './dashboard'
 import account from './account'
 import toast from './toast'
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   toast,
   feedComments,
   news,
+  registerExistingSyndicate,
 
   /* submitting data for feed posts & feed commenting */
   horseFeedPost: reducerFactory(submitFeedPost, 'horseFeedPost'),
