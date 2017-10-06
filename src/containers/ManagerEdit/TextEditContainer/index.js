@@ -110,7 +110,6 @@ class TextEditContainer extends Component {
 
 TextEditContainer.propTypes = {
   children: PropTypes.func.isRequired,
-  canEdit: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {

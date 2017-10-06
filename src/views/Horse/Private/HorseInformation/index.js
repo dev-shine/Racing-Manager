@@ -137,11 +137,24 @@ const HorseInformation = (props) => {
 
         <div className='horse-information__section row'>
           <div className='col-xs-12 col-md-7'>
-            <TitleDescriptionSection
-              title={racePlans.title}
-              colorModifier='blue'>
-              {racePlans.text}
-            </TitleDescriptionSection>
+            <TextEditContainer
+              title='Race plans'
+              data={data}
+              placeholder={racePlans.text}
+              dataKey='racePlans'
+              maxLength={2000}>
+              {
+                ({ value }) => {
+                  return ( //.split('\n').map(item => (<span>{item}<br/></span>)
+                    <TitleDescriptionSection
+                      title={racePlans.title}
+                      colorModifier='blue'>
+                      {data.racePlans}
+                    </TitleDescriptionSection>
+                  )
+                }
+              }
+            </TextEditContainer>
           </div>
         </div>
       </div>
@@ -167,11 +180,24 @@ const HorseInformation = (props) => {
       <div className='container'>
         <div className='horse-information__section row'>
           <div className='col-xs-12 col-md-7'>
-            <TitleDescriptionSection
-              title={horseValue.title}
-              colorModifier='blue'>
-              {horseValue.text}
-            </TitleDescriptionSection>
+            <TextEditContainer
+              title='Horse value'
+              data={data}
+              placeholder={''}
+              dataKey='horseValue'
+              maxLength={2000}>
+              {
+                ({ value }) => {
+                  return (
+                    <TitleDescriptionSection
+                      title={'Horse value'}
+                      colorModifier='blue'>
+                      {data.horseValue}
+                    </TitleDescriptionSection>
+                  )
+                }
+              }
+            </TextEditContainer>
           </div>
         </div>
       </div>

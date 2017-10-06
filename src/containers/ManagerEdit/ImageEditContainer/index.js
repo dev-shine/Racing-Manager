@@ -107,7 +107,6 @@ class ImageEditContainer extends Component {
 
 ImageEditContainer.propTypes = {
   children: PropTypes.func.isRequired,
-  canEdit: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
