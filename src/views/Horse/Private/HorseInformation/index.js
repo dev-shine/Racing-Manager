@@ -29,6 +29,7 @@ import {
 /**
  *  Edit
  */
+import {submitHorseData} from 'actions/horse'
 
 import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
 
@@ -87,7 +88,9 @@ const HorseInformation = (props) => {
             data={data}
             placeholder={horseHero.title(owner.name)}
             dataKey='description'
-            maxLength={2000}>
+            maxLength={2000}
+            submitHorseData
+            submitAction={submitHorseData}>
             {
               ({ value }) => {
                 return (
@@ -139,7 +142,8 @@ const HorseInformation = (props) => {
               title='Race plans'
               data={data}
               dataKey='racePlans'
-              maxLength={2000}>
+              maxLength={2000}
+              submitAction={submitHorseData}>
               {
                 ({ value }) => {
                   return (
@@ -165,7 +169,8 @@ const HorseInformation = (props) => {
           placeholder={horseHero.title(owner.name)}
           dataKey='quote'
           maxLength={75}
-          modifier='text-edit__big'>
+          modifier='text-edit__big'
+          submitAction={submitHorseData}>
           {
             ({ value }) => {
               return (
@@ -187,7 +192,8 @@ const HorseInformation = (props) => {
               data={data}
               placeholder={''}
               dataKey='horseValue'
-              maxLength={2000}>
+              maxLength={2000}
+              submitAction={submitHorseData}>
               {
                 ({ value }) => {
                   return (

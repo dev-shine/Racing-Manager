@@ -8,8 +8,6 @@ import EditButton from 'components/manageredit/EditButton'
 
 import processMediaPayload from 'utils/mediapayload'
 
-import {submitHorseData} from 'actions/horse'
-
 import {showEditOptions} from 'utils/managerutils'
 
 import PropTypes from 'prop-types'
@@ -123,7 +121,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     submitUpdate: (values) => {
-      return dispatch(submitHorseData(ownProps.data.slug, processMediaPayload(values)))
+      return dispatch(ownProps.submitAction(ownProps.data.slug, processMediaPayload(values)))
     }
   }
 }

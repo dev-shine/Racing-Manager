@@ -32,7 +32,7 @@ export const getHorseInfo = (name) => {
 }
 
 export const updateHorseData = (data) => {
-  return patch({
+  return put({
     url: SERVICE_TYPES.UPDATE_HORSE,
     ...data
   })
