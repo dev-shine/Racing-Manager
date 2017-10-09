@@ -41,7 +41,6 @@ import {
   Route
 } from 'react-router-dom'
 
-
 /**
  *  Edit
  */
@@ -98,11 +97,25 @@ export class SyndicateOverview extends Component {
 
     return (
       <div className='private-syndicate'>
-        <SyndicateHero
-          featuredImage={featuredImage}
-          owner={owner}
-          logo={logo}
-          name={name} />
+        <ImageEditContainer
+          title='Image requirements'
+          description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
+          data={data}
+          editLabel='update image'
+          dataKey='featuredImage'
+          submitAction={submitSyndicateData}>
+          {
+            ({ value }) => {
+              return (
+                <SyndicateHero
+                  featuredImage={featuredImage}
+                  owner={owner}
+                  logo={logo}
+                  name={name} />
+              )
+            }
+          }
+        </ImageEditContainer>
         <div className='private-syndicate__header'>
           <SyndicateSplitSection
             leftComponent={
