@@ -158,18 +158,18 @@ export const submitHorseUpdate = (horseId, data) => {
   }
 }
 
-export const submitHorseData = (horseName, payload) => {
+export const submitHorseData = (slug, payload) => {
   return (dispatch, getState) => {
     return dispatch({
       type: CALL_ACTION_TYPE,
       types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
       endpoint: updateHorseData,
       payload,
-      urlParams: {slug: horseName}
+      urlParams: {slug}
     })
       .then(() => {
         dispatch(addToastSuccess(UPDATED_HORSE_DATA))
-        dispatch(fetchHorseInfo(horseName))
+        dispatch(fetchHorseInfo(slug))
         return Promise.resolve()
       })
       .catch((error) => {

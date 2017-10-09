@@ -28,6 +28,8 @@ import {
   faqs
 } from 'data/syndicate'
 
+import {multilineTextToJSX} from 'utils/textutils'
+
 // mockup data
 import {
   syndicateMembers,
@@ -35,18 +37,25 @@ import {
   fakeHorses
 } from 'data/horse'
 
-/**
- *  Edit
- */
 import {
   Route
 } from 'react-router-dom'
 
+
+/**
+ *  Edit
+ */
 import FormSubmissionEditContainer from 'containers/ManagerEdit/FormSubmissionEditContainer'
 
 import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 import ContactForm from 'components/forms/Contact'
 import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
+
+import {submitSyndicateData} from 'actions/syndicate'
+
+import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
+
+import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 
 // Mock
 const EMPTY_OBJ = {}
@@ -97,9 +106,23 @@ export class SyndicateOverview extends Component {
         <div className='private-syndicate__header'>
           <SyndicateSplitSection
             leftComponent={
-              <SyndicateAbout
-                description={description}
-                onFaqClick={this.toggleFaq} />
+              <TextEditContainer
+                title='About the syndicate'
+                data={data}
+                placeholder={''}
+                dataKey='description'
+                maxLength={2000}
+                submitAction={submitSyndicateData}>
+                {
+                  ({ value }) => {
+                    return (
+                      <SyndicateAbout
+                        description={multilineTextToJSX(description)}
+                        onFaqClick={this.toggleFaq} />
+                    )
+                  }
+                }
+              </TextEditContainer>
             }
             rightComponent={
               <div>
@@ -128,7 +151,7 @@ export class SyndicateOverview extends Component {
           </div>
         </div>
 
-        {/* Edit route */}
+        {/* Edit route
         <Route exact path='/syndicate/:name/edit' render={() => {
           return (
             <div className='private-syndicate__section-top'>
@@ -147,6 +170,7 @@ export class SyndicateOverview extends Component {
             </div>
           )
         }} />
+        */}
 
         {/* Non edit route */}
         <Route exact path='/syndicate/:name' render={() => {

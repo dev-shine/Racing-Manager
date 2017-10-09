@@ -66,6 +66,13 @@ export const getSyndicateInfo = (data) => {
   })
 }
 
+export const updateSyndicateData = (data) => {
+  return put({
+    url: SERVICE_TYPES.UPDATE_SYNDICATE,
+    ...data
+  })
+}
+
 export const confirmRegistration = (data) => {
   return get({
     url: SERVICE_TYPES.REGISTRATION_CONFIRMATION,

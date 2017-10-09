@@ -16,8 +16,6 @@ import { timestampToDate } from 'utils/dateutils'
 
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
-import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
-
 import {multilineTextToJSX} from 'utils/textutils'
 
 import {
@@ -32,6 +30,8 @@ import {
 import {submitHorseData} from 'actions/horse'
 
 import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
+
+import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
@@ -65,7 +65,8 @@ const HorseInformation = (props) => {
         description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
         data={data}
         editLabel='update image'
-        dataKey='featuredImage'>
+        dataKey='featuredImage'
+        submitAction={submitHorseData}>
         {
           ({ value }) => {
             return (
@@ -89,7 +90,6 @@ const HorseInformation = (props) => {
             placeholder={horseHero.title(owner.name)}
             dataKey='description'
             maxLength={2000}
-            submitHorseData
             submitAction={submitHorseData}>
             {
               ({ value }) => {
