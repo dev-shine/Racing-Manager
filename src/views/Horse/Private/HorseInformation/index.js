@@ -18,9 +18,10 @@ import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 
+import {multilineTextToJSX} from 'utils/textutils'
+
 import {
   benefitsList,
-  racePlans,
   syndicateMembers,
   horseHero
 } from 'data/horse'
@@ -37,7 +38,6 @@ const HorseInformation = (props) => {
   const {
     data,
     match,
-    getHorseInfo
   } = props
 
   const {
@@ -46,7 +46,9 @@ const HorseInformation = (props) => {
     owner,
     shares,
     syndicateLink,
-    percentShares
+    percentShares,
+    racePlans,
+    horseValue
   } = data
 
   const ownershipYears = 2
@@ -90,7 +92,7 @@ const HorseInformation = (props) => {
               ({ value }) => {
                 return (
                   <HorseAbout
-                    description={value || description}
+                    description={value || multilineTextToJSX(description)}
                     timeformComments={timeformComments}
                     syndicateLink={syndicateLink} />
                 )
@@ -136,16 +138,15 @@ const HorseInformation = (props) => {
             <TextEditContainer
               title='Race plans'
               data={data}
-              placeholder={racePlans.text}
               dataKey='racePlans'
               maxLength={2000}>
               {
                 ({ value }) => {
                   return (
                     <TitleDescriptionSection
-                      title={racePlans.title}
+                      title={'Race plans'}
                       colorModifier='blue'>
-                      {data.racePlans}
+                      {multilineTextToJSX(racePlans)}
                     </TitleDescriptionSection>
                   )
                 }
@@ -193,7 +194,7 @@ const HorseInformation = (props) => {
                     <TitleDescriptionSection
                       title={'Horse value'}
                       colorModifier='blue'>
-                      {data.horseValue}
+                      {multilineTextToJSX(horseValue)}
                     </TitleDescriptionSection>
                   )
                 }
