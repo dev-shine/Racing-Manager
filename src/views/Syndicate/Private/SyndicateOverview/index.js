@@ -43,7 +43,6 @@ import {
 } from 'react-router-dom'
 
 import FormSubmissionEditContainer from 'containers/ManagerEdit/FormSubmissionEditContainer'
-import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
 
 import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 import ContactForm from 'components/forms/Contact'
@@ -177,22 +176,25 @@ export class SyndicateOverview extends Component {
 
         {/* Edit route */}
         <Route exact path='/syndicate/:name/edit' render={() => {
+          /*
           return (
             <div className='private-syndicate__section-top'>
               <QuoteEditContainer placeholder={syndicateLowerHero.title}>
-              {
-                ({ value }) => {
-                  return (
-                    <HorseParallaxContent
-                      title={value || syndicateLowerHero.title}
-                      image={syndicateLowerHero.image}
-                    />
-                  )
+                {
+                  ({ value }) => {
+                    return (
+                      <HorseParallaxContent
+                        title={value || syndicateLowerHero.title}
+                        image={syndicateLowerHero.image}
+                      />
+                    )
+                  }
                 }
-              }
               </QuoteEditContainer>
             </div>
           )
+          */
+          return null
         }} />
 
         {/* Non edit route */}

@@ -8,6 +8,8 @@ import HorseAbout from 'components/horse/HorseAbout'
 import HorseInvolvement from 'components/horse/HorseInvolvement'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
 
+import {showEditOptions} from 'utils/managerutils'
+
 import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
 
 import { timestampToDate } from 'utils/dateutils'
@@ -19,7 +21,6 @@ import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 import {
   benefitsList,
   racePlans,
-  horseValue,
   syndicateMembers,
   horseHero
 } from 'data/horse'
@@ -27,13 +28,8 @@ import {
 /**
  *  Edit
  */
-import {
-  Route
-} from 'react-router-dom'
 
 import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
-
-import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
 
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
@@ -116,23 +112,23 @@ const HorseInformation = (props) => {
           <TitleDescriptionSection
             title={'key members'}
             colorModifier='blue'>
-              <div className='row'>
-                {syndicateMembers.map((member, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className='horse-information__grid-item col-lg-2 col-md-3 col-sm-4 col-xs-12'>
-                      <HorseTeamMember
-                        className='horse-information__member'
-                        image={member.image}
-                        name={member.name}
-                        role={member.role}
-                        description={member.description} />
-                    </div>
-                  )
-                })}
-              </div>
-            </TitleDescriptionSection>
+            <div className='row'>
+              {syndicateMembers.map((member, index) => {
+                return (
+                  <div
+                    key={index}
+                    className='horse-information__grid-item col-lg-2 col-md-3 col-sm-4 col-xs-12'>
+                    <HorseTeamMember
+                      className='horse-information__member'
+                      image={member.image}
+                      name={member.name}
+                      role={member.role}
+                      description={member.description} />
+                  </div>
+                )
+              })}
+            </div>
+          </TitleDescriptionSection>
         </div>
 
         <div className='horse-information__section row'>
@@ -145,7 +141,7 @@ const HorseInformation = (props) => {
               maxLength={2000}>
               {
                 ({ value }) => {
-                  return ( //.split('\n').map(item => (<span>{item}<br/></span>)
+                  return (
                     <TitleDescriptionSection
                       title={racePlans.title}
                       colorModifier='blue'>
@@ -160,22 +156,27 @@ const HorseInformation = (props) => {
       </div>
 
       {/* Edit section */}
-      <Route exact path='/horse/:name/information/edit' render={() => {
-        return (
-          <QuoteEditContainer placeholder={horseHero.title(owner.name)} data={data}>
+
+      {showEditOptions() &&
+        <TextEditContainer
+          title='Edit quote'
+          data={data}
+          placeholder={horseHero.title(owner.name)}
+          dataKey='quote'
+          maxLength={75}
+          modifier='text-edit__big'>
           {
             ({ value }) => {
               return (
                 <HorseParallaxContent
-                  title={value || horseHero.title(owner.name)}
+                  title={data.quote || horseHero.title(owner.name)}
                   image={horseHero.image}
                 />
               )
             }
           }
-          </QuoteEditContainer>
-        )
-      }} />
+        </TextEditContainer>
+      }
 
       <div className='container'>
         <div className='horse-information__section row'>

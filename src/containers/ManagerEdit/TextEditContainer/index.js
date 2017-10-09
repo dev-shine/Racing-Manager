@@ -79,7 +79,8 @@ class TextEditContainer extends Component {
       editLabel = 'update description',
       children: Component,
       placeholder,
-      maxLength = 2000
+      maxLength = 2000,
+      modifier
     } = this.props
 
     if (!showEditOptions()) { // Child passes stright through
@@ -87,7 +88,7 @@ class TextEditContainer extends Component {
     }
 
     return (
-      <div>
+      <div style={{position: 'relative'}}>
         <EditButton
           onClick={this.showEditPopup}
           title={editLabel}
@@ -101,7 +102,8 @@ class TextEditContainer extends Component {
           onSave={this.saveQuote}
           onCancel={this.cancelQuote}
           isOpen={showEdit}
-          maxLength={maxLength}/>
+          maxLength={maxLength}
+          className={modifier}/>
         <Component />
       </div>
     )

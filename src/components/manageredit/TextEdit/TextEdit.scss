@@ -22,4 +22,16 @@
       display: inline-block;
     }
   }
+
+  &__big {
+
+    textarea {
+      font-size: 40px;
+      &::placeholder {
+        font-size: 40px;
+      }
+
+    }
+
+  }
 }
