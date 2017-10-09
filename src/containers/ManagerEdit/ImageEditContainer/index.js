@@ -118,7 +118,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     submitUpdate: (values) => {
-      return dispatch(submitHorseData(ownProps.data.slug, processMediaPayload(values)))
+      return dispatch(ownProps.submitAction(ownProps.data.slug, processMediaPayload(values)))
     }
   }
 }
