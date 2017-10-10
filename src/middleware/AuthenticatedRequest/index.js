@@ -87,7 +87,7 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
         // Dispatch a toast error
         dispatchAction(next, addToastError, error.message || UNAUTHORISED)
 
-        // TEMPORARILY DISABLE dispatchAction(next, logOut)
+        dispatchAction(next, logOut)
       } else {
         dispatchAction(next, errorType, error)
       }

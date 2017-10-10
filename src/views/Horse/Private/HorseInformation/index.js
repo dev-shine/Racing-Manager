@@ -86,6 +86,7 @@ const HorseInformation = (props) => {
         leftComponent={(
           <TextEditContainer
             title='About the horse'
+            editLabel='update description'
             data={data}
             placeholder={horseHero.title(owner.name)}
             dataKey='description'
@@ -140,6 +141,7 @@ const HorseInformation = (props) => {
           <div className='col-xs-12 col-md-7'>
             <TextEditContainer
               title='Race plans'
+              editLabel='update race plans'
               data={data}
               dataKey='racePlans'
               maxLength={2000}
@@ -166,6 +168,7 @@ const HorseInformation = (props) => {
         <TextEditContainer
           title='Edit quote'
           data={data}
+          editLabel='update quote'
           placeholder={horseHero.title(owner.name)}
           dataKey='quote'
           maxLength={75}
@@ -189,6 +192,7 @@ const HorseInformation = (props) => {
           <div className='col-xs-12 col-md-7'>
             <TextEditContainer
               title='Horse value'
+              editLabel='update horse value'
               data={data}
               placeholder={''}
               dataKey='horseValue'

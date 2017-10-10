@@ -191,6 +191,7 @@ export class SyndicateOverview extends Component {
 
         <TextEditContainer
           title={`${name} horses`}
+          editLabel='update horses'
           data={data}
           placeholder={''}
           dataKey='horsesText'
@@ -218,6 +219,7 @@ export class SyndicateOverview extends Component {
             <div className='col-md-5 col-sm-12'>
               <TextEditContainer
                 title='Our heritage'
+                editLabel='update heritage'
                 data={data}
                 placeholder={''}
                 dataKey='heritage'
@@ -259,7 +261,8 @@ export class SyndicateOverview extends Component {
         </div>
 
         <TextEditContainer
-          title={`our trainers`}
+          title='our trainers'
+          editLabel='update trainers'
           data={data}
           placeholder={''}
           dataKey='trainersText'
