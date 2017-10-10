@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 const EditOverlayHoc = (WrappedComponent) => {
   const EditOverlay = (props) => {
     const {
+      canSave = true,
       modifier,
       onSave,
       onCancel,
@@ -26,13 +27,13 @@ const EditOverlayHoc = (WrappedComponent) => {
             <div className={modifiedWrapperClassNames}>
               <div className='edit-overlay__container section-shadow--tile'>
                 <div className='edit-overlay__dashed-border'>
-                 <WrappedComponent {...rest} />
+                  <WrappedComponent {...rest} />
                 </div>
                 <div className='edit-overlay__button-group'>
-                  <TextIconButton
+                  {canSave && <TextIconButton
                     onClick={onSave}
                     className='edit-overlay__button'
-                    iconModifier='check' />
+                    iconModifier='check' />}
                   <TextIconButton
                     onClick={onCancel}
                     className='edit-overlay__button'

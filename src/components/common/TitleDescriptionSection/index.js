@@ -50,7 +50,6 @@ const TitleDescriptionSection = (props) => {
 TitleDescriptionSection.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  description: PropTypes.string,
   colorModifier: PropTypes.string,
   titleModifier: PropTypes.string
 }

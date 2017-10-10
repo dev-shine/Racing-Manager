@@ -47,6 +47,8 @@ const HorseViewHoc = (WrapperComponent) => {
     render () {
       const {
         horseInfo,
+        getHorseInfo,
+        clearHorseData,
         ...restOfProps
       } = this.props
 
@@ -98,6 +100,8 @@ const HorseViewHoc = (WrapperComponent) => {
             <WrapperComponent
               data={horseProps}
               {...restOfProps}
+              getHorseInfo={getHorseInfo}
+              clearHorseData={clearHorseData}
             />
             <AjaxLoader isVisible={horseInfo.fetching} />
           </div>

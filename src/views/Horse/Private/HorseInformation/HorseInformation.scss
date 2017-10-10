@@ -33,3 +33,7 @@
     display: inline-block;
   }
 }
+
+.horse-information > * {
+  z-index: 1;
+}

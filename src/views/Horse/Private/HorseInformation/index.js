@@ -8,16 +8,18 @@ import HorseAbout from 'components/horse/HorseAbout'
 import HorseInvolvement from 'components/horse/HorseInvolvement'
 import HorseTeamMember from 'components/horse/HorseTeamMember'
 
+import {showEditOptions} from 'utils/managerutils'
+
 import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
 
 import { timestampToDate } from 'utils/dateutils'
 
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
+import {multilineTextToJSX} from 'utils/textutils'
+
 import {
   benefitsList,
-  racePlans,
-  horseValue,
   syndicateMembers,
   horseHero
 } from 'data/horse'
@@ -25,11 +27,11 @@ import {
 /**
  *  Edit
  */
-import {
-  Route
-} from 'react-router-dom'
+import {submitHorseData} from 'actions/horse'
 
-import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
+import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
+
+import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
@@ -45,7 +47,9 @@ const HorseInformation = (props) => {
     owner,
     shares,
     syndicateLink,
-    percentShares
+    percentShares,
+    racePlans,
+    horseValue
   } = data
 
   const ownershipYears = 2
@@ -56,8 +60,22 @@ const HorseInformation = (props) => {
 
   return (
     <div className='horse-information'>
-      <HorseHero
-        data={data} />
+      <ImageEditContainer
+        title='Image requirements'
+        description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
+        data={data}
+        editLabel='update image'
+        dataKey='featuredImage'
+        submitAction={submitHorseData}>
+        {
+          ({ value }) => {
+            return (
+              <HorseHero
+                data={data} />
+            )
+          }
+        }
+      </ImageEditContainer>
 
       <div className='horse-information__section--shadow section-shadow--bottom'>
         <HorseNavBar
@@ -66,10 +84,25 @@ const HorseInformation = (props) => {
 
       <SyndicateSplitSection
         leftComponent={(
-          <HorseAbout
-            description={description}
-            timeformComments={timeformComments}
-            syndicateLink={syndicateLink} />
+          <TextEditContainer
+            title='About the horse'
+            editLabel='update description'
+            data={data}
+            placeholder={horseHero.title(owner.name)}
+            dataKey='description'
+            maxLength={2000}
+            submitAction={submitHorseData}>
+            {
+              ({ value }) => {
+                return (
+                  <HorseAbout
+                    description={value || multilineTextToJSX(description)}
+                    timeformComments={timeformComments}
+                    syndicateLink={syndicateLink} />
+                )
+              }
+            }
+          </TextEditContainer>
         )}
         rightComponent={(
           <HorseInvolvement
@@ -85,62 +118,98 @@ const HorseInformation = (props) => {
           <TitleDescriptionSection
             title={'key members'}
             colorModifier='blue'>
-              <div className='row'>
-                {syndicateMembers.map((member, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className='horse-information__grid-item col-lg-2 col-md-3 col-sm-4 col-xs-12'>
-                      <HorseTeamMember
-                        className='horse-information__member'
-                        image={member.image}
-                        name={member.name}
-                        role={member.role}
-                        description={member.description} />
-                    </div>
-                  )
-                })}
-              </div>
-            </TitleDescriptionSection>
+            <div className='row'>
+              {syndicateMembers.map((member, index) => {
+                return (
+                  <div
+                    key={index}
+                    className='horse-information__grid-item col-lg-2 col-md-3 col-sm-4 col-xs-12'>
+                    <HorseTeamMember
+                      className='horse-information__member'
+                      image={member.image}
+                      name={member.name}
+                      role={member.role}
+                      description={member.description} />
+                  </div>
+                )
+              })}
+            </div>
+          </TitleDescriptionSection>
         </div>
 
         <div className='horse-information__section row'>
           <div className='col-xs-12 col-md-7'>
-            <TitleDescriptionSection
-              title={racePlans.title}
-              colorModifier='blue'>
-              {racePlans.text}
-            </TitleDescriptionSection>
+            <TextEditContainer
+              title='Race plans'
+              editLabel='update race plans'
+              data={data}
+              dataKey='racePlans'
+              maxLength={2000}
+              submitAction={submitHorseData}>
+              {
+                ({ value }) => {
+                  return (
+                    <TitleDescriptionSection
+                      title={'Race plans'}
+                      colorModifier='blue'>
+                      {multilineTextToJSX(racePlans)}
+                    </TitleDescriptionSection>
+                  )
+                }
+              }
+            </TextEditContainer>
           </div>
         </div>
       </div>
 
       {/* Edit section */}
-      <Route exact path='/horse/:name/information/edit' render={() => {
-        return (
-          <QuoteEditContainer placeholder={horseHero.title(owner.name)}>
+
+      {showEditOptions() &&
+        <TextEditContainer
+          title='Edit quote'
+          data={data}
+          editLabel='update quote'
+          placeholder={horseHero.title(owner.name)}
+          dataKey='quote'
+          maxLength={75}
+          modifier='text-edit__big'
+          submitAction={submitHorseData}>
           {
             ({ value }) => {
               return (
                 <HorseParallaxContent
-                  title={value || horseHero.title(owner.name)}
+                  title={data.quote || horseHero.title(owner.name)}
                   image={horseHero.image}
                 />
               )
             }
           }
-          </QuoteEditContainer>
-        )
-      }} />
+        </TextEditContainer>
+      }
 
       <div className='container'>
         <div className='horse-information__section row'>
           <div className='col-xs-12 col-md-7'>
-            <TitleDescriptionSection
-              title={horseValue.title}
-              colorModifier='blue'>
-              {horseValue.text}
-            </TitleDescriptionSection>
+            <TextEditContainer
+              title='Horse value'
+              editLabel='update horse value'
+              data={data}
+              placeholder={''}
+              dataKey='horseValue'
+              maxLength={2000}
+              submitAction={submitHorseData}>
+              {
+                ({ value }) => {
+                  return (
+                    <TitleDescriptionSection
+                      title={'Horse value'}
+                      colorModifier='blue'>
+                      {multilineTextToJSX(horseValue)}
+                    </TitleDescriptionSection>
+                  )
+                }
+              }
+            </TextEditContainer>
           </div>
         </div>
       </div>

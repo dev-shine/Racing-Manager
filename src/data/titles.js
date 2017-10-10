@@ -8,3 +8,4 @@ export const BROWSE_HORSES = 'Browse horses'
 export const MEMBER_DASHBOARD = "Member's dashboard"
 export const ACCOUNT = 'Account'
 export const SYNDICATE_MAIN = 'Syndicate main'
+export const REGISTER_EXISTING_SYNDICATE = 'Register existing syndicate'

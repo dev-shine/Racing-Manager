@@ -1,4 +1,4 @@
-import { post, get, put } from 'api/Request'
+import { post, get, put, patch } from 'api/Request'
 
 import * as SERVICE_TYPES from 'api/ServiceTypes'
 
@@ -31,6 +31,13 @@ export const getHorseInfo = (name) => {
   })
 }
 
+export const updateHorseData = (data) => {
+  return put({
+    url: SERVICE_TYPES.UPDATE_HORSE,
+    ...data
+  })
+}
+
 export const performHorseUpdate = (data) => {
   return post({
     url: SERVICE_TYPES.MESSAGE,
@@ -59,10 +66,24 @@ export const getSyndicateInfo = (data) => {
   })
 }
 
+export const updateSyndicateData = (data) => {
+  return put({
+    url: SERVICE_TYPES.UPDATE_SYNDICATE,
+    ...data
+  })
+}
+
 export const confirmRegistration = (data) => {
   return get({
     url: SERVICE_TYPES.REGISTRATION_CONFIRMATION,
     data
+  })
+}
+
+export const performRegisterExistingSyndicate = (data) => {
+  // The API is not ready yet. This is a placeholder code.
+  return Promise.resolve({
+    token: 'abc123'
   })
 }
 

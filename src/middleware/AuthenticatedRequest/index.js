@@ -49,14 +49,14 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
     return next(action)
   }
 
-  const { endpoint, types, payload = {}, query = {}, headers = {} } = action
+  const { endpoint, types, payload = {}, query = {}, headers = {}, urlParams } = action
 
   const [requestType, successType, errorType] = types
 
   // Request the token from the localStorage
   const token = getItem(USER_TOKEN)
 
-  let config = {}
+  let config = {urlParams}
 
   // Set the authorization header
   config.headers = {
@@ -77,22 +77,22 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
   }
 
   return endpoint(config)
-  .then((data) => {
-    dispatchAction(next, successType, data)
+    .then((data) => {
+      dispatchAction(next, successType, data)
 
-    return Promise.resolve(data)
-  })
-  .catch((error) => {
-    if (error.status && error.status === 'not_authorized') {
-      // Dispatch a toast error
-      dispatchAction(next, addToastError, error.message || UNAUTHORISED)
+      return Promise.resolve(data)
+    })
+    .catch((error) => {
+      if (error.status && error.status === 'not_authorized') {
+        // Dispatch a toast error
+        dispatchAction(next, addToastError, error.message || UNAUTHORISED)
 
-      dispatchAction(next, logOut)
-    } else {
-      dispatchAction(next, errorType, error)
-    }
-    return Promise.reject(error)
-  })
+        dispatchAction(next, logOut)
+      } else {
+        dispatchAction(next, errorType, error)
+      }
+      return Promise.reject(error)
+    })
 }
 
 export default authenticatedRequest

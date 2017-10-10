@@ -2,8 +2,10 @@ import React from 'react'
 import {
   Route,
   Switch,
-  BrowserRouter as Routes,
+  Router as Routes,
 } from 'react-router-dom'
+
+import history from 'utils/locationutils'
 
 import AuthRoute from 'components/routing/AuthRoute'
 
@@ -19,6 +21,7 @@ import RegistrationSuccessful from 'views/Registration/RegisterSuccessful'
 import RegistrationConfirmation from 'views/Registration/RegisterConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import BrowseHorses from 'views/BrowseHorses'
+import RegistrationExistingSyndicate from 'views/Registration/RegisterExistingSyndicate'
 
 import Account from 'views/Account/AccountLayout'
 
@@ -34,7 +37,7 @@ import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
 const router = (
-  <Routes>
+  <Routes history={history}>
     <Startup>
       <Layout>
         <ScrollTop>
@@ -43,6 +46,7 @@ const router = (
             <AuthRoute path='/register' authenticatedPath='/' redirect={Register} />
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
+            <AuthRoute path='/register-existing-syndicate' component={RegistrationExistingSyndicate} redirectPath='/' />
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
 
             <AuthRoute exact path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />

@@ -63,7 +63,6 @@ const HorseAbout = (props) => {
 
 HorseAbout.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.string,
   timeformComments: PropTypes.object,
   syndicateLink: PropTypes.string
 }

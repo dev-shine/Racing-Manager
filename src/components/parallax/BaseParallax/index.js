@@ -23,6 +23,19 @@ import throttle from 'utils/throttle'
  */
 import { getTop, testForPassiveScroll } from 'utils/domutils'
 
+const getPosition = (element) => {
+  var xPosition = 0
+  var yPosition = 0
+
+  while (element) {
+    xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft)
+    yPosition += (element.offsetTop - element.scrollTop + element.clientTop)
+    element = element.offsetParent
+  }
+
+  return { x: xPosition, y: yPosition }
+}
+
 /**
  *  @class Parallax
  *  @extends {Component}
@@ -98,8 +111,9 @@ class Parallax extends Component {
     const scrollY = window.pageYOffset
 
     const parentElement = this.getParentElement()
+    const parentAbsolutePosition = getPosition(parentElement)
 
-    const d = (scrollY - parentElement.offsetTop) * speed / scope
+    const d = (scrollY - parentAbsolutePosition.y) * speed / scope
 
     return (d * 100)
   }

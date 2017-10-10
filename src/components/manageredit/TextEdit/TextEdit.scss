@@ -1,19 +1,12 @@
-.quote-edit {
+.text-edit {
   position: relative;
 
   &__text {
     textarea {
-      @include h1();
       color: $color-text-strong;
-      text-transform: uppercase;
-      text-align: center;
 
       &::placeholder {
-        @include h1();
-        color: $color-text-strong;
         text-transform: uppercase;
-        text-align: center;
-        opacity: 0.5;
       }
     }
   }
@@ -28,5 +21,17 @@
       color: $color-text-faded;
       display: inline-block;
     }
+  }
+
+  &__big {
+
+    textarea {
+      font-size: 40px;
+      &::placeholder {
+        font-size: 40px;
+      }
+
+    }
+
   }
 }
