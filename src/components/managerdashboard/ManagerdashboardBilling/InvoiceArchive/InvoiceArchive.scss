@@ -3,20 +3,8 @@
 
   .upload-zone {
     &.active {
-      border: 1px dotted $davys-gray;
+      border: 2px dotted $davys-gray;
       background-color: $gainsboro;
-    }
-
-    &.rejected {
-      border: 2px solid $davys-gray;
-    }
-
-    &.accepted {
-      border: 3px solid $davys-gray;
-    }
-
-    &.disabled {
-      border: 4px solid $davys-gray;
     }
   }
 
@@ -28,9 +16,9 @@
       margin-top: 20px;
       margin-bottom: 30px;
 
-      button {
+      button > .text-button__text {
         font-style: italic;
-        font-family: serif;
+        font-size: 10px;
       }
     }
   }

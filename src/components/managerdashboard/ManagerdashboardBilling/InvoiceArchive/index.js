@@ -41,9 +41,6 @@ class InvoiceArchive extends PureComponent {
           ref={(node) => { this.dropzoneRef = node }}
           className="upload-zone"
           activeClassName="active"
-          acceptClassName="accepted"
-          rejectClassName="rejected"
-          disabledClassName="disabled"
           disableClick={true}
           onDrop={this.onDrop}>
           <div className="file-upload-section-header">

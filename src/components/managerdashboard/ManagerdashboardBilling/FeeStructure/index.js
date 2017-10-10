@@ -89,7 +89,7 @@ class FeeStructureForm extends PureComponent {
 
           <div className="fee">
             <div className="small">
-              <p>We require an initial fee of £</p>
+              <p>We require an initial fee of £ </p>
             </div>
 
             <div className='form__group'>
@@ -100,7 +100,7 @@ class FeeStructureForm extends PureComponent {
             </div>
 
             <div className="small">
-              <p>and an ongoing Monthly fee of £</p>
+              <p>and an ongoing Monthly fee of £ </p>
             </div>
 
             <div className='form__group'>

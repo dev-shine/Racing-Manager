@@ -1,6 +1,7 @@
 .manager-dashboard {
 
   .manager-dashboard__section {
+    width: 90%;
 
     .forms-top {
       .fee-structure {
@@ -9,17 +10,17 @@
           width: 100%;
         }
         height: 561px;
-        padding: 0;
+        padding-left: 35px;
         display: inline-block;
       }
       .bank-details {
         background-color: $color-bg-bank-detail;
         width: 40%;
+        padding-right: 35px;
         @media screen and (max-width: 768px) {
           width: 100%;
         }
         height: 561px;
-        padding: 0;
         display: inline-block;
       }
     }
@@ -28,7 +29,7 @@
       .invoice-archive {
         width: 100%;
         background-color: $color-bg-invoice-archive;
-        box-shadow: $x11-gray;
+        padding: 0 35px;
       }
     }
   }
