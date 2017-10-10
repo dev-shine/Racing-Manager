@@ -28,6 +28,7 @@ import PrivateHorseInformation from 'views/Horse/Private/HorseInformation'
 
 import PublicHorse from 'views/Horse/Public/HorseOverview'
 
+import Syndicate from 'views/Syndicate/SyndicateMain'
 import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
 
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
@@ -51,6 +52,7 @@ const router = (
 
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 
+            <AuthRoute path='/syndicate' component={Syndicate} redirectPath='/' />
             <AuthRoute exact path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <AuthRoute exact path='/syndicate/:name/edit' component={PrivateSyndicate} redirectPath='/404' />
 
