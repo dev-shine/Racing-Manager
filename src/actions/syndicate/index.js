@@ -1,6 +1,12 @@
-import { getSyndicateInfo } from 'api/Services'
+import { getSyndicateInfo, updateSyndicateData } from 'api/Services'
 
 import { formatHorseData } from 'utils/horseutils'
+
+import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+
+import { addToastSuccess, addToastError } from 'actions/toast'
+
+import { UPDATED_SYNDICATE_DATA } from 'texts/successmessages'
 
 export const FETCH_SYNDICATE_INFO = 'FETCH_SYNDICATE_INFO'
 export const RECEIVED_SYNDICATE_INFO = 'RECEIVED_SYNDICATE_INFO'
@@ -31,14 +37,36 @@ export const fetchSyndicateInfo = data => {
     dispatch(gettingSyndicateInfo())
 
     return getSyndicateInfo(data)
-    .then(formatHorseData)
-    .then((data) => {
-      dispatch(receivedSyndicateInfo(data))
-      return Promise.resolve(data)
+      .then(formatHorseData)
+      .then((data) => {
+        dispatch(receivedSyndicateInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetSyndicateInfo(error))
+        return Promise.reject(error)
+      })
+  }
+}
+
+export const submitSyndicateData = (slug, payload) => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: CALL_ACTION_TYPE,
+      types: [gettingSyndicateInfo, receivedSyndicateInfo, failedToGetSyndicateInfo],
+      endpoint: updateSyndicateData,
+      payload,
+      urlParams: {slug}
     })
-    .catch((error) => {
-      dispatch(failedToGetSyndicateInfo(error))
-      return Promise.reject(error)
-    })
+      .then(() => {
+        dispatch(addToastSuccess(UPDATED_SYNDICATE_DATA))
+        dispatch(fetchSyndicateInfo({name: slug}))
+        return Promise.resolve()
+      })
+      .catch((error) => {
+        if (error && error.message) {
+          dispatch(addToastError(error.message))
+        }
+      })
   }
 }

@@ -2,8 +2,10 @@ import React from 'react'
 import {
   Route,
   Switch,
-  BrowserRouter as Routes,
+  Router as Routes,
 } from 'react-router-dom'
+
+import history from 'utils/locationutils'
 
 import AuthRoute from 'components/routing/AuthRoute'
 
@@ -34,7 +36,7 @@ import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
 const router = (
-  <Routes>
+  <Routes history={history}>
     <Startup>
       <Layout>
         <ScrollTop>

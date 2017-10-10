@@ -31,7 +31,6 @@ const SyndicateAbout = (props) => {
 
 SyndicateAbout.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.string,
   onFaqClick: PropTypes.func
 }
 

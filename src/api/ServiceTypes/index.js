@@ -13,9 +13,13 @@ export const MESSAGE = `${BASE_URL}/message`
 
 export const HORSE = `${BASE_URL}/horse`
 
+export const UPDATE_HORSE = `${BASE_URL}/horse/:slug`
+
 export const DASHBOARD = `${BASE_URL}/user/dashboard`
 
 export const SYNDICATE = `${BASE_URL}/syndicate`
+
+export const UPDATE_SYNDICATE = `${BASE_URL}/syndicate/:slug`
 
 export const SEARCH = `${BASE_URL}/search`
 

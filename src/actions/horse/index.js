@@ -1,7 +1,12 @@
 import {
   getHorseInfo,
-  performHorseUpdate
+  performHorseUpdate,
+  updateHorseData
 } from 'api/Services'
+
+import { UPDATED_HORSE_DATA } from 'texts/successmessages'
+
+import { addToastSuccess, addToastError } from 'actions/toast'
 
 /**
  *  @module CALL_ACTION_TYPE
@@ -123,15 +128,15 @@ export const fetchHorseInfo = (name) => {
     dispatch(gettingHorseInfo())
 
     return getHorseInfo(name)
-    .then(formatHorseData)
-    .then((data) => {
-      dispatch(receivedHorseInfo(data))
-      return Promise.resolve(data)
-    })
-    .catch((error) => {
-      dispatch(failedToGetHorseInfo(error))
-      return Promise.reject(error)
-    })
+      .then(formatHorseData)
+      .then((data) => {
+        dispatch(receivedHorseInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseInfo(error))
+        return Promise.reject(error)
+      })
   }
 }
 
@@ -150,5 +155,27 @@ export const submitHorseUpdate = (horseId, data) => {
       horseId
     },
     payload: data
+  }
+}
+
+export const submitHorseData = (slug, payload) => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: CALL_ACTION_TYPE,
+      types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
+      endpoint: updateHorseData,
+      payload,
+      urlParams: {slug}
+    })
+      .then(() => {
+        dispatch(addToastSuccess(UPDATED_HORSE_DATA))
+        dispatch(fetchHorseInfo(slug))
+        return Promise.resolve()
+      })
+      .catch((error) => {
+        if (error && error.message) {
+          dispatch(addToastError(error.message))
+        }
+      })
   }
 }
