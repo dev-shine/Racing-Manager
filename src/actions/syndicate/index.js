@@ -60,7 +60,7 @@ export const submitSyndicateData = (slug, payload) => {
     })
       .then(() => {
         dispatch(addToastSuccess(UPDATED_SYNDICATE_DATA))
-        dispatch(fetchSyndicateInfo(slug))
+        dispatch(fetchSyndicateInfo({name: slug}))
         return Promise.resolve()
       })
       .catch((error) => {

@@ -78,7 +78,8 @@ class TextEditContainer extends Component {
       children: Component,
       placeholder,
       maxLength = 2000,
-      modifier
+      modifier,
+      buttonModifier
     } = this.props
 
     if (!showEditOptions()) { // Child passes stright through
@@ -91,6 +92,7 @@ class TextEditContainer extends Component {
           onClick={this.showEditPopup}
           title={editLabel}
           position='absolute'
+          modifier={buttonModifier}
           iconModifier='update' />
         <TextEdit
           title={title}
