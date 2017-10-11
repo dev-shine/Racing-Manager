@@ -25,6 +25,12 @@
         color: $color-text-inform;
       }
     }
+
+    .error-messages {
+      p {
+        color: $twilight-lavender;
+      }
+    }
   }
 
   span {

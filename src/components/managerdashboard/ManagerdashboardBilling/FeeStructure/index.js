@@ -16,8 +16,8 @@ class FeeStructureForm extends PureComponent {
   }
 
   render () {
-    console.log(this.props.values)
-    const { submitForm, values } = this.props
+    console.log(this.props)
+    const { submitForm, values, errors } = this.props
 
     return (
       <div className='fee-structure-form'>
@@ -98,6 +98,7 @@ class FeeStructureForm extends PureComponent {
             <div className='form__group'>
               <Field
                 component={Input}
+                hideError={true}
                 validate={['initialfee']}
                 name='initialfee' />
             </div>
@@ -109,6 +110,7 @@ class FeeStructureForm extends PureComponent {
             <div className='form__group'>
               <Field
                 component={Input}
+                hideError={true}
                 validate={['monthlyfee']}
                 name='monthlyfee' />
             </div>
@@ -123,6 +125,7 @@ class FeeStructureForm extends PureComponent {
               <Field
                 component={Input}
                 validate={['perioddate']}
+                hideError={true}
                 name='perioddate' />
             </div>
 
@@ -134,6 +137,11 @@ class FeeStructureForm extends PureComponent {
 
             <div className="small">
               <p>The total is inclusive of VAT.</p>
+            </div>
+            <div className="error-messages">
+              {errors.initialfee.length ? <p>Please enter the initial fee.</p> : null}<br />
+              {errors.monthlyfee.length ? <p>Please enter the monthly fee.</p> : null}<br />
+              {errors.perioddate.length ? <p>Please enter the period date.</p> : null}
             </div>
           </div>
           <div className="form-submit-button">

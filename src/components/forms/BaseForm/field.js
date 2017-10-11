@@ -263,7 +263,7 @@ class Field extends PureComponent {
     /**
      *  @const
      */
-    const { component: Presentation, children, name, value: valueProp } = this.props
+    const { component: Presentation, children, name, value: valueProp, validate, hideError } = this.props
 
     /**
      *  @const
@@ -287,6 +287,7 @@ class Field extends PureComponent {
         {...allowedProps}
         value={value}
         error={error}
+        showError={validate && validate.length && !hideError}
         handleFocus={this.handleFocus}
         handleBlur={this.handleBlur}
         handleChange={this.handleChange}

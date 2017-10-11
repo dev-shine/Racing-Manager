@@ -28,10 +28,10 @@ export const feeStructureValidators = (type, formValues = {}) => {
 
   switch (type) {
     case 'ownershipType':
-      return VALIDATE.REQUIRED(ownershipType) ? [] : [ERROR.REQUIRED]
+      return VALIDATE.REQUIRED(ownershipType) ? [] : [ERROR.REQUIRED_RADIO]
 
     case 'feeStructure':
-      return VALIDATE.REQUIRED(feeStructure) ? [] : [ERROR.REQUIRED]
+      return VALIDATE.REQUIRED(feeStructure) ? [] : [ERROR.REQUIRED_RADIO]
     case 'initialfee':
       return VALIDATE.REQUIRED(initialfee) ? [] : [ERROR.REQUIRED]
 

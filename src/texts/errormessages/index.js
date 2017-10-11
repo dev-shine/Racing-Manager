@@ -104,6 +104,11 @@ export const REQUIRED = 'This field is required'
 /**
  *  @type {String}
  */
+export const REQUIRED_RADIO = 'Please select one of the options.'
+
+/**
+ *  @type {String}
+ */
 export const MUST_ACCEPT_T_AND_C = 'You must accept terms and conditions'
 
 /**
