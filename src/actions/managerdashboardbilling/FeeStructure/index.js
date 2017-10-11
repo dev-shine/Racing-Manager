@@ -49,6 +49,6 @@ export const updateFormError = (errors, name) => ({
 
 export const submitFormData = data => {
   return (dispatch, getState) => {
-    return dispatch(submitForm())
+    return dispatch(submitForm(data))
   }
 }

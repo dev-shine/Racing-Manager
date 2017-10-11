@@ -16,6 +16,7 @@ class FeeStructureForm extends PureComponent {
   }
 
   render () {
+    console.log(this.props.values)
     const { submitForm, values } = this.props
 
     return (
@@ -47,6 +48,7 @@ class FeeStructureForm extends PureComponent {
             <div className='form__group'>
               <Field
                 component={Radio}
+                validate={['ownershipType']}
                 name="ownershipType"
                 value="open_ended"
                 checked={values.ownershipType === 'open_ended'}
@@ -80,6 +82,7 @@ class FeeStructureForm extends PureComponent {
             <div className='form__group'>
               <Field
                 component={Radio}
+                validate={['feeStructure']}
                 name="feeStructure"
                 value="initial_joining_fee"
                 checked={values.feeStructure === 'initial_joining_fee'}

@@ -16,7 +16,8 @@ import FeeStructureForm from 'components/managerdashboard/ManagerDashboardBillin
 import {
   updateForm,
   resetForm,
-  updateFormError
+  updateFormError,
+  submitFormData
 } from 'actions/managerdashboardbilling/FeeStructure'
 
 /**
@@ -61,7 +62,7 @@ const mapStateToProps = (state, ownProps) => {
       feeStructure,
       initialfee,
       monthlyfee,
-      perioddate
+      perioddate,
     },
     errors,
     validators: feeStructureValidators
@@ -78,6 +79,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     clearForm: () => {
       dispatch(resetForm())
+    },
+    submitForm: (data) => {
+      dispatch(submitFormData(data))
     }
   }
 }

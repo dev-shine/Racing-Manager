@@ -19,36 +19,24 @@ export const feeStructureValidators = (type, formValues = {}) => {
    *  @const
    */
   const {
-    fixedperiod,
-    openended,
-    oneinclusive,
-    ongoing,
-    fee,
+    ownershipType,
+    feeStructure,
     initialfee,
     monthlyfee,
     perioddate
   } = formValues
 
   switch (type) {
-    case 'fixedperiod':
-      return VALIDATE.REQUIRED(fixedperiod) ? [] : [ERROR.REQUIRED]
+    case 'ownershipType':
+      return VALIDATE.REQUIRED(ownershipType) ? [] : [ERROR.REQUIRED]
 
-    case 'openended':
-      return VALIDATE.REQUIRED(openended) ? [] : [ERROR.REQUIRED]
-
-    case 'oneinclusive':
-      return VALIDATE.REQUIRED(oneinclusive) ? [] : [ERROR.REQUIRED]
-
-    case 'ongoing':
-      return VALIDATE.REQUIRED(ongoing) ? [] : [ERROR.REQUIRED]
-
-    case 'fee':
-      return VALIDATE.REQUIRED(fee) ? [] : [ERROR.REQUIRED]
+    case 'feeStructure':
+      return VALIDATE.REQUIRED(feeStructure) ? [] : [ERROR.REQUIRED]
     case 'initialfee':
-      return VALIDATE.IS_NUMBER(initialfee) ? [] : [ERROR.INITIAL_FEE]
+      return VALIDATE.REQUIRED(initialfee) ? [] : [ERROR.REQUIRED]
 
     case 'monthlyfee':
-      return VALIDATE.IS_NUMBER(monthlyfee) ? [] : [ERROR.MONTHLY_FEE]
+      return VALIDATE.REQUIRED(monthlyfee) ? [] : [ERROR.REQUIRED]
 
     case 'perioddate':
       return VALIDATE.DATE(perioddate) ? [] : [ERROR.PERIOD_DATE]

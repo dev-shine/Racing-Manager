@@ -29,7 +29,7 @@ export const bankDetailsValidators = (type, formValues = {}) => {
       return VALIDATE.NAME(holdername) ? [] : [ERROR.HOLDER_NAME]
 
     case 'accountnumber':
-      return VALIDATE.IS_NUMBER(accountnumber) ? [] : [ERROR.ACCOUNT_NUMBER]
+      return VALIDATE.REQUIRED(accountnumber) ? [] : [ERROR.REQUIRED]
 
     case 'sortcode':
       return VALIDATE.REQUIRED(sortcode) ? [] : [ERROR.REQUIRED]
