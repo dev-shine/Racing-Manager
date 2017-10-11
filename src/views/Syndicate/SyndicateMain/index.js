@@ -27,12 +27,14 @@ class SyndicateMain extends PureComponent {
         <div className="syndicate-main">
           <ViewHeader
             title='Syndicates'/>
-          <div className="syndicate-section">
-            <div className="existing-syndicate-section">
-              <ExistingSyndicate />
-            </div>
-            <div className="new-syndicate-section">
-              <NewSyndicate />
+          <div className="container">
+            <div className="row syndicate-section">
+              <div className="existing-syndicate-section col-sm-5 col-xs-12">
+                <ExistingSyndicate />
+              </div>
+              <div className="new-syndicate-section col-sm-5 col-xs-12">
+                <NewSyndicate />
+              </div>
             </div>
           </div>
         </div>
