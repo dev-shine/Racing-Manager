@@ -35,7 +35,7 @@ SyndicateAbout.propTypes = {
 }
 
 SyndicateAbout.defaultProps = {
-  title: 'About the syndicate',
+  title: 'About our syndicate',
   description: ''
 }
 

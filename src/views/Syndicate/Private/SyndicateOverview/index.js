@@ -291,7 +291,7 @@ export class SyndicateOverview extends Component {
           <div className='container'>
             <TitleDescriptionSection
               colorModifier='blue'
-              title='syndicate updates'>
+              title='syndicate news'>
               <FeedGallery
                 tiles={messages} />
             </TitleDescriptionSection>

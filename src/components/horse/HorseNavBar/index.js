@@ -12,13 +12,13 @@ const HorseNavBar = (props) => {
   return (
     <SecondaryNavBar modifier={modifier} className={className}>
       <NavLink href={`/horse/${name}`} exact>
-        updates
+        racing news
       </NavLink>
       <NavLink href={`/horse/${name}/statistics`} exact>
-        statistics
+        vital statistics
       </NavLink>
       <NavLink href={`/horse/${name}/information`} exact>
-        information
+        key information
       </NavLink>
     </SecondaryNavBar>
   )

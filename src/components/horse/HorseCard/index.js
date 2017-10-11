@@ -156,7 +156,7 @@ const HorseExtra = (props) => {
             <CtaLink to={url}>
               <UpdatesButton
                 amount={updateAmount}
-                text='horse updates'
+                text='horse profile'
                 buttonClassName='horse-card__button'
                 buttonModifier='secondary'
                 onClick={noop} />
@@ -187,7 +187,7 @@ const HorseFooter = (props) => {
         ? (
             <CtaLink to={bottomUrl || ''}>
               <TextButton
-                text={isMember ? 'Syndicate Page' : 'more details'}
+                text={isMember ? 'Syndicate' : 'more information'}
                 className='horse-card__button'
                 modifier={['secondary', 'fluid']}
               />

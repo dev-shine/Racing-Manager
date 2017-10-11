@@ -191,7 +191,7 @@ const HorseInformation = (props) => {
         <div className='horse-information__section row'>
           <div className='col-xs-12 col-md-7'>
             <TextEditContainer
-              title='Horse value'
+              title='Horse valuation'
               editLabel='update horse value'
               data={data}
               placeholder={''}
@@ -202,7 +202,7 @@ const HorseInformation = (props) => {
                 ({ value }) => {
                   return (
                     <TitleDescriptionSection
-                      title={'Horse value'}
+                      title={'Horse valuation'}
                       colorModifier='blue'>
                       {multilineTextToJSX(horseValue)}
                     </TitleDescriptionSection>

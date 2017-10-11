@@ -17,7 +17,7 @@ class AccountContactDetails extends PureComponent {
             </h2>
             <div className='account-contact-details__section'>
               <p className='small'>
-                Here you are able to check, update and add your TRM personal information for a more tailored experience.
+                This will allow us to keep you up to date with your horses and clubs
               </p>
             </div>
             <div className='account-contact-details__section'>
