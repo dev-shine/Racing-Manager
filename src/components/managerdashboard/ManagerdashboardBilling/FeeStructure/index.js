@@ -16,7 +16,6 @@ class FeeStructureForm extends PureComponent {
   }
 
   render () {
-    console.log(this.props)
     const { submitForm, values, errors } = this.props
 
     return (

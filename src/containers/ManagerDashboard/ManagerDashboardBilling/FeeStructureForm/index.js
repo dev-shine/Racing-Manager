@@ -75,7 +75,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateForm(name, value))
     },
     updateErrors: (errors, name) => {
-      debugger; // eslint-disable-line no-debugger
       dispatch(updateFormError(errors, name))
     },
     clearForm: () => {
