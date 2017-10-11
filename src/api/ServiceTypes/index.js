@@ -13,6 +13,8 @@ export const MESSAGE = `${BASE_URL}/message`
 
 export const HORSE = `${BASE_URL}/horse`
 
+export const HORSE_STATISTICS_RESULTS_DETAILS = `${BASE_URL}/horse/form`
+
 export const DASHBOARD = `${BASE_URL}/user/dashboard`
 
 export const SYNDICATE = `${BASE_URL}/syndicate`

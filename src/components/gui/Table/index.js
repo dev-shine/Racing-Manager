@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'utils/classnames'
 
 const Table = props => {
-  const { titles, data, className, modifier } = props
+  const { titles, data, className, modifier, showDataDetails } = props
 
   const modifiedClassNames = classNames('table', className, modifier)
 
@@ -23,7 +23,7 @@ const Table = props => {
           {data.map((row, index) => (
             <tr key={index} className='table__row table__row-normal'>
               {row.map((col, index) => (
-                <td key={index} className='table__cell'>
+                <td key={index} className='table__cell' onClick={showDataDetails !== null ? showDataDetails : null}>
                   {col}
                 </td>
               ))}
