@@ -1,8 +1,14 @@
 import {
   getHorseInfo,
   getHorseStatisticsResultsDetailsInfo,
-  performHorseUpdate
+  getHorseStatisticsFutureDetailsInfo,
+  performHorseUpdate,
+  updateHorseData
 } from 'api/Services'
+
+import { UPDATED_HORSE_DATA } from 'texts/successmessages'
+
+import { addToastSuccess, addToastError } from 'actions/toast'
 
 /**
  *  @module CALL_ACTION_TYPE
@@ -39,6 +45,19 @@ export const RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'RECEIVED_HORSE_ST
 export const FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
 
 export const CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+/**
+ *  For statistics future entries detail
+ *  @type {String}
+ */
+
+export const FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const CLEAR_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'CLEAR_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
 
 /**
  *  POSTING_HORSE_UPDATE
@@ -103,6 +122,24 @@ export const failedToGetHorseStatisticsResultsDetailsInfo = () => ({
 })
 
 /**
+ *  For statistics future entries detail
+ *  @return {Object}
+ */
+
+export const gettingHorseStatisticsFutureDetailsInfo = () => ({
+  type: FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO
+})
+
+export const receivedHorseStatisticsFutureDetailsInfo = data => ({
+  type: RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO,
+  data
+})
+
+export const failedToGetHorseStatisticsFutureDetailsInfo = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO
+})
+
+/**
  *  postingHorseUpdate
  *  @return {Object}
  */
@@ -145,15 +182,41 @@ export const fetchHorseInfo = (name) => {
     dispatch(gettingHorseInfo())
 
     return getHorseInfo(name)
-    .then(formatHorseData)
-    .then((data) => {
-      dispatch(receivedHorseInfo(data))
-      return Promise.resolve(data)
-    })
-    .catch((error) => {
-      dispatch(failedToGetHorseInfo(error))
-      return Promise.reject(error)
-    })
+      .then(formatHorseData)
+      .then((data) => {
+        dispatch(receivedHorseInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseInfo(error))
+        return Promise.reject(error)
+      })
+  }
+}
+
+/**
+ *  fetchHorseStatisticsFutureDetailsInfo [async]
+ *  @param {String} name
+ *  @return {Function}
+ */
+
+export const fetchHorseStatisticsFutureDetailsInfo = (name) => {
+  return (dispatch, getState) => {
+    // Signal to the store a fetch is going to happen
+    dispatch(gettingHorseStatisticsFutureDetailsInfo())
+
+    return getHorseStatisticsFutureDetailsInfo(name)
+      .then((result) => {
+        return Promise.resolve(formatHorseStatisticsData(result[0].horses))
+      })
+      .then((data) => {
+        dispatch(receivedHorseStatisticsFutureDetailsInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseStatisticsFutureDetailsInfo(error))
+        return Promise.reject(error)
+      })
   }
 }
 
@@ -201,5 +264,27 @@ export const submitHorseUpdate = (horseId, data) => {
       horseId
     },
     payload: data
+  }
+}
+
+export const submitHorseData = (slug, payload) => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: CALL_ACTION_TYPE,
+      types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
+      endpoint: updateHorseData,
+      payload,
+      urlParams: {slug}
+    })
+      .then(() => {
+        dispatch(addToastSuccess(UPDATED_HORSE_DATA))
+        dispatch(fetchHorseInfo(slug))
+        return Promise.resolve()
+      })
+      .catch((error) => {
+        if (error && error.message) {
+          dispatch(addToastError(error.message))
+        }
+      })
   }
 }

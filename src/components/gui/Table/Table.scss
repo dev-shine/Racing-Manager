@@ -21,7 +21,21 @@
 
   &__row,
   &__cell {
+    position: relative;
     padding-left: 13px;
+    a {
+      color: white;
+    }
+    .text-button {
+      position: absolute;
+      right: 0;
+      border: none;
+
+      h6 {
+        text-align: right;
+        font-style: italic;
+      }
+    }
   }
 
   &__row {

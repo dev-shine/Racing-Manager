@@ -4,10 +4,15 @@ import PropTypes from 'prop-types'
 
 import classNames from 'utils/classnames'
 
+import Accordion from 'components/accordion/BaseAccordion'
+import InputError from 'components/input/InputError'
+
 const Radio = props => {
   const {
     name,
     value,
+    error,
+    showError,
     checked,
     onChange,
     className,
@@ -15,6 +20,8 @@ const Radio = props => {
     label,
     id
   } = props
+
+  const hasError = showError && error && !!error.length
 
   const modifiedClassNames = classNames('radio', className, modifier)
 
@@ -33,6 +40,14 @@ const Radio = props => {
         <span className='radio__button'></span>
         <h5 className='radio__label__text'>{label}</h5>
       </label>
+
+      <Accordion
+        className='input__accordion'
+        isOpen={hasError}>
+        <InputError
+          className='micro'
+          errors={error} />
+      </Accordion>
     </div>
   )
 }

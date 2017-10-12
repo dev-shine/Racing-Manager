@@ -59,7 +59,7 @@ class RegistrationSuccessful extends PureComponent {
                   <Separator
                     modifier='blue' />
                   <p className='extra-light'>
-                    Thanks for signing up for an account with The Racing Manager, we have now sent you an email to <span className='regular'>{email}</span>
+                    You’re now a Racing Manager Member. We have sent an email to <span className='regular'>{email}</span>. Please click the link to confirm your account.
                     <br/><br/>
                     Please check your emails for a link to access your account.
                   </p>
@@ -68,7 +68,7 @@ class RegistrationSuccessful extends PureComponent {
               <div className='row'>
                 <div className='col-xs-12 col-sm-8 col-md-6 registration-successful__bottom'>
                   <h4 className='regular'>
-                    Haven't received your email?
+                    {'Haven\'t received your email?'}
                   </h4>
                   <TextButton
                     className='registration-successful__resend-button'

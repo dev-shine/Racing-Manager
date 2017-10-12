@@ -13,7 +13,8 @@ class SyndicateHeritageSection extends PureComponent {
 
   render () {
     const {
-      className
+      className,
+      description
     } = this.props
 
     const modifiedClassNames = classNames('syndicate-heritage', className)
@@ -22,7 +23,7 @@ class SyndicateHeritageSection extends PureComponent {
       <div className={modifiedClassNames}>
         <TitleDescriptionSection
           title='our heritage'
-          description='In the course of running Highclere, we have had the great fortune of running our horses across the country, winning multiple trophies with a fantastic team. We measure our success, not only on the performance of our horses, but equally through the enjoyment and experience we deliver to our owners.'
+          description={description}
           colorModifier='blue' />
         {/*
           Add in timeline component when ready

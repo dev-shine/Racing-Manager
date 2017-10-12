@@ -20,7 +20,11 @@ const mapStateToProps = ({ horse }) => ({
   },
   horseStatisticsResultsDetails: {
     ...horse.horseStatisticsResultsDetailsInfo
+  },
+  horseStatisticsFutureDetails: {
+    ...horse.horseStatisticsFutureDetailsInfo
   }
+
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -51,6 +55,9 @@ const HorseViewHoc = (WrapperComponent) => {
       const {
         horseInfo,
         horseStatisticsResultsDetails,
+        horseStatisticsFutureDetails,
+        getHorseInfo,
+        clearHorseData,
         ...restOfProps
       } = this.props
 
@@ -102,8 +109,10 @@ const HorseViewHoc = (WrapperComponent) => {
             <WrapperComponent
               data={horseProps}
               {...restOfProps}
+              getHorseInfo={getHorseInfo}
+              clearHorseData={clearHorseData}
             />
-            <AjaxLoader isVisible={horseInfo.fetching || horseStatisticsResultsDetails.fetching} />
+            <AjaxLoader isVisible={horseInfo.fetching || horseStatisticsResultsDetails.fetching || horseStatisticsFutureDetails.fetching} />
           </div>
         </View>
       )

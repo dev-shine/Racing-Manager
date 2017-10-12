@@ -46,7 +46,7 @@ class AccountNotifications extends PureComponent {
               </h2>
               <div className='account-notifications__section'>
                 <p className='small'>
-                  Here you are able to check, update and add your TRM personal information for a more tailored experience.
+                  Choose how you prefer to be kept abreast of your racing news
                 </p>
               </div>
               <div className='account-notifications__section account-notifications__section--lg'>

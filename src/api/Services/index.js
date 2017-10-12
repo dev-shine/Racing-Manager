@@ -1,4 +1,4 @@
-import { post, get, put } from 'api/Request'
+import { post, get, put, patch } from 'api/Request'
 
 import * as SERVICE_TYPES from 'api/ServiceTypes'
 
@@ -38,6 +38,20 @@ export const getHorseStatisticsResultsDetailsInfo = (name) => {
   })
 }
 
+export const getHorseStatisticsFutureDetailsInfo = (name) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATISTICS_FUTURE_DETAILS,
+    data: JSON.stringify({ horseName: name })
+  })
+}
+
+export const updateHorseData = (data) => {
+  return put({
+    url: SERVICE_TYPES.UPDATE_HORSE,
+    ...data
+  })
+}
+
 export const performHorseUpdate = (data) => {
   return post({
     url: SERVICE_TYPES.MESSAGE,
@@ -66,10 +80,24 @@ export const getSyndicateInfo = (data) => {
   })
 }
 
+export const updateSyndicateData = (data) => {
+  return put({
+    url: SERVICE_TYPES.UPDATE_SYNDICATE,
+    ...data
+  })
+}
+
 export const confirmRegistration = (data) => {
   return get({
     url: SERVICE_TYPES.REGISTRATION_CONFIRMATION,
     data
+  })
+}
+
+export const performRegisterExistingSyndicate = (data) => {
+  // The API is not ready yet. This is a placeholder code.
+  return Promise.resolve({
+    token: 'abc123'
   })
 }
 
@@ -106,5 +134,11 @@ export const updateUserInformation = (data) => {
 export const getNews = () => {
   return get({
     url: SERVICE_TYPES.NEWS
+  })
+}
+
+export const getUploadedData = () => {
+  return get({
+    url: SERVICE_TYPES.UPLOADED
   })
 }

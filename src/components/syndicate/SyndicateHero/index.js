@@ -10,47 +10,68 @@ import PropTypes from 'prop-types'
 
 import classNames from 'utils/classnames'
 
+import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
+
+import {submitSyndicateData} from 'actions/syndicate'
+
 const SyndicateHero = (props) => {
   const {
-    featuredImage,
-    logo,
     owner = { name: '' },
     className,
     modifier,
-    name
+    name,
+    data = {}
   } = props
+
+  const {featuredImage, logoImage} = data
 
   const modifiedClassNames = classNames('syndicate-hero', className, modifier)
 
   return (
     <div className={modifiedClassNames}>
       <Hero featuredImage={constructStaticUrl(featuredImage)} />
-      <div className='syndicate-hero__logo absolute-center'>
-        <div className='syndicate-hero__logo-img'>
+      <div className='syndicate-hero__logo'>
+        <ImageEditContainer
+          title='Image requirements'
+          description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
+          data={data}
+          editLabel='update image'
+          dataKey='logoImage'
+          submitAction={submitSyndicateData}>
           {
-            logo ? (
-              <Image
-                className='syndicate-hero__logo-element absolute-center'
-                imageSrc={constructStaticUrl(logo)}
-              />
-            ) : (
-              <h1 className='horse-header__medium-title syndicate-hero__logo-title absolute-center'>
-                {name}
-              </h1>
-            )
+            ({ value }) => {
+              return (
+                <span>
+                  <div className='syndicate-hero__logo-img'>
+                    {
+                      logoImage ? (
+                        <Image
+                          className='syndicate-hero__logo-element absolute-center'
+                          imageSrc={constructStaticUrl(logoImage)}
+                        />
+                      ) : (
+                        <h1 className='horse-header__medium-title syndicate-hero__logo-title absolute-center'>
+                          {name}
+                        </h1>
+                      )
+                    }
+                  </div>
+                  <div className='syndicate-hero__logo-desc section-shadow--darker'>
+                    <h6>Racing Club</h6>
+                    <h6>Managed by {owner.name}</h6>
+                  </div>
+                </span>
+              )
+            }
           }
-        </div>
-        <div className='syndicate-hero__logo-desc section-shadow'>
-          <h6>Racing Club</h6>
-          <h6>Managed by {owner.name}</h6>
-        </div>
+        </ImageEditContainer>
       </div>
     </div>
   )
 }
 
 SyndicateHero.propTypes = {
-  featuredImage: PropTypes.string,
+  data: PropTypes.object,
   logo: PropTypes.string,
   owner: PropTypes.shape({
     name: PropTypes.string
