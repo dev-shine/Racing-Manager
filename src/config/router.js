@@ -57,9 +57,9 @@ const router = (
 
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 
-            <AuthRoute path='/syndicate' component={Syndicate} redirectPath='/' />
-            <AuthRoute exact path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
-            <AuthRoute exact path='/syndicate/:name/edit' component={PrivateSyndicate} redirectPath='/404' />
+            <AuthRoute exact path='/syndicate' component={Syndicate} redirectPath='/' />
+            <AuthRoute exact path='/syndicate/:slug' component={PrivateSyndicate} redirect={PublicSyndicate} />
+            <AuthRoute exact path='/syndicate/:slug/edit' component={PrivateSyndicate} redirectPath='/404' />
 
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />

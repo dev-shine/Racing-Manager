@@ -20,8 +20,8 @@ const mapStateToProps = ({ syndicate }, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getSyndicateInfo: () => {
-    const name = ownProps.match.params.name
-    dispatch(fetchSyndicateInfo({ name }))
+    const slug = ownProps.match.params.slug
+    dispatch(fetchSyndicateInfo(slug))
   },
   clearSyndicateData: () => {
     return dispatch(clearSyndicateData())

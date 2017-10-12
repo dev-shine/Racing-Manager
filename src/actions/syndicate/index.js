@@ -32,11 +32,11 @@ export const clearSyndicateData = () => ({
   type: CLEAR_SYNDICATE_DATA
 })
 
-export const fetchSyndicateInfo = data => {
+export const fetchSyndicateInfo = slug => {
   return (dispatch, getState) => {
     dispatch(gettingSyndicateInfo())
 
-    return getSyndicateInfo(data)
+    return getSyndicateInfo({urlParams: {slug}})
       .then(formatHorseData)
       .then((data) => {
         dispatch(receivedSyndicateInfo(data))
