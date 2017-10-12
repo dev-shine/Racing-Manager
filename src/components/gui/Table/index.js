@@ -42,7 +42,7 @@ class Table extends PureComponent {
   }
 
   render () {
-    const { titles, className, modifier, data, sortable } = this.props
+    const { titles, className, modifier, data, sortable, showDataDetails } = this.props
 
     const modifiedClassNames = classNames('table', className, modifier)
 
@@ -70,7 +70,7 @@ class Table extends PureComponent {
           {array.map((row, index) => (
             <tr key={index} className='table__row table__row-normal'>
               {row.map((col, index) => (
-                <td key={index} className='table__cell'>
+                <td key={index} className='table__cell' onClick={showDataDetails !== null ? showDataDetails : null}>
                   {col}
                 </td>
               ))}

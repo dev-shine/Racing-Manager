@@ -17,7 +17,14 @@ import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 const mapStateToProps = ({ horse }) => ({
   horseInfo: {
     ...horse.horseInfo
+  },
+  horseStatisticsResultsDetails: {
+    ...horse.horseStatisticsResultsDetailsInfo
+  },
+  horseStatisticsFutureDetails: {
+    ...horse.horseStatisticsFutureDetailsInfo
   }
+
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -47,6 +54,8 @@ const HorseViewHoc = (WrapperComponent) => {
     render () {
       const {
         horseInfo,
+        horseStatisticsResultsDetails,
+        horseStatisticsFutureDetails,
         getHorseInfo,
         clearHorseData,
         ...restOfProps
@@ -103,7 +112,7 @@ const HorseViewHoc = (WrapperComponent) => {
               getHorseInfo={getHorseInfo}
               clearHorseData={clearHorseData}
             />
-            <AjaxLoader isVisible={horseInfo.fetching} />
+            <AjaxLoader isVisible={horseInfo.fetching || horseStatisticsResultsDetails.fetching || horseStatisticsFutureDetails.fetching} />
           </div>
         </View>
       )

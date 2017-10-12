@@ -7,7 +7,8 @@ import Table from 'components/gui/Table'
 const HorseTable = (props) => {
   const {
     title,
-    data
+    data,
+    showDataDetails
   } = props
 
   return (
@@ -15,7 +16,7 @@ const HorseTable = (props) => {
       colorModifier='blue'
       title={title}
     >
-      <Table {...data} />
+      <Table {...data} showDataDetails={showDataDetails} />
     </TitleDescriptionSection>
   )
 }

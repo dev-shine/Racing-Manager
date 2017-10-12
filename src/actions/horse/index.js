@@ -1,5 +1,7 @@
 import {
   getHorseInfo,
+  getHorseStatisticsResultsDetailsInfo,
+  getHorseStatisticsFutureDetailsInfo,
   performHorseUpdate,
   updateHorseData
 } from 'api/Services'
@@ -16,7 +18,7 @@ import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
 /**
  *  @module formatHorseData
  */
-import { formatHorseData } from 'utils/horseutils'
+import { formatHorseData, formatHorseStatisticsData } from 'utils/horseutils'
 
 /**
  *  FETCH_HORSE_INFO
@@ -35,6 +37,27 @@ export const RECEIVED_HORSE_INFO = 'RECEIVED_HORSE_INFO'
  *  @type {String}
  */
 export const FAILED_TO_FETCH_HORSE_INFO = 'FAILED_TO_FETCH_HORSE_INFO'
+
+export const FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+export const RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+export const CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+/**
+ *  For statistics future entries detail
+ *  @type {String}
+ */
+
+export const FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const CLEAR_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'CLEAR_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
 
 /**
  *  POSTING_HORSE_UPDATE
@@ -83,6 +106,37 @@ export const receivedHorseInfo = data => ({
  */
 export const failedToGetHorseInfo = () => ({
   type: FAILED_TO_FETCH_HORSE_INFO
+})
+
+export const gettingHorseStatisticsResultsDetailsInfo = () => ({
+  type: FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO
+})
+
+export const receivedHorseStatisticsResultsDetailsInfo = data => ({
+  type: RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO,
+  data
+})
+
+export const failedToGetHorseStatisticsResultsDetailsInfo = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO
+})
+
+/**
+ *  For statistics future entries detail
+ *  @return {Object}
+ */
+
+export const gettingHorseStatisticsFutureDetailsInfo = () => ({
+  type: FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO
+})
+
+export const receivedHorseStatisticsFutureDetailsInfo = data => ({
+  type: RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO,
+  data
+})
+
+export const failedToGetHorseStatisticsFutureDetailsInfo = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO
 })
 
 /**
@@ -135,6 +189,61 @@ export const fetchHorseInfo = (name) => {
       })
       .catch((error) => {
         dispatch(failedToGetHorseInfo(error))
+        return Promise.reject(error)
+      })
+  }
+}
+
+export const fetchHorseStatisticsResultsDetailsInfo = (name) => {
+  return (dispatch, getState) => {
+    // Signal to the store a fetch is going to happen
+    dispatch(gettingHorseStatisticsResultsDetailsInfo())
+
+    return getHorseStatisticsResultsDetailsInfo(name)
+      .then((result) => {
+        let form = formatHorseStatisticsData(result.data.form.data)
+        let raceRecord = formatHorseStatisticsData(result.data.raceRecord.data)
+        return Promise.resolve({
+          form,
+          raceRecord
+        })
+      })
+      .then((data) => {
+        dispatch(receivedHorseStatisticsResultsDetailsInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseStatisticsResultsDetailsInfo(error))
+        return Promise.reject(error)
+      })
+  }
+}
+
+export const clearHorseStatisticsResultsDetailsInfo = () => ({
+  type: CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO
+})
+
+/**
+ *  fetchHorseStatisticsFutureDetailsInfo [async]
+ *  @param {String} name
+ *  @return {Function}
+ */
+
+export const fetchHorseStatisticsFutureDetailsInfo = (name) => {
+  return (dispatch, getState) => {
+    // Signal to the store a fetch is going to happen
+    dispatch(gettingHorseStatisticsFutureDetailsInfo())
+
+    return getHorseStatisticsFutureDetailsInfo(name)
+      .then((result) => {
+        return Promise.resolve(formatHorseStatisticsData(result[0].horses))
+      })
+      .then((data) => {
+        dispatch(receivedHorseStatisticsFutureDetailsInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseStatisticsFutureDetailsInfo(error))
         return Promise.reject(error)
       })
   }
