@@ -34,18 +34,12 @@ export const clearSyndicateData = () => ({
 
 export const fetchSyndicateInfo = slug => {
   return (dispatch, getState) => {
-    dispatch(gettingSyndicateInfo())
-
-    return getSyndicateInfo({urlParams: {slug}})
-      .then(formatHorseData)
-      .then((data) => {
-        dispatch(receivedSyndicateInfo(data))
-        return Promise.resolve(data)
-      })
-      .catch((error) => {
-        dispatch(failedToGetSyndicateInfo(error))
-        return Promise.reject(error)
-      })
+    return dispatch({
+      type: CALL_ACTION_TYPE,
+      types: [gettingSyndicateInfo, receivedSyndicateInfo, failedToGetSyndicateInfo],
+      endpoint: getSyndicateInfo,
+      urlParams: {slug}
+    })
   }
 }
 
