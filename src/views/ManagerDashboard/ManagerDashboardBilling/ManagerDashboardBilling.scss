@@ -44,7 +44,10 @@
       .invoice-archive {
         width: 100%;
         background-color: $color-bg-invoice-archive;
-        padding: 0 35px;
+
+        @media screen and (min-width: 768px) {
+          padding: 0 35px;
+        }
         //box-shadow: inset 0px 10px 20px 0px $x11-gray
         background: -moz-linear-gradient(top, rgba(238,238,238,1) 0, rgba(238,238,238,0) 30px); /* FF3.6-15 */
         background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0,rgba(238,238,238,0) 30px); /* Chrome10-25,Safari5.1-6 */
