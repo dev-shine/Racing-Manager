@@ -43,7 +43,6 @@ const SyndicateIntroSection = (props) => {
 SyndicateIntroSection.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  description: PropTypes.string,
   contentClassName: PropTypes.string,
   modifier: PropTypes.string
 }

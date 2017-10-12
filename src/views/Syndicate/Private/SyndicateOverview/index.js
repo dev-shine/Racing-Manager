@@ -34,7 +34,6 @@ import {multilineTextToJSX} from 'utils/textutils'
 import {
   syndicateMembers,
   trainerMembers,
-  fakeHorses
 } from 'data/horse'
 
 import {
@@ -95,7 +94,8 @@ export class SyndicateOverview extends Component {
       horsesText,
       heritage,
       trainersHeadline,
-      trainersText
+      trainersText,
+      horses
     } = data
 
     return (
@@ -205,8 +205,10 @@ export class SyndicateOverview extends Component {
                   <SyndicateIntroSection
                     title={`${name} horses`}
                     description={multilineTextToJSX(horsesText)}>
+                    {horses && horses.length > 0 &&
                       <SyndicateHorseCarousel
-                        horses={fakeHorses} />
+                        horses={horses} />
+                    }
                   </SyndicateIntroSection>
                 </div>
               )
