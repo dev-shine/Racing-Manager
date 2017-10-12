@@ -153,15 +153,29 @@ export class SyndicateOverview extends Component {
 
         <div className='container no-padding'>
           <div className='col-md-8 col-sm-12 private-syndicate__team-members'>
-            <HorseMemberCarousel
-              syndicateMembers={syndicateMembers} />
+            {/*}<HorseMemberCarousel
+              syndicateMembers={syndicateMembers} />*/}
           </div>
         </div>
 
         <div className='private-syndicate__section'>
           <div className='container'>
             <div className='col-md-5 col-sm-12'>
-              <SyndicateBenefits />
+              <TextEditContainer
+                title='Edit benefits'
+                data={data}
+                editLabel='update benefits'
+                dataKey='benefits'
+                maxLength={2000}
+                submitAction={submitSyndicateData}>
+                {
+                  ({ value }) => {
+                    return (
+                      <SyndicateBenefits />
+                    )
+                  }
+                }
+              </TextEditContainer>
             </div>
           </div>
         </div>
@@ -279,9 +293,9 @@ export class SyndicateOverview extends Component {
                     modifier='small'
                     title='our trainers'
                     description={trainersText}>
-                      <HorseMemberCarousel
+                      {/*<HorseMemberCarousel
                         syndicateMembers={trainerMembers}
-                        type='trainer' />
+                        type='trainer' />*/}
                   </SyndicateIntroSection>
                 </div>
               )

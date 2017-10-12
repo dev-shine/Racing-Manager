@@ -65,13 +65,13 @@ const SyndicateHero = (props) => {
                     <h6>Managed by {owner.name}</h6>
                     <Route exact path='/syndicate/:slug' render={() => {
                       if (data.canEdit) {
-                        return (<h6><Link to={'/syndicate/' + data.slug + '/edit'}><a className="link micro link--italic">Edit Syndicate</a></Link></h6>)
+                        return (<h6><Link to={'/syndicate/' + data.slug + '/edit'}><span className="link micro link--italic">Edit Syndicate</span></Link></h6>)
                       } else {
                         return null
                       }
                     }}/>
                     <Route exact path='/syndicate/:slug/edit' render={() => (
-                      <h6><Link to={'/syndicate/' + data.slug}><a className="link micro link--italic">View Syndicate</a></Link></h6>
+                      <h6><Link to={'/syndicate/' + data.slug}><span className="link micro link--italic">View Syndicate</span></Link></h6>
                     )}/>
                   </div>
                 </span>
