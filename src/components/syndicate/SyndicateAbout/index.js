@@ -31,12 +31,11 @@ const SyndicateAbout = (props) => {
 
 SyndicateAbout.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.string,
   onFaqClick: PropTypes.func
 }
 
 SyndicateAbout.defaultProps = {
-  title: 'About the syndicate',
+  title: 'About our syndicate',
   description: ''
 }
 

@@ -1,6 +1,6 @@
 export const navigation = [
   {
-    name: 'Personal Information',
+    name: 'Profile Information',
     link: '/account'
   },
   {

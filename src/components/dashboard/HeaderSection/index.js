@@ -340,7 +340,7 @@ HeaderSection.propTypes = {
  *  @type {Object}
  */
 HeaderSection.defaultProps = {
-  title: 'your horses',
+  title: 'my horses',
   headerButtonText: '+ add another horse',
   data: [],
   isFetching: false

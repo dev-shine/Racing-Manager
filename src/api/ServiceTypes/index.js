@@ -17,9 +17,13 @@ export const HORSE_STATISTICS_RESULTS_DETAILS = `${BASE_URL}/horse/form`
 
 export const HORSE_STATISTICS_FUTURE_DETAILS = `${BASE_URL}/horse/card`
 
+export const UPDATE_HORSE = `${BASE_URL}/horse/:slug`
+
 export const DASHBOARD = `${BASE_URL}/user/dashboard`
 
 export const SYNDICATE = `${BASE_URL}/syndicate`
+
+export const UPDATE_SYNDICATE = `${BASE_URL}/syndicate/:slug`
 
 export const SEARCH = `${BASE_URL}/search`
 
@@ -32,3 +36,5 @@ export const SETUP = `${BASE_URL}/setup`
 export const COMMENT = `${MESSAGE}/comment`
 
 export const NEWS = `${BASE_URL}/news`
+
+export const UPLOADED = `${BASE_URL}/uploaded`

@@ -33,6 +33,12 @@ const request = params => {
 
   let url = params.url + qs
 
+  if (params.urlParams) {
+    for (let urlParam in params.urlParams) {
+      url = url.replace(`:${urlParam}`, params.urlParams[urlParam])
+    }
+  }
+
   let opts = {
     headers,
     method,
@@ -40,12 +46,13 @@ const request = params => {
   }
 
   return fetch(url, opts)
-  .then(isParseable)
-  .then(verifyServerFormat)
-  .catch(error => Promise.reject(error))
+    .then(isParseable)
+    .then(verifyServerFormat)
+    .catch(error => Promise.reject(error))
 }
 
 export const get = params => request(Object.assign({ method: 'GET' }, params))
 export const post = params => request(Object.assign({ method: 'POST' }, params))
 export const put = params => request(Object.assign({ method: 'PUT' }, params))
 export const del = params => request(Object.assign({ method: 'DELETE' }, params))
+export const patch = params => request(Object.assign({ method: 'PATCH' }, params))

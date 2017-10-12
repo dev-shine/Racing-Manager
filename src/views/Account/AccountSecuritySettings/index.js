@@ -44,7 +44,7 @@ class AccountSecuritySettings extends PureComponent {
             </h2>
             <div className='account-security-settings__section'>
               <p className='small'>
-                Here you are able to check, update and add your TRM personal information for a more tailored experience.
+                Change your security settings
               </p>
             </div>
             <FadeIn loc={showForm}>
