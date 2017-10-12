@@ -31,6 +31,13 @@ export const getHorseInfo = (name) => {
   })
 }
 
+export const getHorseStatisticsResultsDetailsInfo = (name) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS_DETAILS,
+    data: JSON.stringify({ horseName: name })
+  })
+}
+
 export const performHorseUpdate = (data) => {
   return post({
     url: SERVICE_TYPES.MESSAGE,

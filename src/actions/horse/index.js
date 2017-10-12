@@ -1,5 +1,6 @@
 import {
   getHorseInfo,
+  getHorseStatisticsResultsDetailsInfo,
   performHorseUpdate
 } from 'api/Services'
 
@@ -11,7 +12,7 @@ import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
 /**
  *  @module formatHorseData
  */
-import { formatHorseData } from 'utils/horseutils'
+import { formatHorseData, formatHorseStatisticsData } from 'utils/horseutils'
 
 /**
  *  FETCH_HORSE_INFO
@@ -30,6 +31,14 @@ export const RECEIVED_HORSE_INFO = 'RECEIVED_HORSE_INFO'
  *  @type {String}
  */
 export const FAILED_TO_FETCH_HORSE_INFO = 'FAILED_TO_FETCH_HORSE_INFO'
+
+export const FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+export const RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+export const CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
 
 /**
  *  POSTING_HORSE_UPDATE
@@ -78,6 +87,19 @@ export const receivedHorseInfo = data => ({
  */
 export const failedToGetHorseInfo = () => ({
   type: FAILED_TO_FETCH_HORSE_INFO
+})
+
+export const gettingHorseStatisticsResultsDetailsInfo = () => ({
+  type: FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO
+})
+
+export const receivedHorseStatisticsResultsDetailsInfo = data => ({
+  type: RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO,
+  data
+})
+
+export const failedToGetHorseStatisticsResultsDetailsInfo = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO
 })
 
 /**
@@ -134,6 +156,35 @@ export const fetchHorseInfo = (name) => {
     })
   }
 }
+
+export const fetchHorseStatisticsResultsDetailsInfo = (name) => {
+  return (dispatch, getState) => {
+    // Signal to the store a fetch is going to happen
+    dispatch(gettingHorseStatisticsResultsDetailsInfo())
+
+    return getHorseStatisticsResultsDetailsInfo(name)
+      .then((result) => {
+        let form = formatHorseStatisticsData(result.data.form.data)
+        let raceRecord = formatHorseStatisticsData(result.data.raceRecord.data)
+        return Promise.resolve({
+          form,
+          raceRecord
+        })
+      })
+      .then((data) => {
+        dispatch(receivedHorseStatisticsResultsDetailsInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseStatisticsResultsDetailsInfo(error))
+        return Promise.reject(error)
+      })
+  }
+}
+
+export const clearHorseStatisticsResultsDetailsInfo = () => ({
+  type: CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO
+})
 
 /**
  *  @name  submitHorseUpdate
