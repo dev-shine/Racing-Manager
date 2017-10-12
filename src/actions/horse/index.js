@@ -1,6 +1,7 @@
 import {
   getHorseInfo,
   getHorseStatisticsResultsDetailsInfo,
+  getHorseStatisticsFutureDetailsInfo,
   performHorseUpdate
 } from 'api/Services'
 
@@ -39,6 +40,19 @@ export const RECEIVED_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'RECEIVED_HORSE_ST
 export const FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
 
 export const CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO = 'CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO'
+
+/**
+ *  For statistics future entries detail
+ *  @type {String}
+ */
+
+export const FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
+
+export const CLEAR_HORSE_STATISTICS_FUTURE_DETAILS_INFO = 'CLEAR_HORSE_STATISTICS_FUTURE_DETAILS_INFO'
 
 /**
  *  POSTING_HORSE_UPDATE
@@ -100,6 +114,24 @@ export const receivedHorseStatisticsResultsDetailsInfo = data => ({
 
 export const failedToGetHorseStatisticsResultsDetailsInfo = () => ({
   type: FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAILS_INFO
+})
+
+/**
+ *  For statistics future entries detail
+ *  @return {Object}
+ */
+
+export const gettingHorseStatisticsFutureDetailsInfo = () => ({
+  type: FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO
+})
+
+export const receivedHorseStatisticsFutureDetailsInfo = data => ({
+  type: RECEIVED_HORSE_STATISTICS_FUTURE_DETAILS_INFO,
+  data
+})
+
+export const failedToGetHorseStatisticsFutureDetailsInfo = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_FUTURE_DETAILS_INFO
 })
 
 /**
@@ -185,6 +217,32 @@ export const fetchHorseStatisticsResultsDetailsInfo = (name) => {
 export const clearHorseStatisticsResultsDetailsInfo = () => ({
   type: CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO
 })
+
+/**
+ *  fetchHorseStatisticsFutureDetailsInfo [async]
+ *  @param {String} name
+ *  @return {Function}
+ */
+
+export const fetchHorseStatisticsFutureDetailsInfo = (name) => {
+  return (dispatch, getState) => {
+    // Signal to the store a fetch is going to happen
+    dispatch(gettingHorseStatisticsFutureDetailsInfo())
+
+    return getHorseStatisticsFutureDetailsInfo(name)
+      .then((result) => {
+        return Promise.resolve(formatHorseStatisticsData(result[0].horses))
+      })
+      .then((data) => {
+        dispatch(receivedHorseStatisticsFutureDetailsInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseStatisticsFutureDetailsInfo(error))
+        return Promise.reject(error)
+      })
+  }
+}
 
 /**
  *  @name  submitHorseUpdate

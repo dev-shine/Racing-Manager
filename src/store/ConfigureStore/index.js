@@ -7,6 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
  * @module redux-thunk
  */
 import thunkMiddleware from 'redux-thunk'
+import loggerMiddleware from 'redux-logger'
 
 /**
  *  @module authenticatedRequestMiddleware
@@ -31,7 +32,7 @@ if (isDev) {
       rootReducer,
       initialState,
       composeEnhancers(
-        applyMiddleware(thunkMiddleware, authenticatedRequestMiddleware)
+        applyMiddleware(thunkMiddleware, authenticatedRequestMiddleware, loggerMiddleware)
       )
     )
 

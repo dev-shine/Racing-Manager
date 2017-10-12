@@ -5,7 +5,7 @@ import horseView from 'views/Horse/View'
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
 import HorseTable from 'components/horse/HorseTable'
-import { fetchHorseStatisticsResultsDetailsInfo } from 'actions/horse'
+import { fetchHorseStatisticsResultsDetailsInfo, fetchHorseStatisticsFutureDetailsInfo } from 'actions/horse'
 
 import {
   tableStatistics,
@@ -23,12 +23,15 @@ class HorseStatistics extends Component {
 
     this.state = {
       showResultsDetail: false,
+      showFutureDetail: false,
       animateClass: false
     }
 
     this.scrollElementToView = this.scrollElementToView.bind(this)
     this.showStatisticsResultsDetails = this.showStatisticsResultsDetails.bind(this)
     this.hideStatisticsResultsDetails = this.hideStatisticsResultsDetails.bind(this)
+    this.showStatisticsFutureDetails = this.showStatisticsFutureDetails.bind(this)
+    this.hideStatisticsFutureDetails = this.hideStatisticsFutureDetails.bind(this)
   }
 
   componentDidMount () {
@@ -43,12 +46,25 @@ class HorseStatistics extends Component {
   }
 
   showStatisticsResultsDetails () {
-    this.props.getHorseStatisticsResultsDetailsInfo()
+    if (Object.keys(this.props.horseStatisticsResultsDetails.data).length === 0) {
+      this.props.getHorseStatisticsResultsDetailsInfo()
+    }
     this.setState({showResultsDetail: true, animateClass: true})
   }
 
   hideStatisticsResultsDetails () {
     this.setState({showResultsDetail: false, animateClass: true})
+  }
+
+  showStatisticsFutureDetails () {
+    if (Object.keys(this.props.horseStatisticsFutureDetails.data).length === 0) {
+      this.props.getHorseStatisticsFutureDetailsInfo()
+    }
+    this.setState({showFutureDetail: true, animateClass: true})
+  }
+
+  hideStatisticsFutureDetails () {
+    this.setState({showFutureDetail: false, animateClass: true})
   }
 
   render () {
@@ -65,8 +81,8 @@ class HorseStatistics extends Component {
         <HorseNavBar
           name={match.params.name} />
         {
-          !this.state.showResultsDetail
-            ? <div id="horse-statistics-content" className={this.state.animateClass ? 'fadeInLeft animated' : ''}>
+          (!this.state.showResultsDetail && !this.state.showFutureDetail) || this.props.horseStatisticsResultsDetails.fetching || this.props.horseStatisticsFutureDetails.fetching
+            ? <div id="horse-statistics-content" className={this.state.animateClass && (!this.props.horseStatisticsResultsDetails.fetching || !this.props.horseStatisticsResultsDetails.fetching) ? 'fadeInLeft animated' : ''}>
                 <div className='container'>
                   <div className='horse-statistics__section' id='ranking'>
                     <HorseTable
@@ -77,7 +93,8 @@ class HorseStatistics extends Component {
                   <div className='horse-statistics__section'>
                     <HorseTable
                       title='Future Entries'
-                      data={tableEntries}/>
+                      data={tableEntries}
+                      showDataDetails={this.showStatisticsFutureDetails}/>
                   </div>
 
                   <div className='horse-statistics__section'>
@@ -88,7 +105,11 @@ class HorseStatistics extends Component {
                   </div>
                 </div>
               </div>
-            : <div id="horse-statistics-results-details-content" className="fadeInRight animated">
+            : null
+        }
+        {
+          this.state.showResultsDetail && !this.props.horseStatisticsResultsDetails.fetching
+            ? <div id="horse-statistics-results-details-content" className="fadeInRight animated">
                 <div className="container">
                   <div className='horse-statistics__section' id='ranking'>
                     <HorseTable
@@ -107,6 +128,24 @@ class HorseStatistics extends Component {
                   </div>
                 </div>
               </div>
+            : null
+        }
+        {
+          this.state.showFutureDetail && !this.props.horseStatisticsFutureDetails.fetching
+            ? <div id="horse-statistics-Future-details-content" className="fadeInRight animated">
+                <div className="container">
+                  <div className='horse-statistics__section'>
+                    <HorseTable
+                      title='RACE RECORD'
+                      data={this.props.horseStatisticsFutureDetails.data} />
+                  </div>
+
+                  <div className='horse-statistics__section'>
+                    <button className="back-btn" onClick={this.hideStatisticsFutureDetails} >BACK</button>
+                  </div>
+                </div>
+              </div>
+            : null
         }
       </div>
     )
@@ -117,6 +156,9 @@ const mapStateToProps = function ({horse}) {
   return {
     horseStatisticsResultsDetails: {
       ...horse.horseStatisticsResultsDetailsInfo
+    },
+    horseStatisticsFutureDetails: {
+      ...horse.horseStatisticsFutureDetailsInfo
     }
   }
 }
@@ -126,6 +168,10 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     getHorseStatisticsResultsDetailsInfo: () => {
       const name = ownProps.match.params.name
       return dispatch(fetchHorseStatisticsResultsDetailsInfo(name))
+    },
+    getHorseStatisticsFutureDetailsInfo: () => {
+      const name = ownProps.match.params.name
+      return dispatch(fetchHorseStatisticsFutureDetailsInfo(name))
     }
   }
 }

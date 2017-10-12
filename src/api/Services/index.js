@@ -38,6 +38,13 @@ export const getHorseStatisticsResultsDetailsInfo = (name) => {
   })
 }
 
+export const getHorseStatisticsFutureDetailsInfo = (name) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATISTICS_FUTURE_DETAILS,
+    data: JSON.stringify({ horseName: 'HAVRE DE PAIX (FR)' })
+  })
+}
+
 export const performHorseUpdate = (data) => {
   return post({
     url: SERVICE_TYPES.MESSAGE,
