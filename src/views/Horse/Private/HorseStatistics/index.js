@@ -82,7 +82,7 @@ class HorseStatistics extends Component {
           name={match.params.name} />
         {
           (!this.state.showResultsDetail && !this.state.showFutureDetail) || this.props.horseStatisticsResultsDetails.fetching || this.props.horseStatisticsFutureDetails.fetching
-            ? <div id="horse-statistics-content" className={this.state.animateClass && (!this.props.horseStatisticsResultsDetails.fetching || !this.props.horseStatisticsResultsDetails.fetching) ? 'fadeInLeft animated' : ''}>
+            ? <div id="horse-statistics-content" className={this.state.animateClass && (!this.props.horseStatisticsResultsDetails.fetching && !this.props.horseStatisticsFutureDetails.fetching) ? 'fadeInLeft animated' : ''}>
                 <div className='container'>
                   <div className='horse-statistics__section' id='ranking'>
                     <HorseTable
