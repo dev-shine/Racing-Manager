@@ -122,3 +122,9 @@ export const getNews = () => {
     url: SERVICE_TYPES.NEWS
   })
 }
+
+export const getUploadedData = () => {
+  return get({
+    url: SERVICE_TYPES.UPLOADED
+  })
+}

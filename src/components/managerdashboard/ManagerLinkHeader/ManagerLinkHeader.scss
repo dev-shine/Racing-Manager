@@ -1,0 +1,13 @@
+.manager-dashboard__section {
+  padding: 7px;
+
+  .manager-dashboard {
+    display: inline-block;
+  }
+
+  span.link {
+    color: $yankees-blue;
+    font-weight: 500;
+    padding: 10px 10px 10px;
+  }
+}

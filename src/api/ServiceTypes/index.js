@@ -32,3 +32,5 @@ export const SETUP = `${BASE_URL}/setup`
 export const COMMENT = `${MESSAGE}/comment`
 
 export const NEWS = `${BASE_URL}/news`
+
+export const UPLOADED = `${BASE_URL}/uploaded`

@@ -263,12 +263,12 @@ class Field extends PureComponent {
     /**
      *  @const
      */
-    const { component: Presentation, children, name } = this.props
+    const { component: Presentation, children, name, value: valueProp } = this.props
 
     /**
      *  @const
      */
-    const value = this.getValue(name)
+    const value = valueProp || this.getValue(name)
 
     /**
      *  error

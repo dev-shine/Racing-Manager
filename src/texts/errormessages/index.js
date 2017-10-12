@@ -106,12 +106,52 @@ export const REQUIRED = 'This field is required'
  */
 export const MUST_ACCEPT_T_AND_C = 'You must accept terms and conditions'
 
+/**
+ *  @type {String}
+ */
 export const ADDRESS = 'Please enter your address'
 
+/**
+ *  @type {String}
+ */
 export const TOWN_CITY = 'Please enter your town / city'
 
+/**
+ *  @type {String}
+ */
 export const COUNTRY = 'Please enter your country'
 
+/**
+ *  @type {String}
+ */
 export const POST_CODE = 'Please enter a valid post code'
 
+/**
+ *  @type {String}
+ */
 export const UNAUTHORISED = 'Unauthorised'
+
+/**
+ *  @type {String}
+ */
+export const INITIAL_FEE = 'Please enter a valid initial fee'
+
+/**
+ *  @type {String}
+ */
+export const MONTHLY_FEE = 'Please enter a valid monthly fee'
+
+/**
+ *  @type {String}
+ */
+export const PERIOD_DATE = 'Please enter a valid period date'
+
+/**
+ *  @type {String}
+ */
+export const HOLDER_NAME = 'Please enter a valid holder name'
+
+/**
+ *  @type {String}
+ */
+export const ACCOUNT_NUMBER = 'Please enter a valid account number'
