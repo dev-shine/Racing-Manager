@@ -41,7 +41,7 @@ export const getHorseStatisticsResultsDetailsInfo = (name) => {
 export const getHorseStatisticsFutureDetailsInfo = (name) => {
   return post({
     url: SERVICE_TYPES.HORSE_STATISTICS_FUTURE_DETAILS,
-    data: JSON.stringify({ horseName: 'HAVRE DE PAIX (FR)' })
+    data: JSON.stringify({ horseName: name })
   })
 }
 
