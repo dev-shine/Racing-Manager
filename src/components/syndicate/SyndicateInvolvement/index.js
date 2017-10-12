@@ -40,7 +40,7 @@ SyndicateInvolvement.propTypes = {
 }
 
 SyndicateInvolvement.defaultProps = {
-  title: 'Join the club',
+  title: 'Benefits',
   description: '',
   benefits: []
 }

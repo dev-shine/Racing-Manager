@@ -21,9 +21,9 @@ const SyndicateAbout = (props) => {
       <TitleDescriptionSection
         title={title}
         description={description}>
-        <p>
+        {/*}<p>
           Want to know more? See our <span className='italic inherit cursor--pointer' onClick={onFaqClick}>FAQs</span>
-        </p>
+        </p>*/}
       </TitleDescriptionSection>
     </div>
   )

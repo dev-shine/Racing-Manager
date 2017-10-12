@@ -95,7 +95,9 @@ export class SyndicateOverview extends Component {
       heritage,
       trainersHeadline,
       trainersText,
-      horses
+      horses,
+      benefits,
+      public: isPublic = true
     } = data
 
     return (
@@ -145,7 +147,7 @@ export class SyndicateOverview extends Component {
                   benefits={syndicateBenefits}
                   description={syndicateBenefitsDescription(name)} />
                 <div className='visible-md-up'>
-                  <SyndicateCtaCard />
+                  <SyndicateCtaCard data={data}/>
                 </div>
               </div>
             } />
@@ -171,7 +173,7 @@ export class SyndicateOverview extends Component {
                 {
                   ({ value }) => {
                     return (
-                      <SyndicateBenefits />
+                      <SyndicateBenefits description={benefits} />
                     )
                   }
                 }
@@ -303,16 +305,18 @@ export class SyndicateOverview extends Component {
           }
         </TextEditContainer>
 
-        <div className='private-syndicate__section'>
-          <div className='container'>
-            <TitleDescriptionSection
-              colorModifier='blue'
-              title='syndicate news'>
-              <FeedGallery
-                tiles={messages} />
-            </TitleDescriptionSection>
+        {!isPublic &&
+          <div className='private-syndicate__section' style={{marginTop: '100px'}}>
+            <div className='container'>
+              <TitleDescriptionSection
+                colorModifier='blue'
+                title='syndicate news'>
+                <FeedGallery
+                  tiles={messages} />
+              </TitleDescriptionSection>
+            </div>
           </div>
-        </div>
+        }
 
         {/* Edit section
         <Route exact path='/syndicate/:name/edit' render={() => {
