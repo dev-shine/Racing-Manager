@@ -41,7 +41,6 @@ class HorseParallaxContent extends Component {
 }
 
 HorseParallaxContent.propTypes = {
-  title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   className: PropTypes.oneOfType([
     PropTypes.string,

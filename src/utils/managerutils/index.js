@@ -1,11 +1,9 @@
 import history from 'utils/locationutils'
 
-const loc = history.location.pathname
+const editHorseInformationRegex = /^\/((horse\/[a-zA-Z0-9-()._]+\/information)|(syndicate\/[a-zA-Z0-9-()._]+))\/edit\/?$/
 
-const editHorseInformationRegex = /^\/((horse\/[a-zA-Z0-9-()]+\/information)|(syndicate\/[a-zA-Z0-9-()]+))\/edit\/?$/
-
-const showEditOptions = () => { // Detirmines if edit options should be displayed
-  if (loc.match(editHorseInformationRegex)) {
+const showEditOptions = () => { // Determines if edit options should be displayed
+  if (history.location.pathname.match(editHorseInformationRegex)) {
     return true
   }
   return false

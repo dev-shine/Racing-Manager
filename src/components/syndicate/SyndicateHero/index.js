@@ -14,6 +14,10 @@ import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 
 import {submitSyndicateData} from 'actions/syndicate'
 
+import { Link, Route } from 'react-router-dom'
+
+import history from 'utils/locationutils'
+
 const SyndicateHero = (props) => {
   const {
     owner = { name: '' },
@@ -59,6 +63,16 @@ const SyndicateHero = (props) => {
                   <div className='syndicate-hero__logo-desc section-shadow--darker'>
                     <h6>Racing Club</h6>
                     <h6>Managed by {owner.name}</h6>
+                    <Route exact path='/syndicate/:slug' render={() => {
+                      if (data.canEdit) {
+                        return (<h6><Link to={'/syndicate/' + data.slug + '/edit'}><span className="link micro link--italic">Edit Syndicate</span></Link></h6>)
+                      } else {
+                        return null
+                      }
+                    }}/>
+                    <Route exact path='/syndicate/:slug/edit' render={() => (
+                      <h6><Link to={'/syndicate/' + data.slug}><span className="link micro link--italic">View Syndicate</span></Link></h6>
+                    )}/>
                   </div>
                 </span>
               )

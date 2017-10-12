@@ -52,7 +52,7 @@ export const formatHorseData = (data = {}) => {
 
   return Promise.resolve({
     ...data,
-    messages: messages.map(obj => {
+    messages: messages && messages.map(obj => {
       const { createdAt, attachment } = obj
 
       const message = update(obj, {
