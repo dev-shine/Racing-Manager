@@ -5,6 +5,7 @@ import horseView from 'views/Horse/View'
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
 import HorseTable from 'components/horse/HorseTable'
+
 import { fetchHorseStatisticsResultsDetailsInfo, fetchHorseStatisticsFutureDetailsInfo } from 'actions/horse'
 
 import {
