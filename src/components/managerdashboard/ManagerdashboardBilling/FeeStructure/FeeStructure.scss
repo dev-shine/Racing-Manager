@@ -3,15 +3,20 @@
 
   h2.uppercase {
     padding: 30px 0 20px;
+    color: $yankees-blue;
   }
   .fee {
     .form__group {
       width: 10%;
       display: inline-block;
-      margin-bottom: 0px;
+      margin: 0px 5px;
+
+      .accordion {
+        display: none;
+      }
 
       input.input__input-element {
-        line-height: 20px;
+        line-height: 35px;
       }
     }
     .small {
@@ -23,12 +28,16 @@
 
       p {
         color: $color-text-inform;
+        line-height: 0;
       }
     }
 
     .error-messages {
+      margin-top: 30px;
+
       p {
         color: $twilight-lavender;
+        line-height: 0;
       }
     }
   }

@@ -1,5 +1,20 @@
 .manager-dashboard {
 
+  .manager-dashboard-link__header {
+    position: fixed;
+    top: 45px;
+    width: 100%;
+    z-index: 1000;
+    background-color: #fbfbfb;
+    .manager-dashboard__section {
+      width: 100%;
+    }
+  }
+
+  .manager-dashboard__header {
+    margin-top: 81px;
+  }
+
   .manager-dashboard__section {
     width: 90%;
 
@@ -9,7 +24,7 @@
         @media screen and (max-width: 768px) {
           width: 100%;
         }
-        height: 561px;
+        height: 700px;
         padding-left: 35px;
         display: inline-block;
       }
@@ -20,7 +35,7 @@
         @media screen and (max-width: 768px) {
           width: 100%;
         }
-        height: 561px;
+        height: 700px;
         display: inline-block;
       }
     }
