@@ -50,10 +50,10 @@ const router = (
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
             <AuthRoute path='/manager-dashboard/billing' component={ManagerDashboardBilling} redirectPath='/' />
 
-            <AuthRoute exact path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
-            <AuthRoute exact path='/horse/:name/statistics' component={PrivateHorseStatistics} redirectPath='/404' />
-            <AuthRoute exact path='/horse/:name/information' component={PrivateHorseInformation} redirectPath='/404' />
-            <AuthRoute exact path='/horse/:name/information/edit' component={PrivateHorseInformation} redirectPath='/404' />
+            <AuthRoute exact path='/horse/:slug' component={PrivateHorse} redirect={PublicHorse} />
+            <AuthRoute exact path='/horse/:slug/statistics' component={PrivateHorseStatistics} redirectPath='/404' />
+            <AuthRoute exact path='/horse/:slug/information' component={PrivateHorseInformation} redirectPath='/404' />
+            <AuthRoute exact path='/horse/:slug/information/edit' component={PrivateHorseInformation} redirectPath='/404' />
 
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 

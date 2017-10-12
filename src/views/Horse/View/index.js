@@ -29,8 +29,8 @@ const mapStateToProps = ({ horse }) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getHorseInfo: () => {
-    const name = ownProps.match.params.name
-    return dispatch(fetchHorseInfo(name))
+    const slug = ownProps.match.params.slug
+    return dispatch(fetchHorseInfo(slug))
   },
   clearHorseData: () => {
     return dispatch(clearHorseData())

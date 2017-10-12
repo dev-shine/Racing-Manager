@@ -49,7 +49,8 @@ const HorseInformation = (props) => {
     syndicateLink,
     percentShares,
     racePlans,
-    horseValue
+    horseValue,
+    slug
   } = data
 
   const ownershipYears = 2
@@ -79,7 +80,7 @@ const HorseInformation = (props) => {
 
       <div className='horse-information__section--shadow section-shadow--bottom'>
         <HorseNavBar
-          name={match.params.name} />
+          data={data}/>
       </div>
 
       <SyndicateSplitSection

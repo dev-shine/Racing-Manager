@@ -4,22 +4,32 @@ import SecondaryNavBar, { NavLink } from 'components/navigation/SecondaryNavBar'
 
 const HorseNavBar = (props) => {
   const {
-    name,
     modifier,
-    className
+    className,
+    data = {}
   } = props
+
+  const {
+    canEdit = false,
+    slug
+  } = data
 
   return (
     <SecondaryNavBar modifier={modifier} className={className}>
-      <NavLink href={`/horse/${name}`} exact>
+      <NavLink href={`/horse/${slug}`} exact>
         racing news
       </NavLink>
-      <NavLink href={`/horse/${name}/statistics`} exact>
+      <NavLink href={`/horse/${slug}/statistics`} exact>
         vital statistics
       </NavLink>
-      <NavLink href={`/horse/${name}/information`} exact>
+      <NavLink href={`/horse/${slug}/information`} exact>
         key information
       </NavLink>
+      {canEdit &&
+        <NavLink href={`/horse/${slug}/information/edit`} exact>
+          Edit Horse
+        </NavLink>
+      }
     </SecondaryNavBar>
   )
 }

@@ -176,21 +176,14 @@ export const clearHorseData = () => ({
  *  @param {String} name
  *  @return {Function}
  */
-export const fetchHorseInfo = (name) => {
+export const fetchHorseInfo = slug => {
   return (dispatch, getState) => {
-    // Signal to the store a fetch is going to happen
-    dispatch(gettingHorseInfo())
-
-    return getHorseInfo(name)
-      .then(formatHorseData)
-      .then((data) => {
-        dispatch(receivedHorseInfo(data))
-        return Promise.resolve(data)
-      })
-      .catch((error) => {
-        dispatch(failedToGetHorseInfo(error))
-        return Promise.reject(error)
-      })
+    return dispatch({
+      type: CALL_ACTION_TYPE,
+      types: [gettingHorseInfo, receivedHorseInfo, failedToGetHorseInfo],
+      endpoint: getHorseInfo,
+      urlParams: {slug}
+    })
   }
 }
 

@@ -60,7 +60,7 @@ export class HorseOverview extends Component {
           data={data} />
 
         <HorseNavBar
-          name={match.params.name} />
+          data={data} />
 
         <div className='container horse-overview__message-post'>
           <div className='row'>

@@ -22,12 +22,10 @@ export const getMemberDashboard = (data) => {
   })
 }
 
-export const getHorseInfo = (name) => {
+export const getHorseInfo = (data) => {
   return get({
-    url: SERVICE_TYPES.HORSE,
-    data: {
-      name
-    }
+    url: SERVICE_TYPES.HORSE_SLUG,
+    ...data
   })
 }
 
@@ -47,7 +45,7 @@ export const getHorseStatisticsFutureDetailsInfo = (name) => {
 
 export const updateHorseData = (data) => {
   return put({
-    url: SERVICE_TYPES.UPDATE_HORSE,
+    url: SERVICE_TYPES.HORSE_SLUG,
     ...data
   })
 }
