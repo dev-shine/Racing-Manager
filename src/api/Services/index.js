@@ -31,6 +31,18 @@ export const getHorseInfo = (name) => {
   })
 }
 
+export const getHorseStatisticsResultsInfo = (token, name) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS,
+    headers: {
+      'Authorization': `JWT ${token}`
+    },
+    data: {
+      horseName: name
+    }
+  })
+}
+
 export const performHorseUpdate = (data) => {
   return post({
     url: SERVICE_TYPES.MESSAGE,

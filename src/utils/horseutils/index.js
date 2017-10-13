@@ -2,6 +2,7 @@
  *  @module timestampToFeedTimestamp
  */
 import { timestampToFeedTimestamp } from 'utils/dateutils'
+import moment from 'moment'
 
 /**
  * @module is-number
@@ -66,6 +67,86 @@ export const formatHorseData = (data = {}) => {
       return message
     })
   })
+}
+
+export const formatHorseStatisticsData = (response = {}) => {
+  let titles = []
+  let data = []
+
+  response.forEach(obj => {
+    titles = Object.keys(obj)
+    data.push(Object.values(obj))
+  })
+
+  return {
+    titles,
+    data
+  }
+}
+
+export const formatHorseStatisticsResultsData = (response = {}) => {
+  const tableKeys = {
+    'date': 'meetingDate',
+    'course': 'courseName',
+    'result': 'positionOfficial/numberOfRunners',
+    'btn': 'distanceBeaten',
+    'type': 'raceType',
+    'or': 'performanceRating',
+    'dis': 'distance',
+    'going': 'going',
+    'eq': 'equipmentChar',
+    'jockey': 'jockeyName',
+    'isp': 'ispFractional',
+    'bsp': 'BSPAdvantage',
+    'ip hl/lo': 'ipMax/ipMin',
+    'ips': 'ipsymbol',
+    'fs%': 'fs%',
+    'tfig': 'timefigure',
+    'tfr': 'trw1',
+    'comment': 'performanceCommentPremium'
+  }
+
+  let titles = Object.keys(tableKeys)
+
+  let data = []
+
+  response.forEach(obj => {
+    let eachData = []
+    Object.values(tableKeys).forEach(function (key) {
+      if (key.indexOf('/') === -1) {
+        if (obj[key]) {
+          if (key === 'meetingDate') {
+            eachData.push(moment(obj[key]).format('DD/MM/YYYY'))
+          } else {
+            eachData.push(obj[key])
+          }
+        } else {
+          eachData.push(null)
+        }
+      } else {
+        let key1 = key.slice(0, key.indexOf('/'))
+        let key2 = key.slice(key.indexOf('/') + 1)
+        let value = ''
+        if (obj[key1]) {
+          value = obj[key1] + '/'
+        } else {
+          value = '- /'
+        }
+        if (obj[key2]) {
+          value += obj[key2]
+        } else {
+          value += '-'
+        }
+        eachData.push(value)
+      }
+    })
+    data.push(eachData)
+  })
+
+  return {
+    titles,
+    data
+  }
 }
 
 /**
