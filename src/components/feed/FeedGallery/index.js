@@ -119,7 +119,7 @@ class FeedGallery extends Component {
   renderChildren (tile) {
     const {
       _id,
-      postType = 'text',
+      postType = 'multiplemedia',
       createdAt,
       timeStamp,
       text,
