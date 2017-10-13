@@ -1,28 +1,38 @@
 import React, { Component } from 'react'
+
 import { connect } from 'react-redux'
+import _ from 'lodash'
+
+import { getItem } from 'utils/storageutils'
+
+import { USER_TOKEN } from 'data/consts'
+
 import horseView from 'views/Horse/View'
 
 import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
 import HorseTable from 'components/horse/HorseTable'
-
-import { fetchHorseStatisticsResultsDetailsInfo, fetchHorseStatisticsFutureDetailsInfo } from 'actions/horse'
+import ResultsTableContainer from './ResultsTableContainer'
+import { getHorseStatisticsResults, fetchHorseStatisticsResultsDetailsInfo, fetchHorseStatisticsFutureDetailsInfo } from 'actions/horse'
 
 import {
   tableStatistics,
-  tableEntries,
-  tableResults
+  tableEntries
 } from 'data/horse'
 
 import {
   queryBySelector
 } from 'utils/domutils'
 
+const INITIAL_COUNT = 5
+const LOADMORE_COUNT = 5
+
 class HorseStatistics extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
+      count: INITIAL_COUNT,
       showResultsDetail: false,
       showFutureDetail: false,
       animateClass: false
@@ -33,11 +43,21 @@ class HorseStatistics extends Component {
     this.hideStatisticsResultsDetails = this.hideStatisticsResultsDetails.bind(this)
     this.showStatisticsFutureDetails = this.showStatisticsFutureDetails.bind(this)
     this.hideStatisticsFutureDetails = this.hideStatisticsFutureDetails.bind(this)
+    this.setResultsData = this.setResultsData.bind(this)
+  }
+
+  componentWillMount () {
+    const token = getItem(USER_TOKEN)
+    this.props.getHorseStatisticsResults(token)
   }
 
   componentDidMount () {
     // Scroll to ranking table
     this.scrollElementToView()
+  }
+
+  setResultsData () {
+    this.setState({ count: this.state.count + LOADMORE_COUNT })
   }
 
   scrollElementToView () {
@@ -74,6 +94,19 @@ class HorseStatistics extends Component {
       match
     } = this.props
 
+    let countData = []
+    let resultsTableData = {}
+    if (this.props.horseStatisticsResultsInfo.data !== null && !_.isEmpty(this.props.horseStatisticsResultsInfo.data) && this.props.horseStatisticsResultsInfo.data.data.length > this.state.count) {
+      countData = this.props.horseStatisticsResultsInfo.data.data.slice(0, this.state.count)
+    } else {
+      countData = this.props.horseStatisticsResultsInfo.data.data
+    }
+
+    resultsTableData = {
+      titles: this.props.horseStatisticsResultsInfo.data.titles,
+      data: countData
+    }
+
     return (
       <div className='horse-statistics'>
         <HorseHero
@@ -99,10 +132,13 @@ class HorseStatistics extends Component {
                   </div>
 
                   <div className='horse-statistics__section'>
-                    <HorseTable
+                    <ResultsTableContainer
                       title='Results'
-                      data={tableResults}
+                      data={resultsTableData}
                       showDataDetails={this.showStatisticsResultsDetails}/>
+                    <div className="loadMore-btn">
+                      <button onClick={this.setResultsData}>LOAD MORE</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -155,6 +191,9 @@ class HorseStatistics extends Component {
 
 const mapStateToProps = function ({horse}) {
   return {
+    horseStatisticsResultsInfo: {
+      ...horse.horseStatisticsResultsInfo
+    },
     horseStatisticsResultsDetails: {
       ...horse.horseStatisticsResultsDetailsInfo
     },
@@ -173,6 +212,10 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     getHorseStatisticsFutureDetailsInfo: () => {
       const name = ownProps.match.params.name
       return dispatch(fetchHorseStatisticsFutureDetailsInfo(name))
+    },
+    getHorseStatisticsResults: (token) => {
+      const name = ownProps.match.params.name
+      return dispatch(getHorseStatisticsResults(token, name))
     }
   }
 }
