@@ -91,6 +91,7 @@ class TileFooter extends Component {
 
     return (
       <div className={modifiedClassNames} onClick={stopPropagation}>
+        {/*
         <div className='tile-footer__item'>
           <Icon
             className='tile-footer__icon micro'
@@ -103,6 +104,7 @@ class TileFooter extends Component {
             modifier='comment' />
           <p className='tile-footer__text micro'></p>
         </div>
+        */}
         <div className='tile-footer__item' onClick={this.onSocialShare}>
           <Icon
             className='tile-footer__icon micro'

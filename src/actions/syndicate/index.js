@@ -32,20 +32,14 @@ export const clearSyndicateData = () => ({
   type: CLEAR_SYNDICATE_DATA
 })
 
-export const fetchSyndicateInfo = data => {
+export const fetchSyndicateInfo = slug => {
   return (dispatch, getState) => {
-    dispatch(gettingSyndicateInfo())
-
-    return getSyndicateInfo(data)
-      .then(formatHorseData)
-      .then((data) => {
-        dispatch(receivedSyndicateInfo(data))
-        return Promise.resolve(data)
-      })
-      .catch((error) => {
-        dispatch(failedToGetSyndicateInfo(error))
-        return Promise.reject(error)
-      })
+    return dispatch({
+      type: CALL_ACTION_TYPE,
+      types: [gettingSyndicateInfo, receivedSyndicateInfo, failedToGetSyndicateInfo],
+      endpoint: getSyndicateInfo,
+      urlParams: {slug}
+    })
   }
 }
 
@@ -60,7 +54,7 @@ export const submitSyndicateData = (slug, payload) => {
     })
       .then(() => {
         dispatch(addToastSuccess(UPDATED_SYNDICATE_DATA))
-        dispatch(fetchSyndicateInfo({name: slug}))
+        dispatch(fetchSyndicateInfo(slug))
         return Promise.resolve()
       })
       .catch((error) => {

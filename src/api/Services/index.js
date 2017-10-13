@@ -87,14 +87,14 @@ export const performLogin = (data) => {
 
 export const getSyndicateInfo = (data) => {
   return get({
-    url: SERVICE_TYPES.SYNDICATE,
-    data
+    url: SERVICE_TYPES.SYNDICATE_SLUG,
+    ...data
   })
 }
 
 export const updateSyndicateData = (data) => {
   return put({
-    url: SERVICE_TYPES.UPDATE_SYNDICATE,
+    url: SERVICE_TYPES.SYNDICATE_SLUG,
     ...data
   })
 }

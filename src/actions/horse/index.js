@@ -213,6 +213,32 @@ export const fetchHorseInfo = (name) => {
   }
 }
 
+/**
+ *  fetchHorseStatisticsFutureDetailsInfo [async]
+ *  @param {String} name
+ *  @return {Function}
+ */
+
+export const fetchHorseStatisticsFutureDetailsInfo = (name) => {
+  return (dispatch, getState) => {
+    // Signal to the store a fetch is going to happen
+    dispatch(gettingHorseStatisticsFutureDetailsInfo())
+
+    return getHorseStatisticsFutureDetailsInfo(name)
+      .then((result) => {
+        return Promise.resolve(formatHorseStatisticsData(result[0].horses))
+      })
+      .then((data) => {
+        dispatch(receivedHorseStatisticsFutureDetailsInfo(data))
+        return Promise.resolve(data)
+      })
+      .catch((error) => {
+        dispatch(failedToGetHorseStatisticsFutureDetailsInfo(error))
+        return Promise.reject(error)
+      })
+  }
+}
+
 export const fetchHorseStatisticsResultsDetailsInfo = (name) => {
   return (dispatch, getState) => {
     // Signal to the store a fetch is going to happen
@@ -241,32 +267,6 @@ export const fetchHorseStatisticsResultsDetailsInfo = (name) => {
 export const clearHorseStatisticsResultsDetailsInfo = () => ({
   type: CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO
 })
-
-/**
- *  fetchHorseStatisticsFutureDetailsInfo [async]
- *  @param {String} name
- *  @return {Function}
- */
-
-export const fetchHorseStatisticsFutureDetailsInfo = (name) => {
-  return (dispatch, getState) => {
-    // Signal to the store a fetch is going to happen
-    dispatch(gettingHorseStatisticsFutureDetailsInfo())
-
-    return getHorseStatisticsFutureDetailsInfo(name)
-      .then((result) => {
-        return Promise.resolve(formatHorseStatisticsData(result[0].horses))
-      })
-      .then((data) => {
-        dispatch(receivedHorseStatisticsFutureDetailsInfo(data))
-        return Promise.resolve(data)
-      })
-      .catch((error) => {
-        dispatch(failedToGetHorseStatisticsFutureDetailsInfo(error))
-        return Promise.reject(error)
-      })
-  }
-}
 
 export const getHorseStatisticsResults = (token, name) => {
   return (dispatch, getState) => {

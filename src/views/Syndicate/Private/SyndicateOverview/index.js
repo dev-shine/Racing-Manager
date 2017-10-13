@@ -34,7 +34,6 @@ import {multilineTextToJSX} from 'utils/textutils'
 import {
   syndicateMembers,
   trainerMembers,
-  fakeHorses
 } from 'data/horse'
 
 import {
@@ -95,7 +94,10 @@ export class SyndicateOverview extends Component {
       horsesText,
       heritage,
       trainersHeadline,
-      trainersText
+      trainersText,
+      horses,
+      benefits,
+      public: isPublic = true
     } = data
 
     return (
@@ -145,7 +147,7 @@ export class SyndicateOverview extends Component {
                   benefits={syndicateBenefits}
                   description={syndicateBenefitsDescription(name)} />
                 <div className='visible-md-up'>
-                  <SyndicateCtaCard />
+                  <SyndicateCtaCard data={data}/>
                 </div>
               </div>
             } />
@@ -153,15 +155,29 @@ export class SyndicateOverview extends Component {
 
         <div className='container no-padding'>
           <div className='col-md-8 col-sm-12 private-syndicate__team-members'>
-            <HorseMemberCarousel
-              syndicateMembers={syndicateMembers} />
+            {/*}<HorseMemberCarousel
+              syndicateMembers={syndicateMembers} />*/}
           </div>
         </div>
 
         <div className='private-syndicate__section'>
           <div className='container'>
             <div className='col-md-5 col-sm-12'>
-              <SyndicateBenefits />
+              <TextEditContainer
+                title='Edit benefits'
+                data={data}
+                editLabel='update benefits'
+                dataKey='benefits'
+                maxLength={2000}
+                submitAction={submitSyndicateData}>
+                {
+                  ({ value }) => {
+                    return (
+                      <SyndicateBenefits description={benefits} />
+                    )
+                  }
+                }
+              </TextEditContainer>
             </div>
           </div>
         </div>
@@ -205,8 +221,10 @@ export class SyndicateOverview extends Component {
                   <SyndicateIntroSection
                     title={`${name} horses`}
                     description={multilineTextToJSX(horsesText)}>
+                    {horses && horses.length > 0 &&
                       <SyndicateHorseCarousel
-                        horses={fakeHorses} />
+                        horses={horses} />
+                    }
                   </SyndicateIntroSection>
                 </div>
               )
@@ -277,9 +295,9 @@ export class SyndicateOverview extends Component {
                     modifier='small'
                     title='our trainers'
                     description={trainersText}>
-                      <HorseMemberCarousel
+                      {/*<HorseMemberCarousel
                         syndicateMembers={trainerMembers}
-                        type='trainer' />
+                        type='trainer' />*/}
                   </SyndicateIntroSection>
                 </div>
               )
@@ -287,16 +305,18 @@ export class SyndicateOverview extends Component {
           }
         </TextEditContainer>
 
-        <div className='private-syndicate__section'>
-          <div className='container'>
-            <TitleDescriptionSection
-              colorModifier='blue'
-              title='syndicate news'>
-              <FeedGallery
-                tiles={messages} />
-            </TitleDescriptionSection>
+        {!isPublic &&
+          <div className='private-syndicate__section' style={{marginTop: '100px'}}>
+            <div className='container'>
+              <TitleDescriptionSection
+                colorModifier='blue'
+                title='syndicate news'>
+                <FeedGallery
+                  tiles={messages} />
+              </TitleDescriptionSection>
+            </div>
           </div>
-        </div>
+        }
 
         {/* Edit section
         <Route exact path='/syndicate/:name/edit' render={() => {

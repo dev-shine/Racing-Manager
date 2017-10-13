@@ -7,29 +7,44 @@ import CtaPanelCard from 'components/cards/CtaPanelCard'
 import TextButton from 'components/buttons/TextButton'
 import CtaLink from 'components/links/CtaLink'
 
+import { Link } from 'react-router-dom'
+
 const SyndicateCtaCard = (props) => {
   const {
     topButtonText,
-    bottomButtonText
+    bottomButtonText,
+    data = {}
   } = props
 
-  return (
-   <CtaPanelCard className='syndicate-cta-card'>
-      <CtaLink href={'/'} target={'_blank'} nativeLink>
-          <TextButton
-            text={topButtonText}
-            className='syndicate-cta-card__button'
-            modifier='md'
-          />
-        </CtaLink>
+  const {
+    public: isPublic = true
+  } = data
 
-        <CtaLink href='/'>
-          <TextButton
-            text={bottomButtonText}
-            className='syndicate-cta-card__button'
-            modifier={['md', 'secondary']}
-          />
+  if (!isPublic) {
+    return null
+  }
+
+  return (
+    <CtaPanelCard className='syndicate-cta-card'>
+      {isPublic &&
+        <CtaLink>
+          <Link to="/register">
+            <TextButton
+              text={'Register to Join'}
+              className='syndicate-cta-card__button'
+              modifier='md'
+            />
+          </Link>
         </CtaLink>
+      }
+
+      {/*}<CtaLink href='/'>
+        <TextButton
+          text={bottomButtonText}
+          className='syndicate-cta-card__button'
+          modifier={['md', 'secondary']}
+        />
+      </CtaLink>*/}
     </CtaPanelCard>
   )
 }
