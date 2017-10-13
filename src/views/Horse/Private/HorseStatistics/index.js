@@ -113,7 +113,7 @@ class HorseStatistics extends Component {
           data={data} />
 
         <HorseNavBar
-          name={match.params.name} />
+          data={data} />
         {
           (!this.state.showResultsDetail && !this.state.showFutureDetail) || this.props.horseStatisticsResultsDetails.fetching || this.props.horseStatisticsFutureDetails.fetching
             ? <div id="horse-statistics-content" className={this.state.animateClass && (!this.props.horseStatisticsResultsDetails.fetching && !this.props.horseStatisticsFutureDetails.fetching) ? 'fadeInLeft animated' : ''}>
@@ -206,16 +206,16 @@ const mapStateToProps = function ({horse}) {
 const mapDispatchToProps = function (dispatch, ownProps) {
   return {
     getHorseStatisticsResultsDetailsInfo: () => {
-      const name = ownProps.match.params.name
-      return dispatch(fetchHorseStatisticsResultsDetailsInfo(name))
+      const slug = ownProps.match.params.slug
+      return dispatch(fetchHorseStatisticsResultsDetailsInfo(slug))
     },
     getHorseStatisticsFutureDetailsInfo: () => {
-      const name = ownProps.match.params.name
-      return dispatch(fetchHorseStatisticsFutureDetailsInfo(name))
+      const slug = ownProps.match.params.slug
+      return dispatch(fetchHorseStatisticsFutureDetailsInfo(slug))
     },
     getHorseStatisticsResults: (token) => {
-      const name = ownProps.match.params.name
-      return dispatch(getHorseStatisticsResults(token, name))
+      const slug = ownProps.match.params.slug
+      return dispatch(getHorseStatisticsResults(token, slug))
     }
   }
 }
