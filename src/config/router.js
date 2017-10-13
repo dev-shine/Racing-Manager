@@ -2,8 +2,10 @@ import React from 'react'
 import {
   Route,
   Switch,
-  BrowserRouter as Routes,
+  Router as Routes,
 } from 'react-router-dom'
+
+import history from 'utils/locationutils'
 
 import AuthRoute from 'components/routing/AuthRoute'
 
@@ -18,7 +20,9 @@ import Register from 'views/Registration/Register'
 import RegistrationSuccessful from 'views/Registration/RegisterSuccessful'
 import RegistrationConfirmation from 'views/Registration/RegisterConfirmation'
 import MemberDashboard from 'views/Dashboard/MemberDashboard'
+import ManagerDashboardBilling from 'views/ManagerDashboard/ManagerDashboardBilling'
 import BrowseHorses from 'views/BrowseHorses'
+import RegistrationExistingSyndicate from 'views/Registration/RegisterExistingSyndicate'
 
 import Account from 'views/Account/AccountLayout'
 
@@ -28,12 +32,12 @@ import PrivateHorseInformation from 'views/Horse/Private/HorseInformation'
 
 import PublicHorse from 'views/Horse/Public/HorseOverview'
 
+import Syndicate from 'views/Syndicate/SyndicateMain'
 import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
-
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
 const router = (
-  <Routes>
+  <Routes history={history}>
     <Startup>
       <Layout>
         <ScrollTop>
@@ -42,7 +46,9 @@ const router = (
             <AuthRoute path='/register' authenticatedPath='/' redirect={Register} />
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
+            <AuthRoute path='/register-existing-syndicate' component={RegistrationExistingSyndicate} redirectPath='/' />
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
+            <AuthRoute path='/manager-dashboard/billing' component={ManagerDashboardBilling} redirectPath='/' />
 
             <AuthRoute exact path='/horse/:name' component={PrivateHorse} redirect={PublicHorse} />
             <AuthRoute exact path='/horse/:name/statistics' component={PrivateHorseStatistics} redirectPath='/404' />
@@ -51,6 +57,7 @@ const router = (
 
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 
+            <AuthRoute path='/syndicate' component={Syndicate} redirectPath='/' />
             <AuthRoute exact path='/syndicate/:name' component={PrivateSyndicate} redirect={PublicSyndicate} />
             <AuthRoute exact path='/syndicate/:name/edit' component={PrivateSyndicate} redirectPath='/404' />
 

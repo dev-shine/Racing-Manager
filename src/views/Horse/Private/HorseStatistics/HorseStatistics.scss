@@ -41,4 +41,15 @@
       }
     }
   }
+
+  button.back-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 8px 59px;
+    background-color: #fff;
+    font-size: 13px;
+    color: #df97a1;
+    border: 1px solid#df97a1;
+    cursor: pointer;
+  }
 }

@@ -62,12 +62,12 @@ const BottomCta = props => {
           </div>
           <div className="col-md-6 col-md-offset-6 col-sm-10 col-sm-offset-2">
             <CopyCard
-              headline="are you with us?">
+              headline="BECOME A CONNECTION">
               <p>“The Racing Manager could be the breath of fresh air that racing needs to bring a new, engaged audience into the sport we all love ”</p>
               <p className="bottom-cta__quote-author micro"><b>- Eamon Wilmott</b>
                 <br/>Non Exec Director, BHA | Managing Director, Horses First Racing</p>
               <br/><br/>
-              <p>Sign up for free or try a demo account if there’s more you want to learn.</p>
+              <p>Signing up is free and welcome to everyone. Once you’ve signed up, you can view your horses and join racing clubs. You only pay when you join a club or a syndicate.</p>
             </CopyCard>
             <div className="bottom-cta__buttons">
               <Link to='/register'>
@@ -76,11 +76,13 @@ const BottomCta = props => {
                   className="bottom-cta__button"
                   onClick={() => {}}/>
               </Link>
+              {/*} DEMO DISABLED FOR NOW
               <TextButton
                 text="Try a Demo"
                 modifier="secondary"
                 className="bottom-cta__button"
                 onClick={() => {}}/>
+                */}
             </div>
           </div>
         </div>

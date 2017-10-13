@@ -110,7 +110,7 @@ export class SyndicateOverview extends Component {
 
         <div className='public-syndicate__overlay-section'>
             <SyndicateIntroSection
-              title={`${name} horses`}
+              title='Our approach'
               description='We have a fantastic yard of horses, all of which have run competitively and placed with great confidence. Having managed race horses for many years now, we know where quality can be found and how to thoroughly enjoy the iniafull extent of the racing experience.'>
                 <SyndicateHorseCarousel
                   horses={fakeHorses} />

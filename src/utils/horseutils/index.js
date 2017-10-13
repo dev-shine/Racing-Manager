@@ -48,6 +48,7 @@ const horsePostType = (attachment) => {
  *  @return {Object}
  */
 export const formatHorseData = (data = {}) => {
+  console.log('************', data)
   const { messages } = data
 
   return Promise.resolve({

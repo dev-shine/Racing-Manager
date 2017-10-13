@@ -13,7 +13,7 @@ import HorseHero from 'components/horse/HorseHero'
 import HorseNavBar from 'components/horse/HorseNavBar'
 import HorseTable from 'components/horse/HorseTable'
 import ResultsTableContainer from './ResultsTableContainer'
-import { getHorseStatisticsResults } from 'actions/horse'
+import { getHorseStatisticsResults, fetchHorseStatisticsResultsDetailsInfo, fetchHorseStatisticsFutureDetailsInfo } from 'actions/horse'
 
 import {
   tableStatistics,
@@ -30,11 +30,19 @@ const LOADMORE_COUNT = 5
 class HorseStatistics extends Component {
   constructor (props) {
     super(props)
+
     this.state = {
-      count: INITIAL_COUNT
+      count: INITIAL_COUNT,
+      showResultsDetail: false,
+      showFutureDetail: false,
+      animateClass: false
     }
 
     this.scrollElementToView = this.scrollElementToView.bind(this)
+    this.showStatisticsResultsDetails = this.showStatisticsResultsDetails.bind(this)
+    this.hideStatisticsResultsDetails = this.hideStatisticsResultsDetails.bind(this)
+    this.showStatisticsFutureDetails = this.showStatisticsFutureDetails.bind(this)
+    this.hideStatisticsFutureDetails = this.hideStatisticsFutureDetails.bind(this)
     this.setResultsData = this.setResultsData.bind(this)
   }
 
@@ -56,6 +64,28 @@ class HorseStatistics extends Component {
     setTimeout(() => {
       queryBySelector('#ranking').scrollIntoView({ behavior: 'smooth' })
     }, 0)
+  }
+
+  showStatisticsResultsDetails () {
+    if (Object.keys(this.props.horseStatisticsResultsDetails.data).length === 0) {
+      this.props.getHorseStatisticsResultsDetailsInfo()
+    }
+    this.setState({showResultsDetail: true, animateClass: true})
+  }
+
+  hideStatisticsResultsDetails () {
+    this.setState({showResultsDetail: false, animateClass: true})
+  }
+
+  showStatisticsFutureDetails () {
+    if (Object.keys(this.props.horseStatisticsFutureDetails.data).length === 0) {
+      this.props.getHorseStatisticsFutureDetailsInfo()
+    }
+    this.setState({showFutureDetail: true, animateClass: true})
+  }
+
+  hideStatisticsFutureDetails () {
+    this.setState({showFutureDetail: false, animateClass: true})
   }
 
   render () {
@@ -84,46 +114,110 @@ class HorseStatistics extends Component {
 
         <HorseNavBar
           name={match.params.name} />
+        {
+          (!this.state.showResultsDetail && !this.state.showFutureDetail) || this.props.horseStatisticsResultsDetails.fetching || this.props.horseStatisticsFutureDetails.fetching
+            ? <div id="horse-statistics-content" className={this.state.animateClass && (!this.props.horseStatisticsResultsDetails.fetching && !this.props.horseStatisticsFutureDetails.fetching) ? 'fadeInLeft animated' : ''}>
+                <div className='container'>
+                  <div className='horse-statistics__section' id='ranking'>
+                    <HorseTable
+                      title='Ranking'
+                      data={tableStatistics}/>
+                  </div>
 
-        <div className='container'>
-          <div className='horse-statistics__section' id='ranking'>
-            <HorseTable
-              title='Ranking'
-              data={tableStatistics} />
-          </div>
+                  <div className='horse-statistics__section'>
+                    <HorseTable
+                      title='Future Entries'
+                      data={tableEntries}
+                      showDataDetails={this.showStatisticsFutureDetails}/>
+                  </div>
 
-          <div className='horse-statistics__section'>
-            <HorseTable
-              title='Future Entries'
-              data={tableEntries} />
-          </div>
+                  <div className='horse-statistics__section'>
+                    <ResultsTableContainer
+                      title='Results'
+                      data={resultsTableData}
+                      showDataDetails={this.showStatisticsResultsDetails}/>
+                    <div className="loadMore-btn">
+                      <button onClick={this.setResultsData}>LOAD MORE</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            : null
+        }
+        {
+          this.state.showResultsDetail && !this.props.horseStatisticsResultsDetails.fetching
+            ? <div id="horse-statistics-results-details-content" className="fadeInRight animated">
+                <div className="container">
+                  <div className='horse-statistics__section' id='ranking'>
+                    <HorseTable
+                    title='RACE RECORD'
+                    data={this.props.horseStatisticsResultsDetails.data.form} />
+                  </div>
 
-          <div className='horse-statistics__section'>
-            <ResultsTableContainer
-              title='Results'
-              data={resultsTableData} />
-            <div className="loadMore-btn">
-              <button onClick={this.setResultsData}>LOAD MORE</button>
-            </div>
-          </div>
+                  <div className='horse-statistics__section'>
+                    <HorseTable
+                    title='FORM'
+                    data={this.props.horseStatisticsResultsDetails.data.raceRecord} />
+                  </div>
 
-        </div>
+                  <div className='horse-statistics__section'>
+                    <button className="back-btn" onClick={this.hideStatisticsResultsDetails} >BACK</button>
+                  </div>
+                </div>
+              </div>
+            : null
+        }
+        {
+          this.state.showFutureDetail && !this.props.horseStatisticsFutureDetails.fetching
+            ? <div id="horse-statistics-Future-details-content" className="fadeInRight animated">
+                <div className="container">
+                  <div className='horse-statistics__section'>
+                    <HorseTable
+                      title='RACE RECORD'
+                      data={this.props.horseStatisticsFutureDetails.data} />
+                  </div>
+
+                  <div className='horse-statistics__section'>
+                    <button className="back-btn" onClick={this.hideStatisticsFutureDetails} >BACK</button>
+                  </div>
+                </div>
+              </div>
+            : null
+        }
       </div>
     )
   }
 }
 
-const mapStateToProps = ({horse}) => ({
-  horseStatisticsResultsInfo: {
-    ...horse.horseStatisticsResultsInfo
+const mapStateToProps = function ({horse}) {
+  return {
+    horseStatisticsResultsInfo: {
+      ...horse.horseStatisticsResultsInfo
+    },
+    horseStatisticsResultsDetails: {
+      ...horse.horseStatisticsResultsDetailsInfo
+    },
+    horseStatisticsFutureDetails: {
+      ...horse.horseStatisticsFutureDetailsInfo
+    }
   }
-})
+}
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  getHorseStatisticsResults: (token) => {
-    const name = ownProps.match.params.name
-    return dispatch(getHorseStatisticsResults(token, name))
+const mapDispatchToProps = function (dispatch, ownProps) {
+  return {
+    getHorseStatisticsResultsDetailsInfo: () => {
+      const name = ownProps.match.params.name
+      return dispatch(fetchHorseStatisticsResultsDetailsInfo(name))
+    },
+    getHorseStatisticsFutureDetailsInfo: () => {
+      const name = ownProps.match.params.name
+      return dispatch(fetchHorseStatisticsFutureDetailsInfo(name))
+    },
+    getHorseStatisticsResults: (token) => {
+      const name = ownProps.match.params.name
+      return dispatch(getHorseStatisticsResults(token, name))
+    }
   }
-})
+}
 
 export default horseView(connect(mapStateToProps, mapDispatchToProps)(HorseStatistics))

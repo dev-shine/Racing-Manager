@@ -7,7 +7,8 @@ import ResultsTable from './ResultsTable'
 const ResultsTableContainer = (props) => {
   const {
     title,
-    data
+    data,
+    showDataDetails
   } = props
 
   return (
@@ -15,7 +16,7 @@ const ResultsTableContainer = (props) => {
       colorModifier='blue'
       title={title}
     >
-      <ResultsTable {...data} />
+      <ResultsTable {...data} showDataDetails={showDataDetails} />
     </TitleDescriptionSection>
   )
 }
