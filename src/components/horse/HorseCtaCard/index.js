@@ -46,26 +46,46 @@ class HorseCtaCard extends PureComponent {
     } = this.state
 
     const {
-      url
+      url,
+      isLoggedIn,
+      data = {},
+      requestJoin
     } = this.props
+
+    const {
+      slug
+    } = data
 
     return (
       <CtaPanelCard className='horse-cta-card'>
-        <CtaLink href={requestToJoin} target={'_blank'} nativeLink>
-          <TextButton
-            text='Request to join'
-            className='horse-cta-card__button'
-            modifier='md'
-          />
-        </CtaLink>
 
-        <CtaLink href='/'>
+        {isLoggedIn &&
+          <span onClick={requestJoin}>
+            <TextButton
+              text='Request to join'
+              className='horse-cta-card__button'
+              modifier='md'
+            />
+          </span>
+        }
+
+        {!isLoggedIn &&
+          <CtaLink href={'/register/horse/' + slug} nativeLink>
+            <TextButton
+              text='Register to join'
+              className='horse-cta-card__button'
+              modifier='md'
+            />
+          </CtaLink>
+        }
+
+        {/*}<CtaLink href='/'>
           <TextButton
             text='Get in touch'
             className='horse-cta-card__button'
             modifier={['md', 'secondary']}
           />
-        </CtaLink>
+        </CtaLink>*/}
 
         <FadeIn>
           {

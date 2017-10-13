@@ -1,6 +1,6 @@
 .horse-cta-card {
   $margin-top: 8px;
-  $bottom-offset: -93px;
+  $bottom-offset: 0px;
 
   bottom: $bottom-offset;
 
@@ -11,7 +11,7 @@
       margin-top: $margin-top;
     }
   }
-  
+
   &__button {
     width: 100%;
   }
@@ -42,5 +42,5 @@
       font-size: $tiny-title;
       color: $cta-link-color;
     }
-  } 
+  }
 }

@@ -115,7 +115,7 @@ const HorseInformation = (props) => {
         )} />
 
       <div className='container'>
-        <div className='horse-information__section'>
+        {/*}<div className='horse-information__section'>
           <TitleDescriptionSection
             title={'key members'}
             colorModifier='blue'>
@@ -136,7 +136,7 @@ const HorseInformation = (props) => {
               })}
             </div>
           </TitleDescriptionSection>
-        </div>
+        </div>*/}
 
         <div className='horse-information__section row'>
           <div className='col-xs-12 col-md-7'>
@@ -165,28 +165,26 @@ const HorseInformation = (props) => {
 
       {/* Edit section */}
 
-      {showEditOptions() &&
-        <TextEditContainer
-          title='Edit quote'
-          data={data}
-          editLabel='update quote'
-          placeholder={horseHero.title(owner.name)}
-          dataKey='quote'
-          maxLength={75}
-          modifier='text-edit__big'
-          submitAction={submitHorseData}>
-          {
-            ({ value }) => {
-              return (
-                <HorseParallaxContent
-                  title={data.quote || horseHero.title(owner.name)}
-                  image={horseHero.image}
-                />
-              )
-            }
+      <TextEditContainer
+        title='Edit quote'
+        data={data}
+        editLabel='update quote'
+        placeholder={horseHero.title(owner.name)}
+        dataKey='quote'
+        maxLength={75}
+        modifier='text-edit__big'
+        submitAction={submitHorseData}>
+        {
+          ({ value }) => {
+            return (
+              <HorseParallaxContent
+                title={data.quote || horseHero.title(owner.name)}
+                image={horseHero.image}
+              />
+            )
           }
-        </TextEditContainer>
-      }
+        }
+      </TextEditContainer>
 
       <div className='container'>
         <div className='horse-information__section row'>
