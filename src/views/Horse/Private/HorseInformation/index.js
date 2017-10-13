@@ -60,7 +60,7 @@ const HorseInformation = (props) => {
   )
 
   return (
-    <div className='horse-information'>
+    <div className='horse-information' key={'HORSE_INFORMATION_' + showEditOptions()}>
       <ImageEditContainer
         title='Image requirements'
         description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
