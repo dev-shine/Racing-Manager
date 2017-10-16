@@ -33,6 +33,7 @@ import PrivateHorseInformation from 'views/Horse/Private/HorseInformation'
 import PublicHorse from 'views/Horse/Public/HorseOverview'
 
 import Syndicate from 'views/Syndicate/SyndicateMain'
+import SyndicateCreation from 'views/Syndicate/SyndicateCreation'
 import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
@@ -47,6 +48,7 @@ const router = (
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
             <AuthRoute path='/register-existing-syndicate' component={RegistrationExistingSyndicate} redirectPath='/' />
+            <AuthRoute path='/create-new-syndicate' component={SyndicateCreation} redirectPath='/' />
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
             <AuthRoute path='/manager-dashboard/billing' component={ManagerDashboardBilling} redirectPath='/' />
 
