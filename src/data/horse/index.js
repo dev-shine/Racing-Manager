@@ -58,13 +58,6 @@ export const tableEntries = {
       'HEX',
       7,
       -13.5
-    ],
-    [
-      '03/06/17',
-      18,
-      'HEX',
-      7,
-      -13.5
     ]
   ]
 }

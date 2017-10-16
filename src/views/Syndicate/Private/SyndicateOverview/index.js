@@ -20,6 +20,9 @@ import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
+import HorseCtaCard from 'components/horse/HorseCtaCard'
+
+
 import {
   benefits as syndicateBenefits,
   benefitsDescription as syndicateBenefitsDescription,
@@ -68,6 +71,7 @@ export class SyndicateOverview extends Component {
     }
 
     this.toggleFaq = this.toggleFaq.bind(this)
+    this.toggleJoinRequest = this.toggleJoinRequest.bind(this)
   }
 
   toggleFaq () {
@@ -78,7 +82,8 @@ export class SyndicateOverview extends Component {
 
   render () {
     const {
-      data
+      data,
+      isLoggedIn
     } = this.props
 
     const {
@@ -97,7 +102,7 @@ export class SyndicateOverview extends Component {
       trainersText,
       horses,
       benefits,
-      public: isPublic = true
+      public: isPublic = false
     } = data
 
     return (
@@ -147,7 +152,12 @@ export class SyndicateOverview extends Component {
                   benefits={syndicateBenefits}
                   description={syndicateBenefitsDescription(name)} />
                 <div className='visible-md-up'>
-                  <SyndicateCtaCard data={data}/>
+                  {isPublic &&
+                    <HorseCtaCard
+                      isLoggedIn={isLoggedIn}
+                      data={data}
+                      requestJoin={this.toggleJoinRequest}/>
+                  }
                 </div>
               </div>
             } />
@@ -361,6 +371,15 @@ export class SyndicateOverview extends Component {
           faqs={faqs} />
       </div>
     )
+  }
+
+  toggleJoinRequest () {
+    this.props.addToastSuccess('Request sent successfully, a representative will be in touch shortly.')
+    /*
+    this.setState(({showJoinRequest}) => ({
+      showJoinRequest: !showJoinRequest
+    }))
+    */
   }
 }
 
