@@ -21,9 +21,9 @@ const SyndicateAbout = (props) => {
       <TitleDescriptionSection
         title={title}
         description={description}>
-        <p>
+        {/*}<p>
           Want to know more? See our <span className='italic inherit cursor--pointer' onClick={onFaqClick}>FAQs</span>
-        </p>
+        </p>*/}
       </TitleDescriptionSection>
     </div>
   )
@@ -31,12 +31,11 @@ const SyndicateAbout = (props) => {
 
 SyndicateAbout.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.string,
   onFaqClick: PropTypes.func
 }
 
 SyndicateAbout.defaultProps = {
-  title: 'About the syndicate',
+  title: 'About our syndicate',
   description: ''
 }
 

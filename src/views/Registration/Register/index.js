@@ -70,13 +70,13 @@ export class Register extends PureComponent {
       <View title={title}>
         <div className='register'>
           <ViewHeader
-            title='Join the action!' />
+            title='JOIN THE CROWD' />
           <div className='container'>
             <div className='row register__content'>
               <div className='col-xs-12 no-padding'>
                 <div className='col-sm-7 col-md-7 register__form-container register__form-container--heading'>
                   <p className='small extra-light register__form-opening-text'>
-                    We only need a short few details to get you started with your profile. We may ask you for a few more details later on when you begin to develop your account.
+                    We only need a few details to get you started with a profile. You’ll be able to add more info when you join a club.
                   </p>
                 </div>
               </div>

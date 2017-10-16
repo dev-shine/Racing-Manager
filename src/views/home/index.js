@@ -71,26 +71,41 @@ export class Home extends Component {
             <div className='home__hero-content absolute-center'>
               <h1 className='home__hero-text'>We make setting up syndicates simple.</h1>
             </div>
-            <p className='home__hero-tip micro semi-bold'>
+            {/*}<p className='home__hero-tip micro semi-bold'>
               <span className='visible-md-up'>
                 Use the arrow keys to change jockey. Click and drag to look around.
               </span>
               <span className='hidden-md-up'>
                 Tap to change jockey.<br />Drag to look around.
               </span>
-            </p>
+            </p>*/}
           </ParallaxHero>
           <Partners />
           <div className='container'>
             <div className='home__section home__cta-section'>
               <div className="row">
                 <div className="col-md-12">
-                  <h2 className="secondary-font home__cta-headline uppercase">The definitive platform for listing, managing and enjoying horse syndication</h2>
-                  <p>Our new technology allows horse trainers, syndicate managers and memebers to keep in touch more easily, manage their brands more effectively, and be more thoroughly involved in the excitement of horse racing at any time in any place than ever before.</p>
+                  <h2 className="secondary-font home__cta-headline uppercase">Buying. Owning. Managing. Accounting. Training. Sharing... Racing.</h2>
+                  <p>The Racing Manager believes that owning a racehorse should be about the thrill and fun of being an owner. Not chasing payments, managing VAT returns, organising racedays.<br/>Our platform brings together owners, managers, and trainers onto a single, clean platform, designed around you. </p>
                 </div>
               </div>
             </div>
           </div>
+          <CopySection
+            headline="REGISTER. CREATE. RACE."
+            featuredImage={m4}>
+            <p>
+              Creating and managing a racing club or syndicate has just changed forever.
+            </p>
+            <List items={[
+              'Open an account in under 3 minutes.',
+              'Import your group members in moments.',
+              'Customise your club.',
+              'Manage memberships.',
+              'Organise racedays.',
+              'Love racing.'
+            ]} />
+          </CopySection>
           <CopySection
             headline="take the reins"
             featuredImage={m1}>

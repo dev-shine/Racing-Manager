@@ -90,7 +90,7 @@ export class FeedUpdatePopup extends Component {
 
     if (feedTile) {
       const {
-        postType,
+        postType = 'multiplemedia',
         createdAt,
         timeStamp,
         text,

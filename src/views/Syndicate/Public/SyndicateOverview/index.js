@@ -110,7 +110,7 @@ export class SyndicateOverview extends Component {
 
         <div className='public-syndicate__overlay-section'>
             <SyndicateIntroSection
-              title={`${name} horses`}
+              title='Our approach'
               description='We have a fantastic yard of horses, all of which have run competitively and placed with great confidence. Having managed race horses for many years now, we know where quality can be found and how to thoroughly enjoy the iniafull extent of the racing experience.'>
                 <SyndicateHorseCarousel
                   horses={fakeHorses} />
@@ -127,17 +127,6 @@ export class SyndicateOverview extends Component {
 
         <div className='public-syndicate__section-top'>
             <HorseParallaxContent {...syndicateLowerHero} />
-        </div>
-
-        <div className='public-syndicate__overlay-section'>
-          <SyndicateIntroSection
-            modifier='small'
-            title='our trainers'
-            description='HTR employs a selection of top racehorse trainers in each syndicate based in different areas of the country. This reduces the risk of an equine virus being a threat to any one syndicate and gives owners the chance of being involved with different leading stables.'>
-              <HorseMemberCarousel
-                syndicateMembers={trainerMembers}
-                type='trainer'/>
-          </SyndicateIntroSection>
         </div>
 
         <div className='public-syndicate__section' id='faqs'>

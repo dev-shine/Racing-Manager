@@ -97,6 +97,11 @@
 }
 
 .private-syndicate {
+
+  > * {
+    z-index: 2;
+  }
+
   &__header {
     position: relative;
     width: 100%;
@@ -147,5 +152,5 @@
     margin-top: -50px;
     margin-bottom: 40px;
   }
-  
+
 }

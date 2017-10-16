@@ -20,6 +20,9 @@ import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
+import HorseCtaCard from 'components/horse/HorseCtaCard'
+
+
 import {
   benefits as syndicateBenefits,
   benefitsDescription as syndicateBenefitsDescription,
@@ -28,26 +31,32 @@ import {
   faqs
 } from 'data/syndicate'
 
+import {multilineTextToJSX} from 'utils/textutils'
+
 // mockup data
 import {
   syndicateMembers,
   trainerMembers,
-  fakeHorses
 } from 'data/horse'
 
-/**
- *  Edit
- */
 import {
   Route
 } from 'react-router-dom'
 
+/**
+ *  Edit
+ */
 import FormSubmissionEditContainer from 'containers/ManagerEdit/FormSubmissionEditContainer'
-import QuoteEditContainer from 'containers/ManagerEdit/QuoteEditContainer'
 
 import SyndicateFaqs from 'components/syndicate/SyndicateFaqs'
 import ContactForm from 'components/forms/Contact'
 import FullWidthSplitSection from 'components/common/FullWidthSplitSection'
+
+import {submitSyndicateData} from 'actions/syndicate'
+
+import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
+
+import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 
 // Mock
 const EMPTY_OBJ = {}
@@ -62,6 +71,7 @@ export class SyndicateOverview extends Component {
     }
 
     this.toggleFaq = this.toggleFaq.bind(this)
+    this.toggleJoinRequest = this.toggleJoinRequest.bind(this)
   }
 
   toggleFaq () {
@@ -72,7 +82,8 @@ export class SyndicateOverview extends Component {
 
   render () {
     const {
-      data
+      data,
+      isLoggedIn
     } = this.props
 
     const {
@@ -82,25 +93,58 @@ export class SyndicateOverview extends Component {
     const {
       name,
       owner,
-      featuredImage,
-      logo,
       description,
-      messages
+      messages,
+      horsesHeadline,
+      horsesText,
+      heritage,
+      trainersHeadline,
+      trainersText,
+      horses,
+      benefits,
+      public: isPublic = false
     } = data
 
     return (
       <div className='private-syndicate'>
-        <SyndicateHero
-          featuredImage={featuredImage}
-          owner={owner}
-          logo={logo}
-          name={name} />
+        <ImageEditContainer
+          title='Image requirements'
+          description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
+          data={data}
+          editLabel='update image'
+          dataKey='featuredImage'
+          submitAction={submitSyndicateData}>
+          {
+            ({ value }) => {
+              return (
+                <SyndicateHero
+                  data={data}
+                  owner={owner}
+                  name={name} />
+              )
+            }
+          }
+        </ImageEditContainer>
         <div className='private-syndicate__header'>
           <SyndicateSplitSection
             leftComponent={
-              <SyndicateAbout
-                description={description}
-                onFaqClick={this.toggleFaq} />
+              <TextEditContainer
+                title='About the syndicate'
+                data={data}
+                placeholder={''}
+                dataKey='description'
+                maxLength={2000}
+                submitAction={submitSyndicateData}>
+                {
+                  ({ value }) => {
+                    return (
+                      <SyndicateAbout
+                        description={multilineTextToJSX(description)}
+                        onFaqClick={this.toggleFaq} />
+                    )
+                  }
+                }
+              </TextEditContainer>
             }
             rightComponent={
               <div>
@@ -108,7 +152,12 @@ export class SyndicateOverview extends Component {
                   benefits={syndicateBenefits}
                   description={syndicateBenefitsDescription(name)} />
                 <div className='visible-md-up'>
-                  <SyndicateCtaCard />
+                  {isPublic &&
+                    <HorseCtaCard
+                      isLoggedIn={isLoggedIn}
+                      data={data}
+                      requestJoin={this.toggleJoinRequest}/>
+                  }
                 </div>
               </div>
             } />
@@ -116,117 +165,170 @@ export class SyndicateOverview extends Component {
 
         <div className='container no-padding'>
           <div className='col-md-8 col-sm-12 private-syndicate__team-members'>
-            <HorseMemberCarousel
-              syndicateMembers={syndicateMembers} />
+            {/*}<HorseMemberCarousel
+              syndicateMembers={syndicateMembers} />*/}
           </div>
         </div>
 
         <div className='private-syndicate__section'>
           <div className='container'>
             <div className='col-md-5 col-sm-12'>
-              <SyndicateBenefits />
+              <TextEditContainer
+                title='Edit benefits'
+                data={data}
+                editLabel='update benefits'
+                dataKey='benefits'
+                maxLength={2000}
+                submitAction={submitSyndicateData}>
+                {
+                  ({ value }) => {
+                    return (
+                      <SyndicateBenefits description={benefits} />
+                    )
+                  }
+                }
+              </TextEditContainer>
             </div>
           </div>
         </div>
 
-        {/* Edit route */}
-        <Route exact path='/syndicate/:name/edit' render={() => {
-          return (
-            <div className='private-syndicate__section-top'>
-              <QuoteEditContainer placeholder={syndicateUpperHero.title}>
-              {
-                ({ value }) => {
-                  return (
-                    <HorseParallaxContent
-                      title={value || syndicateUpperHero.title}
-                      image={syndicateUpperHero.image}
-                    />
-                  )
-                }
+        <div className='private-syndicate__section-top'>
+          <TextEditContainer
+            title='Edit quote'
+            data={data}
+            editLabel='update quote'
+            placeholder={'quote'}
+            dataKey='horsesHeadline'
+            maxLength={75}
+            modifier='text-edit__big'
+            submitAction={submitSyndicateData}>
+            {
+              ({ value }) => {
+                return (
+                  <HorseParallaxContent
+                    title={horsesHeadline}
+                    image={syndicateUpperHero.image}
+                  />
+                )
               }
-              </QuoteEditContainer>
-            </div>
-          )
-        }} />
-
-        {/* Non edit route */}
-        <Route exact path='/syndicate/:name' render={() => {
-          return (
-            <div className='private-syndicate__section-top'>
-              <HorseParallaxContent {...syndicateUpperHero} />
-            </div>
-          )
-        }} />
-
-        <div className='private-syndicate__overlay-section'>
-          <SyndicateIntroSection
-            title={`${name} horses`}
-            description='We have a fantastic yard of horses, all of which have run competitively and placed with great confidence. Having managed race horses for many years now, we know where quality can be found and how to thoroughly enjoy the iniafull extent of the racing experience.'>
-              <SyndicateHorseCarousel
-                horses={fakeHorses} />
-          </SyndicateIntroSection>
+            }
+          </TextEditContainer>
         </div>
+
+        <TextEditContainer
+          title={`${name} horses`}
+          editLabel='update horses'
+          data={data}
+          placeholder={''}
+          dataKey='horsesText'
+          maxLength={2000}
+          submitAction={submitSyndicateData}
+          buttonModifier='section'>
+          {
+            ({ value }) => {
+              return (
+                <div className='private-syndicate__overlay-section'>
+                  <SyndicateIntroSection
+                    title={`${name} horses`}
+                    description={multilineTextToJSX(horsesText)}>
+                    {horses && horses.length > 0 &&
+                      <SyndicateHorseCarousel
+                        horses={horses} />
+                    }
+                  </SyndicateIntroSection>
+                </div>
+              )
+            }
+          }
+        </TextEditContainer>
 
         <div className='private-syndicate__section'>
           <div className='container'>
             <div className='col-md-5 col-sm-12'>
-              <SyndicateHeritageSection />
-            </div>
-          </div>
-        </div>
-
-        {/* Edit route */}
-        <Route exact path='/syndicate/:name/edit' render={() => {
-          return (
-            <div className='private-syndicate__section-top'>
-              <QuoteEditContainer placeholder={syndicateLowerHero.title}>
-              {
-                ({ value }) => {
-                  return (
-                    <HorseParallaxContent
-                      title={value || syndicateLowerHero.title}
-                      image={syndicateLowerHero.image}
-                    />
-                  )
+              <TextEditContainer
+                title='Our heritage'
+                editLabel='update heritage'
+                data={data}
+                placeholder={''}
+                dataKey='heritage'
+                maxLength={2000}
+                submitAction={submitSyndicateData}>
+                {
+                  ({ value }) => {
+                    return (
+                      <SyndicateHeritageSection description={heritage} />
+                    )
+                  }
                 }
-              }
-              </QuoteEditContainer>
+              </TextEditContainer>
             </div>
-          )
-        }} />
-
-        {/* Non edit route */}
-        <Route exact path='/syndicate/:name' render={() => {
-          return (
-            <div className='private-syndicate__section-top'>
-              <HorseParallaxContent {...syndicateLowerHero} />
-            </div>
-          )
-        }} />
-
-        <div className='private-syndicate__overlay-section'>
-          <SyndicateIntroSection
-            modifier='small'
-            title='our trainers'
-            description='HTR employs a selection of top racehorse trainers in each syndicate based in different areas of the country. This reduces the risk of an equine virus being a threat to any one syndicate and gives owners the chance of being involved with different leading stables.'>
-              <HorseMemberCarousel
-                syndicateMembers={trainerMembers}
-                type='trainer' />
-          </SyndicateIntroSection>
-        </div>
-
-        <div className='private-syndicate__section'>
-          <div className='container'>
-            <TitleDescriptionSection
-              colorModifier='blue'
-              title='syndicate updates'>
-              <FeedGallery
-                tiles={messages} />
-            </TitleDescriptionSection>
           </div>
         </div>
 
-        {/* Edit section */}
+        <div className='private-syndicate__section-top'>
+          <TextEditContainer
+            title='Edit quote'
+            data={data}
+            editLabel='update quote'
+            placeholder={'quote'}
+            dataKey='trainersHeadline'
+            maxLength={75}
+            modifier='text-edit__big'
+            submitAction={submitSyndicateData}>
+            {
+              ({ value }) => {
+                return (
+                  <HorseParallaxContent
+                    title={trainersHeadline}
+                    image={syndicateLowerHero.image}
+                  />
+                )
+              }
+            }
+          </TextEditContainer>
+        </div>
+
+        <TextEditContainer
+          title='our trainers'
+          editLabel='update trainers'
+          data={data}
+          placeholder={''}
+          dataKey='trainersText'
+          maxLength={2000}
+          submitAction={submitSyndicateData}
+          buttonModifier='section'>
+          {
+            ({ value }) => {
+              return (
+                <div className='private-syndicate__overlay-section'>
+                  <SyndicateIntroSection
+                    modifier='small'
+                    title='our trainers'
+                    description={trainersText}>
+                      {/*<HorseMemberCarousel
+                        syndicateMembers={trainerMembers}
+                        type='trainer' />*/}
+                  </SyndicateIntroSection>
+                </div>
+              )
+            }
+          }
+        </TextEditContainer>
+
+        {!isPublic &&
+          <div className='private-syndicate__section' style={{marginTop: '100px'}}>
+            <div className='container'>
+              <TitleDescriptionSection
+                colorModifier='blue'
+                title='syndicate news'>
+                <FeedGallery
+                  tiles={messages} />
+              </TitleDescriptionSection>
+            </div>
+          </div>
+        }
+
+        {/* Edit section
         <Route exact path='/syndicate/:name/edit' render={() => {
           return (
             <div className='public-syndicate__section' id='faqs'>
@@ -260,6 +362,7 @@ export class SyndicateOverview extends Component {
             </div>
           )
         }} />
+        {*/}
 
         <SyndicateFaqPopup
           breadcrumbText={'Back to syndicate page'}
@@ -268,6 +371,15 @@ export class SyndicateOverview extends Component {
           faqs={faqs} />
       </div>
     )
+  }
+
+  toggleJoinRequest () {
+    this.props.addToastSuccess('Request sent successfully, a representative will be in touch shortly.')
+    /*
+    this.setState(({showJoinRequest}) => ({
+      showJoinRequest: !showJoinRequest
+    }))
+    */
   }
 }
 

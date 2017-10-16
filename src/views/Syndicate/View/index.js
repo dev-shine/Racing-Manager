@@ -8,23 +8,29 @@ import titleize from 'titleize'
 
 import { fetchSyndicateInfo, clearSyndicateData } from 'actions/syndicate'
 
+import { addToastSuccess, addToastError } from 'actions/toast'
+
 import {
   description as syndicateDesc
 } from 'data/syndicate'
 
 import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 
-const mapStateToProps = ({ syndicate }, ownProps) => ({
-  ...syndicate
+const mapStateToProps = ({ syndicate, auth }, ownProps) => ({
+  ...syndicate,
+  isLoggedIn: auth.isLoggedIn
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getSyndicateInfo: () => {
-    const name = ownProps.match.params.name
-    dispatch(fetchSyndicateInfo({ name }))
+    const slug = ownProps.match.params.slug
+    dispatch(fetchSyndicateInfo(slug))
   },
   clearSyndicateData: () => {
     return dispatch(clearSyndicateData())
+  },
+  addToastSuccess: (text) => {
+    return dispatch(addToastSuccess(text))
   }
 })
 

@@ -22,13 +22,13 @@ class AccountPaymentMethods extends PureComponent {
               </h2>
               <div className='account-payment-methods__section'>
                 <h4 className='capitalize'>
-                  outgoing
+                  Sending
                 </h4>
               </div>
 
               <div className='account-payment-methods__section'>
                 <p className='small'>
-                  Here you are able to check, update and add your TRM personal information for a more tailored experience.
+                  Your card details for paying are held anonymously and securely and cannot be accessed by any third party.
                 </p>
               </div>
             </div>
@@ -49,7 +49,7 @@ class AccountPaymentMethods extends PureComponent {
             <div className='col-lg-6 col-md-8 col-sm-10 col-xs-12'>
               <div className='account-payment-methods__section'>
                 <h4 className='capitalize'>
-                  incoming
+                  Receiving
                 </h4>
               </div>
 

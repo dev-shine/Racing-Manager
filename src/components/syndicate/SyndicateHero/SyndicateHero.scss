@@ -1,7 +1,7 @@
 .syndicate-hero {
   position: relative;
   background: $color-bg;
-  
+
   .parallax-hero__image {
     height: calc(100vh - 100px);
     background-repeat: no-repeat;
@@ -22,10 +22,13 @@
     min-height: 190px;
     background: $color-bg-secondary;
     text-align: center;
-    z-index: 2;
+    position: absolute;
+    top: calc(50% - 20%);
+    left: calc(50% - 150px);
 
     @media (min-width: $screen-md) {
       width: 360px;
+      left: calc(50% - 180px);
     }
   }
 

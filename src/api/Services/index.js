@@ -1,4 +1,4 @@
-import { post, get, put } from 'api/Request'
+import { post, get, put, patch } from 'api/Request'
 
 import * as SERVICE_TYPES from 'api/ServiceTypes'
 
@@ -22,12 +22,43 @@ export const getMemberDashboard = (data) => {
   })
 }
 
-export const getHorseInfo = (name) => {
+export const getHorseInfo = (data) => {
   return get({
-    url: SERVICE_TYPES.HORSE,
+    url: SERVICE_TYPES.HORSE_SLUG,
+    ...data
+  })
+}
+
+export const getHorseStatisticsResultsInfo = (token, name) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS,
+    headers: {
+      'Authorization': `JWT ${token}`
+    },
     data: {
-      name
+      horseName: name
     }
+  })
+}
+
+export const getHorseStatisticsResultsDetailsInfo = (name) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS_DETAILS,
+    data: JSON.stringify({ horseName: name })
+  })
+}
+
+export const getHorseStatisticsFutureDetailsInfo = (name) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATISTICS_FUTURE_DETAILS,
+    data: JSON.stringify({ horseName: name })
+  })
+}
+
+export const updateHorseData = (data) => {
+  return put({
+    url: SERVICE_TYPES.HORSE_SLUG,
+    ...data
   })
 }
 
@@ -54,8 +85,15 @@ export const performLogin = (data) => {
 
 export const getSyndicateInfo = (data) => {
   return get({
-    url: SERVICE_TYPES.SYNDICATE,
-    data
+    url: SERVICE_TYPES.SYNDICATE_SLUG,
+    ...data
+  })
+}
+
+export const updateSyndicateData = (data) => {
+  return put({
+    url: SERVICE_TYPES.SYNDICATE_SLUG,
+    ...data
   })
 }
 
@@ -63,6 +101,13 @@ export const confirmRegistration = (data) => {
   return get({
     url: SERVICE_TYPES.REGISTRATION_CONFIRMATION,
     data
+  })
+}
+
+export const performRegisterExistingSyndicate = (data) => {
+  // The API is not ready yet. This is a placeholder code.
+  return Promise.resolve({
+    token: 'abc123'
   })
 }
 
@@ -99,5 +144,11 @@ export const updateUserInformation = (data) => {
 export const getNews = () => {
   return get({
     url: SERVICE_TYPES.NEWS
+  })
+}
+
+export const getUploadedData = () => {
+  return get({
+    url: SERVICE_TYPES.UPLOADED
   })
 }

@@ -14,19 +14,33 @@ import { fetchHorseInfo, clearHorseData } from 'actions/horse'
 
 import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 
-const mapStateToProps = ({ horse }) => ({
+import HorsePublicOverview from '../Public/HorsePublicOverview'
+
+import { addToastSuccess, addToastError } from 'actions/toast'
+
+const mapStateToProps = ({ horse, auth }) => ({
   horseInfo: {
     ...horse.horseInfo
-  }
+  },
+  horseStatisticsResultsDetails: {
+    ...horse.horseStatisticsResultsDetailsInfo
+  },
+  horseStatisticsFutureDetails: {
+    ...horse.horseStatisticsFutureDetailsInfo
+  },
+  isLoggedIn: auth.isLoggedIn
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getHorseInfo: () => {
-    const name = ownProps.match.params.name
-    return dispatch(fetchHorseInfo(name))
+    const slug = ownProps.match.params.slug
+    return dispatch(fetchHorseInfo(slug))
   },
   clearHorseData: () => {
     return dispatch(clearHorseData())
+  },
+  addToastSuccess: (text) => {
+    return dispatch(addToastSuccess(text))
   }
 })
 
@@ -47,6 +61,10 @@ const HorseViewHoc = (WrapperComponent) => {
     render () {
       const {
         horseInfo,
+        horseStatisticsResultsDetails,
+        horseStatisticsFutureDetails,
+        getHorseInfo,
+        clearHorseData,
         ...restOfProps
       } = this.props
 
@@ -54,6 +72,16 @@ const HorseViewHoc = (WrapperComponent) => {
         data = {},
         ...restOfHorseProps
       } = horseInfo
+
+      const {
+        public: isPublic = false
+      } = data
+
+      let RenderComponent = WrapperComponent
+
+      if (isPublic) {
+        RenderComponent = HorsePublicOverview
+      }
 
       const {
         name = '',
@@ -95,11 +123,13 @@ const HorseViewHoc = (WrapperComponent) => {
       return (
         <View title={capitalize(name || '')} notPrefixed>
           <div>
-            <WrapperComponent
+            <RenderComponent
               data={horseProps}
               {...restOfProps}
+              getHorseInfo={getHorseInfo}
+              clearHorseData={clearHorseData}
             />
-            <AjaxLoader isVisible={horseInfo.fetching} />
+            <AjaxLoader isVisible={horseInfo.fetching || horseStatisticsResultsDetails.fetching || horseStatisticsFutureDetails.fetching} />
           </div>
         </View>
       )

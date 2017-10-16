@@ -58,13 +58,6 @@ export const tableEntries = {
       'HEX',
       7,
       -13.5
-    ],
-    [
-      '03/06/17',
-      18,
-      'HEX',
-      7,
-      -13.5
     ]
   ]
 }
@@ -133,25 +126,11 @@ export const tableResults = {
 
 export const racePlans = {
   title: 'Race plans',
-  text: (
-    <div>
-      <p className='horse-paragraphs'>
-        The race plans for this filly will be determined by her level of ability shown at home and on the course in 2017.  On breeding she is sprint bred, but she has already shown signs of stamina and we expect she could be running over a mile as a 3YO.
-      </p>
-      <p className='horse-paragraphs'>
-        With this filly having already run enough times to qualify for nursery handicaps, she will continue in this vein through 2017 - eventually into full handicap company, or if she proves to be good enough, possibly better company.  She showed at Chelmsford in November 2016 when finishing second on her handicap debut that she has ability and has progressed with every run to date.
-      </p>
-      <p className='horse-paragraphs'>
-        This filly will be stabled in Lambourn, Berkshire throughout her 3YO career and will therefore be racing in the South at tracks such as Sandown, Windsor, Kempton, Lingfield, Newmarket, Ascot, Bath and others in the Midlands.
-      </p>
-      <p className='horse-paragraphs'>
-        There are plenty of races available for her right from the start of the season.  We will assess this filly's progress and if Seamus believes she has the right level of ability she may get entries for some of the more prestigious handicap races in the racing calendar.
-      </p>
-      <p className='horse-paragraphs'>
-        Your online Racehorse Manager will provide full details of all developments in terms of race planning as the season progresses.
-      </p>
-    </div>
-  )
+  test: `The race plans for this filly will be determined by her level of ability shown at home and on the course in 2017. On breeding she is sprint bred, but she has already shown signs of stamina and we expect she could be running over a mile as a 3YO.
+With this filly having already run enough times to qualify for nursery handicaps, she will continue in this vein through 2017 - eventually into full handicap company, or if she proves to be good enough, possibly better company. She showed at Chelmsford in November 2016 when finishing second on her handicap debut that she has ability and has progressed with every run to date.
+This filly will be stabled in Lambourn, Berkshire throughout her 3YO career and will therefore be racing in the South at tracks such as Sandown, Windsor, Kempton, Lingfield, Newmarket, Ascot, Bath and others in the Midlands.
+There are plenty of races available for her right from the start of the season. We will assess this filly’s progress and if Seamus believes she has the right level of ability she may get entries for some of the more prestigious handicap races in the racing calendar.
+Your online Racehorse Manager will provide full details of all developments in terms of race planning as the season progresses.`
 }
 
 export const horseValue = {

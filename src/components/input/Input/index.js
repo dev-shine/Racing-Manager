@@ -42,6 +42,7 @@ const Input = props => {
     name,
     value,
     error,
+    showError,
     handleSubmit,
     handleBlur,
     handleFocus,
@@ -56,7 +57,7 @@ const Input = props => {
    *  @const
    *  @type {Boolean}
    */
-  const hasError = error && !!error.length
+  const hasError = showError && error && !!error.length
 
   // Class names for the container
   const modifiedClassName = classNames('input')
