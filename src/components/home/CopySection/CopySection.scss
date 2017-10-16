@@ -45,15 +45,16 @@ $copy-section-card-height: 350px;
     }
   }
   &__featured-image {
-    background-size: 150%;
+    background-size: 120%;
     height: $copy-section-card-height;
     margin: 25px 0;
     @media (min-width: $screen-sm) {
       margin: 50px 0;
     }
     @media (min-width: $screen-md) {
+      background-size: 130%;
       width: 500px;
-      height: 550px;
+      height: 450px;
       position: absolute;
       right: $gutter-md / 2;
       top: 50%;
