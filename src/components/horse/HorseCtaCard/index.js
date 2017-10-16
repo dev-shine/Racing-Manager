@@ -32,17 +32,25 @@ class HorseCtaCard extends PureComponent {
 
     // Bind fns
     this.showSocialLinks = this.showSocialLinks.bind(this)
+    this.sendJoinRequest = this.sendJoinRequest.bind(this)
   }
 
   showSocialLinks () {
     this.setState({
-      showLinks: true
+      showLinks: true,
+      joinRequestSent: false
     })
+  }
+
+  sendJoinRequest () {
+    this.setState({joinRequestSent: true})
+    this.props.requestJoin()
   }
 
   render () {
     const {
-      showLinks
+      showLinks,
+      joinRequestSent
     } = this.state
 
     const {
@@ -60,9 +68,10 @@ class HorseCtaCard extends PureComponent {
       <CtaPanelCard className='horse-cta-card'>
 
         {isLoggedIn &&
-          <span onClick={requestJoin}>
+          <span onClick={this.sendJoinRequest}>
             <TextButton
-              text='Request to join'
+              className={joinRequestSent && 'disabled'}
+              text={joinRequestSent ? 'Join request sent' : 'Request to join'}
               className='horse-cta-card__button'
               modifier='md'
             />
