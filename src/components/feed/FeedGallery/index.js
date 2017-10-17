@@ -57,7 +57,7 @@ class FeedGallery extends Component {
     this.state = {
       id: null,
       showPopup: false,
-      itemsShown: 4
+      itemsShown: 3
     }
 
     // Bind this
@@ -69,7 +69,7 @@ class FeedGallery extends Component {
   }
 
   showMore () {
-    this.setState({itemsShown: this.state.itemsShown + 4});
+    this.setState({itemsShown: this.state.itemsShown + 3})
   }
 
   /**
