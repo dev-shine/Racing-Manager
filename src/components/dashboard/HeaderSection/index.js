@@ -256,7 +256,7 @@ class HeaderSection extends PureComponent {
             containerClassName='dashboard-header__section'
             afterSlide={index => { this.updateHorseActiveIndex(index) }}
             cellAlign='left'
-            cellSpacing={30}
+            cellSpacing={10}
             slideWidth={'266px'}
             showArrows
             showPagination
