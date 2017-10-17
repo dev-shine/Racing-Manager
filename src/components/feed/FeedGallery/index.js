@@ -38,6 +38,8 @@ import { Block, Grid } from 'components/layouts/masonry'
  */
 import FeedUpdatePopupContainer from 'containers/Feed/FeedUpdatePopupContainer'
 
+import TextButton from 'components/buttons/TextButton'
+
 /**
  *  @class
  *  @name FeedGallery
@@ -55,6 +57,7 @@ class FeedGallery extends Component {
     this.state = {
       id: null,
       showPopup: false,
+      itemsShown: 4
     }
 
     // Bind this
@@ -62,6 +65,11 @@ class FeedGallery extends Component {
     this.showFeedTilePopup = this.showFeedTilePopup.bind(this)
     this.closePopup = this.closePopup.bind(this)
     this.handleTileClick = this.handleTileClick.bind(this)
+    this.showMore = this.showMore.bind(this)
+  }
+
+  showMore () {
+    this.setState({itemsShown: this.state.itemsShown + 4});
   }
 
   /**
@@ -188,8 +196,16 @@ class FeedGallery extends Component {
 
     const {
       showPopup,
-      id
+      id,
+      itemsShown
     } = this.state
+
+    let currentItem = 0;
+    let showTiles = []
+    while (tiles[currentItem] && currentItem <= itemsShown - 1) {
+      showTiles.push(tiles[currentItem])
+      currentItem = currentItem + 1
+    }
 
     return (
       <span>
@@ -198,7 +214,7 @@ class FeedGallery extends Component {
           center={false}
           maxColumns={3}>
           {
-            tiles.map(tile => {
+            showTiles.map(tile => {
               return (
                 <Block width={1} key={tile._id}>
                   {this.renderChildren(tile)}
@@ -207,6 +223,12 @@ class FeedGallery extends Component {
             })
           }
         </Grid>
+        <TextButton
+          text='Load more'
+          modifier='secondary'
+          className='member-dashboard__more-btn'
+          onClick={this.showMore}
+        />
         <FeedUpdatePopupContainer
           allowCommenting={allowCommenting}
           submitTitle={popupTitle}
