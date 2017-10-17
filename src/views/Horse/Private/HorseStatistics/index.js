@@ -118,18 +118,18 @@ class HorseStatistics extends Component {
           (!this.state.showResultsDetail && !this.state.showFutureDetail) || this.props.horseStatisticsResultsDetails.fetching || this.props.horseStatisticsFutureDetails.fetching
             ? <div id="horse-statistics-content" className={this.state.animateClass && (!this.props.horseStatisticsResultsDetails.fetching && !this.props.horseStatisticsFutureDetails.fetching) ? 'fadeInLeft animated' : ''}>
                 <div className='container'>
-                  <div className='horse-statistics__section' id='ranking'>
-                    <HorseTable
-                      title='Ranking'
-                      data={[]}/>
-                  </div>
+                  {/*<div className='horse-statistics__section' id='ranking'>*/}
+                    {/*<HorseTable*/}
+                      {/*title='Ranking'*/}
+                      {/*data={[]}/>*/}
+                  {/*</div>*/}
 
-                  <div className='horse-statistics__section'>
-                    <HorseTable
-                      title='Future Entries'
-                      data={[]}
-                      showDataDetails={null/*this.showStatisticsFutureDetails*/}/>
-                  </div>
+                  {/*<div className='horse-statistics__section'>*/}
+                    {/*<HorseTable*/}
+                      {/*title='Future Entries'*/}
+                      {/*data={[]}*/}
+                      {/*showDataDetails={null/*this.showStatisticsFutureDetails*!//>*/}
+                  {/*</div>*/}
 
                   <div className='horse-statistics__section'>
                     <ResultsTableContainer
