@@ -6,9 +6,9 @@
 
   position: relative;
   text-align: left;
-  width: 100%;
-  
-  @media all and (min-width: $screen-sm-min) {
+  width: calc(100% - 20px);
+
+  @media all and (min-width: 337px) {
     width: 266px;
   }
 
