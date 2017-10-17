@@ -121,21 +121,21 @@ class HorseStatistics extends Component {
                   <div className='horse-statistics__section' id='ranking'>
                     <HorseTable
                       title='Ranking'
-                      data={tableStatistics}/>
+                      data={[]}/>
                   </div>
 
                   <div className='horse-statistics__section'>
                     <HorseTable
                       title='Future Entries'
-                      data={tableEntries}
-                      showDataDetails={this.showStatisticsFutureDetails}/>
+                      data={[]}
+                      showDataDetails={null/*this.showStatisticsFutureDetails*/}/>
                   </div>
 
                   <div className='horse-statistics__section'>
                     <ResultsTableContainer
                       title='Results'
                       data={resultsTableData}
-                      showDataDetails={this.showStatisticsResultsDetails}/>
+                      showDataDetails={null/*this.showStatisticsResultsDetails*/}/>
                     <div className="loadMore-btn">
                       <button onClick={this.setResultsData}>LOAD MORE</button>
                     </div>
