@@ -4,6 +4,10 @@ import Checkbox from 'components/input/Checkbox'
 
 import TextButton from 'components/buttons/TextButton'
 
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
+
+import { getAccountNotification, updateAccountNotification } from 'api/Services'
+
 class AccountNotifications extends PureComponent {
   constructor (props) {
     super(props)
@@ -11,11 +15,46 @@ class AccountNotifications extends PureComponent {
     // USE FORM COMPONENT INSTEAD, THIS IS ONLY FOR DEMO
     this.state = {
       email: false,
-      text: false
+      text: false,
+      notification: false,
+      submitting: false,
+      error: null,
+      resultmessage: false
     }
 
     this.toggleEmail = this.toggleEmail.bind(this)
     this.toggleText = this.toggleText.bind(this)
+    this.toggleNotification = this.toggleNotification.bind(this)
+  }
+
+  componentWillMount () {
+    this.getAccountNotification()
+  }
+
+  getAccountNotification () {
+    this.setState({
+      submitting: true
+    })
+    return getAccountNotification()
+    .then((result) => {
+      this.setState({ email: result.email, text: result.text, notification: result.notification, submitting: false })
+    })
+    .catch(() => {
+      this.setState({ error: 'Failed the setup' })
+    })
+  }
+
+  updateAccountNotification (data) {
+    this.setState({
+      submitting: true
+    })
+    return updateAccountNotification(data)
+    .then((result) => {
+      this.setState({ email: result.email, text: result.text, notification: result.notification, submitting: false, resultmessage: true })
+    })
+    .catch(() => {
+      this.setState({ error: 'Failed the setup'})
+    })
   }
 
   toggleEmail () {
@@ -30,10 +69,19 @@ class AccountNotifications extends PureComponent {
     }))
   }
 
+  toggleNotification () {
+    this.setState(({notification}) => ({
+      notification: !notification
+    }))
+  }
+
   render () {
     const {
       email,
-      text
+      text,
+      notification,
+      submitting,
+      resultmessage
     } = this.state
 
     return (
@@ -56,26 +104,35 @@ class AccountNotifications extends PureComponent {
                       This should be extracted to a redux aware container when integrating with server.
                      */
                   }
-                  <div className='col-xs-12 col-sm-6 align-middle form__group'>
+                  <div className='col-xs-12 col-sm-4 align-middle form__group'>
                     <Checkbox
                       value={email}
                       handleChange={this.toggleEmail}
                       label='Email'
                       name='email' />
                   </div>
-                  <div className='col-xs-12 col-sm-6 align-middle form__group'>
+                  <div className='col-xs-12 col-sm-4 align-middle form__group'>
                     <Checkbox
                       value={text}
                       handleChange={this.toggleText}
                       label='Text'
                       name='text' />
                   </div>
+                  <div className='col-xs-12 col-sm-4 align-middle form__group'>
+                    <Checkbox
+                      value={notification}
+                      handleChange={this.toggleNotification}
+                      label={<span>Apple push notification</span>}
+                      name='notification' />
+                  </div>
                 </div>
               </div>
-
+              <AjaxLoader isVisible={submitting} />
+              { resultmessage ? <span className="result-message">The account notification set successfully!</span> : null }
               <div className='account-notifications__section'>
                 <TextButton
-                  text='save changes' />
+                  text='save changes'
+                  onClick={() => this.updateAccountNotification({ email: email, text: text, notification: notification })} />
               </div>
             </div>
           </div>

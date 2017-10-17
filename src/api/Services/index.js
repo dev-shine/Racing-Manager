@@ -152,3 +152,19 @@ export const getUploadedData = () => {
     url: SERVICE_TYPES.UPLOADED
   })
 }
+
+export const getAccountNotification = () => {
+  return Promise.resolve({
+    email: true,
+    text: true,
+    notification: false
+  })
+}
+
+export const updateAccountNotification = (data) => {
+  return Promise.resolve({
+    email: false,
+    text: true,
+    notification: true
+  })
+}
