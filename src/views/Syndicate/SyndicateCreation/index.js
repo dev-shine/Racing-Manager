@@ -52,17 +52,17 @@ export default class SyndicateCreation extends PureComponent {
           </div>
           <div className="container create-new-syndicate__section">
             <div className="row">
-              <div className="sole-owner col-lg-5 col-md-5 col-sm-8 col-xs-12">
+              <div className="sole-owner col-lg-6 col-md-8 col-sm-9 col-xs-12">
                 <SoleOwner />
               </div>
             </div>
             <div className="row">
-              <div className="joint-ownership col-lg-5 col-md-5 col-sm-8 col-xs-12">
+              <div className="joint-ownership col-lg-6 col-md-8 col-sm-9 col-xs-12">
                 <JointOwnership />
               </div>
             </div>
             <div className="row">
-              <div className="racing-partnership col-lg-5 col-md-5 col-sm-8 col-xs-12">
+              <div className="racing-partnership col-lg-6 col-md-8 col-sm-9 col-xs-12">
                 <RacingPartnership />
               </div>
             </div>
