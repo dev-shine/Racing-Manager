@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 
 import NewsTile from 'components/news/NewsTile'
 
+import TextButton from 'components/buttons/TextButton'
+
 import { Block, Grid } from 'components/layouts/masonry'
 
 import NewsPopupContainer from 'containers/News/NewsPopup'
@@ -14,12 +16,14 @@ class NewsGallery extends Component {
 
     this.state = {
       id: null,
-      showPopup: false
+      showPopup: false,
+      itemsShown: 4,
     }
 
     this.handleNewsTileClick = this.handleNewsTileClick.bind(this)
     this.showPopup = this.showPopup.bind(this)
     this.closePopup = this.closePopup.bind(this)
+    this.showMore = this.showMore.bind(this)
   }
 
   showPopup (id) {
@@ -44,6 +48,10 @@ class NewsGallery extends Component {
     this.showPopup(id)
   }
 
+  showMore () {
+    this.setState({itemsShown: this.state.itemsShown + 4});
+  }
+
   render () {
     const {
       tiles
@@ -51,8 +59,16 @@ class NewsGallery extends Component {
 
     const {
       id,
-      showPopup
+      showPopup,
+      itemsShown
     } = this.state
+
+    let currentItem = 0;
+    let showTiles = []
+    while (tiles[currentItem] && currentItem <= itemsShown - 1) {
+      showTiles.push(tiles[currentItem])
+      currentItem = currentItem + 1
+    }
 
     return (
       <span>
@@ -61,7 +77,7 @@ class NewsGallery extends Component {
           center={false}
           maxColumns={4}>
           {
-            tiles.map((tile, index) => (
+            showTiles.map((tile, index) => (
               <Block width={1} key={tile._id}>
                 <NewsTile
                   id={tile._id}
@@ -75,6 +91,12 @@ class NewsGallery extends Component {
             ))
           }
         </Grid>
+        <TextButton
+          text='Load more'
+          modifier='secondary'
+          className='member-dashboard__more-btn'
+          onClick={this.showMore}
+        />
         <NewsPopupContainer
           isOpen={showPopup}
           onClick={this.closePopup}
