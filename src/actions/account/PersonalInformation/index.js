@@ -1,4 +1,4 @@
-import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
 import { updateUserInformation } from 'api/Services'
 
@@ -56,7 +56,7 @@ export const submitFormData = (data) => {
     } = getState().auth
 
     return dispatch({
-      type: CALL_ACTION_TYPE,
+      type: AUTHENTICATED_REQUEST,
       types: [submitForm, submittedForm, failedToSubmitForm],
       endpoint: updateUserInformation,
       payload: data

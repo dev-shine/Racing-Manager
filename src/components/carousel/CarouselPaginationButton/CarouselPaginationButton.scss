@@ -3,13 +3,15 @@
   width: 100%;
   text-align: center;
   margin-top: 20px;
+  padding-left: 0;
 
   &__btn {
     position: relative;
     display: inline-block;
     width: 6px;
     height: 6px;
-    margin-right: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
     opacity: 0.5;
     background: $white;
     transform: rotate(45deg);

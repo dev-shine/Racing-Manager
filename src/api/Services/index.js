@@ -141,6 +141,13 @@ export const updateUserInformation = (data) => {
   })
 }
 
+export const requestToJoin = (data) => {
+  return post({
+    url: SERVICE_TYPES.JOIN_REQUEST,
+    ...data
+  })
+}
+
 export const getNews = () => {
   return get({
     url: SERVICE_TYPES.NEWS

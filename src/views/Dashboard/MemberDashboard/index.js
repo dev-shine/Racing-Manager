@@ -47,12 +47,6 @@ export class MemberDashboard extends Component {
             <div className='member-dashboard__feed'>
               <NewsGallery />
             </div>
-            <TextButton
-              text='Load more'
-              modifier='secondary'
-              className='member-dashboard__more-btn'
-              onClick={() => {}}
-            />
           </div>
         </div>
       </View>

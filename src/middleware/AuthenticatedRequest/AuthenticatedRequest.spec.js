@@ -9,7 +9,7 @@ describe('middleware - authenticatedRequest', () => {
   const doGetState = spy()
   const nextHandler = authenticatedRequestMiddleware({dispatch: doDispatch, getState: doGetState})
 
-  it('must call next action if CALL_ACTION_TYPE is different', (done) => {
+  it('must call next action if AUTHENTICATED_REQUEST is different', (done) => {
     const actionObj = {
       type: '@@FAKE'
     }

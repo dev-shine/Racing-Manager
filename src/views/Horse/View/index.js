@@ -18,6 +18,8 @@ import HorsePublicOverview from '../Public/HorsePublicOverview'
 
 import { addToastSuccess, addToastError } from 'actions/toast'
 
+import {requestToJoin} from 'actions/user'
+
 const mapStateToProps = ({ horse, auth }) => ({
   horseInfo: {
     ...horse.horseInfo
@@ -41,6 +43,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   addToastSuccess: (text) => {
     return dispatch(addToastSuccess(text))
+  },
+  requestToJoin: (horseName) => {
+    return dispatch(requestToJoin({horseName}))
   }
 })
 
