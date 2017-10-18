@@ -16,6 +16,8 @@ import {
 
 import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 
+import {requestToJoin} from 'actions/user'
+
 const mapStateToProps = ({ syndicate, auth }, ownProps) => ({
   ...syndicate,
   isLoggedIn: auth.isLoggedIn
@@ -31,6 +33,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   addToastSuccess: (text) => {
     return dispatch(addToastSuccess(text))
+  },
+  requestToJoin: (syndicateName) => {
+    return dispatch(requestToJoin({syndicateName}))
   }
 })
 

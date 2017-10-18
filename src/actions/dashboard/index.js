@@ -1,6 +1,6 @@
 import { getMemberDashboard } from 'api/Services'
 
-import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
 export const FETCH_MEMBER_DASHBOARD_DATA = 'FETCH_MEMBER_DASHBOARD_DATA'
 
@@ -30,7 +30,7 @@ export const failedToFetchMemberDashboardData = (error) => ({
  */
 export const getDashboard = () => {
   return {
-    type: CALL_ACTION_TYPE,
+    type: AUTHENTICATED_REQUEST,
     types: [fetchMemberDashboardData, receivedMemberDashboardData, failedToFetchMemberDashboardData],
     endpoint: getMemberDashboard
   }
