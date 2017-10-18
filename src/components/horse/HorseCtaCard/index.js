@@ -70,9 +70,9 @@ class HorseCtaCard extends PureComponent {
         {isLoggedIn &&
           <span onClick={this.sendJoinRequest}>
             <TextButton
-              className={joinRequestSent && 'disabled'}
-              text={joinRequestSent ? 'Join request sent' : 'Request to join'}
               className='horse-cta-card__button'
+              isDisabled={joinRequestSent}
+              text={joinRequestSent ? 'Join request sent' : 'Request to join'}
               modifier='md'
             />
           </span>
@@ -88,7 +88,7 @@ class HorseCtaCard extends PureComponent {
           </CtaLink>
         }
 
-        {/*}<CtaLink href='/'>
+        {/*<CtaLink href='/'>
           <TextButton
             text='Get in touch'
             className='horse-cta-card__button'
