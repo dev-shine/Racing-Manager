@@ -71,13 +71,19 @@ export class SyndicateOverview extends Component {
     }
 
     this.toggleFaq = this.toggleFaq.bind(this)
-    this.toggleJoinRequest = this.toggleJoinRequest.bind(this)
+    this.requestToJoin = this.requestToJoin.bind(this)
   }
 
   toggleFaq () {
     this.setState(({openFaq}) => ({
       openFaq: !openFaq
     }))
+  }
+
+  requestToJoin () {
+    const {name} = this.props.data
+
+    this.props.requestToJoin(name)
   }
 
   render () {
@@ -156,7 +162,7 @@ export class SyndicateOverview extends Component {
                     <HorseCtaCard
                       isLoggedIn={isLoggedIn}
                       data={data}
-                      requestJoin={this.toggleJoinRequest}/>
+                      requestToJoin={this.requestToJoin}/>
                   }
                 </div>
               </div>
@@ -165,7 +171,7 @@ export class SyndicateOverview extends Component {
 
         <div className='container no-padding'>
           <div className='col-md-8 col-sm-12 private-syndicate__team-members'>
-            {/*}<HorseMemberCarousel
+            {/*<HorseMemberCarousel
               syndicateMembers={syndicateMembers} />*/}
           </div>
         </div>

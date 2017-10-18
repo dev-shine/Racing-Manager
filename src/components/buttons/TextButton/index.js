@@ -30,6 +30,7 @@ const TextButton = props => {
     className,
     modifier,
     active,
+    isDisabled,
     textClassName
   } = props
 

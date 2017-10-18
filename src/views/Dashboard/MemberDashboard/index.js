@@ -51,12 +51,6 @@ export class MemberDashboard extends Component {
               <NewsGallery
                 queryid={parsed.id} />
             </div>
-            <TextButton
-              text='Load more'
-              modifier='secondary'
-              className='member-dashboard__more-btn'
-              onClick={() => {}}
-            />
           </div>
         </div>
       </View>

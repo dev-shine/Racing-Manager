@@ -1,4 +1,4 @@
-import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
 import { getUpdateFeedComments, postFeedComment } from 'api/Services'
 
@@ -55,7 +55,7 @@ export const failedToPostComment = (error) => ({
 
 export const fetchComments = (messageId) => {
   return {
-    type: CALL_ACTION_TYPE,
+    type: AUTHENTICATED_REQUEST,
     types: [fetchingComments, fetchedComments, failedToFetchComments],
     endpoint: getUpdateFeedComments,
     payload: {
@@ -71,7 +71,7 @@ export const postComment = (messageId, data) => {
     } = data
 
     return dispatch({
-      type: CALL_ACTION_TYPE,
+      type: AUTHENTICATED_REQUEST,
       types: [postingComment, postedComment, failedToPostComment],
       endpoint: postFeedComment,
       headers: {

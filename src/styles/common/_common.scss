@@ -2,6 +2,10 @@
   @include vertical-align();
 }
 
+.align-center {
+  text-align: center;
+}
+
 .no-padding {
   padding: 0 !important;
 }
