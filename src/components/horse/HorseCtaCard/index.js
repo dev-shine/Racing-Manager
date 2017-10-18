@@ -18,6 +18,8 @@ import {
 
 import { FadeIn } from 'components/animation'
 
+import classNames from 'utils/classnames'
+
 class HorseCtaCard extends PureComponent {
   constructor (props) {
     super(props)
@@ -53,6 +55,7 @@ class HorseCtaCard extends PureComponent {
       url,
       isLoggedIn,
       data = {},
+      mobile,
       requestJoin
     } = this.props
 
@@ -60,8 +63,14 @@ class HorseCtaCard extends PureComponent {
       slug
     } = data
 
+    const modifiedClassNames = classNames('horse-cta-card', null, {
+      mobile
+    })
+
+    console.log(modifiedClassNames)
+
     return (
-      <CtaPanelCard className='horse-cta-card'>
+      <CtaPanelCard className={modifiedClassNames}>
 
         {isLoggedIn ? (
           <span onClick={this.sendJoinRequest}>
