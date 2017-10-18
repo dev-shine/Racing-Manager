@@ -38,7 +38,7 @@ const SyndicateCtaCard = (props) => {
         </CtaLink>
       }
 
-      {/*}<CtaLink href='/'>
+      {/*<CtaLink href='/'>
         <TextButton
           text={bottomButtonText}
           className='syndicate-cta-card__button'

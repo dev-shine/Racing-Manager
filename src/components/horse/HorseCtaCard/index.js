@@ -8,10 +8,6 @@ import CtaLink from 'components/links/CtaLink'
 
 import CtaPanelCard from 'components/cards/CtaPanelCard'
 
-import {
-  requestToJoin
-} from 'data/horse'
-
 import SocialShare from 'components/socialmedia/SocialShare'
 
 import {
@@ -44,7 +40,7 @@ class HorseCtaCard extends PureComponent {
 
   sendJoinRequest () {
     this.setState({joinRequestSent: true})
-    this.props.requestJoin()
+    this.props.requestToJoin()
   }
 
   render () {
@@ -67,7 +63,7 @@ class HorseCtaCard extends PureComponent {
     return (
       <CtaPanelCard className='horse-cta-card'>
 
-        {isLoggedIn &&
+        {isLoggedIn ? (
           <span onClick={this.sendJoinRequest}>
             <TextButton
               className='horse-cta-card__button'
@@ -76,9 +72,7 @@ class HorseCtaCard extends PureComponent {
               modifier='md'
             />
           </span>
-        }
-
-        {!isLoggedIn &&
+        ) : (
           <CtaLink href={'/register/horse/' + slug} nativeLink>
             <TextButton
               text='Register to join'
@@ -86,7 +80,7 @@ class HorseCtaCard extends PureComponent {
               modifier='md'
             />
           </CtaLink>
-        }
+        )}
 
         {/*<CtaLink href='/'>
           <TextButton

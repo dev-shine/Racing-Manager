@@ -49,7 +49,7 @@ const authenticatedRequest = ({dispatch}) => (next) => (action) => {
     return next(action)
   }
 
-  const { endpoint, types, payload = {}, query = {}, headers = {}, urlParams } = action
+  const { endpoint, types = [], payload = {}, query = {}, headers = {}, urlParams } = action
 
   const [requestType, successType, errorType] = types
 
