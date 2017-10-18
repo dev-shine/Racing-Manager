@@ -8,6 +8,8 @@ import React, { Component } from 'react'
 
 import { withRouter } from 'react-router-dom'
 
+import _ from 'lodash';
+
 import {
   submitFormData,
   updateLoginForm,
@@ -50,6 +52,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const redirectedFrom = _.get(ownProps, 'location.state.from.pathname')
+  const queryParam = _.get(ownProps, 'location.state.from.search')
   return {
     update: (name, value) => {
       dispatch(updateLoginForm(name, value))
@@ -68,7 +72,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         password: values.password
       }))
       .then(() => {
-        ownProps.history.replace('/dashboard')
+        ownProps.history.push(`${redirectedFrom}${queryParam}`)
         return Promise.resolve()
       })
       .then(onSubmitSuccess)

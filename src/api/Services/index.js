@@ -147,6 +147,12 @@ export const getNews = () => {
   })
 }
 
+export const getNewsById = (id) => {
+  return get({
+    url: `${SERVICE_TYPES.NEWS}/${id}`
+  })
+}
+
 export const getUploadedData = () => {
   return get({
     url: SERVICE_TYPES.UPLOADED

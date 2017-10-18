@@ -17,6 +17,7 @@ const TileSocialShare = (props) => {
     className,
     modifier,
     shareText,
+    id,
     onClose,
     show
   } = props
@@ -34,7 +35,8 @@ const TileSocialShare = (props) => {
                 target='_blank'
                 modifier='whatsapp'
                 shareData={{
-                  text: shareText
+                  text: shareText,
+                  url: `${document.location.origin}/dashboard?id=${id}`
                 }} />
             </div>
           </div>

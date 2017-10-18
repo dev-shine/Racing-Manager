@@ -16,3 +16,14 @@ export const formatNews = (news) => {
     })
   })
 }
+
+export const formatNewsById = (news) => {
+  return update(news, {
+    thumbnailImage: {
+      $set: constructStaticUrl(encodeURI(news.thumbnailImage))
+    },
+    timeStamp: {
+      $set: timestampToFeedTimestamp(news.date)
+    }
+  })
+}

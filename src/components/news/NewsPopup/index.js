@@ -33,6 +33,7 @@ class NewsPopup extends Component {
                 shareText={newsTile.content}
                 text={textToNewLineReactComponent(newsTile.content)}
                 src={newsTile.thumbnailImage}
+                id={newsTile._id}
                 rootPath='' />
             )
           : null
