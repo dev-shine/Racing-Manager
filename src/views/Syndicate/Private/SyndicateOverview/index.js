@@ -198,7 +198,7 @@ export class SyndicateOverview extends Component {
                 {
                   ({ value }) => {
                     return (
-                      <SyndicateBenefits description={benefits} />
+                      <SyndicateBenefits description={multilineTextToJSX(benefits)} />
                     )
                   }
                 }
