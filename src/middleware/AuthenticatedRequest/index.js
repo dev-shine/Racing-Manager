@@ -10,7 +10,7 @@ import {
 
 import { UNAUTHORISED } from 'texts/errormessages'
 
-export const CALL_ACTION_TYPE = '@@AUTHENTICATED_REQUEST'
+export const AUTHENTICATED_REQUEST = '@@AUTHENTICATED_REQUEST'
 
 /**
  *  dispatchAction
@@ -45,11 +45,11 @@ export const dispatchAction = (dispatch, requestAction, data) => {
  */
 const authenticatedRequest = ({dispatch}) => (next) => (action) => {
   // So the middleware doesn't get applied to every single action
-  if (action.type !== CALL_ACTION_TYPE) {
+  if (action.type !== AUTHENTICATED_REQUEST) {
     return next(action)
   }
 
-  const { endpoint, types, payload = {}, query = {}, headers = {}, urlParams } = action
+  const { endpoint, types = [], payload = {}, query = {}, headers = {}, urlParams } = action
 
   const [requestType, successType, errorType] = types
 

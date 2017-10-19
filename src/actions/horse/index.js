@@ -14,7 +14,7 @@ import { addToastSuccess, addToastError } from 'actions/toast'
 /**
  *  @module CALL_ACTION_TYPE
  */
-import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
 /**
  *  @module formatHorseData
@@ -198,7 +198,7 @@ export const clearHorseData = () => ({
 export const fetchHorseInfo = slug => {
   return (dispatch, getState) => {
     return dispatch({
-      type: CALL_ACTION_TYPE,
+      type: AUTHENTICATED_REQUEST,
       types: [gettingHorseInfo, receivedHorseInfo, failedToGetHorseInfo],
       endpoint: getHorseInfo,
       urlParams: {slug}
@@ -287,7 +287,7 @@ export const getHorseStatisticsResults = (token, name) => {
  */
 export const submitHorseUpdate = (horseId, data) => {
   return {
-    type: CALL_ACTION_TYPE,
+    type: AUTHENTICATED_REQUEST,
     types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
     endpoint: performHorseUpdate,
     query: {
@@ -300,7 +300,7 @@ export const submitHorseUpdate = (horseId, data) => {
 export const submitHorseData = (slug, payload) => {
   return (dispatch, getState) => {
     return dispatch({
-      type: CALL_ACTION_TYPE,
+      type: AUTHENTICATED_REQUEST,
       types: [postingHorseUpdate, postedHorseUpdate, failedToPostHorseUpdate],
       endpoint: updateHorseData,
       payload,

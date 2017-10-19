@@ -2,7 +2,7 @@ import { getSyndicateInfo, updateSyndicateData } from 'api/Services'
 
 import { formatHorseData } from 'utils/horseutils'
 
-import { CALL_ACTION_TYPE } from 'middleware/AuthenticatedRequest'
+import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
 import { addToastSuccess, addToastError } from 'actions/toast'
 
@@ -35,7 +35,7 @@ export const clearSyndicateData = () => ({
 export const fetchSyndicateInfo = slug => {
   return (dispatch, getState) => {
     return dispatch({
-      type: CALL_ACTION_TYPE,
+      type: AUTHENTICATED_REQUEST,
       types: [gettingSyndicateInfo, receivedSyndicateInfo, failedToGetSyndicateInfo],
       endpoint: getSyndicateInfo,
       urlParams: {slug}
@@ -46,7 +46,7 @@ export const fetchSyndicateInfo = slug => {
 export const submitSyndicateData = (slug, payload) => {
   return (dispatch, getState) => {
     return dispatch({
-      type: CALL_ACTION_TYPE,
+      type: AUTHENTICATED_REQUEST,
       types: [gettingSyndicateInfo, receivedSyndicateInfo, failedToGetSyndicateInfo],
       endpoint: updateSyndicateData,
       payload,

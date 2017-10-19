@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 
-import horseView from 'views/Horse/View'
-
 import List from 'components/gui/List'
 
 import TextButton from 'components/buttons/TextButton'
@@ -12,11 +10,11 @@ import HorseAvailability from 'components/horse/HorseAvailability'
 import HorseTable from 'components/horse/HorseTable'
 import HorseCard from 'components/horse/HorseCard'
 
-import HorseJoinPopup from 'components/horse/HorseJoinPopup'
+// import HorseJoinPopup from 'components/horse/HorseJoinPopup'
 
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 import HorseCtaCard from 'components/horse/HorseCtaCard'
-import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
+// import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 
 import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
 
@@ -24,13 +22,12 @@ import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 // mockup data
 import {
-  syndicateMembers,
+  // syndicateMembers,
   tableStatistics,
   racePlans,
   horseValue,
   benefitsList,
-  horseHero,
-  requestToJoin
+  horseHero
 } from 'data/horse'
 
 import {
@@ -47,19 +44,25 @@ class HorsePublicOverview extends Component {
       showJoinRequest: false
     }
 
-    this.toggleJoinRequest = this.toggleJoinRequest.bind(this)
+    this.requestToJoin = this.requestToJoin.bind(this)
+  }
+
+  requestToJoin () {
+    const {name} = this.props.data
+
+    this.props.requestToJoin(name)
   }
 
   render () {
     const {
       data,
-      match,
+      // match,
       isLoggedIn
     } = this.props
 
-    const {
-      showJoinRequest
-    } = this.state
+    // const {
+    //   showJoinRequest
+    // } = this.state
 
     const {
       owner,
@@ -98,7 +101,7 @@ class HorsePublicOverview extends Component {
                 <HorseCtaCard
                   isLoggedIn={isLoggedIn}
                   data={data}
-                  requestJoin={this.toggleJoinRequest}/>
+                  requestToJoin={this.requestToJoin}/>
               </div>
             </div>
           )} />
@@ -154,13 +157,11 @@ class HorsePublicOverview extends Component {
                   </h4>
                   <List items={availabilityList} />
                 </div>
-                <a href={requestToJoin} target='_blank'>
-                  <TextButton
-                    text='Request to join'
-                    modifier='md'
-                    className='public-horse__join-button'
-                  />
-                </a>
+                <TextButton
+                  text='Request to join'
+                  modifier='md'
+                  className='public-horse__join-button'
+                />
               </TitleDescriptionSection>
             </div>
             <div className='public-horse__horse-section col-xs-12 col-sm-6'>
@@ -209,21 +210,12 @@ class HorsePublicOverview extends Component {
             </div>
           </div>
         </div>
-        <HorseJoinPopup
+        {/*<HorseJoinPopup
           data={data}
           isOpen={showJoinRequest}
-          onClick={this.toggleJoinRequest}/>
+          onClick={this.toggleJoinRequest}/>*/}
       </div>
     )
-  }
-
-  toggleJoinRequest () {
-    this.props.addToastSuccess('Request sent successfully, a representative will be in touch shortly.')
-    /*
-    this.setState(({showJoinRequest}) => ({
-      showJoinRequest: !showJoinRequest
-    }))
-    */
   }
 }
 
