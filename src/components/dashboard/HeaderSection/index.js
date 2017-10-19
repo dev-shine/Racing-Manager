@@ -145,7 +145,7 @@ class HeaderSection extends PureComponent {
   }
 
   /**
-   *  formatHorseData
+   *  formatMessagesDate
    *  @description Will create formatted data for use on the carousels.
    *  @return {Object}
    */

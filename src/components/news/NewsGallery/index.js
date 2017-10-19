@@ -63,7 +63,7 @@ class NewsGallery extends Component {
       itemsShown
     } = this.state
 
-    let currentItem = 0;
+    let currentItem = 0
     let showTiles = []
     while (tiles[currentItem] && currentItem <= itemsShown - 1) {
       showTiles.push(tiles[currentItem])

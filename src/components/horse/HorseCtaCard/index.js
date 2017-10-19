@@ -67,8 +67,6 @@ class HorseCtaCard extends PureComponent {
       mobile
     })
 
-    console.log(modifiedClassNames)
-
     return (
       <CtaPanelCard className={modifiedClassNames}>
 
