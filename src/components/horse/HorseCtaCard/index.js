@@ -4,7 +4,7 @@ import TextButton from 'components/buttons/TextButton'
 
 import TextCtaButton from 'components/buttons/TextCtaButton'
 
-import CtaLink from 'components/links/CtaLink'
+import JoinRequestButton from 'components/buttons/JoinRequestButton'
 
 import CtaPanelCard from 'components/cards/CtaPanelCard'
 
@@ -30,7 +30,6 @@ class HorseCtaCard extends PureComponent {
 
     // Bind fns
     this.showSocialLinks = this.showSocialLinks.bind(this)
-    this.sendJoinRequest = this.sendJoinRequest.bind(this)
   }
 
   showSocialLinks () {
@@ -40,15 +39,9 @@ class HorseCtaCard extends PureComponent {
     })
   }
 
-  sendJoinRequest () {
-    this.setState({joinRequestSent: true})
-    this.props.requestToJoin()
-  }
-
   render () {
     const {
-      showLinks,
-      joinRequestSent
+      showLinks
     } = this.state
 
     const {
@@ -56,7 +49,7 @@ class HorseCtaCard extends PureComponent {
       isLoggedIn,
       data = {},
       mobile,
-      requestJoin
+      requestToJoin
     } = this.props
 
     const {
@@ -70,24 +63,12 @@ class HorseCtaCard extends PureComponent {
     return (
       <CtaPanelCard className={modifiedClassNames}>
 
-        {isLoggedIn ? (
-          <span onClick={this.sendJoinRequest}>
-            <TextButton
-              className='horse-cta-card__button'
-              isDisabled={joinRequestSent}
-              text={joinRequestSent ? 'Join request sent' : 'Request to join'}
-              modifier='md'
-            />
-          </span>
-        ) : (
-          <CtaLink href={'/register/horse/' + slug} nativeLink>
-            <TextButton
-              text='Register to join'
-              className='horse-cta-card__button'
-              modifier='md'
-            />
-          </CtaLink>
-        )}
+        <JoinRequestButton
+          requestToJoin={requestToJoin}
+          registerUrl={`horse/${slug}`}
+          isLoggedIn={isLoggedIn}
+          className='horse-cta-card__button'
+        />
 
         {/*<CtaLink href='/'>
           <TextButton
