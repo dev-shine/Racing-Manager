@@ -11,10 +11,15 @@ import {
 export const FETCHING_NEWS = 'news/FETCHING_NEWS'
 export const FETCHED_NEWS = 'news/FETCHED_NEWS'
 export const FAILED_TO_FETCH_NEWS = 'news/FAILED_TO_FETCH_NEWS'
+export const FETCHING_NEWS_BY_ID = 'news/FETCHING_NEWS_BY_ID'
 export const FETCHED_NEWS_BY_ID = 'news/FETCHED_NEWS_BY_ID'
 
 export const fetchingNews = () => ({
   type: FETCHING_NEWS
+})
+
+export const fetchingNewsById = () => ({
+  type: FETCHING_NEWS_BY_ID
 })
 
 export const fetchedNews = (news) => ({
@@ -67,7 +72,7 @@ export const fetchNews = () => {
 
 export const getNewsDataById = (id) => {
   return (dispatch, getState) => {
-    dispatch(fetchingNews())
+    dispatch(fetchingNewsById())
 
     return getNewsById(id)
     .then(formatNewsById)

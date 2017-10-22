@@ -31,12 +31,12 @@ const mapStateToProps = (state, ownProps) => {
 
   const {
     dataById,
-    fetching
+    fetchingById
   } = news
 
   return {
     newsTile: dataById,
-    isSubmitting: fetching
+    isSubmitting: fetchingById
   }
 
 }

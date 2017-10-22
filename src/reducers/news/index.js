@@ -2,6 +2,7 @@ import {
   FETCHING_NEWS,
   FETCHED_NEWS,
   FAILED_TO_FETCH_NEWS,
+  FETCHING_NEWS_BY_ID,
   FETCHED_NEWS_BY_ID
 } from 'actions/news'
 
@@ -15,7 +16,8 @@ const initialState = {
   data: [],
   fetching: false,
   error: null,
-  dataById: {}
+  dataById: {},
+  fetchingById: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -40,9 +42,16 @@ const reducer = (state = initialState, action) => {
         }
       })
 
+    case FETCHING_NEWS_BY_ID:
+      return update(state, {
+        fetchingById: {
+          $set: true
+        }
+      })
+
     case FETCHED_NEWS_BY_ID:
       return update(state, {
-        fetching: {
+        fetchingById: {
           $set: false
         },
         dataById: {
