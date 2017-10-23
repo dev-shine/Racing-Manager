@@ -44,21 +44,4 @@ $copy-section-card-height: 350px;
       font-size: 171px;
     }
   }
-  &__featured-image {
-    background-size: 150%;
-    height: $copy-section-card-height;
-    margin: 25px 0;
-    @media (min-width: $screen-sm) {
-      margin: 50px 0;
-    }
-    @media (min-width: $screen-md) {
-      width: 500px;
-      height: 550px;
-      position: absolute;
-      right: $gutter-md / 2;
-      top: 50%;
-      margin: 0;
-      transform: translateY(-50%);
-    }
-  }
 }
