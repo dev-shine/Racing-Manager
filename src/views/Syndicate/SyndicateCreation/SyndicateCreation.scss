@@ -1,22 +1,28 @@
-.create-new-syndicate__section {
-  width: 100%;
-
-  .sole-owner {
-    background-image: url('/assets/images/wave.svg');
-    background-size: 130px;
-    margin-top: 70px;
+.create-new-syndicate {
+  .copy-section {
+    padding-bottom: 0;
   }
 
-  .joint-ownership {
-    background-image: url('/assets/images/wave.svg');
-    background-size: 130px;
-    margin-top: 70px;
+  p.header-section {
+    font-weight: 600;
+    color: $yankees-blue;
   }
 
-  .racing-partnership {
-    background-image: url('/assets/images/wave.svg');
-    background-size: 130px;
-    margin-top: 70px;
-    margin-bottom: 70px;
+  p.content-section {
+    font-weight: 400;
+    color: $yankees-blue;
+  }
+
+  button.syndicate-creation__more-btn {
+    display: inline-block;
+  }
+
+  .syndicate-creation__more-btn.fluid-btn {
+    background-color: $vanilla-ice;
+    margin-right: 20px;
+
+    h6 {
+      color: $white;
+    }
   }
 }
