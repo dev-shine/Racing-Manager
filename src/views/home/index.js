@@ -63,6 +63,7 @@ export class Home extends Component {
    * @returns { React.Component }
    */
   render () {
+    const {isLoggedIn} = this.props
     return (
       <View title={title}>
         <div className='home'>
@@ -71,7 +72,7 @@ export class Home extends Component {
             <div className='home__hero-content absolute-center'>
               <h1 className='home__hero-text'>We make setting up syndicates simple.</h1>
             </div>
-            {/*}<p className='home__hero-tip micro semi-bold'>
+            {/*<p className='home__hero-tip micro semi-bold'>
               <span className='visible-md-up'>
                 Use the arrow keys to change jockey. Click and drag to look around.
               </span>
@@ -153,7 +154,7 @@ export class Home extends Component {
               'AML and KYC checks on new syndicate members.'
             ]} />
           </CopySection>
-          <BottomCta />
+          <BottomCta isLoggedIn={isLoggedIn}/>
         </div>
       </View>
     )
@@ -167,7 +168,9 @@ export class Home extends Component {
  *  @return {Object}
  */
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    isLoggedIn: state.auth ? state.auth.isLoggedIn : false
+  }
 }
 
 /**

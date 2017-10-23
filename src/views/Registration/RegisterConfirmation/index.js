@@ -53,12 +53,14 @@ class RegistrationConfirmation extends PureComponent {
     } = this.props
 
     const token = match.params.token
-
-    this.props.requestConfirmation(token)
-    .then(() => {})
-    .catch(() => {
-      this.props.history.replace('/404')
-    })
+    // just for testing
+    if (token !== 'bob') {
+      this.props.requestConfirmation(token)
+      .then(() => {})
+      .catch(() => {
+        this.props.history.replace('/404')
+      })
+    }
   }
 
   render () {
@@ -81,12 +83,12 @@ class RegistrationConfirmation extends PureComponent {
               <div className='row'>
                 <div className='col-xs-12 col-sm-8 col-md-6'>
                   <h2 className='regular uppercase registration-confirmation__title'>
-                    {firstname}, welcome to the racing manager
+                    {firstname || 'Bob'}, welcome to the racing manager
                   </h2>
                   <Separator
                     modifier='blue' />
                   <p className='extra-light'>
-                    Your account has been verified. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amaret democritea, legendum, inprobitas iucundum numquid attingere expetendam illustribus maledicta. Praetore inpendente voluptas evertitur probatus, viderer difficile aequo homo omne triari erigimur, accusator, nostrum splendore studiis inermis incidunt falsarum pedalis fortunae voluptatem dicendum.
+                    Your account has been verified.
                   </p>
                 </div>
               </div>

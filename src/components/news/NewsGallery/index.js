@@ -76,6 +76,7 @@ class NewsGallery extends Component {
       currentItem = currentItem + 1
     }
 
+    let canLoadMore = showTiles.length < tiles.length
     return (
       <span>
         <Grid
@@ -97,12 +98,19 @@ class NewsGallery extends Component {
             ))
           }
         </Grid>
-        <TextButton
-          text='Load more'
-          modifier='secondary'
-          className='member-dashboard__more-btn'
-          onClick={this.showMore}
-        />
+        {tiles.length > 0 ? (
+          canLoadMore ? (
+            <TextButton
+              text='Load more'
+              modifier='secondary'
+              className='member-dashboard__more-btn'
+              onClick={this.showMore}
+            />
+          ) : null
+        ) : (
+          <p className='align-center'>There is no updates to display</p>
+        )
+        }
         <NewsPopupContainer
           isOpen={showPopup}
           onClick={this.closePopup}
