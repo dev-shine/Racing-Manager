@@ -168,6 +168,15 @@ export class SyndicateOverview extends Component {
               </div>
             } />
         </div>
+        <div className='hidden-md-up'>
+          {isPublic &&
+          <HorseCtaCard
+            isLoggedIn={isLoggedIn}
+            data={data}
+            mobile={true}
+            requestToJoin={this.requestToJoin}/>
+          }
+        </div>
 
         <div className='container no-padding'>
           <div className='col-md-8 col-sm-12 private-syndicate__team-members'>
@@ -189,7 +198,7 @@ export class SyndicateOverview extends Component {
                 {
                   ({ value }) => {
                     return (
-                      <SyndicateBenefits description={benefits} />
+                      <SyndicateBenefits description={multilineTextToJSX(benefits)} />
                     )
                   }
                 }
@@ -368,7 +377,7 @@ export class SyndicateOverview extends Component {
             </div>
           )
         }} />
-        {*/}
+        */}
 
         <SyndicateFaqPopup
           breadcrumbText={'Back to syndicate page'}

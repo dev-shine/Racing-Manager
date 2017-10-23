@@ -20,7 +20,7 @@ import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
  *  @module formatHorseData
  */
 
-import { formatHorseData, formatHorseStatisticsData, formatHorseStatisticsResultsData } from 'utils/horseutils'
+import { formatHorseStatisticsData, formatHorseStatisticsResultsData } from 'utils/horseutils'
 
 /**
  *  FETCH_HORSE_INFO

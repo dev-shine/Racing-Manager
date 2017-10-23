@@ -46,6 +46,8 @@ import Smallloader from 'components/gui/Loaders/Smallloader'
 /**
  * dummy fn
  */
+import { Link } from 'react-router-dom'
+
 const noop = () => {}
 
 /**
@@ -143,7 +145,7 @@ class HeaderSection extends PureComponent {
   }
 
   /**
-   *  formatHorseData
+   *  formatMessagesDate
    *  @description Will create formatted data for use on the carousels.
    *  @return {Object}
    */
@@ -211,16 +213,18 @@ class HeaderSection extends PureComponent {
           </div>
           <div className='col-xs-4 col-sm-6 align-middle'>
             {/* Depending on screen width (mobile or desktop) show the correct button */}
-            <TextButton
-              className='dashboard-header__header-button visible-sm-up'
-              onClick={noop}
-              modifier='xs'
-              text={headerButtonText}/>
-            <TextButton
-              className='dashboard-header__header-button hidden-sm-up'
-              onClick={noop}
-              modifier='xs'
-              text='+'/>
+            <Link to='/browse-horses'>
+              <TextButton
+                className='dashboard-header__header-button visible-sm-up'
+                onClick={noop}
+                modifier='xs'
+                text={headerButtonText}/>
+              <TextButton
+                className='dashboard-header__header-button hidden-sm-up'
+                onClick={noop}
+                modifier='xs'
+                text='+'/>
+            </Link>
           </div>
         </div>
         <div className='dashboard-header__items-carousel'>

@@ -12,6 +12,13 @@
     }
   }
 
+  &--mobile {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: calc(100% - 25px);
+  }
+
   &__button {
     width: 100%;
   }

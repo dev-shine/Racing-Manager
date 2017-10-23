@@ -1,6 +1,6 @@
 .member-dashboard {
   position: relative;
-  
+
   &__title {
     color: $color-text-heading;
     margin: 40px 10px 25px;
@@ -22,5 +22,9 @@
     @media (min-width: $screen-sm-min) {
       margin: 50px auto;
     }
+  }
+
+  &__feed {
+    margin-bottom: 20px;
   }
 }
