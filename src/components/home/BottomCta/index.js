@@ -45,7 +45,7 @@ import { video } from 'assets/home'
  * @return { React.Component }
  */
 const BottomCta = props => {
-  const { className } = props
+  const { className, isLoggedIn } = props
 
   const modifiedClassNames = classNames('bottom-cta', className)
 
@@ -70,13 +70,23 @@ const BottomCta = props => {
               <p>Signing up is free and welcome to everyone. Once you’ve signed up, you can view your horses and join racing clubs. You only pay when you join a club or a syndicate.</p>
             </CopyCard>
             <div className="bottom-cta__buttons">
-              <Link to='/register'>
-                <TextButton
-                  text="Register for FREE"
-                  className="bottom-cta__button"
-                  onClick={() => {}}/>
-              </Link>
-              {/*} DEMO DISABLED FOR NOW
+              {isLoggedIn ? (
+                  <Link to='/browse-horses'>
+                    <TextButton
+                      text="Browse horses"
+                      className="bottom-cta__button"
+                      onClick={() => {}}/>
+                  </Link>
+                ) : (
+                  <Link to='/register'>
+                    <TextButton
+                      text="Register for FREE"
+                      className="bottom-cta__button"
+                      onClick={() => {}}/>
+                  </Link>
+                )
+              }
+              {/* DEMO DISABLED FOR NOW
               <TextButton
                 text="Try a Demo"
                 modifier="secondary"

@@ -52,12 +52,6 @@ module.exports = {
     rules: [
       // Pre-loaders
       {
-        test: /\.js$/,
-        loader: 'eslint',
-        exclude: /node_modules/,
-        enforce: 'pre'
-      },
-      {
         test: /\.scss/,
         loader: 'import-glob',
         enforce: 'pre'

@@ -28,7 +28,7 @@ const SyndicateBenefits = (props) => {
 SyndicateBenefits.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.array
 }
 
 SyndicateBenefits.defaultProps = {
