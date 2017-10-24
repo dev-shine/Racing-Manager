@@ -18,9 +18,13 @@ import HorsePublicOverview from '../Public/HorsePublicOverview'
 
 import { addToastSuccess, addToastError } from 'actions/toast'
 
+import { fetchSyndicateInfo } from 'actions/syndicate'
+
 import {requestToJoin} from 'actions/user'
 
-const mapStateToProps = ({ horse, auth }) => ({
+import ScrollNavBar from 'components/navigation/ScrollNavBar'
+
+const mapStateToProps = ({ syndicate, horse, auth }) => ({
   horseInfo: {
     ...horse.horseInfo
   },
@@ -30,13 +34,20 @@ const mapStateToProps = ({ horse, auth }) => ({
   horseStatisticsFutureDetails: {
     ...horse.horseStatisticsFutureDetailsInfo
   },
-  isLoggedIn: auth.isLoggedIn
+  isLoggedIn: auth.isLoggedIn,
+  syndicateInfo: {
+    ...syndicate.data
+  }
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getHorseInfo: () => {
     const slug = ownProps.match.params.slug
     return dispatch(fetchHorseInfo(slug))
+  },
+  getSyndicateInfo: (data) => {
+    const slug = data.owner.slug
+    dispatch(fetchSyndicateInfo(slug))
   },
   clearHorseData: () => {
     return dispatch(clearHorseData())
@@ -57,6 +68,7 @@ const HorseViewHoc = (WrapperComponent) => {
 
     componentDidMount () {
       this.props.getHorseInfo()
+        .then(this.props.getSyndicateInfo)
     }
 
     componentWillUnmount () {
@@ -70,6 +82,7 @@ const HorseViewHoc = (WrapperComponent) => {
         horseStatisticsFutureDetails,
         getHorseInfo,
         clearHorseData,
+        syndicateInfo,
         ...restOfProps
       } = this.props
 
@@ -128,6 +141,7 @@ const HorseViewHoc = (WrapperComponent) => {
       return (
         <View title={capitalize(name || '')} notPrefixed>
           <div>
+            <ScrollNavBar data={syndicateInfo} />
             <RenderComponent
               data={horseProps}
               {...restOfProps}
