@@ -33,6 +33,8 @@ import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
 
 import ImageEditContainer from 'containers/ManagerEdit/ImageEditContainer'
 
+import CardImageEditContainer from 'containers/ManagerEdit/CardImageEditContainer'
+
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
 
 const HorseInformation = (props) => {
@@ -112,10 +114,21 @@ const HorseInformation = (props) => {
             ownershipYears={ownershipYears}
             ownershipEndDate={ownershipEndDate}
             percentShares={percentShares} />
-        )} />
+        )}
+      />
 
       <div className='container'>
-        {/*}<div className='horse-information__section'>
+        <div className="horse-information__section">
+          <CardImageEditContainer
+            title='Image requirements'
+            description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
+            dataKey='thumbnailImage'
+            editLabel='update image'
+            submitAction={submitHorseData}
+            data={data}
+          />
+        </div>
+        {/*<div className='horse-information__section'>
           <TitleDescriptionSection
             title={'key members'}
             colorModifier='blue'>
