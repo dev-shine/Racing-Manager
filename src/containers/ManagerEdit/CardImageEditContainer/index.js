@@ -10,7 +10,6 @@ class CardImageEditContainer extends Component {
   constructor (props) {
     super(props)
 
-    this.updateValue = this.updateValue.bind(this)
     this.saveImage = this.saveImage.bind(this)
   }
 
@@ -18,14 +17,6 @@ class CardImageEditContainer extends Component {
     const {submitUpdate, dataKey} = this.props
     submitUpdate({[dataKey]: image})
       .then(this.hideEditPopup)
-  }
-
-  updateValue (e) {
-    if (e && e.target) {
-      this.setState({
-        value: e.target.value
-      })
-    }
   }
 
   render () {
