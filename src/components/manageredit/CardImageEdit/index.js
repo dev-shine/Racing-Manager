@@ -65,16 +65,17 @@ class CardImageEdit extends Component {
           canSave={false}
         />
         <EditButton
+          className='card-image-edit__edit-button'
           onClick={this.showEditPopup}
           title={editLabel}
-          position='absolute'
           iconModifier='update'
         />
         <HorseCard
+          className='card-image-edit__card'
           isActive={true}
           src={constructStaticUrl(data.thumbnailImage)}
           title={data.name}
-          color={data.syndColor}
+          color={syndicate ? syndicate.color : owner.color}
           subtitle={`${data.age}yo ${data.gender}`}
           stats={[{
             name: 'runs',
@@ -97,14 +98,13 @@ class CardImageEdit extends Component {
             value: syndicate ? syndicate.name : owner.name
           }, {
             name: 'Initial cost/share',
-            value: cost ? cost.initial ? cost.initial : '-' : '-'
+            value: cost ? cost.initial ? `£${cost.initial} +VAT` : '-' : '-'
           }, {
             name: 'Monthly cost/share',
-            value: cost ? cost.monthly ? cost.monthly : '-' : '-'
+            value: cost ? cost.monthly ? `£${cost.monthly} +VAT` : '-' : '-'
           }]}
           isMember={false}
           bottomUrl={null}
-          className='horse-card-gallery__card'
         />
       </div>
     )

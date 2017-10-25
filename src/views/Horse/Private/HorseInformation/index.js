@@ -118,15 +118,17 @@ const HorseInformation = (props) => {
       />
 
       <div className='container'>
-        <div className="horse-information__section">
-          <CardImageEditContainer
-            title='Image requirements'
-            description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
-            dataKey='thumbnailImage'
-            editLabel='update image'
-            submitAction={submitHorseData}
-            data={data}
-          />
+        <div className="horse-information__section row">
+          <div className='col-xs-12 col-md-6 col-lg-5'>
+            <CardImageEditContainer
+              title='Image requirements'
+              description='Images must be a minimum of 500px wide, 700px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
+              dataKey='thumbnailImage'
+              editLabel='update image'
+              submitAction={submitHorseData}
+              data={data}
+            />
+          </div>
         </div>
         {/*<div className='horse-information__section'>
           <TitleDescriptionSection
