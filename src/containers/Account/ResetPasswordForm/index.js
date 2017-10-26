@@ -7,7 +7,8 @@ import ResetPasswordForm from 'components/forms/ResetPassword'
 import {
   updateForm,
   updateFormError,
-  resetForm
+  resetForm,
+  changePassword
 } from 'actions/account/ResetPassword'
 
 import { resetPasswordValidators } from 'utils/validation/ResetPassword'
@@ -58,6 +59,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(updateFormError(errors, name))
     },
     submitForm: (values) => {
+      let {currentPassword, newPassword} = values
+      dispatch(changePassword({oldPassword: currentPassword, newPassword}))
     },
     clearForm: () => {
       dispatch(resetForm())
