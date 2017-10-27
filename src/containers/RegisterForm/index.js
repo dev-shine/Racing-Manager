@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const {
         onSubmitSuccess,
         onSubmitFail
-        } = ownProps
+      } = ownProps
 
       dispatch(submitFormData({
         firstname: values.firstname,

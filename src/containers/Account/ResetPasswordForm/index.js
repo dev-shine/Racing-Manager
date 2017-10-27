@@ -12,6 +12,8 @@ import {
 } from 'actions/account/ResetPassword'
 
 import { resetPasswordValidators } from 'utils/validation/ResetPassword'
+import { addToastSuccess, addToastError } from 'actions/toast'
+import { UPDATED_USER_DETAILS } from 'texts/successmessages'
 
 class ResetPasswordFormContainer extends PureComponent {
   constructor (props) {
@@ -48,6 +50,7 @@ const mapStateToProps = (state, ownProps) => {
     }
   }
 
+  console.log(errors)
   return {
     values: {
       currentPassword,
@@ -71,6 +74,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     submitForm: (values) => {
       let {currentPassword, newPassword} = values
       dispatch(changePassword({oldPassword: currentPassword, newPassword}))
+        .then(() => {
+          dispatch(addToastSuccess(UPDATED_USER_DETAILS))
+          dispatch(resetForm())
+          ownProps.onFormCancel && ownProps.onFormCancel()
+          return Promise.resolve()
+        })
+        .catch(error => {
+          if (error.message === 'Login failed') {
+            dispatch(addToastError('Please check your password'))
+          }
+          else if (error && error.errors && error.errors.password) {
+            dispatch(addToastError(error.errors.password))
+          }
+          else if (error && error.message) {
+            dispatch(addToastError(error.message))
+          }
+        })
     },
     clearForm: () => {
       dispatch(resetForm())
