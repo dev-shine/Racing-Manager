@@ -5,6 +5,8 @@ export const BASE_URL = `${ROOT_PATH}/api/v1`
 
 export const USER = `${BASE_URL}/user`
 
+export const USER_CARD = `${BASE_URL}/user/card`
+
 export const JOIN_REQUEST = `${USER}/join-request`
 
 export const REGISTRATION = `${USER}/register`

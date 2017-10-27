@@ -15,22 +15,28 @@ import {
   CardContent
 } from 'components/cards/FeaturedCard'
 
+import {injectStripe} from 'react-stripe-elements'
+
 class AccountAddCardForm extends PureComponent {
   constructor (props) {
     super(props)
 
     this.state = {
-      showBilling: false
+      showBilling: false,
+      cardElementComplete: false
     }
 
     this.showBillingForm = this.showBillingForm.bind(this)
     this.hideBillingForm = this.hideBillingForm.bind(this)
     this.clearForms = this.clearForms.bind(this)
+    this.handleCardElementChanged = this.handleCardElementChanged.bind(this)
+    this.handleSubmitCard = this.handleSubmitCard.bind(this)
   }
 
   showBillingForm () {
     this.setState({
-      showBilling: true
+      showBilling: true,
+      submitErrors: null
     })
   }
 
@@ -45,17 +51,36 @@ class AccountAddCardForm extends PureComponent {
     this.hideBillingForm()
   }
 
+  handleCardElementChanged ({complete: cardElementComplete}) {
+    this.setState({
+      cardElementComplete,
+      showBilling: this.state.showBilling ? true : cardElementComplete
+    })
+  }
+
+  handleSubmitCard () {
+    const {stripe, submitCardToServer} = this.props
+    stripe.createToken()
+      .then(submitCardToServer)
+      .catch((e) => {
+        console.log(e)
+      })
+  }
+
   render () {
     const {
-      showBilling
+      showBilling,
+      cardElementComplete
     } = this.state
 
     const {
-      billingAddressInfo,
-      billingAddressActions,
-      creditCardInfo,
-      creditCardActions
+      billingAddressInfo = {},
+      billingAddressActions = {},
+      creditCardInfo = {},
+      creditCardActions = {}
     } = this.props
+
+    const cardDetailsValid = (cardElementComplete && creditCardInfo.errors.cardName.length === 0)
 
     return (
       <CardView className='account-card-form'>
@@ -65,8 +90,8 @@ class AccountAddCardForm extends PureComponent {
               <h4 className='capitalize'>
                 {
                   !showBilling
-                  ? 'Card Details'
-                  : 'Billing Address'
+                    ? 'Card Details'
+                    : 'Billing Address'
                 }
               </h4>
               <Icon
@@ -74,34 +99,25 @@ class AccountAddCardForm extends PureComponent {
                 className='account-card-form__close tiny cursor--pointer'
                 modifier='close' />
             </div>
-            {
-              !showBilling
-              ? (
-                  <CreditCardForm {...creditCardInfo} {...creditCardActions} />
-                )
-              : (
-                  <BillingAddressForm {...billingAddressInfo} {...billingAddressActions} />
-                )
-            }
+            <CreditCardForm {...creditCardInfo} {...creditCardActions} onCardElementChanged={this.handleCardElementChanged} />
+            {showBilling && <div className='account-card-form__grow'><BillingAddressForm {...billingAddressInfo} {...billingAddressActions} /></div>}
           </CardHeading>
           <CardContent>
-            {
-            !showBilling
-            ? (
-                <TextButton
-                  onClick={this.showBillingForm}
-                  modifier={['secondary', 'fluid']}
-                  isDisabled={false}
-                  text='billing address' />
-              )
-            : (
-                <TextButton
-                  onClick={() => {}}
-                  modifier={['fluid']}
-                  isDisabled={false}
-                  text='Save Card' />
-              )
-            }
+            {showBilling ? (
+              <TextButton
+                onClick={this.handleSubmitCard}
+                modifier={['fluid']}
+                isDisabled={false}
+                text='Save Card'
+              />
+            ) : (
+              <TextButton
+                onClick={this.showBillingForm}
+                modifier={['fluid']}
+                isDisabled={!cardDetailsValid}
+                text='Add Billing Details'
+              />
+            )}
           </CardContent>
         </CardFrame>
       </CardView>
@@ -109,4 +125,4 @@ class AccountAddCardForm extends PureComponent {
   }
 }
 
-export default AccountAddCardForm
+export default injectStripe(AccountAddCardForm)

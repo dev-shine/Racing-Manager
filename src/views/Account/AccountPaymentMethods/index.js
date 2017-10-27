@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import AccountAddCreditCardForm from 'containers/Account/AddCreditCard'
+import AccountAddCreditCardForm from 'containers/Payment/StripeAddCard'
 
 import AccountCreditCard from 'components/account/AccountCreditCard'
 
