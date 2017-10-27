@@ -52,8 +52,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const redirectedFrom = _.get(ownProps, 'location.state.from.pathname')
-  const queryParam = _.get(ownProps, 'location.state.from.search')
+  const redirectedFrom = _.get(ownProps, 'location.state.from.pathname') || '/dashboard'
+  const queryParam = _.get(ownProps, 'location.state.from.search') || ''
   return {
     update: (name, value) => {
       dispatch(updateLoginForm(name, value))
