@@ -39,6 +39,15 @@ const mapStateToProps = (state, ownProps) => {
     errors
   } = account.resetPassword
 
+  let canProgress = true
+
+  for (let key in errors) {
+    let error = errors[key]
+    if (error.length > 0) {
+      canProgress = false
+    }
+  }
+
   return {
     values: {
       currentPassword,
@@ -46,6 +55,7 @@ const mapStateToProps = (state, ownProps) => {
       confirmPassword
     },
     errors,
+    canProgress,
     validators: resetPasswordValidators
   }
 }

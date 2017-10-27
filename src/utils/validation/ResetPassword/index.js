@@ -29,11 +29,11 @@ export const resetPasswordValidators = (type, formValues = {}) => {
       return VALIDATE.PASSWORD(currentPassword) ? [] : [ERROR.PASSWORD]
 
     case 'newPassword':
-      return VALIDATE.PASSWORD(currentPassword) ? [] : [ERROR.PASSWORD]
+      return VALIDATE.PASSWORD(newPassword) ? [] : [ERROR.PASSWORD]
 
     case 'confirmPassword':
       return (
-        !VALIDATE.PASSWORD(currentPassword)
+        !VALIDATE.PASSWORD(confirmPassword)
         ? [ERROR.PASSWORD]
         : !(newPassword === confirmPassword)
         ? [ERROR.WRONG_CONFIRM_PASSWORD]

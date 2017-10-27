@@ -20,7 +20,7 @@ class ResetPasswordForm extends PureComponent {
   }
 
   render () {
-    const { submitForm, values, onCancel } = this.props
+    const { submitForm, values, onCancel, canProgress } = this.props
 
     return (
       <div className='reset-password-form'>
@@ -59,7 +59,7 @@ class ResetPasswordForm extends PureComponent {
             <Submit component={(props) => TextButton({
               ...props,
               text: 'confirm',
-              isDisabled: false
+              isDisabled: !canProgress
             })} />
           </div>
 
