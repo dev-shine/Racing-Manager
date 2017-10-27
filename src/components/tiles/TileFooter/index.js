@@ -80,6 +80,7 @@ class TileFooter extends Component {
       className,
       modifier,
       shareText,
+      id,
       allowSocialShare
     } = this.props
 
@@ -116,7 +117,8 @@ class TileFooter extends Component {
               <TileSocialShare
                 show={showSocial}
                 onClose={this.hideSocial}
-                shareText={shareText} />
+                shareText={shareText}
+                id={id} />
             )
           : null
         }

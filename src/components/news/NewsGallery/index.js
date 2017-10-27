@@ -10,6 +10,8 @@ import { Block, Grid } from 'components/layouts/masonry'
 
 import NewsPopupContainer from 'containers/News/NewsPopup'
 
+import NewsPopupByIdContainer from 'containers/News/NewsPopupById'
+
 class NewsGallery extends Component {
   constructor (props) {
     super(props)
@@ -17,6 +19,7 @@ class NewsGallery extends Component {
     this.state = {
       id: null,
       showPopup: false,
+      showPopupById: !!(this.props.queryid),
       itemsShown: 4,
     }
 
@@ -40,7 +43,8 @@ class NewsGallery extends Component {
   closePopup () {
     this.setState({
       id: null,
-      showPopup: false
+      showPopup: false,
+      showPopupById: false
     })
   }
 
@@ -49,17 +53,19 @@ class NewsGallery extends Component {
   }
 
   showMore () {
-    this.setState({itemsShown: this.state.itemsShown + 4});
+    this.setState({itemsShown: this.state.itemsShown + 4})
   }
 
   render () {
     const {
-      tiles
+      tiles,
+      queryid
     } = this.props
 
     const {
       id,
       showPopup,
+      showPopupById,
       itemsShown
     } = this.state
 
@@ -109,13 +115,18 @@ class NewsGallery extends Component {
           isOpen={showPopup}
           onClick={this.closePopup}
           newsId={id} />
+        { queryid ? <NewsPopupByIdContainer
+          isOpen={showPopupById}
+          onClick={this.closePopup}
+          newsId={queryid} /> : null }
       </span>
     )
   }
 }
 
 NewsGallery.propTypes = {
-  tiles: PropTypes.array.isRequired
+  tiles: PropTypes.array.isRequired,
+  queryid: PropTypes.string
 }
 
 export default NewsGallery

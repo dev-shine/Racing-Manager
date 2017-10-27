@@ -34,7 +34,7 @@ export const twitter = ({ url = '', title = '', via = '', hashtags = [] }) => {
   })
 }
 
-export const whatsapp = ({ url = '', text = '', separator = '' }) => {
+export const whatsapp = ({ url = '', text = '', separator = '. ' }) => {
   return 'https://api.whatsapp.com/send' + constructQuery({
     text: text + separator + url
   })

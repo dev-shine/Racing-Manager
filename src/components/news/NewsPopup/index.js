@@ -30,9 +30,10 @@ class NewsPopup extends Component {
                 name=''
                 title={newsTile.slugline}
                 date={newsTile.timeStamp}
-                shareText={newsTile.content}
+                shareText={newsTile.content.substr(0, 150).concat('...read more ')}
                 text={textToNewLineReactComponent(newsTile.content)}
                 src={newsTile.thumbnailImage}
+                id={newsTile._id}
                 rootPath='' />
             )
           : null

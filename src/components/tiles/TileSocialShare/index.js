@@ -17,6 +17,7 @@ const TileSocialShare = (props) => {
     className,
     modifier,
     shareText,
+    id,
     onClose,
     show
   } = props
@@ -34,8 +35,33 @@ const TileSocialShare = (props) => {
                 target='_blank'
                 modifier='whatsapp'
                 shareData={{
-                  text: shareText
+                  text: shareText,
+                  url: `${document.location.origin}/dashboard?id=${id}`
                 }} />
+
+              <SocialShare
+                target='_blank'
+                modifier='facebook'
+                shareData={{
+                  quote: shareText,
+                  url: `${document.location.origin}/dashboard?id=${id}`
+                }} />
+
+              <SocialShare
+                target='_blank'
+                modifier='twitter'
+                shareData={{
+                  title: shareText,
+                  url: `${document.location.origin}/dashboard`,
+                  id: `${id}`
+                }} />
+
+              <SocialShare
+              target='_blank'
+              modifier='email'
+              shareData={{
+                body: (shareText.concat(`${document.location.origin}/dashboard?id=`))
+              }} />
             </div>
           </div>
           <div className='tile-social-share__close' onClick={onClose}>

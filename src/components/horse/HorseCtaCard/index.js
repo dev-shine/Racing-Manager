@@ -12,6 +12,7 @@ import SocialShare from 'components/socialmedia/SocialShare'
 
 import {
   whatsapp,
+  facebook,
   twitter,
   email
 } from 'texts/socialmedia'
@@ -98,7 +99,10 @@ class HorseCtaCard extends PureComponent {
                     target='_blank'
                     modifier='facebook'
                     className='horse-cta-card__social-icon'
-                    shareData={{}} />
+                    shareData={{
+                      quote: facebook({url}),
+                      url
+                    }} />
                 </div>
 
                 <div className='horse-cta-card__social-link'>
