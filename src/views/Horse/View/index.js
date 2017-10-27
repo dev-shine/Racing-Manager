@@ -24,6 +24,8 @@ import {requestToJoin} from 'actions/user'
 
 import ScrollNavBar from 'components/navigation/ScrollNavBar'
 
+import {showEditOptions} from 'utils/managerutils'
+
 const mapStateToProps = ({ syndicate, horse, auth }) => ({
   horseInfo: {
     ...horse.horseInfo
@@ -141,7 +143,7 @@ const HorseViewHoc = (WrapperComponent) => {
       return (
         <View title={capitalize(name || '')} notPrefixed>
           <div>
-            <ScrollNavBar data={syndicateInfo} />
+            {!showEditOptions() && <ScrollNavBar data={syndicateInfo} />}
             <RenderComponent
               data={horseProps}
               {...restOfProps}
