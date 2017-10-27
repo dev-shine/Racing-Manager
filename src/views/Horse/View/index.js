@@ -43,8 +43,7 @@ const mapStateToProps = ({ syndicate, horse, auth }) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  getHorseInfo: () => {
-    const slug = ownProps.match.params.slug
+  getHorseInfo: (slug = ownProps.match.params.slug) => {
     return dispatch(fetchHorseInfo(slug))
   },
   getSyndicateInfo: (data) => {
@@ -75,6 +74,12 @@ const HorseViewHoc = (WrapperComponent) => {
 
     componentWillUnmount () {
       this.props.clearHorseData()
+    }
+
+    componentWillReceiveProps (newProps) {
+      if (this.props.match.params.slug !== newProps.match.params.slug) {
+        this.props.getHorseInfo(newProps.match.params.slug)
+      }
     }
 
     render () {
