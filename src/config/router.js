@@ -60,7 +60,7 @@ const router = (
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 
             <AuthRoute exact path='/syndicate' component={PrivateSyndicate} redirectPath='/' />
-            <AuthRoute exact path='/syndicate/:slug' component={PrivateSyndicate} redirect={PrivateSyndicate} />
+            <AuthRoute exact path='/syndicate/:slug' component={PrivateSyndicate} redirectpath='/' />
             <AuthRoute exact path='/syndicate/:slug/edit' component={PrivateSyndicate} redirectPath='/404' />
 
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
