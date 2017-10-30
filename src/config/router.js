@@ -23,6 +23,10 @@ import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import ManagerDashboardBilling from 'views/ManagerDashboard/ManagerDashboardBilling'
 import BrowseHorses from 'views/BrowseHorses'
 import RegistrationExistingSyndicate from 'views/Registration/RegisterExistingSyndicate'
+import RegisterSyndicate from 'views/Registration/RegisterSyndicate'
+import RegisterSyndicateName from 'views/Registration/RegisterSyndicateName'
+import RegisterSyndicateColours from 'views/Registration/RegisterSyndicateColours'
+import RegisterSyndicateMembers from 'views/Registration/RegisterSyndicateMembers'
 
 import Account from 'views/Account/AccountLayout'
 
@@ -47,6 +51,12 @@ const router = (
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
             <AuthRoute path='/register-existing-syndicate' component={RegistrationExistingSyndicate} redirectPath='/' />
+
+            <AuthRoute path='/register-syndicate' component={RegisterSyndicate} redirectPath='/' />
+            <AuthRoute path='/register-syndicate-name' component={RegisterSyndicateName} redirectPath='/' />
+            <AuthRoute path='/register-syndicate-colours' component={RegisterSyndicateColours} redirectPath='/' />
+            <AuthRoute path='/register-syndicate-members' component={RegisterSyndicateMembers} redirectPath='/' />
+
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
             <AuthRoute path='/manager-dashboard/billing' component={ManagerDashboardBilling} redirectPath='/' />
 

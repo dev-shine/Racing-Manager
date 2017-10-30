@@ -10,6 +10,7 @@ import login from './login'
 import auth from './auth'
 import registrationConfirmation from './registrationconfirmation'
 import registerExistingSyndicate from './registerExistingSyndicate'
+import registerSyndicate from './registerSyndicate'
 import dashboard from './dashboard'
 import account from './account'
 import toast from './toast'
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   feedComments,
   news,
   registerExistingSyndicate,
+  registerSyndicate,
   managerDashboardBilling,
 
   /* submitting data for feed posts & feed commenting */

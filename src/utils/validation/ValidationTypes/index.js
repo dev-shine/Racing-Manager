@@ -402,7 +402,7 @@ export const DOUBLE_SPACES = (value) => DOUBLE_SPACES_REG.test(value)
 *  @param { string } value
 *  @return { boolean }
 */
-export const TRAILING_SPACES = (value) => !value.match(TRAILING_SPACES_REG)
+export const TRAILING_SPACES = (value) => typeof value !== 'undefined' ? !value.match(TRAILING_SPACES_REG) : true
 
 /**
  * @param value
