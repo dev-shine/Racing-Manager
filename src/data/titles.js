@@ -13,6 +13,7 @@ export const REGISTER_SYNDICATE = 'Register syndicate'
 export const REGISTER_SYNDICATE_NAME = 'Register syndicate name'
 export const REGISTER_SYNDICATE_COLOURS = 'Register syndicate colours'
 export const REGISTER_SYNDICATE_MEMBERS = 'Register syndicate members'
+export const CREATE_NEW_SYNDICATE = 'Create a new syndicate'
 export const MANAGER_DASHBOARD_BILLING = "ManagerDashboard's billing"
 export const MANAGER_DASHBOARD_STYLE = "ManagerDashboard's style"
 export const MANAGER_DASHBOARD_PEOPLE = "ManagerDashboard's people"

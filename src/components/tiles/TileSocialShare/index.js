@@ -17,6 +17,7 @@ const TileSocialShare = (props) => {
     className,
     modifier,
     shareText,
+    id,
     onClose,
     show
   } = props
@@ -26,28 +27,65 @@ const TileSocialShare = (props) => {
   return (
     <FadeIn>
       {
-      show ? (
-        <div className={modifiedClassNames} onClick={stopPropagation}>
-          <div className='tile-social-share__container'>
-            <div className='tile-social-share__social-icons'>
-              <SocialShare
-                target='_blank'
-                modifier='whatsapp'
-                shareData={{
-                  text: shareText
-                }} />
+        show ? (
+          <div className={modifiedClassNames} onClick={stopPropagation}>
+            <div className='tile-social-share__container'>
+              <div className='tile-social-share__social-icons'>
+                <div className='tile-footer__item'>
+                  <SocialShare
+                    target='_blank'
+                    modifier='whatsapp'
+                    shareData={{
+                      text: shareText,
+                      url: `${document.location.origin}/dashboard?id=${id}`
+                    }} />
+                  <p className='tile-footer__text micro'></p>
+                </div>
+
+                <div className='tile-footer__item'>
+                  <SocialShare
+                    target='_blank'
+                    modifier='facebook'
+                    shareData={{
+                      quote: shareText,
+                      url: `${document.location.origin}/dashboard?id=${id}`
+                    }} />
+                  <p className='tile-footer__text micro'></p>
+                </div>
+
+                <div className='tile-footer__item'>
+                  <SocialShare
+                    target='_blank'
+                    modifier='twitter'
+                    shareData={{
+                      title: shareText,
+                      url: `${document.location.origin}/dashboard`,
+                      id: `${id}`
+                    }} />
+                  <p className='tile-footer__text micro'></p>
+                </div>
+
+                <div className='tile-footer__item'>
+                  <SocialShare
+                    target='_blank'
+                    modifier='email'
+                    shareData={{
+                      body: (shareText.concat(`${document.location.origin}/dashboard?id=`))
+                    }} />
+                  <p className='tile-footer__text micro'></p>
+                </div>
+              </div>
+            </div>
+            <div className='tile-social-share__close' onClick={onClose}>
+              <Icon
+                className='tile-social-share__close-icon'
+                modifier='close'/>
             </div>
           </div>
-          <div className='tile-social-share__close' onClick={onClose}>
-            <Icon
-              className='tile-social-share__close-icon'
-              modifier='close'/>
-          </div>
-        </div>
 
-      )
-      : null
-    }
+        )
+          : null
+      }
     </FadeIn>
   )
 }

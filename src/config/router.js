@@ -37,6 +37,7 @@ import PrivateHorseInformation from 'views/Horse/Private/HorseInformation'
 import PublicHorse from 'views/Horse/Public/HorseOverview'
 
 import Syndicate from 'views/Syndicate/SyndicateMain'
+import SyndicateCreation from 'views/Syndicate/SyndicateCreation'
 import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
@@ -51,12 +52,11 @@ const router = (
             <Route path='/registration-successful' component={RegistrationSuccessful} />
             <Route path='/browse-horses' component={BrowseHorses} />
             <AuthRoute path='/register-existing-syndicate' component={RegistrationExistingSyndicate} redirectPath='/' />
-
             <AuthRoute path='/register-syndicate' component={RegisterSyndicate} redirectPath='/' />
             <AuthRoute path='/register-syndicate-name' component={RegisterSyndicateName} redirectPath='/' />
             <AuthRoute path='/register-syndicate-colours' component={RegisterSyndicateColours} redirectPath='/' />
             <AuthRoute path='/register-syndicate-members' component={RegisterSyndicateMembers} redirectPath='/' />
-
+            <AuthRoute path='/create-new-syndicate' component={SyndicateCreation} redirectPath='/' />
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
             <AuthRoute path='/manager-dashboard/billing' component={ManagerDashboardBilling} redirectPath='/' />
 
@@ -68,7 +68,7 @@ const router = (
             <AuthRoute path='/account' component={Account} redirectPath='/' />
 
             <AuthRoute exact path='/syndicate' component={PrivateSyndicate} redirectPath='/' />
-            <AuthRoute exact path='/syndicate/:slug' component={PrivateSyndicate} redirect={PrivateSyndicate} />
+            <AuthRoute exact path='/syndicate/:slug' component={PrivateSyndicate} redirectpath='/' />
             <AuthRoute exact path='/syndicate/:slug/edit' component={PrivateSyndicate} redirectPath='/404' />
 
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />

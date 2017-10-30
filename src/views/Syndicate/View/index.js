@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import View from 'components/routing/View'
 
+import { withRouter } from 'react-router-dom'
+
 import titleize from 'titleize'
 
 import { fetchSyndicateInfo, clearSyndicateData } from 'actions/syndicate'
@@ -90,10 +92,10 @@ const SyndicateViewHoc = (WrapperComponent) => {
     }
   }
 
-  return connect(
+  return withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-  )(SyndicateView)
+  )(SyndicateView))
 }
 
 export default SyndicateViewHoc

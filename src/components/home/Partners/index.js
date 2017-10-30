@@ -43,7 +43,7 @@ const Partners = props => {
   const slides = () => {
     let result = []
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 6; i++) {
       result.push(
         <div
           key={i}

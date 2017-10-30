@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import queryString from 'query-string'
+
 import TextButton from 'components/buttons/TextButton'
 
 import HeaderSection from 'components/dashboard/HeaderSection'
@@ -29,6 +31,7 @@ export class MemberDashboard extends Component {
   }
 
   render () {
+    const parsed = queryString.parse(this.props.location.search)
     const { dashboardData, fetching } = this.props
     const { ownership } = dashboardData
 
@@ -45,7 +48,8 @@ export class MemberDashboard extends Component {
               My Racing News
             </h1>
             <div className='member-dashboard__feed'>
-              <NewsGallery />
+              <NewsGallery
+                queryid={parsed.id} />
             </div>
           </div>
         </div>

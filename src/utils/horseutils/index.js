@@ -42,12 +42,12 @@ const horsePostType = (attachment) => {
 }
 
 /**
- *  formatHorseData
+ *  formatMessagesDate
  *  @description Utility for modifying the created at.
  *  @param  {Object} data
  *  @return {Object}
  */
-export const formatHorseData = (data = {}) => {
+export const formatMessagesDate = (data = {}) => {
   const { messages } = data
 
   return Promise.resolve({

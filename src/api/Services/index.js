@@ -1,5 +1,7 @@
 import { post, get, put, patch } from 'api/Request'
 
+import { formatMessagesDate } from 'utils/horseutils'
+
 import * as SERVICE_TYPES from 'api/ServiceTypes'
 
 export const searchForHorses = (data) => {
@@ -27,6 +29,7 @@ export const getHorseInfo = (data) => {
     url: SERVICE_TYPES.HORSE_SLUG,
     ...data
   })
+    .then(formatMessagesDate)
 }
 
 export const getHorseStatisticsResultsInfo = (token, name) => {
@@ -88,6 +91,7 @@ export const getSyndicateInfo = (data) => {
     url: SERVICE_TYPES.SYNDICATE_SLUG,
     ...data
   })
+    .then(formatMessagesDate)
 }
 
 export const updateSyndicateData = (data) => {
@@ -148,9 +152,22 @@ export const requestToJoin = (data) => {
   })
 }
 
+export const changePassword = (data) => {
+  return put({
+    url: SERVICE_TYPES.CHANGE_PASSWORD,
+    ...data
+  })
+}
+
 export const getNews = () => {
   return get({
     url: SERVICE_TYPES.NEWS
+  })
+}
+
+export const getNewsById = (id) => {
+  return get({
+    url: `${SERVICE_TYPES.NEWS}/${id}`
   })
 }
 

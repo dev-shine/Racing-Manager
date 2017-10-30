@@ -31,7 +31,7 @@ SyndicateBenefits.propTypes = {
   title: PropTypes.string,
   titleModifier: PropTypes.string,
   className: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.array
 }
 
 SyndicateBenefits.defaultProps = {

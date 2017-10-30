@@ -65,7 +65,7 @@ class RegistrationSuccessful extends PureComponent {
                   </p>
                 </div>
               </div>
-              <div className='row'>
+              {/*<div className='row'>
                 <div className='col-xs-12 col-sm-8 col-md-6 registration-successful__bottom'>
                   <h4 className='regular'>
                     {'Haven\'t received your email?'}
@@ -74,7 +74,7 @@ class RegistrationSuccessful extends PureComponent {
                     className='registration-successful__resend-button'
                     text='resend email' />
                 </div>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>

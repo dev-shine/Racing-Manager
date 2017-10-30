@@ -1,6 +1,6 @@
 import { getSyndicateInfo, updateSyndicateData } from 'api/Services'
 
-import { formatHorseData } from 'utils/horseutils'
+import { formatMessagesDate } from 'utils/horseutils'
 
 import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
