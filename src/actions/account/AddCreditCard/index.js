@@ -27,9 +27,9 @@ export const submitCardToServer = data => {
       type: AUTHENTICATED_REQUEST,
       types: [submitCard, submittedCard, failedToSubmitCard],
       endpoint: addCreditCard,
-      payload: {
+      payload: JSON.stringify({
         tokenId: data.token.card.id
-      }
+      })
     })
       .then((response) => {
         console.log(response)
