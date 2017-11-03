@@ -8,6 +8,10 @@ export const RECEIVED_MEMBER_DASHBOARD_DATA = 'RECEIVED_MEMBER_DASHBOARD_DATA'
 
 export const FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA = 'FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA'
 
+export const UPDATE_MESSAGE_SENDER = 'UPDATE_MESSAGE_SENDER'
+
+export const UPDATE_MESSAGE_RECEIVER = 'UPDATE_MESSAGE_RECEIVER'
+
 export const fetchMemberDashboardData = () => ({
   type: FETCH_MEMBER_DASHBOARD_DATA
 })
@@ -20,6 +24,16 @@ export const receivedMemberDashboardData = (data) => ({
 export const failedToFetchMemberDashboardData = (error) => ({
   type: FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA,
   error
+})
+
+export const updateMessageReceiver = (data) => ({
+  type: UPDATE_MESSAGE_RECEIVER,
+  data
+})
+
+export const updateMessageSender = (data) => ({
+  type: UPDATE_MESSAGE_SENDER,
+  data
 })
 
 /**

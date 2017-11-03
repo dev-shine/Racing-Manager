@@ -16,6 +16,8 @@ import { MEMBER_DASHBOARD as title } from 'data/titles'
 
 import NewsGallery from 'containers/News/NewsGallery'
 
+import MessageSection from 'containers/DashboardMessage'
+
 /**
  *  @class
  *  @name MemberDashboard
@@ -42,6 +44,11 @@ export class MemberDashboard extends Component {
             <HeaderSection
               isFetching={fetching}
               data={ownership} />
+          </div>
+          <div className='container'>
+            <div className='member-dashboard__message' >
+              <MessageSection />
+            </div>
           </div>
           <div className='member-dashboard__feed-section container'>
             <h1 className='member-dashboard__title uppercase'>

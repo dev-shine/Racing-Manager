@@ -36,7 +36,9 @@ const rootReducer = combineReducers({
 
   /* submitting data for feed posts & feed commenting */
   horseFeedPost: reducerFactory(submitFeedPost, 'horseFeedPost'),
-  submitFeedComments: reducerFactory(submitFeedPost, 'submitFeedComments')
+  submitFeedComments: reducerFactory(submitFeedPost, 'submitFeedComments'),
+
+  dashboardFeedPost: reducerFactory(submitFeedPost, 'dashboardFeedPost')
 })
 
 export default rootReducer
