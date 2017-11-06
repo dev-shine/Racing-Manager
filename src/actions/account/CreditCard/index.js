@@ -1,3 +1,11 @@
+import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
+
+import {
+  addCreditCard,
+  getCreditCards,
+  deleteCreditCard
+} from 'api/Services/'
+
 export const FORM_UPDATE = '@CREDIT_CARD/FORM_UPDATE'
 
 export const FORM_RESET = '@CREDIT_CARD/FORM_RESET'
@@ -48,5 +56,105 @@ export const updateFormError = (errors, name, reducerName) => ({
 export const submitFormData = (data, reducerName) => {
   return (dispatch, getState) => {
     return dispatch(submitForm())
+  }
+}
+
+/* CARD GET CARDS */
+
+export const GETTING_CARDS = '@CREDIT_CARD/GETTING_CARDS'
+export const GOT_CARDS = '@CREDIT_CARD/GOT_CARDS'
+export const GETTING_CARDS_FAILED = '@CREDIT_CARD/GETTING_CARDS_FAILED'
+
+export const gettingCards = () => ({
+  type: GETTING_CARDS
+})
+
+export const gotCards = data => ({
+  type: GOT_CARDS,
+  data
+})
+
+export const failedToGetCards = (error) => ({
+  type: GETTING_CARDS_FAILED,
+  error
+})
+
+export const fetchCards = () => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [gettingCards, gotCards, failedToGetCards],
+      endpoint: getCreditCards
+    })
+  }
+}
+
+/* ADD CARD */
+
+export const CARD_SUBMITTING = '@CREDIT_CARD/CARD_SUBMITTING'
+export const CARD_SUBMITTED = '@CREDIT_CARD/CARD_SUBMITTED'
+export const CARD_SUBMITTING_FAILED = '@CREDIT_CARD/CARD_SUBMITTING_FAILED'
+
+export const submitCard = () => ({
+  type: CARD_SUBMITTING
+})
+
+export const submittedCard = () => ({
+  type: CARD_SUBMITTED
+})
+
+export const failedToSubmitCard = (error) => ({
+  type: CARD_SUBMITTING_FAILED,
+  error
+})
+
+export const submitCardToServer = data => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [submitCard, submittedCard, failedToSubmitCard],
+      endpoint: addCreditCard,
+      payload: JSON.stringify({
+        tokenId: data.token.id
+      })
+    })
+      .then(() => {
+        dispatch(fetchCards())
+      })
+  }
+}
+
+/* DELETE CARD */
+
+export const CARD_DELETE_SUBMITTING = '@CREDIT_CARD/CARD_DELETE_SUBMITTING'
+export const CARD_DELETE_SUBMITTED = '@CREDIT_CARD/CARD_DELETE_SUBMITTED'
+export const CARD_DELETE_SUBMITTING_FAILED = '@CREDIT_CARD/CARD_DELETE_SUBMITTING_FAILED'
+
+export const submitCardDelete = () => ({
+  type: CARD_DELETE_SUBMITTING
+})
+
+export const submittedCardDelete = () => ({
+  type: CARD_DELETE_SUBMITTED
+})
+
+export const failedToSubmitCardDelete = (error) => ({
+  type: CARD_DELETE_SUBMITTING_FAILED,
+  error
+})
+
+export const deleteCard = cardAccountId => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [submitCardDelete, submittedCardDelete, failedToSubmitCardDelete],
+      endpoint: deleteCreditCard,
+      payload: JSON.stringify({
+        cardAccountId
+      })
+    })
+      .then(() => {
+        dispatch(fetchCards())
+      })
   }
 }

@@ -2,7 +2,7 @@ import {
   CARD_SUBMITTING,
   CARD_SUBMITTED,
   CARD_SUBMITTING_FAILED
-} from 'actions/account/AddCreditCard'
+} from 'actions/account/CreditCard'
 
 import update from 'immutability-helper'
 

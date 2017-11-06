@@ -16,11 +16,8 @@ import {
   updateForm as updateCreditCardForm,
   updateFormError as updateCreditCardFormError,
   resetForm as resetCreditCardForm,
-} from 'actions/account/CreditCard'
-
-import {
   submitCardToServer
-} from 'actions/account/addCreditCard'
+} from 'actions/account/CreditCard'
 
 import { billingAddressValidators } from 'utils/validation/BillingAddress'
 import { creditCardValidators } from 'utils/validation/CreditCard'

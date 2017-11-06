@@ -4,7 +4,8 @@ import {
   FORM_SUBMITTING,
   FORM_ERROR,
   FORM_SUBMITTING_FAILED,
-  FORM_SUBMITTED
+  FORM_SUBMITTED,
+  GOT_CARDS
 } from 'actions/account/CreditCard'
 
 import update from 'immutability-helper'
@@ -15,17 +16,9 @@ import update from 'immutability-helper'
 *  @description - Initial state
 */
 const initialState = {
-  cardType: '',
   cardName: '',
-  cardNumber: '',
-  cardExpiry: '',
-  isSubmitting: false,
-  submitError: false,
   errors: {
-    cardType: [],
-    cardName: [],
-    cardNumber: [],
-    cardExpiry: []
+    cardName: []
   }
 }
 
@@ -91,6 +84,13 @@ const reducer = (state = initialState, action) => {
         },
         errors: {
           $merge: action.error.errors || []
+        }
+      })
+
+    case GOT_CARDS:
+      return update(state, {
+        cards: {
+          $set: action.data
         }
       })
 
