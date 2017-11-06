@@ -4,41 +4,30 @@ import {addCreditCard} from 'api/Services/'
 
 import { addToastSuccess, addToastError } from 'actions/toast'
 
-export const FORM_SUBMITTING = '@ADD_CREDIT_CARD/FORM_SUBMITTING'
-export const FORM_SUBMITTED = '@ADD_CREDIT_CARD/FORM_SUBMITTED'
-export const FORM_SUBMITTING_FAILED = '@ADD_CREDIT_CARD/FORM_SUBMITTING_FAILED'
+export const CARD_SUBMITTING = '@ADD_CREDIT_CARD/CARD_SUBMITTING'
+export const CARD_SUBMITTED = '@ADD_CREDIT_CARD/CARD_SUBMITTED'
+export const CARD_SUBMITTING_FAILED = '@ADD_CREDIT_CARD/CARD_SUBMITTING_FAILED'
 
 export const submitCard = () => ({
-  type: FORM_SUBMITTING
+  type: CARD_SUBMITTING
 })
 
 export const submittedCard = () => ({
-  type: FORM_SUBMITTED
+  type: CARD_SUBMITTED
 })
 
 export const failedToSubmitCard = (error) => ({
-  type: FORM_SUBMITTING_FAILED,
+  type: CARD_SUBMITTING_FAILED,
   error
 })
 
 export const submitCardToServer = data => {
-  return (dispatch, getState) => {
-    return dispatch({
-      type: AUTHENTICATED_REQUEST,
-      types: [submitCard, submittedCard, failedToSubmitCard],
-      endpoint: addCreditCard,
-      payload: JSON.stringify({
-        tokenId: data.token.id
-      })
+  return {
+    type: AUTHENTICATED_REQUEST,
+    types: [submitCard, submittedCard, failedToSubmitCard],
+    endpoint: addCreditCard,
+    payload: JSON.stringify({
+      tokenId: data.token.id
     })
-      .then((response) => {
-        console.log(response)
-        return Promise.resolve()
-      })
-      .catch((error) => {
-        if (error && error.message) {
-          dispatch(addToastError(error.message))
-        }
-      })
   }
 }
