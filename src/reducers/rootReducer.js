@@ -17,6 +17,7 @@ import feedComments from './feedcomments'
 import news from './news'
 import managerDashboardBilling from './managerdashboardbilling'
 import submitFeedPost from './submitfeedpost'
+import onboardingSyndicateJourney from './onboardingSyndicateJourney'
 
 const rootReducer = combineReducers({
   register,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   news,
   registerExistingSyndicate,
   managerDashboardBilling,
+  onboardingSyndicateJourney,
 
   /* submitting data for feed posts & feed commenting */
   horseFeedPost: reducerFactory(submitFeedPost, 'horseFeedPost'),
