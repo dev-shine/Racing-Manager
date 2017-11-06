@@ -6,6 +6,8 @@ import {
   deleteCreditCard
 } from 'api/Services/'
 
+import { addToastSuccess, addToastError } from 'actions/toast'
+
 export const FORM_UPDATE = '@CREDIT_CARD/FORM_UPDATE'
 
 export const FORM_RESET = '@CREDIT_CARD/FORM_RESET'
@@ -86,6 +88,9 @@ export const fetchCards = () => {
       types: [gettingCards, gotCards, failedToGetCards],
       endpoint: getCreditCards
     })
+      .catch(() => {
+        dispatch(addToastSuccess('There was an error fetching your cards'))
+      })
   }
 }
 
@@ -120,6 +125,8 @@ export const submitCardToServer = data => {
     })
       .then(() => {
         dispatch(fetchCards())
+        dispatch(addToastSuccess('Card Successfully Added'))
+        Promise.resolve()
       })
   }
 }
@@ -155,6 +162,8 @@ export const deleteCard = cardAccountId => {
     })
       .then(() => {
         dispatch(fetchCards())
+        dispatch(addToastSuccess('Card successfully deleted'))
+        Promise.resolve()
       })
   }
 }

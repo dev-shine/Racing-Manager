@@ -47,6 +47,9 @@ const reducer = (state = initialState, action) => {
       return update(state, {
         submitting: {
           $set: false
+        },
+        cardName: {
+          $set: ''
         }
       })
 

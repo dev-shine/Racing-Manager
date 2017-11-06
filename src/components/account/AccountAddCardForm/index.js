@@ -23,7 +23,8 @@ class AccountAddCardForm extends PureComponent {
 
     this.state = {
       showBilling: false,
-      cardElementComplete: false
+      cardElementComplete: false,
+      _key: Math.random()
     }
 
     this.showBillingForm = this.showBillingForm.bind(this)
@@ -59,9 +60,25 @@ class AccountAddCardForm extends PureComponent {
   }
 
   handleSubmitCard () {
-    const {stripe, submitCardToServer} = this.props
-    stripe.createToken()
+    const {stripe, submitCardToServer, creditCardInfo, billingAddressInfo} = this.props
+    const cardData = {
+      name: creditCardInfo.values.cardName,
+      address_line1: billingAddressInfo.values.addressOne,
+      address_line2: billingAddressInfo.values.addressTwo,
+      address_city: billingAddressInfo.values.townCity,
+      address_country: billingAddressInfo.values.country,
+      address_zip: billingAddressInfo.values.postCode
+    }
+
+    stripe.createToken({type: 'card', card: cardData})
       .then(submitCardToServer)
+      .then(() => {
+        this.setState({
+          _key: Math.random(),
+          showBilling: false,
+          cardElementComplete: false
+        })
+      })
       .catch((e) => {
         console.log(e)
       })
@@ -70,7 +87,8 @@ class AccountAddCardForm extends PureComponent {
   render () {
     const {
       showBilling,
-      cardElementComplete
+      cardElementComplete,
+      _key
     } = this.state
 
     const {
@@ -80,10 +98,25 @@ class AccountAddCardForm extends PureComponent {
       creditCardActions = {}
     } = this.props
 
+    const billingAddressInfoErrors = billingAddressInfo.errors
+
+    const billingAddressInfoValues = billingAddressInfo.values
+
     const cardDetailsValid = (cardElementComplete && creditCardInfo.errors.cardName.length === 0)
 
+    const billingDetailsValid = (
+      billingAddressInfoErrors.addressOne.length === 0 &&
+      billingAddressInfoErrors.country.length === 0 &&
+      billingAddressInfoErrors.postCode.length === 0 &&
+      billingAddressInfoErrors.townCity.length === 0 &&
+      billingAddressInfoValues.addressOne.length > 0 &&
+      billingAddressInfoValues.country.length > 0 &&
+      billingAddressInfoValues.postCode.length > 0 &&
+      billingAddressInfoValues.townCity.length > 0
+    )
+
     return (
-      <CardView className='account-card-form'>
+      <CardView className='account-card-form' key={`ADD_CC_${_key}`}>
         <CardFrame>
           <CardHeading>
             <div className='account-card-form__form-heading form__group'>
@@ -107,7 +140,7 @@ class AccountAddCardForm extends PureComponent {
               <TextButton
                 onClick={this.handleSubmitCard}
                 modifier={['fluid']}
-                isDisabled={false}
+                isDisabled={!billingDetailsValid}
                 text='Save Card'
               />
             ) : (

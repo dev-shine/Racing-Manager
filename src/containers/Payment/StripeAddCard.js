@@ -71,10 +71,7 @@ const mapStateToProps = (state, ownProps) => {
     },
     creditCardInfo: {
       values: {
-        cardType: creditCard.cardType,
-        cardName: creditCard.cardName,
-        cardNumber: creditCard.cardNumber,
-        cardExpiry: creditCard.cardExpiry
+        cardName: creditCard.cardName
       },
       errors: creditCard.errors,
       validators: creditCardValidators
