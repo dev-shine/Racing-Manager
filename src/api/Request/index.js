@@ -14,9 +14,10 @@ const request = params => {
   let method = params.method || 'GET'
   let qs = ''
   let body
-  let headers = params.headers || {
+  let headers = {
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    ...params.headers
   }
 
   if (['GET', 'DELETE'].indexOf(method) > -1) {
