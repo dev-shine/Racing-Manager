@@ -40,6 +40,7 @@ class ScrollNavBar extends Component {
     const {scrollDirection} = this.state
     const {data = {}} = this.props
     const {name, horses = [], slug} = data
+
     return (
       <div className={'scroll-nav-bar scroll-nav-bar__container scroll-nav-bar__' + scrollDirection}>
         <ul className='scroll-nav-bar__links'>

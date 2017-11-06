@@ -14,6 +14,8 @@ import App from './containers/App'
 
 import { AppContainer } from 'react-hot-loader'
 
+import 'assets/images/sharing.jpg'
+
 require('smoothscroll-polyfill').polyfill()
 
 if (isDev) {

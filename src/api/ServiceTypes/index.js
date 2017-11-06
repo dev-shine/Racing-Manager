@@ -9,6 +9,8 @@ export const USER_CARD = `${BASE_URL}/user/card`
 
 export const JOIN_REQUEST = `${USER}/join-request`
 
+export const CHANGE_PASSWORD = `${USER}/change-password`
+
 export const REGISTRATION = `${USER}/register`
 
 export const LOGIN = `${USER}/login`

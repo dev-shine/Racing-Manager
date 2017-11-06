@@ -104,6 +104,7 @@ class HorsePublicOverview extends Component {
                 <HorseCtaCard
                   isLoggedIn={isLoggedIn}
                   data={data}
+                  url={document.location.href}
                   requestToJoin={this.requestToJoin}/>
               </div>
             </div>

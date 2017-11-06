@@ -1,7 +1,9 @@
 import {
   FETCHING_NEWS,
   FETCHED_NEWS,
-  FAILED_TO_FETCH_NEWS
+  FAILED_TO_FETCH_NEWS,
+  FETCHING_NEWS_BY_ID,
+  FETCHED_NEWS_BY_ID
 } from 'actions/news'
 
 import {
@@ -13,7 +15,9 @@ import update from 'immutability-helper'
 const initialState = {
   data: [],
   fetching: false,
-  error: null
+  error: null,
+  dataById: {},
+  fetchingById: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +35,26 @@ const reducer = (state = initialState, action) => {
           $set: false
         },
         data: {
+          $set: action.news
+        },
+        error: {
+          $set: null
+        }
+      })
+
+    case FETCHING_NEWS_BY_ID:
+      return update(state, {
+        fetchingById: {
+          $set: true
+        }
+      })
+
+    case FETCHED_NEWS_BY_ID:
+      return update(state, {
+        fetchingById: {
+          $set: false
+        },
+        dataById: {
           $set: action.news
         },
         error: {

@@ -159,9 +159,22 @@ export const requestToJoin = (data) => {
   })
 }
 
+export const changePassword = (data) => {
+  return put({
+    url: SERVICE_TYPES.CHANGE_PASSWORD,
+    ...data
+  })
+}
+
 export const getNews = () => {
   return get({
     url: SERVICE_TYPES.NEWS
+  })
+}
+
+export const getNewsById = (id) => {
+  return get({
+    url: `${SERVICE_TYPES.NEWS}/${id}`
   })
 }
 
