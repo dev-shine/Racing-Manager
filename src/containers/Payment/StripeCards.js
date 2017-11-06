@@ -6,11 +6,14 @@ import {fetchCards, deleteCard} from 'actions/account/CreditCard'
 
 import AccountCreditCard from 'components/account/AccountCreditCard'
 
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
+
 class StripeCards extends Component {
   render () {
     const {
       cards = [],
-      deleteCard
+      deleteCard,
+      submitting
     } = this.props
 
     return (
@@ -27,6 +30,7 @@ class StripeCards extends Component {
             </div>
           ))}
         </div>
+        <AjaxLoader isVisible={submitting} />
       </div>
     )
   }
@@ -53,7 +57,8 @@ const mapStateToProps = ({account}, ownProps) => {
   } = account.addCreditCard
 
   return {
-    cards: creditCard.cards
+    cards: creditCard.cards,
+    submitting: creditCard.submitting
   }
 }
 
