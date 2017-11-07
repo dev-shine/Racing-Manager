@@ -102,7 +102,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     clearForm: () => {
       dispatch(resetBillingForm(billingReducerName))
-      dispatch(resetCreditCardForm(creditCardReducerName))
     },
     submitCardToServer: (token) => {
       dispatch(submitCardToServer(token))

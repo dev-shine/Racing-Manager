@@ -24,7 +24,7 @@ class AccountPaymentMethods extends PureComponent {
               </h2>
               <div className='account-payment-methods__section'>
                 <h4 className='capitalize'>
-                  Sending
+                  Add a new card
                 </h4>
               </div>
 
@@ -42,7 +42,6 @@ class AccountPaymentMethods extends PureComponent {
                 <AccountAddCreditCardForm />
               </div>
               <div className='col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
-                <AccountAddPaymentMethodCard />
               </div>
             </div>
           </div>
@@ -51,14 +50,8 @@ class AccountPaymentMethods extends PureComponent {
             <div className='col-lg-6 col-md-8 col-sm-10 col-xs-12'>
               <div className='account-payment-methods__section'>
                 <h4 className='capitalize'>
-                  Receiving
+                  Cards linked to your account
                 </h4>
-              </div>
-
-              <div className='account-payment-methods__section'>
-                <p className='small'>
-                  Here you are able to check, update and add your TRM personal information for a more tailored experience.
-                </p>
               </div>
             </div>
           </div>
