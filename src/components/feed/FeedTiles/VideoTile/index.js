@@ -90,7 +90,8 @@ VideoTile.propTypes = {
   name: PropTypes.string,
   date: PropTypes.string,
   text: PropTypes.string,
-  src: PropTypes.string
+  src: PropTypes.string,
+  playerId: PropTypes.string
 }
 
 /**
