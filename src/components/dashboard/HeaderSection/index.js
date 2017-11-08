@@ -306,9 +306,9 @@ class HeaderSection extends PureComponent {
                     }, {
                       name: 'Manager',
                       value: horse.owner.name
-                    }, {
-                      name: 'Ownership',
-                      value: `${roundNumberWithoutZeros(calcPercent(horse.shares.owned, horse.shares.total))}%`
+                    // }, {
+                    //   name: 'Ownership',
+                    //   value: `${roundNumberWithoutZeros(calcPercent(horse.shares.owned, horse.shares.total))}%`
                     }]}
                     extra={{
                       url: `/horse/${horse.slug}`
