@@ -63,6 +63,7 @@ export const updateHorseData = (data) => {
 }
 
 export const performHorseUpdate = (data) => {
+  console.log(data)
   return post({
     url: SERVICE_TYPES.MESSAGE,
     ...data
@@ -160,18 +161,22 @@ export const getUploadedData = () => {
   })
 }
 
-export const getAccountNotification = () => {
-  return Promise.resolve({
-    email: true,
-    text: true,
-    notification: false
+export const getAccountNotification = (token) => {
+  return get({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
+    headers: {
+      'Authorization': `JWT ${token}`
+    }
   })
 }
 
-export const updateAccountNotification = (data) => {
-  return Promise.resolve({
-    email: false,
-    text: true,
-    notification: true
+export const updateAccountNotification = (data, token) => {
+  return put({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
   })
 }

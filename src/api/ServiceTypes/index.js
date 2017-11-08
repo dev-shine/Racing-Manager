@@ -1,5 +1,5 @@
 
-export const ROOT_PATH = 'http://52.51.111.248:3000'
+export const ROOT_PATH = 'http://192.168.0.72:3000'
 
 export const BASE_URL = `${ROOT_PATH}/api/v1`
 
@@ -42,3 +42,5 @@ export const COMMENT = `${MESSAGE}/comment`
 export const NEWS = `${BASE_URL}/news`
 
 export const UPLOADED = `${BASE_URL}/uploaded`
+
+export const ACCOUNT_NOTIFICATION_SETTING = `${USER}/notification`

@@ -8,6 +8,10 @@ import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 
 import { getAccountNotification, updateAccountNotification } from 'api/Services'
 
+import { getItem } from 'utils/storageutils'
+
+import { USER_TOKEN } from 'data/consts'
+
 class AccountNotifications extends PureComponent {
   constructor (props) {
     super(props)
@@ -16,7 +20,7 @@ class AccountNotifications extends PureComponent {
     this.state = {
       email: false,
       text: false,
-      notification: false,
+      apple: false,
       submitting: false,
       error: null,
       resultmessage: false
@@ -28,29 +32,31 @@ class AccountNotifications extends PureComponent {
   }
 
   componentWillMount () {
-    this.getAccountNotification()
+    const token = getItem(USER_TOKEN)
+
+    this.getAccountNotification(token)
   }
 
-  getAccountNotification () {
+  getAccountNotification (token) {
     this.setState({
       submitting: true
     })
-    return getAccountNotification()
+    return getAccountNotification(token)
     .then((result) => {
-      this.setState({ email: result.email, text: result.text, notification: result.notification, submitting: false })
+      this.setState({ email: result.email, text: result.text, apple: result.apple, submitting: false })
     })
     .catch(() => {
       this.setState({ error: 'Failed the setup' })
     })
   }
 
-  updateAccountNotification (data) {
+  updateAccountNotification (data, token) {
     this.setState({
       submitting: true
     })
-    return updateAccountNotification(data)
+    return updateAccountNotification(data, token)
     .then((result) => {
-      this.setState({ email: result.email, text: result.text, notification: result.notification, submitting: false, resultmessage: true })
+      this.setState({ submitting: false, resultmessage: true })
     })
     .catch(() => {
       this.setState({ error: 'Failed the setup'})
@@ -70,8 +76,8 @@ class AccountNotifications extends PureComponent {
   }
 
   toggleNotification () {
-    this.setState(({notification}) => ({
-      notification: !notification
+    this.setState(({apple}) => ({
+      apple: !apple
     }))
   }
 
@@ -79,10 +85,12 @@ class AccountNotifications extends PureComponent {
     const {
       email,
       text,
-      notification,
+      apple,
       submitting,
       resultmessage
     } = this.state
+
+    const token = getItem(USER_TOKEN)
 
     return (
       <div className='account-notifications'>
@@ -120,7 +128,7 @@ class AccountNotifications extends PureComponent {
                   </div>
                   <div className='col-xs-12 col-sm-4 align-middle form__group'>
                     <Checkbox
-                      value={notification}
+                      value={apple}
                       handleChange={this.toggleNotification}
                       label={<span>Apple push notification</span>}
                       name='notification' />
@@ -132,7 +140,7 @@ class AccountNotifications extends PureComponent {
               <div className='account-notifications__section'>
                 <TextButton
                   text='save changes'
-                  onClick={() => this.updateAccountNotification({ email: email, text: text, notification: notification })} />
+                  onClick={() => this.updateAccountNotification({ email: email, text: text, apple: apple }, token)} />
               </div>
             </div>
           </div>
