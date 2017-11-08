@@ -25,7 +25,7 @@ class SyndicateNew extends Component {
           </p>
         </div>
         <div className="new-syndicate-btn">
-          <Link to='/register-new-syndicate'>
+          <Link to='/create-new-syndicate'>
             <TextButton
               text="CREATE A NEW SYNDICATE"
               className="syndicate__button"

@@ -10,6 +10,8 @@ import { Block, Grid } from 'components/layouts/masonry'
 
 import NewsPopupContainer from 'containers/News/NewsPopup'
 
+import NewsPopupByIdContainer from 'containers/News/NewsPopupById'
+
 class NewsGallery extends Component {
   constructor (props) {
     super(props)
@@ -17,6 +19,7 @@ class NewsGallery extends Component {
     this.state = {
       id: null,
       showPopup: false,
+      showPopupById: !!(this.props.queryid),
       itemsShown: 4,
     }
 
@@ -40,7 +43,8 @@ class NewsGallery extends Component {
   closePopup () {
     this.setState({
       id: null,
-      showPopup: false
+      showPopup: false,
+      showPopupById: false
     })
   }
 
@@ -49,27 +53,30 @@ class NewsGallery extends Component {
   }
 
   showMore () {
-    this.setState({itemsShown: this.state.itemsShown + 4});
+    this.setState({itemsShown: this.state.itemsShown + 4})
   }
 
   render () {
     const {
-      tiles
+      tiles,
+      queryid
     } = this.props
 
     const {
       id,
       showPopup,
+      showPopupById,
       itemsShown
     } = this.state
 
-    let currentItem = 0;
+    let currentItem = 0
     let showTiles = []
     while (tiles[currentItem] && currentItem <= itemsShown - 1) {
       showTiles.push(tiles[currentItem])
       currentItem = currentItem + 1
     }
 
+    let canLoadMore = showTiles.length < tiles.length
     return (
       <span>
         <Grid
@@ -91,23 +98,35 @@ class NewsGallery extends Component {
             ))
           }
         </Grid>
-        <TextButton
-          text='Load more'
-          modifier='secondary'
-          className='member-dashboard__more-btn'
-          onClick={this.showMore}
-        />
+        {tiles.length > 0 ? (
+          canLoadMore ? (
+            <TextButton
+              text='Load more'
+              modifier='secondary'
+              className='member-dashboard__more-btn'
+              onClick={this.showMore}
+            />
+          ) : null
+        ) : (
+          <p className='align-center'>There is no updates to display</p>
+        )
+        }
         <NewsPopupContainer
           isOpen={showPopup}
           onClick={this.closePopup}
           newsId={id} />
+        { queryid ? <NewsPopupByIdContainer
+          isOpen={showPopupById}
+          onClick={this.closePopup}
+          newsId={queryid} /> : null }
       </span>
     )
   }
 }
 
 NewsGallery.propTypes = {
-  tiles: PropTypes.array.isRequired
+  tiles: PropTypes.array.isRequired,
+  queryid: PropTypes.string
 }
 
 export default NewsGallery

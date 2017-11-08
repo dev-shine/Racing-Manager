@@ -28,6 +28,9 @@ import { isInViewport } from 'utils/imageutils'
  */
 import debounce from 'utils/debounce'
 
+import ReactJWPlayer from 'react-jw-player';
+
+import { PLAYERSCRIPT } from 'data/consts'
 /**
  *  @class
  *  @name Player
@@ -147,6 +150,10 @@ class Player extends Component {
     })
   }
 
+  handleChildClick (e) {
+    e.stopPropagation()
+  }
+
   render () {
     const {
       children,
@@ -157,7 +164,8 @@ class Player extends Component {
       playsInline,
       src,
       poster,
-      preload
+      preload,
+      playerId
     } = this.props
 
     const {
@@ -168,20 +176,12 @@ class Player extends Component {
     const modifiedClassNames = classNames('video', className, modifier)
 
     return (
-      <div className={modifiedClassNames}>
-        <video
-          onClick={this.toggleVideo}
-          ref={ref => { this.videoRef = ref }}
-          className='video__player'
-          loop={loop}
-          preload={preload}
-          muted={muted}
-          playsInline={playsInline}
-          src={src}
-          poster={poster}>
-          {children}
-        </video>
-        <PlayButton show={showPlayButton} onClick={this.toggleVideo} />
+      <div className={modifiedClassNames} onClick={this.handleChildClick}>
+        <ReactJWPlayer
+          playerId='unique_id'
+          playerScript={PLAYERSCRIPT}
+          file={src}
+        />
       </div>
     )
   }

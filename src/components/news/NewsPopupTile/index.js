@@ -56,6 +56,7 @@ const NewsPopupTile = props => {
     date,
     text,
     src,
+    id,
     title,
     rootPath,
     shareText
@@ -84,7 +85,8 @@ const NewsPopupTile = props => {
         </div>
 
         <TileFooter
-          shareText={shareText} />
+          shareText={shareText}
+          id={id} />
       </div>
     </div>
   )
@@ -113,7 +115,8 @@ NewsPopupTile.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
-  src: PropTypes.string
+  src: PropTypes.string,
+  id: PropTypes.string
 }
 
 /**

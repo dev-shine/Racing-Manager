@@ -10,7 +10,7 @@ const CtaPanelCard = (props) => {
     children
   } = props
 
-  const modifiedClassNames = classNames('cta-panel-card', ['section-shadow section-shadow--tile section-shadow--bottom', className])
+  const modifiedClassNames = classNames('cta-panel-card', className, ['section-shadow section-shadow--tile section-shadow--bottom'])
 
   return (
     <div className={modifiedClassNames}>
