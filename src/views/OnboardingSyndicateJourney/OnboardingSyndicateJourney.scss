@@ -2,6 +2,22 @@
 
   &__header {
 
+    .view-header {
+
+      .view-header-bar {
+
+        .container {
+
+          h1.uppercase {
+
+            @media screen and (max-width: 768px) {
+              margin-left: 5%;
+            }
+          }
+        }
+      }
+    }
+
   }
 
   &__section {

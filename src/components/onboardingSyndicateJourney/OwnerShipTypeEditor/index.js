@@ -21,7 +21,6 @@ class OwnerShipTypeEditor extends Component {
     super(props)
 
     this.state = {
-      isSelectedCheckbox: '',
       isShownOwned: false,
       isShownLeased: false
     }
@@ -32,16 +31,12 @@ class OwnerShipTypeEditor extends Component {
     this.showMoreLeased = this.showMoreLeased.bind(this)
   }
 
-  isSeletedOwned () {
-    this.setState({
-      isSelectedCheckbox: 'owned'
-    })
+  isSeletedOwned (value) {
+    this.props.onSelectOwnerShipTypeItem(value)
   }
 
-  isSeletedLeased () {
-    this.setState({
-      isSelectedCheckbox: 'leased'
-    })
+  isSeletedLeased (value) {
+    this.props.onSelectOwnerShipTypeItem(value)
   }
 
   showMoreOwned () {
@@ -59,15 +54,15 @@ class OwnerShipTypeEditor extends Component {
   render () {
     return (
       <div className="horse-ownership-card">
-        <div className={ this.state.isSelectedCheckbox === 'owned' ? 'horse-ownership-card__owned-selected' : 'horse-ownership-card__owned-unselected' }>
+        <div className={ this.props.value && this.props.value.ownershipType === 'owned' ? 'horse-ownership-card__owned-selected' : 'horse-ownership-card__owned-unselected' }>
           <CardView>
             <SpecCardFrame>
               <CardHeading>
                 <Checkbox
                   label="OWNED"
                   name="owned"
-                  handleChange={() => { this.isSeletedOwned() }}
-                  value={ this.state.isSelectedCheckbox === 'owned' } />
+                  handleChange={() => { this.isSeletedOwned('owned') }}
+                  value={ (this.props.value && this.props.value.ownershipType) === 'owned' } />
                 <TextButton
                   text={ this.state.isShownOwned ? 'Hide' : 'Show More' }
                   modifier='secondary'
@@ -79,15 +74,15 @@ class OwnerShipTypeEditor extends Component {
             </SpecCardFrame>
           </CardView>
         </div>
-        <div className={this.state.isSelectedCheckbox === 'leased' ? 'horse-ownership-card__leased-selected' : 'horse-ownership-card__leased-unselected' }>
+        <div className={(this.props.value && this.props.value.ownershipType) === 'leased' ? 'horse-ownership-card__leased-selected' : 'horse-ownership-card__leased-unselected' }>
           <CardView>
             <SpecCardFrame>
               <CardHeading>
                 <Checkbox
                   label="LEASED"
                   name="leased"
-                  handleChange={() => { this.isSeletedLeased() }}
-                  value={ this.state.isSelectedCheckbox === 'leased' } />
+                  handleChange={() => { this.isSeletedLeased('leased') }}
+                  value={ (this.props.value && this.props.value.ownershipType) === 'leased' } />
                 <TextButton
                   text={ this.state.isShownLeased ? 'Hide' : 'Show More' }
                   modifier='secondary'

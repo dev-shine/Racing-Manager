@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
-import HorseEditor from 'components/input/Input'
+import AutoComplete from 'react-autocomplete'
 
 import {
   CardView,
-  CardFrame,
   SpecCardFrame,
   CardHeading
 } from 'components/cards/FeaturedCard'
@@ -13,34 +12,70 @@ class HorseNameEditor extends Component {
   constructor (props) {
     super(props)
 
-    this.horseNameEdit = this.horseNameEdit.bind(this)
+    this.state = {
+      value: ''
+    }
+
+    this.changeValue = this.changeValue.bind(this)
+    this.onFocus = this.onFocus.bind(this)
+    this.onHorseNameClick = this.onHorseNameClick.bind(this)
+    this.selectHorseName = this.selectHorseName.bind(this)
   }
 
-  horseNameEdit (value) {
-    let horseNum = []
-    for (var i = 1; i <= value; i++) {
-      horseNum.push(
+  changeValue (value) {
+    this.setState({ value: value }, function () {
+      this.props.selectHorseNameEditor(this.state.value)
+    })
+  }
+
+  onFocus () {
+    this.props.onClickHorse(this.props.datakey)
+  }
+
+
+
+  onHorseNameClick () {
+    this.props.onClickHorse(this.props.datakey)
+  }
+
+  selectHorseName (value) {
+    this.setState({value: value}, function () {
+      this.props.selectHorseName(this.state.value)
+    })
+  }
+
+  render () {
+
+    return (
+      <div className="horse-name-card" onClick={this.onHorseNameClick}>
         <div className="horse-name">
           <CardView>
             <SpecCardFrame>
               <CardHeading>
-                <HorseEditor
-                  placeholder="HORSE NAME"/>
+                <AutoComplete
+                  placeholder="Enter a horse name"
+                  getItemValue={(item) => item.label}
+                  items={[
+                    { label: 'apple' },
+                    { label: 'banana' },
+                    { label: 'cherry' }
+                  ]}
+                  renderItem={(item, isHighlighted) =>
+                    <div style={{background: isHighlighted ? '#eee' : 'transparent'}}>
+                      {item.label}
+                    </div>
+                  }
+                  value={this.state.value}
+                  onChange={(e) => { this.changeValue(e.currentTarget.value) }}
+                  inputProps={{
+                    onFocus: this.onFocus
+                  }}
+                  onSelect={(value) => { this.selectHorseName(value) }}
+                />
               </CardHeading>
             </SpecCardFrame>
           </CardView>
         </div>
-      )
-    }
-    return horseNum
-  }
-
-  render () {
-    const horseNameEdit = this.horseNameEdit(this.props.horseCount)
-
-    return (
-      <div className="horse-name-card">
-        { horseNameEdit }
       </div>
     )
 

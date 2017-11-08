@@ -43,7 +43,13 @@ import HorseCounter from 'components/buttons/Counter'
 import TextButton from 'components/buttons/TextButton'
 
 import {
-  horseNumbers
+  horseNumbers,
+  getSeletedHorse,
+  getSelectedHorseNameEditor,
+  getSelectHorseName,
+  getDurationValue,
+  getOwnerShipTypeValue,
+  getTeamSizeValue
 } from 'actions/onboardingSyndicateJourney'
 
 import HorseNameEditor from 'components/onboardingSyndicateJourney/HorseNameEditor'
@@ -68,11 +74,41 @@ class OnboardingSyndicateJourney extends PureComponent {
   constructor (props) {
     super(props)
 
+    this.state = {
+      selectedHorseNum: null
+    }
+
     this.horseNumbers = this.horseNumbers.bind(this)
+    this.horseNameEdit = this.horseNameEdit.bind(this)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    nextProps.selectedHorse && this.setState({ selectedHorseNum: nextProps.selectedHorse })
+  }
+
+  componentWillMount () {
+    // call the API that get the horsecode.
   }
 
   horseNumbers (value) {
     this.props.horseNumbers(value)
+  }
+
+  horseNameEdit (val) {
+    let horseNum = []
+    for (var i = 1; i <= val; i++) {
+      horseNum.push(
+        <div className="horse-name-editor" key={i}>
+          <HorseNameEditor
+            selectHorseNameEditor={this.props.selectHorseNameEditor}
+            selectHorseName={this.props.selectHorseName}
+            value={this.props.currentValues[this.props.selectedHorse - 1]}
+            onClickHorse={this.props.onClickHorse}
+            datakey={i} />
+        </div>
+      )
+    }
+    return horseNum
   }
 
   /**
@@ -83,6 +119,8 @@ class OnboardingSyndicateJourney extends PureComponent {
     const {
       horseCount
     } = this.props
+
+    const horseNameEdit = this.horseNameEdit(horseCount)
 
     return (
       <View title={title}>
@@ -112,8 +150,7 @@ class OnboardingSyndicateJourney extends PureComponent {
                 titleModifier='h2'
                 colorModifier='blue'
                 description={multilineTextToJSX(onboardingDescription)} />
-              <HorseNameEditor
-                horseCount={horseCount} />
+              { horseNameEdit }
             </div>
             <div className="syndicate-horses-duration">
               <TitleDescriptionSection
@@ -123,7 +160,10 @@ class OnboardingSyndicateJourney extends PureComponent {
                 description={multilineTextToJSX(onboardingDescription)}>
                 <p>What is the team's running duration?</p>
               </TitleDescriptionSection>
-              <DurationEditor />
+              <DurationEditor
+                onSelectDurationItem={this.props.onSelectDurationItem}
+                selectedHorse={this.state.selectedHorseNum}
+                value={this.props.horses[this.state.selectedHorseNum - 1]} />
             </div>
             <div className="syndicate-horses-ownership-type">
               <TitleDescriptionSection
@@ -133,7 +173,10 @@ class OnboardingSyndicateJourney extends PureComponent {
                 description={multilineTextToJSX(onboardingDescription)}>
                 <p>Do you own or lease it?</p>
               </TitleDescriptionSection>
-              <OwnerShipTypeEditor />
+              <OwnerShipTypeEditor
+                onSelectOwnerShipTypeItem={this.props.onSelectOwnerShipTypeItem}
+                selectedHorse={this.state.selectedHorseNum}
+                value={this.props.horses[this.state.selectedHorseNum - 1]} />
             </div>
             <div className="syndicate-horses-team-size">
               <TitleDescriptionSection
@@ -143,7 +186,10 @@ class OnboardingSyndicateJourney extends PureComponent {
                 description={multilineTextToJSX(onboardingDescription)}>
                 <p>Including you,how many people will be involved?</p>
               </TitleDescriptionSection>
-              <TeamSizeEditor />
+              <TeamSizeEditor
+                onSelectTeamSizeItem={this.props.onSelectTeamSizeItem}
+                selectedHorse={this.state.selectedHorseNum}
+                value={this.props.horses[this.state.selectedHorseNum - 1]} />
             </div>
           </div>
           <div className="syndicate-horses-option">
@@ -187,11 +233,17 @@ const mapStateToProps = (state, ownProps) => {
   } = state
 
   const {
-    horseCount
+    horseCount,
+    currentValues,
+    selectedHorse,
+    horses
   } = onboardingSyndicateJourney
 
   return {
-    horseCount
+    horseCount,
+    currentValues,
+    selectedHorse,
+    horses
   }
 }
 
@@ -199,6 +251,24 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     horseNumbers: (value) => {
       dispatch(horseNumbers(value))
+    },
+    onClickHorse: (value) => {
+      dispatch(getSeletedHorse(value))
+    },
+    selectHorseNameEditor: (value) => {
+      dispatch(getSelectedHorseNameEditor(value))
+    },
+    selectHorseName: (value) => {
+      dispatch(getSelectHorseName(value))
+    },
+    onSelectDurationItem: (value) => {
+      dispatch(getDurationValue(value))
+    },
+    onSelectOwnerShipTypeItem: (value) => {
+      dispatch(getOwnerShipTypeValue(value))
+    },
+    onSelectTeamSizeItem: (value) => {
+      dispatch(getTeamSizeValue(value))
     }
   }
 }

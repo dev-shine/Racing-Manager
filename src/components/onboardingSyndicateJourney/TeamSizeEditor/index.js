@@ -21,7 +21,7 @@ class TeamSizeEditor extends Component {
     super(props)
 
     this.state = {
-      isSelectedCheckbox: '',
+      value: '',
       isShownPerson: false,
       isShownPeople: false
     }
@@ -32,16 +32,12 @@ class TeamSizeEditor extends Component {
     this.showMorePeople = this.showMorePeople.bind(this)
   }
 
-  isSelectedPerson () {
-    this.setState({
-      isSelectedCheckbox: 'person'
-    })
+  isSelectedPerson (value) {
+    this.props.onSelectTeamSizeItem(value)
   }
 
-  isSeletedPeople () {
-    this.setState({
-      isSelectedCheckbox: 'people'
-    })
+  isSeletedPeople (value) {
+    this.props.onSelectTeamSizeItem(value)
   }
 
   showMorePerson () {
@@ -59,15 +55,15 @@ class TeamSizeEditor extends Component {
   render () {
     return (
       <div className="horse-teamsize-card">
-        <div className={ this.state.isSelectedCheckbox === 'person' ? 'horse-teamsize-card__person-selected' : 'horse-teamsize-card__person-unselected' }>
+        <div className={ this.props.value && this.props.value.teamSize === '1' ? 'horse-teamsize-card__person-selected' : 'horse-teamsize-card__person-unselected' }>
           <CardView>
             <SpecCardFrame>
               <CardHeading>
                 <Checkbox
                   label="1 PERSON"
                   name="person"
-                  handleChange={() => { this.isSelectedPerson() }}
-                  value={ this.state.isSelectedCheckbox === 'person' } />
+                  handleChange={() => { this.isSelectedPerson('1') }}
+                  value={ this.props.value && this.props.value.teamSize === '1' } />
                 <TextButton
                   text={ this.state.isShownPerson ? 'Hide' : 'Show More' }
                   modifier='secondary'
@@ -79,15 +75,15 @@ class TeamSizeEditor extends Component {
             </SpecCardFrame>
           </CardView>
         </div>
-        <div className={this.state.isSelectedCheckbox === 'people' ? 'horse-teamsize-card__people-selected' : 'horse-teamsize-card__people-unselected' }>
+        <div className={ this.props.value && this.props.value.teamSize === '10' ? 'horse-teamsize-card__people-selected' : 'horse-teamsize-card__people-unselected' }>
           <CardView>
             <SpecCardFrame>
               <CardHeading>
                 <Checkbox
                   label="2 - 1,000"
                   name="people"
-                  handleChange={() => { this.isSeletedPeople() }}
-                  value={ this.state.isSelectedCheckbox === 'people' } />
+                  handleChange={() => { this.isSeletedPeople('10') }}
+                  value={ this.props.value && this.props.value.teamSize === '10' } />
                 <TextButton
                   text={ this.state.isShownPeople ? 'Hide' : 'Show More' }
                   modifier='secondary'

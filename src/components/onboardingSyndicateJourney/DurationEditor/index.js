@@ -21,27 +21,22 @@ class DurationEditor extends Component {
     super(props)
 
     this.state = {
-      isSelectedCheckbox: '',
       isShownFixedPeriod: false,
       isShownOpenEnded: false
     }
 
     this.isSeletedFixedPeriod = this.isSeletedFixedPeriod.bind(this)
-    this.isSeletedOpenEnded = this.isSeletedOpenEnded.bind(this)
+    this.isSeletedOpenEndedPeriod = this.isSeletedOpenEndedPeriod.bind(this)
     this.showMoreFixedPeriod = this.showMoreFixedPeriod.bind(this)
     this.showMoreOpenEnded = this.showMoreOpenEnded.bind(this)
   }
 
-  isSeletedFixedPeriod () {
-    this.setState({
-      isSelectedCheckbox: 'fixed_period'
-    })
+  isSeletedFixedPeriod (value) {
+    this.props.onSelectDurationItem(value)
   }
 
-  isSeletedOpenEnded () {
-    this.setState({
-      isSelectedCheckbox: 'open_ended'
-    })
+  isSeletedOpenEndedPeriod (value) {
+    this.props.onSelectDurationItem(value)
   }
 
   showMoreFixedPeriod () {
@@ -59,15 +54,15 @@ class DurationEditor extends Component {
   render () {
     return (
       <div className="horse-duration-card">
-        <div className={ this.state.isSelectedCheckbox === 'fixed_period' ? 'horse-duration-card__fixed-selected' : 'horse-duration-card__fixed-unselected' }>
+        <div className={ this.props.value && this.props.value.ownership.type === 'Fixed Period' ? 'horse-duration-card__fixed-selected' : 'horse-duration-card__fixed-unselected' }>
           <CardView>
             <SpecCardFrame>
               <CardHeading>
                 <Checkbox
                   label="FIXED PERIOD"
-                  name="fixed_period"
-                  handleChange={() => { this.isSeletedFixedPeriod() }}
-                  value={ this.state.isSelectedCheckbox === 'fixed_period' } />
+                  name="Fixed Period"
+                  handleChange={() => { this.isSeletedFixedPeriod('Fixed Period') }}
+                  value={ this.props.value && this.props.value.ownership.type === 'Fixed Period' } />
                 <TextButton
                   text={ this.state.isShownFixedPeriod ? 'Hide' : 'Show More' }
                   modifier='secondary'
@@ -79,15 +74,15 @@ class DurationEditor extends Component {
             </SpecCardFrame>
           </CardView>
         </div>
-        <div className={this.state.isSelectedCheckbox === 'open_ended' ? 'horse-duration-card__ended-selected' : 'horse-duration-card__ended-unselected' }>
+        <div className={ this.props.value && this.props.value.ownership.type === 'Open Ended Period' ? 'horse-duration-card__ended-selected' : 'horse-duration-card__ended-unselected' }>
           <CardView>
             <SpecCardFrame>
               <CardHeading>
                 <Checkbox
                   label="OPEN ENDED"
-                  name="open_ended"
-                  handleChange={() => { this.isSeletedOpenEnded() }}
-                  value={ this.state.isSelectedCheckbox === 'open_ended' } />
+                  name="Open Ended Period"
+                  handleChange={() => { this.isSeletedOpenEndedPeriod('Open Ended Period') }}
+                  value={ this.props.value && this.props.value.ownership.type === 'Open Ended Period' } />
                 <TextButton
                   text={ this.state.isShownOpenEnded ? 'Hide' : 'Show More' }
                   modifier='secondary'
