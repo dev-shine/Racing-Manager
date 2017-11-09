@@ -86,10 +86,16 @@ export const fetchCards = () => {
     return dispatch({
       type: AUTHENTICATED_REQUEST,
       types: [gettingCards, gotCards, failedToGetCards],
-      endpoint: getCreditCards
+      endpoint: getCreditCards,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
     })
-      .catch(() => {
-        dispatch(addToastSuccess('There was an error fetching your cards'))
+      .catch((e) => {
+        if (e.message !== 'Empty sources') { // Only show an error if cards not empty
+          dispatch(addToastError('There was an error fetching your cards'))
+        }
       })
   }
 }
@@ -121,12 +127,19 @@ export const submitCardToServer = data => {
       endpoint: addCreditCard,
       payload: JSON.stringify({
         tokenId: data.token.id
-      })
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
     })
       .then(() => {
-        dispatch(fetchCards())
         dispatch(addToastSuccess('Card Successfully Added'))
+        dispatch(fetchCards())
         Promise.resolve()
+      })
+      .catch((e) => {
+        dispatch(addToastError('There was an error adding your card, please check your details and try again'))
       })
   }
 }
@@ -158,12 +171,19 @@ export const deleteCard = cardAccountId => {
       endpoint: deleteCreditCard,
       payload: JSON.stringify({
         cardAccountId
-      })
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
     })
       .then(() => {
-        dispatch(fetchCards())
         dispatch(addToastSuccess('Card successfully deleted'))
+        dispatch(fetchCards())
         Promise.resolve()
+      })
+      .catch((e) => {
+        dispatch(addToastError('There was an error deleting your card'))
       })
   }
 }

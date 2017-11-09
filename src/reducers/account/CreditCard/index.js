@@ -123,20 +123,6 @@ const reducer = (state = initialState, action) => {
         }
       })
 
-    case CARD_DELETE_SUBMITTED:
-      return update(state, {
-        submitting: {
-          $set: false
-        }
-      })
-
-    case CARD_DELETE_SUBMITTING_FAILED:
-      return update(state, {
-        submitting: {
-          $set: false
-        }
-      })
-
     default:
       return state
   }
