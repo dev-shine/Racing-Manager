@@ -28,7 +28,7 @@ import { isInViewport } from 'utils/imageutils'
  */
 import debounce from 'utils/debounce'
 
-import ReactJWPlayer from 'react-jw-player';
+import ReactJWPlayer from 'react-jw-player'
 
 import { PLAYERSCRIPT } from 'data/consts'
 /**

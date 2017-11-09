@@ -44,3 +44,5 @@ export const COMMENT = `${MESSAGE}/comment`
 export const NEWS = `${BASE_URL}/news`
 
 export const UPLOADED = `${BASE_URL}/uploaded`
+
+export const ACCOUNT_NOTIFICATION_SETTING = `${USER}/notification`
