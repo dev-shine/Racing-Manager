@@ -23,6 +23,8 @@ import SocialIconsList from 'components/socialmedia/SocialIconsList'
  */
 import { footerLogo } from 'assets/images'
 
+import { Link } from 'react-router-dom'
+
 /**
  * Footer component
  * @param { Object } props
@@ -48,24 +50,32 @@ const Footer = props => {
             <span className='footer__break'></span>
             <ul className='footer__list'>
               <li className='footer__listitem'>
-                <a className='link--no-color'>
-                  <span>cookies</span>
-                </a>
+                <Link to="/legal/cookies">
+                  <a className='link--no-color'>
+                    <span>cookies</span>
+                  </a>
+                </Link>
               </li>
               <li className='footer__listitem'>
-                <a className='link--no-color'>
-                  <span>terms of use</span>
-                </a>
+                <Link to="/legal/terms">
+                  <a className='link--no-color'>
+                    <span>terms of use</span>
+                  </a>
+                </Link>
               </li>
               <li className='footer__listitem'>
-                <a className='link--no-color'>
-                  <span>privacy</span>
-                </a>
+                <Link to="/legal/privacy">
+                  <a className='link--no-color'>
+                    <span>privacy</span>
+                  </a>
+                </Link>
               </li>
               <li className='footer__listitem'>
-                <a className='link--no-color'>
-                  <span>legal</span>
-                </a>
+                <Link to="/legal/legal">
+                  <a className='link--no-color'>
+                    <span>legal</span>
+                  </a>
+                </Link>
               </li>
             </ul>
           </div>
