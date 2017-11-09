@@ -45,9 +45,6 @@ const reducer = (state = initialState, action) => {
 
     case CARD_SUBMITTED:
       return update(state, {
-        submitting: {
-          $set: false
-        },
         cardName: {
           $set: ''
         }
@@ -55,9 +52,6 @@ const reducer = (state = initialState, action) => {
 
     case CARD_SUBMITTING_FAILED:
       return update(state, {
-        submitting: {
-          $set: false
-        },
         error: {
           $set: action.error
         }
