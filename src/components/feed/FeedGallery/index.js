@@ -40,6 +40,8 @@ import FeedUpdatePopupContainer from 'containers/Feed/FeedUpdatePopupContainer'
 
 import TextButton from 'components/buttons/TextButton'
 
+import {markdownToString} from 'utils/textutils'
+
 /**
  *  @class
  *  @name FeedGallery
@@ -130,10 +132,16 @@ class FeedGallery extends Component {
       postType = 'multiplemedia',
       createdAt,
       timeStamp,
-      text,
+      text: rawText,
       attachment,
       author
     } = tile
+
+    let text = markdownToString(rawText)
+
+    if (text && text.length > 75) {
+      text = text.substr(0, text.lastIndexOf(' ', 75)) + '...'
+    }
 
     // Switch between the post type.
     switch (postType) {

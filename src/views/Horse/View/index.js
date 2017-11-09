@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     return dispatch(fetchHorseInfo(slug))
   },
   getSyndicateInfo: (data) => {
-    const slug = data.owner.slug
+    const slug = data.syndicate.slug
     dispatch(fetchSyndicateInfo(slug))
   },
   clearHorseData: () => {
