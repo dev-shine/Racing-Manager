@@ -16,6 +16,7 @@ export const markdownToString = (markdown) => {
 
 export const markdownToHTML = (markdown) => {
   const converter = new showdown.Converter()
+  showdown.setOption('openLinksInNewWindow', true)
   const html = converter.makeHtml(markdown)
   console.log(markdown, html)
   return html
