@@ -247,7 +247,8 @@ class FeedSubmitTile extends Component {
               name='feed-submit-textarea'
               className='feed-submit__textarea-container'
               handleChange={(e) => { updateFeedText(e.target.value) }}
-              value={feedText}/>
+              value={feedText}
+              markdown={true}/>
             {
               thumbnailSrc &&
               <Thumbnail
