@@ -145,6 +145,27 @@ export const updateUserInformation = (data) => {
   })
 }
 
+export const addCreditCard = (data) => {
+  return post({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const getCreditCards = (data) => {
+  return get({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const deleteCreditCard = (data) => {
+  return put({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
 export const requestToJoin = (data) => {
   return post({
     url: SERVICE_TYPES.JOIN_REQUEST,

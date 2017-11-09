@@ -10,7 +10,7 @@ import { combineReducers } from 'redux'
 
 const combinedAccountReducers = combineReducers({
   billingAddress: reducerFactory(billingAddress, 'accountBillingAddress'),
-  creditCard: reducerFactory(creditCard, 'accountCreditCard'),
+  creditCard: creditCard,
   info: addCreditCardReducer
 })
 

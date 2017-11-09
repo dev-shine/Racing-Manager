@@ -20,32 +20,37 @@ import {
   CARD_EXPIRY
 } from 'texts/forms'
 
-class CreditCardForm extends PureComponent {
-  constructor (props) {
-    super(props)
+import {CardElement} from 'react-stripe-elements'
+
+const formStyle = {
+  base: {
+    iconColor: '#000',
+    color: '#000',
+    lineHeight: '32px',
+    fontWeight: 'light',
+    fontFamily: '"Gill Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+    fontSize: '14px',
+    '::placeholder': {
+      color: 'rgb(138, 138, 138)',
+      fontWeight: '100'
+    },
+  },
+  invalid: {
+    iconColor: '#e56a6a',
+    color: '#e56a6a',
   }
+}
+
+class CreditCardForm extends PureComponent {
 
   render () {
-    const { submitForm, values } = this.props
+    const { submitForm, values, onCardElementChanged } = this.props
 
     return (
       <div className='credit-card-form'>
         <Form
           handleSubmit={() => { submitForm(values) }}
           {...this.props}>
-
-          <div className='form__group'>
-            <Field
-              defaultValue={CARD_TYPE}
-              component={Select}
-              validate={['cardType']}
-              name='cardType'>
-                <option value={CARD_TYPE} disabled hidden>{CARD_TYPE}</option>
-                <option value={'visa'}>Visa</option>
-                <option value={'mastercard'}>MasterCard</option>
-                <option value={'delta'}>Delta</option>
-            </Field>
-          </div>
 
           <div className='form__group'>
             <Field
@@ -56,20 +61,8 @@ class CreditCardForm extends PureComponent {
           </div>
 
           <div className='form__group'>
-            <Field
-              component={Input}
-              placeholder={CARD_NUMBER}
-              validate={['cardNumber']}
-              format={FORMAT_CREDIT_CARD}
-              name='cardNumber' />
+            <CardElement style={formStyle} onChange={onCardElementChanged} onCardElementChanged={onCardElementChanged}/>
           </div>
-
-          <Field
-            component={Input}
-            placeholder={CARD_EXPIRY}
-            validate={['cardExpiry']}
-            format={FORMAT_CREDIT_CARD_DATE}
-            name='cardExpiry' />
         </Form>
       </div>
     )
