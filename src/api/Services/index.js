@@ -66,7 +66,6 @@ export const updateHorseData = (data) => {
 }
 
 export const performHorseUpdate = (data) => {
-  console.log(data)
   return post({
     url: SERVICE_TYPES.MESSAGE,
     ...data
