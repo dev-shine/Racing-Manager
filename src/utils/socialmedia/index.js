@@ -5,9 +5,9 @@ import { constructQuery } from 'utils/request'
  *  @type {Object}
  */
 export const socialMediaLinks = {
-  facebook: 'http://www.facebook.com',
-  twitter: 'http://www.twitter.com',
-  pinterest: 'http://www.pinterest.com'
+  facebook: 'https://www.facebook.com',
+  twitter: 'https://www.twitter.com',
+  pinterest: 'https://www.pinterest.com'
 }
 
 /**
@@ -34,13 +34,13 @@ export const twitter = ({ url = '', title = '', via = '', hashtags = [] }) => {
   })
 }
 
-export const whatsapp = ({ url = '', text = '', separator = '' }) => {
+export const whatsapp = ({ url = '', text = '', separator = '. ' }) => {
   return 'https://api.whatsapp.com/send' + constructQuery({
     text: text + separator + url
   })
 }
 
-export const facebook = ({ url = '', quote = '', hashtag = '' }) => {
+export const facebook = ({ url = '', quote = undefined, hashtag = undefined }) => {
   return 'https://www.facebook.com/sharer/sharer.php' + constructQuery({
     u: url,
     quote,

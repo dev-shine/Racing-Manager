@@ -27,8 +27,9 @@ export const verifyServerFormat = (response = {}) => {
 export const getQueryString = params => {
   let esc = encodeURIComponent
   return Object.keys(params)
-  .map(k => esc(k) + '=' + esc(params[k]))
-  .join('&')
+    .filter(k => params[k] !== undefined)
+    .map(k => esc(k) + '=' + esc(params[k]))
+    .join('&')
 }
 
 /**

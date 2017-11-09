@@ -14,14 +14,14 @@ import SyndicateIntroSection from 'components/syndicate/SyndicateIntroSection'
 import SyndicateHorseCarousel from 'components/syndicate/SyndicateHorseCarousel'
 import SyndicateHeritageSection from 'components/syndicate/SyndicateHeritageSection'
 import SyndicateFaqPopup from 'components/syndicate/SyndicateFaqPopup'
-
+import ScrollNavBar from 'components/navigation/ScrollNavBar'
 import HorseMemberCarousel from 'components/horse/HorseMemberCarousel'
 import HorseParallaxContent from 'components/horse/HorseParallaxContent'
-
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
 import HorseCtaCard from 'components/horse/HorseCtaCard'
 
+import {showEditOptions} from 'utils/managerutils'
 
 import {
   benefits as syndicateBenefits,
@@ -113,6 +113,7 @@ export class SyndicateOverview extends Component {
 
     return (
       <div className='private-syndicate'>
+        {!showEditOptions() && <ScrollNavBar data={data} />}
         <ImageEditContainer
           title='Image requirements'
           description='Images must be a minimum of 1200px wide, 800px tall and be no more than 2mb in size. The file format should be either PNG or JPEG, and importantly must be either your own image or one that you have been given permission to use. Most landscape smartphone camera photos will fit these criteria.'
@@ -162,11 +163,21 @@ export class SyndicateOverview extends Component {
                     <HorseCtaCard
                       isLoggedIn={isLoggedIn}
                       data={data}
+                      url={document.location.href}
                       requestToJoin={this.requestToJoin}/>
                   }
                 </div>
               </div>
             } />
+        </div>
+        <div className='hidden-md-up'>
+          {isPublic &&
+          <HorseCtaCard
+            isLoggedIn={isLoggedIn}
+            data={data}
+            mobile={true}
+            requestToJoin={this.requestToJoin}/>
+          }
         </div>
 
         <div className='container no-padding'>
@@ -189,7 +200,7 @@ export class SyndicateOverview extends Component {
                 {
                   ({ value }) => {
                     return (
-                      <SyndicateBenefits description={benefits} />
+                      <SyndicateBenefits description={multilineTextToJSX(benefits)} />
                     )
                   }
                 }
@@ -368,7 +379,7 @@ export class SyndicateOverview extends Component {
             </div>
           )
         }} />
-        {*/}
+        */}
 
         <SyndicateFaqPopup
           breadcrumbText={'Back to syndicate page'}

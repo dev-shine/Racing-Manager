@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import List from 'components/gui/List'
 
-import TextButton from 'components/buttons/TextButton'
+// import TextButton from 'components/buttons/TextButton'
 
 import HorseHero from 'components/horse/HorseHero'
 import HorseAbout from 'components/horse/HorseAbout'
@@ -19,6 +19,8 @@ import HorseCtaCard from 'components/horse/HorseCtaCard'
 import SyndicateSplitSection from 'components/syndicate/SyndicateSplitSection'
 
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
+
+import JoinRequestButton from 'components/buttons/JoinRequestButton'
 
 // mockup data
 import {
@@ -66,6 +68,7 @@ class HorsePublicOverview extends Component {
 
     const {
       owner,
+      slug,
       description,
       shares,
       messages,
@@ -101,10 +104,18 @@ class HorsePublicOverview extends Component {
                 <HorseCtaCard
                   isLoggedIn={isLoggedIn}
                   data={data}
+                  url={document.location.href}
                   requestToJoin={this.requestToJoin}/>
               </div>
             </div>
           )} />
+        <div className='hidden-md-up'>
+          <HorseCtaCard
+            isLoggedIn={isLoggedIn}
+            data={data}
+            mobile={true}
+            requestToJoin={this.requestToJoin}/>
+        </div>
 
         <div className='public-horse__section container'>
           <HorseTable
@@ -157,9 +168,10 @@ class HorsePublicOverview extends Component {
                   </h4>
                   <List items={availabilityList} />
                 </div>
-                <TextButton
-                  text='Request to join'
-                  modifier='md'
+                <JoinRequestButton
+                  requestToJoin={this.requestToJoin}
+                  registerUrl={`horse/${slug}`}
+                  isLoggedIn={isLoggedIn}
                   className='public-horse__join-button'
                 />
               </TitleDescriptionSection>
