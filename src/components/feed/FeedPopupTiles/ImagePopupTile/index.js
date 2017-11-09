@@ -90,10 +90,6 @@ ImagePopupTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array
-  ]),
   src: PropTypes.string
 }
 

@@ -108,6 +108,7 @@
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0",
     "reselect": "^3.0.1",
+    "showdown": "^1.8.1",
     "smoothscroll-polyfill": "^0.3.6",
     "titleize": "^1.0.0",
     "whatwg-fetch": "^2.0.3"

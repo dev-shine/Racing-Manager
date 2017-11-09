@@ -80,7 +80,6 @@ TextPopupTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string
 }
 
 /**

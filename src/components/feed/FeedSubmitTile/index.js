@@ -155,8 +155,12 @@ class FeedSubmitTile extends Component {
    *  @return {Void}
    */
   focusTextField () {
-    if (this.refs.textarea) {
-      this.refs.textarea.focusField()
+    try { // Can fail if textfield is WYSIWYG
+      if (this.refs.textarea) {
+        this.refs.textarea.focusField()
+      }
+    } catch (e) {
+
     }
   }
 
