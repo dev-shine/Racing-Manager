@@ -47,7 +47,7 @@ export class MemberDashboard extends Component {
           </div>
           <div className='container'>
             <div className='member-dashboard__message' >
-              <MessageSection />
+              <MessageSection {...this.props} />
             </div>
           </div>
           <div className='member-dashboard__feed-section container'>

@@ -97,7 +97,7 @@ class MessageInput extends Component
 
       <div className={modifiedClassName}>
         <VirtualizedSelect
-          options={options}
+          options={this.props.searchNames}
           onChange={(selectValue) => this.handleChange(selectValue)}
           value={this.state.selectValue}
           multi={multi}

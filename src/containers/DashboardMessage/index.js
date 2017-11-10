@@ -8,6 +8,12 @@ import MessageInput from 'components/dashboard/MessageInput'
 
 import { updateMessageReceiver, updateMessageSender } from 'actions/dashboard'
 
+import processMediaPayload from 'utils/mediapayload'
+
+import {
+  submitHorseUpdate
+} from 'actions/horse'
+
 /**
  *  @class
  *  @name MemberDashboard
@@ -19,11 +25,13 @@ export class MemberDashboard extends Component {
   }
 
   render () {
-    let searchNames = [
-      { value: 'Stanford University', label: 'Stanford' },
-      { value: 'Stanford University', label: 'Stanford' },
-      { value: 'Stanford University', label: 'Stanford' }
-    ]
+    let searchNames = this.props.dashboardData.ownership && this.props.dashboardData.ownership.map((row) => (
+      {
+        label: row.name,
+        value: row.slug
+      }
+    ))
+
     return (
       <div>
         <div className='msg-input to'>
@@ -34,11 +42,12 @@ export class MemberDashboard extends Component {
             name='receiver'
             onSubmit={ () => {} }
             handleSelectName={ (data) => { this.props.updateMessageReceiver(data) } }
-            placeholder='SYNDICATE OR HORSE NAME'
+            placeholder='HORSE NAME'
             searchNames={searchNames}
             multi={true}
           />
         </div>
+        {/*}
         <div className='msg-input from'>
           <div className="input-label">
             <h5>FROM</h5>
@@ -52,6 +61,7 @@ export class MemberDashboard extends Component {
             multi={false}
           />
         </div>
+        */}
         <SubmitFeedPost
           // posted={posted}
           // submitFeedUpdate={this.postHorseFeed}
@@ -79,6 +89,21 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    submitHorseUpdate: (text, files) => {
+      const {
+        submitFeedUpdate
+      } = ownProps
+
+      const attachment = files
+
+      // Construct data
+      let data = processMediaPayload({
+        attachment,
+        text
+      })
+
+      submitHorseUpdate(data)
+    },
     updateMessageSender: (data) => {
       return dispatch(updateMessageSender(data))
     },
