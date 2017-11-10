@@ -1,26 +1,18 @@
 import {
   getHorseInfo,
   performHorseUpdate,
-  getHorseStatisticsResultsInfo,
-  getHorseStatisticsResultsDetailsInfo,
-  getHorseStatisticsFutureDetailsInfo,
-  updateHorseData
+  getHorseStatistics,
+  getHorseStatisticsResults,
+  getHorseStatisticsEntries
 } from 'api/Services'
 
 import { UPDATED_HORSE_DATA } from 'texts/successmessages'
-
 import { addToastSuccess, addToastError } from 'actions/toast'
 
-/**
- *  @module CALL_ACTION_TYPE
- */
+
 import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
-/**
- *  @module formatHorseData
- */
-
-import { formatHorseStatisticsData, formatHorseStatisticsResultsData } from 'utils/horseutils'
+import { formatHorseStatisticsData } from 'utils/horseutils'
 
 /**
  *  FETCH_HORSE_INFO
@@ -261,24 +253,6 @@ export const clearHorseStatisticsResultsDetailsInfo = () => ({
   type: CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO
 })
 
-export const getHorseStatisticsResults = (token, name) => {
-  return (dispatch, getState) => {
-    // Signal to the store a fetch is going to happen
-    dispatch(gettingHorseStatisticsResultsInfo())
-
-    return getHorseStatisticsResultsInfo(token, name)
-      .then(formatHorseStatisticsResultsData)
-      .then((data) => {
-        dispatch(receivedHorseStatisticsResultsInfo(data))
-        return Promise.resolve(data)
-      })
-      .catch((error) => {
-        dispatch(failedToGetHorseStatisticsResultsInfo(error))
-        return Promise.reject(error)
-      })
-  }
-}
-
 /**
  *  @name  submitHorseUpdate
  *  @description This will filter down to the AuthenticatedRequest middleware.
@@ -316,5 +290,101 @@ export const submitHorseData = (slug, payload) => {
           dispatch(addToastError(error.message))
         }
       })
+  }
+}
+
+/* HORSE STATISTICS */
+
+export const FETCH_HORSE_STATISTICS = 'FETCH_HORSE_STATISTICS'
+
+export const RECEIVED_HORSE_STATISTICS = 'RECEIVED_HORSE_STATISTICS'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS = 'FAILED_TO_FETCH_HORSE_STATISTICS'
+
+export const gettingHorseStatistics = () => ({
+  type: FETCH_HORSE_STATISTICS
+})
+
+export const receivedHorseStatistics = data => ({
+  type: RECEIVED_HORSE_STATISTICS,
+  data
+})
+
+export const failedToGetHorseStatistics = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS
+})
+
+export const fetchHorseStatistics = (slug) => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [gettingHorseStatistics, receivedHorseStatistics, failedToGetHorseStatistics],
+      endpoint: getHorseStatistics,
+      urlParams: {slug}
+    })
+  }
+}
+
+/* HORSE STATISTICS RESULTS */
+
+export const FETCH_HORSE_STATISTICS_RESULTS = 'FETCH_HORSE_STATISTICS_RESULTS'
+
+export const RECEIVED_HORSE_STATISTICS_RESULTS = 'RECEIVED_HORSE_STATISTICS_RESULTS'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS = 'FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS'
+
+export const gettingHorseStatisticsResults = () => ({
+  type: FETCH_HORSE_STATISTICS_RESULTS
+})
+
+export const receivedHorseStatisticsResults = data => ({
+  type: RECEIVED_HORSE_STATISTICS_RESULTS,
+  data
+})
+
+export const failedToGetHorseStatisticsResults = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS
+})
+
+export const fetchHorseStatisticsResults = (slug) => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [gettingHorseStatisticsResults, receivedHorseStatisticsResults, failedToGetHorseStatisticsResults],
+      endpoint: getHorseStatisticsResults,
+      urlParams: {slug}
+    })
+  }
+}
+
+/* HORSE STATISTICS RESULTS */
+
+export const FETCH_HORSE_STATISTICS_ENTRIES = 'FETCH_HORSE_STATISTICS_ENTRIES'
+
+export const RECEIVED_HORSE_STATISTICS_ENTRIES = 'RECEIVED_HORSE_STATISTICS_ENTRIES'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_ENTRIES = 'FAILED_TO_FETCH_HORSE_STATISTICS_ENTRIES'
+
+export const gettingHorseStatisticsEntries = () => ({
+  type: FETCH_HORSE_STATISTICS_ENTRIES
+})
+
+export const receivedHorseStatisticsEntries = data => ({
+  type: RECEIVED_HORSE_STATISTICS_ENTRIES,
+  data
+})
+
+export const failedToGetHorseStatisticsEntries = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_ENTRIES
+})
+
+export const fetchHorseStatisticsEntries = (slug) => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [gettingHorseStatisticsEntries, receivedHorseStatisticsEntries, failedToGetHorseStatisticsEntries],
+      endpoint: getHorseStatisticsEntries,
+      urlParams: {slug}
+    })
   }
 }

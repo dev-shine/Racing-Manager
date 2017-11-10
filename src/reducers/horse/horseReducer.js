@@ -5,7 +5,10 @@ import {
   POSTING_HORSE_UPDATE,
   POSTED_HORSE_UPDATE,
   FAILED_TO_POST_HORSE_UPDATE,
-  CLEAR_HORSE_DATA
+  CLEAR_HORSE_DATA,
+  RECEIVED_HORSE_STATISTICS,
+  RECEIVED_HORSE_STATISTICS_RESULTS,
+  RECEIVED_HORSE_STATISTICS_ENTRIES
 } from 'actions/horse'
 
 import {
@@ -24,7 +27,8 @@ const initialState = {
   data: {},
   error: false,
   posting: false,
-  posted: false
+  posted: false,
+  statisticsRanking: []
 }
 
 /**
@@ -107,6 +111,27 @@ const reducer = (state = initialState, action) => {
         },
         posted: {
           $set: false
+        }
+      })
+
+    case RECEIVED_HORSE_STATISTICS:
+      return update(state, {
+        statisticsRanking: {
+          $set: action.data
+        }
+      })
+
+    case RECEIVED_HORSE_STATISTICS_RESULTS:
+      return update(state, {
+        statisticsResults: {
+          $set: action.data
+        }
+      })
+
+    case RECEIVED_HORSE_STATISTICS_ENTRIES:
+      return update(state, {
+        statisticsEntries: {
+          $set: action.data
         }
       })
 
