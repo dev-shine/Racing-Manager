@@ -44,24 +44,29 @@
     .syndicate-horses-tell {
       margin-top: 70px;
 
-      .horse-name-card {
-
-        .horse-name {
-          width: 26%;
-          display: inline-block;
-
-          @media screen and (max-width: 992px) {
-            width: 100%;
-          }
-        }
-      }
-
       .title-description {
 
         .title-description__paragraph {
 
           span {
             font-weight: 500;
+          }
+        }
+      }
+
+      .horse-name-editor {
+        width: 25%;
+        display: inline-block;
+        margin-right: 5%;
+
+        @media screen and (max-width: 992px) {
+          width: 100%;
+        }
+
+        .message {
+
+          span {
+            color: blueviolet;
           }
         }
       }
@@ -140,6 +145,10 @@
       height: 412px;
       margin-top: 70px;
 
+      @media screen and (max-width: 768px) {
+        height: 800px;
+      }
+
       .content-left {
         width: 40%;
         margin-left: 6%;
@@ -179,6 +188,11 @@
         height: 350px;
         background-repeat: no-repeat;
         display: inline-block;
+
+        @media screen and (max-width: 768px) {
+          margin-top: 46%;
+          margin-left: -40%;
+        }
       }
     }
   }

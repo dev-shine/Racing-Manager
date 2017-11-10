@@ -49,7 +49,8 @@ import {
   getSelectHorseName,
   getDurationValue,
   getOwnerShipTypeValue,
-  getTeamSizeValue
+  getTeamSizeValue,
+  RegisterHorsesInSyndicate
 } from 'actions/onboardingSyndicateJourney'
 
 import HorseNameEditor from 'components/onboardingSyndicateJourney/HorseNameEditor'
@@ -59,6 +60,8 @@ import DurationEditor from 'components/onboardingSyndicateJourney/DurationEditor
 import OwnerShipTypeEditor from 'components/onboardingSyndicateJourney/OwnerShipTypeEditor'
 
 import TeamSizeEditor from 'components/onboardingSyndicateJourney/TeamSizeEditor'
+
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
 
 /**
  * @name OnboardingSyndicateJourney
@@ -80,19 +83,30 @@ class OnboardingSyndicateJourney extends PureComponent {
 
     this.horseNumbers = this.horseNumbers.bind(this)
     this.horseNameEdit = this.horseNameEdit.bind(this)
+    this.onRegisterClick = this.onRegisterClick.bind(this)
+    this.resultMessages = this.resultMessages.bind(this)
   }
 
   componentWillReceiveProps (nextProps) {
     nextProps.selectedHorse && this.setState({ selectedHorseNum: nextProps.selectedHorse })
   }
 
-  componentWillMount () {
-    // call the API that get the horsecode.
+  onRegisterClick () {
+    this.props.RegisterHorses(this.props.horses)
   }
 
   horseNumbers (value) {
     this.props.horseNumbers(value)
   }
+
+  resultMessages () {
+    if (this.props.horseCondition === 'failed') {
+      return <span className="failed-message">This horse exist in other syndciate. Please select the other horse.</span>
+    } else if (this.props.horseCondition === 'success') {
+      return <span className="success-message">The horse was selected successfully!</span>
+    }
+  }
+
 
   horseNameEdit (val) {
     let horseNum = []
@@ -102,9 +116,11 @@ class OnboardingSyndicateJourney extends PureComponent {
           <HorseNameEditor
             selectHorseNameEditor={this.props.selectHorseNameEditor}
             selectHorseName={this.props.selectHorseName}
-            value={this.props.currentValues[this.props.selectedHorse - 1]}
+            value={this.props.currentValues && this.props.currentValues[this.props.selectedHorse - 1]}
             onClickHorse={this.props.onClickHorse}
+            horseName={this.props.horseName}
             datakey={i} />
+          <div className="message">{this.resultMessages()}</div>
         </div>
       )
     }
@@ -117,7 +133,8 @@ class OnboardingSyndicateJourney extends PureComponent {
    */
   render () {
     const {
-      horseCount
+      horseCount,
+      isSubmitting
     } = this.props
 
     const horseNameEdit = this.horseNameEdit(horseCount)
@@ -163,7 +180,7 @@ class OnboardingSyndicateJourney extends PureComponent {
               <DurationEditor
                 onSelectDurationItem={this.props.onSelectDurationItem}
                 selectedHorse={this.state.selectedHorseNum}
-                value={this.props.horses[this.state.selectedHorseNum - 1]} />
+                value={this.props.horses && this.props.horses[this.state.selectedHorseNum - 1]} />
             </div>
             <div className="syndicate-horses-ownership-type">
               <TitleDescriptionSection
@@ -176,7 +193,7 @@ class OnboardingSyndicateJourney extends PureComponent {
               <OwnerShipTypeEditor
                 onSelectOwnerShipTypeItem={this.props.onSelectOwnerShipTypeItem}
                 selectedHorse={this.state.selectedHorseNum}
-                value={this.props.horses[this.state.selectedHorseNum - 1]} />
+                value={this.props.horses && this.props.horses[this.state.selectedHorseNum - 1]} />
             </div>
             <div className="syndicate-horses-team-size">
               <TitleDescriptionSection
@@ -189,8 +206,9 @@ class OnboardingSyndicateJourney extends PureComponent {
               <TeamSizeEditor
                 onSelectTeamSizeItem={this.props.onSelectTeamSizeItem}
                 selectedHorse={this.state.selectedHorseNum}
-                value={this.props.horses[this.state.selectedHorseNum - 1]} />
+                value={this.props.horses && this.props.horses[this.state.selectedHorseNum - 1]} />
             </div>
+            <AjaxLoader isVisible={isSubmitting} />
           </div>
           <div className="syndicate-horses-option">
             <div className="syndicate-horses-option__header">
@@ -214,6 +232,7 @@ class OnboardingSyndicateJourney extends PureComponent {
                     <span className="description-read-more">READ MORE</span>
                     <TextButton
                       modifier='fluid'
+                      onClick={this.onRegisterClick}
                       text='CONTINUE APPLICATION' />
                     </div>
                 </TitleDescriptionSection>
@@ -236,14 +255,20 @@ const mapStateToProps = (state, ownProps) => {
     horseCount,
     currentValues,
     selectedHorse,
-    horses
+    horses,
+    horseName,
+    horseCondition,
+    isSubmitting
   } = onboardingSyndicateJourney
 
   return {
     horseCount,
     currentValues,
     selectedHorse,
-    horses
+    horses,
+    horseName,
+    horseCondition,
+    isSubmitting
   }
 }
 
@@ -255,11 +280,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onClickHorse: (value) => {
       dispatch(getSeletedHorse(value))
     },
-    selectHorseNameEditor: (value) => {
-      dispatch(getSelectedHorseNameEditor(value))
+    selectHorseNameEditor: (value, token) => {
+      dispatch(getSelectedHorseNameEditor(value, token))
     },
-    selectHorseName: (value) => {
-      dispatch(getSelectHorseName(value))
+    selectHorseName: (value, token) => {
+      dispatch(getSelectHorseName(value, token))
     },
     onSelectDurationItem: (value) => {
       dispatch(getDurationValue(value))
@@ -269,6 +294,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     onSelectTeamSizeItem: (value) => {
       dispatch(getTeamSizeValue(value))
+    },
+    RegisterHorses: (value) => {
+      dispatch(RegisterHorsesInSyndicate(value))
     }
   }
 }

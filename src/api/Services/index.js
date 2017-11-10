@@ -176,3 +176,36 @@ export const getUploadedData = () => {
     url: SERVICE_TYPES.UPLOADED
   })
 }
+
+export const getHorsesInfos = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_INFORMATION_EDITOR,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horseName: value })
+  })
+}
+
+export const getHorsesState = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATE,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horseCode: value })
+  })
+}
+
+export const registerInSyndicate = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.REGISTER_HORSES,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horses: value })
+  })
+}

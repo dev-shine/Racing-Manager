@@ -1,11 +1,14 @@
 import {
   HORSE_NUMBERS,
   SELECTED_HORSE,
-  SELECT_HORSE_NAME_EDITOR,
-  SELECT_HORSE_NAME,
-  SELECT_DURATION_VALUE,
-  SELECT_OWNER_SHIP_TYPE_VALUE,
-  SELECT_TEAM_SIZE_VALUE
+  HORSE_NAME_EDITOR,
+  GET_SELECT_HORSE_CODE,
+  SET_DURATION_VALUE,
+  SET_OWNER_SHIP_TYPE_VALUE,
+  SET_TEAM_SIZE_VALUE,
+  GOT_HORSE_INFORMATION,
+  GOT_HORSE_CONDITION,
+  REGISTERED_IN_SYNDICATE
 } from 'actions/onboardingSyndicateJourney'
 
 import _ from 'lodash'
@@ -20,7 +23,11 @@ const initialState = {
   selectedHorse: null,
   currentValues: [],
   horses: [],
-  selectedHorseName: ''
+  selectedHorseName: '',
+  horseName: [],
+  horseCondition: '',
+  registerResult: '',
+  isSubmitting: false
 }
 
 const horseInfo = {
@@ -50,74 +57,71 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case HORSE_NUMBERS:
       if (newState.horseCount < action.value) {
-        return {
-          horseCount: action.value,
-          horses: [
-            ...newState.horses,
-            newHorseInfo
-          ],
-          currentValues: [
-            ...newState.currentValues,
-            ''
-          ]
-        }
+        newState.horseCount = action.value
+        newState.horses && newState.horses.push(newHorseInfo)
+        newState.currentValues && newState.currentValues.push('')
+
+        return newState
       } else {
-        let newHorseInfos = newState.horses
-        newHorseInfos.pop()
-        let currentValues = newState.currentValues
-        currentValues.pop()
-        return {
-          horseCount: action.value,
-          horses: newHorseInfos,
-          currentValues: currentValues
-        }
+        newState.horseCount = action.value
+        newState.horses  && newState.horses.pop()
+        newState.currentValues && newState.currentValues.pop()
+
+        return newState
       }
 
     case SELECTED_HORSE:
-      return {
-        ...newState,
-        selectedHorse: action.value
+      newState.selectedHorse = action.value
+
+      return newState
+
+    case HORSE_NAME_EDITOR:
+      newState.currentValues && (newState.currentValues[newState.selectedHorse && newState.selectedHorse - 1] = action.value)
+      newState.isSubmitting = true
+
+      return newState
+
+    case GET_SELECT_HORSE_CODE:
+      newState.currentValues && (newState.currentValues[newState.selectedHorse && newState.selectedHorse - 1] = action.value)
+      newState.horses && (newState.horses[newState.selectedHorse && newState.selectedHorse - 1].horseCode = action.value)
+
+      return newState
+
+    case SET_DURATION_VALUE:
+      newState.horses && (newState.horses[newState.selectedHorse && newState.selectedHorse - 1].ownership.type = action.value)
+
+      return newState
+
+    case SET_OWNER_SHIP_TYPE_VALUE:
+      newState.horses && (newState.horses[newState.selectedHorse && newState.selectedHorse - 1].ownershipType = action.value)
+
+      return newState
+
+    case SET_TEAM_SIZE_VALUE:
+      newState.horses && (newState.horses[newState.selectedHorse && newState.selectedHorse - 1].teamSize = action.value)
+
+      return newState
+
+    case GOT_HORSE_INFORMATION:
+      newState.horseName =  action.value && action.value.map((item) => ({ horseName: item.horseName, horseCode: item.horseCode }))
+      newState.isSubmitting = false
+
+      return newState
+
+    case GOT_HORSE_CONDITION:
+      if (action.value === 'false') {
+        newState.horseCondition = 'success'
+      } else if (action.value === 'true') {
+        newState.horseCondition = 'failed'
       }
 
-    case SELECT_HORSE_NAME_EDITOR:
-      let temp1 = newState.currentValues
-      temp1[newState.selectedHorse - 1] = action.value
-      return {
-        ...newState,
-        currentValues: temp1
-      }
 
-    case SELECT_HORSE_NAME:
-      let temp5 = newState.currentValues
-      temp5[newState.selectedHorse - 1] = action.value
-      return {
-        ...newState,
-        currentValues: temp5
-      }
+      return newState
 
-    case SELECT_DURATION_VALUE:
-      let temp2 = newState.horses
-      temp2[newState.selectedHorse - 1].ownership.type = action.value
-      return {
-        ...newState,
-        horses: temp2
-      }
+    case REGISTERED_IN_SYNDICATE:
+      newState.registerResult = action.value
 
-    case SELECT_OWNER_SHIP_TYPE_VALUE:
-      let temp3 = newState.horses
-      temp3[newState.selectedHorse - 1].ownershipType = action.value
-      return {
-        ...newState,
-        horses: temp3
-      }
-
-    case SELECT_TEAM_SIZE_VALUE:
-      let temp4 = newState.horses
-      temp4[newState.selectedHorse - 1].teamSize = action.value
-      return {
-        ...newState,
-        horses: temp4
-      }
+      return newState
 
     default:
       return state

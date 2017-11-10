@@ -44,3 +44,9 @@ export const COMMENT = `${MESSAGE}/comment`
 export const NEWS = `${BASE_URL}/news`
 
 export const UPLOADED = `${BASE_URL}/uploaded`
+
+export const HORSE_INFORMATION_EDITOR = `${BASE_URL}/horse/search`
+
+export const HORSE_STATE = `${BASE_URL}/horse/checkExist`
+
+export const REGISTER_HORSES = `${BASE_URL}/horses/SYNDICATE_ONE`
