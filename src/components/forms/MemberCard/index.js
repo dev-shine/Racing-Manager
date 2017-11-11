@@ -13,6 +13,7 @@ import TextButton from 'components/buttons/TextButton'
 import {
   FIRSTNAME_PLACEHOLDER,
   SURNAME_PLACEHOLDER,
+  EMAIL_PLACEHOLDER,
   ADDRESS_LINE_ONE,
   ADDRESS_LINE_TWO,
   POSTCODE
@@ -41,8 +42,8 @@ class MemberCardForm extends PureComponent {
             <MemberField
               component={Input}
               placeholder={FIRSTNAME_PLACEHOLDER}
-              validate={['firstName']}
-              name='firstName'
+              validate={['firstname']}
+              name='firstname'
               dataKey={dataKey} />
           </div>
 
@@ -58,9 +59,18 @@ class MemberCardForm extends PureComponent {
           <div className='form__group'>
             <MemberField
               component={Input}
+              placeholder={EMAIL_PLACEHOLDER}
+              validate={['email']}
+              name='email'
+              dataKey={dataKey} />
+          </div>
+
+          <div className='form__group'>
+            <MemberField
+              component={Input}
               placeholder={ADDRESS_LINE_ONE}
-              validate={['addressLine1']}
-              name='addressLine1'
+              validate={['addressline1']}
+              name='addressline1'
               dataKey={dataKey} />
           </div>
 
@@ -68,8 +78,8 @@ class MemberCardForm extends PureComponent {
             <MemberField
               component={Input}
               placeholder={ADDRESS_LINE_TWO}
-              validate={['addressLine2']}
-              name='addressLine2'
+              validate={['addressline2']}
+              name='addressline2'
               dataKey={dataKey} />
           </div>
 

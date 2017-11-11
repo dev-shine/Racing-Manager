@@ -5,7 +5,11 @@ import {
   FORM_ERROR,
   FORM_SUBMITTING_FAILED,
   FORM_SUBMITTED,
-  FORM_SUBMITDATA
+  FORM_SUBMITDATA,
+  SAVE_DB_MEMBERS_DATA,
+  REGISTERING_SNDICATE_MEMBERS,
+  REGISTERED_SNDICATE_MEMBERS,
+  FAILED_TO_REGISTER_SNDICATE_MEMBERS
 } from 'actions/registerSyndicate/AddMemberForm'
 
 import update from 'immutability-helper'
@@ -18,14 +22,20 @@ import update from 'immutability-helper'
 const initialState = {
   isSubmitting: false,
   submitError: false,
-  membersData: {},
+  data: {},
+  db: [],
   errors: {
-    firstName: [],
+    firstname: [],
     surname: [],
+    email: [],
     addressLine1: [],
     addressLine2: [],
     postcode: []
-  }
+  },
+  fetching: false,
+  error: false,
+  posting: false,
+  posted: false
 }
 
 /**
@@ -43,7 +53,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FORM_UPDATE:
       return {...state,
-        membersData: {...state.membersData, [action.key]: {...state.membersData[action.key], [action.name]: action.value}}
+        data: {
+          ...state.data,
+          [action.key]: {
+            ...state.data[action.key],
+            [action.name]: action.value
+          }
+        }
       }
 
     case FORM_ERROR:
@@ -56,11 +72,11 @@ const reducer = (state = initialState, action) => {
       })
 
     case FORM_RESET:
-      let newMembersData = state.membersData
+      let newMembersData = state.data
       delete newMembersData[action.key]
       return {
         ...state,
-        membersData: newMembersData
+        data: newMembersData
       }
 
     case FORM_SUBMITDATA:
@@ -69,7 +85,19 @@ const reducer = (state = initialState, action) => {
         isSubmitting: {
           $set: false
         },
-        membersData: {...state.membersData, [action.key]: action.data}
+        data: {
+          ...state.data,
+          [action.key]: {
+            ...action.data,
+            'password': 'Test1234'
+          }
+        }
+      }
+
+    case SAVE_DB_MEMBERS_DATA:
+      return {
+        ...state,
+        db: action.data
       }
 
     case FORM_SUBMITTING:
@@ -102,6 +130,42 @@ const reducer = (state = initialState, action) => {
         },
         errors: {
           $merge: action.error.errors || []
+        }
+      })
+
+    case REGISTERING_SNDICATE_MEMBERS:
+      return update(state, {
+        posting: {
+          $set: true
+        },
+        posted: {
+          $set: false
+        }
+      })
+
+    case REGISTERED_SNDICATE_MEMBERS:
+      return update(state, {
+        posting: {
+          $set: false
+        },
+        error: {
+          $set: false
+        },
+        posted: {
+          $set: true
+        }
+      })
+
+    case FAILED_TO_REGISTER_SNDICATE_MEMBERS:
+      return update(state, {
+        posting: {
+          $set: false
+        },
+        error: {
+          $set: true
+        },
+        posted: {
+          $set: false
         }
       })
 

@@ -5,10 +5,6 @@ import { connect } from 'react-redux'
 
 import TextButton from 'components/buttons/TextButton'
 
-import FormSubmissionEdit from 'components/manageredit/FormSubmissionEdit'
-
-import EditButton from 'components/manageredit/EditButton'
-
 import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
 
 import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
@@ -17,7 +13,7 @@ import SortSelect, { Option } from 'components/searchandfilter/SortSelect'
 
 import {submitSyndicateData} from 'actions/syndicate'
 
-import PropTypes from 'prop-types'
+import {setSyndicateColours, registerSyndicateColours} from 'actions/registerSyndicate/syndicateColours'
 
 import {
   registerColoursTitle,
@@ -28,11 +24,12 @@ class RegisterSyndicateColoursContainer extends Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      showEdit: false,
-      value: ''
-    }
+  }
 
+  registerSyndicateColours() {
+    let slug = this.props.syndicateName.slug
+    let colours = this.props.syndicateColours
+    this.props.registerSyndicateColours(slug, JSON.stringify(colours))
   }
 
   render () {
@@ -165,7 +162,7 @@ class RegisterSyndicateColoursContainer extends Component {
               <span>This button will become active one you have selected an available name</span>
             </div>
             <TextButton
-              onClick={() => {  }}
+              onClick={() => { this.registerSyndicateColours() }}
               modifier={['fluid']}
               isDisabled={false}
               text='proceed to step 2' />
@@ -181,16 +178,26 @@ class RegisterSyndicateColoursContainer extends Component {
   }
 }
 
-RegisterSyndicateColoursContainer.propTypes = {
-  children: PropTypes.func.isRequired
-}
-
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    syndicateName: state.registerSyndicate.syndicateName,
+    syndicateColours: {
+      body: state.registerSyndicate.syndicateColours.body,
+      sleeves: state.registerSyndicate.syndicateColours.sleeves,
+      cap: state.registerSyndicate.syndicateColours.cap,
+    }
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {
+    updateSyndicateColours: (name, value) => {
+      dispatch(setSyndicateColours(name, value))
+    },
+    registerSyndicateColours: (slug, data) => {
+      return dispatch(registerSyndicateColours(slug, data))
+    }
+  }
 }
 
 export default connect(

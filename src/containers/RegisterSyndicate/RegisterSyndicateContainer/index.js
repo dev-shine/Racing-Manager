@@ -162,10 +162,6 @@ class RegisterSyndicateContainer extends Component {
   }
 }
 
-RegisterSyndicateContainer.propTypes = {
-  children: PropTypes.func.isRequired
-}
-
 const mapStateToProps = (state, ownProps) => {
   return {}
 }

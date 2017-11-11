@@ -115,11 +115,12 @@
               }
             }
             .syndicate-member-card {
-              height: 160px;
-              padding: 15px 20px;
+              height: 170px;
+              padding: 15px 0px;
               border-top: 7px solid #000;
               box-shadow: 0px 0px 25px 1px #ddd;
               .card-content {
+                padding: 0 20px;
                 .card-text {
                   margin-bottom: 3px;
                   &.first-surname {
@@ -129,14 +130,25 @@
               }
               .card-footer {
                 text-align: right;
-                .card-btn {
-                  width: 40px;
-                  display: inline-block;
-                  font-style: italic;
-                  cursor: pointer;
-                  .del-btn {
-                    color: #999;
+                .card-buttons {
+                  padding: 0 20px;
+                  .card-btn {
+                    width: 40px;
+                    display: inline-block;
+                    font-style: italic;
+                    cursor: pointer;
+                    .del-btn {
+                      color: #999;
+                    }
                   }
+                }
+                .card-distribution {
+                  padding: 0 20px;
+                  font-size: 12px;
+                  font-weight: 500;
+                  text-align: left;
+                  line-height: 30px;
+                  border-top: 1px solid #eee;
                 }
               }
             }

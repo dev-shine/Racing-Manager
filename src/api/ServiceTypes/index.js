@@ -44,3 +44,9 @@ export const COMMENT = `${MESSAGE}/comment`
 export const NEWS = `${BASE_URL}/news`
 
 export const UPLOADED = `${BASE_URL}/uploaded`
+
+export const REGISTER_SYNDICATE_NAME = `${BASE_URL}/syndicate/register/name`
+
+export const REGISTER_SYNDICATE_MEMBERS = `${BASE_URL}/syndicate/:slug/ownership`
+
+export const REGISTER_SYNDICATE_COLOURS = `${BASE_URL}/syndicate/register/color/:slug`

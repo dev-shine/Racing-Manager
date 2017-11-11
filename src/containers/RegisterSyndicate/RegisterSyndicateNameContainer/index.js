@@ -7,17 +7,17 @@ import Input from 'components/input/Input'
 
 import TextButton from 'components/buttons/TextButton'
 
-import FormSubmissionEdit from 'components/manageredit/FormSubmissionEdit'
-
-import EditButton from 'components/manageredit/EditButton'
-
 import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
 
 import SyndicateBenefits from 'components/syndicate/SyndicateBenefits'
 
 import {submitSyndicateData} from 'actions/syndicate'
 
-import PropTypes from 'prop-types'
+import {setSyndicateName, submitSyndicateName} from 'actions/registerSyndicate/syndicateName'
+
+import { getItem } from 'utils/storageutils'
+
+import { USER_TOKEN } from 'data/consts'
 
 import {
   registerNameTitle,
@@ -33,6 +33,11 @@ class RegisterSyndicateNameContainer extends Component {
       value: ''
     }
 
+  }
+
+  submitSyndicateName () {
+    const token = getItem(USER_TOKEN)
+    this.props.submitSyndicateName(token, this.props.syndicateName)
   }
 
   render () {
@@ -67,7 +72,7 @@ class RegisterSyndicateNameContainer extends Component {
             <Input
               inputClassName='text-center'
               name='counter'
-              handleChange={() => {}}
+              handleChange={(e) => {this.props.setSyndicateName(e.currentTarget.value)}}
               handleBlur={() => {}}
               placeholder={`ENTER DESIRED NAME`} />
           </div>
@@ -75,7 +80,7 @@ class RegisterSyndicateNameContainer extends Component {
         <div className="col-xs-12 name-footer">
           <div className="name-submit-button">
             <TextButton
-              onClick={() => {  }}
+              onClick={() => { this.submitSyndicateName() }}
               modifier={['fluid']}
               isDisabled={false}
               text='APPLY FOR NAME' />
@@ -93,16 +98,21 @@ class RegisterSyndicateNameContainer extends Component {
   }
 }
 
-RegisterSyndicateNameContainer.propTypes = {
-  children: PropTypes.func.isRequired
-}
-
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return {
+    syndicateName: state.registerSyndicate.syndicateName.name,
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+  return {
+    setSyndicateName: (name) => {
+      dispatch(setSyndicateName(name))
+    },
+    submitSyndicateName: (token, name) => {
+      return dispatch(submitSyndicateName(token, name))
+    }
+  }
 }
 
 export default connect(

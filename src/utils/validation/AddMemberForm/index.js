@@ -10,25 +10,29 @@ import * as ERROR from 'texts/errormessages'
 
 export const addMemberFormValidators = (type, formValues = {}) => {
   const {
-    firstName,
+    firstname,
     surname,
-    addressLine1,
-    addressLine2,
+    email,
+    addressline1,
+    addressline2,
     postcode
   } = formValues
 
   switch (type) {
-    case 'firstName':
-      return VALIDATE.NAME(firstName) ? [] : [ERROR.FIRST_NAME]
+    case 'firstname':
+      return VALIDATE.NAME(firstname) ? [] : [ERROR.FIRST_NAME]
 
-    case 'sureName':
+    case 'surname':
       return VALIDATE.NAME(surname) ? [] : [ERROR.SURNAME]
 
-    case 'addressLine1':
-      return VALIDATE.NAME(addressLine1) ? [] : [ERROR.ADDRESS]
+    case 'email':
+      return VALIDATE.EMAIL(email) ? [] : [ERROR.EMAIL]
 
-    case 'addressLine2':
-      return VALIDATE.NAME(addressLine2) ? [] : [ERROR.ADDRESS]
+    case 'addressline1':
+      return VALIDATE.NAME(addressline1) ? [] : [ERROR.ADDRESS]
+
+    case 'addressline2':
+      return VALIDATE.NAME(addressline2) ? [] : [ERROR.ADDRESS]
 
     case 'postcode':
       return VALIDATE.NAME(postcode) ? [] : [ERROR.SURNAME]

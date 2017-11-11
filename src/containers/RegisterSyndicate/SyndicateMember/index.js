@@ -98,22 +98,25 @@ class SyndicateMemberContainer extends PureComponent {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let condition = !_.isEmpty(state.registerSyndicate.membersFormData.membersData) && typeof state.registerSyndicate.membersFormData.membersData[ownProps.dataKey] !== 'undefined'
+  let syndicateMembers = state.registerSyndicate.syndicateMembers
+  let condition = !_.isEmpty(syndicateMembers.membersData.data) && typeof syndicateMembers.membersData.data[ownProps.dataKey] !== 'undefined'
   return {
     AddMemberFormInfo: {
       values: {
-        firstName: condition ? state.registerSyndicate.membersFormData.membersData[ownProps.dataKey].firstName : '',
-        surname: condition ? state.registerSyndicate.membersFormData.membersData[ownProps.dataKey].surname : '',
-        addressLine1: condition ? state.registerSyndicate.membersFormData.membersData[ownProps.dataKey].addressLine1 : '',
-        addressLine2: condition ? state.registerSyndicate.membersFormData.membersData[ownProps.dataKey].addressLine2 : '',
-        postcode: condition ? state.registerSyndicate.membersFormData.membersData[ownProps.dataKey].postcode : '',
+        firstname: condition ? syndicateMembers.membersData.data[ownProps.dataKey].firstname : '',
+        surname: condition ? syndicateMembers.membersData.data[ownProps.dataKey].surname : '',
+        email: condition ? syndicateMembers.membersData.data[ownProps.dataKey].email : '',
+        addressline1: condition ? syndicateMembers.membersData.data[ownProps.dataKey].addressline1 : '',
+        addressline2: condition ? syndicateMembers.membersData.data[ownProps.dataKey].addressline2 : '',
+        postcode: condition ? syndicateMembers.membersData.data[ownProps.dataKey].postcode : '',
+        distribution: condition ? syndicateMembers.membersData.data[ownProps.dataKey].distribution : '',
       },
-      errors: state.registerSyndicate.membersFormData.errors,
+      errors: syndicateMembers.membersData.errors,
       validators: addMemberFormValidators
     },
     RegisterSyndicateInfo: {
-      syndicateCount: state.registerSyndicate.syndicateMembers.membersCount,
-      step: state.registerSyndicate.syndicateMembers.step
+      syndicateCount: syndicateMembers.membersInfo.membersCount,
+      step: syndicateMembers.membersInfo.step
     }
   }
 }

@@ -1,86 +1,11 @@
-import {
-  SET_STEP_STATUS,
-  SET_MEMBERS_COUNT,
-  SET_MEMBERS_DATA,
-  UPDATE_MEMBERS_DATA,
-  DELETE_MEMBERS_DATA,
+import addMemberForm from './AddMemberForm'
+import membersInfo from './MembersInfo'
 
-} from 'actions/registerSyndicate/syndicateMember'
+import { combineReducers } from 'redux'
 
-import {
-  LOG_OUT
-} from 'actions/auth'
+const combinedRegisterSyndicateMemberReducers = combineReducers({
+  membersInfo: membersInfo,
+  membersData: addMemberForm
+})
 
-import update from 'immutability-helper'
-
-/**
- * @name initialState
-*  @type { object }
-*  @description - Initial state
-*/
-const initialState = {
-  step: 1,
-  membersCount: 0,
-  membersData: {}
-}
-
-/**
-*  @name reducer
-*  @type { function }
-*  @param { object } state
-*  @param { object } action
-*  @return { object }
-*/
-const reducer = (state = initialState, action) => {
-  /**
-  *  @type { switch }
-  *  @return { object }
-  */
-  switch (action.type) {
-    case LOG_OUT:
-      return initialState
-
-    case SET_STEP_STATUS:
-      return update(state, {
-        step: {
-          $set: action.step
-        }
-      })
-
-    case SET_MEMBERS_COUNT:
-      return update(state, {
-        membersCount: {
-          $set: action.count
-        }
-      })
-
-    case SET_MEMBERS_DATA:
-      return update(state, {
-        membersData: {
-          $set: action.data
-        }
-      })
-
-    case UPDATE_MEMBERS_DATA:
-      return update(state, {
-        membersData: {
-          $set: action.data
-        }
-      })
-
-    case DELETE_MEMBERS_DATA:
-      return update(state, {
-        membersData: {
-          $set: action.data
-        }
-      })
-
-    default:
-      return state
-  }
-}
-
-/**
- *  @name reducer
-*/
-export default reducer
+export default combinedRegisterSyndicateMemberReducers

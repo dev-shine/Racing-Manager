@@ -25,6 +25,8 @@ import {submitSyndicateData} from 'actions/syndicate'
 
 import {setMembersCount, setStepStatus} from 'actions/registerSyndicate/syndicateMember'
 
+import {registerSyndicateMembersData, updateSyndicateMembersDistribution} from 'actions/registerSyndicate/AddMemberForm'
+
 import {
   registerMembersTitle,
   registerMembersDescription,
@@ -52,8 +54,27 @@ class RegisterSyndicateMembersContainer extends Component {
 
   setMembersCount (value) {
     this.props.setMembersCount(value)
-    if (this.props.syndicateMembers.membersCount < value) {
+    if (this.props.MembersInfo.membersCount < value) {
       this.setState({availableNextStep2: false})
+    }
+  }
+
+  proceedToStep3 () {
+    let that = this
+    let slug = that.props.syndicateName.slug
+    let data = _.values(that.props.MembersData)
+    let dbData = that.props.DBMembersData
+    if(dbData.length == 0) {
+      that.props.registerSyndicateMembersData(slug, JSON.stringify({owners: data}))
+      that.setStepStatus(3)
+    } else {
+      _.forEach(data, function (member) {
+        let dbMember = _.filter(dbData, ['email', member.email])
+        console.log('#####', dbMember)
+        console.log('$$$$$$', {userId: dbMember._id, shareDistribution: member.distribution})
+        that.props.updateSyndicateMembersDistribution(slug, JSON.stringify({userId: dbMember._id, shareDistribution: member.distribution}))
+      })
+      this.setStepStatus(3)
     }
   }
 
@@ -62,7 +83,7 @@ class RegisterSyndicateMembersContainer extends Component {
   }
 
   getTotalDistribution () {
-    var membersData = this.props.syndicateMembersData
+    var membersData = this.props.MembersData
     var totalDistribution = 0;
     for (var key in membersData) {
       totalDistribution += membersData[key].distribution
@@ -81,7 +102,7 @@ class RegisterSyndicateMembersContainer extends Component {
       logo: ''
     }
     let SyndicateMembers = []
-    for (var i = 1; i <= this.props.syndicateMembers.membersCount; i++) {
+    for (var i = 1; i <= this.props.MembersInfo.membersCount; i++) {
       SyndicateMembers.push(
         <div className='col-xs-6 col-sm-4 col-md-3 add-member' key={i}>
           <SyndicateMember availableNextStep2={() => { this.availableNextStep2() }} dataKey={i} status='addCard' />
@@ -113,7 +134,7 @@ class RegisterSyndicateMembersContainer extends Component {
               <Counter
                 min={0}
                 max={12}
-                defaultCount={this.props.syndicateMembers.membersCount}
+                defaultCount={this.props.MembersInfo.membersCount}
                 onChange={(value) => this.setMembersCount(value)} />
             </div>
           </div>
@@ -135,7 +156,7 @@ class RegisterSyndicateMembersContainer extends Component {
           <TextButton
             onClick={() => { this.setStepStatus(2) }}
             modifier={['fluid']}
-            isDisabled={this.props.syndicateMembers.membersCount === 0 || _.size(this.props.syndicateMembersData) !== this.props.syndicateMembers.membersCount/* || !this.state.availableNextStep2*/}
+            isDisabled={this.props.MembersInfo.membersCount === 0 || _.size(this.props.MembersData) !== this.props.MembersInfo.membersCount/* || !this.state.availableNextStep2*/}
             text='proceed to step 2' />
           <h6 className="btn-comment">SAVE AND CONTINUE LATER</h6>
         </div>
@@ -150,10 +171,10 @@ class RegisterSyndicateMembersContainer extends Component {
       logo: ''
     }
     let SyndicateSliders = []
-    for (var i = 1; i <= this.props.syndicateMembers.membersCount; i++) {
+    for (var i = 1; i <= this.props.MembersInfo.membersCount; i++) {
       SyndicateSliders.push(
         <div className='col-xs-12 slider-content' key={i}>
-          <SyndicateSlider dataKey={i} distribution={this.props.syndicateMembersData[i].distribution} totalDistribution={this.getTotalDistribution()} />
+          <SyndicateSlider dataKey={i} distribution={this.props.MembersData[i].distribution} totalDistribution={this.getTotalDistribution()} />
         </div>
       );
     }
@@ -188,7 +209,7 @@ class RegisterSyndicateMembersContainer extends Component {
         </div>
         <div className="members-footer">
           <TextButton
-            onClick={() => { this.setStepStatus(3) }}
+            onClick={() => { this.proceedToStep3() }}
             modifier={['fluid']}
             isDisabled={this.getTotalDistribution() !== 100}
             text='proceed to step 3' />
@@ -205,7 +226,7 @@ class RegisterSyndicateMembersContainer extends Component {
       logo: ''
     }
     let SyndicateMembers = []
-    for (var i = 1; i <= this.props.syndicateMembers.membersCount; i++) {
+    for (var i = 1; i <= this.props.MembersInfo.membersCount; i++) {
       SyndicateMembers.push(
         <div className='col-xs-6 col-sm-4 col-md-3 add-member' key={i}>
           <SyndicateMember dataKey={i} status='memberCard' />
@@ -258,9 +279,9 @@ class RegisterSyndicateMembersContainer extends Component {
   render () {
     return (
       <div>
-        {this.props.syndicateMembers.step === 1 ? this.step1() : null}
-        {this.props.syndicateMembers.step === 2 ? this.step2() : null}
-        {this.props.syndicateMembers.step === 3 ? this.step3() : null}
+        {this.props.MembersInfo.step === 1 ? this.step1() : null}
+        {this.props.MembersInfo.step === 2 ? this.step2() : null}
+        {this.props.MembersInfo.step === 3 ? this.step3() : null}
       </div>
     )
   }
@@ -268,8 +289,12 @@ class RegisterSyndicateMembersContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    syndicateMembers: state.registerSyndicate.syndicateMembers,
-    syndicateMembersData: state.registerSyndicate.membersFormData.membersData
+    // MembersInfo: state.registerSyndicate.syndicateMembers,
+    // MembersData: state.registerSyndicate.membersFormData.membersData
+    syndicateName: state.registerSyndicate.syndicateName,
+    MembersInfo: state.registerSyndicate.syndicateMembers.membersInfo,
+    MembersData: state.registerSyndicate.syndicateMembers.membersData.data,
+    DBMembersData: state.registerSyndicate.syndicateMembers.membersData.db
   }
 }
 
@@ -280,6 +305,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     setMembersCount: (count) => {
       dispatch(setMembersCount(count))
+    },
+    registerSyndicateMembersData: (slug, data) => {
+      return dispatch(registerSyndicateMembersData(slug, data))
+    },
+    updateSyndicateMembersDistribution: (slug, data) => {
+      return dispatch(updateSyndicateMembersDistribution(slug, data))
     }
   }
 }

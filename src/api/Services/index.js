@@ -176,3 +176,46 @@ export const getUploadedData = () => {
     url: SERVICE_TYPES.UPLOADED
   })
 }
+
+export const registerSyndicateName = (token, name) => {
+  return post({
+    url: SERVICE_TYPES.REGISTER_SYNDICATE_NAME,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `JWT ${token}`
+    },
+    data: JSON.stringify({ name: name })
+  })
+}
+
+/*export const registerSyndicateMembers = (token, data) => {
+  return post({
+    url: SERVICE_TYPES.REGISTER_SYNDICATE_MEMBERS,
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `JWT ${token}`
+    },
+    data: JSON.stringify(data)
+  })
+}*/
+
+export const registerSyndicateMembers = (data) => {
+  return post({
+    url: SERVICE_TYPES.REGISTER_SYNDICATE_MEMBERS,
+    ...data
+  })
+}
+
+export const updateMembersDistribution = (data) => {
+  return put( {
+    url: SERVICE_TYPES.REGISTER_SYNDICATE_MEMBERS,
+    ...data
+  })
+}
+
+export const updateSyndicateColours = (data) => {
+  return put( {
+    url: SERVICE_TYPES.REGISTER_SYNDICATE_COLOURS,
+    ...data
+  })
+}

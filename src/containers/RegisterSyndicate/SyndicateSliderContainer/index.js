@@ -74,8 +74,9 @@ class SyndicateSliderContainer extends PureComponent {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  let condition = !_.isEmpty(state.registerSyndicate.membersFormData.membersData) && typeof state.registerSyndicate.membersFormData.membersData[ownProps.dataKey] !== 'undefined'
-  let membersData = state.registerSyndicate.membersFormData.membersData
+  let syndicateMembers = state.registerSyndicate.syndicateMembers
+  let condition = !_.isEmpty(syndicateMembers.membersData.data) && typeof syndicateMembers.membersData.data[ownProps.dataKey] !== 'undefined'
+  let membersData = syndicateMembers.membersData.data
   return {
     MemberInfo: {
       values: {
@@ -83,7 +84,7 @@ const mapStateToProps = (state, ownProps) => {
         surname: condition ? membersData[ownProps.dataKey].surname : '',
         distribution: condition && typeof membersData[ownProps.dataKey].distribution !== 'undefined' ? membersData[ownProps.dataKey].distribution : 0
       },
-      errors: state.registerSyndicate.membersFormData.errors,
+      errors: syndicateMembers.membersData.errors,
       validators: addMemberFormValidators
     }
   }
