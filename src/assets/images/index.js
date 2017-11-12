@@ -13,3 +13,5 @@ export const pageNotFound = require('./page-not-found.png')
 export const heroBg = require('./hero-bg.svg')
 
 export const managerDashboardBilling = require('./managerdashboard-header-image.png')
+
+export const onboardingSyndicateJourneyHorse = require('./onboarding-horse.png')
