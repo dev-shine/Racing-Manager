@@ -6,6 +6,7 @@ import {
   FORM_SUBMITTING_FAILED,
   FORM_SUBMITTED,
   FORM_SUBMITDATA,
+  RESET_MEMBERS_DATA,
   SAVE_DB_MEMBERS_DATA,
   REGISTERING_SNDICATE_MEMBERS,
   REGISTERED_SNDICATE_MEMBERS,
@@ -119,6 +120,12 @@ const reducer = (state = initialState, action) => {
           $set: false
         }
       })
+
+    case RESET_MEMBERS_DATA:
+      return {
+        ...state,
+        data: {}
+      }
 
     case FORM_SUBMITTING_FAILED:
       return update(state, {

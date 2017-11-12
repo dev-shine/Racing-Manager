@@ -25,6 +25,7 @@ import BrowseHorses from 'views/BrowseHorses'
 import RegistrationExistingSyndicate from 'views/Registration/RegisterExistingSyndicate'
 import RegisterSyndicate from 'views/Registration/RegisterSyndicate'
 import RegisterSyndicateName from 'views/Registration/RegisterSyndicateName'
+import OnboardingSyndicateJourney from 'views/Registration/OnboardingSyndicateJourney'
 import RegisterSyndicateColours from 'views/Registration/RegisterSyndicateColours'
 import RegisterSyndicateMembers from 'views/Registration/RegisterSyndicateMembers'
 
@@ -54,6 +55,7 @@ const router = (
             <AuthRoute path='/register-existing-syndicate' component={RegistrationExistingSyndicate} redirectPath='/' />
             <AuthRoute path='/register-syndicate' component={RegisterSyndicate} redirectPath='/' />
             <AuthRoute path='/register-syndicate-name' component={RegisterSyndicateName} redirectPath='/' />
+            <AuthRoute exact path='/register-syndicate-onboarding' component={OnboardingSyndicateJourney} redirectPath='/' />
             <AuthRoute path='/register-syndicate-colours' component={RegisterSyndicateColours} redirectPath='/' />
             <AuthRoute path='/register-syndicate-members' component={RegisterSyndicateMembers} redirectPath='/' />
             <AuthRoute path='/create-new-syndicate' component={SyndicateCreation} redirectPath='/' />

@@ -99,3 +99,7 @@ export const faqs = [
     answer: 'Including all vets bills, entry fees, transport, owners badge for race days & visits.'
   }
 ]
+
+export const onboardingDescription = 'Lorem ipsum dolor consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad'
+
+export const onboardingOptionDescription = 'A partnership is a great option for those wanting to be more hands-on than members of a racing club, but in a more affordable way. A tried and tested method is to own a `leg` with three other people.'

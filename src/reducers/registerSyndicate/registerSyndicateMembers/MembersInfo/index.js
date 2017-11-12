@@ -4,6 +4,7 @@ import {
   SET_MEMBERS_DATA,
   UPDATE_MEMBERS_DATA,
   DELETE_MEMBERS_DATA,
+  RESET_MEMBER_INFO
 
 } from 'actions/registerSyndicate/syndicateMember'
 
@@ -37,6 +38,7 @@ const reducer = (state = initialState, action) => {
   */
   switch (action.type) {
     case LOG_OUT:
+    case RESET_MEMBER_INFO:
       return initialState
 
     case SET_STEP_STATUS:

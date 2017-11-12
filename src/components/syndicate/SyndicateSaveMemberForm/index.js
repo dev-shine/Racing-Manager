@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 
+import { Link } from 'react-router-dom'
+
 import TextButton from 'components/buttons/TextButton'
 
 import Checkbox from 'components/input/Checkbox'
@@ -46,11 +48,13 @@ class SyndicateSaveMemberForm extends PureComponent {
             handleChange={() => { this.isCheckbox2() }}
             name='checkbox2' />
         </div>
-        <TextButton
-          onClick={() => {}}
-          modifier={['fluid']}
-          isDisabled={!this.state.checkbox1 || !this.state.checkbox2}
-          text='SAVE THE TEAM' />
+        <Link to='/register-syndicate'>
+          <TextButton
+            onClick={this.props.resetMemberInfo}
+            modifier={['fluid']}
+            isDisabled={!this.state.checkbox1 || !this.state.checkbox2}
+            text='SAVE THE TEAM' />
+        </Link>
       </div>
     )
   }

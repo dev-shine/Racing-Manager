@@ -79,17 +79,19 @@ class RegisterSyndicateContainer extends Component {
                 </Link>
               </div>
               <div className="col-xs-6 col-md-3">
-                <div className="block">
-                  <div className="block-header">
-                    <span>IN PROGRESS</span>
-                  </div>
-                  <div className="block-content">
-                    <div className="block-body horse">
-                      <h6>45%</h6>
-                      <h2 className="title">HORSE</h2>
+                <Link to='/register-syndicate-onboarding'>
+                  <div className="block">
+                    <div className="block-header">
+                      <span>IN PROGRESS</span>
+                    </div>
+                    <div className="block-content">
+                      <div className="block-body horse">
+                        <h6>45%</h6>
+                        <h2 className="title">HORSE</h2>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="col-xs-6 col-md-3">
                 <Link to='/register-syndicate-colours'>

@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import { withRouter } from 'react-router-dom'
+
 import Input from 'components/input/Input'
 
 import TextButton from 'components/buttons/TextButton'
@@ -38,6 +40,7 @@ class RegisterSyndicateNameContainer extends Component {
   submitSyndicateName () {
     const token = getItem(USER_TOKEN)
     this.props.submitSyndicateName(token, this.props.syndicateName)
+    .then(() => this.props.history.push('/register-syndicate'))
   }
 
   render () {
@@ -72,7 +75,7 @@ class RegisterSyndicateNameContainer extends Component {
             <Input
               inputClassName='text-center'
               name='counter'
-              handleChange={(e) => {this.props.setSyndicateName(e.currentTarget.value)}}
+              handleChange={(e) => { this.props.setSyndicateName(e.currentTarget.value) }}
               handleBlur={() => {}}
               placeholder={`ENTER DESIRED NAME`} />
           </div>
@@ -115,7 +118,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterSyndicateNameContainer)
+)(RegisterSyndicateNameContainer))

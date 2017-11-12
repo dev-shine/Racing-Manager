@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import { withRouter } from 'react-router-dom'
+
 import TextButton from 'components/buttons/TextButton'
 
 import TextEditContainer from 'containers/ManagerEdit/TextEditContainer'
@@ -26,10 +28,11 @@ class RegisterSyndicateColoursContainer extends Component {
 
   }
 
-  registerSyndicateColours() {
+  registerSyndicateColours () {
     let slug = this.props.syndicateName.slug
     let colours = this.props.syndicateColours
     this.props.registerSyndicateColours(slug, JSON.stringify(colours))
+    .then(() => this.props.history.push('/register-syndicate'))
   }
 
   render () {
@@ -200,7 +203,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterSyndicateColoursContainer)
+)(RegisterSyndicateColoursContainer))

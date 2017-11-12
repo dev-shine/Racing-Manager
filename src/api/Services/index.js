@@ -188,17 +188,6 @@ export const registerSyndicateName = (token, name) => {
   })
 }
 
-/*export const registerSyndicateMembers = (token, data) => {
-  return post({
-    url: SERVICE_TYPES.REGISTER_SYNDICATE_MEMBERS,
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `JWT ${token}`
-    },
-    data: JSON.stringify(data)
-  })
-}*/
-
 export const registerSyndicateMembers = (data) => {
   return post({
     url: SERVICE_TYPES.REGISTER_SYNDICATE_MEMBERS,
@@ -207,15 +196,44 @@ export const registerSyndicateMembers = (data) => {
 }
 
 export const updateMembersDistribution = (data) => {
-  return put( {
+  return put({
     url: SERVICE_TYPES.REGISTER_SYNDICATE_MEMBERS,
     ...data
   })
 }
 
 export const updateSyndicateColours = (data) => {
-  return put( {
+  return put({
     url: SERVICE_TYPES.REGISTER_SYNDICATE_COLOURS,
+    ...data
+  })
+}
+
+export const getHorsesInfos = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_INFORMATION_EDITOR,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horseName: value })
+  })
+}
+
+export const getHorsesState = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATE,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horseCode: value })
+  })
+}
+
+export const registerInSyndicate = (data) => {
+  return post({
+    url: SERVICE_TYPES.REGISTER_HORSES,
     ...data
   })
 }

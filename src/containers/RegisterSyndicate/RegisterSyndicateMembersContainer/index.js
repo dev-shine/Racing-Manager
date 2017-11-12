@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
+import { withRouter } from 'react-router-dom'
+
 import _ from 'lodash'
 
 import TextButton from 'components/buttons/TextButton'
@@ -23,9 +25,9 @@ import SyndicateMember from 'containers/RegisterSyndicate/SyndicateMember'
 
 import {submitSyndicateData} from 'actions/syndicate'
 
-import {setMembersCount, setStepStatus} from 'actions/registerSyndicate/syndicateMember'
+import {setMembersCount, setStepStatus, resetSyndicateMemberState} from 'actions/registerSyndicate/syndicateMember'
 
-import {registerSyndicateMembersData, updateSyndicateMembersDistribution} from 'actions/registerSyndicate/AddMemberForm'
+import {registerSyndicateMembersData, updateSyndicateMembersDistribution, resetSyndicateMemberData} from 'actions/registerSyndicate/AddMemberForm'
 
 import {
   registerMembersTitle,
@@ -64,14 +66,12 @@ class RegisterSyndicateMembersContainer extends Component {
     let slug = that.props.syndicateName.slug
     let data = _.values(that.props.MembersData)
     let dbData = that.props.DBMembersData
-    if(dbData.length == 0) {
+    if (dbData.length === 0) {
       that.props.registerSyndicateMembersData(slug, JSON.stringify({owners: data}))
       that.setStepStatus(3)
     } else {
       _.forEach(data, function (member) {
         let dbMember = _.filter(dbData, ['email', member.email])
-        console.log('#####', dbMember)
-        console.log('$$$$$$', {userId: dbMember._id, shareDistribution: member.distribution})
         that.props.updateSyndicateMembersDistribution(slug, JSON.stringify({userId: dbMember._id, shareDistribution: member.distribution}))
       })
       this.setStepStatus(3)
@@ -93,6 +93,12 @@ class RegisterSyndicateMembersContainer extends Component {
 
   availableNextStep2 () {
     this.setState({availableNextStep2: true})
+  }
+
+  resetMemberInfo () {
+    this.props.resetSyndicateMemberData()
+    this.props.resetSyndicateMemberState()
+    .then(() => this.props.history.push('/register-syndicate'))
   }
 
   step1 () {
@@ -270,7 +276,7 @@ class RegisterSyndicateMembersContainer extends Component {
           </div>
         </div>
         <div className="members-footer">
-          <SyndicateSaveMemberForm />
+          <SyndicateSaveMemberForm resetMemberInfo={() => this.resetMemberInfo()} />
         </div>
       </div>
     )
@@ -311,11 +317,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     updateSyndicateMembersDistribution: (slug, data) => {
       return dispatch(updateSyndicateMembersDistribution(slug, data))
+    },
+    resetSyndicateMemberData: () => {
+      return dispatch(resetSyndicateMemberData())
+    },
+    resetSyndicateMemberState: () => {
+      return dispatch(resetSyndicateMemberState())
     }
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(RegisterSyndicateMembersContainer)
+)(RegisterSyndicateMembersContainer))

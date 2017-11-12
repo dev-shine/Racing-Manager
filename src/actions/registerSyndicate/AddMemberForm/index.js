@@ -32,6 +32,8 @@ export const REGISTERED_SNDICATE_MEMBERS = 'REGISTERED_SNDICATE_MEMBERS'
 
 export const FAILED_TO_REGISTER_SNDICATE_MEMBERS = 'FAILED_TO_REGISTER_SNDICATE_MEMBERS'
 
+export const RESET_MEMBERS_DATA = 'RESET_MEMBERS_DATA'
+
 export const registeringSyndicateMembers = () => ({
   type: REGISTERING_SNDICATE_MEMBERS
 })
@@ -86,6 +88,10 @@ export const submitFormData = (key, data) => ({
   key: key
 })
 
+export const resetSyndicateMemberData = () => ({
+  type: RESET_MEMBERS_DATA
+})
+
 export const registerSyndicateMembersData = (slug, payload) => {
   return (dispatch, getState) => {
     return dispatch({
@@ -98,7 +104,6 @@ export const registerSyndicateMembersData = (slug, payload) => {
     })
       .then((data) => {
         dispatch(addToastSuccess(REGISTER_SYNDICATE_MEMBERS))
-        console.log('#################', data)
         dispatch(saveDBMembersData(data))
         return Promise.resolve()
       })

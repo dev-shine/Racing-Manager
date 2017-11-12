@@ -15,3 +15,5 @@ export const REGISTER_SYNDICATE_MEMBERS = 'Successfully registered syndicate mem
 export const REGISTER_SYNDICATE_DISTRIBUTION = "Successfully registered syndicate distributions"
 
 export const REGISTER_SYNDICATE_COLOURS = 'Successfully registered syndicate colours'
+
+export const REGISTER_SYNDICATE_HORSES = 'Successfully registered syndicate horses'
