@@ -198,6 +198,59 @@ export const getUploadedData = () => {
   })
 }
 
+export const getHorsesInfos = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_INFORMATION_EDITOR,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horseName: value })
+  })
+}
+
+export const getUsersInfos = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.GET_USERS_INFORMATIONS,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ query: value })
+  })
+}
+
+export const getHorsesState = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.HORSE_STATE,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horseCode: value })
+  })
+}
+
+export const registerInSyndicate = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.REGISTER_HORSES,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ horses: value })
+  })
+}
+
+export const getHorsesInformations = (token) => {
+  return get({
+    url: SERVICE_TYPES.GET_HORSE_INFORMATIONS,
+      headers: {
+      'Authorization': `JWT ${token}`
+    }
+  })
+}
+
 export const getAccountNotification = (token) => {
   return get({
     url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
@@ -214,6 +267,6 @@ export const updateAccountNotification = (data, token) => {
       'Authorization': `JWT ${token}`,
       'Content-Type': 'application/json'
     },
-    data: JSON.stringify(data)
+    payload: JSON.stringify(data)
   })
 }

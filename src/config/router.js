@@ -37,10 +37,13 @@ import SyndicateCreation from 'views/Syndicate/SyndicateCreation'
 import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
 
+import OnboardingSyndicateJourney from 'views/OnboardingSyndicateJourney'
+
 import Cookies from 'views/StaticPages/Cookies'
 import Legal from 'views/StaticPages/Legal'
 import Privacy from 'views/StaticPages/Privacy'
 import Terms from 'views/StaticPages/Terms'
+
 
 const router = (
   <Routes history={history}>
@@ -73,6 +76,8 @@ const router = (
             <AuthRoute exact path='/syndicate' component={PrivateSyndicate} redirectPath='/' />
             <AuthRoute exact path='/syndicate/:slug' component={PrivateSyndicate} redirectpath='/' />
             <AuthRoute exact path='/syndicate/:slug/edit' component={PrivateSyndicate} redirectPath='/404' />
+
+            <AuthRoute exact path='/onboarding' component={OnboardingSyndicateJourney} redirectPath='/' />
 
             <Route path='/user/verify/:token' component={RegistrationConfirmation} />
             <Route component={PageNotFound} />

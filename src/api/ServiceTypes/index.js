@@ -55,9 +55,6 @@ export const REGISTER_HORSES = `${BASE_URL}/horses/SYNDICATE_ONE`
 
 export const GET_USERS_INFORMATIONS = `${BASE_URL}/user/search`
 
-export const MESSAGE_POST_UNSET_USERID = (horseId) => { `${BASE_URL}/message?horseId=${horseId}` }
-
-export const MESSAGE_POST_SET_USERID = (horseId, userId) => { `${BASE_URL}/message?horseId=${userId}` }
+export const GET_HORSE_INFORMATIONS = `${BASE_URL}/horse`
 
 export const ACCOUNT_NOTIFICATION_SETTING = `${USER}/notification`
-
