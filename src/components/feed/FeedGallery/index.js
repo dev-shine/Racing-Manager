@@ -132,7 +132,8 @@ class FeedGallery extends Component {
       timeStamp,
       text,
       attachment,
-      author
+      author,
+      commentCount
     } = tile
 
     // Switch between the post type.
@@ -145,6 +146,7 @@ class FeedGallery extends Component {
             name={author}
             date={timeStamp}
             text={text}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
 
@@ -157,6 +159,7 @@ class FeedGallery extends Component {
             date={timeStamp}
             text={text}
             attachments={attachment}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
 
@@ -169,6 +172,7 @@ class FeedGallery extends Component {
             name={author}
             date={timeStamp}
             text={text}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
 
@@ -182,6 +186,7 @@ class FeedGallery extends Component {
             name={author}
             date={timeStamp}
             text={text}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
     }
