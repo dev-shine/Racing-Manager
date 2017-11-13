@@ -260,14 +260,11 @@ export const getAccountNotification = (token) => {
   })
 }
 
-export const postHorseUnSetUser = (horseId, data, token) => {
+export const postHorseUnSetUser = (data) => {
   return post({
-    url: SERVICE_TYPES.POST_UNSET_USER(horseId),
-    headers: {
-      'Authorization': `JWT ${token}`,
-      'Content-Type': 'multipart/form-data'
-    },
-    data: JSON.stringify(data)
+    url: SERVICE_TYPES.POST_UNSET_USER(data.data.horseId),
+    ...data,
+    data: data.data.msgContent
   })
 }
 
@@ -278,17 +275,14 @@ export const updateAccountNotification = (data, token) => {
       'Authorization': `JWT ${token}`,
       'Content-Type': 'application/json'
     },
-    data: JSON.stringify(data)
+    payload: JSON.stringify(data)
   })
 }
 
-export const postHorseSetUser = (horseId, userId, data, token) => {
+export const postHorseSetUser = (data) => {
   return post({
-    url: SERVICE_TYPES.POST_SET_USER(horseId, userId),
-    headers: {
-      'Authorization': `JWT ${token}`,
-      'Content-Type': 'multipart/form-data'
-    },
-    data: JSON.stringify(data)
+    url: SERVICE_TYPES.POST_SET_USER(data.data.horseId, data.data.userId),
+    ...data,
+    data: data.data.msgContent
   })
 }

@@ -1,5 +1,5 @@
 
-export const ROOT_PATH = 'http://52.51.111.248:3000'
+export const ROOT_PATH = 'http://192.168.0.38:3000'
 
 export const BASE_URL = `${ROOT_PATH}/api/v1`
 

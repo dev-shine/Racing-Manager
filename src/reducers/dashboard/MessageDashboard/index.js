@@ -5,7 +5,10 @@ import {
   UPDATE_USERS_INFORMATIONS,
   POSTED_MESSAGE_RESULT,
   POSTED_FAILED,
-  POSTING_DATA
+  POSTING_DATA,
+  POSTING_MESSAGE,
+  POSTED_MESSAGE,
+  FAILED_TO_POST_MESSAGE
 } from 'actions/dashboard'
 
 import {
@@ -24,11 +27,13 @@ import _ from 'lodash'
 const initialState = {
   sender: '',
   receiver: null,
-  error: false,
   horseInfo: [],
   userInfo: [],
   isPosting: false,
-  showMessage: false
+  showMessage: false,
+  error: false,
+  posting: false,
+  posted: false
 }
 
 /**
@@ -87,6 +92,42 @@ const reducer = (state = initialState, action) => {
     case POSTING_DATA:
       newState.isPosting = true
       return newState
+
+    case POSTING_MESSAGE:
+      return update(state, {
+        posting: {
+          $set: true
+        },
+        posted: {
+          $set: false
+        }
+      })
+
+    case POSTED_MESSAGE:
+      return update(state, {
+        posting: {
+          $set: false
+        },
+        error: {
+          $set: false
+        },
+        posted: {
+          $set: true
+        }
+      })
+
+    case FAILED_TO_POST_MESSAGE:
+      return update(state, {
+        posting: {
+          $set: false
+        },
+        error: {
+          $set: true
+        },
+        posted: {
+          $set: false
+        }
+      })
 
     default:
       return state

@@ -8,6 +8,10 @@ import {
 
 import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
+import { UPDATED_HORSE_DATA } from 'texts/successmessages'
+
+import { addToastSuccess, addToastError } from 'actions/toast'
+
 export const FETCH_MEMBER_DASHBOARD_DATA = 'FETCH_MEMBER_DASHBOARD_DATA'
 
 export const RECEIVED_MEMBER_DASHBOARD_DATA = 'RECEIVED_MEMBER_DASHBOARD_DATA'
@@ -27,6 +31,12 @@ export const POSTED_MESSAGE_RESULT = 'POSTED_MESSAGE_RESULT'
 export const POSTED_FAILED = 'POSTED_FAILED'
 
 export const POSTING_DATA = 'POSTING_DATA'
+
+export const POSTING_MESSAGE = 'POSTING_MESSAGE'
+
+export const POSTED_MESSAGE = 'POSTED_MESSAGE'
+
+export const FAILED_TO_POST_MESSAGE = 'FAILED_TO_POST_MESSAGE'
 
 export const fetchMemberDashboardData = () => ({
   type: FETCH_MEMBER_DASHBOARD_DATA
@@ -75,6 +85,17 @@ export const isPostingData = () => ({
   type: POSTING_DATA
 })
 
+
+export const postingMessage = () => ({
+  type: POSTING_MESSAGE
+})
+export const postedMessage = () => ({
+  type: POSTED_MESSAGE
+})
+export const failedToPostMessage = () => ({
+  type: FAILED_TO_POST_MESSAGE
+})
+
 /**
  *  @name  getDashboard
  *  @description This will filter down to the AuthenticatedRequest middleware.
@@ -119,34 +140,51 @@ export const getUserInformation = (data) => {
   }
 }
 
-export const postHorseMessageUnSetUser = (horseId, data, token) => {
+export const postHorseMessageUnSetUser = (horseId, msgContent, token) => {
   return (dispatch, getState) => {
     dispatch(isPostingData())
-
-    return postHorseUnSetUser(horseId, data, token)
-    .then((data) => {
-      dispatch(postedMessageResult(data))
-      return Promise.resolve(data)
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [postingMessage, postedMessage, failedToPostMessage],
+      endpoint: postHorseUnSetUser,
+      payload: {
+        horseId,
+        msgContent
+      }
+    })
+    .then(() => {
+      dispatch(addToastSuccess(UPDATED_HORSE_DATA))
+      return Promise.resolve()
     })
     .catch((error) => {
-      console.log(error)
-      return Promise.reject(error)
+      if (error && error.message) {
+        dispatch(addToastError(error.message))
+      }
     })
   }
 }
 
-export const postHorseMessageSetUser = (horseId, userId, data, token) => {
+export const postHorseMessageSetUser = (horseId, userId, msgContent, token) => {
   return (dispatch, getState) => {
     dispatch(isPostingData())
-
-    return postHorseSetUser(horseId, userId, data, token)
-    .then((data) => {
-      dispatch(postedMessageResult(data))
-      return Promise.resolve(data)
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [postingMessage, postedMessage, failedToPostMessage],
+      endpoint: postHorseSetUser,
+      payload: {
+        horseId,
+        userId,
+        msgContent
+      }
+    })
+    .then(() => {
+      dispatch(addToastSuccess(UPDATED_HORSE_DATA))
+      return Promise.resolve()
     })
     .catch((error) => {
-      dispatch(postedFailed())
-      return Promise.reject(error)
+      if (error && error.message) {
+        dispatch(addToastError(error.message))
+      }
     })
   }
 }
