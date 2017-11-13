@@ -19,7 +19,8 @@ const AccountCreditCard = (props) => {
     horseCount,
     cardNumber,
     expiry,
-    postCode
+    postCode,
+    onDelete
   } = props
 
   return (
@@ -29,12 +30,13 @@ const AccountCreditCard = (props) => {
           <h3 className='uppercase regular'>
             {cardType}
           </h3>
+          {/*
           <h6 className='semi-bold account-credit-card__header'>
             {holderName}
           </h6>
           <h6 className='semi-bold account-credit-card__text-primary account-credit-card__section-small'>
             Used for <span className='link'>{horseCount} horses</span>
-          </h6>
+          </h6>*/}
         </CardHeading>
         <CardContent>
           <div className='account-credit-card__content'>
@@ -66,15 +68,16 @@ const AccountCreditCard = (props) => {
             </div>
           </div>
         </CardContent>
+        {/*}
         <CardContent>
           <TextButton
             text='update details'
             modifier={['secondary', 'fluid']} />
-        </CardContent>
+        </CardContent>*/}
       </CardFrame>
       <CardFooter>
-        <h6 className='italic link uppercase cursor--pointer'>
-          delete method
+        <h6 className='italic link uppercase cursor--pointer' onClick={onDelete}>
+          delete card
         </h6>
       </CardFooter>
     </CardView>

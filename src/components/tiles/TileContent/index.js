@@ -50,10 +50,6 @@ TileContent.propTypes = {
   modifier: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
-  ]),
-  text: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array
   ])
 }
 

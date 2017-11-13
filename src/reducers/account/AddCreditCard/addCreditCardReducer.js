@@ -1,8 +1,8 @@
 import {
-  FORM_SUBMITTING,
-  FORM_SUBMITTED,
-  FORM_SUBMITTING_FAILED
-} from 'actions/account/AddCreditCard'
+  CARD_SUBMITTING,
+  CARD_SUBMITTED,
+  CARD_SUBMITTING_FAILED
+} from 'actions/account/CreditCard'
 
 import update from 'immutability-helper'
 
@@ -36,25 +36,22 @@ const reducer = (state = initialState, action) => {
     case LOG_OUT:
       return initialState
 
-    case FORM_SUBMITTING:
+    case CARD_SUBMITTING:
       return update(state, {
         submitting: {
           $set: true
         }
       })
 
-    case FORM_SUBMITTED:
+    case CARD_SUBMITTED:
       return update(state, {
-        submitting: {
-          $set: false
+        cardName: {
+          $set: ''
         }
       })
 
-    case FORM_SUBMITTING_FAILED:
+    case CARD_SUBMITTING_FAILED:
       return update(state, {
-        submitting: {
-          $set: false
-        },
         error: {
           $set: action.error
         }

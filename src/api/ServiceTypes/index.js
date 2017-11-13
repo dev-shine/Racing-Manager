@@ -5,6 +5,8 @@ export const BASE_URL = `${ROOT_PATH}/api/v1`
 
 export const USER = `${BASE_URL}/user`
 
+export const USER_CARD = `${BASE_URL}/user/card`
+
 export const JOIN_REQUEST = `${USER}/join-request`
 
 export const CHANGE_PASSWORD = `${USER}/change-password`
@@ -56,3 +58,6 @@ export const GET_USERS_INFORMATIONS = `${BASE_URL}/user/search`
 export const MESSAGE_POST_UNSET_USERID = (horseId) => { `${BASE_URL}/message?horseId=${horseId}` }
 
 export const MESSAGE_POST_SET_USERID = (horseId, userId) => { `${BASE_URL}/message?horseId=${userId}` }
+
+export const ACCOUNT_NOTIFICATION_SETTING = `${USER}/notification`
+

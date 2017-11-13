@@ -145,6 +145,27 @@ export const updateUserInformation = (data) => {
   })
 }
 
+export const addCreditCard = (data) => {
+  return post({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const getCreditCards = (data) => {
+  return get({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const deleteCreditCard = (data) => {
+  return put({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
 export const requestToJoin = (data) => {
   return post({
     url: SERVICE_TYPES.JOIN_REQUEST,
@@ -174,5 +195,25 @@ export const getNewsById = (id) => {
 export const getUploadedData = () => {
   return get({
     url: SERVICE_TYPES.UPLOADED
+  })
+}
+
+export const getAccountNotification = (token) => {
+  return get({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
+    headers: {
+      'Authorization': `JWT ${token}`
+    }
+  })
+}
+
+export const updateAccountNotification = (data, token) => {
+  return put({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
   })
 }

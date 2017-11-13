@@ -6,12 +6,18 @@ import TileHeader from 'components/tiles/TileHeader'
 
 import Separator from 'components/gui/Separator'
 
+import {markdownToHTML} from 'utils/textutils'
+
 const FeedComment = (props) => {
   const {
     name,
     date,
-    text
+    text: rawText
   } = props
+
+  const text = (
+    <div dangerouslySetInnerHTML={{__html: markdownToHTML(rawText)}}></div>
+  )
 
   return (
     <div className='feed-comment'>

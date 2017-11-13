@@ -34,9 +34,9 @@ import TileContent from 'components/tiles/TileContent'
 import baseTile from 'components/tiles/BaseTile'
 
 /**
- *  @module TileVideoContent
+ *  @module TileImageContent
  */
-import TileVideoContent from 'components/tiles/TileVideoContent'
+import TileImageContent from 'components/tiles/TileImageContent'
 
 /**
  *  @name VideoTile
@@ -60,10 +60,9 @@ const VideoTile = props => {
 
   return (
     <div className={modifiedClassNames}>
-      <TileVideoContent
-        poster={poster}
-        src={src}
-        rootPath={rootPath} />
+      <TileImageContent
+        rootPath={rootPath}
+        src={poster}/>
       <TileHeader
         name={name}
         date={date} />
@@ -92,7 +91,8 @@ VideoTile.propTypes = {
   name: PropTypes.string,
   date: PropTypes.string,
   text: PropTypes.string,
-  src: PropTypes.string
+  src: PropTypes.string,
+  playerId: PropTypes.string
 }
 
 /**
