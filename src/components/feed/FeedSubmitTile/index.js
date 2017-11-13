@@ -155,8 +155,12 @@ class FeedSubmitTile extends Component {
    *  @return {Void}
    */
   focusTextField () {
-    if (this.refs.textarea) {
-      this.refs.textarea.focusField()
+    try { // Can fail if textfield is WYSIWYG
+      if (this.refs.textarea) {
+        this.refs.textarea.focusField()
+      }
+    } catch (e) {
+
     }
   }
 
@@ -247,7 +251,8 @@ class FeedSubmitTile extends Component {
               name='feed-submit-textarea'
               className='feed-submit__textarea-container'
               handleChange={(e) => { updateFeedText(e.target.value) }}
-              value={feedText}/>
+              value={feedText}
+              markdown={true}/>
             {
               thumbnailSrc &&
               <Thumbnail

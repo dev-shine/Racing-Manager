@@ -145,6 +145,27 @@ export const updateUserInformation = (data) => {
   })
 }
 
+export const addCreditCard = (data) => {
+  return post({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const getCreditCards = (data) => {
+  return get({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const deleteCreditCard = (data) => {
+  return put({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
 export const requestToJoin = (data) => {
   return post({
     url: SERVICE_TYPES.JOIN_REQUEST,
@@ -224,6 +245,15 @@ export const registerInSyndicate = (value, token) => {
 export const getHorsesInformations = (token) => {
   return get({
     url: SERVICE_TYPES.GET_HORSE_INFORMATIONS,
+      headers: {
+      'Authorization': `JWT ${token}`
+    }
+  })
+}
+
+export const getAccountNotification = (token) => {
+  return get({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
     headers: {
       'Authorization': `JWT ${token}`
     }
@@ -233,6 +263,17 @@ export const getHorsesInformations = (token) => {
 export const postHorseUnSetUser = (horseId, data, token) => {
   return post({
     url: SERVICE_TYPES.POST_UNSET_USER(horseId),
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}
+
+export const updateAccountNotification = (data, token) => {
+  return put({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
     headers: {
       'Authorization': `JWT ${token}`,
       'Content-Type': 'application/json'
@@ -251,4 +292,3 @@ export const postHorseSetUser = (horseId, userId, data, token) => {
     data: JSON.stringify(data)
   })
 }
-

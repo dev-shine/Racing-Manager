@@ -16,7 +16,7 @@ const request = params => {
   let body
   let headers = params.headers || {
     'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }
 
   if (['GET', 'DELETE'].indexOf(method) > -1) {
