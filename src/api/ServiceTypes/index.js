@@ -50,3 +50,11 @@ export const HORSE_INFORMATION_EDITOR = `${BASE_URL}/horse/search`
 export const HORSE_STATE = `${BASE_URL}/horse/checkExist`
 
 export const REGISTER_HORSES = `${BASE_URL}/horses/SYNDICATE_ONE`
+
+export const GET_USERS_INFORMATIONS = `${BASE_URL}/user/search`
+
+export const GET_HORSE_INFORMATIONS = `${BASE_URL}/horse`
+
+export const POST_UNSET_USER = (horseId) => `${BASE_URL}/message?horseId=${horseId}`
+
+export const POST_SET_USER = (horseId, userId) => `${BASE_URL}/message?horseId=${horseId}&userId=${userId}`

@@ -188,6 +188,17 @@ export const getHorsesInfos = (value, token) => {
   })
 }
 
+export const getUsersInfos = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.GET_USERS_INFORMATIONS,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ query: value })
+  })
+}
+
 export const getHorsesState = (value, token) => {
   return post({
     url: SERVICE_TYPES.HORSE_STATE,
@@ -209,3 +220,35 @@ export const registerInSyndicate = (value, token) => {
     data: JSON.stringify({ horses: value })
   })
 }
+
+export const getHorsesInformations = (token) => {
+  return get({
+    url: SERVICE_TYPES.GET_HORSE_INFORMATIONS,
+    headers: {
+      'Authorization': `JWT ${token}`
+    }
+  })
+}
+
+export const postHorseUnSetUser = (horseId, data, token) => {
+  return post({
+    url: SERVICE_TYPES.POST_UNSET_USER(horseId),
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}
+
+export const postHorseSetUser = (horseId, userId, data, token) => {
+  return post({
+    url: SERVICE_TYPES.POST_SET_USER(horseId, userId),
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(data)
+  })
+}
+

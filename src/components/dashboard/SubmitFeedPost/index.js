@@ -38,7 +38,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   const {
     reducerName, // reducerName which will correspond to the correct reducer
-    allowAttachments = true
+    allowAttachments = false
   } = ownProps
 
   return {

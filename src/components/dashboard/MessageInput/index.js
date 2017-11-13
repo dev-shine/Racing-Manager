@@ -42,10 +42,8 @@ import InputError from 'components/input/InputError'
  *  @class
  *  @extends {Component}
  */
-class MessageInput extends Component
-{
-  constructor(props)
-  {
+class MessageInput extends Component {
+  constructor (props) {
     super(props)
 
     this.state = {}
@@ -56,10 +54,10 @@ class MessageInput extends Component
     let data = null
     if (this.props.name === 'receiver') {
       data = _.map(selectValue, function (val) {
-        return val.label
+        return ({ name: val.label, id: val.value })
       })
     } else {
-      data = selectValue.label
+      data = { name: selectValue.label, id: selectValue.value }
     }
     this.props.handleSelectName(data)
   }
@@ -86,18 +84,11 @@ class MessageInput extends Component
     // Class names for the input line
     const inputLineClassNames = classNames('input__line', inputLineClassName)
 
-    const options = [
-      { label: "One", value: 1 },
-      { label: "Two", value: 2 },
-      { label: "Three", value: 3 }
-      // And so on...
-    ]
-
     return (
 
       <div className={modifiedClassName}>
         <VirtualizedSelect
-          options={this.props.searchNames}
+          options={searchNames}
           onChange={(selectValue) => this.handleChange(selectValue)}
           value={this.state.selectValue}
           multi={multi}

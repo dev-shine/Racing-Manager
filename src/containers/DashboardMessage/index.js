@@ -6,31 +6,60 @@ import SubmitFeedPost from 'components/dashboard/SubmitFeedPost'
 
 import MessageInput from 'components/dashboard/MessageInput'
 
-import { updateMessageReceiver, updateMessageSender } from 'actions/dashboard'
+import { getItem } from 'utils/storageutils'
 
-import processMediaPayload from 'utils/mediapayload'
+import { USER_TOKEN } from 'data/consts'
 
 import {
-  submitHorseUpdate
-} from 'actions/horse'
+  updateMessageReceiver,
+  updateMessageSender,
+  getHorseInformation,
+  getUserInformation,
+  postHorseMessageUnSetUser,
+  postHorseMessageSetUser
+} from 'actions/dashboard'
+
+const token = getItem(USER_TOKEN)
 
 /**
  *  @class
  *  @name MemberDashboard
  *  @extends {Component}
  */
-export class MemberDashboard extends Component {
+class DashboardMessage extends Component {
   constructor (props) {
     super(props)
+
+    this.postMessageFeed = this.postMessageFeed.bind(this)
+  }
+
+  componentDidMount () {
+    this.props.horseInformation(token)
+    this.props.userInformation()
+  }
+
+  postMessageFeed (data) {
+    if (this.props.sender === '') {
+      return (this.props.receiver && this.props.receiver.map((item) => this.props.postHorseMessageUnSetUser(item.id, data, token)))
+    } else {
+      return (this.props.receiver && this.props.receiver.map((item) => this.props.postHorseMessageSetUser(item.id, this.props.sender.id, data, token)))
+    }
   }
 
   render () {
-    let searchNames = this.props.dashboardData.ownership && this.props.dashboardData.ownership.map((row) => (
+    let searchHorses = this.props.horseInfo && this.props.horseInfo.map((row) => (
       {
         label: row.name,
-        value: row.slug
+        value: row._id
       }
     ))
+
+    let searchUser = this.props.userInfo && this.props.userInfo.map((row) => (
+        {
+          label: `${row.firstname}_${row.surname}`,
+          value: row._id
+        }
+      ))
 
     return (
       <div>
@@ -43,11 +72,10 @@ export class MemberDashboard extends Component {
             onSubmit={ () => {} }
             handleSelectName={ (data) => { this.props.updateMessageReceiver(data) } }
             placeholder='HORSE NAME'
-            searchNames={searchNames}
+            searchNames={searchHorses}
             multi={true}
           />
         </div>
-        {/*}
         <div className='msg-input from'>
           <div className="input-label">
             <h5>FROM</h5>
@@ -57,14 +85,13 @@ export class MemberDashboard extends Component {
             onSubmit={ () => {} }
             handleSelectName={  (data) => { this.props.updateMessageSender(data) }  }
             placeholder='NOT SELECTED'
-            searchNames={searchNames}
+            searchNames={searchUser}
             multi={false}
           />
         </div>
-        */}
         <SubmitFeedPost
           // posted={posted}
-          // submitFeedUpdate={this.postHorseFeed}
+          submitFeedUpdate={(data) => { this.postMessageFeed(data) }}
           reducerName='dashboardFeedPost'
         />
       </div>
@@ -83,37 +110,36 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     sender: message.sender || '',
-    receiver: message.receiver || ''
+    receiver: message.receiver || '',
+    horseInfo: message.horseInfo || [],
+    userInfo: message.userInfo || []
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    submitHorseUpdate: (text, files) => {
-      const {
-        submitFeedUpdate
-      } = ownProps
-
-      const attachment = files
-
-      // Construct data
-      let data = processMediaPayload({
-        attachment,
-        text
-      })
-
-      submitHorseUpdate(data)
+    postHorseMessageUnSetUser: (horseId, data, token) => {
+      return dispatch(postHorseMessageUnSetUser(horseId, data, token))
+    },
+    postHorseMessageSetUser: (horseId, userId, data) => {
+      return dispatch(postHorseMessageSetUser(horseId, userId, data, token))
     },
     updateMessageSender: (data) => {
       return dispatch(updateMessageSender(data))
     },
     updateMessageReceiver: (data) => {
       return dispatch(updateMessageReceiver(data))
+    },
+    horseInformation: (token) => {
+      return dispatch(getHorseInformation(token))
+    },
+    userInformation: () => {
+      return dispatch(getUserInformation())
     }
   }
 }
 
-export default (connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MemberDashboard))
+)(DashboardMessage)

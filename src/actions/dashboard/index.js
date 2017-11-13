@@ -1,4 +1,10 @@
-import { getMemberDashboard } from 'api/Services'
+import {
+  getMemberDashboard,
+  getHorsesInformations,
+  getUsersInfos,
+  postHorseUnSetUser,
+  postHorseSetUser
+} from 'api/Services'
 
 import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
 
@@ -11,6 +17,14 @@ export const FAILED_TO_FETCH_MEMBER_DASHBOARD_DATA = 'FAILED_TO_FETCH_MEMBER_DAS
 export const UPDATE_MESSAGE_SENDER = 'UPDATE_MESSAGE_SENDER'
 
 export const UPDATE_MESSAGE_RECEIVER = 'UPDATE_MESSAGE_RECEIVER'
+
+export const UPDATE_HORSES_INFORMATIONS = 'UPDATE_HORSES_INFORMATIONS'
+
+export const UPDATE_USERS_INFORMATIONS = 'UPDATE_USERS_INFORMATIONS'
+
+export const POSTED_MESSAGE_RESULT = 'POSTED_MESSAGE_RESULT'
+
+export const POSTED_FAILED = 'POSTED_FAILED'
 
 export const fetchMemberDashboardData = () => ({
   type: FETCH_MEMBER_DASHBOARD_DATA
@@ -36,6 +50,25 @@ export const updateMessageSender = (data) => ({
   data
 })
 
+export const updateHorseInformation = (data) => ({
+  type: UPDATE_HORSES_INFORMATIONS,
+  data
+})
+
+export const updateUserInformation = (data) => ({
+  type: UPDATE_USERS_INFORMATIONS,
+  data
+})
+
+export const postedMessageResult = (data) => ({
+  type: POSTED_MESSAGE_RESULT,
+  data
+})
+
+export const postedFailed = () => ({
+  type: POSTED_FAILED
+})
+
 /**
  *  @name  getDashboard
  *  @description This will filter down to the AuthenticatedRequest middleware.
@@ -47,5 +80,65 @@ export const getDashboard = () => {
     type: AUTHENTICATED_REQUEST,
     types: [fetchMemberDashboardData, receivedMemberDashboardData, failedToFetchMemberDashboardData],
     endpoint: getMemberDashboard
+  }
+}
+
+export const getHorseInformation = (token) => {
+  return (dispatch, getState) => {
+
+    return getHorsesInformations(token)
+    .then((data) => {
+      dispatch(updateHorseInformation(data))
+      return Promise.resolve(data)
+    })
+    .catch((error) => {
+      console.log(error)
+      return Promise.reject(error)
+    })
+  }
+}
+
+export const getUserInformation = (data) => {
+  return (dispatch, getState) => {
+
+    return getUsersInfos('')
+    .then((data) => {
+      dispatch(updateUserInformation(data))
+      return Promise.resolve(data)
+    })
+    .catch((error) => {
+      console.log(error)
+      return Promise.reject(error)
+    })
+  }
+}
+
+export const postHorseMessageUnSetUser = (horseId, data, token) => {
+  return (dispatch, getState) => {
+
+    return postHorseUnSetUser(horseId, data, token)
+    .then((data) => {
+      dispatch(postedMessageResult(data))
+      return Promise.resolve(data)
+    })
+    .catch((error) => {
+      console.log(error)
+      return Promise.reject(error)
+    })
+  }
+}
+
+export const postHorseMessageSetUser = (horseId, userId, data, token) => {
+  return (dispatch, getState) => {
+
+    return postHorseSetUser(horseId, userId, data, token)
+    .then((data) => {
+      dispatch(postedMessageResult(data))
+      return Promise.resolve(data)
+    })
+    .catch((error) => {
+      dispatch(postedFailed())
+      return Promise.reject(error)
+    })
   }
 }

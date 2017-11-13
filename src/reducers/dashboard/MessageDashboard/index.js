@@ -1,6 +1,10 @@
 import {
   UPDATE_MESSAGE_RECEIVER,
-  UPDATE_MESSAGE_SENDER
+  UPDATE_MESSAGE_SENDER,
+  UPDATE_HORSES_INFORMATIONS,
+  UPDATE_USERS_INFORMATIONS,
+  POSTED_MESSAGE_RESULT,
+  POSTED_FAILED
 } from 'actions/dashboard'
 
 import {
@@ -8,6 +12,8 @@ import {
 } from 'actions/auth'
 
 import update from 'immutability-helper'
+
+import _ from 'lodash'
 
 /**
  * @name initialState
@@ -17,7 +23,9 @@ import update from 'immutability-helper'
 const initialState = {
   sender: '',
   receiver: null,
-  error: false
+  error: false,
+  horseInfo: [],
+  userInfo: []
 }
 
 /**
@@ -28,6 +36,8 @@ const initialState = {
 *  @return { object }
 */
 const reducer = (state = initialState, action) => {
+  let newState = _.cloneDeep(state)
+
   /**
   *  @type { switch }
   *  @return { object }
@@ -49,6 +59,19 @@ const reducer = (state = initialState, action) => {
           $set: action.data
         }
       })
+
+    case UPDATE_HORSES_INFORMATIONS:
+      newState.horseInfo = action.data
+      return newState
+
+    case UPDATE_USERS_INFORMATIONS:
+      newState.userInfo = action.data
+      return newState
+
+    case POSTED_MESSAGE_RESULT:
+      newState.sender = ''
+      newState.receiver = null
+      return newState
 
     default:
       return state
