@@ -40,6 +40,8 @@ import FeedUpdatePopupContainer from 'containers/Feed/FeedUpdatePopupContainer'
 
 import TextButton from 'components/buttons/TextButton'
 
+import {markdownToString} from 'utils/textutils'
+
 /**
  *  @class
  *  @name FeedGallery
@@ -130,10 +132,17 @@ class FeedGallery extends Component {
       postType = 'multiplemedia',
       createdAt,
       timeStamp,
-      text,
+      text: rawText,
       attachment,
-      author
+      author,
+      commentCount
     } = tile
+
+    let text = markdownToString(rawText)
+
+    if (text && text.length > 75) {
+      text = text.substr(0, text.lastIndexOf(' ', 75)) + '...'
+    }
 
     // Switch between the post type.
     switch (postType) {
@@ -145,6 +154,7 @@ class FeedGallery extends Component {
             name={author}
             date={timeStamp}
             text={text}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
 
@@ -157,6 +167,7 @@ class FeedGallery extends Component {
             date={timeStamp}
             text={text}
             attachments={attachment}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
 
@@ -169,6 +180,7 @@ class FeedGallery extends Component {
             name={author}
             date={timeStamp}
             text={text}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
 
@@ -182,6 +194,7 @@ class FeedGallery extends Component {
             name={author}
             date={timeStamp}
             text={text}
+            commentCount={commentCount}
             onClick={this.handleTileClick} />
         )
     }

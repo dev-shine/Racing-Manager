@@ -1,15 +1,15 @@
 import CardView from './View'
 import CardFrame from './Frame'
+import SpecCardFrame from './SpecFrame'
 import CardHeading from './Heading'
 import CardContent from './Content'
 import CardFooter from './Footer'
-import SpecCardFrame from './SpecFrame'
 
 export {
   CardView,
   CardHeading,
   CardFrame,
+  SpecCardFrame,
   CardContent,
-  CardFooter,
-  SpecCardFrame
+  CardFooter
 }

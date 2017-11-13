@@ -103,7 +103,8 @@ class MultipleTile extends Component {
       date,
       text,
       attachments,
-      rootPath
+      rootPath,
+      commentCount
     } = this.props
 
     const modifiedClassNames = classNames('multiple-tile', className, modifier)
@@ -119,6 +120,7 @@ class MultipleTile extends Component {
         <TileContent
           text={text}/>
         <TileFooter
+          commentLength={commentCount}
           shareText={text} />
       </div>
     )

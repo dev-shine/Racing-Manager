@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 
-import AccountAddCreditCardForm from 'containers/Account/AddCreditCard'
+import AccountAddCreditCardForm from 'containers/Payment/StripeAddCard'
+
+import StripeCards from 'containers/Payment/StripeCards'
 
 import AccountCreditCard from 'components/account/AccountCreditCard'
 
@@ -22,7 +24,7 @@ class AccountPaymentMethods extends PureComponent {
               </h2>
               <div className='account-payment-methods__section'>
                 <h4 className='capitalize'>
-                  Sending
+                  Add a new card
                 </h4>
               </div>
 
@@ -40,7 +42,6 @@ class AccountPaymentMethods extends PureComponent {
                 <AccountAddCreditCardForm />
               </div>
               <div className='col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
-                <AccountAddPaymentMethodCard />
               </div>
             </div>
           </div>
@@ -49,51 +50,13 @@ class AccountPaymentMethods extends PureComponent {
             <div className='col-lg-6 col-md-8 col-sm-10 col-xs-12'>
               <div className='account-payment-methods__section'>
                 <h4 className='capitalize'>
-                  Receiving
+                  Cards linked to your account
                 </h4>
               </div>
-
-              <div className='account-payment-methods__section'>
-                <p className='small'>
-                  Here you are able to check, update and add your TRM personal information for a more tailored experience.
-                </p>
-              </div>
             </div>
           </div>
 
-          <div className='account-payment-methods__section'>
-            <div className='row'>
-              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
-                <AccountCreditCard
-                  cardType='visa debit'
-                  holderName='N DE ROZARIEUX'
-                  horseCount={1}
-                  cardNumber={'4658 **** **** ****'}
-                  expiry='12/20'
-                  postCode='BN21 2PP' />
-              </div>
-
-              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
-                <AccountCreditCard
-                  cardType='visa credit'
-                  holderName='N DE ROZARIEUX'
-                  horseCount={2}
-                  cardNumber={'5046 **** **** ****'}
-                  expiry='10/19'
-                  postCode='SE13 3SS' />
-              </div>
-
-              <div className='col-lg-4 col-md-6 col-sm-12 col-xs-12 account-payment-methods__section--bottom'>
-                <AccountCreditCard
-                  cardType='visa debit'
-                  holderName='TRM Manager'
-                  horseCount={8}
-                  cardNumber={'4659 **** **** ****'}
-                  expiry='10/21'
-                  postCode='SW1V 1HS' />
-              </div>
-            </div>
-          </div>
+          <StripeCards />
         </div>
       </div>
     )

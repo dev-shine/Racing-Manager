@@ -48,6 +48,8 @@ import FeedComments from 'containers/Feed/FeedComments'
  */
 import SubmitFeedComment from 'containers/Feed/SubmitFeedPost'
 
+import {markdownToHTML} from 'utils/textutils'
+
 /**
  *  @class
  *  @name FeedUpdatePopup
@@ -93,10 +95,14 @@ export class FeedUpdatePopup extends Component {
         postType = 'multiplemedia',
         createdAt,
         timeStamp,
-        text,
+        text: rawText,
         attachment,
         author
       } = feedTile
+
+      const text = (
+        <div dangerouslySetInnerHTML={{__html: markdownToHTML(rawText)}}></div>
+      )
 
       switch (postType) {
         case 'text':
@@ -107,6 +113,7 @@ export class FeedUpdatePopup extends Component {
               key={`fptext-${createdAt}`}
               id={createdAt}
               name={author}
+              commentLength={this.props.commentLength}
               date={timeStamp}
               text={text} />
           )
@@ -133,6 +140,7 @@ export class FeedUpdatePopup extends Component {
               id={createdAt}
               src={attachment[0].path}
               name={author}
+              commentLength={this.props.commentLength}
               date={timeStamp}
               text={text} />
           )

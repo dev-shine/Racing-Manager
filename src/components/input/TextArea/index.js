@@ -37,6 +37,40 @@ import InputLine from 'components/input/InputLine'
  *  @class
  *  @extends {Component}
  */
+
+import {Editor} from 'react-draft-wysiwyg'
+import {EditorState, convertToRaw, convertFromRaw} from 'draft-js'
+import {draftToMarkdown, markdownToDraft} from 'markdown-draft-js'
+
+const toolbarOptions = {
+  options: [
+    'inline',
+    'list',
+    'link',
+    'emoji',
+  ],
+  inline: {
+    options: [
+      'bold',
+      'italic',
+      'underline'
+    ]
+  },
+  emoji: {
+    emojis: [
+      '🐴', '🏇', '🦄', '🐎', '🎠', '😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌', '🤓',
+      '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈',
+      '🙉', '🙊', '👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',
+      '⛷', '🏂', '🏌', '🏄', '🚣', '🏊', '⛹', '🏋', '🚴', '👫', '💪', '👈', '👉', '👉', '👆', '🖕',
+      '👇', '🖖', '🤘', '🖐', '👌', '👍', '👎', '✊', '👊', '👏', '🙌', '🙏', '🐵', '🐶', '🐇', '🐥',
+      '🐸', '🐌', '🐛', '🐜', '🐝', '🍉', '🍄', '🍔', '🍤', '🍨', '🍪', '🎂', '🍰', '🍾', '🍷', '🍸',
+      '🍺', '🌍', '🚑', '⏰', '🌙', '🌝', '🌞', '⭐', '🌟', '🌠', '🌨', '🌩', '⛄', '🔥', '🎄', '🎈',
+      '🎉', '🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷', '💰', '🖊', '📅',
+      '✅', '❎', '💯',
+    ]
+  }
+}
+
 class TextArea extends Component {
   /**
    *  @constructor
@@ -45,21 +79,35 @@ class TextArea extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      wysiwygState: EditorState.createEmpty()
+    }
+
     // Textarea ref
     this.textareaRef = null
     this.timeoutCache = null
 
     // Bind custom fns
     this.autoSize = this.autoSize.bind(this)
+    this.onEditorStateChange = this.onEditorStateChange.bind(this)
+    this.setWYSIWYGWithContent = this.setWYSIWYGWithContent.bind(this)
 
     this.debounceResize = debounce(this.autoSize)
   }
 
   componentDidMount () {
+    const {
+      value,
+      markdown
+    } = this.props
     if (this.props.autoGrow && this.textareaRef) {
       this.textareaRef.addEventListener('input', this.autoSize, false)
       window.addEventListener('resize', this.debounceResize, false)
       this.autoSize()
+    }
+
+    if (markdown && value) {
+      this.setWYSIWYGWithContent(value)
     }
   }
 
@@ -111,7 +159,8 @@ class TextArea extends Component {
       handleFocus,
       handleChange,
       maxLength,
-      showBar
+      showBar,
+      markdown
     } = this.props
 
     /**
@@ -130,20 +179,37 @@ class TextArea extends Component {
       border: showBar
     })
 
+    const {
+      wysiwygState
+    } = this.state
+
     return (
       <div className={modifiedClassNames}>
-        <textarea
-          ref={ref => { this.textareaRef = ref }}
-          className='textarea'
-          type={type}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          onSubmit={handleSubmit}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          maxLength={maxLength}
-          onChange={handleChange} />
+        {
+          !markdown
+            ? (
+              <textarea
+                ref={ref => { this.textareaRef = ref }}
+                className='textarea'
+                type={type}
+                name={name}
+                value={value}
+                placeholder={placeholder}
+                onSubmit={handleSubmit}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+                maxLength={maxLength}
+                onChange={handleChange} />)
+            : (
+              <div className='wysiwyg'>
+                <Editor
+                  editorState={wysiwygState}
+                  onEditorStateChange={this.onEditorStateChange}
+                  toolbar={toolbarOptions}
+                />
+              </div>
+            )
+        }
         {
           showBar
           ? (
@@ -161,6 +227,16 @@ class TextArea extends Component {
       </div>
     )
   }
+
+  setWYSIWYGWithContent (content) {
+    this.setState({wysiwygState: EditorState.createWithContent(convertFromRaw(markdownToDraft(content)))})
+  }
+
+  onEditorStateChange (editorState) {
+    const markdown = draftToMarkdown(convertToRaw(editorState.getCurrentContent()))
+    this.props.handleChange({target: {value: markdown}})
+    this.setState({wysiwygState: editorState})
+  }
 }
 
 /**
@@ -172,7 +248,8 @@ TextArea.defaultProps = {
   minHeight: 40,
   autoGrow: true,
   maxLength: Infinity,
-  showBar: false
+  showBar: false,
+  markdown: false,
 }
 
 /**
@@ -200,7 +277,8 @@ TextArea.propTypes = {
   ]),
   minHeight: PropTypes.number,
   autoGrow: PropTypes.bool,
-  showBar: PropTypes.bool
+  showBar: PropTypes.bool,
+  markdown: PropTypes.bool,
 }
 
 /**

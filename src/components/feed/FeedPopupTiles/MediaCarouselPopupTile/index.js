@@ -145,7 +145,6 @@ MediaCarouselPopupTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string,
   src: PropTypes.string,
   attachments: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.string,

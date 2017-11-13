@@ -32,29 +32,31 @@ export const getHorseInfo = (data) => {
     .then(formatMessagesDate)
 }
 
-export const getHorseStatisticsResultsInfo = (token, name) => {
+export const getHorseStatistics = (data) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS,
+    ...data
+  })
+}
+
+export const getHorseStatisticsResults = (data) => {
   return get({
     url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS,
-    headers: {
-      'Authorization': `JWT ${token}`
-    },
-    data: {
-      horseName: name
-    }
+    ...data
   })
 }
 
-export const getHorseStatisticsResultsDetailsInfo = (name) => {
-  return post({
-    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS_DETAILS,
-    data: JSON.stringify({ horseName: name })
+export const getHorseStatisticsResultsDetail = (data) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS_DETAIL,
+    ...data
   })
 }
 
-export const getHorseStatisticsFutureDetailsInfo = (name) => {
-  return post({
-    url: SERVICE_TYPES.HORSE_STATISTICS_FUTURE_DETAILS,
-    data: JSON.stringify({ horseName: name })
+export const getHorseStatisticsEntries = (data) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS_ENTRIES,
+    ...data
   })
 }
 
@@ -145,6 +147,27 @@ export const updateUserInformation = (data) => {
   })
 }
 
+export const addCreditCard = (data) => {
+  return post({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const getCreditCards = (data) => {
+  return get({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
+export const deleteCreditCard = (data) => {
+  return put({
+    url: SERVICE_TYPES.USER_CARD,
+    ...data
+  })
+}
+
 export const requestToJoin = (data) => {
   return post({
     url: SERVICE_TYPES.JOIN_REQUEST,
@@ -220,6 +243,17 @@ export const getHorsesInfos = (value, token) => {
   })
 }
 
+export const getUsersInfos = (value, token) => {
+  return post({
+    url: SERVICE_TYPES.GET_USERS_INFORMATIONS,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify({ query: value })
+  })
+}
+
 export const getHorsesState = (value, token) => {
   return post({
     url: SERVICE_TYPES.HORSE_STATE,
@@ -235,5 +269,34 @@ export const registerInSyndicate = (data) => {
   return post({
     url: SERVICE_TYPES.REGISTER_HORSES,
     ...data
+  })
+}
+
+export const getHorsesInformations = (token) => {
+  return get({
+    url: SERVICE_TYPES.GET_HORSE_INFORMATIONS,
+      headers: {
+      'Authorization': `JWT ${token}`
+    }
+  })
+}
+
+export const getAccountNotification = (token) => {
+  return get({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
+    headers: {
+      'Authorization': `JWT ${token}`
+    }
+  })
+}
+
+export const updateAccountNotification = (data, token) => {
+  return put({
+    url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
+    headers: {
+      'Authorization': `JWT ${token}`,
+      'Content-Type': 'application/json'
+    },
+    payload: JSON.stringify(data)
   })
 }

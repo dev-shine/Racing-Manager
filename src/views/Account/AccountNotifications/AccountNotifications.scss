@@ -15,5 +15,13 @@
       margin-top: 30px;
     }
   }
+
+  span {
+    white-space: nowrap;
+  }
+
+  span.result-message {
+    color: $vanilla-ice;
+  }
   
 }

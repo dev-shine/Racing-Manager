@@ -44,7 +44,8 @@ const TextPopupTile = props => {
     modifier,
     name,
     date,
-    text
+    text,
+    commentLength
   } = props
 
   const modifiedClassNames = classNames('text-popup-tile', className, modifier)
@@ -59,6 +60,7 @@ const TextPopupTile = props => {
         <TileContent
           text={text} />
         <TileFooter
+          commentLength={commentLength}
           shareText={text} />
       </div>
     </div>
@@ -80,7 +82,6 @@ TextPopupTile.propTypes = {
   ]),
   name: PropTypes.string,
   date: PropTypes.string,
-  text: PropTypes.string
 }
 
 /**

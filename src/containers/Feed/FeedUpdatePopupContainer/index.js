@@ -22,7 +22,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     commentPosted,
-    feedTile: getFeedTileById(state, { tiles, id: tileId })
+    feedTile: getFeedTileById(state, { tiles, id: tileId }),
+    commentLength: state && state.feedComments && state.feedComments.comments && state.feedComments.comments.length
   }
 }
 

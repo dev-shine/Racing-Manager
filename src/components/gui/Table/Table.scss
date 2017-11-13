@@ -13,6 +13,12 @@
     font-size: 14px;
     text-transform: uppercase;
     background: #00273A;
+    &__left {
+      text-align: left;
+      th {
+        padding-left: 15px;
+      }
+    }
   }
 
   &__body {

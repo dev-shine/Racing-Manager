@@ -36,7 +36,7 @@ const TileVideoContent = props => {
 
   return (
     <div className={modifiedClassNames}>
-        <Player
+        <Player 
           poster={`${rootPath}${poster}`}
           src={`${rootPath}${src}`}/>
       </div>
