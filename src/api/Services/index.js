@@ -32,29 +32,31 @@ export const getHorseInfo = (data) => {
     .then(formatMessagesDate)
 }
 
-export const getHorseStatisticsResultsInfo = (token, name) => {
+export const getHorseStatistics = (data) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS,
+    ...data
+  })
+}
+
+export const getHorseStatisticsResults = (data) => {
   return get({
     url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS,
-    headers: {
-      'Authorization': `JWT ${token}`
-    },
-    data: {
-      horseName: name
-    }
+    ...data
   })
 }
 
-export const getHorseStatisticsResultsDetailsInfo = (name) => {
-  return post({
-    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS_DETAILS,
-    data: JSON.stringify({ horseName: name })
+export const getHorseStatisticsResultsDetail = (data) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS_DETAIL,
+    ...data
   })
 }
 
-export const getHorseStatisticsFutureDetailsInfo = (name) => {
-  return post({
-    url: SERVICE_TYPES.HORSE_STATISTICS_FUTURE_DETAILS,
-    data: JSON.stringify({ horseName: name })
+export const getHorseStatisticsEntries = (data) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS_ENTRIES,
+    ...data
   })
 }
 

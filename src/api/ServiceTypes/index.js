@@ -17,13 +17,15 @@ export const LOGIN = `${USER}/login`
 
 export const MESSAGE = `${BASE_URL}/message`
 
-export const HORSE_STATISTICS_RESULTS = `${BASE_URL}/statistics`
-
 export const HORSE_SLUG = `${BASE_URL}/horse/:slug`
 
-export const HORSE_STATISTICS_RESULTS_DETAILS = `${BASE_URL}/horse/form`
+export const HORSE_STATISTICS = `${HORSE_SLUG}/ranking`
 
-export const HORSE_STATISTICS_FUTURE_DETAILS = `${BASE_URL}/horse/card`
+export const HORSE_STATISTICS_RESULTS = `${HORSE_SLUG}/results`
+
+export const HORSE_STATISTICS_RESULTS_DETAIL = `${HORSE_SLUG}/results/:meetingDate`
+
+export const HORSE_STATISTICS_ENTRIES = `${HORSE_SLUG}/entries`
 
 export const UPDATE_HORSE = `${BASE_URL}/horse/:slug`
 
