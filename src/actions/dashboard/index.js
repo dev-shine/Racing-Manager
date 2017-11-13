@@ -26,6 +26,8 @@ export const POSTED_MESSAGE_RESULT = 'POSTED_MESSAGE_RESULT'
 
 export const POSTED_FAILED = 'POSTED_FAILED'
 
+export const POSTING_DATA = 'POSTING_DATA'
+
 export const fetchMemberDashboardData = () => ({
   type: FETCH_MEMBER_DASHBOARD_DATA
 })
@@ -67,6 +69,10 @@ export const postedMessageResult = (data) => ({
 
 export const postedFailed = () => ({
   type: POSTED_FAILED
+})
+
+export const isPostingData = () => ({
+  type: POSTING_DATA
 })
 
 /**
@@ -115,6 +121,7 @@ export const getUserInformation = (data) => {
 
 export const postHorseMessageUnSetUser = (horseId, data, token) => {
   return (dispatch, getState) => {
+    dispatch(isPostingData())
 
     return postHorseUnSetUser(horseId, data, token)
     .then((data) => {
@@ -130,6 +137,7 @@ export const postHorseMessageUnSetUser = (horseId, data, token) => {
 
 export const postHorseMessageSetUser = (horseId, userId, data, token) => {
   return (dispatch, getState) => {
+    dispatch(isPostingData())
 
     return postHorseSetUser(horseId, userId, data, token)
     .then((data) => {

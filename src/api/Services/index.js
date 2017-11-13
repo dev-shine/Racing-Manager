@@ -265,7 +265,7 @@ export const postHorseUnSetUser = (horseId, data, token) => {
     url: SERVICE_TYPES.POST_UNSET_USER(horseId),
     headers: {
       'Authorization': `JWT ${token}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'multipart/form-data'
     },
     data: JSON.stringify(data)
   })
@@ -287,7 +287,7 @@ export const postHorseSetUser = (horseId, userId, data, token) => {
     url: SERVICE_TYPES.POST_SET_USER(horseId, userId),
     headers: {
       'Authorization': `JWT ${token}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'multipart/form-data'
     },
     data: JSON.stringify(data)
   })

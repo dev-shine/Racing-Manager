@@ -4,7 +4,8 @@ import {
   UPDATE_HORSES_INFORMATIONS,
   UPDATE_USERS_INFORMATIONS,
   POSTED_MESSAGE_RESULT,
-  POSTED_FAILED
+  POSTED_FAILED,
+  POSTING_DATA
 } from 'actions/dashboard'
 
 import {
@@ -25,7 +26,9 @@ const initialState = {
   receiver: null,
   error: false,
   horseInfo: [],
-  userInfo: []
+  userInfo: [],
+  isPosting: false,
+  showMessage: false
 }
 
 /**
@@ -50,6 +53,9 @@ const reducer = (state = initialState, action) => {
       return update(state, {
         receiver: {
           $set: action.data
+        },
+        showMessage: {
+          $set: false
         }
       })
 
@@ -57,6 +63,9 @@ const reducer = (state = initialState, action) => {
       return update(state, {
         sender: {
           $set: action.data
+        },
+        showMessage: {
+          $set: false
         }
       })
 
@@ -71,6 +80,12 @@ const reducer = (state = initialState, action) => {
     case POSTED_MESSAGE_RESULT:
       newState.sender = ''
       newState.receiver = null
+      newState.isPosting = false
+      newState.showMessage = true
+      return newState
+
+    case POSTING_DATA:
+      newState.isPosting = true
       return newState
 
     default:

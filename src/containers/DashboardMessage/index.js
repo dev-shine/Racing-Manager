@@ -10,6 +10,8 @@ import { getItem } from 'utils/storageutils'
 
 import { USER_TOKEN } from 'data/consts'
 
+import AjaxLoader from 'components/gui/Loaders/Ajaxloader'
+
 import {
   updateMessageReceiver,
   updateMessageSender,
@@ -94,6 +96,8 @@ class DashboardMessage extends Component {
           submitFeedUpdate={(data) => { this.postMessageFeed(data) }}
           reducerName='dashboardFeedPost'
         />
+        <AjaxLoader isVisible={this.props.isPosting} />
+        { this.props.showMessage ? <div className="result-message"><p>The messages were posted successfully!</p></div> : null }
       </div>
     )
   }
@@ -112,7 +116,9 @@ const mapStateToProps = (state, ownProps) => {
     sender: message.sender || '',
     receiver: message.receiver || '',
     horseInfo: message.horseInfo || [],
-    userInfo: message.userInfo || []
+    userInfo: message.userInfo || [],
+    isPosting: message.isPosting || false,
+    showMessage: message.showMessage || false
   }
 }
 
