@@ -17,8 +17,7 @@ import {
   updateMessageSender,
   getHorseInformation,
   getUserInformation,
-  postHorseMessageUnSetUser,
-  postHorseMessageSetUser
+  postHorseMessage
 } from 'actions/dashboard'
 
 const token = getItem(USER_TOKEN)
@@ -42,9 +41,9 @@ class DashboardMessage extends Component {
 
   postMessageFeed (data) {
     if (this.props.sender === '') {
-      return (this.props.receiver && this.props.receiver.map((item) => this.props.postHorseMessageUnSetUser(item.id, data, token)))
+      return (this.props.receiver && this.props.receiver.map((item) => this.props.postHorseMessage(item.id, undefined, data, token)))
     } else {
-      return (this.props.receiver && this.props.receiver.map((item) => this.props.postHorseMessageSetUser(item.id, this.props.sender.id, data, token)))
+      return (this.props.receiver && this.props.receiver.map((item) => this.props.postHorseMessage(item.id, this.props.sender.id, data, token)))
     }
   }
 
@@ -124,11 +123,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    postHorseMessageUnSetUser: (horseId, data, token) => {
-      return dispatch(postHorseMessageUnSetUser(horseId, data, token))
-    },
-    postHorseMessageSetUser: (horseId, userId, data) => {
-      return dispatch(postHorseMessageSetUser(horseId, userId, data, token))
+    postHorseMessage: (horseId, userId, data, token) => {
+      return dispatch(postHorseMessage(horseId, userId, data, token))
     },
     updateMessageSender: (data) => {
       return dispatch(updateMessageSender(data))

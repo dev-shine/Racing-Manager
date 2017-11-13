@@ -113,6 +113,9 @@ const reducer = (state = initialState, action) => {
         },
         posted: {
           $set: true
+        },
+        isPosting: {
+          $set: false
         }
       })
 

@@ -260,14 +260,6 @@ export const getAccountNotification = (token) => {
   })
 }
 
-export const postHorseUnSetUser = (data) => {
-  return post({
-    url: SERVICE_TYPES.POST_UNSET_USER(data.data.horseId),
-    ...data,
-    data: data.data.msgContent
-  })
-}
-
 export const updateAccountNotification = (data, token) => {
   return put({
     url: SERVICE_TYPES.ACCOUNT_NOTIFICATION_SETTING,
@@ -276,13 +268,5 @@ export const updateAccountNotification = (data, token) => {
       'Content-Type': 'application/json'
     },
     payload: JSON.stringify(data)
-  })
-}
-
-export const postHorseSetUser = (data) => {
-  return post({
-    url: SERVICE_TYPES.POST_SET_USER(data.data.horseId, data.data.userId),
-    ...data,
-    data: data.data.msgContent
   })
 }
