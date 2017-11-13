@@ -26,6 +26,7 @@ const ResultsTableContainer = (props) => {
     firstColumns,
     commentGenerator,
     onRowClick,
+    description
   } = props
 
   if (!data) {
@@ -61,7 +62,8 @@ const ResultsTableContainer = (props) => {
   return (
     <TitleDescriptionSection
       colorModifier='blue'
-      title={title}>
+      title={title}
+      description={description}>
       <div className='table'>
         <table className='table__el'>
           <thead className='table__head'>

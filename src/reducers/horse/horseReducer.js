@@ -8,6 +8,7 @@ import {
   CLEAR_HORSE_DATA,
   RECEIVED_HORSE_STATISTICS,
   RECEIVED_HORSE_STATISTICS_RESULTS,
+  RECEIVED_HORSE_STATISTICS_RESULTS_DETAIL,
   RECEIVED_HORSE_STATISTICS_ENTRIES
 } from 'actions/horse'
 
@@ -124,6 +125,13 @@ const reducer = (state = initialState, action) => {
     case RECEIVED_HORSE_STATISTICS_RESULTS:
       return update(state, {
         statisticsResults: {
+          $set: action.data
+        }
+      })
+
+    case RECEIVED_HORSE_STATISTICS_RESULTS_DETAIL:
+      return update(state, {
+        statisticsResultsDetail: {
           $set: action.data
         }
       })

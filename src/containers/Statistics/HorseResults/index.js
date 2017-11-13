@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchHorseStatisticsResults, fetchHorseStatisticsResultsDetail} from 'actions/horse'
 import HorseTable from 'components/horse/HorseStatisticsTable'
 import timeformLogo from 'assets/icons/timeform_logo.jpg'
+import moment from 'moment'
 
 const tableColumns = [
   'DATE',
@@ -52,29 +53,35 @@ class HorseStatisticsResultsDetail extends Component {
     const {
       fetchHorseStatisticsResultsDetail,
       match: {params: {slug}},
-      rowData
+      rowData,
+
     } = this.props
-    console.log(slug, rowData.DATE)
     fetchHorseStatisticsResultsDetail(slug, rowData.DATE)
   }
 
   render () {
-    const {results, onRowClick} = this.props
+    const {
+      resultsDetail,
+      onRowClick,
+      rowData,
+      onReturnToMaster
+    } = this.props
+
+    const displayDate = moment(rowData.DATE).format('MMMM Do YYYY');
 
     return (
       <HorseTable
-        title='Results'
-        firstColumns={tableColumns}
-        commentGenerator={commentGenerator}
-        data={results}
-        onRowClick={onRowClick}/>
+        title={`${rowData.COURSE} ${displayDate}`}
+        data={resultsDetail}
+        description={<a onClick={onReturnToMaster}>Back to results</a>}/>
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    results: state.horse.horseInfo.statisticsResults
+    results: state.horse.horseInfo.statisticsResults,
+    resultsDetail: state.horse.horseInfo.statisticsResultsDetail
   }
 }
 
