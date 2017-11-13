@@ -23,6 +23,8 @@ export const HORSE_STATISTICS = `${HORSE_SLUG}/ranking`
 
 export const HORSE_STATISTICS_RESULTS = `${HORSE_SLUG}/results`
 
+export const HORSE_STATISTICS_RESULTS_DETAIL = `${HORSE_SLUG}/results/:meetingDate`
+
 export const HORSE_STATISTICS_ENTRIES = `${HORSE_SLUG}/entries`
 
 export const UPDATE_HORSE = `${BASE_URL}/horse/:slug`

@@ -4,6 +4,18 @@ import {connect} from 'react-redux'
 import {fetchHorseStatisticsEntries} from 'actions/horse'
 import HorseTable from 'components/horse/HorseStatisticsTable'
 
+const tableColumns = [
+  'DATE',
+  'TIME',
+  'COURSE',
+  'RACE',
+  'BEST'
+]
+
+const commentGenerator = (row) => {
+  return row.COMMENT
+}
+
 class HorseStatisticsEntries extends Component {
   componentDidMount () {
     const {
@@ -19,6 +31,8 @@ class HorseStatisticsEntries extends Component {
     return (
       <HorseTable
         title='Entries'
+        firstColumns={tableColumns}
+        commentGenerator={commentGenerator}
         data={entries} />
     )
   }

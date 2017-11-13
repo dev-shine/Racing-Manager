@@ -46,6 +46,13 @@ export const getHorseStatisticsResults = (data) => {
   })
 }
 
+export const getHorseStatisticsResultsDetail = (data) => {
+  return get({
+    url: SERVICE_TYPES.HORSE_STATISTICS_RESULTS_DETAIL,
+    ...data
+  })
+}
+
 export const getHorseStatisticsEntries = (data) => {
   return get({
     url: SERVICE_TYPES.HORSE_STATISTICS_ENTRIES,

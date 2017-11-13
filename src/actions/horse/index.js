@@ -3,7 +3,9 @@ import {
   performHorseUpdate,
   getHorseStatistics,
   getHorseStatisticsResults,
-  getHorseStatisticsEntries
+  getHorseStatisticsEntries,
+  getHorseStatisticsResultsDetail,
+  updateHorseData
 } from 'api/Services'
 
 import { UPDATED_HORSE_DATA } from 'texts/successmessages'
@@ -204,51 +206,6 @@ export const fetchHorseInfo = slug => {
  *  @return {Function}
  */
 
-export const fetchHorseStatisticsFutureDetailsInfo = (name) => {
-  return (dispatch, getState) => {
-    // Signal to the store a fetch is going to happen
-    dispatch(gettingHorseStatisticsFutureDetailsInfo())
-
-    return getHorseStatisticsFutureDetailsInfo(name)
-      .then((result) => {
-        return Promise.resolve(formatHorseStatisticsData(result[0].horses))
-      })
-      .then((data) => {
-        dispatch(receivedHorseStatisticsFutureDetailsInfo(data))
-        return Promise.resolve(data)
-      })
-      .catch((error) => {
-        dispatch(failedToGetHorseStatisticsFutureDetailsInfo(error))
-        return Promise.reject(error)
-      })
-  }
-}
-
-export const fetchHorseStatisticsResultsDetailsInfo = (name) => {
-  return (dispatch, getState) => {
-    // Signal to the store a fetch is going to happen
-    dispatch(gettingHorseStatisticsResultsDetailsInfo())
-
-    return getHorseStatisticsResultsDetailsInfo(name)
-      .then((result) => {
-        let form = formatHorseStatisticsData(result.data.form.data)
-        let raceRecord = formatHorseStatisticsData(result.data.raceRecord.data)
-        return Promise.resolve({
-          form,
-          raceRecord
-        })
-      })
-      .then((data) => {
-        dispatch(receivedHorseStatisticsResultsDetailsInfo(data))
-        return Promise.resolve(data)
-      })
-      .catch((error) => {
-        dispatch(failedToGetHorseStatisticsResultsDetailsInfo(error))
-        return Promise.reject(error)
-      })
-  }
-}
-
 export const clearHorseStatisticsResultsDetailsInfo = () => ({
   type: CLEAR_HORSE_STATISTICS_RESULTS_DETAILS_INFO
 })
@@ -357,7 +314,39 @@ export const fetchHorseStatisticsResults = (slug) => {
   }
 }
 
-/* HORSE STATISTICS RESULTS */
+/* HORSE STATISTICS RESULTS DETAIL */
+
+export const FETCH_HORSE_STATISTICS_RESULTS_DETAIL = 'FETCH_HORSE_STATISTICS_RESULTS_DETAIL'
+
+export const RECEIVED_HORSE_STATISTICS_RESULTS_DETAIL = 'RECEIVED_HORSE_STATISTICS_RESULTS_DETAIL'
+
+export const FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAIL = 'FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAIL'
+
+export const gettingHorseStatisticsResultsDetail = () => ({
+  type: FETCH_HORSE_STATISTICS_RESULTS_DETAIL
+})
+
+export const receivedHorseStatisticsResultsDetail = data => ({
+  type: RECEIVED_HORSE_STATISTICS_RESULTS_DETAIL,
+  data
+})
+
+export const failedToGetHorseStatisticsResultsDetail = () => ({
+  type: FAILED_TO_FETCH_HORSE_STATISTICS_RESULTS_DETAIL
+})
+
+export const fetchHorseStatisticsResultsDetail = (slug, meetingDate) => {
+  return (dispatch, getState) => {
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [gettingHorseStatisticsResultsDetail, receivedHorseStatisticsResultsDetail, failedToGetHorseStatisticsResultsDetail],
+      endpoint: getHorseStatisticsResultsDetail,
+      urlParams: {slug, meetingDate}
+    })
+  }
+}
+
+/* HORSE STATISTICS ENTRIES */
 
 export const FETCH_HORSE_STATISTICS_ENTRIES = 'FETCH_HORSE_STATISTICS_ENTRIES'
 
