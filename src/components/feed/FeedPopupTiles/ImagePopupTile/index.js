@@ -51,7 +51,8 @@ const ImagePopupTile = props => {
     date,
     text,
     src,
-    rootPath
+    rootPath,
+    commentLength
   } = props
 
   const modifiedClassNames = classNames('image-popup-tile', className, modifier)
@@ -69,6 +70,7 @@ const ImagePopupTile = props => {
         <TileContent
           text={text} />
         <TileFooter
+          commentLength={commentLength}
           shareText={text} />
       </div>
     </div>

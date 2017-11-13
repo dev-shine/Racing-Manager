@@ -1,5 +1,5 @@
 
-export const ROOT_PATH = 'http://192.168.0.38:3000'
+export const ROOT_PATH = 'http://52.51.111.248:3000'
 
 export const BASE_URL = `${ROOT_PATH}/api/v1`
 
@@ -60,6 +60,10 @@ export const GET_HORSE_INFORMATIONS = `${BASE_URL}/horse`
 export const POST_UNSET_USER = (horseId) => `${BASE_URL}/message?horseId=${horseId}`
 
 export const POST_SET_USER = (horseId, userId) => `${BASE_URL}/message?horseId=${horseId}&userId=${userId}`
+
+export const MESSAGE_POST_UNSET_USERID = (horseId) => { `${BASE_URL}/message?horseId=${horseId}` }
+
+export const MESSAGE_POST_SET_USERID = (horseId, userId) => { `${BASE_URL}/message?horseId=${userId}` }
 
 export const ACCOUNT_NOTIFICATION_SETTING = `${USER}/notification`
 
