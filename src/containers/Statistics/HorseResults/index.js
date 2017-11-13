@@ -48,6 +48,19 @@ class HorseStatisticsResults extends Component {
   }
 }
 
+const tableColumnsDetail = [
+  'POSITION',
+  'SILK',
+  'HORSENAME',
+  'JOCKEY',
+  'TRAINER',
+  'TFR',
+  'AGE',
+  'ISP',
+  'BHARATING',
+  'TOPRATED'
+]
+
 class HorseStatisticsResultsDetail extends Component {
   componentDidMount () {
     const {
@@ -73,6 +86,7 @@ class HorseStatisticsResultsDetail extends Component {
       <HorseTable
         title={`${rowData.COURSE} ${displayDate}`}
         data={resultsDetail}
+        firstColumns={tableColumnsDetail}
         description={<a onClick={onReturnToMaster}>Back to results</a>}/>
     )
   }

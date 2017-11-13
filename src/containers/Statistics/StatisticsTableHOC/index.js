@@ -10,7 +10,8 @@ const StatisticsTableHOC = (MasterComponent, DetailComponent = null) => (
       this.state = {
         showDetail: false,
         rowData: null,
-        height: undefined
+        height: undefined,
+        unique: 'STATS_CONTAINER_' + Math.round(Math.random() * 10000000)
       }
       this.toggleDetail = this.toggleDetail.bind(this)
       this.updateHeight = this.updateHeight.bind(this)
@@ -37,10 +38,17 @@ const StatisticsTableHOC = (MasterComponent, DetailComponent = null) => (
     }
 
     render () {
-      const {showDetail, rowData, height} = this.state
+      const {
+        showDetail,
+        rowData,
+        height,
+        unique
+      } = this.state
+
       const variableHeightStyles = {
         height
       }
+
       return (
         <div className="container relative statistics-table">
           <div className="row">

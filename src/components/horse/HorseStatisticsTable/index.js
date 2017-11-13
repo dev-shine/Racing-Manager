@@ -3,20 +3,27 @@ import moment from 'moment'
 
 import TitleDescriptionSection from 'components/common/TitleDescriptionSection'
 
-const dateFormatter = (date) => {
-  const momentDate = moment(date)
+const dateFormatter = (row) => {
+  const momentDate = moment(row.DATE)
   return momentDate.format('MMMM Do YYYY')
 }
 
-const timeFormatter = (time) => {
-  const momentTime = moment(time)
+const timeFormatter = (row) => {
+  const momentTime = moment(row.TIME)
   return momentTime.format('h:mma')
+}
+
+const silkFormatter = (row) => {
+  return <img className='silk' src={`https://images.timeform.com/silks/${row.SILKCODE}.png`} />
 }
 
 const formatKeys = {
   DATE: dateFormatter,
-  TIME: timeFormatter
+  TIME: timeFormatter,
+  SILK: silkFormatter
 }
+
+
 
 const ResultsTableContainer = (props) => {
   const {
@@ -50,7 +57,7 @@ const ResultsTableContainer = (props) => {
   let tbody = data.map((row, rowIndex) => {
     let cols = []
     for (let i = 0; i < columns.length; i++) {
-      let fieldData = formatKeys[columns[i]] ? formatKeys[columns[i]](row[columns[i]]) : row[columns[i]]
+      let fieldData = formatKeys[columns[i]] ? formatKeys[columns[i]](row) : row[columns[i]]
       cols.push(<td className="table__cell">{fieldData}</td>)
     }
     return [
@@ -66,7 +73,7 @@ const ResultsTableContainer = (props) => {
       description={description}>
       <div className='table'>
         <table className='table__el'>
-          <thead className='table__head'>
+          <thead className='table__head table__head__left'>
             <tr className='table__row'>
               {columns.map((column, colIndex) => (
                 <th key={`${colIndex}COL`}>{column}</th>
