@@ -52,7 +52,8 @@ const VideoTile = props => {
     text,
     poster,
     src,
-    rootPath
+    rootPath,
+    commentCount
   } = props
 
   const modifiedClassNames = classNames('video-tile', className, modifier)
@@ -68,6 +69,7 @@ const VideoTile = props => {
       <TileContent
         text={text}/>
       <TileFooter
+        commentLength={commentCount}
         shareText={text} />
     </div>
   )

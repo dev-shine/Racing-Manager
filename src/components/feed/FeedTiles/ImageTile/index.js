@@ -51,7 +51,8 @@ const ImageTile = props => {
     date,
     text,
     src,
-    rootPath
+    rootPath,
+    commentCount
   } = props
 
   const modifiedClassNames = classNames('image-tile', className, modifier)
@@ -67,6 +68,7 @@ const ImageTile = props => {
       <TileContent
         text={text}/>
       <TileFooter
+        commentLength={commentCount}
         shareText={text} />
     </div>
   )

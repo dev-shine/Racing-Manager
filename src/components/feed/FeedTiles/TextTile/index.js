@@ -44,7 +44,8 @@ const TextTile = props => {
     modifier,
     name,
     date,
-    text
+    text,
+    commentCount
   } = props
 
   const modifiedClassNames = classNames('text-tile', className, modifier)
@@ -57,6 +58,7 @@ const TextTile = props => {
       <TileContent
         text={text}/>
       <TileFooter
+        commentLength={commentCount}
         shareText={text} />
     </div>
   )

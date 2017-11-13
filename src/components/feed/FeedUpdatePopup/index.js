@@ -113,6 +113,7 @@ export class FeedUpdatePopup extends Component {
               key={`fptext-${createdAt}`}
               id={createdAt}
               name={author}
+              commentLength={this.props.commentLength}
               date={timeStamp}
               text={text} />
           )
@@ -139,6 +140,7 @@ export class FeedUpdatePopup extends Component {
               id={createdAt}
               src={attachment[0].path}
               name={author}
+              commentLength={this.props.commentLength}
               date={timeStamp}
               text={text} />
           )
