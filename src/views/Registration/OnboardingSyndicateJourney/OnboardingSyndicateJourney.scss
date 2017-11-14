@@ -158,6 +158,11 @@
         display: inline-block;
         float: left;
 
+        @media screen and (max-width: 768px) {
+          width: 88%;
+          margin-right: 6%;
+        }
+
         .title-description {
 
           &__content {
@@ -186,12 +191,15 @@
       .content-right {
         width: 40%;
         height: 350px;
+        background-size: 100% 100%;
         background-repeat: no-repeat;
         display: inline-block;
 
         @media screen and (max-width: 768px) {
-          margin-top: 46%;
-          margin-left: -40%;
+          width: 88%;
+          margin: 0 6%;
+          /*margin-top: 46%;
+          margin-left: -40%;*/
         }
       }
     }
