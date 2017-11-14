@@ -12,7 +12,7 @@ function StripePaymentProviderHOC (WrappedComponent) {
 
     render () {
       return (
-        <StripeProvider apiKey="pk_test_Q9MxJo2WtdipzoLhEYuhjUiB">
+        <StripeProvider apiKey="pk_live_Slxfv65wZPG0h05ovYXLCb4X">
           <WrappedComponent {...this.props} />
         </StripeProvider>
       )
