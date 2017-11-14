@@ -269,6 +269,6 @@ export const updateAccountNotification = (data, token) => {
       'Authorization': `JWT ${token}`,
       'Content-Type': 'application/json'
     },
-    payload: JSON.stringify(data)
+    data: JSON.stringify(data)
   })
 }
