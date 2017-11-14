@@ -8,10 +8,16 @@ import {
   SET_TEAM_SIZE_VALUE,
   GOT_HORSE_INFORMATION,
   GOT_HORSE_CONDITION,
-  REGISTERED_IN_SYNDICATE
-} from 'actions/onboardingSyndicateJourney'
+  REGISTERED_IN_SYNDICATE,
+  REGISTERING_SNDICATE_HORSES,
+  REGISTERED_SNDICATE_HORSES,
+  FAILED_TO_REGISTER_SNDICATE_HORSES,
+  REGISTER_SUCCESS
+} from 'actions/registerSyndicate/onboardingSyndicateJourney'
 
 import _ from 'lodash'
+
+import update from 'immutability-helper'
 
 /**
  * @name initialState
@@ -25,9 +31,12 @@ const initialState = {
   horses: [],
   selectedHorseName: '',
   horseName: [],
-  horseCondition: '',
+  horseCondition: [],
   registerResult: '',
-  isSubmitting: false
+  isSubmitting: false,
+  error: false,
+  registering: false,
+  registered: false
 }
 
 const horseInfo = {
@@ -36,7 +45,7 @@ const horseInfo = {
     type: ''
   },
   ownershipType: '',
-  teamSize: null
+  teamsize: null
 }
 
 /**
@@ -56,19 +65,20 @@ const reducer = (state = initialState, action) => {
    */
   switch (action.type) {
     case HORSE_NUMBERS:
-      if (newState.horseCount < action.value) {
+      if (state.horseCount < action.value) {
         newState.horseCount = action.value
         newState.horses && newState.horses.push(newHorseInfo)
         newState.currentValues && newState.currentValues.push('')
+        newState.horseCondition && newState.horseCondition.push('')
 
-        return newState
-      } else {
+      } else if (state.horseCount > action.value) {
         newState.horseCount = action.value
-        newState.horses  && newState.horses.pop()
+        newState.horses && newState.horses.pop()
         newState.currentValues && newState.currentValues.pop()
-
-        return newState
+        newState.horseCondition && newState.horseCondition.pop()
       }
+
+      return newState
 
     case SELECTED_HORSE:
       newState.selectedHorse = action.value
@@ -98,21 +108,21 @@ const reducer = (state = initialState, action) => {
       return newState
 
     case SET_TEAM_SIZE_VALUE:
-      newState.horses && (newState.horses[newState.selectedHorse && newState.selectedHorse - 1].teamSize = action.value)
+      newState.horses && (newState.horses[newState.selectedHorse && newState.selectedHorse - 1].teamsize = action.value)
 
       return newState
 
     case GOT_HORSE_INFORMATION:
-      newState.horseName =  action.value && action.value.map((item) => ({ horseName: item.horseName, horseCode: item.horseCode }))
+      newState.horseName = action.value && action.value.map((item) => ({ horseName: item.horseName, horseCode: item.horseCode }))
       newState.isSubmitting = false
 
       return newState
 
     case GOT_HORSE_CONDITION:
       if (action.value === 'false') {
-        newState.horseCondition = 'success'
+        newState.horseCondition[newState.selectedHorse && newState.selectedHorse - 1] = 'success'
       } else if (action.value === 'true') {
-        newState.horseCondition = 'failed'
+        newState.horseCondition[newState.selectedHorse && newState.selectedHorse - 1] = 'failed'
       }
 
 
@@ -122,6 +132,52 @@ const reducer = (state = initialState, action) => {
       newState.registerResult = action.value
 
       return newState
+    case REGISTER_SUCCESS:
+      newState.horseCount = 0
+      newState.selectedHorse = null
+      newState.currentValues = []
+      newState.horses = []
+      newState.selectedHorse = null
+      newState.horseCondition = ''
+      newState.horseName = []
+
+      return newState
+
+    case REGISTERING_SNDICATE_HORSES:
+      return update(state, {
+        registering: {
+          $set: true
+        },
+        registered: {
+          $set: false
+        }
+      })
+
+    case REGISTERED_SNDICATE_HORSES:
+      return update(state, {
+        registering: {
+          $set: false
+        },
+        error: {
+          $set: false
+        },
+        registered: {
+          $set: true
+        }
+      })
+
+    case FAILED_TO_REGISTER_SNDICATE_HORSES:
+      return update(state, {
+        registering: {
+          $set: false
+        },
+        error: {
+          $set: true
+        },
+        registered: {
+          $set: false
+        }
+      })
 
     default:
       return state

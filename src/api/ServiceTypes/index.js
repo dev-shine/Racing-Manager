@@ -49,14 +49,21 @@ export const NEWS = `${BASE_URL}/news`
 
 export const UPLOADED = `${BASE_URL}/uploaded`
 
+export const REGISTER_SYNDICATE_NAME = `${BASE_URL}/syndicate/register/name`
+
+export const REGISTER_SYNDICATE_MEMBERS = `${BASE_URL}/syndicate/:slug/ownership`
+
+export const REGISTER_SYNDICATE_COLOURS = `${BASE_URL}/syndicate/register/color/:slug`
+
 export const HORSE_INFORMATION_EDITOR = `${BASE_URL}/horse/search`
 
 export const HORSE_STATE = `${BASE_URL}/horse/checkExist`
 
-export const REGISTER_HORSES = `${BASE_URL}/horses/SYNDICATE_ONE`
+export const REGISTER_HORSES = `${BASE_URL}/syndicate/register/horses/:slug`
 
 export const GET_USERS_INFORMATIONS = `${BASE_URL}/user/search`
 
 export const GET_HORSE_INFORMATIONS = `${BASE_URL}/horse`
 
 export const ACCOUNT_NOTIFICATION_SETTING = `${USER}/notification`
+

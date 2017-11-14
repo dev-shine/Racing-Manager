@@ -23,6 +23,11 @@ import MemberDashboard from 'views/Dashboard/MemberDashboard'
 import ManagerDashboardBilling from 'views/ManagerDashboard/ManagerDashboardBilling'
 import BrowseHorses from 'views/BrowseHorses'
 import RegistrationExistingSyndicate from 'views/Registration/RegisterExistingSyndicate'
+import RegisterSyndicate from 'views/Registration/RegisterSyndicate'
+import RegisterSyndicateName from 'views/Registration/RegisterSyndicateName'
+import OnboardingSyndicateJourney from 'views/Registration/OnboardingSyndicateJourney'
+import RegisterSyndicateColours from 'views/Registration/RegisterSyndicateColours'
+import RegisterSyndicateMembers from 'views/Registration/RegisterSyndicateMembers'
 
 import Account from 'views/Account/AccountLayout'
 
@@ -36,8 +41,6 @@ import Syndicate from 'views/Syndicate/SyndicateMain'
 import SyndicateCreation from 'views/Syndicate/SyndicateCreation'
 import PrivateSyndicate from 'views/Syndicate/Private/SyndicateOverview'
 import PublicSyndicate from 'views/Syndicate/Public/SyndicateOverview'
-
-import OnboardingSyndicateJourney from 'views/OnboardingSyndicateJourney'
 
 import Cookies from 'views/StaticPages/Cookies'
 import Legal from 'views/StaticPages/Legal'
@@ -62,6 +65,11 @@ const router = (
             <Route path='/legal/terms' component={Terms} />
 
             <AuthRoute path='/register-existing-syndicate' component={RegistrationExistingSyndicate} redirectPath='/' />
+            <AuthRoute path='/register-syndicate' component={RegisterSyndicate} redirectPath='/' />
+            <AuthRoute path='/register-syndicate-name' component={RegisterSyndicateName} redirectPath='/' />
+            <AuthRoute exact path='/register-syndicate-onboarding' component={OnboardingSyndicateJourney} redirectPath='/' />
+            <AuthRoute path='/register-syndicate-colours' component={RegisterSyndicateColours} redirectPath='/' />
+            <AuthRoute path='/register-syndicate-members' component={RegisterSyndicateMembers} redirectPath='/' />
             <AuthRoute path='/create-new-syndicate' component={SyndicateCreation} redirectPath='/' />
             <AuthRoute path='/dashboard' component={MemberDashboard} redirectPath='/' />
             <AuthRoute path='/manager-dashboard/billing' component={ManagerDashboardBilling} redirectPath='/' />

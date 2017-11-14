@@ -10,6 +10,7 @@ import login from './login'
 import auth from './auth'
 import registrationConfirmation from './registrationconfirmation'
 import registerExistingSyndicate from './registerExistingSyndicate'
+import registerSyndicate from './registerSyndicate'
 import dashboard from './dashboard'
 import account from './account'
 import toast from './toast'
@@ -17,7 +18,6 @@ import feedComments from './feedcomments'
 import news from './news'
 import managerDashboardBilling from './managerdashboardbilling'
 import submitFeedPost from './submitfeedpost'
-import onboardingSyndicateJourney from './onboardingSyndicateJourney'
 
 const rootReducer = combineReducers({
   register,
@@ -33,8 +33,8 @@ const rootReducer = combineReducers({
   feedComments,
   news,
   registerExistingSyndicate,
+  registerSyndicate,
   managerDashboardBilling,
-  onboardingSyndicateJourney,
 
   /* submitting data for feed posts & feed commenting */
   horseFeedPost: reducerFactory(submitFeedPost, 'horseFeedPost'),

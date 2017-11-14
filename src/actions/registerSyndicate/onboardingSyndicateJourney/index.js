@@ -4,6 +4,12 @@ import {
   registerInSyndicate
 } from 'api/Services'
 
+import { REGISTER_SYNDICATE_HORSES } from 'texts/successmessages'
+
+import { addToastSuccess, addToastError } from 'actions/toast'
+
+import { AUTHENTICATED_REQUEST } from 'middleware/AuthenticatedRequest'
+
 export const HORSE_NUMBERS = '@ONBOARDING_SYNDICATE_JOURNEY/HORSE_NUMBERS'
 export const SELECTED_HORSE = '@SELECTED_HORSE/SELECTED_HORSE'
 export const HORSE_NAME_EDITOR = '@HORSE_NAME_EDITOR/HORSE_NAME_EDITOR'
@@ -14,6 +20,10 @@ export const SET_TEAM_SIZE_VALUE = '@SET_TEAM_SIZE_VALUE/SET_TEAM_SIZE_VALUE'
 export const GOT_HORSE_INFORMATION = '@GOT_HORSE_INFORMATION/GOT_HORSE_INFORMATION'
 export const GOT_HORSE_CONDITION = '@GOT_HORSE_CONDITION/GOT_HORSE_CONDITION'
 export const REGISTERED_IN_SYNDICATE = '@REGISTERED_IN_SYNDICATE/REGISTERED_IN_SYNDICATE'
+export const REGISTERING_SNDICATE_HORSES = '@REGISTERING_SNDICATE_HORSES/REGISTERING_SNDICATE_HORSES'
+export const REGISTERED_SNDICATE_HORSES = '@REGISTERED_SNDICATE_HORSES/REGISTERED_SNDICATE_HORSES'
+export const FAILED_TO_REGISTER_SNDICATE_HORSES = '@FAILED_TO_REGISTER_SNDICATE_HORSES/FAILED_TO_REGISTER_SNDICATE_HORSES'
+export const REGISTER_SUCCESS = '@REGISTER_SUCCESS/REGISTER_SUCCESS'
 
 export const horseNumbers = (value) => ({
   type: HORSE_NUMBERS,
@@ -65,6 +75,23 @@ export const RegisteredInSyndicate = (value) => ({
   value
 })
 
+
+export const registeringSyndicateHorses = () => ({
+  type: REGISTERING_SNDICATE_HORSES
+})
+
+export const registeredSyndicateHorses = () => ({
+  type: REGISTERED_SNDICATE_HORSES
+})
+
+export const failedToRegisterSyndicateHorses = () => ({
+  type: FAILED_TO_REGISTER_SNDICATE_HORSES
+})
+
+export const registerSuccess = () => ({
+  type: REGISTER_SUCCESS
+})
+
 export const getSelectedHorseNameEditor = (value, token) => {
   return (dispatch, getState) => {
     dispatch(horseNameEditor(value))
@@ -93,15 +120,27 @@ export const getSelectHorseName = (value, token) => {
   }
 }
 
-export const RegisterHorsesInSyndicate = (value, token) => {
+export const RegisterHorsesInSyndicate = (value) => {
   return (dispatch, getState) => {
-
-    return registerInSyndicate(value, token)
-    .then((value) => {
-      dispatch(RegisteredInSyndicate(value))
+    let slug = getState().registerSyndicate.syndicateName.slug
+    return dispatch({
+      type: AUTHENTICATED_REQUEST,
+      types: [registeringSyndicateHorses, registeredSyndicateHorses, failedToRegisterSyndicateHorses],
+      endpoint: registerInSyndicate,
+      headers: {'Content-Type': 'application/json'},
+      payload: JSON.stringify({ horses: value }),
+      urlParams: {slug}
+    })
+    .then(() => {
+      dispatch(addToastSuccess(REGISTER_SYNDICATE_HORSES))
+      dispatch(registerSuccess())
+      return Promise.resolve()
     })
     .catch((error) => {
-      console.log(error)
+      if (error && error.message) {
+        dispatch(addToastError(error.message))
+        return Promise.reject(error)
+      }
     })
   }
 }

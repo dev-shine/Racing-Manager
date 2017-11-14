@@ -12,6 +12,7 @@ const SyndicateInvolvement = (props) => {
   const {
     className,
     title,
+    titleModifier,
     benefits,
     description
   } = props
@@ -24,7 +25,7 @@ const SyndicateInvolvement = (props) => {
         title={title}
         description={description}
         colorModifier='white'
-        titleModifier='h2'
+        titleModifier={titleModifier}
       >
         <List items={benefits} />
       </TitleDescriptionSection>
@@ -35,12 +36,14 @@ const SyndicateInvolvement = (props) => {
 SyndicateInvolvement.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
+  titleModifier: PropTypes.string,
   description: PropTypes.string,
   benefits: PropTypes.arrayOf(PropTypes.string)
 }
 
 SyndicateInvolvement.defaultProps = {
   title: 'Benefits',
+  titleModifier: 'h2',
   description: '',
   benefits: []
 }

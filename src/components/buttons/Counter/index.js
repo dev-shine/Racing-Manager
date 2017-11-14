@@ -51,6 +51,9 @@ class Counter extends PureComponent {
   }
 
   componentWillReceiveProps (nextProps) {
+    if (nextProps.defaultCount !== this.props.defaultCount) {
+      this.adjustCountToState(nextProps.defaultCount, nextProps.min, nextProps.max)
+    }
     if (nextProps.min !== this.props.min || nextProps.max !== this.props.max) {
       this.adjustCountToState(this.state.count, nextProps.min, nextProps.max)
     }

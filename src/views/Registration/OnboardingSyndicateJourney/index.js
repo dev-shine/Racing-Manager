@@ -13,6 +13,8 @@ import View from 'components/routing/View'
  */
 import { connect } from 'react-redux'
 
+import { withRouter } from 'react-router-dom'
+
 /**
  *  @module title
  */
@@ -51,7 +53,7 @@ import {
   getOwnerShipTypeValue,
   getTeamSizeValue,
   RegisterHorsesInSyndicate
-} from 'actions/onboardingSyndicateJourney'
+} from 'actions/registerSyndicate/onboardingSyndicateJourney'
 
 import HorseNameEditor from 'components/onboardingSyndicateJourney/HorseNameEditor'
 
@@ -93,6 +95,7 @@ class OnboardingSyndicateJourney extends PureComponent {
 
   onRegisterClick () {
     this.props.RegisterHorses(this.props.horses)
+    .then(() => this.props.history.push('/register-syndicate'))
   }
 
   horseNumbers (value) {
@@ -248,8 +251,12 @@ class OnboardingSyndicateJourney extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    onboardingSyndicateJourney
+    registerSyndicate
   } = state
+
+  const {
+    onboardingSyndicateJourney
+  } = registerSyndicate
 
   const {
     horseCount,
@@ -296,12 +303,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(getTeamSizeValue(value))
     },
     RegisterHorses: (value) => {
-      dispatch(RegisterHorsesInSyndicate(value))
+      return dispatch(RegisterHorsesInSyndicate(value))
     }
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(OnboardingSyndicateJourney)
+)(OnboardingSyndicateJourney))
